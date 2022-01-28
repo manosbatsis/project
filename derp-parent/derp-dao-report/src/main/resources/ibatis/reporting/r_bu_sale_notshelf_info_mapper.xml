@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuSaleNotshelfInfoMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuSaleNotshelfInfoModelMap" type="BuSaleNotshelfInfoModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="saleOrderCode" column="sale_order_code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="poNo" column="po_no" />
+                <result property="shelfDate" column="shelf_date" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="notshelfNum" column="notshelf_num" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="unit" column="unit" />
+                <result property="inventorySummaryId" column="inventory_summary_id" />
+                <result property="ownMonth" column="own_month" />
+                <result property="businessModel" column="business_model" />
+                <result property="commbarcode" column="commbarcode" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuSaleNotshelfInfoModelMap' parameterType='BuSaleNotshelfInfoModel'>
+        select <include refid='sql_columns' /> from r_bu_sale_notshelf_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuSaleNotshelfInfoModelMap' parameterType='BuSaleNotshelfInfoModel'>
+        select <include refid='sql_columns' /> from r_bu_sale_notshelf_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuSaleNotshelfInfoModelMap' parameterType='BuSaleNotshelfInfoModel' >
+        select <include refid='sql_columns' /> from r_bu_sale_notshelf_info  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuSaleNotshelfInfoModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_sale_notshelf_info
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > sale_order_code , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='shelfDate!=null' >shelf_date , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='notshelfNum!=null' >notshelf_num , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                        <if test='inventorySummaryId!=null' >inventory_summary_id , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' > own_month , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' > business_model , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > #{saleOrderCode} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='shelfDate!=null' > #{shelfDate} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='notshelfNum!=null' > #{notshelfNum} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                        <if test='inventorySummaryId!=null' > #{inventorySummaryId} , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' > #{ownMonth} , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' > #{businessModel} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuSaleNotshelfInfoModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_sale_notshelf_info SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='shelfDate!=null' > shelf_date= #{shelfDate} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='notshelfNum!=null' > notshelf_num= #{notshelfNum} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                        <if test='inventorySummaryId!=null' > inventory_summary_id= #{inventorySummaryId} , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_sale_notshelf_info  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_sale_notshelf_info where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            sale_order_code,
+            merchant_id,
+            merchant_name,
+            bu_name,
+            bu_id,
+            depot_id,
+            depot_name,
+            po_no,
+            shelf_date,
+            deliver_date,
+            goods_id,
+            goods_name,
+            barcode,
+            notshelf_num,
+            create_date,
+            modify_date,
+            unit,
+            inventory_summary_id,
+            own_month,
+            business_model,
+            commbarcode
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='notshelfNum!=null' > notshelf_num= #{notshelfNum} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                            <if test='inventorySummaryId!=null' > inventory_summary_id= #{inventorySummaryId} and </if>
+                            <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                            <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <!--清空事业部 商家、仓库、本月的报表数据 -->
+	<delete id='delBuDepotMonthReport' parameterType='map'>
+		delete from r_bu_sale_notshelf_info
+		where merchant_id=#{merchantId} and
+				depot_id=#{depotId} and
+				bu_id= #{buId} and 
+				own_month=#{month}
+		
+	</delete>
+	<!-- 批量新增 -->
+	<insert id='insertBuBatch' parameterType='java.util.List'>
+		INSERT INTO r_bu_sale_notshelf_info(
+		code,sale_order_code,merchant_id,merchant_name,
+		depot_id,depot_name,po_no,deliver_date,
+		shelf_date,goods_id,goods_name,barcode,
+		notshelf_num,modify_date,create_date,own_month,
+		unit,inventory_summary_id,business_model,commbarcode,bu_id,bu_name
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.code},#{item.saleOrderCode},#{item.merchantId},#{item.merchantName},
+			 #{item.depotId},#{item.depotName},#{item.poNo},#{item.deliverDate},
+			 #{item.shelfDate},#{item.goodsId},#{item.goodsName},#{item.barcode},
+			 #{item.notshelfNum},#{item.modifyDate},#{item.createDate},#{item.ownMonth},
+			 #{item.unit},#{item.inventorySummaryId},#{item.businessModel},#{item.commbarcode},
+			 #{item.buId},#{item.buName})
+		</foreach>
+	</insert>
+   <!-- 导出 -->
+    <select id='listBuForMap' resultType='map' parameterType='map'>
+        select code,depot_name,po_no,sale_order_code,DATE_FORMAT(deliver_date,'%Y-%m-%d %H:%i:%s') AS deliver_date,
+              DATE_FORMAT(shelf_date,'%Y-%m-%d %H:%i:%s') AS shelf_date,notshelf_num,goods_name,barcode,unit,business_model,
+              commbarcode,bu_name
+ 		from r_bu_sale_notshelf_info  
+        where merchant_id=#{merchantId}		 
+		     and own_month=#{ownMonth} 
+		 <if test='depotListIds!=null and depotListIds.size()>0' > 
+			and depot_id in 			 
+			<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+				#{depotId}			
+			</foreach>				    			 
+		 </if>
+		 <if test='buId!=null' > and bu_id= #{buId} </if>
+        order by depot_id,code,goods_id,unit
+    </select>
+
+</mapper>

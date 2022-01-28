@@ -1,0 +1,1053 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuFinanceSaleShelfMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuFinanceSaleShelfModelMap" type="BuFinanceSaleShelfModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="orderId" column="order_id" />
+                <result property="orderCode" column="order_code" />
+                <result property="orderType" column="order_type" />
+                <result property="orderCreateDate" column="order_create_date" />
+                <result property="shelfDate" column="shelf_date" />
+                <result property="outOrderCode" column="out_order_code" />
+                <result property="outOrderId" column="out_order_id" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="num" column="num" />
+                <result property="salePrice" column="sale_price" />
+                <result property="saleAmount" column="sale_amount" />
+                <result property="outDepotCurrency" column="out_depot_currency" />
+                <result property="outDepotPrice" column="out_depot_price" />
+                <result property="outDepotAmount" column="out_depot_amount" />
+                <result property="month" column="month" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="saleCurrency" column="sale_currency" />
+                <result property="poNo" column="po_no" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="externalCode" column="external_code" />
+                <result property="taxes" column="taxes" />
+                <result property="wayFrtFee" column="way_frt_fee" />
+                <result property="discount" column="discount" />
+                <result property="payment" column="payment" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="storePlatformCode" column="store_platform_code" />
+                <result property="shelfId" column="shelf_id" />
+                <result property="shelfName" column="shelf_name" />
+                <result property="saleCom" column="sale_com" />
+                <result property="exOrderId" column="ex_order_id" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="sdOrderAmount" column="sd_order_amount" />
+                <result property="sdOrderPrice" column="sd_order_price" />
+                <result property="shopTypeCode" column="shop_type_code" />
+                <result property="channelType" column="channel_type" />
+                <result property="superiorParentBrandCode" column="superior_parent_brand_code" />
+                <result property="superiorParentBrandId" column="superior_parent_brand_id" />
+                <result property="sdInterestPrice" column="sd_interest_price" />
+            	<result property="sdInterestAmount" column="sd_interest_amount" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+                <result property="differencePrice" column="difference_price" />
+                <result property="differenceAmount" column="difference_amount" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuFinanceSaleShelfModelMap' parameterType='BuFinanceSaleShelfModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_sale_shelf  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuFinanceSaleShelfModelMap' parameterType='BuFinanceSaleShelfModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_sale_shelf  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuFinanceSaleShelfModelMap' parameterType='BuFinanceSaleShelfModel' >
+        select <include refid='sql_columns' /> from r_bu_finance_sale_shelf  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuFinanceSaleShelfModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_finance_sale_shelf
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='outDepotId!=null' >out_depot_id , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='orderCreateDate!=null' >order_create_date , </if>
+                        <if test='shelfDate!=null' >shelf_date , </if>
+                        <if test='outOrderCode!=null and !"".equals(outOrderCode)' > out_order_code , </if>
+                        <if test='outOrderId!=null' >out_order_id , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='salePrice!=null' >sale_price , </if>
+                        <if test='saleAmount!=null' >sale_amount , </if>
+                        <if test='outDepotCurrency!=null and !"".equals(outDepotCurrency)' > out_depot_currency , </if>
+                        <if test='outDepotPrice!=null' >out_depot_price , </if>
+                        <if test='outDepotAmount!=null' >out_depot_amount , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' > sale_currency , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > store_platform_name , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                        <if test='taxes!=null' >taxes , </if>
+                        <if test='wayFrtFee!=null' >way_frt_fee , </if>
+                        <if test='discount!=null' >discount , </if>
+                        <if test='payment!=null' >payment , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='shelfId!=null' >shelf_id , </if>
+                        <if test='shelfName!=null and !"".equals(shelfName)' > shelf_name , </if>
+                        <if test='saleCom!=null' >sale_com , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' > ex_order_id , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                        <if test='sdOrderAmount!=null' >sd_order_amount , </if>
+                        <if test='sdOrderPrice!=null' >sd_order_price , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > shop_type_code , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' > channel_type , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' > superior_parent_brand_code , </if>
+                        <if test='superiorParentBrandId!=null' >superior_parent_brand_id , </if>
+                        <if test='sdInterestPrice!=null' >sd_interest_price  , </if>
+                        <if test='sdInterestAmount!=null' >sd_interest_amount  , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+                        <if test='differencePrice!=null' >difference_price , </if>
+                        <if test='differenceAmount!=null' >difference_amount , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='outDepotId!=null' > #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='orderCreateDate!=null' > #{orderCreateDate} , </if>
+                        <if test='shelfDate!=null' > #{shelfDate} , </if>
+                        <if test='outOrderCode!=null and !"".equals(outOrderCode)' > #{outOrderCode} , </if>
+                        <if test='outOrderId!=null' > #{outOrderId} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='salePrice!=null' > #{salePrice} , </if>
+                        <if test='saleAmount!=null' > #{saleAmount} , </if>
+                        <if test='outDepotCurrency!=null and !"".equals(outDepotCurrency)' > #{outDepotCurrency} , </if>
+                        <if test='outDepotPrice!=null' > #{outDepotPrice} , </if>
+                        <if test='outDepotAmount!=null' > #{outDepotAmount} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' > #{saleCurrency} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > #{storePlatformName} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                        <if test='taxes!=null' > #{taxes} , </if>
+                        <if test='wayFrtFee!=null' > #{wayFrtFee} , </if>
+                        <if test='discount!=null' > #{discount} , </if>
+                        <if test='payment!=null' > #{payment} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='shelfId!=null' > #{shelfId} , </if>
+                        <if test='shelfName!=null and !"".equals(shelfName)' > #{shelfName} , </if>
+                        <if test='saleCom!=null' > #{saleCom} , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' > #{exOrderId} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                        <if test='sdOrderAmount!=null' > #{sdOrderAmount} , </if>
+                        <if test='sdOrderPrice!=null' > #{sdOrderPrice} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > #{shopTypeCode} , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' > #{channelType} , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' > #{superiorParentBrandCode} , </if>
+                        <if test='superiorParentBrandId!=null' > #{superiorParentBrandId} , </if>
+                        <if test='sdInterestPrice!=null' > #{sdInterestPrice} , </if>
+                        <if test='sdInterestAmount!=null' > #{sdInterestAmount} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+                        <if test='differencePrice!=null' > #{differencePrice} , </if>
+                        <if test='differenceAmount!=null' > #{differenceAmount} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuFinanceSaleShelfModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_finance_sale_shelf SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='orderCreateDate!=null' > order_create_date= #{orderCreateDate} , </if>
+                        <if test='shelfDate!=null' > shelf_date= #{shelfDate} , </if>
+                        <if test='outOrderCode!=null and !"".equals(outOrderCode)' >out_order_code= #{outOrderCode} , </if>
+                        <if test='outOrderId!=null' > out_order_id= #{outOrderId} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='salePrice!=null' > sale_price= #{salePrice} , </if>
+                        <if test='saleAmount!=null' > sale_amount= #{saleAmount} , </if>
+                        <if test='outDepotCurrency!=null and !"".equals(outDepotCurrency)' >out_depot_currency= #{outDepotCurrency} , </if>
+                        <if test='outDepotPrice!=null' > out_depot_price= #{outDepotPrice} , </if>
+                        <if test='outDepotAmount!=null' > out_depot_amount= #{outDepotAmount} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' >sale_currency= #{saleCurrency} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                        <if test='taxes!=null' > taxes= #{taxes} , </if>
+                        <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} , </if>
+                        <if test='discount!=null' > discount= #{discount} , </if>
+                        <if test='payment!=null' > payment= #{payment} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='shelfId!=null' > shelf_id= #{shelfId} , </if>
+                        <if test='shelfName!=null and !"".equals(shelfName)' >shelf_name= #{shelfName} , </if>
+                        <if test='saleCom!=null' > sale_com= #{saleCom} , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                        <if test='sdOrderAmount!=null' > sd_order_amount= #{sdOrderAmount} , </if>
+                        <if test='sdOrderPrice!=null' > sd_order_price= #{sdOrderPrice} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' >superior_parent_brand_code= #{superiorParentBrandCode} , </if>
+                        <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} , </if>
+                        <if test='sdInterestPrice!=null' > sd_interest_price= #{sdInterestPrice} , </if>
+                        <if test='sdInterestAmount!=null' > sd_interest_amount= #{sdInterestAmount} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+                        <if test='differencePrice!=null' > difference_price= #{differencePrice} , </if>
+                        <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_finance_sale_shelf  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_finance_sale_shelf where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            out_depot_id,
+            out_depot_name,
+            bu_id,
+            bu_name,
+            customer_name,
+            customer_id,
+            order_id,
+            order_code,
+            order_type,
+            order_create_date,
+            shelf_date,
+            out_order_code,
+            out_order_id,
+            deliver_date,
+            goods_id,
+            goods_no,
+            goods_name,
+            barcode,
+            commbarcode,
+            tallying_unit,
+            num,
+            sale_price,
+            sale_amount,
+            out_depot_currency,
+            out_depot_price,
+            out_depot_amount,
+            month,
+            create_date,
+            modify_date,
+            sale_currency,
+            po_no,
+            store_platform_name,
+            external_code,
+            taxes,
+            way_frt_fee,
+            discount,
+            payment,
+            shop_code,
+            shop_name,
+            store_platform_code,
+            shelf_id,
+            shelf_name,
+            sale_com,
+            ex_order_id,
+            brand_id,
+            brand_name,
+            superior_parent_brand,
+            sd_order_amount,
+            sd_order_price,
+            shop_type_code,
+            channel_type,
+            superior_parent_brand_code,
+            superior_parent_brand_id,
+            sd_interest_price,
+            sd_interest_amount,
+            stock_location_type_id,
+            stock_location_type_name,
+            difference_price,
+            difference_amount
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                            <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='orderCreateDate!=null' > order_create_date= #{orderCreateDate} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='outOrderCode!=null and !"".equals(outOrderCode)' >out_order_code= #{outOrderCode} and </if>
+                            <if test='outOrderId!=null' > out_order_id= #{outOrderId} and </if>
+                            <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='salePrice!=null' > sale_price= #{salePrice} and </if>
+                            <if test='saleAmount!=null' > sale_amount= #{saleAmount} and </if>
+                            <if test='outDepotCurrency!=null and !"".equals(outDepotCurrency)' >out_depot_currency= #{outDepotCurrency} and </if>
+                            <if test='outDepotPrice!=null' > out_depot_price= #{outDepotPrice} and </if>
+                            <if test='outDepotAmount!=null' > out_depot_amount= #{outDepotAmount} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='saleCurrency!=null and !"".equals(saleCurrency)' >sale_currency= #{saleCurrency} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='taxes!=null' > taxes= #{taxes} and </if>
+                            <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} and </if>
+                            <if test='discount!=null' > discount= #{discount} and </if>
+                            <if test='payment!=null' > payment= #{payment} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='shelfId!=null' > shelf_id= #{shelfId} and </if>
+                            <if test='shelfName!=null and !"".equals(shelfName)' >shelf_name= #{shelfName} and </if>
+                            <if test='saleCom!=null' > sale_com= #{saleCom} and </if>
+                            <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                            <if test='sdOrderAmount!=null' > sd_order_amount= #{sdOrderAmount} and </if>
+                            <if test='sdOrderPrice!=null' > sd_order_price= #{sdOrderPrice} and </if>
+                            <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                            <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} and </if>
+                            <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' >superior_parent_brand_code= #{superiorParentBrandCode} and </if>
+                            <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} and </if>
+                            <if test='sdInterestPrice!=null' > sd_interest_price= #{sdInterestPrice} and </if>
+                            <if test='sdInterestAmount!=null' > sd_interest_amount= #{sdInterestAmount} and </if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                            <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+                            <if test='differencePrice!=null' > difference_price= #{differencePrice} and </if>
+                            <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+        <!--自定义SQL-->
+		<!-- 清除商家 仓库 月份 (财务经销存)销售已上架明细表 -->
+		<delete id='delBuFinanceSaleShelf' parameterType='map'>
+			delete from r_bu_finance_sale_shelf
+			where merchant_id=#{merchantId}  and  bu_id= #{buId} and month=#{month} 
+		</delete>
+		<!-- 批量新增 -->
+	<insert id='batchBuInsertFinanceSaleShelf' parameterType='java.util.List'>
+		INSERT INTO
+			r_bu_finance_sale_shelf(merchant_id,merchant_name,out_depot_id,out_depot_name,customer_name,customer_id,order_id,
+			order_code,order_type,order_create_date,shelf_date,out_order_code,out_order_id,deliver_date,goods_id,goods_no,commbarcode,goods_name,barcode,
+			tallying_unit,num,sale_price,sale_amount,out_depot_currency,out_depot_price,out_depot_amount,`month`,modify_date,store_platform_name,external_code,
+			taxes,way_frt_fee,discount,payment,shop_code,shop_name,store_platform_code,sale_com,sale_currency,ex_order_id,bu_id,bu_name,brand_id,brand_name,
+			superior_parent_brand,superior_parent_brand_code,superior_parent_brand_id,
+			sd_order_amount,sd_order_price,shop_type_code,channel_type,sd_interest_price,sd_interest_amount,
+			stock_location_type_id,stock_location_type_name,difference_price,difference_amount)
+			VALUES
+			<foreach collection="list" item="item" separator=",">
+				(#{item.merchantId},#{item.merchantName},#{item.outDepotId},#{item.outDepotName},#{item.customerName},#{item.customerId},#{item.orderId},
+				#{item.orderCode},#{item.orderType},#{item.orderCreateDate},#{item.shelfDate},#{item.outOrderCode},#{item.outOrderId},#{item.deliverDate},#{item.goodsId},
+				#{item.goodsNo},#{item.commbarcode},#{item.goodsName},#{item.barcode},#{item.tallyingUnit},#{item.num},#{item.salePrice},#{item.saleAmount},#{item.outDepotCurrency},
+				#{item.outDepotPrice},#{item.outDepotAmount},#{item.month},#{item.modifyDate},#{item.storePlatformName},#{item.externalCode},
+				#{item.taxes},#{item.wayFrtFee},#{item.discount},#{item.payment},#{item.shopCode},#{item.shopName},#{item.storePlatformCode},#{item.saleCom},#{item.saleCurrency},
+				#{item.exOrderId},#{item.buId},#{item.buName},#{item.brandId},#{item.brandName},
+				#{item.superiorParentBrand},#{item.superiorParentBrandCode},#{item.superiorParentBrandId},
+				#{item.sdOrderAmount},#{item.sdOrderPrice},#{item.shopTypeCode},#{item.channelType},#{item.sdInterestPrice},#{item.sdInterestAmount},
+				#{item.stockLocationTypeId},#{item.stockLocationTypeName},#{item.differencePrice},#{item.differenceAmount})
+			</foreach>
+						
+	</insert>
+	
+		<!-- 导出(事业部财务经分销)销售上架 分页 -->
+	<select id="exportBuFinanceSaleShelfMapList" resultType='map' parameterType='map'>
+		select 	
+		t.order_type,	   
+		t.tallying_unit,
+		t.out_depot_currency,
+		t.sale_currency,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-num,num) as num,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-sale_amount,sale_amount) as sale_amount,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-out_depot_amount,out_depot_amount) as out_depot_amount,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-payment,payment) as payment,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-taxes,taxes) as taxes,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-way_frt_fee,way_frt_fee) as way_frt_fee,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-discount,discount) as discount,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-sale_com,sale_com) as sale_com,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' or order_type='14',-sd_order_amount,sd_order_amount) as sd_order_amount,
+		t.sd_order_price,t.shop_type_code,t.channel_type,
+		t.customer_name,t.order_create_date,t.order_code,shelf_date,t.out_order_code,t.deliver_date,t.goods_no,t.commbarcode,t.goods_name,		
+		t.sale_price,t.out_depot_price,t.out_depot_name,t.external_code,t.po_no,t.store_platform_name,t.shop_name,t.shelf_name,t.ex_order_id,
+        t.bu_name,
+        t2.`name` as brand_name,
+        t2.superior_parent_brand as superior_parent_brand
+        from r_bu_finance_sale_shelf t
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+	where t.merchant_id=#{merchantId} 
+		and t.month=#{ownMonth}
+		<if test='buId!=null' > and t.bu_id= #{buId}  </if>
+		<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+			 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+			       #{buId}
+			 </foreach>                   
+		</if>  
+		and t.order_type!='14'
+		ORDER BY t.order_code ASC
+		limit #{startIndex},#{pageSize}
+	</select>
+	
+			<!-- 导出(事业部财务经分销)销售上架 电商退款数据 -->
+	<select id="exportBuFinanceSaleShelfTKMapList" resultType='map' parameterType='map'>
+		select 	
+		t.order_type,	   
+		t.tallying_unit,
+		t.out_depot_currency,
+		t.sale_currency,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-num,num) as num,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-sale_amount,sale_amount) as sale_amount,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-out_depot_amount,out_depot_amount) as out_depot_amount,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-payment,payment) as payment,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-taxes,taxes) as taxes,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-way_frt_fee,way_frt_fee) as way_frt_fee,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-discount,discount) as discount,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-sale_com,sale_com) as sale_com,
+		if(t.order_type='5' or t.order_type='6' or t.order_type='8' or t.order_type='11' ,-sd_order_amount,sd_order_amount) as sd_order_amount,
+		t.sd_order_price,t.shop_type_code,t.channel_type,
+		t.customer_name,t.order_create_date,t.order_code,shelf_date,t.out_order_code,t.deliver_date,t.goods_no,t.commbarcode,t.goods_name,		
+		t.sale_price,t.out_depot_price,t.out_depot_name,t.external_code,t.po_no,t.store_platform_name,t.shop_name,t.shelf_name,t.ex_order_id,
+        t.bu_name,
+        t2.`name` as brand_name,
+        t2.superior_parent_brand as superior_parent_brand
+        from r_bu_finance_sale_shelf t
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+	where t.merchant_id=#{merchantId} 
+		and t.month=#{ownMonth}
+		<if test='buId!=null' > and t.bu_id= #{buId}  </if>
+		<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+			 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+			       #{buId}
+			 </foreach>                   
+		</if> 
+		and t.order_type='14'
+		ORDER BY t.order_code ASC
+	</select>
+	
+	
+	<!-- 总账导出 获取财务经销存本期出库差异 -->
+	<select id="getOutCostDifferenceExport" resultType='map' parameterType='map'>
+		SELECT merchant_name,bu_name,`month`,'销售已上架' as table_type,order_type,
+		customer_name,store_platform_name,order_code,external_code,barcode,stock_location_type_name,
+		out_depot_price as price,difference_price,out_depot_currency as currency,
+		if(order_type='5' or order_type='6' or order_type='8' or order_type='11' ,-num,num) as num,
+		if(order_type='5' or order_type='6' or order_type='8' or order_type='11' ,-difference_amount,difference_amount) as difference_amount
+		from r_bu_finance_sale_shelf 		
+		where merchant_id=#{merchantId}		
+			  and month=#{month} 
+			  and stock_location_type_id is not null
+			  and order_type!='14'
+			  <if test='buId!=null' > and bu_id= #{buId}  </if>
+			  <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+              </if>		
+		UNION All
+		SELECT merchant_name,bu_name,`month`,'出库残损' as table_type,order_type,
+		customer_name,'' as store_platform_name,order_code,'' as external_code,barcode,stock_location_type_name,
+		price as price,difference_price,out_depot_currency as currency,
+		num, difference_amount		
+		from r_bu_finance_sale_damaged 		
+		where merchant_id=#{merchantId}		
+			  and month=#{month} 
+			  and stock_location_type_id is not null
+			  <if test='buId!=null' > and bu_id= #{buId}  </if>
+			  <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+              </if>		
+		UNION All
+		SELECT merchant_name,bu_name,`month`,'盘盈盘亏' as table_type,'' as order_type,
+		'' as customer_name,'' as store_platform_name,order_code,'' as external_code,barcode,stock_location_type_name,
+		 price as price,difference_price,out_depot_currency as currency,
+		IF(type='1',-surplus_num,deficient_num) as num,
+		IF(type='1',-difference_amount,difference_amount) as difference_amount		
+		from r_bu_finance_takes_stock_results 		
+		where merchant_id=#{merchantId}		
+			  and month=#{month} 
+			  and stock_location_type_id is not null
+			  <if test='buId!=null' > and bu_id= #{buId}  </if>
+			  <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+              </if>	
+		UNION All
+		SELECT merchant_name, bu_name,`month`,'销毁' as table_type,'' as order_type,
+		'' as customer_name,'' as store_platform_name,order_code,'' as external_code,barcode,stock_location_type_name,
+		 price as price,difference_price,out_depot_currency as currency,
+		IF(type='1',-num,num) as num,
+		IF(type='1',-difference_amount,difference_amount) as difference_amount		
+		from r_bu_finance_destroy 		
+		where merchant_id=#{merchantId}		
+			  and month=#{month} 
+			  and stock_location_type_id is not null
+			  <if test='buId!=null' > and bu_id= #{buId}  </if>
+			  <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+              </if>			
+		UNION All
+		SELECT merchant_name, bu_name,`month`,'库位调整' as table_type,order_type as order_type,
+		customer_name as customer_name,store_platform_name as store_platform_name,order_code,external_code as external_code,barcode,stock_location_type_name,		
+		out_depot_price as price,difference_price,cost_currency as currency,
+		IF(operate_type='1',-num,num) as num, 
+		IF(operate_type='1',-difference_amount,difference_amount) as difference_amount		
+		from r_bu_finance_location_adjustment_details 		
+		where merchant_id=#{merchantId}		
+			  and month=#{month} 
+			  and stock_location_type_id is not null
+			  and order_type not in ('DBCK','DBRK')
+			  <if test='buId!=null' > and bu_id= #{buId}  </if>
+			  <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+              </if>			
+	</select>
+	
+	
+	<!-- 导出(事业部财务经分销)销售未上架  (用于分页查询)统计总量 -->
+	<select id="getExportBuFinanceSaleShelfListCount" resultType='Integer' parameterType='map'>
+		select count(*) from r_bu_finance_sale_shelf
+		where merchant_id=#{merchantId} and month=#{ownMonth}
+				<if test='buId!=null' > and bu_id= #{buId}  </if>
+	</select>
+
+	<!-- 销售达成率按维度汇总统计销售已上架明细 -->
+	<select id="getSaleDataCountList" parameterType="map" resultType="BuFinanceSaleShelfModel">
+		SELECT
+			bu_id, bu_name, `month`, merchant_id, merchant_name, goods_no,
+			order_type, customer_id, store_platform_name, store_platform_code,
+			shop_code, shop_name, commbarcode, tallying_unit, out_depot_id, out_depot_name,
+            sale_currency, channel_type, SUM(num) as num, SUM(IFNULL(sale_amount, 0)) as sale_amount
+		FROM
+			r_bu_finance_sale_shelf
+		where order_type in ('9', '10') and
+			DATE_FORMAT(shelf_date, '%Y-%m-%d') = #{reportDate}	and
+			 month= #{month} and 
+			 bu_id= #{buId} 
+		GROUP BY
+			bu_id, bu_name, `month`, merchant_id, merchant_name,
+			goods_no, order_type, customer_id, store_platform_name,
+			store_platform_code, shop_code, shop_name, commbarcode, tallying_unit,
+			out_depot_id, out_depot_name,sale_currency,channel_type
+		UNION
+		SELECT
+			bu_id, bu_name, `month`, merchant_id, merchant_name, goods_no,
+			order_type, customer_id, store_platform_name, store_platform_code,
+			shop_code, shop_name, commbarcode, tallying_unit, out_depot_id, out_depot_name,
+            sale_currency, channel_type, SUM(num) as num, SUM(IFNULL(sale_amount, 0)) as sale_amount
+		FROM
+			r_bu_finance_sale_shelf
+		where order_type in ('3', '5', '6', '7', '8','14') and
+			 DATE_FORMAT(deliver_date, '%Y-%m-%d') = #{reportDate} and
+			 month= #{month} and 
+			 bu_id= #{buId} 
+		GROUP BY
+			bu_id, bu_name, `month`, merchant_id, merchant_name,
+			goods_no, order_type, customer_id, store_platform_name,
+			store_platform_code, shop_code, shop_name, commbarcode, tallying_unit,
+			out_depot_id, out_depot_name,sale_currency,channel_type
+	</select>
+	
+	<!-- 渠道汇总 -->
+	<select id="exportSaleChannelSummary" resultType='map' parameterType='map'>
+		SELECT 
+		p.*,
+		(SELECT goods_name from r_bu_finance_sale_shelf where id=p.id) as goods_name,
+		t2.superior_parent_brand as superior_parent_brand,
+		t2.`name` as brand_name
+		from (
+			SELECT
+				bu_name,customer_name,store_platform_name,order_type,commbarcode,
+				if(order_type='5' or order_type='6' or order_type='8',-SUM(num),SUM(num)) as num,
+				MAX(id) as id
+				from r_bu_finance_sale_shelf 
+			where merchant_id=#{merchantId} and `month`=#{ownMonth}
+			<if test='buId!=null' > and bu_id= #{buId}  </if>
+			<if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+            </if>
+			GROUP BY bu_name,customer_name,store_platform_name,order_type,commbarcode
+			)p
+		LEFT JOIN st_commbarcode t1 ON t1.commbarcode=p.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+	</select>
+	
+	<!-- 获取总账导出 销售上架 渠道类型为To B且运营类型为空 -->
+	<select id="getAllAccountShelfToB" resultType='map' parameterType='map'>
+		<!-- SELECT bu_id,customer_id,
+		Max(superior_parent_brand)as superior_parent_brand,
+		Max(superior_parent_brand_code)as superior_parent_brand_code,
+		sale_currency,SUM(sale_amount) as sale_amount
+		FROM r_bu_finance_sale_shelf 
+		where merchant_id=#{merchantId} and `month`=#{month} and channel_type='To B' and shop_type_code is null
+		GROUP BY bu_id,customer_id,superior_parent_brand_id,sale_currency -->
+		
+		SELECT t.bu_id,t.customer_id,
+		Max(t.superior_parent_brand)as superior_parent_brand,
+		Max(t.superior_parent_brand_code)as superior_parent_brand_code,
+		t.sale_currency,SUM(t.sale_amount) as sale_amount
+	    from (
+			SELECT 
+			bu_id,customer_id,superior_parent_brand_id,
+					Max(superior_parent_brand)as superior_parent_brand,
+					Max(superior_parent_brand_code)as superior_parent_brand_code,
+					sale_currency,
+					order_type,
+			if(order_type='5' or order_type='6' or order_type='8' or order_type='11' or order_type='14',-SUM(sale_amount),SUM(sale_amount)) as sale_amount
+					FROM r_bu_finance_sale_shelf 
+					where  merchant_id=#{merchantId} and `month`=#{month} and channel_type='To B' 
+					and shop_type_code is null 
+					<if test='buId!=null' > and bu_id= #{buId}  </if>
+					<if test='buList!=null and !"".equals(buList)' >and bu_id in
+	                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+	                        #{buId}
+	                    </foreach>
+                	</if>
+					GROUP BY bu_id,customer_id,superior_parent_brand_id,sale_currency,order_type
+			) t
+			GROUP BY  t.bu_id,t.customer_id,t.superior_parent_brand_id,t.sale_currency
+		
+		
+	</select>
+	<!-- 获取总账导出 销售上架 渠道类型为To B且运营类型为一件代发 -->
+	<select id="getAllAccountShelfToB002" resultType='map' parameterType='map'>
+		<!-- SELECT bu_id,customer_id,store_platform_code,
+		Max(superior_parent_brand)as superior_parent_brand,
+		Max(superior_parent_brand_code)as superior_parent_brand_code,
+		sale_currency,SUM(sale_amount) as sale_amount
+		FROM r_bu_finance_sale_shelf 
+		where merchant_id=#{merchantId}  and `month`=#{month} and channel_type='To B' and shop_type_code='002'
+		GROUP BY bu_id,customer_id,store_platform_code,superior_parent_brand_id,sale_currency -->
+		SELECT t.bu_id,t.customer_id,t.store_platform_code,t.superior_parent_brand_id,
+		Max(t.superior_parent_brand)as superior_parent_brand,
+		Max(t.superior_parent_brand_code)as superior_parent_brand_code,
+		t.sale_currency,
+		SUM(t.sale_amount) as sale_amount
+ 		from  (
+	 		SELECT bu_id,customer_id,store_platform_code,superior_parent_brand_id,
+			Max(superior_parent_brand)as superior_parent_brand,
+			Max(superior_parent_brand_code)as superior_parent_brand_code,
+			sale_currency,
+			if(order_type='5' or order_type='6' or order_type='8' or order_type='11' or order_type='14',-SUM(sale_amount),SUM(sale_amount)) as sale_amount,
+			order_type
+			FROM r_bu_finance_sale_shelf 
+			where merchant_id=#{merchantId}  and `month`=#{month} and channel_type='To B' 
+			and shop_type_code='002'
+			<if test='buId!=null' > and bu_id= #{buId}  </if>
+			<if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>                    
+            </if>
+			GROUP BY bu_id,customer_id,store_platform_code,superior_parent_brand_id,sale_currency,order_type
+
+		)t
+		GROUP BY t.bu_id,t.customer_id,t.store_platform_code,t.superior_parent_brand_id,t.sale_currency
+		
+	</select>
+	
+	<!-- 获取总账导出 销售上架 渠道类型为To C -->
+	<select id="getAllAccountShelfToC" resultType='map' parameterType='map'>
+		<!-- SELECT bu_id,customer_id,store_platform_code,
+		Max(superior_parent_brand)as superior_parent_brand,
+		Max(superior_parent_brand_code)as superior_parent_brand_code,
+		sale_currency,SUM(sale_amount) as sale_amount
+		FROM r_bu_finance_sale_shelf 
+		where merchant_id=#{merchantId}  and `month`=#{month}  and channel_type='To C'
+		GROUP BY bu_id,customer_id,store_platform_code,superior_parent_brand_id,sale_currency -->
+		
+		SELECT 
+		t.bu_id,t.customer_id,t.store_platform_code,t.superior_parent_brand_id,
+		Max(t.superior_parent_brand)as superior_parent_brand,
+		Max(t.superior_parent_brand_code)as superior_parent_brand_code,
+		t.sale_currency,
+		SUM(t.sale_amount) as sale_amount
+	 from 
+		(
+			SELECT bu_id,customer_id,store_platform_code,superior_parent_brand_id,
+				Max(superior_parent_brand)as superior_parent_brand,
+				Max(superior_parent_brand_code)as superior_parent_brand_code,
+				MAX(order_type) as order_type,
+				sale_currency,
+				if(order_type='5' or order_type='6' or order_type='8' or order_type='11' or order_type='14',-SUM(sale_amount),SUM(sale_amount)) as sale_amount		
+				FROM r_bu_finance_sale_shelf 
+				where merchant_id=#{merchantId}  and `month`=#{month}  and channel_type='To C'
+				<if test='buId!=null' > and bu_id= #{buId}  </if>
+				<if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                </if>
+				GROUP BY bu_id,customer_id,store_platform_code,superior_parent_brand_id,sale_currency,order_type
+		
+		) t 
+	GROUP BY t.bu_id,t.customer_id,t.store_platform_code,t.superior_parent_brand_id,t.sale_currency
+		
+	</select>
+	
+	<!-- 事业部财务经销存暂估应收PDF导出To B -->	
+	<select id="getTempEstimatePdfToB" resultType='map' parameterType='map'>
+		SELECT t.bu_id,t.customer_id,t.superior_parent_brand_id,
+		Max(t.superior_parent_brand)as superior_parent_brand,
+		Max(t.superior_parent_brand_code)as superior_parent_brand_code,
+		MAX(t.bu_name) as bu_name,
+		MAX(t.customer_name) as customer_name,
+		t.sale_currency,
+		SUM(t.sale_amount) as sale_amount,
+		SUM(t.num) as num
+ 		from  (
+	 		SELECT bu_id,customer_id,superior_parent_brand_id,
+			Max(superior_parent_brand)as superior_parent_brand,
+			Max(superior_parent_brand_code)as superior_parent_brand_code,
+			MAX(bu_name) as bu_name,
+			MAX(customer_name) as customer_name,
+			sale_currency,
+			if(order_type='5' or order_type='6' or order_type='8' or order_type='11' or order_type='14',-SUM(sale_amount),SUM(sale_amount)) as sale_amount,
+			if(order_type='5' or order_type='6' or order_type='8' or order_type='11' or order_type='14',-SUM(num),SUM(num)) as num,	
+			order_type
+			FROM r_bu_finance_sale_shelf 
+			where merchant_id=#{merchantId}  and `month`=#{month} and channel_type='To B' 
+			<if test='buId!=null' > and bu_id= #{buId}  </if>
+            <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>
+                
+            </if>			
+			GROUP BY bu_id,customer_id,superior_parent_brand_id,sale_currency,order_type
+
+		)t
+		GROUP BY t.bu_id,t.customer_id,t.superior_parent_brand_id,t.sale_currency
+		
+	</select>
+	
+	
+	<!-- 事业部财务经销存暂估应收PDF导出To C -->	
+	<select id="getTempEstimatePdfToC" resultType='map' parameterType='map'>		
+		SELECT 
+		t.bu_id,t.customer_id,t.superior_parent_brand_id,
+		Max(t.superior_parent_brand)as superior_parent_brand,
+		Max(t.superior_parent_brand_code)as superior_parent_brand_code,
+		MAX(t.bu_name) as bu_name,
+		MAX(t.customer_name) as customer_name,
+		t.sale_currency,
+		SUM(t.sale_amount) as sale_amount,
+		SUM(t.num) as num
+	 from 
+		(
+			SELECT bu_id,customer_id,superior_parent_brand_id,
+				Max(superior_parent_brand)as superior_parent_brand,
+				Max(superior_parent_brand_code)as superior_parent_brand_code,
+				MAX(order_type) as order_type,
+				MAX(bu_name) as bu_name,
+				MAX(customer_name) as customer_name,
+				sale_currency,
+				if(order_type='5' or order_type='6' or order_type='8' or order_type='11' or order_type='14',-SUM(sale_amount),SUM(sale_amount)) as sale_amount,	
+				if(order_type='5' or order_type='6' or order_type='8' or order_type='11' or order_type='14',-SUM(num),SUM(num)) as num						
+				FROM r_bu_finance_sale_shelf 
+				where merchant_id=#{merchantId}  and `month`=#{month}  and channel_type='To C'
+				<if test='buId!=null' > and bu_id= #{buId}  </if>
+                <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                </if>				
+				
+				GROUP BY bu_id,customer_id,superior_parent_brand_id,sale_currency,order_type
+		
+		) t 
+	GROUP BY t.bu_id,t.customer_id,t.superior_parent_brand_id,t.sale_currency				
+	</select>
+	
+	<!-- 事业部财务经销存暂估应收PDF导出To C -->	
+	<select id="getInventorySummaryExpotr" resultType='map' parameterType='map'>		
+								
+			SELECT 
+					ttt.`month`,MAX(ttt.merchant_name)as merchant_name,MAX(ttt.bu_name)as bu_name,ttt.superior_parent_brand,
+					ttt.channel_type,MAX(ttt.customer_name)as customer_name,
+					 ttt.merchant_id,ttt.bu_id,ttt.`month`,ttt.customer_id,
+					SUM(IFNULL(out_depot_amount,0)) as out_depot_amount,
+					SUM(IFNULL(move_amount,0)) as move_amount,
+					SUM(IFNULL(stock_results_amount,0)) as stock_results_amount,
+					SUM(IFNULL(sale_damaged_amount,0)) as sale_damaged_amount,
+					SUM(IFNULL(destroy_amount,0)) as destroy_amount,
+					SUM(IFNULL(sale_end_amount,0)) as sale_end_amount,
+					0 as num_differ,
+					(SUM(IFNULL(out_depot_amount,0))+SUM(IFNULL(move_amount,0))+SUM(IFNULL(stock_results_amount,0))+SUM(IFNULL(sale_damaged_amount,0))+SUM(IFNULL(destroy_amount,0))) as total_out_depot_amount
+
+			 from  (
+						SELECT MAX(tt.merchant_name)as merchant_name,MAX(tt.customer_name)as customer_name,MAX(tt.bu_name)as bu_name,
+						tt.superior_parent_brand,tt.channel_type,
+						tt.merchant_id,tt.bu_id,tt.`month`,tt.customer_id,
+						SUM(tt.out_depot_amount) as out_depot_amount ,0 as move_amount,0 as stock_results_amount,
+						0 as sale_damaged_amount,0 as destroy_amount,0 as sale_end_amount
+						from (
+								select 
+								MAX(t.merchant_name)as merchant_name,MAX(t.customer_name)as customer_name,MAX(t.bu_name)as bu_name,
+								t2.superior_parent_brand,t.channel_type,
+								t.merchant_id,t.bu_id,t.`month`,t.order_type,t.customer_id,
+								if(order_type='5' or order_type='6' or order_type='8' or order_type='11' or order_type='14',-SUM(out_depot_amount),SUM(out_depot_amount)) as out_depot_amount
+								from r_bu_finance_sale_shelf t 
+						    	LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+								LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+							where t.order_type!='14'
+								AND t.merchant_id=#{merchantId} 
+								AND t.`month`=#{month} 
+								<if test='buId!=null' > and t.bu_id= #{buId}  </if>
+								<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+						           <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+						                        #{buId}
+						           </foreach>         
+					            </if>	
+								GROUP BY t.merchant_id,t.bu_id,t.`month`,t.channel_type,t.customer_id,t.order_type,t2.superior_parent_brand
+					)tt GROUP BY tt.merchant_id,tt.bu_id,tt.`month`,tt.channel_type,tt.customer_id,tt.superior_parent_brand
+			 UNION			
+					SELECT 
+					MAX(t.merchant_name)as merchant_name,'/'as customer_name,MAX(t.bu_name)as bu_name,
+					t2.superior_parent_brand,'公共' as channel_type,
+					t.merchant_id,t.bu_id,t.`month`,'/' as customer_id,
+					0 as out_depot_amount ,SUM(amount)as move_amount,0 as stock_results_amount,
+					0 as sale_damaged_amount,0 as destroy_amount,0 as sale_end_amount					 
+					from  r_bu_finance_move_details t					
+					LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+					LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+					where  t.merchant_id=#{merchantId} 
+					AND t.`month`=#{month} 
+					AND t.order_type='2'
+					<if test='buId!=null' > and t.bu_id= #{buId}  </if>
+					<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+						 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+						       #{buId}
+						 </foreach>                   
+					</if>	
+					GROUP BY t.merchant_id,t.bu_id,t.`month`,t2.superior_parent_brand			
+			UNION			
+					SELECT 
+					MAX(tt2.merchant_name)as merchant_name,'/'as customer_name,MAX(tt2.bu_name)as bu_name,
+					tt2.superior_parent_brand,'公共' as channel_type,
+					tt2.merchant_id,tt2.bu_id,tt2.`month`,'/' as customer_id,
+					0 as out_depot_amount ,0 as move_amount,SUM(tt2.amount)as stock_results_amount,
+					0 as sale_damaged_amount,0 as destroy_amount,0 as sale_end_amount
+					from (
+						SELECT 
+						MAX(t.merchant_name)as merchant_name,
+						MAX(t.bu_name)as bu_name,
+						t2.superior_parent_brand,
+						t.merchant_id,t.bu_id,t.`month`,
+						t.type,
+						IF(t.type='1',-SUM(amount),SUM(amount))as amount
+						 from r_bu_finance_takes_stock_results t
+						LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+						LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+						where  t.merchant_id=#{merchantId} 
+						AND t.`month`=#{month} 
+						<if test='buId!=null' > and t.bu_id= #{buId}  </if>
+						<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+							 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+							       #{buId}
+							 </foreach>                   
+						</if>							
+						GROUP BY t.merchant_id,t.bu_id,t.`month`,t.type,t2.superior_parent_brand					
+					)tt2
+					GROUP BY tt2.merchant_id,tt2.bu_id,tt2.`month`,tt2.superior_parent_brand
+			UNION			
+					SELECT 
+					MAX(t.merchant_name)as merchant_name,MAX(t.customer_name)as customer_name,MAX(t.bu_name)as bu_name,
+					t2.superior_parent_brand, 'To B' as channel_type,
+					t.merchant_id,t.bu_id,t.`month`,t.customer_id,
+					0 as out_depot_amount ,0 as move_amount,0 as stock_results_amount,
+					SUM(IFNULL(num,0)*IFNULL(price,0))+SUM(IFNULL(lack_num,0)*IFNULL(price,0)) as sale_damaged_amount,0 as destroy_amount,0 as sale_end_amount
+					from  r_bu_finance_sale_damaged t						
+						LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+						LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+						where  t.merchant_id=#{merchantId} 
+						AND t.`month`=#{month} 
+						<if test='buId!=null' > and t.bu_id= #{buId}  </if>
+						<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+							 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+							       #{buId}
+							 </foreach>                   
+						</if>							
+					GROUP BY t.merchant_id,t.bu_id,t.`month`,t.customer_id,t2.superior_parent_brand			
+			UNION			
+					SELECT 
+					MAX(t.merchant_name)as merchant_name, '/' as customer_name,
+					MAX(t.bu_name)as bu_name,
+					t2.superior_parent_brand, '公共' as channel_type,
+					t.merchant_id,t.bu_id,t.`month`,'/' as customer_id,
+					0 as out_depot_amount ,0 as move_amount,0 as stock_results_amount,
+					0 as sale_damaged_amount,SUM(IFNULL(amount,0)) as destroy_amount,0 as sale_end_amount
+					from  r_bu_finance_destroy t
+					LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+					LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+					 where t.type='0'
+					 AND  t.merchant_id=#{merchantId} 
+					 AND t.`month`=#{month} 
+					<if test='buId!=null' > and t.bu_id= #{buId}  </if>
+					<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+						 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+						       #{buId}
+						 </foreach>                   
+					</if>						
+					GROUP BY t.merchant_id,t.bu_id,t.`month`,t2.superior_parent_brand			
+			UNION			
+					SELECT 
+						MAX(t.merchant_name)as merchant_name,'/' as customer_name,MAX(t.bu_name)as bu_name,
+					t2.superior_parent_brand, '公共' as channel_type,
+					t.merchant_id,t.bu_id,t.`month`,'/' as customer_id,
+					0 as out_depot_amount ,0 as move_amount,
+					0 as stock_results_amount,0 as sale_damaged_amount,0 as destroy_amount,
+					SUM(IFNULL(sale_end_amount,0)) as sale_end_amount					
+					from r_bu_finance_inventory_summary t
+						LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+						LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+					WHERE t.merchant_id=#{merchantId} 
+					AND t.`month`=#{month} 
+					<if test='buId!=null' > and t.bu_id= #{buId}  </if>
+					<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+						 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+						       #{buId}
+						 </foreach>                   
+					</if>	
+					GROUP BY t.merchant_id,t.bu_id,t.`month`,t2.superior_parent_brand
+			)ttt
+			GROUP BY ttt.merchant_id,ttt.bu_id,ttt.`month`,ttt.channel_type,ttt.customer_id,ttt.superior_parent_brand			
+			ORDER BY ttt.merchant_id,ttt.`month`,ttt.bu_id,ttt.superior_parent_brand,ttt.channel_type,ttt.customer_id DESC
+				
+	</select>
+	
+	
+
+</mapper>

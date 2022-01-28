@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.BillOutinDepotMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BillOutinDepotModelMap" type="BillOutinDepotModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="billCode" column="bill_code" />
+                <result property="processingType" column="processing_type" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="totalNum" column="total_num" />
+                <result property="totalAmount" column="total_amount" />
+                <result property="operateType" column="operate_type" />
+                <result property="state" column="state" />
+                <result property="billSource" column="bill_source" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="currency" column="currency" />
+                <result property="createrId" column="creater_id" />
+                <result property="creater" column="creater" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BillOutinDepotModelMap' parameterType='BillOutinDepotModel'>
+        select <include refid='sql_columns' /> from t_bill_outin_depot  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BillOutinDepotModelMap' parameterType='BillOutinDepotModel'>
+        select <include refid='sql_columns' /> from t_bill_outin_depot  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BillOutinDepotModelMap' parameterType='BillOutinDepotModel' >
+        select <include refid='sql_columns' /> from t_bill_outin_depot  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BillOutinDepotModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_bill_outin_depot
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' > bill_code , </if>
+                        <if test='processingType!=null and !"".equals(processingType)' > processing_type , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='totalNum!=null' >total_num , </if>
+                        <if test='totalAmount!=null' >total_amount , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' > operate_type , </if>
+                        <if test='state!=null and !"".equals(state)' > state , </if>
+                        <if test='billSource!=null and !"".equals(billSource)' > bill_source , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='createrId!=null' >creater_id , </if>
+                        <if test='creater!=null and !"".equals(creater)' > creater , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' > #{billCode} , </if>
+                        <if test='processingType!=null and !"".equals(processingType)' > #{processingType} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='totalNum!=null' > #{totalNum} , </if>
+                        <if test='totalAmount!=null' > #{totalAmount} , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' > #{operateType} , </if>
+                        <if test='state!=null and !"".equals(state)' > #{state} , </if>
+                        <if test='billSource!=null and !"".equals(billSource)' > #{billSource} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='createrId!=null' > #{createrId} , </if>
+                        <if test='creater!=null and !"".equals(creater)' > #{creater} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BillOutinDepotModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_bill_outin_depot SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} , </if>
+                        <if test='processingType!=null and !"".equals(processingType)' >processing_type= #{processingType} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='totalNum!=null' > total_num= #{totalNum} , </if>
+                        <if test='totalAmount!=null' > total_amount= #{totalAmount} , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} , </if>
+                        <if test='state!=null and !"".equals(state)' >state= #{state} , </if>
+                        <if test='billSource!=null and !"".equals(billSource)' >bill_source= #{billSource} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='createrId!=null' > creater_id= #{createrId} , </if>
+                        <if test='creater!=null and !"".equals(creater)' >creater= #{creater} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_bill_outin_depot  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_bill_outin_depot where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            depot_id,
+            depot_name,
+            customer_id,
+            customer_name,
+            bill_code,
+            processing_type,
+            deliver_date,
+            total_num,
+            total_amount,
+            operate_type,
+            state,
+            bill_source,
+            create_date,
+            modify_date,
+            merchant_id,
+            merchant_name,
+            currency,
+            creater_id,
+            creater,
+            bu_name,
+            bu_id,
+            stock_location_type_id,
+            stock_location_type_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} and </if>
+                            <if test='processingType!=null and !"".equals(processingType)' >processing_type= #{processingType} and </if>
+                            <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                            <if test='totalNum!=null' > total_num= #{totalNum} and </if>
+                            <if test='totalAmount!=null' > total_amount= #{totalAmount} and </if>
+                            <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                            <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                            <if test='billSource!=null and !"".equals(billSource)' >bill_source= #{billSource} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='createrId!=null' > creater_id= #{createrId} and </if>
+                            <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                            <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id="countByCustomer" parameterType="map" resultType="map" >
+            select b.customer_name as name, SUM(b.total_num) as saleNum
+            from t_bill_outin_depot b
+            LEFT JOIN st_depot_info d on b.depot_id = d.id
+            where
+            b.state = '02'
+            and b.processing_type = 'XSC'
+            and DATE_FORMAT(b.deliver_date,'%Y-%m') = #{deliverDate}
+            and d.type = 'a'
+            <if test='merchantId!=null' >and b.merchant_id= #{merchantId} </if>
+            GROUP BY b.customer_id, b.customer_name
+        </select>
+
+        <select id="getBillOutDepotTop10ByBrand" resultType="map" >
+            SELECT
+                saleNum,
+                name
+            FROM
+                (
+                    SELECT
+                        SUM(bi.num) AS saleNum,
+                        c.comm_brand_parent_name AS name
+                    FROM
+                        t_bill_outin_depot b
+                    LEFT JOIN t_bill_outin_depot_item bi ON b.id = bi.outin_depot_id
+                    LEFT JOIN st_commbarcode c ON bi.commbarcode = c.commbarcode
+                    LEFT JOIN st_depot_info d ON d.id = b.depot_id
+                    WHERE
+                        b.state = '02'
+                    AND b.processing_type = 'XSC'
+                    AND DATE_FORMAT(b.deliver_date, '%Y-%m') = #{deliverDate}
+                    AND c.maintain_status = '1'
+                    AND d.type = 'a'
+                    <if test='merchantId!=null' >and b.merchant_id= #{merchantId} </if>
+                    GROUP BY
+                        c.comm_brand_parent_id,
+                        c.comm_brand_parent_name
+                ) t order by t.saleNum DESC limit 0,10
+        </select>
+
+
+</mapper>

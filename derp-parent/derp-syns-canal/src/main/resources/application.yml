@@ -1,0 +1,14 @@
+
+spring:
+    profiles:
+        include:
+            - apollo #子配置文件名必须为application-xxx.yml
+            - dbreport #报表库
+            - synchronizationtable #同步配置文件
+            - externalapi #外部接口配置文件
+    jackson: 
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        serialization: 
+           write-dates-as-timestamps: false
+  

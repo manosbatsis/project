@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.system.ExchangeRateMapper'>
+
+                <!-- 关系映射 -->
+        <resultMap id="ExchangeRateModelMap" type="ExchangeRateModel" >
+                <result property="id" column="id" />
+                <result property="origCurrencyCode" column="orig_currency_code" />
+                <result property="origCurrencyName" column="orig_currency_name" />
+                <result property="tgtCurrencyCode" column="tgt_currency_code" />
+                <result property="tgtCurrencyName" column="tgt_currency_name" />
+                <result property="rate" column="rate" />
+                <result property="avgRate" column="avg_rate" />
+                <result property="effectiveDate" column="effective_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="status" column="status" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="dataSource" column="data_source" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ExchangeRateModelMap' parameterType='ExchangeRateModel'>
+        select <include refid='sql_columns' /> from st_exchange_rate  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ExchangeRateModelMap' parameterType='ExchangeRateModel'>
+        select <include refid='sql_columns' /> from st_exchange_rate  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ExchangeRateModelMap' parameterType='ExchangeRateModel' >
+        select <include refid='sql_columns' /> from st_exchange_rate  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ExchangeRateModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_exchange_rate
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='origCurrencyCode!=null and !"".equals(origCurrencyCode)' > orig_currency_code , </if>
+                        <if test='origCurrencyName!=null and !"".equals(origCurrencyName)' > orig_currency_name , </if>
+                        <if test='tgtCurrencyCode!=null and !"".equals(tgtCurrencyCode)' > tgt_currency_code , </if>
+                        <if test='tgtCurrencyName!=null and !"".equals(tgtCurrencyName)' > tgt_currency_name , </if>
+                        <if test='rate!=null' >rate , </if>
+                        <if test='avgRate!=null' >avg_rate , </if>
+                        <if test='effectiveDate!=null' >effective_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > data_source , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='origCurrencyCode!=null and !"".equals(origCurrencyCode)' > #{origCurrencyCode} , </if>
+                        <if test='origCurrencyName!=null and !"".equals(origCurrencyName)' > #{origCurrencyName} , </if>
+                        <if test='tgtCurrencyCode!=null and !"".equals(tgtCurrencyCode)' > #{tgtCurrencyCode} , </if>
+                        <if test='tgtCurrencyName!=null and !"".equals(tgtCurrencyName)' > #{tgtCurrencyName} , </if>
+                        <if test='rate!=null' > #{rate} , </if>
+                        <if test='avgRate!=null' >#{avgRate} , </if>
+                        <if test='effectiveDate!=null' > #{effectiveDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > #{dataSource} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ExchangeRateModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_exchange_rate SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='origCurrencyCode!=null and !"".equals(origCurrencyCode)' >orig_currency_code= #{origCurrencyCode} , </if>
+                        <if test='origCurrencyName!=null and !"".equals(origCurrencyName)' >orig_currency_name= #{origCurrencyName} , </if>
+                        <if test='tgtCurrencyCode!=null and !"".equals(tgtCurrencyCode)' >tgt_currency_code= #{tgtCurrencyCode} , </if>
+                        <if test='tgtCurrencyName!=null and !"".equals(tgtCurrencyName)' >tgt_currency_name= #{tgtCurrencyName} , </if>
+                        <if test='rate!=null' > rate= #{rate} , </if>
+                        <if test='avgRate!=null' >avg_rate=#{avgRate} , </if>
+                        <if test='effectiveDate!=null' > effective_date= #{effectiveDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_exchange_rate  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_exchange_rate where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            orig_currency_code,
+            orig_currency_name,
+            tgt_currency_code,
+            tgt_currency_name,
+            rate,
+            avg_rate,
+            effective_date,
+            create_date,
+            modify_date,
+            status,
+            creater,
+            create_name,
+            data_source
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='origCurrencyCode!=null and !"".equals(origCurrencyCode)' >orig_currency_code= #{origCurrencyCode} and </if>
+                            <if test='origCurrencyName!=null and !"".equals(origCurrencyName)' >orig_currency_name= #{origCurrencyName} and </if>
+                            <if test='tgtCurrencyCode!=null and !"".equals(tgtCurrencyCode)' >tgt_currency_code= #{tgtCurrencyCode} and </if>
+                            <if test='tgtCurrencyName!=null and !"".equals(tgtCurrencyName)' >tgt_currency_name= #{tgtCurrencyName} and </if>
+                            <if test='rate!=null' > rate= #{rate} and </if>
+                            <if test='avgRate!=null' > avg_rate= #{avgRate} and </if>
+                            <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+      <!--   根据对象查询汇率表 -->
+     <select id='getByDateOrigCurrency' resultMap='ExchangeRateModelMap' parameterType='ExchangeRateModel' >
+        select <include refid='sql_columns' /> 
+        from st_exchange_rate  
+        where tgt_currency_code= #{tgtCurrencyCode}
+       	and orig_currency_code= #{origCurrencyCode}
+       	and DATE_FORMAT(effective_date,'%Y-%m-%d') = DATE_FORMAT(#{effectiveDate},'%Y-%m-%d')
+       	and IFNULL(`status`,'')!='006'
+        
+    </select>
+
+ 	<select id='getRecentExchangeRateList' resultMap='ExchangeRateModelMap' parameterType='ExchangeRateModel' >
+        select <include refid='sql_columns' /> 
+        from st_exchange_rate  
+        where tgt_currency_code= #{tgtCurrencyCode}
+       	and orig_currency_code= #{origCurrencyCode}
+       	and effective_date &lt;= #{effectiveDate}
+       	and IFNULL(`status`,'')!='006'
+        ORDER BY effective_date DESC
+    </select>
+
+    <select id='getRecentRateList' resultMap='ExchangeRateModelMap' parameterType='ExchangeRateModel' >
+        select <include refid='sql_columns' />
+        from st_exchange_rate
+        where tgt_currency_code= #{tgtCurrencyCode}
+        and orig_currency_code= #{origCurrencyCode}
+        and effective_date &lt;= #{effectiveDate}
+        and IFNULL(`status`,'')!='006'
+        ORDER BY effective_date DESC
+        limit 1
+    </select>
+
+
+	<select id="getNullRateList" resultMap="ExchangeRateModelMap">
+		select <include refid='sql_columns' /> from st_exchange_rate where (rate is null or avg_rate is null) and 
+		effective_date = DATE_FORMAT(NOW(), '%Y-%m-%d')
+	</select>
+
+    <select id="getLatestRate" resultMap='ExchangeRateModelMap' >
+        select <include refid='sql_columns' />
+        from st_exchange_rate
+        where orig_currency_code = #{origCurrencyCode}
+        and tgt_currency_code = #{tgtCurrencyCode}
+        and DATE_FORMAT(effective_date,'%Y-%m') = #{month}
+        and `status` != '006'
+        order by effective_date desc limit 1
+    </select>
+</mapper>

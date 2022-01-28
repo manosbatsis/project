@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.system.MerchantShopRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="MerchantShopRelModelMap" type="MerchantShopRelModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="shopCode" column="shop_code" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="operator" column="operator" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="isDismantle" column="is_dismantle" />
+                <result property="storePlatformCode" column="store_platform_code" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="shopTypeCode" column="shop_type_code" />
+                <result property="shopTypeName" column="shop_type_name" />
+                <result property="dataSourceCode" column="data_source_code" />
+                <result property="dataSourceName" column="data_source_name" />
+                <result property="sessionKey" column="session_key" />
+                <result property="appKey" column="app_key" />
+                <result property="appSecret" column="app_secret" />
+                <result property="isSycnMerchandise" column="is_sycn_merchandise" />
+                <result property="shopunifyId" column="shopUnify_id" />
+                <result property="storeTypeCode" column="store_type_code" />
+                <result property="storeTypeName" column="store_type_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="superiorParentBrandId" column="superior_parent_brand_id" />
+                <result property="superiorParentBrandName" column="superior_parent_brand_name" />
+                <result property="superiorParentBrandNcCode" column="superior_parent_brand_nc_code" />
+                <result property="currency" column="currency" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MerchantShopRelModelMap' parameterType='MerchantShopRelModel'>
+        select <include refid='sql_columns' /> from st_merchant_shop_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MerchantShopRelModelMap' parameterType='MerchantShopRelModel'>
+        select <include refid='sql_columns' /> from st_merchant_shop_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MerchantShopRelModelMap' parameterType='MerchantShopRelModel' >
+        select <include refid='sql_columns' /> from st_merchant_shop_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='MerchantShopRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_merchant_shop_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='operator!=null and !"".equals(operator)' > operator , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='isDismantle!=null and !"".equals(isDismantle)' > is_dismantle , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > store_platform_name , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > shop_type_code , </if>
+                        <if test='shopTypeName!=null and !"".equals(shopTypeName)' > shop_type_name , </if>
+                        <if test='dataSourceCode!=null and !"".equals(dataSourceCode)' > data_source_code , </if>
+                        <if test='dataSourceName!=null and !"".equals(dataSourceName)' > data_source_name , </if>
+                        <if test='sessionKey!=null and !"".equals(sessionKey)' > session_key , </if>
+                        <if test='appKey!=null and !"".equals(appKey)' > app_key , </if>
+                        <if test='appSecret!=null and !"".equals(appSecret)' > app_secret , </if>
+                        <if test='isSycnMerchandise!=null and !"".equals(isSycnMerchandise)' > is_sycn_merchandise , </if>
+                        <if test='shopunifyId!=null and !"".equals(shopunifyId)' > shopUnify_id , </if>
+                        <if test='storeTypeCode!=null and !"".equals(storeTypeCode)' > store_type_code , </if>
+                        <if test='storeTypeName!=null and !"".equals(storeTypeName)' > store_type_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='superiorParentBrandId!=null' >superior_parent_brand_id , </if>
+                        <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' > superior_parent_brand_name , </if>
+                        <if test='superiorParentBrandNcCode!=null and !"".equals(superiorParentBrandNcCode)' > superior_parent_brand_nc_code , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='operator!=null and !"".equals(operator)' > #{operator} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='isDismantle!=null and !"".equals(isDismantle)' > #{isDismantle} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > #{storePlatformName} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > #{shopTypeCode} , </if>
+                        <if test='shopTypeName!=null and !"".equals(shopTypeName)' > #{shopTypeName} , </if>
+                        <if test='dataSourceCode!=null and !"".equals(dataSourceCode)' > #{dataSourceCode} , </if>
+                        <if test='dataSourceName!=null and !"".equals(dataSourceName)' > #{dataSourceName} , </if>
+                        <if test='sessionKey!=null and !"".equals(sessionKey)' > #{sessionKey} , </if>
+                        <if test='appKey!=null and !"".equals(appKey)' > #{appKey} , </if>
+                        <if test='appSecret!=null and !"".equals(appSecret)' > #{appSecret} , </if>
+                        <if test='isSycnMerchandise!=null and !"".equals(isSycnMerchandise)' > #{isSycnMerchandise} , </if>
+                        <if test='shopunifyId!=null and !"".equals(shopunifyId)' > #{shopunifyId} , </if>
+                        <if test='storeTypeCode!=null and !"".equals(storeTypeCode)' > #{storeTypeCode} , </if>
+                        <if test='storeTypeName!=null and !"".equals(storeTypeName)' > #{storeTypeName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='superiorParentBrandId!=null' > #{superiorParentBrandId} , </if>
+                        <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' > #{superiorParentBrandName} , </if>
+                        <if test='superiorParentBrandNcCode!=null and !"".equals(superiorParentBrandNcCode)' > #{superiorParentBrandNcCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MerchantShopRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_merchant_shop_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='operator!=null and !"".equals(operator)' >operator= #{operator} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='isDismantle!=null and !"".equals(isDismantle)' >is_dismantle= #{isDismantle} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} , </if>
+                        <if test='shopTypeName!=null and !"".equals(shopTypeName)' >shop_type_name= #{shopTypeName} , </if>
+                        <if test='dataSourceCode!=null and !"".equals(dataSourceCode)' >data_source_code= #{dataSourceCode} , </if>
+                        <if test='dataSourceName!=null and !"".equals(dataSourceName)' >data_source_name= #{dataSourceName} , </if>
+                        <if test='sessionKey!=null and !"".equals(sessionKey)' >session_key= #{sessionKey} , </if>
+                        <if test='appKey!=null and !"".equals(appKey)' >app_key= #{appKey} , </if>
+                        <if test='appSecret!=null and !"".equals(appSecret)' >app_secret= #{appSecret} , </if>
+                        <if test='isSycnMerchandise!=null and !"".equals(isSycnMerchandise)' >is_sycn_merchandise= #{isSycnMerchandise} , </if>
+                        <if test='shopunifyId!=null and !"".equals(shopunifyId)' >shopUnify_id= #{shopunifyId} , </if>
+                        <if test='storeTypeCode!=null and !"".equals(storeTypeCode)' >store_type_code= #{storeTypeCode} , </if>
+                        <if test='storeTypeName!=null and !"".equals(storeTypeName)' >store_type_name= #{storeTypeName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} , </if>
+                        <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' >superior_parent_brand_name= #{superiorParentBrandName} , </if>
+                        <if test='superiorParentBrandNcCode!=null and !"".equals(superiorParentBrandNcCode)' >superior_parent_brand_nc_code= #{superiorParentBrandNcCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_merchant_shop_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_merchant_shop_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            topideal_code,
+            shop_name,
+            shop_code,
+            customer_id,
+            customer_name,
+            status,
+            create_date,
+            modify_date,
+            operator,
+            depot_id,
+            depot_name,
+            is_dismantle,
+            store_platform_code,
+            store_platform_name,
+            shop_type_code,
+            shop_type_name,
+            data_source_code,
+            data_source_name,
+            session_key,
+            app_key,
+            app_secret,
+            is_sycn_merchandise,
+            shopUnify_id,
+            store_type_code,
+            store_type_name,
+            bu_id,
+            bu_name,
+            superior_parent_brand_id,
+            superior_parent_brand_name,
+            superior_parent_brand_nc_code,
+            currency,
+            stock_location_type_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='operator!=null and !"".equals(operator)' >operator= #{operator} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='isDismantle!=null and !"".equals(isDismantle)' >is_dismantle= #{isDismantle} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                            <if test='shopTypeName!=null and !"".equals(shopTypeName)' >shop_type_name= #{shopTypeName} and </if>
+                            <if test='dataSourceCode!=null and !"".equals(dataSourceCode)' >data_source_code= #{dataSourceCode} and </if>
+                            <if test='dataSourceName!=null and !"".equals(dataSourceName)' >data_source_name= #{dataSourceName} and </if>
+                            <if test='sessionKey!=null and !"".equals(sessionKey)' >session_key= #{sessionKey} and </if>
+                            <if test='appKey!=null and !"".equals(appKey)' >app_key= #{appKey} and </if>
+                            <if test='appSecret!=null and !"".equals(appSecret)' >app_secret= #{appSecret} and </if>
+                            <if test='isSycnMerchandise!=null and !"".equals(isSycnMerchandise)' >is_sycn_merchandise= #{isSycnMerchandise} and </if>
+                            <if test='shopunifyId!=null and !"".equals(shopunifyId)' >shopUnify_id= #{shopunifyId} and </if>
+                            <if test='storeTypeCode!=null and !"".equals(storeTypeCode)' >store_type_code= #{storeTypeCode} and </if>
+                            <if test='storeTypeName!=null and !"".equals(storeTypeName)' >store_type_name= #{storeTypeName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} and </if>
+                            <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' >superior_parent_brand_name= #{superiorParentBrandName} and </if>
+                            <if test='superiorParentBrandNcCode!=null and !"".equals(superiorParentBrandNcCode)' >superior_parent_brand_nc_code= #{superiorParentBrandNcCode} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

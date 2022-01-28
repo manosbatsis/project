@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventoryInvoicingMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="InventoryInvoicingModelMap" type="InventoryInvoicingModel" >
+                <result property="depotName" column="depot_name" />
+                <result property="currentMonthQty" column="current_month_qty" />
+                <result property="depotId" column="depot_id" />
+                <result property="factoryNo" column="factory_no" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="price" column="price" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="lastMonthQty" column="last_month_qty" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryInvoicingModelMap' parameterType='InventoryInvoicingModel'>
+        select <include refid='sql_columns' /> from i_inventory_invoicing  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryInvoicingModelMap' parameterType='InventoryInvoicingModel'>
+        select <include refid='sql_columns' /> from i_inventory_invoicing  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryInvoicingModelMap' parameterType='InventoryInvoicingModel' >
+        select <include refid='sql_columns' /> from i_inventory_invoicing  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventoryInvoicingModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_invoicing
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='currentMonthQty!=null' > current_month_qty , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' > factory_no , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='price!=null' > price , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='lastMonthQty!=null' > last_month_qty , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='currentMonthQty!=null' > #{currentMonthQty} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' > #{factoryNo} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='price!=null' > #{price} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='lastMonthQty!=null' > #{lastMonthQty} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventoryInvoicingModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_invoicing SET
+        <trim  suffixOverrides=",">
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='currentMonthQty!=null' > current_month_qty= #{currentMonthQty} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='price!=null' > price= #{price} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='lastMonthQty!=null' > last_month_qty= #{lastMonthQty} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_invoicing  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_invoicing where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        depot_name,
+        current_month_qty,
+        depot_id,
+        factory_no,
+        merchant_name,
+        merchant_id,
+        price,
+        creater,
+        id,
+        last_month_qty,
+        goods_name,
+        barcode,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='currentMonthQty!=null' > current_month_qty= #{currentMonthQty} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='price!=null' > price= #{price} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='lastMonthQty!=null' > last_month_qty= #{lastMonthQty} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+
+
+
+</mapper>

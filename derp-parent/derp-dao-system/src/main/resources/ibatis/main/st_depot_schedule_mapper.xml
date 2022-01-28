@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.DepotScheduleMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="DepotScheduleModelMap" type="DepotScheduleModel" >
+                <result property="id" column="id" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="address" column="address" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='DepotScheduleModelMap' parameterType='DepotScheduleModel'>
+        select <include refid='sql_columns' /> from st_depot_schedule  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='DepotScheduleModelMap' parameterType='DepotScheduleModel'>
+        select <include refid='sql_columns' /> from st_depot_schedule  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='DepotScheduleModelMap' parameterType='DepotScheduleModel' >
+        select <include refid='sql_columns' /> from st_depot_schedule  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='DepotScheduleModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_depot_schedule
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='address!=null and !"".equals(address)' > address , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='address!=null and !"".equals(address)' > #{address} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='DepotScheduleModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_depot_schedule SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='address!=null and !"".equals(address)' >address= #{address} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_depot_schedule  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_depot_schedule where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            depot_id,
+            depot_name,
+            address,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='address!=null and !"".equals(address)' >address= #{address} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 下拉列表关系映射 -->
+		<resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+	        <result property="value" column="id" />
+	        <result property="label" column="address" />
+	    </resultMap>
+		<select id='loadSelectByDepotId' resultMap='SelectBeans' >
+	        select id,address from st_depot_schedule <include refid='sql_where' />
+	    </select>
+
+</mapper>

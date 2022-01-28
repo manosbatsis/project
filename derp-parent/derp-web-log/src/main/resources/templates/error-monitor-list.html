@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Start content -->
+<style>
+    .item-webkit-box{
+        display: -webkit-box !important;
+        flex-flow: nowrap !important;
+    }
+    .item-webkit-box .form-control{
+        width:160px !important;
+        margin-left: 5px !important;
+    }
+</style>
+<div class="content">
+    <div class="container-fluid mt80">
+        <!-- Start row -->
+        <div class="row">
+            <!--  title   start  -->
+            <div class="col-12">
+                <div class="card-box">
+                    <div class="col-12 row">
+                        <div>
+                            <ol class="breadcrumb">
+                                <li><i class="block"></i> 当前位置：</li>
+                                <li class="breadcrumb-item"><a href="#">日志监控</a></li>
+                                <li class="breadcrumb-item"><a href="#">进境异常监控</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <form id="form1">
+                        <!--  title   end  -->
+
+						<div class="form-inline form-group">
+                            <div class="form-group col-3 item-webkit-box">
+                                 <label for="" class="form_title">消费时间：</label>
+                                 <input type="text" required="" parsley-type="text" class="form-control date-input" name="endDateStr" id="endDateStr">
+                            </div>
+                            <div class="form-group col-3 item-webkit-box" >
+                                 <label for="" class="form_title">关键字 ：</label>
+                                 <input class="form-control" type="text" name="keyword" id="keyword" required="" >
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                  <label for="" class="form_title">查询范围：</label>
+                                  <select  class="form-control" name="selectScope" id="selectScope">
+                                   </select>
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                <div class="form_btn">
+                                    <button type="button" class="btn btn-info" onclick='searchData();' >查询</button>
+                                	<button type="reset" class="btn btn-light waves-effect waves-light">重置</button>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="form-inline form-group">
+                            <div class="form-group col-3 item-webkit-box">
+                                  <label for="" class="form_title">创建时间：</label>
+                                  <input type="text" required="" parsley-type="text" class="form-control date-input" name="createDateStr" id="createDateStr">
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                   <label for="" class="form_title">耗时：</label>
+                                   <select  class="form-control" name="difference" id="difference">
+                                   </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="btn_group col-12">
+                      	<button type="button" class="btn btn-info" id="allPushButton">批量重推</button>
+                    </div>
+                    <!--  ================================表格 ===============================================   -->
+                    <table id="datatable-buttons" class="nowrap table table-striped" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                            	<th>
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" name="keeperUserGroup-checkable" class="group-checkable" />
+                                        <span></span>
+                                    </label>
+                                </th>
+                                <th width="200px">模块</th>
+                                <th width="100px">接口编码</th>
+                                <th width="200px">关键字</th>
+                                <th width="100px">模块编码</th>
+                                <th width="70px">状态</th>
+                                <th width="150px">消费时间</th>
+                                <th width="150px">关闭时间</th>
+                                <th width="120px">类型(用于冻结/释放)</th>
+                                <th width="100px">耗时</th>
+                                <th>失败原因</th>
+                                <th width="150px">创建时间</th>
+                                <th width="100px">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    <!--  ================================表格  end ===============================================   -->
+                </div>
+                <!--======================Modal框===========================  -->
+                <div th:include="common/common"></div>
+                <!-- end row -->
+            </div>
+            <!-- container -->
+        </div>
+    </div>
+</div> <!-- content -->
+<style>
+    .fail{background: #f00;color: #fff;padding: 4px 6px;border-radius: 3px;}
+    .success{background: #6ea9f3;color: #fff;padding: 4px 6px;border-radius: 3px;}
+</style>
+<script type="text/javascript">
+$module.constant.getConstantListByNameURL.call($('select[name="selectScope"]')[0],"log_selectScopeList","1");
+$module.constant.getConstantListByNameURL.call($('select[name="difference"]')[0],"log_differenceList",null);
+    $(document).ready(function() {
+    	var listURL = $module.fn.getModuleUrl(moduleCode,"/errorMonitor/list.asyn");
+        //重置按钮
+        $("button[type='reset']").click(function(){
+            $(".goods_select2").each(function(){
+                $(this).val("");
+            });
+        });
+
+        //初始化
+        $mytable.fn.init();
+        //配置表格参数
+        $mytable.params={
+            url: listURL+'?r='+Math.random(),
+            columns:[{ //复选框单元格
+			    className: "td-checkbox",
+			    orderable: false,
+			    width: "30px",
+			    data: null,
+			    render: function (data, type, row, meta) {
+			        return '<input type="checkbox" class="iCheck">';
+			    }
+			},
+                {data:'model'},{data:'point'},{data:'keyword'},{data:'modelCode'},{data:'status'},{data:'consumeDate'},{data:'closeTime'},{data:'type'},{data:'differenceTime'},{data:'expMsg'},{data:'createTime'},
+                { //操作
+                    orderable: false,
+                    width: "80px",
+                    data: null,
+                    render: function (data, type, row, meta) {
+                    	var details = '<a href="javascript:details(\''+row.point+'\',\''+row.keyword+'\',\''+row.modelCode+'\')">推送记录</a>';
+                        return details;
+                    }
+                },
+            ],
+            formid:'#form1'
+        }
+        //每一行都进行 回调
+        $mytable.rewriter.fnRowCallback=function(nRow, aData, iDisplayIndex){
+        	if (aData.consumeDate!= null) {
+                var date = new Date(aData.consumeDate);
+                $('td:eq(5)', nRow).html(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+            }
+        	if (aData.closeTime!= null) {
+                var date = new Date(aData.closeTime);
+                $('td:eq(6)', nRow).html(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+            }
+        	if (aData.createTime!= null) {
+                var date = new Date(aData.createTime);
+                $('td:eq(10)', nRow).html(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+            }
+        	if (aData.modelCode == '1'){
+                $('td:eq(3)', nRow).html('业务模块');
+            }else if (aData.modelCode == '2'){
+                $('td:eq(3)', nRow).html('推送外部API');
+            }else if (aData.modelCode == '3'){
+                $('td:eq(3)', nRow).html('仓储模块');
+            }else if (aData.modelCode == '4'){
+                $('td:eq(3)', nRow).html('库存模块');
+            }
+            if (aData.status == '1'){
+                $('td:eq(4)', nRow).html('<span class="success">成功</span>');
+            }else if (aData.status == '0'){
+                $('td:eq(4)', nRow).html('<span class="fail">失败</span>');
+            }else if (aData.status == '3'){
+                $('td:eq(4)', nRow).html('<span class="success">重推成功</span>');
+            }else if (aData.status == '2'){
+                $('td:eq(4)', nRow).html('<span class="success">已关闭</span>');
+            }
+            if (aData.type == '1'){
+                $('td:eq(7)', nRow).html('释放冻结');
+            }else if (aData.type == '0'){
+                $('td:eq(7)', nRow).html('冻结');
+            }
+            if(aData.differenceTime != null){
+            	$('td:eq(8)', nRow).html(aData.differenceTime+'秒');
+            }
+            if(aData.expMsg != null && aData.expMsg.length>50){
+            	$('td:eq(9)', nRow).html(aData.expMsg.substring(0, 50)+"...");
+            	$('td:eq(9)', nRow).attr("title",aData.expMsg);
+            }
+        };
+        //生成列表信息
+        $('#datatable-buttons').mydatatables();
+        //时间插件
+        $('.date-input').mydate();
+        //时间初始化
+        $('[type="reset"]').click();
+        
+      	//全选
+	    $("input[name='keeperUserGroup-checkable']").on("change", function(){
+	        if($(this).is(':checked')){
+	            $(":checkbox", '#datatable-buttons').prop("checked",$(this).prop("checked"));
+	        }else{
+	            $(":checkbox", '#datatable-buttons').prop("checked",false);
+	        }
+	    })
+	    
+    } );
+
+    function searchData(){
+        $mytable.fn.reload();
+    }
+
+    // 点击展开功能
+    $(".unfold").click(function () {
+        $(".form_con").toggleClass('hauto');
+        if($(this).text() == '展开功能'){
+            $(this).text('收起功能');
+        }else{
+            $(this).text('展开功能');
+        }
+    });
+    
+    //跳转详情
+    function details(point, keyword, modelCode){
+    	//业务模块
+    	if(modelCode == '1'){
+    		var detailURL = $module.fn.getModuleUrl(moduleCode,"/load/page.asyn?act=304&point="+point+"&keyword="+keyword);
+    		$load.a(detailURL);
+    	}
+    	//推送外部API
+    	else if(modelCode == '2'){
+    		var detailURL = $module.fn.getModuleUrl(moduleCode,"/load/page.asyn?act=306&point="+point+"&keyword="+keyword);
+    		$load.a(detailURL);
+    	}
+    	//仓储模块
+		else if(modelCode == '3'){
+			var detailURL = $module.fn.getModuleUrl(moduleCode,"/load/page.asyn?act=305&point="+point+"&keyword="+keyword);
+    		$load.a(detailURL);
+		}
+    	//库存模块
+		else if(modelCode == '4'){
+			var detailURL = $module.fn.getModuleUrl(moduleCode,"/load/page.asyn?act=303&point="+point+"&keyword="+keyword);
+    		$load.a(detailURL);
+		}
+    }
+    
+    //批量重推
+    $("#allPushButton").click(function(){
+    	var endDateStr = $("#endDateStr").val();
+    	var keyword = $("#keyword").val();
+    	var createDateStr = $("#createDateStr").val();
+    	var difference = $("#difference").val();
+    	var form = {"endDateStr":endDateStr,"keyword":keyword,"createDateStr":createDateStr,"difference":difference};
+        $custom.alert.warning("根据搜索条件重推，是否继续？",function(){
+        	$(".popupbg").show();
+        	var pushURL = $module.fn.getModuleUrl(moduleCode,"/errorMonitor/allPush.asyn");
+            $custom.request.ajax(pushURL+'?r='+Math.random(),form,function(data){
+            	$(".popupbg").hide();
+            	if(data.state==200){
+                    $custom.alert.success("重推成功，请到日志监控核实！");
+                    //删除成功，重新加载页面
+                    $mytable.fn.reload();
+                }else{
+                    $custom.alert.error("重推失败");
+                }
+            });
+        });
+    });
+</script>

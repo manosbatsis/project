@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+var moduleCode = $module.params.derpTestCode;
+
+//编码详情
+$("#codeDetails").click(function(){
+      $("#codeDetailsDiv").modal("show");
+});
+
+
+$module.constant = {
+    /**
+	     * 根据枚举值选择
+	     * listName 
+	     * selectValu ֵ
+	     */
+    getConstantListByNameURL:function(listName,selectValue){
+    	var url = $module.fn.getModuleUrl(moduleCode,"/index/getConstantListByName.asyn");
+    	
+        var selectObj=$(this);
+        $custom.request.ajaxSync(url,{"listName":listName},function(data){
+        	var jsonData = data.data ;
+        	selectObj.empty();
+        	if(listName != 'log_selectScopeList' 
+        			&& listName != 'log_modelCodeList'){
+        	    selectObj.append("<option value=''>请选择</option>");   
+        	}
+            jsonData.forEach(function(o,i){
+                selectObj.append("<option value='"+ o.key+"'>"+o.value+"</option>");
+            });
+            if(selectValue){
+                 selectObj.find("option[value = '"+selectValue+"']").attr("selected","selected");
+              }
+        });
+        
+    }
+}
+</script>

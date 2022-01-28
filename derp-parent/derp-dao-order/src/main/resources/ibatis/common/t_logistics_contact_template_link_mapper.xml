@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.LogisticsContactTemplateLinkMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="LogisticsContactTemplateLinkModelMap" type="LogisticsContactTemplateLinkModel" >
+                <result property="id" column="id" />
+                <result property="name" column="name" />
+                <result property="shipperTempId" column="shipper_temp_id" />
+                <result property="shipperTempName" column="shipper_temp_name" />
+                <result property="consigneeTempId" column="consignee_temp_id" />
+                <result property="consigneeTempName" column="consignee_temp_name" />
+                <result property="notifierTempId" column="notifier_temp_id" />
+                <result property="notifierTempName" column="notifier_temp_name" />
+                <result property="dockingTempId" column="docking_temp_id" />
+                <result property="dockingTempName" column="docking_temp_name" />
+                <result property="carrierInformationTempId" column="carrier_information_temp_id" />
+                <result property="carrierInformationTempName" column="carrier_information_temp_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='LogisticsContactTemplateLinkModelMap' parameterType='LogisticsContactTemplateLinkModel'>
+        select <include refid='sql_columns' /> from t_logistics_contact_template_link  <include refid='sql_where' />
+        order by id desc
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='LogisticsContactTemplateLinkModelMap' parameterType='LogisticsContactTemplateLinkModel'>
+        select <include refid='sql_columns' /> from t_logistics_contact_template_link  <include refid='sql_where' />
+        order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='LogisticsContactTemplateLinkModelMap' parameterType='LogisticsContactTemplateLinkModel' >
+        select <include refid='sql_columns' /> from t_logistics_contact_template_link  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='LogisticsContactTemplateLinkModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_logistics_contact_template_link
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='name!=null and !"".equals(name)' > name , </if>
+                        <if test='shipperTempId!=null' >shipper_temp_id , </if>
+                        <if test='shipperTempName!=null and !"".equals(shipperTempName)' > shipper_temp_name , </if>
+                        <if test='consigneeTempId!=null' >consignee_temp_id , </if>
+                        <if test='consigneeTempName!=null and !"".equals(consigneeTempName)' > consignee_temp_name , </if>
+                        <if test='notifierTempId!=null' >notifier_temp_id , </if>
+                        <if test='notifierTempName!=null and !"".equals(notifierTempName)' > notifier_temp_name , </if>
+                        <if test='dockingTempId!=null' >docking_temp_id , </if>
+                        <if test='dockingTempName!=null and !"".equals(dockingTempName)' > docking_temp_name , </if>
+                        <if test='carrierInformationTempId!=null' >carrier_information_temp_id , </if>
+                        <if test='carrierInformationTempName!=null and !"".equals(carrierInformationTempName)' > carrier_information_temp_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                        <if test='shipperTempId!=null' > #{shipperTempId} , </if>
+                        <if test='shipperTempName!=null and !"".equals(shipperTempName)' > #{shipperTempName} , </if>
+                        <if test='consigneeTempId!=null' > #{consigneeTempId} , </if>
+                        <if test='consigneeTempName!=null and !"".equals(consigneeTempName)' > #{consigneeTempName} , </if>
+                        <if test='notifierTempId!=null' > #{notifierTempId} , </if>
+                        <if test='notifierTempName!=null and !"".equals(notifierTempName)' > #{notifierTempName} , </if>
+                        <if test='dockingTempId!=null' > #{dockingTempId} , </if>
+                        <if test='dockingTempName!=null and !"".equals(dockingTempName)' > #{dockingTempName} , </if>
+                        <if test='carrierInformationTempId!=null' > #{carrierInformationTempId} , </if>
+                        <if test='carrierInformationTempName!=null and !"".equals(carrierInformationTempName)' > #{carrierInformationTempName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='LogisticsContactTemplateLinkModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_logistics_contact_template_link SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                        <if test='shipperTempId!=null' > shipper_temp_id= #{shipperTempId} , </if>
+                        <if test='shipperTempName!=null and !"".equals(shipperTempName)' >shipper_temp_name= #{shipperTempName} , </if>
+                        <if test='consigneeTempId!=null' > consignee_temp_id= #{consigneeTempId} , </if>
+                        <if test='consigneeTempName!=null and !"".equals(consigneeTempName)' >consignee_temp_name= #{consigneeTempName} , </if>
+                        <if test='notifierTempId!=null' > notifier_temp_id= #{notifierTempId} , </if>
+                        <if test='notifierTempName!=null and !"".equals(notifierTempName)' >notifier_temp_name= #{notifierTempName} , </if>
+                        <if test='dockingTempId!=null' > docking_temp_id= #{dockingTempId} , </if>
+                        <if test='dockingTempName!=null and !"".equals(dockingTempName)' >docking_temp_name= #{dockingTempName} , </if>
+                        <if test='carrierInformationTempId!=null' > carrier_information_temp_id= #{carrierInformationTempId} , </if>
+                        <if test='carrierInformationTempName!=null and !"".equals(carrierInformationTempName)' >carrier_information_temp_name= #{carrierInformationTempName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_logistics_contact_template_link  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_logistics_contact_template_link where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            name,
+            shipper_temp_id,
+            shipper_temp_name,
+            consignee_temp_id,
+            consignee_temp_name,
+            notifier_temp_id,
+            notifier_temp_name,
+            docking_temp_id,
+            docking_temp_name,
+            carrier_information_temp_id,
+            carrier_information_temp_name,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                            <if test='shipperTempId!=null' > shipper_temp_id= #{shipperTempId} and </if>
+                            <if test='shipperTempName!=null and !"".equals(shipperTempName)' >shipper_temp_name= #{shipperTempName} and </if>
+                            <if test='consigneeTempId!=null' > consignee_temp_id= #{consigneeTempId} and </if>
+                            <if test='consigneeTempName!=null and !"".equals(consigneeTempName)' >consignee_temp_name= #{consigneeTempName} and </if>
+                            <if test='notifierTempId!=null' > notifier_temp_id= #{notifierTempId} and </if>
+                            <if test='notifierTempName!=null and !"".equals(notifierTempName)' >notifier_temp_name= #{notifierTempName} and </if>
+                            <if test='dockingTempId!=null' > docking_temp_id= #{dockingTempId} and </if>
+                            <if test='dockingTempName!=null and !"".equals(dockingTempName)' >docking_temp_name= #{dockingTempName} and </if>
+                            <if test='carrierInformationTempId!=null' > carrier_information_temp_id= #{carrierInformationTempId} and </if>
+                            <if test='carrierInformationTempName!=null and !"".equals(carrierInformationTempName)' >carrier_information_temp_name= #{carrierInformationTempName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.topideal</groupId>
+    <artifactId>derp-parent</artifactId>
+    <version>4.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.topideal</groupId>
+  <artifactId>derp-dao-report</artifactId>
+  <version>4.0-SNAPSHOT</version>
+  <name>derp-dao-report</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.topideal</groupId>
+      <artifactId>derp-common</artifactId>
+      <version>4.0-SNAPSHOT</version>
+    </dependency>
+    <!-- mongodao-->
+    <dependency>
+      <groupId>com.topideal</groupId>
+      <artifactId>derp-mongo</artifactId>
+      <version>4.0-SNAPSHOT</version>
+    </dependency>
+    <!--mysql  star-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+    </dependency>
+    <!-- druid start -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+    </dependency>
+
+    <!-- json -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.json-lib</groupId>
+      <artifactId>json-lib</artifactId>
+      <classifier>jdk15</classifier>
+    </dependency>
+    <!-- gson start -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+  </dependencies>
+</project>

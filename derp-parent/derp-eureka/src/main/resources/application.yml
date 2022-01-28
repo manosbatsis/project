@@ -1,0 +1,25 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eurka-server
+  profiles:
+    include:
+    - apollo #子配置文件名必须为application-xxx.yml
+
+eureka:
+  instance:
+    metadataMap:
+      zone: derp #服务注册分区
+    #将自己的ip注册到Eureka Server上,默认为false表示注册微服务所在操作系统的hostname到Eureka Server
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false #是否将自己这个服务注册到EurekaServer中  默认True 此服务为Server 所以为False  
+    fetchRegistry: ${eureka.service.fetchRegistry} #是否从EurekaServer获取注册信息 默认true 单节点EurkaServer设置false，集群设置true同步注册信息
+    serviceUrl:  #服务注册中心地址，集群多个地址使用","分割http://127.0.0.1:8761/eureka/,http://127.0.0.1:8762/eureka/
+      defaultZone: ${eureka.serviceUrl-defaultZone}
+  server:
+    enable-self-preservation: false #关闭保护机制，默认true
+    useReadOnlyResponseCache: false #闭readOnlyCacheMap,中小型系统可以使用，Eureka Client直接从readWriteCacheMap实时更新注册信息
+    eviction-interval-timer-in-ms: ${eureka.service.server-eviction-interval-timer-in-ms}  #剔除失效服务间隔，默认60000 单位毫秒

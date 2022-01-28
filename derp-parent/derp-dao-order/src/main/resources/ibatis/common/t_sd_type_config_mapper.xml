@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.SdTypeConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SdTypeConfigModelMap" type="SdTypeConfigModel" >
+                <result property="id" column="id" />
+                <result property="sdTypeName" column="sd_type_name" />
+                <result property="sdSimpleName" column="sd_simple_name" />
+                <result property="type" column="type" />
+                <result property="creator" column="creator" />
+                <result property="createDate" column="create_date" />
+                <result property="creatorId" column="creator_id" />
+                <result property="status" column="status" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="modifierId" column="modifier_id" />
+                <result property="modifier" column="modifier" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SdTypeConfigModelMap' parameterType='SdTypeConfigModel'>
+        select <include refid='sql_columns' /> from t_sd_type_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SdTypeConfigModelMap' parameterType='SdTypeConfigModel'>
+        select <include refid='sql_columns' /> from t_sd_type_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SdTypeConfigModelMap' parameterType='SdTypeConfigModel' >
+        select <include refid='sql_columns' /> from t_sd_type_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SdTypeConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sd_type_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > sd_type_name , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > sd_simple_name , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='creator!=null and !"".equals(creator)' > creator , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='creatorId!=null' >creator_id , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='modifierId!=null' >modifier_id , </if>
+                        <if test='modifier!=null and !"".equals(modifier)' > modifier , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > #{sdTypeName} , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > #{sdSimpleName} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='creator!=null and !"".equals(creator)' > #{creator} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='creatorId!=null' > #{creatorId} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='modifierId!=null' > #{modifierId} , </if>
+                        <if test='modifier!=null and !"".equals(modifier)' > #{modifier} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SdTypeConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sd_type_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' >sd_simple_name= #{sdSimpleName} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='creator!=null and !"".equals(creator)' >creator= #{creator} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='creatorId!=null' > creator_id= #{creatorId} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='modifierId!=null' > modifier_id= #{modifierId} , </if>
+                        <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sd_type_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sd_type_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            sd_type_name,
+            sd_simple_name,
+            type,
+            creator,
+            create_date,
+            creator_id,
+            status,
+            modify_date,
+            modifier_id,
+            modifier
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} and </if>
+                            <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' >sd_simple_name= #{sdSimpleName} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='creator!=null and !"".equals(creator)' >creator= #{creator} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='creatorId!=null' > creator_id= #{creatorId} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='modifierId!=null' > modifier_id= #{modifierId} and </if>
+                            <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<select id='getListByPage' resultType='SdTypeConfigDTO' parameterType='SdTypeConfigDTO'>
+	        select <include refid='sql_columns' /> from t_sd_type_config  <include refid='sql_where' />
+	        order by id desc
+	    </select>
+
+
+
+</mapper>

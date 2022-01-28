@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.FileTempCustomerRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="FileTempCustomerRelModelMap" type="FileTempCustomerRelModel" >
+                <result property="id" column="id" />
+                <result property="fileId" column="file_id" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerCode" column="customer_code" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='FileTempCustomerRelModelMap' parameterType='FileTempCustomerRelModel'>
+        select <include refid='sql_columns' /> from t_file_temp_customer_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='FileTempCustomerRelModelMap' parameterType='FileTempCustomerRelModel'>
+        select <include refid='sql_columns' /> from t_file_temp_customer_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='FileTempCustomerRelModelMap' parameterType='FileTempCustomerRelModel' >
+        select <include refid='sql_columns' /> from t_file_temp_customer_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='FileTempCustomerRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_file_temp_customer_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='fileId!=null' >file_id , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' > customer_code , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='fileId!=null' > #{fileId} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' > #{customerCode} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='FileTempCustomerRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_file_temp_customer_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='fileId!=null' > file_id= #{fileId} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_file_temp_customer_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_file_temp_customer_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            file_id,
+            customer_id,
+            customer_name,
+            customer_code,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='fileId!=null' > file_id= #{fileId} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

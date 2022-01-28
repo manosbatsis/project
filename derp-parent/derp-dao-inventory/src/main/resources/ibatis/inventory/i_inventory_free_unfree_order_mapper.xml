@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventoryFreeUnfreeOrderMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="InventoryFreeUnfreeOrderModelMap" type="InventoryFreeUnfreeOrderModel" >
+                <result property="businessNo" column="business_no" />
+                <result property="orderNo" column="order_no" />
+                <result property="id" column="id" />
+                <result property="createDate" column="create_date" />
+                <result property="operateType" column="operate_type" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryFreeUnfreeOrderModelMap' parameterType='InventoryFreeUnfreeOrderModel'>
+        select <include refid='sql_columns' /> from i_inventory_free_unfree_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryFreeUnfreeOrderModelMap' parameterType='InventoryFreeUnfreeOrderModel'>
+        select <include refid='sql_columns' /> from i_inventory_free_unfree_order  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryFreeUnfreeOrderModelMap' parameterType='InventoryFreeUnfreeOrderModel' >
+        select <include refid='sql_columns' /> from i_inventory_free_unfree_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventoryFreeUnfreeOrderModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_free_unfree_order
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='businessNo!=null and !"".equals(businessNo)' > business_no , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > order_no , </if>
+                <if test='id!=null' > id , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='operateType!=null and !"".equals(operateType)' > operate_type , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='businessNo!=null and !"".equals(businessNo)' > #{businessNo} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > #{orderNo} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='operateType!=null and !"".equals(operateType)' > #{operateType} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventoryFreeUnfreeOrderModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_free_unfree_order SET
+        <trim  suffixOverrides=",">
+                <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_free_unfree_order  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_free_unfree_order where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        business_no,
+        order_no,
+        id,
+        create_date,
+        operate_type
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} and </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+
+
+
+</mapper>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace="com.topideal.mapper.system.CustomerInfoMapper">
+    <!-- 关系映射 -->
+    <resultMap id="CustomerInfoModelMap" type="CustomerInfoModel" >
+        <result property="id" column="id" />
+        <result property="code" column="code" />
+        <result property="name" column="name" />
+        <result property="creditCode" column="credit_code" />
+        <result property="codeGrade" column="code_grade" />
+        <result property="cityCode" column="city_code" />
+        <result property="orgCode" column="org_code" />
+        <result property="enName" column="en_name" />
+        <result property="enSimpleName" column="en_simple_name" />
+        <result property="companyAddr" column="company_addr" />
+        <result property="operationScope" column="operation_scope" />
+        <result property="legalPerson" column="legal_person" />
+        <result property="legalNationality" column="legal_nationality" />
+        <result property="legalCardNo" column="legal_card_no" />
+        <result property="legalTel" column="legal_tel" />
+        <result property="oTelNo" column="o_tel_no" />
+        <result property="type" column="type" />
+        <result property="salesman" column="salesman" />
+        <result property="status" column="status" />
+        <result property="mainId" column="main_id" />
+        <result property="authNo" column="auth_no" />
+        <result property="simpleName" column="simple_name" />
+        <result property="nature" column="nature" />
+        <result property="settlementMode" column="settlement_mode" />
+        <result property="businessAddress" column="business_address" />
+        <result property="enBusinessAddress" column="en_business_address" />
+        <result property="fax" column="fax" />
+        <result property="email" column="email" />
+        <result property="cusType" column="cus_type" />
+        <result property="currency" column="currency" />
+        <result property="depositBank" column="deposit_bank" />
+        <result property="bankAccount" column="bank_account" />
+        <result property="beneficiaryName" column="beneficiary_name" />
+        <result property="bankAddress" column="bank_address" />
+        <result property="swiftCode" column="swift_code" />
+        <result property="remark" column="remark" />
+        <result property="creater" column="creater" />
+        <result property="createDate" column="create_date" />
+        <result property="modifyDate" column="modify_date" />
+        <result property="source" column="source" />
+        <result property="innerMerchantId" column="inner_merchant_id" />
+        <result property="innerMerchantName" column="inner_merchant_name" />
+        <result property="taxNo" column="tax_no" />
+        <result property="ncPlatformCode" column="nc_platform_code" />
+        <result property="ncChannelCode" column="nc_channel_code" />
+        <result property="china_name" column="chinaName" />
+        <result property="channelClassify" column="channel_classify" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomerInfoModelMap' parameterType='CustomerInfoModel'>
+        select <include refid='sql_columns' /> from st_customer_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomerInfoModelMap' parameterType='CustomerInfoModel'>
+        select <include refid='sql_columns' /> from st_customer_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomerInfoModelMap' parameterType='CustomerInfoModel' >
+        select <include refid='sql_columns' /> from st_customer_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='CustomerInfoModel' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO st_customer_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test='id!=null' >id , </if>
+            <if test='code!=null and !"".equals(code)' > code , </if>
+            <if test='name!=null and !"".equals(name)' > name , </if>
+            <if test='creditCode!=null and !"".equals(creditCode)' > credit_code , </if>
+            <if test='codeGrade!=null and !"".equals(codeGrade)' > code_grade , </if>
+            <if test='cityCode!=null and !"".equals(cityCode)' > city_code , </if>
+            <if test='orgCode!=null and !"".equals(orgCode)' > org_code , </if>
+            <if test='enName!=null and !"".equals(enName)' > en_name , </if>
+            <if test='enSimpleName!=null and !"".equals(enSimpleName)' > en_simple_name , </if>
+            <if test='companyAddr!=null and !"".equals(companyAddr)' > company_addr , </if>
+            <if test='operationScope!=null and !"".equals(operationScope)' > operation_scope , </if>
+            <if test='legalPerson!=null and !"".equals(legalPerson)' > legal_person , </if>
+            <if test='legalNationality!=null and !"".equals(legalNationality)' > legal_nationality , </if>
+            <if test='legalCardNo!=null and !"".equals(legalCardNo)' > legal_card_no , </if>
+            <if test='legalTel!=null and !"".equals(legalTel)' > legal_tel , </if>
+            <if test='oTelNo!=null and !"".equals(oTelNo)' > o_tel_no , </if>
+            <if test='type!=null and !"".equals(type)' > type , </if>
+            <if test='salesman!=null and !"".equals(salesman)' > salesman , </if>
+            <if test='status!=null and !"".equals(status)' > status , </if>
+            <if test='mainId!=null and !"".equals(mainId)' > main_id , </if>
+            <if test='authNo!=null and !"".equals(authNo)' > auth_no , </if>
+            <if test='simpleName!=null and !"".equals(simpleName)' > simple_name , </if>
+            <if test='nature!=null and !"".equals(nature)' > nature , </if>
+            <if test='settlementMode!=null and !"".equals(settlementMode)' > settlement_mode , </if>
+            <if test='businessAddress!=null and !"".equals(businessAddress)' > business_address , </if>
+            <if test='enBusinessAddress!=null and !"".equals(enBusinessAddress)' > en_business_address , </if>
+            <if test='fax!=null and !"".equals(fax)' > fax , </if>
+            <if test='email!=null and !"".equals(email)' > email , </if>
+            <if test='cusType!=null and !"".equals(cusType)' > cus_type , </if>
+            <if test='currency!=null and !"".equals(currency)' > currency , </if>
+            <if test='depositBank!=null and !"".equals(depositBank)' > deposit_bank , </if>
+            <if test='bankAccount!=null and !"".equals(bankAccount)' > bank_account , </if>
+            <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > beneficiary_name , </if>
+            <if test='bankAddress!=null and !"".equals(bankAddress)' > bank_address , </if>
+            <if test='swiftCode!=null and !"".equals(swiftCode)' > swift_code , </if>
+            <if test='remark!=null and !"".equals(remark)' > remark , </if>
+            <if test='creater!=null' >creater , </if>
+            <if test='createDate!=null' >create_date , </if>
+            <if test='modifyDate!=null' >modify_date , </if>
+            <if test='source!=null and !"".equals(source)' > source , </if>
+            <if test='innerMerchantId!=null' >inner_merchant_id , </if>
+            <if test='innerMerchantName!=null and !"".equals(innerMerchantName)' > inner_merchant_name , </if>
+            <if test='taxNo!=null and !"".equals(taxNo)' > tax_no , </if>
+            <if test='ncPlatformCode!=null and !"".equals(ncPlatformCode)' > nc_platform_code , </if>
+            <if test='ncChannelCode!=null and !"".equals(ncChannelCode)' > nc_channel_code , </if>    
+            <if test='chinaName!=null and !"".equals(chinaName)' > china_name , </if>
+            <if test='channelClassify!=null and !"".equals(channelClassify)' > channel_classify , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test='id!=null' > #{id} , </if>
+            <if test='code!=null and !"".equals(code)' > #{code} , </if>
+            <if test='name!=null and !"".equals(name)' > #{name} , </if>
+            <if test='creditCode!=null and !"".equals(creditCode)' > #{creditCode} , </if>
+            <if test='codeGrade!=null and !"".equals(codeGrade)' > #{codeGrade} , </if>
+            <if test='cityCode!=null and !"".equals(cityCode)' > #{cityCode} , </if>
+            <if test='orgCode!=null and !"".equals(orgCode)' > #{orgCode} , </if>
+            <if test='enName!=null and !"".equals(enName)' > #{enName} , </if>
+            <if test='enSimpleName!=null and !"".equals(enSimpleName)' > #{enSimpleName} , </if>
+            <if test='companyAddr!=null and !"".equals(companyAddr)' > #{companyAddr} , </if>
+            <if test='operationScope!=null and !"".equals(operationScope)' > #{operationScope} , </if>
+            <if test='legalPerson!=null and !"".equals(legalPerson)' > #{legalPerson} , </if>
+            <if test='legalNationality!=null and !"".equals(legalNationality)' > #{legalNationality} , </if>
+            <if test='legalCardNo!=null and !"".equals(legalCardNo)' > #{legalCardNo} , </if>
+            <if test='legalTel!=null and !"".equals(legalTel)' > #{legalTel} , </if>
+            <if test='oTelNo!=null and !"".equals(oTelNo)' > #{oTelNo} , </if>
+            <if test='type!=null and !"".equals(type)' > #{type} , </if>
+            <if test='salesman!=null and !"".equals(salesman)' > #{salesman} , </if>
+            <if test='status!=null and !"".equals(status)' > #{status} , </if>
+            <if test='mainId!=null and !"".equals(mainId)' > #{mainId} , </if>
+            <if test='authNo!=null and !"".equals(authNo)' > #{authNo} , </if>
+            <if test='simpleName!=null and !"".equals(simpleName)' > #{simpleName} , </if>
+            <if test='nature!=null and !"".equals(nature)' > #{nature} , </if>
+            <if test='settlementMode!=null and !"".equals(settlementMode)' > #{settlementMode} , </if>
+            <if test='businessAddress!=null and !"".equals(businessAddress)' > #{businessAddress} , </if>
+            <if test='enBusinessAddress!=null and !"".equals(enBusinessAddress)' > #{enBusinessAddress} , </if>
+            <if test='fax!=null and !"".equals(fax)' > #{fax} , </if>
+            <if test='email!=null and !"".equals(email)' > #{email} , </if>
+            <if test='cusType!=null and !"".equals(cusType)' > #{cusType} , </if>
+            <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+            <if test='depositBank!=null and !"".equals(depositBank)' > #{depositBank} , </if>
+            <if test='bankAccount!=null and !"".equals(bankAccount)' > #{bankAccount} , </if>
+            <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > #{beneficiaryName} , </if>
+            <if test='bankAddress!=null and !"".equals(bankAddress)' > #{bankAddress} , </if>
+            <if test='swiftCode!=null and !"".equals(swiftCode)' > #{swiftCode} , </if>
+            <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+            <if test='creater!=null' > #{creater} , </if>
+            <if test='createDate!=null' > #{createDate} , </if>
+            <if test='modifyDate!=null' > #{modifyDate} , </if>
+            <if test='source!=null and !"".equals(source)' > #{source} , </if>
+            <if test='innerMerchantId!=null' > #{innerMerchantId} , </if>
+            <if test='innerMerchantName!=null and !"".equals(innerMerchantName)' > #{innerMerchantName} , </if>
+            <if test='taxNo!=null and !"".equals(taxNo)' > #{taxNo} , </if>
+            <if test='ncPlatformCode!=null and !"".equals(ncPlatformCode)' > #{ncPlatformCode} , </if>
+            <if test='ncChannelCode!=null and !"".equals(ncChannelCode)' > #{ncChannelCode} , </if>  
+            <if test='chinaName!=null and !"".equals(chinaName)' > #{chinaName} , </if>
+            <if test='channelClassify!=null and !"".equals(channelClassify)' > #{channelClassify} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='CustomerInfoModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  st_customer_info SET
+        <trim  suffixOverrides=",">
+            <if test='id!=null' > id= #{id} , </if>
+            <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+            <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+            <if test='creditCode!=null and !"".equals(creditCode)' >credit_code= #{creditCode} , </if>
+            <if test='codeGrade!=null and !"".equals(codeGrade)' >code_grade= #{codeGrade} , </if>
+            <if test='cityCode!=null and !"".equals(cityCode)' >city_code= #{cityCode} , </if>
+            <if test='orgCode!=null and !"".equals(orgCode)' >org_code= #{orgCode} , </if>
+            <if test='enName!=null and !"".equals(enName)' >en_name= #{enName} , </if>
+            <if test='enSimpleName!=null and !"".equals(enSimpleName)' >en_simple_name= #{enSimpleName} , </if>
+            <if test='companyAddr!=null and !"".equals(companyAddr)' >company_addr= #{companyAddr} , </if>
+            <if test='operationScope!=null and !"".equals(operationScope)' >operation_scope= #{operationScope} , </if>
+            <if test='legalPerson!=null and !"".equals(legalPerson)' >legal_person= #{legalPerson} , </if>
+            <if test='legalNationality!=null and !"".equals(legalNationality)' >legal_nationality= #{legalNationality} , </if>
+            <if test='legalCardNo!=null and !"".equals(legalCardNo)' >legal_card_no= #{legalCardNo} , </if>
+            <if test='legalTel!=null and !"".equals(legalTel)' >legal_tel= #{legalTel} , </if>
+            <if test='oTelNo!=null and !"".equals(oTelNo)' >o_tel_no= #{oTelNo} , </if>
+            <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+            <if test='salesman!=null and !"".equals(salesman)' >salesman= #{salesman} , </if>
+            <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+            <if test='mainId!=null and !"".equals(mainId)' >main_id= #{mainId} , </if>
+            <if test='authNo!=null and !"".equals(authNo)' >auth_no= #{authNo} , </if>
+            <if test='simpleName!=null and !"".equals(simpleName)' >simple_name= #{simpleName} , </if>
+            <if test='nature!=null and !"".equals(nature)' >nature= #{nature} , </if>
+            <if test='settlementMode!=null and !"".equals(settlementMode)' >settlement_mode= #{settlementMode} , </if>
+            <if test='businessAddress!=null and !"".equals(businessAddress)' >business_address= #{businessAddress} , </if>
+            <if test='enBusinessAddress!=null and !"".equals(enBusinessAddress)' >en_business_address= #{enBusinessAddress} , </if>
+            <if test='fax!=null and !"".equals(fax)' >fax= #{fax} , </if>
+            <if test='email!=null and !"".equals(email)' >email= #{email} , </if>
+            <if test='cusType!=null and !"".equals(cusType)' >cus_type= #{cusType} , </if>
+            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+            <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} , </if>
+            <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} , </if>
+            <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} , </if>
+            <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} , </if>
+            <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} , </if>
+            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+            <if test='creater!=null' > creater= #{creater} , </if>
+            <if test='createDate!=null' > create_date= #{createDate} , </if>
+            <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            <if test='source!=null and !"".equals(source)' >source= #{source} , </if>
+            <if test='innerMerchantId!=null' > inner_merchant_id= #{innerMerchantId} , </if>
+            <if test='innerMerchantName!=null and !"".equals(innerMerchantName)' >inner_merchant_name= #{innerMerchantName} , </if>
+            <if test='taxNo!=null and !"".equals(taxNo)' >tax_no= #{taxNo} , </if>
+            <if test='ncPlatformCode!=null and !"".equals(ncPlatformCode)' >nc_platform_code= #{ncPlatformCode} , </if>
+            <if test='ncChannelCode!=null and !"".equals(ncChannelCode)' >nc_channel_code= #{ncChannelCode} , </if>
+            <if test='chinaName!=null and !"".equals(chinaName)' >china_name= #{chinaName} , </if>
+            <if test='channelClassify!=null and !"".equals(channelClassify)' >channel_classify= #{channelClassify} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_customer_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_customer_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        id,
+        code,
+        name,
+        credit_code,
+        code_grade,
+        city_code,
+        org_code,
+        en_name,
+        en_simple_name,
+        company_addr,
+        operation_scope,
+        legal_person,
+        legal_nationality,
+        legal_card_no,
+        legal_tel,
+        o_tel_no,
+        type,
+        salesman,
+        status,
+        main_id,
+        auth_no,
+        simple_name,
+        nature,
+        settlement_mode,
+        business_address,
+        en_business_address,
+        fax,
+        email,
+        cus_type,
+        currency,
+        deposit_bank,
+        bank_account,
+        beneficiary_name,
+        bank_address,
+        swift_code,
+        remark,
+        creater,
+        create_date,
+        modify_date,
+        source,
+        inner_merchant_id,
+        inner_merchant_name,
+        tax_no,
+        nc_platform_code,
+        nc_channel_code,
+        china_name,
+        channel_classify
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                <if test='creditCode!=null and !"".equals(creditCode)' >credit_code= #{creditCode} and </if>
+                <if test='codeGrade!=null and !"".equals(codeGrade)' >code_grade= #{codeGrade} and </if>
+                <if test='cityCode!=null and !"".equals(cityCode)' >city_code= #{cityCode} and </if>
+                <if test='orgCode!=null and !"".equals(orgCode)' >org_code= #{orgCode} and </if>
+                <if test='enName!=null and !"".equals(enName)' >en_name= #{enName} and </if>
+                <if test='enSimpleName!=null and !"".equals(enSimpleName)' >en_simple_name= #{enSimpleName} and </if>
+                <if test='companyAddr!=null and !"".equals(companyAddr)' >company_addr= #{companyAddr} and </if>
+                <if test='operationScope!=null and !"".equals(operationScope)' >operation_scope= #{operationScope} and </if>
+                <if test='legalPerson!=null and !"".equals(legalPerson)' >legal_person= #{legalPerson} and </if>
+                <if test='legalNationality!=null and !"".equals(legalNationality)' >legal_nationality= #{legalNationality} and </if>
+                <if test='legalCardNo!=null and !"".equals(legalCardNo)' >legal_card_no= #{legalCardNo} and </if>
+                <if test='legalTel!=null and !"".equals(legalTel)' >legal_tel= #{legalTel} and </if>
+                <if test='oTelNo!=null and !"".equals(oTelNo)' >o_tel_no= #{oTelNo} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='salesman!=null and !"".equals(salesman)' >salesman= #{salesman} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='mainId!=null and !"".equals(mainId)' >main_id= #{mainId} and </if>
+                <if test='authNo!=null and !"".equals(authNo)' >auth_no= #{authNo} and </if>
+                <if test='simpleName!=null and !"".equals(simpleName)' >simple_name= #{simpleName} and </if>
+                <if test='nature!=null and !"".equals(nature)' >nature= #{nature} and </if>
+                <if test='settlementMode!=null and !"".equals(settlementMode)' >settlement_mode= #{settlementMode} and </if>
+                <if test='businessAddress!=null and !"".equals(businessAddress)' >business_address= #{businessAddress} and </if>
+                <if test='enBusinessAddress!=null and !"".equals(enBusinessAddress)' >en_business_address= #{enBusinessAddress} and </if>
+                <if test='fax!=null and !"".equals(fax)' >fax= #{fax} and </if>
+                <if test='email!=null and !"".equals(email)' >email= #{email} and </if>
+                <if test='cusType!=null and !"".equals(cusType)' >cus_type= #{cusType} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} and </if>
+                <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} and </if>
+                <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} and </if>
+                <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} and </if>
+                <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                <if test='innerMerchantId!=null' > inner_merchant_id= #{innerMerchantId} and </if>
+                <if test='innerMerchantName!=null and !"".equals(innerMerchantName)' >inner_merchant_name= #{innerMerchantName} and </if>
+	            <if test='taxNo!=null and !"".equals(taxNo)' >tax_no= #{taxNo} and </if>
+            	<if test='ncPlatformCode!=null and !"".equals(ncPlatformCode)' >nc_platform_code= #{ncPlatformCode} and </if>
+            	<if test='ncChannelCode!=null and !"".equals(ncChannelCode)' >nc_channel_code= #{ncChannelCode} and </if>
+                <if test='chinaName!=null and !"".equals(chinaName)' >china_name= #{chinaName} and </if>
+                <if test='channelClassify!=null and !"".equals(channelClassify)' >channel_classify= #{channelClassify} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL -->
+	<!-- 关系映射 -->
+	<resultMap id="SelectBean" type="com.topideal.common.system.bean.SelectBean">
+		<result property="value" column="id" />
+		<result property="label" column="name" />
+	</resultMap>
+
+	<!-- 获取客户下拉列表 -->
+	<select id='listAllCustomer' resultMap='SelectBean' >
+		select customer_id,name from st_customer_merchant_rel where status = '1'
+	</select>
+		<!-- 根据某个商家获取客户下拉列表 -->
+	<select id='listAllCustomerByMerchant' resultMap='CustomerInfoModelMap'  parameterType="java.lang.Long">
+		select <include refid='sql_columns' />  from st_customer_info
+		 <where>
+            <trim prefix='and'>
+                <if test='merchantId!=null and !"".equals(merchantId)' >merchant_id= #{merchantId}  </if>
+			</trim>
+		 </where>
+	</select>
+	  <!-- 条件查询 -->
+    <select id='getDetails' resultMap='CustomerInfoModelMap' parameterType='CustomerInfoModel'>
+		select 
+		<include refid='sql_columns' /> 
+		FROM
+			st_customer_info 
+		<where>
+            <trim suffixOverrides='and'>
+                <if test='legalTel!=null and !"".equals(legalTel)' >legal_tel= #{legalTel} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='legalNationality!=null and !"".equals(legalNationality)' >legal_nationality= #{legalNationality} and </if>
+                <if test='companyAddr!=null and !"".equals(companyAddr)' >company_addr= #{companyAddr} and </if>
+                <if test='legalTel2!=null and !"".equals(legalTel2)' >legal_tel2= #{legalTel2} and </if>
+                <if test='operationScope!=null' > operation_scope= #{operationScope} and </if>
+                <if test='creater!=null' > `creater`= #{creater} and </if>
+                <if test='creditCode!=null and !"".equals(creditCode)' >credit_code= #{creditCode} and </if>
+                <if test='orgCode!=null and !"".equals(orgCode)' >org_code= #{orgCode} and </if>
+                <if test='legalPerson!=null and !"".equals(legalPerson)' >legal_person= #{legalPerson} and </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                <if test='enName!=null and !"".equals(enName)' >en_name= #{enName} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='legalCardNo!=null and !"".equals(legalCardNo)' >legal_card_no= #{legalCardNo} and </if>
+                <if test='enName2!=null and !"".equals(enName2)' >en_name2= #{enName2} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='cusType!=null and !"".equals(cusType)' > cus_type= #{cusType} and </if>               
+                <if test='mainId!=null' > main_id= #{mainId} and </if>
+            </trim>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,852 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.PaymentBillMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PaymentBillModelMap" type="PaymentBillModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="supplierId" column="supplier_id" />
+                <result property="supplierName" column="supplier_name" />
+                <result property="bankAccount" column="bank_account" />
+                <result property="beneficiaryName" column="beneficiary_name" />
+                <result property="depositBank" column="deposit_bank" />
+                <result property="swiftCode" column="swift_code" />
+                <result property="bankAddress" column="bank_address" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="currency" column="currency" />
+                <result property="billDate" column="bill_date" />
+                <result property="expectedPaymentDate" column="expected_payment_date" />
+                <result property="paymentReason" column="payment_reason" />
+                <result property="settlementAmount" column="settlement_amount" />
+                <result property="settlementTaxAmount" column="settlement_tax_amount" />
+                <result property="tax" column="tax" />
+                <result property="payableAmount" column="payable_amount" />
+                <result property="paymentAmount" column="payment_amount" />
+                <result property="surplusAmount" column="surplus_amount" />
+                <result property="billStatus" column="bill_status" />
+                <result property="auditMethod" column="audit_method" />
+                <result property="requestId" column="request_id" />
+                <result property="createrId" column="creater_id" />
+                <result property="creater" column="creater" />
+                <result property="createDate" column="create_date" />
+                <result property="modifierId" column="modifier_id" />
+                <result property="modifier" column="modifier" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="ncSynDate" column="nc_syn_date" />
+                <result property="ncSynStatus" column="nc_syn_status" />
+                <result property="ncStatus" column="nc_status" />
+                <result property="ncCode" column="nc_code" />
+                <result property="voucherCode" column="voucher_code" />
+                <result property="voucherName" column="voucher_name" />
+                <result property="voucherIndex" column="voucher_index" />
+                <result property="voucherStatus" column="voucher_status" />
+                <result property="period" column="period" />
+                <result property="synchronizerId" column="synchronizer_id" />
+                <result property="synchronizer" column="synchronizer" />
+                <result property="printingState" column="printing_state" />
+                <result property="endowmentState" column="endowment_state" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PaymentBillModelMap' parameterType='PaymentBillModel'>
+        select <include refid='sql_columns' /> from t_payment_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PaymentBillModelMap' parameterType='PaymentBillModel'>
+        select <include refid='sql_columns' /> from t_payment_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PaymentBillModelMap' parameterType='PaymentBillModel' >
+        select <include refid='sql_columns' /> from t_payment_bill  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PaymentBillModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_payment_bill
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='supplierId!=null' >supplier_id , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+                        <if test='bankAccount!=null and !"".equals(bankAccount)' > bank_account , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > beneficiary_name , </if>
+                        <if test='depositBank!=null and !"".equals(depositBank)' > deposit_bank , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' > swift_code , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' > bank_address , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='billDate!=null' >bill_date , </if>
+                        <if test='expectedPaymentDate!=null' >expected_payment_date , </if>
+                        <if test='paymentReason!=null and !"".equals(paymentReason)' > payment_reason , </if>
+                        <if test='settlementAmount!=null' >settlement_amount , </if>
+                        <if test='settlementTaxAmount!=null' >settlement_tax_amount , </if>
+                        <if test='tax!=null' >tax , </if>
+                        <if test='payableAmount!=null' >payable_amount , </if>
+                        <if test='paymentAmount!=null' >payment_amount , </if>
+                        <if test='surplusAmount!=null' >surplus_amount , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' > bill_status , </if>
+                        <if test='auditMethod!=null and !"".equals(auditMethod)' > audit_method , </if>
+                        <if test='requestId!=null and !"".equals(requestId)' > request_id , </if>
+                        <if test='createrId!=null' >creater_id , </if>
+                        <if test='creater!=null and !"".equals(creater)' > creater , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifierId!=null' >modifier_id , </if>
+                        <if test='modifier!=null and !"".equals(modifier)' > modifier , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='ncSynDate!=null' >nc_syn_date , </if>
+                        <if test='ncSynStatus!=null and !"".equals(ncSynStatus)' > nc_syn_status , </if>
+                        <if test='ncStatus!=null and !"".equals(ncStatus)' > nc_status , </if>
+                        <if test='ncCode!=null and !"".equals(ncCode)' > nc_code , </if>
+                        <if test='voucherCode!=null and !"".equals(voucherCode)' > voucher_code , </if>
+                        <if test='voucherName!=null and !"".equals(voucherName)' > voucher_name , </if>
+                        <if test='voucherIndex!=null and !"".equals(voucherIndex)' > voucher_index , </if>
+                        <if test='voucherStatus!=null and !"".equals(voucherStatus)' > voucher_status , </if>
+                        <if test='period!=null and !"".equals(period)' > period , </if>
+                        <if test='synchronizerId!=null' >synchronizer_id , </if>
+                        <if test='synchronizer!=null and !"".equals(synchronizer)' > synchronizer , </if>
+                        <if test='printingState!=null and !"".equals(printingState)' > printing_state , </if>
+                        <if test='endowmentState!=null and !"".equals(endowmentState)' > endowment_state , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='supplierId!=null' > #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+                        <if test='bankAccount!=null and !"".equals(bankAccount)' > #{bankAccount} , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > #{beneficiaryName} , </if>
+                        <if test='depositBank!=null and !"".equals(depositBank)' > #{depositBank} , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' > #{swiftCode} , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' > #{bankAddress} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='billDate!=null' > #{billDate} , </if>
+                        <if test='expectedPaymentDate!=null' > #{expectedPaymentDate} , </if>
+                        <if test='paymentReason!=null and !"".equals(paymentReason)' > #{paymentReason} , </if>
+                        <if test='settlementAmount!=null' > #{settlementAmount} , </if>
+                        <if test='settlementTaxAmount!=null' > #{settlementTaxAmount} , </if>
+                        <if test='tax!=null' > #{tax} , </if>
+                        <if test='payableAmount!=null' > #{payableAmount} , </if>
+                        <if test='paymentAmount!=null' > #{paymentAmount} , </if>
+                        <if test='surplusAmount!=null' > #{surplusAmount} , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' > #{billStatus} , </if>
+                        <if test='auditMethod!=null and !"".equals(auditMethod)' > #{auditMethod} , </if>
+                        <if test='requestId!=null and !"".equals(requestId)' > #{requestId} , </if>
+                        <if test='createrId!=null' > #{createrId} , </if>
+                        <if test='creater!=null and !"".equals(creater)' > #{creater} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifierId!=null' > #{modifierId} , </if>
+                        <if test='modifier!=null and !"".equals(modifier)' > #{modifier} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='ncSynDate!=null' > #{ncSynDate} , </if>
+                        <if test='ncSynStatus!=null and !"".equals(ncSynStatus)' > #{ncSynStatus} , </if>
+                        <if test='ncStatus!=null and !"".equals(ncStatus)' > #{ncStatus} , </if>
+                        <if test='ncCode!=null and !"".equals(ncCode)' > #{ncCode} , </if>
+                        <if test='voucherCode!=null and !"".equals(voucherCode)' > #{voucherCode} , </if>
+                        <if test='voucherName!=null and !"".equals(voucherName)' > #{voucherName} , </if>
+                        <if test='voucherIndex!=null and !"".equals(voucherIndex)' > #{voucherIndex} , </if>
+                        <if test='voucherStatus!=null and !"".equals(voucherStatus)' > #{voucherStatus} , </if>
+                        <if test='period!=null and !"".equals(period)' > #{period} , </if>
+                        <if test='synchronizerId!=null' > #{synchronizerId} , </if>
+                        <if test='synchronizer!=null and !"".equals(synchronizer)' > #{synchronizer} , </if>
+                        <if test='printingState!=null and !"".equals(printingState)' > #{printingState} , </if>
+                        <if test='endowmentState!=null and !"".equals(endowmentState)' > #{endowmentState} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PaymentBillModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_payment_bill SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='supplierId!=null' > supplier_id= #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+                        <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} , </if>
+                        <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='billDate!=null' > bill_date= #{billDate} , </if>
+                        <if test='expectedPaymentDate!=null' > expected_payment_date= #{expectedPaymentDate} , </if>
+                        <if test='paymentReason!=null and !"".equals(paymentReason)' >payment_reason= #{paymentReason} , </if>
+                        <if test='settlementAmount!=null' > settlement_amount= #{settlementAmount} , </if>
+                        <if test='settlementTaxAmount!=null' > settlement_tax_amount= #{settlementTaxAmount} , </if>
+                        <if test='tax!=null' > tax= #{tax} , </if>
+                        <if test='payableAmount!=null' > payable_amount= #{payableAmount} , </if>
+                        <if test='paymentAmount!=null' > payment_amount= #{paymentAmount} , </if>
+                        <if test='surplusAmount!=null' > surplus_amount= #{surplusAmount} , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} , </if>
+                        <if test='auditMethod!=null and !"".equals(auditMethod)' >audit_method= #{auditMethod} , </if>
+                        <if test='requestId!=null and !"".equals(requestId)' >request_id= #{requestId} , </if>
+                        <if test='createrId!=null' > creater_id= #{createrId} , </if>
+                        <if test='creater!=null and !"".equals(creater)' >creater= #{creater} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifierId!=null' > modifier_id= #{modifierId} , </if>
+                        <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='ncSynDate!=null' > nc_syn_date= #{ncSynDate} , </if>
+                        <if test='ncSynStatus!=null and !"".equals(ncSynStatus)' >nc_syn_status= #{ncSynStatus} , </if>
+                        <if test='ncStatus!=null and !"".equals(ncStatus)' >nc_status= #{ncStatus} , </if>
+                        <if test='ncCode!=null and !"".equals(ncCode)' >nc_code= #{ncCode} , </if>
+                        <if test='voucherCode!=null and !"".equals(voucherCode)' >voucher_code= #{voucherCode} , </if>
+                        <if test='voucherName!=null and !"".equals(voucherName)' >voucher_name= #{voucherName} , </if>
+                        <if test='voucherIndex!=null and !"".equals(voucherIndex)' >voucher_index= #{voucherIndex} , </if>
+                        <if test='voucherStatus!=null and !"".equals(voucherStatus)' >voucher_status= #{voucherStatus} , </if>
+                        <if test='period!=null and !"".equals(period)' >period= #{period} , </if>
+                        <if test='synchronizerId!=null' > synchronizer_id= #{synchronizerId} , </if>
+                        <if test='synchronizer!=null and !"".equals(synchronizer)' >synchronizer= #{synchronizer} , </if>
+                        <if test='printingState!=null and !"".equals(printingState)' >printing_state= #{printingState} , </if>
+                        <if test='endowmentState!=null and !"".equals(endowmentState)' >endowment_state= #{endowmentState} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_payment_bill  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_payment_bill where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            merchant_id,
+            merchant_name,
+            supplier_id,
+            supplier_name,
+            bank_account,
+            beneficiary_name,
+            deposit_bank,
+            swift_code,
+            bank_address,
+            bu_id,
+            bu_name,
+            currency,
+            bill_date,
+            expected_payment_date,
+            payment_reason,
+            settlement_amount,
+            settlement_tax_amount,
+            tax,
+            payable_amount,
+            payment_amount,
+            surplus_amount,
+            bill_status,
+            audit_method,
+            request_id,
+            creater_id,
+            creater,
+            create_date,
+            modifier_id,
+            modifier,
+            modify_date,
+            nc_syn_date,
+            nc_syn_status,
+            nc_status,
+            nc_code,
+            voucher_code,
+            voucher_name,
+            voucher_index,
+            voucher_status,
+            period,
+            synchronizer_id,
+            synchronizer,
+            printing_state,
+            endowment_state
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                            <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} and </if>
+                            <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} and </if>
+                            <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} and </if>
+                            <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} and </if>
+                            <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='billDate!=null' > bill_date= #{billDate} and </if>
+                            <if test='expectedPaymentDate!=null' > expected_payment_date= #{expectedPaymentDate} and </if>
+                            <if test='paymentReason!=null and !"".equals(paymentReason)' >payment_reason= #{paymentReason} and </if>
+                            <if test='settlementAmount!=null' > settlement_amount= #{settlementAmount} and </if>
+                            <if test='settlementTaxAmount!=null' > settlement_tax_amount= #{settlementTaxAmount} and </if>
+                            <if test='tax!=null' > tax= #{tax} and </if>
+                            <if test='payableAmount!=null' > payable_amount= #{payableAmount} and </if>
+                            <if test='paymentAmount!=null' > payment_amount= #{paymentAmount} and </if>
+                            <if test='surplusAmount!=null' > surplus_amount= #{surplusAmount} and </if>
+                            <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} and </if>
+                            <if test='auditMethod!=null and !"".equals(auditMethod)' >audit_method= #{auditMethod} and </if>
+                            <if test='requestId!=null and !"".equals(requestId)' >request_id= #{requestId} and </if>
+                            <if test='createrId!=null' > creater_id= #{createrId} and </if>
+                            <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifierId!=null' > modifier_id= #{modifierId} and </if>
+                            <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='ncSynDate!=null' > nc_syn_date= #{ncSynDate} and </if>
+                            <if test='ncSynStatus!=null and !"".equals(ncSynStatus)' >nc_syn_status= #{ncSynStatus} and </if>
+                            <if test='ncStatus!=null and !"".equals(ncStatus)' >nc_status= #{ncStatus} and </if>
+                            <if test='ncCode!=null and !"".equals(ncCode)' >nc_code= #{ncCode} and </if>
+                            <if test='voucherCode!=null and !"".equals(voucherCode)' >voucher_code= #{voucherCode} and </if>
+                            <if test='voucherName!=null and !"".equals(voucherName)' >voucher_name= #{voucherName} and </if>
+                            <if test='voucherIndex!=null and !"".equals(voucherIndex)' >voucher_index= #{voucherIndex} and </if>
+                            <if test='voucherStatus!=null and !"".equals(voucherStatus)' >voucher_status= #{voucherStatus} and </if>
+                            <if test='period!=null and !"".equals(period)' >period= #{period} and </if>
+                            <if test='synchronizerId!=null' > synchronizer_id= #{synchronizerId} and </if>
+                            <if test='synchronizer!=null and !"".equals(synchronizer)' >synchronizer= #{synchronizer} and </if>
+                            <if test='printingState!=null and !"".equals(printingState)' >printing_state= #{printingState} and </if>
+                            <if test='endowmentState!=null and !"".equals(endowmentState)' >endowment_state= #{endowmentState} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <sql id='sql_dto_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <choose>
+                <when test='ids!=null and !"".equals(ids)'>
+                    id in
+                    <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                        #{id}
+                    </foreach>
+                </when>
+                <otherwise>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} and </if>
+                <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} and </if>
+                <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} and </if>
+                <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} and </if>
+                <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='billDate!=null' > bill_date= #{billDate} and </if>
+                <if test='expectedPaymentDate!=null' > expected_payment_date= #{expectedPaymentDate} and </if>
+                <if test='paymentReason!=null and !"".equals(paymentReason)' >payment_reason= #{paymentReason} and </if>
+                <if test='settlementAmount!=null' > settlement_amount= #{settlementAmount} and </if>
+                <if test='settlementTaxAmount!=null' > settlement_tax_amount= #{settlementTaxAmount} and </if>
+                <if test='tax!=null' > tax= #{tax} and </if>
+                <if test='payableAmount!=null' > payable_amount= #{payableAmount} and </if>
+                <if test='paymentAmount!=null' > payment_amount= #{paymentAmount} and </if>
+                <if test='surplusAmount!=null' > surplus_amount= #{surplusAmount} and </if>
+                <if test='auditMethod!=null and !"".equals(auditMethod)' >audit_method= #{auditMethod} and </if>
+                <if test='requestId!=null and !"".equals(requestId)' >request_id= #{requestId} and </if>
+                <if test='createrId!=null' > creater_id= #{createrId} and </if>
+                <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifierId!=null' > modifier_id= #{modifierId} and </if>
+                <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='ncSynDate!=null' > nc_syn_date= #{ncSynDate} and </if>
+                <if test='ncSynStatus!=null and !"".equals(ncSynStatus)' >nc_syn_status= #{ncSynStatus} and </if>
+                <if test='ncStatus!=null and !"".equals(ncStatus)' >nc_status= #{ncStatus} and </if>
+                <if test='ncCode!=null and !"".equals(ncCode)' >nc_code= #{ncCode} and </if>
+                <if test='voucherCode!=null and !"".equals(voucherCode)' >voucher_code= #{voucherCode} and </if>
+                <if test='voucherName!=null and !"".equals(voucherName)' >voucher_name= #{voucherName} and </if>
+                <if test='voucherIndex!=null and !"".equals(voucherIndex)' >voucher_index= #{voucherIndex} and </if>
+                <if test='voucherStatus!=null and !"".equals(voucherStatus)' >voucher_status= #{voucherStatus} and </if>
+                <if test='period!=null and !"".equals(period)' >period= #{period} and </if>
+                <if test='synchronizerId!=null' > synchronizer_id= #{synchronizerId} and </if>
+                <if test='synchronizer!=null and !"".equals(synchronizer)' >synchronizer= #{synchronizer} and </if>
+                <if test='printingState!=null and !"".equals(printingState)' >printing_state= #{printingState} and </if>
+                <if test='endowmentState!=null and !"".equals(endowmentState)' >endowment_state= #{endowmentState} and </if>
+                <if test='buIds!=null' >bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <choose>
+                    <when test='billStatus!=null and !"".equals(billStatus)'>
+                        bill_status= #{billStatus} and
+                    </when>
+                    <otherwise>
+                        bill_status != '006' and
+                    </otherwise>
+                </choose>
+                </otherwise>
+                </choose>
+            </trim>
+        </where>
+    </sql>
+
+		<select id='getListByPage' parameterType='PaymentBillDTO' resultType='PaymentBillDTO'>
+	        select <include refid='sql_columns' /> from t_payment_bill
+			<where>
+                <trim suffixOverrides='and'>
+                     <if test='id!=null' > id= #{id} and </if>
+                     <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                     <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                     <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                     <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                     <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                     <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} and </if>
+                     <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} and </if>
+                     <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} and </if>
+                     <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} and </if>
+                     <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} and </if>
+                     <if test='buId!=null' > bu_id= #{buId} and </if>
+                     <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                     <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                     <if test='billDate!=null' > bill_date= #{billDate} and </if>
+                     <if test='expectedPaymentDate!=null' > expected_payment_date= #{expectedPaymentDate} and </if>
+                     <if test='expectedPaymentDateStart!=null and !"".equals(expectedPaymentDateStart)' > expected_payment_date &gt;= #{expectedPaymentDateStart} and </if>
+                	 <if test='expectedPaymentDateEnd!=null and !"".equals(expectedPaymentDateEnd)' > expected_payment_date &lt;= #{expectedPaymentDateEnd} and </if>
+                     <if test='paymentReason!=null and !"".equals(paymentReason)' >payment_reason= #{paymentReason} and </if>
+                     <if test='settlementAmount!=null' > settlement_amount= #{settlementAmount} and </if>
+                     <if test='settlementTaxAmount!=null' > settlement_tax_amount= #{settlementTaxAmount} and </if>
+                     <if test='tax!=null' > tax= #{tax} and </if>
+                     <if test='payableAmount!=null' > payable_amount= #{payableAmount} and </if>
+                     <if test='paymentAmount!=null' > payment_amount= #{paymentAmount} and </if>
+                     <if test='surplusAmount!=null' > surplus_amount= #{surplusAmount} and </if>
+                     <if test='auditMethod!=null and !"".equals(auditMethod)' >audit_method= #{auditMethod} and </if>
+                     <if test='requestId!=null and !"".equals(requestId)' >request_id= #{requestId} and </if>
+                     <if test='createrId!=null' > creater_id= #{createrId} and </if>
+                     <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                     <if test='createDate!=null' > create_date= #{createDate} and </if>
+                     <if test='modifierId!=null' > modifier_id= #{modifierId} and </if>
+                     <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} and </if>
+                     <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                     <if test='ncSynDate!=null' > nc_syn_date= #{ncSynDate} and </if>
+                     <if test='ncSynStatus!=null and !"".equals(ncSynStatus)' >nc_syn_status= #{ncSynStatus} and </if>
+                     <if test='ncStatus!=null and !"".equals(ncStatus)' >nc_status= #{ncStatus} and </if>
+                     <if test='ncCode!=null and !"".equals(ncCode)' >nc_code= #{ncCode} and </if>
+                     <if test='voucherCode!=null and !"".equals(voucherCode)' >voucher_code= #{voucherCode} and </if>
+                     <if test='voucherName!=null and !"".equals(voucherName)' >voucher_name= #{voucherName} and </if>
+                     <if test='voucherIndex!=null and !"".equals(voucherIndex)' >voucher_index= #{voucherIndex} and </if>
+                     <if test='voucherStatus!=null and !"".equals(voucherStatus)' >voucher_status= #{voucherStatus} and </if>
+                     <if test='synchronizerId!=null' > synchronizer_id= #{synchronizerId} and </if>
+                     <if test='synchronizer!=null and !"".equals(synchronizer)' >synchronizer= #{synchronizer} and </if>
+                     <if test='printingState!=null and !"".equals(printingState)' >printing_state= #{printingState} and </if>
+                     <if test='buIds!=null' >bu_id in
+		                <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+		                    #{buId}
+		                </foreach>
+		                and
+		            </if>
+		            <choose>
+	                	<when test='billStatus!=null and !"".equals(billStatus)'>
+	                		bill_status= #{billStatus} and
+	                	</when>
+	                	<otherwise>
+	                		bill_status != '006' and
+	                	</otherwise>
+	                </choose>
+                </trim>
+            </where>
+            order by id desc
+	    </select>
+
+		<select id="getNcBackfillList" resultType="PaymentBillModel">
+	    	select <include refid='sql_columns' /> from t_payment_bill
+	    	where nc_status in ('11', '1', '3', '4', '5', '6', '7')
+	    	   and bill_status = '06'
+	    	UNION
+	    	select <include refid='sql_columns' /> from t_payment_bill
+	        where nc_status in ('11', '1', '2', '3', '4')
+	           and bill_status != '06'
+	    </select>
+
+    <select id="getNcVoucherFillBackList" resultType="PaymentBillModel">
+        select
+        <include refid='sql_columns'/>
+        from t_payment_bill
+        where nc_status in ('4', '5', '8', '9')
+        and bill_status = '06'
+        UNION
+        select
+        <include refid='sql_columns'/>
+        from t_payment_bill
+        where nc_status in ('4', '5')
+        and bill_status != '06' and voucher_code is null
+    </select>
+
+    <select id="listByDto" resultMap="PaymentBillModelMap">
+        select
+        <include refid='sql_columns'/>
+        from t_payment_bill
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null'>id= #{id} and</if>
+                <if test='code!=null and !"".equals(code)'>code= #{code} and</if>
+                <if test='merchantId!=null'>merchant_id= #{merchantId} and</if>
+                <if test='merchantName!=null and !"".equals(merchantName)'>merchant_name= #{merchantName} and</if>
+                <if test='supplierId!=null'>supplier_id= #{supplierId} and</if>
+                <if test='supplierName!=null and !"".equals(supplierName)'>supplier_name= #{supplierName} and</if>
+                <if test='bankAccount!=null and !"".equals(bankAccount)'>bank_account= #{bankAccount} and</if>
+                <if test='beneficiaryName!=null and !"".equals(beneficiaryName)'>beneficiary_name= #{beneficiaryName}
+                    and
+                </if>
+                <if test='depositBank!=null and !"".equals(depositBank)'>deposit_bank= #{depositBank} and</if>
+                <if test='swiftCode!=null and !"".equals(swiftCode)'>swift_code= #{swiftCode} and</if>
+                <if test='bankAddress!=null and !"".equals(bankAddress)'>bank_address= #{bankAddress} and</if>
+                <if test='buId!=null'>bu_id= #{buId} and</if>
+                <if test='buName!=null and !"".equals(buName)'>bu_name= #{buName} and</if>
+                <if test='currency!=null and !"".equals(currency)'>currency= #{currency} and</if>
+                <if test='billDate!=null'>bill_date= #{billDate} and</if>
+                <if test='expectedPaymentDate!=null'>expected_payment_date= #{expectedPaymentDate} and</if>
+                <if test='expectedPaymentDateStart!=null and !"".equals(expectedPaymentDateStart)'>expected_payment_date
+                    &gt;= #{expectedPaymentDateStart} and
+                </if>
+                <if test='expectedPaymentDateEnd!=null and !"".equals(expectedPaymentDateEnd)'>expected_payment_date
+                    &lt;= #{expectedPaymentDateEnd} and
+                </if>
+                <if test='paymentReason!=null and !"".equals(paymentReason)'>payment_reason= #{paymentReason} and</if>
+                <if test='settlementAmount!=null'>settlement_amount= #{settlementAmount} and</if>
+                <if test='settlementTaxAmount!=null'>settlement_tax_amount= #{settlementTaxAmount} and</if>
+                <if test='tax!=null'>tax= #{tax} and</if>
+                <if test='payableAmount!=null'>payable_amount= #{payableAmount} and</if>
+                <if test='paymentAmount!=null'>payment_amount= #{paymentAmount} and</if>
+                <if test='surplusAmount!=null'>surplus_amount= #{surplusAmount} and</if>
+                <if test='auditMethod!=null and !"".equals(auditMethod)'>audit_method= #{auditMethod} and</if>
+                <if test='requestId!=null and !"".equals(requestId)'>request_id= #{requestId} and</if>
+                <if test='createrId!=null'>creater_id= #{createrId} and</if>
+                <if test='creater!=null and !"".equals(creater)'>creater= #{creater} and</if>
+                <if test='createDate!=null'>create_date= #{createDate} and</if>
+                <if test='modifierId!=null'>modifier_id= #{modifierId} and</if>
+                <if test='modifier!=null and !"".equals(modifier)'>modifier= #{modifier} and</if>
+                <if test='modifyDate!=null'>modify_date= #{modifyDate} and</if>
+                <if test='ncSynDate!=null'>nc_syn_date= #{ncSynDate} and</if>
+                <if test='ncSynStatus!=null and !"".equals(ncSynStatus)'>nc_syn_status= #{ncSynStatus} and</if>
+                <if test='ncStatus!=null and !"".equals(ncStatus)'>nc_status= #{ncStatus} and</if>
+                <if test='ncCode!=null and !"".equals(ncCode)'>nc_code= #{ncCode} and</if>
+                <if test='voucherCode!=null and !"".equals(voucherCode)'>voucher_code= #{voucherCode} and</if>
+                <if test='voucherName!=null and !"".equals(voucherName)'>voucher_name= #{voucherName} and</if>
+                <if test='voucherIndex!=null and !"".equals(voucherIndex)'>voucher_index= #{voucherIndex} and</if>
+                <if test='voucherStatus!=null and !"".equals(voucherStatus)'>voucher_status= #{voucherStatus} and</if>
+                <if test='synchronizerId!=null'>synchronizer_id= #{synchronizerId} and</if>
+                <if test='synchronizer!=null and !"".equals(synchronizer)'>synchronizer= #{synchronizer} and</if>
+                <if test='printingState!=null and !"".equals(printingState)'>printing_state= #{printingState} and</if>
+                <if test='buIds!=null'>bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='billStatusList!=null'>bill_status in
+                    <foreach collection="billStatusList" item="billStatus" separator="," open="(" close=")">
+                        #{billStatus}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        update t_payment_bill
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="payment_amount =case" suffix="end,">
+                <foreach collection="paymentBillModels" item="i" index="index">
+                    <if test="i.paymentAmount!=null">
+                        when id=#{i.id} then #{i.paymentAmount}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="surplus_amount =case" suffix="end,">
+                <foreach collection="paymentBillModels" item="i" index="index">
+                    <if test='i.surplusAmount!=null'>
+                        when id=#{i.id} then #{i.surplusAmount}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bill_status =case" suffix="end,">
+                <foreach collection="paymentBillModels" item="i" index="index">
+                    <if test='i.billStatus!=null and !"".equals(i.billStatus)'>
+                        when id=#{i.id} then #{i.billStatus}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where
+        <foreach collection="paymentBillModels" separator="or" item="i" index="index">
+            id=#{i.id}
+        </foreach>
+    </update>
+    <!-- 批量插入数据 -->
+    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_payment_bill
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            code,
+            merchant_id,
+            merchant_name,
+            supplier_id,
+            supplier_name,
+            bank_account,
+            beneficiary_name,
+            deposit_bank,
+            swift_code,
+            bank_address,
+            bu_id,
+            bu_name,
+            currency,
+            bill_date,
+            expected_payment_date,
+            payment_reason,
+            settlement_amount,
+            settlement_tax_amount,
+            tax,
+            payable_amount,
+            payment_amount,
+            surplus_amount,
+            bill_status,
+            audit_method,
+            request_id,
+            creater_id,
+            creater,
+            create_date,
+            modifier_id,
+            modifier,
+            modify_date,
+            nc_syn_date,
+            nc_syn_status,
+            nc_status,
+            nc_code,
+            voucher_code,
+            voucher_name,
+            voucher_index,
+            voucher_status,
+            period,
+            synchronizer_id,
+            synchronizer,
+            printing_state,
+            endowment_state
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.id},
+				#{item.code},
+				#{item.merchantId},
+				#{item.merchantName},
+				#{item.supplierId},
+				#{item.supplierName},
+				#{item.bankAccount},
+				#{item.beneficiaryName},
+				#{item.depositBank},
+				#{item.swiftCode},
+				#{item.bankAddress},
+				#{item.buId},
+				#{item.buName},
+				#{item.currency},
+				#{item.billDate},
+				#{item.expectedPaymentDate},
+				#{item.paymentReason},
+				#{item.settlementAmount},
+				#{item.settlementTaxAmount},
+				#{item.tax},
+				#{item.payableAmount},
+				#{item.paymentAmount},
+				#{item.surplusAmount},
+				#{item.billStatus},
+				#{item.auditMethod},
+				#{item.requestId},
+				#{item.createrId},
+				#{item.creater},
+				#{item.createDate},
+				#{item.modifierId},
+				#{item.modifier},
+				#{item.modifyDate},
+				#{item.ncSynDate},
+				#{item.ncSynStatus},
+				#{item.ncStatus},
+				#{item.ncCode},
+				#{item.voucherCode},
+				#{item.voucherName},
+				#{item.voucherIndex},
+				#{item.voucherStatus},
+				#{item.period},
+				#{item.synchronizerId},
+				#{item.synchronizer},
+				#{item.printingState},
+				#{item.endowmentState}
+            </trim>
+        </foreach>
+    </insert>
+    
+    <!-- 以“事业部+母品牌”取系统已创建的应付账单（账单状态仅取待付款、部分付款），应付帐单的创建日期需大于对应额度记录配置中的“期初开始日期 -->
+        <select id="getProjectWarnList" resultType="map" parameterType="map">
+        
+			       SELECT 
+					t1.`code` as `code`,t2.po_no,
+					MAX(t1.currency)as currency,
+					MAX(t1.merchant_id)as merchant_id,
+					MAX(t1.merchant_name) as merchant_name,
+					MAX(t1.create_date) as create_date,
+					MAX(t1.supplier_id)as supplier_id,
+					MAX(t1.supplier_name)as supplier_name,
+					MAX(t1.`bill_status`) as bill_status,
+		     		 SUM(IFNULL(t2.num, 0)) as num,
+		      		SUM(IFNULL(t2.settlement_amount, 0)) as settlement_amount
+
+					from  
+							t_payment_bill t1
+							LEFT JOIN t_payment_item t2 ON t1.id=t2.payment_id
+							where   
+							 t1.bu_id = #{buId}
+							 <if test='"1".equals(billStatusType)'>AND t1. bill_status in ('03','07') </if>
+							 <if test='"2".equals(billStatusType)'>AND t1. bill_status in ('04') </if>														
+							AND t1.supplier_id NOT IN
+       						 <foreach collection="customerIdList" item="supplierId" open="(" close=")" separator=",">
+           					 		#{ supplierId}
+       						 </foreach>
+       						     AND t2.goods_id IN
+        					<foreach collection="goodsIdList" item="goodsId" open="(" close=")" separator=",">
+           					 		#{goodsId}
+        					</foreach>
+        					 <if test='effectiveDate!=null' > AND t1.create_date &gt;= #{effectiveDate} </if>
+        						
+							GROUP BY t1.`code`,t2.po_no
+    	</select>
+
+    <select id="countByDTO" resultType="int" parameterType="PaymentBillDTO">
+        SELECT count(1) from t_payment_bill
+        <include refid='sql_dto_where' />
+    </select>
+
+    <select id="listForExport" resultType="PaymentBillDTO" parameterType="PaymentBillDTO">
+        SELECT <include refid='sql_columns' /> from t_payment_bill
+        <include refid='sql_dto_where' />
+        order by id desc
+    </select>
+
+    <select id="getListByPageWithItem" resultType="PaymentBillDTO" parameterType="PaymentBillDTO">
+        SELECT * FROM t_payment_bill WHERE id in(
+        SELECT a.id from t_payment_bill a
+        left join t_payment_item b on a.id = b.payment_id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > a.id= #{id} and </if>
+                <if test='code!=null and !"".equals(code)' >a.code= #{code} and </if>
+                <if test='merchantId!=null' > a.merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >a.merchant_name= #{merchantName} and </if>
+                <if test='supplierId!=null' > a.supplier_id= #{supplierId} and </if>
+                <if test='supplierName!=null and !"".equals(supplierName)' >a.supplier_name= #{supplierName} and </if>
+                <if test='buId!=null' > a.bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >a.bu_name= #{buName} and </if>
+                <if test='expectedPaymentDate!=null' > a.expected_payment_date= #{expectedPaymentDate} and </if>
+                <if test='expectedPaymentDateStart!=null and !"".equals(expectedPaymentDateStart)' > a.expected_payment_date &gt;= #{expectedPaymentDateStart} and </if>
+                <if test='expectedPaymentDateEnd!=null and !"".equals(expectedPaymentDateEnd)' > a.expected_payment_date &lt;= #{expectedPaymentDateEnd} and </if>
+                <if test='auditMethod!=null and !"".equals(auditMethod)' >a.audit_method= #{auditMethod} and </if>
+                <if test='ncSynStatus!=null and !"".equals(ncSynStatus)' >a.nc_syn_status= #{ncSynStatus} and </if>
+                <if test='ncStatus!=null and !"".equals(ncStatus)' >a.nc_status= #{ncStatus} and </if>
+                <if test='voucherCode!=null and !"".equals(voucherCode)' >a.voucher_code= #{voucherCode} and </if>
+                <if test='voucherName!=null and !"".equals(voucherName)' >a.voucher_name= #{voucherName} and </if>
+                <if test='voucherIndex!=null and !"".equals(voucherIndex)' >a.voucher_index= #{voucherIndex} and </if>
+                <if test='voucherStatus!=null and !"".equals(voucherStatus)' >a.voucher_status= #{voucherStatus} and </if>
+                <if test='printingState!=null and !"".equals(printingState)' >a.printing_state= #{printingState} and </if>
+                <if test='buIds!=null' >a.bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <choose>
+                    <when test='billStatus!=null and !"".equals(billStatus)'>
+                        a.bill_status= #{billStatus} and
+                    </when>
+                    <otherwise>
+                        a.bill_status != '006' and
+                    </otherwise>
+                </choose>
+                <if test='poNo!=null and !"".equals(poNo)' >b.po_no= #{poNo} and </if>
+            </trim>
+        </where>
+        group by a.id
+        )
+        order by id desc
+    </select>
+
+    <select id="getListByPageWithCostItem" resultType="PaymentBillDTO" parameterType="PaymentBillDTO">
+        SELECT * FROM t_payment_bill WHERE id in(
+        SELECT a.id from t_payment_bill a
+        left join t_payment_cost_item b on a.id = b.payment_id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > a.id= #{id} and </if>
+                <if test='code!=null and !"".equals(code)' >a.code= #{code} and </if>
+                <if test='merchantId!=null' > a.merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >a.merchant_name= #{merchantName} and </if>
+                <if test='supplierId!=null' > a.supplier_id= #{supplierId} and </if>
+                <if test='supplierName!=null and !"".equals(supplierName)' >a.supplier_name= #{supplierName} and </if>
+                <if test='buId!=null' > a.bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >a.bu_name= #{buName} and </if>
+                <if test='expectedPaymentDate!=null' > a.expected_payment_date= #{expectedPaymentDate} and </if>
+                <if test='expectedPaymentDateStart!=null and !"".equals(expectedPaymentDateStart)' > a.expected_payment_date &gt;= #{expectedPaymentDateStart} and </if>
+                <if test='expectedPaymentDateEnd!=null and !"".equals(expectedPaymentDateEnd)' > a.expected_payment_date &lt;= #{expectedPaymentDateEnd} and </if>
+                <if test='auditMethod!=null and !"".equals(auditMethod)' >a.audit_method= #{auditMethod} and </if>
+                <if test='ncSynStatus!=null and !"".equals(ncSynStatus)' >a.nc_syn_status= #{ncSynStatus} and </if>
+                <if test='ncStatus!=null and !"".equals(ncStatus)' >a.nc_status= #{ncStatus} and </if>
+                <if test='voucherCode!=null and !"".equals(voucherCode)' >a.voucher_code= #{voucherCode} and </if>
+                <if test='voucherName!=null and !"".equals(voucherName)' >a.voucher_name= #{voucherName} and </if>
+                <if test='voucherIndex!=null and !"".equals(voucherIndex)' >a.voucher_index= #{voucherIndex} and </if>
+                <if test='voucherStatus!=null and !"".equals(voucherStatus)' >a.voucher_status= #{voucherStatus} and </if>
+                <if test='printingState!=null and !"".equals(printingState)' >a.printing_state= #{printingState} and </if>
+                <if test='buIds!=null' >a.bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <choose>
+                    <when test='billStatus!=null and !"".equals(billStatus)'>
+                        a.bill_status= #{billStatus} and
+                    </when>
+                    <otherwise>
+                        a.bill_status != '006' and
+                    </otherwise>
+                </choose>
+                <if test='poNo!=null and !"".equals(poNo)' >b.po_no= #{poNo} and </if>
+            </trim>
+        </where>
+        group by a.id
+        )
+        order by id desc
+    </select>
+    
+</mapper>

@@ -1,0 +1,695 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.system.MerchandiseInfoMapper'>
+
+	 	   	   <!-- 关系映射 -->
+    <resultMap id="MerchandiseInfoModelMap" type="MerchandiseInfoModel" >
+            <result property="code" column="code" />
+            <result property="imageModifyDate" column="image_modify_date" />
+            <result property="modifier" column="modifier" />
+            <result property="factoryNo" column="factory_no" />
+            <result property="packType" column="pack_type" />
+            <result property="merchandiseImage" column="merchandise_image" />
+            <result property="remark" column="remark" />
+            <result property="source" column="source" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="filingPrice" column="filing_price" />
+            <result property="id" column="id" />
+            <result property="barcode" column="barcode" />
+            <result property="commbarcode" column="commbarcode" />
+            <result property="createDate" column="create_date" />
+            <result property="goodsNo" column="goods_no" />
+            <result property="warningType" column="warning_type" />
+            <result property="imageId" column="image_id" />
+            <result property="imageName" column="image_name" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="productId" column="product_id" />
+            <result property="uniques" column="uniques" />
+            <result property="isRecord" column="is_record" />
+            <result property="updateName" column="update_name" />
+            <result property="minStock" column="min_stock" />
+            <result property="name" column="name" />
+            <result property="maxStock" column="max_stock" />
+            <result property="creater" column="creater" />
+            <result property="goodsCode" column="goods_code" />
+            <result property="describe" column="describe" />
+            <result property="isGroup" column="is_group" />
+            <result property="createName" column="create_name" />
+            <result property="isSelf" column="is_self" />
+            <result property="status" column="status" />
+            <result property="boxToUnit" column="box_to_unit" />
+            <result property="torrToUnit" column="torr_to_unit" />
+            <result property="outDepotFlag" column="out_depot_flag" />
+            <result property="englishGoodsName" column="english_goods_name" />
+            <result property="tenantCode" column="tenant_code" />
+            <result property="version" column="version" />
+            <result property="sourceGoodsId" column="source_goods_id" />
+            <result property="customsAreaId" column="customs_area_id" />
+            <result property="hsCode" column="hs_code" />
+            <result property="brandId" column="brand_id" />
+            <result property="productTypeName0" column="product_type_name0" />
+            <result property="productTypeId0" column="product_type_id0" />
+            <result property="productTypeName" column="product_type_name" />
+            <result property="productTypeId" column="product_type_id" />
+            <result property="grossWeight" column="gross_weight" />
+            <result property="netWeight" column="net_weight" />
+            <result property="spec" column="spec" />
+            <result property="shelfLifeDays" column="shelf_life_days" />
+            <result property="unit" column="unit" />
+            <result property="component" column="component" />
+            <result property="manufacturer" column="manufacturer" />
+            <result property="manufacturerAddr" column="manufacturer_addr" />
+            <result property="countyId" column="county_id" />
+            <result property="countyArea" column="county_area" />
+            <result property="declareFactor" column="declare_factor" />
+            <result property="customsGoodsRecordNo" column="customs_goods_record_no" />
+            <result property="unitNameOne" column="unit_name_one" />
+            <result property="unitNameTwo" column="unit_name_two" />
+            <result property="imageUrl1" column="image_url1" />
+            <result property="imageUrl2" column="image_url2" />
+            <result property="imageUrl3" column="image_url3" />
+            <result property="imageUrl4" column="image_url4" />
+            <result property="imageUrl5" column="image_url5" />
+            <result property="length" column="length" />
+            <result property="width" column="width" />
+            <result property="height" column="height" />
+            <result property="volume" column="volume" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MerchandiseInfoModelMap' parameterType='MerchandiseInfoModel'>
+        select <include refid='sql_columns' /> from st_merchandise_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MerchandiseInfoModelMap' parameterType='MerchandiseInfoModel'>
+        select <include refid='sql_columns' /> from st_merchandise_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MerchandiseInfoModelMap' parameterType='MerchandiseInfoModel' >
+        select <include refid='sql_columns' /> from st_merchandise_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='MerchandiseInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_merchandise_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='code!=null and !"".equals(code)' > `code` , </if>
+                <if test='imageModifyDate!=null' > image_modify_date , </if>
+                <if test='modifier!=null' > modifier , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' > factory_no , </if>
+                <if test='packType!=null and !"".equals(packType)' > pack_type , </if>
+                <if test='merchandiseImage!=null and !"".equals(merchandiseImage)' > merchandise_image , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='source!=null and !"".equals(source)' > source , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='filingPrice!=null' > filing_price , </if>
+                <if test='id!=null' > id , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='warningType!=null and !"".equals(warningType)' > warning_type , </if>
+                <if test='imageId!=null' > image_id , </if>
+                <if test='imageName!=null and !"".equals(imageName)' > image_name , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='productId!=null' > product_id , </if>
+                <if test='uniques!=null and !"".equals(uniques)' > uniques , </if>
+                <if test='isRecord!=null and !"".equals(isRecord)' > is_record , </if>
+                <if test='updateName!=null and !"".equals(updateName)' > update_name , </if>
+                <if test='minStock!=null' > min_stock , </if>
+                <if test='name!=null and !"".equals(name)' > `name` , </if>
+                <if test='maxStock!=null' > max_stock , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                <if test='describe!=null and !"".equals(describe)' >`describe` , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' > is_group , </if>
+                <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                <if test='isSelf!=null and !"".equals(isSelf)' > is_self , </if>
+                <if test='status!=null and !"".equals(status)' > `status` , </if>
+                <if test='boxToUnit!=null' >box_to_unit , </if>
+                <if test='torrToUnit!=null' >torr_to_unit , </if>
+                <if test='outDepotFlag!=null and !"".equals(outDepotFlag)' > out_depot_flag , </if>
+                <if test='englishGoodsName!=null and !"".equals(englishGoodsName)' > english_goods_name , </if>
+                <if test='tenantCode!=null and !"".equals(tenantCode)' > tenant_code , </if>
+                <if test='version!=null' >version , </if>
+                <if test='sourceGoodsId!=null' >source_goods_id , </if>
+                <if test='customsAreaId!=null' >customs_area_id , </if>
+                <if test='hsCode!=null and !"".equals(hsCode)' > hs_code , </if>
+                <if test='brandId!=null' >brand_id , </if>
+                <if test='productTypeName0!=null and !"".equals(productTypeName0)' > product_type_name0 , </if>
+                <if test='productTypeId0!=null' >product_type_id0 , </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' > product_type_name , </if>
+                <if test='productTypeId!=null' >product_type_id , </if>
+                <if test='grossWeight!=null' >gross_weight , </if>
+                <if test='netWeight!=null' >net_weight , </if>
+                <if test='spec!=null and !"".equals(spec)' > spec , </if>
+                <if test='shelfLifeDays!=null' >shelf_life_days , </if>
+                <if test='unit!=null' >unit , </if>
+                <if test='component!=null and !"".equals(component)' > component , </if>
+                <if test='manufacturer!=null and !"".equals(manufacturer)' > manufacturer , </if>
+                <if test='manufacturerAddr!=null and !"".equals(manufacturerAddr)' > manufacturer_addr , </if>
+                <if test='countyId!=null' >county_id , </if>
+                <if test='countyArea!=null and !"".equals(countyArea)' > county_area , </if>
+                <if test='declareFactor!=null and !"".equals(declareFactor)' > declare_factor , </if>
+                <if test='customsGoodsRecordNo!=null and !"".equals(customsGoodsRecordNo)' > customs_goods_record_no , </if>
+                <if test='unitNameOne!=null and !"".equals(unitNameOne)' > unit_name_one , </if>
+                <if test='unitNameTwo!=null and !"".equals(unitNameTwo)' > unit_name_two , </if>
+                <if test='imageUrl1!=null and !"".equals(imageUrl1)' > image_url1 , </if>
+                <if test='imageUrl2!=null and !"".equals(imageUrl2)' > image_url2 , </if>
+                <if test='imageUrl3!=null and !"".equals(imageUrl3)' > image_url3 , </if>
+                <if test='imageUrl4!=null and !"".equals(imageUrl4)' > image_url4 , </if>
+                <if test='imageUrl5!=null and !"".equals(imageUrl5)' > image_url5 , </if>
+                <if test='length!=null' >length , </if>
+                <if test='width!=null' >width , </if>
+                <if test='height!=null' >height , </if>
+                <if test='volume!=null' >volume , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='imageModifyDate!=null' > #{imageModifyDate} , </if>
+                <if test='modifier!=null' > #{modifier} , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' > #{factoryNo} , </if>
+                <if test='packType!=null and !"".equals(packType)' > #{packType} , </if>
+                <if test='merchandiseImage!=null and !"".equals(merchandiseImage)' > #{merchandiseImage} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='source!=null and !"".equals(source)' > #{source} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='filingPrice!=null' > #{filingPrice} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='warningType!=null and !"".equals(warningType)' > #{warningType} , </if>
+                <if test='imageId!=null' > #{imageId} , </if>
+                <if test='imageName!=null and !"".equals(imageName)' > #{imageName} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='productId!=null' > #{productId} , </if>
+                <if test='uniques!=null and !"".equals(uniques)' > #{uniques} , </if>
+                <if test='isRecord!=null and !"".equals(isRecord)' > #{isRecord} , </if>
+                <if test='updateName!=null and !"".equals(updateName)' > #{updateName} , </if>
+                <if test='minStock!=null' > #{minStock} , </if>
+                <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                <if test='maxStock!=null' > #{maxStock} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                <if test='describe!=null and !"".equals(describe)' > #{describe} , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' > #{isGroup} , </if>
+                <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                <if test='isSelf!=null and !"".equals(isSelf)' > #{isSelf} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='boxToUnit!=null' > #{boxToUnit} , </if>
+                <if test='torrToUnit!=null' > #{torrToUnit} , </if>
+                <if test='outDepotFlag!=null and !"".equals(outDepotFlag)' > #{outDepotFlag} , </if>
+                <if test='englishGoodsName!=null and !"".equals(englishGoodsName)' > #{englishGoodsName} , </if>
+                <if test='tenantCode!=null and !"".equals(tenantCode)' > #{tenantCode} , </if>
+                <if test='version!=null' > #{version} , </if>
+                <if test='sourceGoodsId!=null' > #{sourceGoodsId} , </if>
+                <if test='customsAreaId!=null' > #{customsAreaId} , </if>
+                <if test='hsCode!=null and !"".equals(hsCode)' > #{hsCode} , </if>
+                <if test='brandId!=null' > #{brandId} , </if>
+                <if test='productTypeName0!=null and !"".equals(productTypeName0)' > #{productTypeName0} , </if>
+                <if test='productTypeId0!=null' > #{productTypeId0} , </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' > #{productTypeName} , </if>
+                <if test='productTypeId!=null' > #{productTypeId} , </if>
+                <if test='grossWeight!=null' > #{grossWeight} , </if>
+                <if test='netWeight!=null' > #{netWeight} , </if>
+                <if test='spec!=null and !"".equals(spec)' > #{spec} , </if>
+                <if test='shelfLifeDays!=null' > #{shelfLifeDays} , </if>
+                <if test='unit!=null' > #{unit} , </if>
+                <if test='component!=null and !"".equals(component)' > #{component} , </if>
+                <if test='manufacturer!=null and !"".equals(manufacturer)' > #{manufacturer} , </if>
+                <if test='manufacturerAddr!=null and !"".equals(manufacturerAddr)' > #{manufacturerAddr} , </if>
+                <if test='countyId!=null' > #{countyId} , </if>
+                <if test='countyArea!=null and !"".equals(countyArea)' > #{countyArea} , </if>
+                <if test='declareFactor!=null and !"".equals(declareFactor)' > #{declareFactor} , </if>
+                <if test='customsGoodsRecordNo!=null and !"".equals(customsGoodsRecordNo)' > #{customsGoodsRecordNo} , </if>
+                <if test='unitNameOne!=null and !"".equals(unitNameOne)' > #{unitNameOne} , </if>
+                <if test='unitNameTwo!=null and !"".equals(unitNameTwo)' > #{unitNameTwo} , </if>
+                <if test='imageUrl1!=null and !"".equals(imageUrl1)' > #{imageUrl1} , </if>
+                <if test='imageUrl2!=null and !"".equals(imageUrl2)' > #{imageUrl2} , </if>
+                <if test='imageUrl3!=null and !"".equals(imageUrl3)' > #{imageUrl3} , </if>
+                <if test='imageUrl4!=null and !"".equals(imageUrl4)' > #{imageUrl4} , </if>
+                <if test='imageUrl5!=null and !"".equals(imageUrl5)' > #{imageUrl5} , </if>
+                <if test='length!=null' > #{length} , </if>
+                <if test='width!=null' > #{width} , </if>
+                <if test='height!=null' > #{height} , </if>
+                <if test='volume!=null' > #{volume} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='MerchandiseInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_merchandise_info SET
+        <trim  suffixOverrides=",">
+                <if test='code!=null and !"".equals(code)' >`code`= #{code} , </if>
+                <if test='imageModifyDate!=null' > image_modify_date= #{imageModifyDate} , </if>
+                <if test='modifier!=null' > modifier= #{modifier} , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} , </if>
+                <if test='packType!=null and !"".equals(packType)' >pack_type= #{packType} , </if>
+                <if test='merchandiseImage!=null and !"".equals(merchandiseImage)' >merchandise_image= #{merchandiseImage} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='filingPrice!=null' > filing_price= #{filingPrice} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='warningType!=null and !"".equals(warningType)' >warning_type= #{warningType} , </if>
+                <if test='imageId!=null' > image_id= #{imageId} , </if>
+                <if test='imageName!=null and !"".equals(imageName)' >image_name= #{imageName} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='productId!=null' > product_id= #{productId} , </if>
+                <if test='uniques!=null and !"".equals(uniques)' >uniques= #{uniques} , </if>
+                <if test='isRecord!=null and !"".equals(isRecord)' >is_record= #{isRecord} , </if>
+                <if test='updateName!=null and !"".equals(updateName)' >update_name= #{updateName} , </if>
+                <if test='minStock!=null' > min_stock= #{minStock} , </if>
+                <if test='name!=null and !"".equals(name)' >`name`= #{name} , </if>
+                <if test='maxStock!=null' > max_stock= #{maxStock} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                <if test='describe!=null and !"".equals(describe)' >`describe`= #{describe} , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' >is_group= #{isGroup} , </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                <if test='isSelf!=null and !"".equals(isSelf)' >is_self= #{isSelf} , </if>
+                <if test='status!=null and !"".equals(status)' >`status`= #{status} , </if>
+                <if test='boxToUnit!=null' > box_to_unit= #{boxToUnit} , </if>
+                <if test='torrToUnit!=null' > torr_to_unit= #{torrToUnit} , </if>
+                <if test='outDepotFlag!=null and !"".equals(outDepotFlag)' >out_depot_flag= #{outDepotFlag} , </if>
+                <if test='englishGoodsName!=null and !"".equals(englishGoodsName)' >english_goods_name= #{englishGoodsName} , </if>
+                <if test='tenantCode!=null and !"".equals(tenantCode)' >tenant_code= #{tenantCode} , </if>
+                <if test='version!=null' > version= #{version} , </if>
+                <if test='sourceGoodsId!=null' > source_goods_id= #{sourceGoodsId} , </if>
+                <if test='customsAreaId!=null' > customs_area_id= #{customsAreaId} , </if>
+                <if test='hsCode!=null and !"".equals(hsCode)' >hs_code= #{hsCode} , </if>
+                <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                <if test='productTypeName0!=null and !"".equals(productTypeName0)' >product_type_name0= #{productTypeName0} , </if>
+                <if test='productTypeId0!=null' > product_type_id0= #{productTypeId0} , </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} , </if>
+                <if test='productTypeId!=null' > product_type_id= #{productTypeId} , </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} , </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} , </if>
+                <if test='spec!=null and !"".equals(spec)' >spec= #{spec} , </if>
+                <if test='shelfLifeDays!=null' > shelf_life_days= #{shelfLifeDays} , </if>
+                <if test='unit!=null' > unit= #{unit} , </if>
+                <if test='component!=null and !"".equals(component)' >component= #{component} , </if>
+                <if test='manufacturer!=null and !"".equals(manufacturer)' >manufacturer= #{manufacturer} , </if>
+                <if test='manufacturerAddr!=null and !"".equals(manufacturerAddr)' >manufacturer_addr= #{manufacturerAddr} , </if>
+                <if test='countyId!=null' > county_id= #{countyId} , </if>
+                <if test='countyArea!=null and !"".equals(countyArea)' >county_area= #{countyArea} , </if>
+                <if test='declareFactor!=null and !"".equals(declareFactor)' >declare_factor= #{declareFactor} , </if>
+                <if test='customsGoodsRecordNo!=null and !"".equals(customsGoodsRecordNo)' >customs_goods_record_no= #{customsGoodsRecordNo} , </if>
+                <if test='unitNameOne!=null and !"".equals(unitNameOne)' >unit_name_one= #{unitNameOne} , </if>
+                <if test='unitNameTwo!=null and !"".equals(unitNameTwo)' >unit_name_two= #{unitNameTwo} , </if>
+                <if test='imageUrl1!=null and !"".equals(imageUrl1)' >image_url1= #{imageUrl1} , </if>
+                <if test='imageUrl2!=null and !"".equals(imageUrl2)' >image_url2= #{imageUrl2} , </if>
+                <if test='imageUrl3!=null and !"".equals(imageUrl3)' >image_url3= #{imageUrl3} , </if>
+                <if test='imageUrl4!=null and !"".equals(imageUrl4)' >image_url4= #{imageUrl4} , </if>
+                <if test='imageUrl5!=null and !"".equals(imageUrl5)' >image_url5= #{imageUrl5} , </if>
+                <if test='length!=null' > length= #{length} , </if>
+                <if test='width!=null' > width= #{width} , </if>
+                <if test='height!=null' > height= #{height} , </if>
+                <if test='volume!=null' > volume= #{volume} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_merchandise_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_merchandise_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        `code`,
+        image_modify_date,
+        modifier,
+        factory_no,
+        pack_type,
+        merchandise_image,
+        remark,
+        source,
+        merchant_name,
+        merchant_id,
+        filing_price,
+        id,
+        barcode,
+        commbarcode,
+        create_date,
+        goods_no,
+        warning_type,
+        image_id,
+        image_name,
+        modify_date,
+        product_id,
+        uniques,
+        is_record,
+        update_name,
+        min_stock,
+        `name`,
+        max_stock,
+        creater,
+        goods_code,
+        `describe`,
+        is_group,
+        create_name,
+        is_self,
+        `status`,
+        box_to_unit,
+        torr_to_unit,
+        out_depot_flag,
+        english_goods_name,
+        tenant_code,
+        version,
+        source_goods_id,
+        customs_area_id,
+        hs_code,
+        brand_id,
+        product_type_name0,
+        product_type_id0,
+        product_type_name,
+        product_type_id,
+        gross_weight,
+        net_weight,
+        spec,
+        shelf_life_days,
+        unit,
+        component,
+        manufacturer,
+        manufacturer_addr,
+        county_id,
+        county_area,
+        declare_factor,
+        customs_goods_record_no,
+        unit_name_one,
+        unit_name_two,
+        image_url1,
+        image_url2,
+        image_url3,
+        image_url4,
+        image_url5,
+        length,
+        width,
+        height,
+        volume
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >`code`= #{code} and </if>
+                <if test='imageModifyDate!=null' > image_modify_date= #{imageModifyDate} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} and </if>
+                <if test='packType!=null and !"".equals(packType)' >pack_type= #{packType} and </if>
+                <if test='merchandiseImage!=null and !"".equals(merchandiseImage)' >merchandise_image= #{merchandiseImage} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='filingPrice!=null' > filing_price= #{filingPrice} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='warningType!=null and !"".equals(warningType)' >warning_type= #{warningType} and </if>
+                <if test='imageId!=null' > image_id= #{imageId} and </if>
+                <if test='imageName!=null and !"".equals(imageName)' >image_name= #{imageName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='productId!=null' > product_id= #{productId} and </if>
+                <if test='uniques!=null and !"".equals(uniques)' >uniques= #{uniques} and </if>
+                <if test='isRecord!=null and !"".equals(isRecord)' >is_record= #{isRecord} and </if>
+                <if test='updateName!=null and !"".equals(updateName)' >update_name= #{updateName} and </if>
+                <if test='minStock!=null' > min_stock= #{minStock} and </if>
+                <if test='name!=null and !"".equals(name)' >`name`= #{name} and </if>
+                <if test='maxStock!=null' > max_stock= #{maxStock} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                <if test='describe!=null and !"".equals(describe)' >`describe`= #{describe} and </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' >is_group= #{isGroup} and </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                <if test='isSelf!=null and !"".equals(isSelf)' >is_self= #{isSelf} and </if>
+                <if test='status!=null and !"".equals(status)' >`status`= #{status} and </if>
+                <if test='boxToUnit!=null' > box_to_unit= #{boxToUnit} and </if>
+                <if test='torrToUnit!=null' > torr_to_unit= #{torrToUnit} and </if>
+                <if test='outDepotFlag!=null and !"".equals(outDepotFlag)' >out_depot_flag= #{outDepotFlag} and </if>
+                <if test='englishGoodsName!=null and !"".equals(englishGoodsName)' >english_goods_name= #{englishGoodsName} and </if>
+                <if test='tenantCode!=null and !"".equals(tenantCode)' >tenant_code= #{tenantCode} and </if>
+                <if test='version!=null' > version= #{version} and </if>
+                <if test='sourceGoodsId!=null' > source_goods_id= #{sourceGoodsId} and </if>
+                <if test='customsAreaId!=null' > customs_area_id= #{customsAreaId} and </if>
+                <if test='hsCode!=null and !"".equals(hsCode)' >hs_code= #{hsCode} and </if>
+                <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                <if test='productTypeName0!=null and !"".equals(productTypeName0)' >product_type_name0= #{productTypeName0} and </if>
+                <if test='productTypeId0!=null' > product_type_id0= #{productTypeId0} and </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} and </if>
+                <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} and </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} and </if>
+                <if test='spec!=null and !"".equals(spec)' >spec= #{spec} and </if>
+                <if test='shelfLifeDays!=null' > shelf_life_days= #{shelfLifeDays} and </if>
+                <if test='unit!=null' > unit= #{unit} and </if>
+                <if test='component!=null and !"".equals(component)' >component= #{component} and </if>
+                <if test='manufacturer!=null and !"".equals(manufacturer)' >manufacturer= #{manufacturer} and </if>
+                <if test='manufacturerAddr!=null and !"".equals(manufacturerAddr)' >manufacturer_addr= #{manufacturerAddr} and </if>
+                <if test='countyId!=null' > county_id= #{countyId} and </if>
+                <if test='countyArea!=null and !"".equals(countyArea)' >county_area= #{countyArea} and </if>
+                <if test='declareFactor!=null and !"".equals(declareFactor)' >declare_factor= #{declareFactor} and </if>
+                <if test='customsGoodsRecordNo!=null and !"".equals(customsGoodsRecordNo)' >customs_goods_record_no= #{customsGoodsRecordNo} and </if>
+                <if test='unitNameOne!=null and !"".equals(unitNameOne)' >unit_name_one= #{unitNameOne} and </if>
+                <if test='unitNameTwo!=null and !"".equals(unitNameTwo)' >unit_name_two= #{unitNameTwo} and </if>
+                <if test='imageUrl1!=null and !"".equals(imageUrl1)' >image_url1= #{imageUrl1} and </if>
+                <if test='imageUrl2!=null and !"".equals(imageUrl2)' >image_url2= #{imageUrl2} and </if>
+                <if test='imageUrl3!=null and !"".equals(imageUrl3)' >image_url3= #{imageUrl3} and </if>
+                <if test='imageUrl4!=null and !"".equals(imageUrl4)' >image_url4= #{imageUrl4} and </if>
+                <if test='imageUrl5!=null and !"".equals(imageUrl5)' >image_url5= #{imageUrl5} and </if>
+                <if test='length!=null' > length= #{length} and </if>
+                <if test='width!=null' > width= #{width} and </if>
+                <if test='height!=null' > height= #{height} and </if>
+                <if test='volume!=null' > volume= #{volume} and </if>
+            </trim>
+        </where>
+    </sql>
+    
+<!--自定义SQL -->
+    <!-- 查询商家所有商品条码-->
+     <select id="getMerchantAllBarcode" resultType='map' parameterType='map'>
+		select barcode from st_merchandise_info
+		where merchant_id in
+	        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">${item}</foreach>
+			 and barcode is not null
+		group by barcode
+    </select>
+    <!-- 获取商家下的所有商品 -->
+    <select id="getListByMerchantIds" resultMap='MerchandiseInfoModelMap' parameterType='map'>
+		select * from st_merchandise_info
+		where merchant_id in
+	        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">${item}</foreach>
+			 and barcode is not null
+		order by status desc
+    </select>
+
+    
+    <!-- 查询商家所有货品条码、货号 -->
+     <select id="getMerchantAllInfo" resultType='map' parameterType='map'>
+	      SELECT
+			t2.`name` as product_name,t1.barcode,t1.id,t1.goods_no
+		FROM
+			st_merchandise_info t1
+		LEFT JOIN st_product_info t2 ON t1.product_id = t2.id
+		  <where>
+            <trim suffixOverrides='and'>
+            	merchant_id in
+	            <foreach item="id" index="index" collection="list" open="(" separator="," close=")">${id}</foreach> and
+                <if test='barcode!=null and !"".equals(barcode)' >t1.barcode= #{barcode} and </if>
+                <if test='productName!=null and !"".equals(productName)' >t2.`name` like '%${productName}%' and </if>
+            </trim>
+          </where>
+    </select>
+    <!-- 自定义结果集 -->
+    <resultMap id="MerchandiseInfoModelMap2" type="MerchandiseInfoModel" >
+                <result property="code" column="code" />
+                <result property="imageModifyDate" column="image_modify_date" />
+                <result property="modifier" column="modifier" />
+                <result property="factoryNo" column="factory_no" />
+                <result property="packType" column="pack_type" />
+                <result property="merchandiseImage" column="merchandise_image" />
+                <result property="remark" column="remark" />
+                <result property="source" column="source" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="filingPrice" column="filing_price" />
+                <result property="id" column="id" />
+                <result property="barcode" column="barcode" />
+                <result property="createDate" column="create_date" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="warningType" column="warning_type" />
+                <result property="imageId" column="image_id" />
+                <result property="imageName" column="image_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="productId" column="product_id" />
+                <result property="uniques" column="uniques" />
+                <result property="isRecord" column="is_record" />
+                <result property="updateName" column="update_name" />
+                <result property="minStock" column="min_stock" />
+                <result property="name" column="name" />
+                <result property="maxStock" column="max_stock" />
+                <result property="creater" column="creater" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="describe" column="describe" />
+                <result property="isGroup" column="is_group" />
+                <result property="createName" column="create_name" />
+                <result property="isSelf" column="is_self" />
+                <result property="status" column="status" />
+                 <result property="commbarcode" column="commbarcode" />
+                
+                
+                <!-- 拓展字段 -->
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="productName" column="product_name" />
+                <result property="brandId" column="brand_id" />
+				<result property="brandName" column="brand_name" />
+				<result property="countyId" column="county_id" />
+				<result property="countyName" column="county_name" />
+				<result property="unit" column="unit" />
+				<result property="unitName" column="unit_name" />
+				<result property="productTypeId" column="product_type_id" />
+				<result property="productTypeId0" column="product_type_id0" />
+				<result property="productTypeName" column="product_type_name" />
+				<result property="productTypeName0" column="product_type_name0" />
+				
+				<result property="goodsClassifyName" column="goods_classify_name" />
+				<result property="barcode" column="barcode" />
+				<result property="factoryNo" column="factory_no" />
+				<result property="shelfLifeDays" column="shelf_life_days" />
+				<result property="spec" column="spec" />
+				<result property="grossWeight" column="gross_weight" />
+				<result property="netWeight" column="net_weight" />
+				<result property="hsCode" column="hs_code" />
+				<result property="length" column="length" />
+				<result property="width" column="width" />
+				<result property="height" column="height" />
+				<result property="volume" column="volume" />
+				<result property="productImg01" column="product_img01" />
+				<result property="manufacturer" column="manufacturer" />
+				<result property="manufacturerAddr" column="manufacturer_addr" />
+				<result property="productRemark" column="product_remark" />
+				<result property="supplyMinPrice" column="supply_min_price" />
+				<result property="createrName" column="creater_name" />
+				<result property="supplierId" column="supplier_id" />
+				<result property="component" column="component" />
+				<result property="groupNum" column="groupNum" />
+				<result property="groupPrice" column="groupPrice" />
+    </resultMap>
+     <!-- 结算价格-导入 -->
+    <select id='getListForSettlment' resultMap='MerchandiseInfoModelMap2'  parameterType='MerchandiseInfoModel'>
+        select
+			tm.id,
+			tm.name,
+			tm.goods_no,
+			tm.spec,
+			tm.barcode,
+			tm.is_group,
+			stb.id as brand_id,
+			stb.name as brand_name,
+			tm.unit,
+			tm.product_id,
+			tm.county_id
+		from ( select * from st_merchandise_info where id  in (
+				select MAX(id) from st_merchandise_info 
+				group by barcode,merchant_id
+		) )tm
+		left join st_brand stb on tm.brand_id = stb.id
+        where tm.barcode = #{barcode} and tm.merchant_id = #{merchantId}  
+        order by tm.id desc
+    </select>
+     <!-- 新财务报表查询商家所有货品条码、货号 -->
+    <select id="getAllMerchandiseByMerchantId" resultType='map' parameterType='map'>
+	    SELECT m.id AS goods_id,m.goods_no,m.name AS goods_name,m.barcode,m.box_to_unit,m.torr_to_unit,m.commbarcode,m.factory_no,
+	           m.product_type_id AS type_id,m.product_type_name AS type_name,c.comm_brand_parent_id AS brand_id,c.comm_brand_parent_name AS brand_name
+		FROM st_merchandise_info m
+		LEFT JOIN st_brand b ON m.brand_id=b.id
+		LEFT JOIN st_commbarcode c ON m.commbarcode=c.commbarcode
+		where merchant_id in
+	    <foreach item="id" index="index" collection="list" open="(" separator="," close=")">${id}</foreach>
+	    limit #{startIndex},#{pageSize}	
+    </select>
+         <!-- 新财务报表查询商家所有货品条码、货号 -->
+    <select id="getGoodsByMerchantIdWeighted" resultType='map' parameterType='map'>
+	       SELECT m.name AS goods_name,
+	         c.comm_brand_parent_id AS brand_id,
+		   c.comm_brand_parent_name AS brand_name
+				FROM st_merchandise_info m
+				LEFT JOIN st_commbarcode c ON m.commbarcode=c.commbarcode
+				where m.merchant_id =#{merchantId}  and m.commbarcode=#{commbarcode} 
+			LIMIT 1
+    </select>
+    
+    <!-- 查看组合商品 -->
+    <!-- <select id="getAllGroupMerchandiseByGroupId"  parameterType='java.lang.Long'  resultMap='MerchandiseInfoModelMap2' >
+		    SELECT t.group_goods_id,t.goods_id,t.num as groupNum,t.price as groupPrice,t2.barcode,t2.goods_code,t2.goods_no,t2.`name` 
+			FROM (SELECT group_goods_id, goods_id,num,price   
+			FROM st_merchandise_group_rel  WHERE  group_goods_id =#{goodsId} )  t
+			LEFT JOIN st_merchandise_info t2 ON t.goods_id=t2.id
+    </select> -->
+
+    <select id="getMerchandiseInfo" parameterType="java.lang.Long" resultType="map" >
+        SELECT
+            m.id, m.goods_no, m.goods_code, p.gross_weight
+		FROM st_merchandise_info m
+		LEFT JOIN st_product_info p ON m.product_id = p.id
+		where m.id = #{goodsId}
+    </select>
+
+    <!-- 查询昨天新增修改的条码 -->
+    <select id="getBarcodeListDSTP"  resultType="String" parameterType="map">
+        select distinct barcode from st_merchandise_info
+        where merchant_id = #{merchantId}
+        <if test='barcode!=null and !"".equals(barcode)' > and barcode= #{barcode} </if>
+        <if test='startTime!=null and !"".equals(startTime) and endTime!=null and !"".equals(endTime)' >
+            and (
+                (create_date>=#{startTime} and create_date &lt;=#{endTime})
+             or (modify_date>=#{startTime} and modify_date &lt;=#{endTime})
+            )
+        </if>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <!-- 查询昨天新增修改的条码 -->
+    <select id="getDetailList"  resultType="map" parameterType="map">
+        select distinct m.barcode,m.name,m.spec,m.county_id,m.manufacturer,m.unit_name_one,m.unit_name_two,format(m.gross_weight,6) as gross_weight,format(m.net_weight,6) as net_weight,
+        m.image_url1,m.image_url2,m.image_url3,m.image_url4,m.image_url5,m.goods_no,m.filing_price,p.name as band,p.english_name
+        from st_merchandise_info m
+        left join st_commbarcode c on m.commbarcode=c.commbarcode
+        left join st_brand_parent p on c.comm_brand_parent_id=p.id
+        where merchant_id=#{merchantId}
+         and barcode in
+        <foreach collection='barcodeList' item='barcode' separator=',' open='(' close=')'>
+            #{barcode}
+        </foreach>
+        order by m.barcode,LENGTH(CONCAT_WS(",",m.image_url1,m.image_url2,m.image_url3,m.image_url4,m.image_url5)) desc
+    </select>
+</mapper>

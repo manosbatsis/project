@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Custom Modals -->
+<div>
+    <!-- Signup modal content -->
+    <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="max-width: 500px;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form class="form-horizontal" id="addForm">
+                        <div class="form-group m-b-25">
+                            <div class="col-12">
+                                <label >接口地址</label>
+                                <input class="form-control" type="text"  id="api_url" required="" readonly="readonly" style="background: #999;color: #fff;" >
+                            </div>
+                        </div>
+                        <div class="form-group m-b-25">
+                            <div class="col-12">
+                                <label >推送报文</label>
+                                <textarea class="" rows="15" cols="60"   id="push_json" style="background: #999;color: #fff;" readonly="readonly"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-25">
+                            <div class="col-12">
+                                <label >响应报文</label>
+                                <textarea class="" rows="5" cols="60" id="return_json" style="background: #999;color: #fff;" readonly="readonly"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group account-btn text-center m-t-10">
+                            <div class="col-12">
+                                <input class="btn w-lg btn-rounded btn-primary waves-effect waves-light" type="button" onclick="$m001.hide()" value="关闭">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript">
+    var $m001={
+        init:function(uuid){
+            //记录当前UUID
+            $m001.params.currentLogId=uuid;
+            //重置表单
+            $('#push_json').val('');
+            $('#return_json').val('');
+            this.show(uuid);
+        },
+        resetSend:function(){
+            $custom.request.ajax(
+                    $m001.params.resetSendURL,
+                    {'id':$m001.params.currentLogId},
+                    function(data){
+                        if(data.state==200){
+                            $custom.alert.success(data.message);
+                            //成功隐藏
+                            $m001.hide();
+                            //重新加载table表格
+                            $mytable.fn.reload();
+                        }else{
+                            $custom.alert.error(data.message);
+                        }
+
+                    });
+        },
+        show:function(uuid){
+            $('#push_json').val(JSON.stringify($m001.params.jsonMessage[uuid].requestMessage,null,2));
+            $('#return_json').val(JSON.stringify($m001.params.jsonMessage[uuid].responseMessage,null,2));
+            $('#api_url').val($m001.params.jsonMessage[uuid].url);
+
+            $($m001.params.modalId).modal("show");
+        },
+        hide:function(){
+            $($m001.params.modalId).modal("hide");
+        },
+        params:{
+            modalId:'#signup-modal',
+            //记录当前列表所有报文
+            jsonMessage:{},
+            //当前日志报文
+            currentLogId:'',
+            //重推地址
+            resetSendURL:'',
+        }
+    }
+
+
+</script>

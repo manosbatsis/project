@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.CustomsFileConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CustomsFileConfigModelMap" type="CustomsFileConfigModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="fileTempId" column="file_temp_id" />
+                <result property="fileTempName" column="file_temp_name" />
+                <result property="fileTempCode" column="file_temp_code" />
+                <result property="depotConfig" column="depot_config" />
+                <result property="status" column="status" />
+                <result property="creater" column="creater" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="isSameArea" column="is_same_area" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomsFileConfigModelMap' parameterType='CustomsFileConfigModel'>
+        select <include refid='sql_columns' /> from t_customs_file_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomsFileConfigModelMap' parameterType='CustomsFileConfigModel'>
+        select <include refid='sql_columns' /> from t_customs_file_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomsFileConfigModelMap' parameterType='CustomsFileConfigModel' >
+        select <include refid='sql_columns' /> from t_customs_file_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='CustomsFileConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_customs_file_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='fileTempId!=null' >file_temp_id , </if>
+                        <if test='fileTempName!=null and !"".equals(fileTempName)' > file_temp_name , </if>
+                        <if test='fileTempCode!=null and !"".equals(fileTempCode)' > file_temp_code , </if>
+                        <if test='depotConfig!=null and !"".equals(depotConfig)' > depot_config , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='isSameArea!=null and !"".equals(isSameArea)' > is_same_area , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='fileTempId!=null' > #{fileTempId} , </if>
+                        <if test='fileTempName!=null and !"".equals(fileTempName)' > #{fileTempName} , </if>
+                        <if test='fileTempCode!=null and !"".equals(fileTempCode)' > #{fileTempCode} , </if>
+                        <if test='depotConfig!=null and !"".equals(depotConfig)' > #{depotConfig} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='isSameArea!=null and !"".equals(isSameArea)' > #{isSameArea} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CustomsFileConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_customs_file_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='fileTempId!=null' > file_temp_id= #{fileTempId} , </if>
+                        <if test='fileTempName!=null and !"".equals(fileTempName)' >file_temp_name= #{fileTempName} , </if>
+                        <if test='fileTempCode!=null and !"".equals(fileTempCode)' >file_temp_code= #{fileTempCode} , </if>
+                        <if test='depotConfig!=null and !"".equals(depotConfig)' >depot_config= #{depotConfig} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='isSameArea!=null and !"".equals(isSameArea)' >is_same_area= #{isSameArea} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_customs_file_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_customs_file_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            file_temp_id,
+            file_temp_name,
+            file_temp_code,
+            depot_config,
+            status,
+            creater,
+            create_date,
+            modifier,
+            modify_date,
+            is_same_area
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                      <if test='id!=null' > id= #{id} and </if>
+                      <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                      <if test='fileTempId!=null' > file_temp_id= #{fileTempId} and </if>
+                      <if test='fileTempName!=null and !"".equals(fileTempName)' >file_temp_name= #{fileTempName} and </if>
+                      <if test='fileTempCode!=null and !"".equals(fileTempCode)' >file_temp_code= #{fileTempCode} and </if>
+                      <if test='depotConfig!=null and !"".equals(depotConfig)' >depot_config= #{depotConfig} and </if>
+                      <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                      <if test='creater!=null' > creater= #{creater} and </if>
+                      <if test='createDate!=null' > create_date= #{createDate} and </if>
+                      <if test='modifier!=null' > modifier= #{modifier} and </if>
+                      <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                      <if test='isSameArea!=null and !"".equals(isSameArea)' >is_same_area= #{isSameArea} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+	<!-- 查询所有信息 数量 -->
+    <select id='getCountOrder' resultType='java.lang.Integer' parameterType='CustomsFileConfigDTO'>
+        select count(1) from(
+        SELECT 
+			cf.id,
+			cf.`code`,
+			cf.file_temp_id,
+			cf.file_temp_code,
+			cf.file_temp_name,
+			cf.depot_config,
+			cf.is_same_area,
+			cf.create_date,
+			cf.`status` ,
+			GROUP_CONCAT(cr.depot_name) depotNames
+		FROM t_customs_file_config cf 
+		LEFT JOIN (SELECT DISTINCT customs_file_config_id,depot_id, depot_name FROM t_customs_file_depot_rel) cr 
+		ON cf.id = cr.customs_file_config_id
+		 <where>
+              <trim suffixOverrides='and'>
+                  <if test='code!=null and !"".equals(code)' >cf.code= #{code} and </if>
+                  <if test='fileTempId!=null' > cf.file_temp_id= #{fileTempId} and </if>
+                  <if test='fileTempName!=null and !"".equals(fileTempName)' >cf.file_temp_name= #{fileTempName} and </if>
+                  <if test='fileTempCode!=null and !"".equals(fileTempCode)' >cf.file_temp_code= #{fileTempCode} and </if>
+                  <if test='depotConfig!=null and !"".equals(depotConfig)' >cf.depot_config= #{depotConfig} and </if>
+                  <if test='status!=null and !"".equals(status)' >cf.status= #{status} and </if>
+                  <if test='createDate!=null' > cf.create_date= #{createDate} and </if>
+                  <if test='isSameArea!=null and !"".equals(isSameArea)' >is_same_area= #{isSameArea} and </if>
+                  <if test='depotIds!=null' >
+                    cr.depot_id in
+                       <foreach collection='depotIds.split(",")' item='depotId' separator=',' open='(' close=')'>
+                           #{depotId}
+                       </foreach>
+                    and
+                   </if>                   
+              </trim>
+         </where>
+		GROUP BY cf.id,cf.`code`,cf.file_temp_id,cf.file_temp_name,cf.file_temp_code,cf.depot_config,cf.create_date,cf.`status`)a
+		
+     </select>
+     
+	<!-- 查询所有信息 分页 -->
+    <select id='listDTOByPage' resultType='CustomsFileConfigDTO' parameterType='CustomsFileConfigDTO'>
+        SELECT 
+			cf.id,
+			cf.`code`,
+			cf.file_temp_id,
+			cf.file_temp_code,
+			cf.file_temp_name,
+			cf.depot_config,
+			cf.is_same_area,
+			cf.create_date,
+			cf.`status` ,
+			GROUP_CONCAT(cr.depot_name) depotNames
+		FROM t_customs_file_config cf 
+		LEFT JOIN (SELECT DISTINCT customs_file_config_id,depot_id, depot_name FROM t_customs_file_depot_rel) cr 
+		ON cf.id = cr.customs_file_config_id
+		 <where>
+              <trim suffixOverrides='and'>
+                  <if test='code!=null and !"".equals(code)' >cf.code= #{code} and </if>
+                  <if test='fileTempId!=null' > cf.file_temp_id= #{fileTempId} and </if>
+                  <if test='fileTempName!=null and !"".equals(fileTempName)' >cf.file_temp_name= #{fileTempName} and </if>
+                  <if test='fileTempCode!=null and !"".equals(fileTempCode)' >cf.file_temp_code= #{fileTempCode} and </if>
+                  <if test='depotConfig!=null and !"".equals(depotConfig)' >cf.depot_config= #{depotConfig} and </if>
+                  <if test='status!=null and !"".equals(status)' >cf.status= #{status} and </if>
+                  <if test='createDate!=null' > cf.create_date= #{createDate} and </if>
+                  <if test='isSameArea!=null and !"".equals(isSameArea)' >is_same_area= #{isSameArea} and </if>
+                  <if test='depotIds!=null' >
+                    cf.id in (select a.customs_file_config_id from t_customs_file_depot_rel a where a.depot_id in
+                       <foreach collection='depotIds.split(",")' item='depotId' separator=',' open='(' close=')'>
+                           #{depotId}
+                       </foreach>
+                     )
+                    and
+                   </if>                   
+              </trim>
+         </where>
+		GROUP BY cf.id,cf.`code`,cf.file_temp_id,cf.file_temp_name,cf.file_temp_code,cf.depot_config,cf.create_date,cf.`status`
+		ORDER BY cf.id DESC
+     </select>
+	<!-- 根据条件查询模板配置 -->
+    <select id='getExportTemplate' resultType='CustomsFileConfigDTO' parameterType='CustomsFileConfigDTO'>
+        SELECT DISTINCT
+			cf.id,
+			cf.file_temp_id,
+			cf.file_temp_code,
+			cf.file_temp_name,
+			cf.is_same_area
+		FROM t_customs_file_config cf 
+		LEFT JOIN t_customs_file_depot_rel cr 
+		ON cf.id = cr.customs_file_config_id
+		 <where>
+              <trim suffixOverrides='and'>
+                  <if test='code!=null and !"".equals(code)' >cf.code= #{code} and </if>
+                  <if test='fileTempId!=null' > cf.file_temp_id= #{fileTempId} and </if>
+                  <if test='fileTempName!=null and !"".equals(fileTempName)' >cf.file_temp_name= #{fileTempName} and </if>
+                  <if test='fileTempCode!=null and !"".equals(fileTempCode)' >cf.file_temp_code= #{fileTempCode} and </if>
+                  <if test='depotConfig!=null and !"".equals(depotConfig)' >cf.depot_config= #{depotConfig} and </if>
+                  <if test='status!=null and !"".equals(status)' >cf.status= #{status} and </if>
+                  <if test='isSameArea!=null and !"".equals(isSameArea)' >cf.is_same_area= #{isSameArea} and </if>
+                  <if test='depotId' > cr.depot_id= #{depotId} and </if>
+                  <if test='customsId' > cr.customs_id= #{customsId} and </if>
+              </trim>
+         </where>
+     </select>
+</mapper>

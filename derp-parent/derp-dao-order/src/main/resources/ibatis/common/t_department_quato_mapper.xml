@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.DepartmentQuatoMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="DepartmentQuatoModelMap" type="DepartmentQuatoModel" >
+                <result property="id" column="id" />
+                <result property="departmentId" column="department_id" />
+                <result property="departmentName" column="department_name" />
+                <result property="departmentQuota" column="department_quota" />
+                <result property="currency" column="currency" />
+                <result property="effectiveDate" column="effective_date" />
+                <result property="expirationDate" column="expiration_date" />
+                <result property="usedQuota" column="used_quota" />
+                <result property="surplusQuota" column="surplus_quota" />
+                <result property="status" column="status" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="auditer" column="auditer" />
+                <result property="auditName" column="audit_name" />
+                <result property="auditDate" column="audit_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='DepartmentQuatoModelMap' parameterType='DepartmentQuatoModel'>
+        select <include refid='sql_columns' /> from t_department_quato  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='DepartmentQuatoModelMap' parameterType='DepartmentQuatoModel'>
+        select <include refid='sql_columns' /> from t_department_quato  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='DepartmentQuatoModelMap' parameterType='DepartmentQuatoModel' >
+        select <include refid='sql_columns' /> from t_department_quato  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='DepartmentQuatoModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_department_quato
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='departmentId!=null' >department_id , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > department_name , </if>
+                        <if test='departmentQuota!=null' >department_quota , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='effectiveDate!=null' >effective_date , </if>
+                        <if test='expirationDate!=null' >expiration_date , </if>
+                        <if test='usedQuota!=null' >used_quota , </if>
+                        <if test='surplusQuota!=null' >surplus_quota , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='auditer!=null' >auditer , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='departmentId!=null' > #{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > #{departmentName} , </if>
+                        <if test='departmentQuota!=null' > #{departmentQuota} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='effectiveDate!=null' > #{effectiveDate} , </if>
+                        <if test='expirationDate!=null' > #{expirationDate} , </if>
+                        <if test='usedQuota!=null' > #{usedQuota} , </if>
+                        <if test='surplusQuota!=null' > #{surplusQuota} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='auditer!=null' > #{auditer} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='DepartmentQuatoModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_department_quato SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='departmentId!=null' > department_id= #{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' >department_name= #{departmentName} , </if>
+                        <if test='departmentQuota!=null' > department_quota= #{departmentQuota} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='effectiveDate!=null' > effective_date= #{effectiveDate} , </if>
+                        <if test='expirationDate!=null' > expiration_date= #{expirationDate} , </if>
+                        <if test='usedQuota!=null' > used_quota= #{usedQuota} , </if>
+                        <if test='surplusQuota!=null' > surplus_quota= #{surplusQuota} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='auditer!=null' > auditer= #{auditer} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_department_quato  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_department_quato where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            department_id,
+            department_name,
+            department_quota,
+            currency,
+            effective_date,
+            expiration_date,
+            used_quota,
+            surplus_quota,
+            status,
+            creater,
+            create_name,
+            create_date,
+            modify_date,
+            auditer,
+            audit_name,
+            audit_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='departmentId!=null' > department_id= #{departmentId} and </if>
+                            <if test='departmentName!=null and !"".equals(departmentName)' >department_name= #{departmentName} and </if>
+                            <if test='departmentQuota!=null' > department_quota= #{departmentQuota} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                            <if test='expirationDate!=null' > expiration_date= #{expirationDate} and </if>
+                            <if test='usedQuota!=null' > used_quota= #{usedQuota} and </if>
+                            <if test='surplusQuota!=null' > surplus_quota= #{surplusQuota} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='auditer!=null' > auditer= #{auditer} and </if>
+                            <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                            <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<select id='getListByPage' resultType='DepartmentQuatoDTO' parameterType='DepartmentQuatoDTO'>
+	        select <include refid='sql_columns' /> from t_department_quato  
+			<where>
+                <trim suffixOverrides='and'>
+                     <if test='id!=null' > id= #{id} and </if>
+                     <if test='departmentId!=null' > department_id= #{departmentId} and </if>
+                     <if test='departmentName!=null and !"".equals(departmentName)' >department_name= #{departmentName} and </if>
+                     <if test='departmentQuota!=null' > department_quota= #{departmentQuota} and </if>
+                     <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                     <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                     <if test='expirationDate!=null' > expiration_date= #{expirationDate} and </if>
+                     <if test='effectiveDateStr!=null and !"".equals(effectiveDateStr)' > effective_date &gt;= #{effectiveDateStr} and</if>
+                     <if test='expirationDateStr!=null and !"".equals(expirationDateStr)' > expiration_date &lt;= #{expirationDateStr} and</if>
+                     <if test='usedQuota!=null' > used_quota= #{usedQuota} and </if>
+                     <if test='surplusQuota!=null' > surplus_quota= #{surplusQuota} and </if>
+                     <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                     <if test='creater!=null' > creater= #{creater} and </if>
+                     <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                     <if test='createDate!=null' > create_date= #{createDate} and </if>
+                     <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                     <if test='auditer!=null' > auditer= #{auditer} and </if>
+                     <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                     <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                </trim>
+            </where>
+	        order by id desc
+	    </select>
+
+		<select id='getLatestDepartmentQuato' resultType='DepartmentQuatoModel' parameterType='map'>
+	        select <include refid='sql_columns' /> from t_department_quato
+	        <where>
+	            <trim suffixOverrides='and'>
+	                <if test='departmentId!=null' > department_id= #{departmentId} and </if>
+	                <choose>
+	                    <when test='currentDate!=null and !"".equals(currentDate)'>
+	                        effective_date &lt;= #{currentDate} and expiration_date &gt;= #{currentDate}
+	                        and
+	                    </when>
+	                    <otherwise>
+	                        effective_date &lt;= NOW() and expiration_date &gt;= NOW()
+	                        and
+	                    </otherwise>
+	                </choose>
+	                status= '1' and
+	            </trim>
+	        </where>
+	        order by audit_date desc limit 1
+	    </select>
+
+	<!-- 获取时间重合列表 -->
+    <select id='getCoincidenceTimeList' resultType='DepartmentQuatoModel' parameterType='DepartmentQuatoModel' >
+        select <include refid='sql_columns' /> from t_department_quato  
+		<where>
+            <trim suffixOverrides='and'>
+                 <if test='departmentId!=null' > department_id= #{departmentId} and </if>
+                 <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                 <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                 ((effective_date &lt;= #{effectiveDate} and expiration_date &gt;= #{effectiveDate})
+                 or 
+                 (effective_date &lt;= #{expirationDate} and expiration_date &gt;= #{expirationDate}) )
+            </trim>
+        </where>
+    </select>
+
+</mapper>

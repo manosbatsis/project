@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleReturnOrderRelMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="SaleReturnOrderRelModelMap" type="SaleReturnOrderRelModel" >
+                <result property="saleId" column="sale_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="num" column="num" />
+                <result property="id" column="id" />
+                <result property="saleReturnId" column="sale_return_id" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleReturnOrderRelModelMap' parameterType='SaleReturnOrderRelModel'>
+        select <include refid='sql_columns' /> from t_sale_return_order_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleReturnOrderRelModelMap' parameterType='SaleReturnOrderRelModel'>
+        select <include refid='sql_columns' /> from t_sale_return_order_rel  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleReturnOrderRelModelMap' parameterType='SaleReturnOrderRelModel' >
+        select <include refid='sql_columns' /> from t_sale_return_order_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='SaleReturnOrderRelModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_sale_return_order_rel
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='saleId!=null' > sale_id , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='num!=null' > num , </if>
+                <if test='id!=null' > id , </if>
+                <if test='saleReturnId!=null' > sale_return_id , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='saleId!=null' > #{saleId} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='num!=null' > #{num} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='saleReturnId!=null' > #{saleReturnId} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='SaleReturnOrderRelModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_sale_return_order_rel SET
+        <trim  suffixOverrides=",">
+                <if test='saleId!=null' > sale_id= #{saleId} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='num!=null' > num= #{num} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='saleReturnId!=null' > sale_return_id= #{saleReturnId} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_return_order_rel  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_sale_return_order_rel where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        sale_id,
+        goods_id,
+        num,
+        id,
+        sale_return_id,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='saleId!=null' > sale_id= #{saleId} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='num!=null' > num= #{num} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='saleReturnId!=null' > sale_return_id= #{saleReturnId} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+	<!-- 通过销售订单id获取商品已经退货的数据（过滤已删除的销退订单） -->
+    <select id="listSaleReturnOrderRel" resultMap='SaleReturnOrderRelModelMap' parameterType='SaleReturnOrderRelModel'>
+        select <include refid='sql_columns' /> from t_sale_return_order_rel
+        where sale_return_id not in (
+				select id from t_sale_return_order where `status`='006'
+		)
+		and sale_id = #{saleId} and goods_id = #{goodsId}
+    </select>
+
+
+</mapper>

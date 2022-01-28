@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.TobTemporaryReceiveBillItemMapper'>
+
+    <!-- 关系映射 -->
+        <resultMap id="TobTemporaryReceiveBillItemModelMap" type="TobTemporaryReceiveBillItemModel" >
+                <result property="id" column="id" />
+                <result property="billId" column="bill_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="price" column="price" />
+                <result property="shelfNum" column="shelf_num" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="parentBrandName" column="parent_brand_name" />
+	            <result property="parentBrandId" column="parent_brand_id" />
+	            <result property="parentBrandCode" column="parent_brand_code" />
+	            <result property="poNo" column="po_no" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TobTemporaryReceiveBillItemModelMap' parameterType='TobTemporaryReceiveBillItemModel'>
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TobTemporaryReceiveBillItemModelMap' parameterType='TobTemporaryReceiveBillItemModel'>
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TobTemporaryReceiveBillItemModelMap' parameterType='TobTemporaryReceiveBillItemModel' >
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='TobTemporaryReceiveBillItemModel' keyProperty="id" useGeneratedKeys="true">
+             INSERT INTO t_tob_temporary_receive_bill_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='billId!=null' >bill_id  , </if>
+                        <if test='goodsId!=null' >goods_id  , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='price!=null' >price  , </if>
+                        <if test='shelfNum!=null' >shelf_num  , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='modifyDate!=null' >modify_date  , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name , </if>
+                        <if test='parentBrandId!=null' >parent_brand_id  , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > parent_brand_code , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billId!=null' > #{billId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='shelfNum!=null' > #{shelfNum} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > #{parentBrandCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='TobTemporaryReceiveBillItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_tob_temporary_receive_bill_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billId!=null' > bill_id= #{billId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='shelfNum!=null' > shelf_num= #{shelfNum} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_tob_temporary_receive_bill_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_tob_temporary_receive_bill_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_id,
+            goods_id,
+            goods_name,
+            goods_no,
+            price,
+            shelf_num,
+            create_date,
+            modify_date,
+            parent_brand_name,
+            parent_brand_id,
+            parent_brand_code,
+            po_no
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='shelfNum!=null' > shelf_num= #{shelfNum} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} and </if>
+                            <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_tob_temporary_receive_bill_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                id,
+                bill_id,
+                goods_id,
+                goods_name,
+                goods_no,
+                price,
+                shelf_num,
+                parent_brand_name,
+                parent_brand_id,
+                parent_brand_code,
+                po_no
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+                <trim prefix="(" suffix=")" suffixOverrides="," >
+                    #{item.id} ,
+                    #{item.billId} ,
+                    #{item.goodsId} ,
+                    #{item.goodsName} ,
+                    #{item.goodsNo} ,
+                    #{item.price} ,
+                    #{item.shelfNum},
+                    #{item.parentBrandName},
+                    #{item.parentBrandId},
+                    #{item.parentBrandCode},
+                    #{item.poNo}
+                </trim>
+            </foreach>
+        </insert>
+
+        <delete id="delItemsByBillIds" >
+            delete from t_tob_temporary_receive_bill_item
+            where bill_id in
+            <foreach collection='billIds' item='billId' separator=',' open='(' close=')'>
+                #{billId}
+            </foreach>
+        </delete>
+
+        <select id="listItemPriceByIds" parameterType="TobTemporaryReceiveBillItemMonthlyDTO" resultType="java.math.BigDecimal">
+            select
+                ifnull(sum(price * shelf_num), 0) amount
+            from t_tob_temporary_receive_bill_item
+            where id in (
+                SELECT temp_item_id
+                FROM t_tob_temporary_receive_bill_item_monthly
+                <where>
+                    <trim suffixOverrides='and'>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                        <if test='buId!=null' > bu_id= #{buId} and </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                        <if test='"0".equals(type)' >DATEDIFF(#{lastDay}, shelf_date) &lt;= 30 and </if>
+                        <if test='"1".equals(type)' >DATEDIFF(#{lastDay}, shelf_date) &gt; 30 and DATEDIFF(#{lastDay}, shelf_date) &lt;= 60 and </if>
+                        <if test='"2".equals(type)' >DATEDIFF(#{lastDay}, shelf_date) &gt; 60 and DATEDIFF(#{lastDay}, shelf_date) &lt;= 90 and </if>
+                        <if test='"3".equals(type)' >DATEDIFF(#{lastDay}, shelf_date) &gt; 90 and DATEDIFF(#{lastDay}, shelf_date) &lt;= 120 and </if>
+                        <if test='"4".equals(type)' >DATEDIFF(#{lastDay}, shelf_date) &gt; 120 and </if>
+                    </trim>
+                </where>
+            )
+        </select>
+
+
+        <select id="listToBTempItemByPage" resultType="TobTemporaryReceiveBillItemDTO" parameterType="TobTemporaryReceiveBillItemDTO" >
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_item
+            <where>
+                <trim suffixOverrides='and'>
+                    <choose>
+                        <when test='billIds!=null and !"".equals(billIds)'>
+                            bill_id in
+                            <foreach collection="billIds" open="(" close=")" separator="," item="id">
+                                #{id}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='shelfNum!=null' > shelf_num= #{shelfNum} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                        </otherwise>
+                    </choose>
+                </trim>
+            </where>
+        </select>
+
+        <select id="getTempDetailsCount" parameterType="TobTemporaryReceiveBillDTO" resultType='Integer'>
+            select count(id) from t_tob_temporary_receive_bill_item
+            where bill_id in (
+                select id from t_tob_temporary_receive_bill
+                <where>
+                    <trim suffixOverrides='and'>
+                        <choose>
+                            <when test='ids!=null and !"".equals(ids)'>
+                                id in
+                                <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                                    #{id}
+                                </foreach>
+                            </when>
+                            <otherwise>
+                                <if test='buId!=null' > bu_id= #{buId} and </if>
+                                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                                <if test='shelfCode!=null and !"".equals(shelfCode)' >shelf_code= #{shelfCode} and </if>
+                                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                                <if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} and </if>
+                                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                                <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                                <if test='shelfMonth!=null and !"".equals(shelfMonth)' >DATE_FORMAT(shelf_date, '%Y-%m')=#{shelfMonth} and </if>
+                            </otherwise>
+                        </choose>
+                    </trim>
+                </where>
+            )
+        </select>
+
+        <select id="listToBeVerifyItems" parameterType="TobTemporaryReceiveBillDTO" resultType='TobTemporaryReceiveBillItemDTO'>
+            SELECT
+                a.id,
+                a.bill_id,
+                a.goods_id,
+                a.goods_name,
+                a.goods_no,
+                a.price,
+                a.shelf_num,
+                a.create_date,
+                a.modify_date,
+                c.verifiy_amount,
+                b.shelf_code,
+                b.original_shelf_code,
+                a.po_no,
+                (a.price * a.shelf_num) - IFNULL(c.verifiy_amount,0) as be_verify_amount
+            FROM
+                t_tob_temporary_receive_bill_item a
+            left join t_tob_temporary_receive_bill b ON a.bill_id = b.id
+            LEFT JOIN (
+                SELECT tob_item_id, SUM( verifiy_amount ) verifiy_amount
+                FROM t_tob_temp_verify_rel
+                where type = '0'
+                GROUP BY tob_item_id
+            ) c ON a.id = c.tob_item_id
+            WHERE
+                a.id not in (SELECT tobi.id FROM t_tob_temporary_receive_bill_item tobi
+                             LEFT JOIN ( SELECT tob_item_id, SUM( verifiy_amount ) verifiy_amount FROM t_tob_temp_verify_rel WHERE type = '0' GROUP BY tob_item_id ) rel ON tobi.id = rel.tob_item_id
+                             WHERE (tobi.price * tobi.shelf_num) = rel.verifiy_amount)
+                and b.status != '5'
+                and b.is_write_off = '0'
+                <if test='merchantId!=null' >and b.merchant_id= #{merchantId}  </if>
+                <if test='shelfCodes!=null and !"".equals(shelfCodes)' > and b.shelf_code in
+                    <foreach collection='shelfCodes.split(",")' item='shelfCode' separator=',' open='(' close=')'>
+                        #{shelfCode}
+                    </foreach>
+                </if>
+            order by b.shelf_date asc, a.bill_id
+        </select>
+
+        <select id='listByBillIds' resultMap='TobTemporaryReceiveBillItemModelMap' >
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_item
+            where bill_id in
+            <foreach collection='billIds' item='billId' separator=',' open='(' close=')'>
+                #{billId}
+            </foreach>
+        </select>
+
+        <select id="listNonVerifyByCloseAccount" resultMap="TobTemporaryReceiveBillItemModelMap" >
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_item
+            where bill_id in (select id from t_tob_temporary_receive_bill where merchant_id = #{merchantId} and bu_id = #{buId} and status in ('1', '2')
+                and date_format(shelf_date, '%Y-%m') &lt;=#{month})
+        </select>
+
+        <select id="listAllVerifyByCloseAccount" resultMap="TobTemporaryReceiveBillItemModelMap" >
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_item
+            where bill_id in (select id from t_tob_temporary_receive_bill where merchant_id = #{merchantId} and bu_id = #{buId} and status = '5'
+            and date_format(shelf_date, '%Y-%m') &lt;=#{month})
+            and id in (select DISTINCT tob_item_id from t_tob_temp_verify_rel where DATE_FORMAT(credit_date,'%Y-%m') &gt;= #{month} and type='0')
+        </select>
+</mapper>

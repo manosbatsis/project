@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.SdSaleConfigItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="SdSaleConfigItemModelMap" type="SdSaleConfigItemModel" >
+            <result property="id" column="id" />
+            <result property="saleConfigId" column="sale_config_id" />
+            <result property="sdTypeId" column="sd_type_id" />
+            <result property="sdTypeName" column="sd_type_name" />
+            <result property="sdType" column="sd_type" />
+            <result property="projectId" column="project_id" />
+            <result property="projectName" column="project_name" />
+            <result property="commbarcode" column="commbarcode" />
+            <result property="goodsName" column="goods_name" />
+            <result property="brandParent" column="brand_parent" />
+            <result property="proportion" column="proportion" />
+            <result property="createDate" column="create_date" />
+            <result property="creator" column="creator" />
+            <result property="creatorId" column="creator_id" />
+            <result property="sdSimpleName" column="sd_simple_name" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SdSaleConfigItemModelMap' parameterType='SdSaleConfigItemModel'>
+        select <include refid='sql_columns' /> from t_sd_sale_config_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SdSaleConfigItemModelMap' parameterType='SdSaleConfigItemModel'>
+        select <include refid='sql_columns' /> from t_sd_sale_config_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SdSaleConfigItemModelMap' parameterType='SdSaleConfigItemModel' >
+        select <include refid='sql_columns' /> from t_sd_sale_config_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SdSaleConfigItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sd_sale_config_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='saleConfigId!=null' >sale_config_id  , </if>
+                        <if test='sdTypeId!=null' >sd_type_id  , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > sd_type_name , </if>
+                        <if test='sdType!=null and !"".equals(sdType)' > sd_type , </if>
+                        <if test='projectId!=null' >project_id  , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > project_name , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' > brand_parent , </if>
+                        <if test='proportion!=null' >proportion  , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='creator!=null and !"".equals(creator)' > creator , </if>
+                        <if test='creatorId!=null' >creator_id  , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' >sd_simple_name  , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='saleConfigId!=null' > #{saleConfigId} , </if>
+                        <if test='sdTypeId!=null' > #{sdTypeId} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > #{sdTypeName} , </if>
+                        <if test='sdType!=null and !"".equals(sdType)' > #{sdType} , </if>
+                        <if test='projectId!=null' > #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > #{projectName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' > #{brandParent} , </if>
+                        <if test='proportion!=null' > #{proportion} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='creator!=null and !"".equals(creator)' > #{creator} , </if>
+                        <if test='creatorId!=null' > #{creatorId} , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > #{sdSimpleName}  , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SdSaleConfigItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sd_sale_config_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='saleConfigId!=null' > sale_config_id= #{saleConfigId} , </if>
+                        <if test='sdTypeId!=null' > sd_type_id= #{sdTypeId} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} , </if>
+                        <if test='sdType!=null and !"".equals(sdType)' >sd_type= #{sdType} , </if>
+                        <if test='projectId!=null' > project_id= #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} , </if>
+                        <if test='proportion!=null' > proportion= #{proportion} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='creator!=null and !"".equals(creator)' >creator= #{creator} , </if>
+                        <if test='creatorId!=null' > creator_id= #{creatorId} , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > sd_simple_name=#{sdSimpleName}  , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sd_sale_config_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sd_sale_config_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            sale_config_id,
+            sd_type_id,
+            sd_type_name,
+            sd_type,
+            project_id,
+            project_name,
+            commbarcode,
+            goods_name,
+            brand_parent,
+            proportion,
+            create_date,
+            creator,
+            creator_id,
+            sd_simple_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='saleConfigId!=null' > sale_config_id= #{saleConfigId} and </if>
+                            <if test='sdTypeId!=null' > sd_type_id= #{sdTypeId} and </if>
+                            <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} and </if>
+                            <if test='sdType!=null and !"".equals(sdType)' >sd_type= #{sdType} and </if>
+                            <if test='projectId!=null' > project_id= #{projectId} and </if>
+                            <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='proportion!=null' > proportion= #{proportion} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='creator!=null and !"".equals(creator)' >creator= #{creator} and </if>
+                            <if test='creatorId!=null' > creator_id= #{creatorId} and </if>
+                            <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > sd_simple_name=#{sdSimpleName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+<!--自定义SQL-->
+    <!-- 查询所有信息 -->
+    <select id='listDTO' resultType='SdSaleConfigItemDTO' parameterType='SdSaleConfigItemDTO'>
+        select <include refid='sql_columns' /> from t_sd_sale_config_item  <include refid='sql_where' />
+    </select>
+
+
+
+</mapper>

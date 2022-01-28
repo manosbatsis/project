@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.ReceiveBillOperateMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ReceiveBillOperateModelMap" type="ReceiveBillOperateModel" >
+                <result property="id" column="id" />
+                <result property="billId" column="bill_id" />
+                <result property="operateId" column="operate_id" />
+                <result property="operator" column="operator" />
+                <result property="operateDate" column="operate_date" />
+                <result property="operateNode" column="operate_node" />
+                <result property="remark" column="remark" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ReceiveBillOperateModelMap' parameterType='ReceiveBillOperateModel'>
+        select <include refid='sql_columns' /> from t_receive_bill_operate  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ReceiveBillOperateModelMap' parameterType='ReceiveBillOperateModel'>
+        select <include refid='sql_columns' /> from t_receive_bill_operate  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ReceiveBillOperateModelMap' parameterType='ReceiveBillOperateModel' >
+        select <include refid='sql_columns' /> from t_receive_bill_operate  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ReceiveBillOperateModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_receive_bill_operate
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='billId!=null' >bill_id , </if>
+                        <if test='operateId!=null' >operate_id , </if>
+                        <if test='operator!=null and !"".equals(operator)' > operator , </if>
+                        <if test='operateDate!=null' >operate_date , </if>
+                        <if test='operateNode!=null and !"".equals(operateNode)' > operate_node , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billId!=null' > #{billId} , </if>
+                        <if test='operateId!=null' > #{operateId} , </if>
+                        <if test='operator!=null and !"".equals(operator)' > #{operator} , </if>
+                        <if test='operateDate!=null' > #{operateDate} , </if>
+                        <if test='operateNode!=null and !"".equals(operateNode)' > #{operateNode} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ReceiveBillOperateModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_receive_bill_operate SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billId!=null' > bill_id= #{billId} , </if>
+                        <if test='operateId!=null' > operate_id= #{operateId} , </if>
+                        <if test='operator!=null and !"".equals(operator)' >operator= #{operator} , </if>
+                        <if test='operateDate!=null' > operate_date= #{operateDate} , </if>
+                        <if test='operateNode!=null and !"".equals(operateNode)' >operate_node= #{operateNode} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_receive_bill_operate  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_receive_bill_operate where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_id,
+            operate_id,
+            operator,
+            operate_date,
+            operate_node,
+            remark,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='operateId!=null' > operate_id= #{operateId} and </if>
+                            <if test='operator!=null and !"".equals(operator)' >operator= #{operator} and </if>
+                            <if test='operateDate!=null' > operate_date= #{operateDate} and </if>
+                            <if test='operateNode!=null and !"".equals(operateNode)' >operate_node= #{operateNode} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id="getLatestOperate" resultMap="ReceiveBillOperateModelMap" >
+            select
+                <include refid='sql_columns' />
+            from t_receive_bill_operate
+            where operate_node= #{operateNode} and bill_id in
+            <foreach collection='billIds' item='billId' separator=',' open='(' close=')'>
+                #{billId}
+            </foreach>
+            order by operate_date desc limit 0,1
+        </select>
+
+
+
+</mapper>

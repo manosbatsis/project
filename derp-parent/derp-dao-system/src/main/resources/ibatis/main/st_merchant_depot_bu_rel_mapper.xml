@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.MerchantDepotBuRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="MerchantDepotBuRelModelMap" type="MerchantDepotBuRelModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="buId" column="bu_id" />
+                <result property="depotId" column="depot_id" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MerchantDepotBuRelModelMap' parameterType='MerchantDepotBuRelModel'>
+        select <include refid='sql_columns' /> from st_merchant_depot_bu_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MerchantDepotBuRelModelMap' parameterType='MerchantDepotBuRelModel'>
+        select <include refid='sql_columns' /> from st_merchant_depot_bu_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MerchantDepotBuRelModelMap' parameterType='MerchantDepotBuRelModel' >
+        select <include refid='sql_columns' /> from st_merchant_depot_bu_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='MerchantDepotBuRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_merchant_depot_bu_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MerchantDepotBuRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_merchant_depot_bu_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_merchant_depot_bu_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_merchant_depot_bu_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            bu_id,
+            depot_id,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+            <result property="value" column="id" />
+            <result property="label" column="name" />
+        </resultMap>
+
+        <select id="getSelectBean" resultMap='SelectBeans' parameterType='MerchantDepotBuRelModel'>
+            SELECT
+            m.bu_id as id,b.`name`
+            FROM
+            st_merchant_depot_bu_rel m
+            LEFT JOIN st_business_unit b on m.bu_id = b.id
+            WHERE
+            m.merchant_id = #{merchantId}
+            and m.depot_id = #{depotId}
+        </select>
+
+		<select id="getSelectInfoByMerchantId" resultType='String' parameterType='MerchantDepotBuRelModel'>
+            SELECT
+            	GROUP_CONCAT(bu_id) as buIds
+            FROM
+            st_merchant_depot_bu_rel 
+            WHERE
+            merchant_id = #{merchantId}
+            and depot_id = #{depotId}
+            group by merchant_id , depot_id
+        </select>
+        
+        <!-- 根据实例删除数据 -->
+	    <delete id='delByModel' parameterType='MerchantDepotBuRelModel'>
+	        delete from st_merchant_depot_bu_rel  
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                </trim>
+            </where>
+	    </delete>
+	    
+	    <select id="getBuNameByMerchantDepot" resultType='String' parameterType='MerchantDepotBuRelModel'>
+            SELECT
+				GROUP_CONCAT(t2.name) as buNames
+			FROM
+			st_merchant_depot_bu_rel t1
+			LEFT JOIN st_business_unit t2
+			ON t1.bu_id = t2.id
+			WHERE
+			t1.merchant_id = #{merchantId}
+			and t1.depot_id = #{depotId}
+			group by t1.merchant_id , t1.depot_id
+        </select>
+
+</mapper>

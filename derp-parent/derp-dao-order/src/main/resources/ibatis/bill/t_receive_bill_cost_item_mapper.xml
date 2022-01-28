@@ -1,0 +1,604 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.ReceiveBillCostItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ReceiveBillCostItemModelMap" type="ReceiveBillCostItemModel" >
+                <result property="id" column="id" />
+                <result property="billId" column="bill_id" />
+                <result property="projectId" column="project_id" />
+                <result property="projectName" column="project_name" />
+                <result property="poNo" column="po_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="invoiceDescription" column="invoice_description" />
+                <result property="price" column="price" />
+                <result property="num" column="num" />
+                <result property="billType" column="bill_type" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="parentBrandName" column="parent_brand_name" />
+                <result property="parentBrandId" column="parent_brand_id" />
+                <result property="parentBrandCode" column="parent_brand_code" />
+                <result property="subjectCode" column="subject_code" />
+                <result property="subjectName" column="subject_name" />
+                <result property="remark" column="remark" />
+                <result property="paymentSubjectName" column="payment_subject_name" />
+                <result property="paymentSubjectId" column="payment_subject_id" />
+                <result property="verifyPlatformCode" column="verify_platform_code" />
+                <result property="taxRate" column="tax_rate" />
+                <result property="tax" column="tax" />
+                <result property="taxAmount" column="tax_amount" />
+                <result property="platformGoodsCode" column="platform_goods_code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ReceiveBillCostItemModelMap' parameterType='ReceiveBillCostItemModel'>
+        select <include refid='sql_columns' /> from t_receive_bill_cost_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ReceiveBillCostItemModelMap' parameterType='ReceiveBillCostItemModel'>
+        select <include refid='sql_columns' /> from t_receive_bill_cost_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ReceiveBillCostItemModelMap' parameterType='ReceiveBillCostItemModel' >
+        select <include refid='sql_columns' /> from t_receive_bill_cost_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ReceiveBillCostItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_receive_bill_cost_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='billId!=null' >bill_id , </if>
+                        <if test='projectId!=null' >project_id , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > project_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='invoiceDescription!=null and !"".equals(invoiceDescription)' > invoice_description , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='billType!=null and !"".equals(billType)' > bill_type , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name , </if>
+                        <if test='parentBrandId!=null' >parent_brand_id , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > parent_brand_code , </if>
+                        <if test='subjectCode!=null and !"".equals(subjectCode)' > subject_code , </if>
+                        <if test='subjectName!=null and !"".equals(subjectName)' > subject_name , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' > payment_subject_name , </if>
+                        <if test='paymentSubjectId!=null' >payment_subject_id , </if>
+                        <if test='verifyPlatformCode!=null and !"".equals(verifyPlatformCode)' > verify_platform_code , </if>
+                        <if test='taxRate!=null' >tax_rate , </if>
+                        <if test='tax!=null' >tax , </if>
+                        <if test='taxAmount!=null' >tax_amount , </if>
+                        <if test='platformGoodsCode!=null and !"".equals(platformGoodsCode)' > platform_goods_code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billId!=null' > #{billId} , </if>
+                        <if test='projectId!=null' > #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > #{projectName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='invoiceDescription!=null and !"".equals(invoiceDescription)' > #{invoiceDescription} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='billType!=null and !"".equals(billType)' > #{billType} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > #{parentBrandCode} , </if>
+                        <if test='subjectCode!=null and !"".equals(subjectCode)' > #{subjectCode} , </if>
+                        <if test='subjectName!=null and !"".equals(subjectName)' > #{subjectName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' > #{paymentSubjectName} , </if>
+                        <if test='paymentSubjectId!=null' > #{paymentSubjectId} , </if>
+                        <if test='verifyPlatformCode!=null and !"".equals(verifyPlatformCode)' > #{verifyPlatformCode} , </if>
+                        <if test='taxRate!=null' > #{taxRate} , </if>
+                        <if test='tax!=null' > #{tax} , </if>
+                        <if test='taxAmount!=null' > #{taxAmount} , </if>
+                        <if test='platformGoodsCode!=null and !"".equals(platformGoodsCode)' > #{platformGoodsCode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ReceiveBillCostItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_receive_bill_cost_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billId!=null' > bill_id= #{billId} , </if>
+                        <if test='projectId!=null' > project_id= #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='invoiceDescription!=null and !"".equals(invoiceDescription)' >invoice_description= #{invoiceDescription} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} , </if>
+                        <if test='subjectCode!=null and !"".equals(subjectCode)' >subject_code= #{subjectCode} , </if>
+                        <if test='subjectName!=null and !"".equals(subjectName)' >subject_name= #{subjectName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' >payment_subject_name= #{paymentSubjectName} , </if>
+                        <if test='paymentSubjectId!=null' > payment_subject_id= #{paymentSubjectId} , </if>
+                        <if test='verifyPlatformCode!=null and !"".equals(verifyPlatformCode)' >verify_platform_code= #{verifyPlatformCode} , </if>
+                        <if test='taxRate!=null' > tax_rate= #{taxRate} , </if>
+                        <if test='tax!=null' > tax= #{tax} , </if>
+                        <if test='taxAmount!=null' > tax_amount= #{taxAmount} , </if>
+                        <if test='platformGoodsCode!=null and !"".equals(platformGoodsCode)' >platform_goods_code= #{platformGoodsCode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_receive_bill_cost_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_receive_bill_cost_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_id,
+            project_id,
+            project_name,
+            po_no,
+            goods_id,
+            goods_name,
+            goods_no,
+            invoice_description,
+            price,
+            num,
+            bill_type,
+            create_date,
+            modify_date,
+            parent_brand_name,
+            parent_brand_id,
+            parent_brand_code,
+            subject_code,
+            subject_name,
+            remark,
+            payment_subject_name,
+            payment_subject_id,
+            verify_platform_code,
+            tax_rate,
+            tax,
+            tax_amount,
+            platform_goods_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='projectId!=null' > project_id= #{projectId} and </if>
+                            <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='invoiceDescription!=null and !"".equals(invoiceDescription)' >invoice_description= #{invoiceDescription} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} and </if>
+                            <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} and </if>
+                            <if test='subjectCode!=null and !"".equals(subjectCode)' >subject_code= #{subjectCode} and </if>
+                            <if test='subjectName!=null and !"".equals(subjectName)' >subject_name= #{subjectName} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' >payment_subject_name= #{paymentSubjectName} and </if>
+                            <if test='paymentSubjectId!=null' > payment_subject_id= #{paymentSubjectId} and </if>
+                            <if test='verifyPlatformCode!=null and !"".equals(verifyPlatformCode)' >verify_platform_code= #{verifyPlatformCode} and </if>
+                            <if test='taxRate!=null' > tax_rate= #{taxRate} and </if>
+                            <if test='tax!=null' > tax= #{tax} and </if>
+                            <if test='taxAmount!=null' > tax_amount= #{taxAmount} and </if>
+                            <if test='platformGoodsCode!=null and !"".equals(platformGoodsCode)' >platform_goods_code= #{platformGoodsCode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+
+        <!--自定义SQL-->
+        <select id="itemListByBillIds" resultType="ReceiveBillCostItemDTO"  >
+            SELECT
+                <include refid='sql_columns' />
+            FROM
+                t_receive_bill_cost_item
+            WHERE
+            bill_id in
+            <foreach collection='billIds' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            order by bill_id desc
+        </select>
+
+        <delete id="delCostItem" parameterType="java.lang.Long">
+            delete from t_receive_bill_cost_item WHERE bill_id = #{billId}
+        </delete>
+
+        <select id="getTotalReceivePrice" parameterType="java.lang.Long" resultType="java.math.BigDecimal" >
+           select ifnull(sum(if(bill_type='0', price, -price)), 0) price
+            from t_receive_bill_cost_item
+            where bill_id = #{billId}
+        </select>
+
+        <select id="listInvoiceCostItem" resultType="map" >
+            SELECT
+                goods_id goodsId, goods_no goodsNo,
+                invoice_description invoiceDescription, project_id projectId,
+                po_no poNo, parent_brand_id parentBrandId,
+                sum(if(bill_type='0', price, -price)) totalPrice, sum(num) totalNum
+            FROM
+                t_receive_bill_cost_item
+            WHERE
+                bill_id IN
+                <foreach collection='billIds' item='id' separator=',' open='(' close=')'>
+                    #{id}
+                </foreach>
+            GROUP BY goods_id, goods_no, invoice_description, project_id, po_no, parent_brand_id
+        </select>
+
+        <select id="listInvoiceCostItemByGoodsNo" resultType="map" >
+            SELECT
+                ri.project_id projectId,
+                ri.project_name projectName,
+                sum(if(bill_type='0', price, -price)) totalPrice,
+                <if test='source!=null and !"".equals(source)' >
+                    ri.goods_no goodsNo,
+                </if>
+                ri.parent_brand_id parentBrandCode
+            FROM
+                t_receive_bill_cost_item ri
+            WHERE
+                ri.bill_id IN
+                <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                    #{id}
+                </foreach>
+            GROUP BY
+                ri.project_id,
+                ri.project_name,
+                <if test='source!=null and !"".equals(source)' >
+                    ri.goods_no,
+                </if>
+                ri.parent_brand_id
+            order by ri.parent_brand_id
+        </select>
+
+        <select id="listCostPrice" resultType="map" >
+           select
+                bill_id billId,
+                sum(if(bill_type='0', price, -price)) totalPrice
+           from t_receive_bill_cost_item
+           where bill_id IN
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            group by bill_id
+        </select>
+
+        <!-- 批量插入数据 -->
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_receive_bill_cost_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                id,
+                bill_id,
+                project_id,
+                project_name,
+                po_no,
+                goods_id,
+                goods_name,
+                goods_no,
+                price,
+                num,
+                bill_type,
+                parent_brand_code,
+                parent_brand_name,
+                parent_brand_id,
+                payment_subject_name,
+                payment_subject_id,
+                subject_code,
+                subject_name,
+                invoice_description,
+                remark,
+                verify_platform_code,
+                tax_rate,
+                tax,
+                tax_amount,
+                platform_goods_code
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+                <trim prefix="(" suffix=")" suffixOverrides="," >
+                    #{item.id} ,
+                    #{item.billId} ,
+                    #{item.projectId} ,
+                    #{item.projectName} ,
+                    #{item.poNo} ,
+                    #{item.goodsId} ,
+                    #{item.goodsName} ,
+                    #{item.goodsNo} ,
+                    #{item.price} ,
+                    #{item.num} ,
+                    #{item.billType} ,
+                    #{item.parentBrandCode} ,
+                    #{item.parentBrandName} ,
+                    #{item.parentBrandId} ,
+                    #{item.paymentSubjectName} ,
+                    #{item.paymentSubjectId} ,
+                    #{item.subjectCode} ,
+                    #{item.subjectName} ,
+                    #{item.invoiceDescription},
+                    #{item.remark},
+                    #{item.verifyPlatformCode},
+                    #{item.taxRate},
+                    #{item.tax},
+                    #{item.taxAmount},
+                    #{item.platformGoodsCode}
+                </trim>
+            </foreach>
+        </insert>
+
+        <select id="synNcItemByIds" resultType="ReceiveBillCostItemDTO" >
+            SELECT
+                bill_id,
+                SUM(num) num,
+                sum(if(bill_type='0', price, -price)) price,
+                GROUP_CONCAT(DISTINCT po_no separator '&amp;') po_no,
+                parent_brand_name,
+                parent_brand_code,
+                payment_subject_name,
+                payment_subject_id,
+                subject_code,
+                subject_name,
+                project_id,
+                po_no
+            FROM
+                t_receive_bill_cost_item
+            WHERE
+                bill_id IN
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            GROUP BY
+                bill_id,parent_brand_code, parent_brand_name,payment_subject_name,payment_subject_id,subject_code,subject_name,project_id,po_no
+        </select>
+
+        <select id="listInvoiceCostItemByProject" resultType="map" >
+            SELECT
+                goods_id goodsId,
+                goods_no goodsNo,
+                sum(if(bill_type='0', price, -price)) totalPrice,
+                sum(num) totalNum
+            FROM
+                t_receive_bill_cost_item
+            WHERE
+                project_id = #{projectId}
+                AND bill_id IN
+                <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                    #{id}
+                </foreach>
+            GROUP BY
+                goods_id,
+                goods_no
+        </select>
+
+    <select id="getProjectWarnList" parameterType="map" resultType="map">
+	    SELECT 
+	    		tt.`code`,
+				MAX(tt.currency) as currency,
+				MAX(tt.merchant_id) as merchant_id,
+				MAX(tt.merchant_name) as merchant_name,
+				MAX(tt.customer_id) as customer_id,
+				MAX(tt.customer_name) as customer_name,
+				MAX(tt.create_date) as create_date,
+				MAX(tt.bill_status) as bill_status,
+	        	SUM(tt.amount) as amount
+	    
+	    from (
+		            SELECT
+					t1.`code`,
+					MAX(t1.currency) as currency,
+					MAX(t1.merchant_id) as merchant_id,
+					MAX(t1.merchant_name) as merchant_name,
+					MAX(t1.customer_id) as customer_id,
+					MAX(t1.customer_name) as customer_name,
+					MAX(t1.create_date) as create_date,
+					MAX(t1.bill_status) as bill_status,
+		        	SUM(IF(t2.bill_type = '0', IFNULL(t2.price, 0), -IFNULL(t2.price,0))) as amount
+		        	FROM
+		        	t_receive_bill t1
+		       		LEFT JOIN t_receive_bill_cost_item t2 ON t1.id = t2.bill_id        		
+		       		WHERE bu_id = #{buId}
+					AND t1.bill_status = '04'
+					AND t2.parent_brand_id = #{parentBrandId}
+					AND t2.bill_type is not null
+					<if test='effectiveDate!=null' >AND t1.create_date &gt;= #{effectiveDate} </if>
+					<if test='customerIdList!=null and customerIdList.size()>0' > 
+						AND t1.customer_id NOT IN
+			            <foreach collection="customerIdList" item="customerId" open="(" close=")" separator=",">
+			                #{customerId}
+			            </foreach>
+					</if>      
+		        	GROUP BY t1.code,t2.bill_type
+	        )tt GROUP BY tt.code
+    </select>
+
+        <select id="listByPoNoAndProject" resultType="map" >
+            SELECT
+                po_no poNo,
+                project_id projectId,
+                project_name projectName,
+                SUM(IF(bill_type = '0', IFNULL(price, 0), -IFNULL(price,0))) as amount
+            FROM
+                t_receive_bill_cost_item
+            WHERE
+              bill_id IN
+            <foreach collection="billIds" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+            GROUP BY po_no, project_id, project_name
+        </select>
+
+        <select id='listReceiveCostItem' resultType='ReceiveBillCostItemDTO' parameterType='ReceiveBillDTO'>
+            select
+                a.id,
+                a.bill_id,
+                a.project_id,
+                a.project_name,
+                a.po_no,
+                a.goods_id,
+                a.goods_name,
+                a.goods_no,
+                a.invoice_description,
+                a.price,
+                a.num,
+                a.bill_type,
+                a.create_date,
+                a.modify_date,
+                a.parent_brand_name,
+                a.parent_brand_id,
+                a.parent_brand_code,
+                a.subject_code,
+                a.subject_name,
+                a.remark,
+                a.payment_subject_name,
+                a.payment_subject_id,
+                a.verify_platform_code,
+                a.tax_rate,
+                a.tax,
+                a.tax_amount,
+                s.project_code
+            from t_receive_bill_cost_item a
+            left join t_settlement_config s on a.project_id = s.id
+            where bill_id = #{id}
+        </select>
+    
+        <select id="getBeVerifyCostItems" resultType="ReceiveBillCostItemDTO" >
+            SELECT
+                r.id,
+                r.bill_id,
+                r.project_id,
+                r.project_name,
+                r.po_no,
+                r.goods_id,
+                r.goods_name,
+                r.goods_no,
+                if(r.bill_type='0', -r.price, r.price) price,
+                r.num,
+                r.bill_type,
+                r.create_date,
+                r.modify_date,
+                r.parent_brand_name,
+                r.parent_brand_code,
+                r.subject_code,
+                r.subject_name,
+                r.remark,
+                r.invoice_description,
+                r.payment_subject_name,
+                r.payment_subject_id,
+                r.verify_platform_code,
+                r.parent_brand_id,
+                rb.currency,
+                ifnull(t.verifiy_amount,0) verifiy_amount
+            FROM t_receive_bill_cost_item r
+            LEFT JOIN t_receive_bill rb on r.bill_id = rb.id
+            LEFT JOIN ( SELECT receive_item_id, SUM( verifiy_amount ) verifiy_amount FROM t_tob_temp_verify_rel WHERE type = '1' GROUP BY receive_item_id ) t ON r.id = t.receive_item_id
+            WHERE
+                r.bill_type=#{billType}
+            AND r.bill_id IN
+            <foreach collection="billIds" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+            AND r.id NOT IN (
+                SELECT a.id
+                FROM t_receive_bill_cost_item a
+                LEFT JOIN ( SELECT receive_item_id, SUM( verifiy_amount ) verifiy_amount FROM t_tob_temp_verify_rel WHERE type = '1' GROUP BY receive_item_id ) b ON a.id = b.receive_item_id
+                WHERE a.price = b.verifiy_amount)
+        </select>
+
+        <update id="batchUpdate" parameterType="java.util.List" >
+            update t_receive_bill_cost_item
+            <trim prefix="set" suffixOverrides=",">
+                <trim prefix="project_id =case" suffix="end,">
+                    <foreach collection="itemDTOList" item="i" index="index">
+                        <if test="i.projectId!=null">
+                            when id=#{i.id} then #{i.projectId}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="project_name =case" suffix="end,">
+                    <foreach collection="itemDTOList" item="i" index="index">
+                        <if test='i.projectName!=null and !"".equals(i.projectName)' >
+                            when id=#{i.id} then #{i.projectName}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="payment_subject_id =case" suffix="end,">
+                    <foreach collection="itemDTOList" item="i" index="index">
+                        <if test="i.paymentSubjectId!=null">
+                            when id=#{i.id} then #{i.paymentSubjectId}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="payment_subject_name =case" suffix="end,">
+                    <foreach collection="itemDTOList" item="i" index="index">
+                        <if test='i.paymentSubjectName!=null and !"".equals(i.paymentSubjectName)' >
+                            when id=#{i.id} then #{i.paymentSubjectName}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="subject_code =case" suffix="end,">
+                    <foreach collection="itemDTOList" item="i" index="index">
+                        <if test='i.subjectCode!=null and !"".equals(i.subjectCode)'>
+                            when id=#{i.id} then #{i.subjectCode}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="subject_name =case" suffix="end,">
+                    <foreach collection="itemDTOList" item="i" index="index">
+                        <if test='i.subjectName!=null and !"".equals(i.subjectName)' >
+                            when id=#{i.id} then #{i.subjectName}
+                        </if>
+                    </foreach>
+                </trim>
+            </trim>
+            where
+            <foreach collection="itemDTOList" separator="or" item="i" index="index" >
+                id=#{i.id}
+            </foreach>
+        </update>
+
+</mapper>

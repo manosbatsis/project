@@ -1,0 +1,978 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Start content -->
+<style>
+.mll{margin-left:20px;}
+.col-form-label{text-align: right;}
+.margin{margin:20px 20px 0px 20px;}
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px}
+.mt20{margin-top:20px;}
+.mt80{margin-top:80px;}
+.mt60{margin-top:60px;}
+.ml10{margin-left: -10px;}
+.ml15{margin-left: 15px;}
+.ml30{margin-left: 30px;}
+.ml100{margin-left: 30px;}
+.mr13{margin-right: 13px}
+.mr20{margin-right: 20px}
+.table-striped tbody tr:nth-of-type(odd){background: #f8fbff;}
+.btn-hidden{display:none}
+.popupbg{width: 100%;height: 100%;background: rgba(0,0,0,0.5);position: fixed;top: 0;left: 0;z-index: 9;display: flex;justify-content: center;align-items: center;}
+.popup_box{width: 200px;padding:20px 0;border-radius: 5px;background: #fff;position: relative;text-align: center;}
+.popup_box p{text-align: center;margin-bottom: 0;}
+.item-webkit-box{
+        display: -webkit-box !important;
+        flex-flow: nowrap !important;
+}
+.item-webkit-box .form-control{
+        width:160px !important;
+        margin-left: 5px !important;
+}
+</style>
+<style>
+
+</style>
+<!-- Start content -->
+<div class="content">
+    <div class="container-fluid mt80">
+        <!-- Start row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <!--  title   start  -->
+                    <div class="col-12">
+                        <div>
+                            <div class="col-12 row">
+                                <div>
+                                    <ol class="breadcrumb">
+                                        <li><i class="dripicons-location"></i> 当前位置：</li>
+                                        <li class="breadcrumb-item"><a href="#">数据运维</a></li>
+                                        <li class="breadcrumb-item "><a href="#">数据运维</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <ul class="nav nav-tabs" id="tabs">
+		           				<li class="nav-item">
+		           					<a href="#dataOperation" data-toggle="tab" class="nav-link active" >数据运维</a>
+		           				</li>
+		           				<li class="nav-item">
+		           					<a href="#orderImport" data-toggle="tab" class="nav-link" >订单100重推导入</a>
+		           				</li>
+		           				<li class="nav-item">
+                                    <a href="#inventoryRollbackImport" data-toggle="tab" class="nav-link" >库存批量回滚导入</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#syntheticalOperation" data-toggle="tab" class="nav-link" >综合运维</a>
+                                </li>
+								<li class="nav-item">
+									<a href="#amountCoverImport" data-toggle="tab" class="nav-link" >电商金额导入更新</a>
+								</li>
+			           		</ul>
+                            <!--  title   end  -->
+                            <!--  title   基本信息   start -->
+                            <div class="page_title">&nbsp;</div>
+                            <div class="tab-content">
+                            	<div class="tab-pane fade show active" id="dataOperation">
+		                            <form method="get" action="" id="form1">
+		                                <div class="form-group col-12 row">
+		                                    <div class="col-12">
+		                                        <div class="form-row row">
+		                                            <label class="col-2 col-form-label" style="white-space:nowrap;"><span class="fr">topic<span>：</span></span></label>
+		                                            <div class="col-8">
+		                                                <input type="text" required="" parsley-type="text" class="form-control" name="topic" id="topic">
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="form-group col-12 row">
+		                                    <div class="col-12">
+		                                        <div class="form-row row">
+		                                            <label class="col-2 col-form-label" style="white-space:nowrap;"><span class="fr">tags<span>：</span></span></label>
+		                                            <div class="col-8">
+		                                                <input type="text" required="" parsley-type="text" class="form-control" name="tags" id="tags">
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                
+		                                <div class="form-group col-12 row">
+		                                    <div class="col-12">
+		                                        <div class="form-row row">
+		                                            <label class="col-2 col-form-label" style="white-space:nowrap;"><span class="fr">请求报文<span>：</span></span></label>
+		                                            <div class="col-8">
+		                                                <textarea type="text" required="" style="min-height:250px;" parsley-type="text" class="form-control" name="json"></textarea>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="form-group  col-12 row">
+		                                    <div class="col-12">
+		                                        <div class="row">
+		                                            <div class="col-5"></div>
+		                                            <input type="button" class="btn btn-info waves-effect waves-light lf" onclick="sendMS()" id="send-buttons" style="width: 100px;" value="send"></input>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="form-group  col-12 row">
+		                                    <div class="col-12">
+		                                        <div class="form-row row">
+		                                            <label class="col-2 col-form-label" style="white-space:nowrap;"><span class="fr">响应报文<span>：</span></span></label>
+		                                            <div class="col-8">
+		                                                <textarea type="text" id="responseMessage" required="" style="min-height:250px;" readonly="" parsley-type="text" class="form-control"></textarea>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </form>
+	                            </div>
+	                            <div class="tab-pane fade" id="orderImport">
+                            	    <div class="form-group  col-12 row">
+			                            <div class="col-4">
+			                                <div class="form-row row col-12">
+			                                    <label  class="col-4 col-form-label"  style="white-space:nowrap;">上传文件<span>：</span></label>
+			                                    <div class="col-7 mll">
+			                                    	<button type="button" class="btn btn-gradient btn-file" id="btn-order-file">选择文件</button>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                           <div class="col-4 download" style="margin-top:10px;" id="downloadOrderTemplate">
+												<a href="#">模板下载</a>
+			                           </div>
+			                        </div>
+                    <!--  ================================上传文件部分  end===============================================   -->
+                    <!--  ================================导入信息显示部分  start ===============================================   -->
+			                    <div class="col-9 mt10 p-20 ml30"  id="border-order">
+			                       <div class="col-12 row mt10">
+			                           <h5 class="black">导入详情:</h5>
+			                       </div>
+			                        <div class="col-12 row mt10">
+			                              <div class="col-1"  style="white-space:nowrap;">成功数据<span>：</span></div>
+			                              <div class="col-2 ml15"><span id="success-order">0</span>条</div>
+			                        </div>
+			                        <div class="col-12 row mt10">
+			                              <div class="col-1"  style="white-space:nowrap;">错误数据<span>：</span></div>
+			                              <div class="col-2 ml15"><span class="red" id="failure-order">0</span>条</div>
+			                        </div>
+			                        <div class="col-12 row mt10">
+			                        	<table id="message-table-order" class="table table-striped">
+			                                <th style="width:100px;text-align:center;">错误行</th>
+			                        		<th style="width:300px;text-align:center;">错误信息</th>
+			                        	</table>
+			                        </div>
+			                   </div>
+			                   
+			                   <div class="popupbg" style="display: none">
+								    <div class="popup_box">
+								        <img src="/resources/assets/images/uploading.gif" alt="">
+								        <p>正在上传中...</p>
+								    </div>
+								</div>
+                            </div>
+                            <div class="tab-pane fade" id="inventoryRollbackImport">
+                                    <div class="form-group  col-12 row">
+                                        <div class="col-4">
+                                            <div class="form-row row col-12">
+                                                <label  class="col-4 col-form-label"  style="white-space:nowrap;">上传文件<span>：</span></label>
+                                                <div class="col-7 mll">
+                                                    <button type="button" class="btn btn-gradient btn-file" id="btn-inventory-file">选择文件</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <div class="col-4 download" style="margin-top:10px;" id="downloadInventoryTemplate">
+                                                <a href="#">模板下载</a>
+                                       </div>
+                                    </div>
+                    <!--  ================================上传文件部分  end===============================================   -->
+                    <!--  ================================导入信息显示部分  start ===============================================   -->
+                                <div class="col-9 mt10 p-20 ml30"  id="border-inventoryRollback">
+                                   <div class="col-12 row mt10">
+                                       <h5 class="black">导入详情:</h5>
+                                   </div>
+                                    <div class="col-12 row mt10">
+                                          <div class="col-1"  style="white-space:nowrap;">导入成功<span>：</span></div>
+                                          <div class="col-2 ml15"><span id="success-inventoryRollback">0</span>条</div>
+                                    </div>
+                                    <div class="col-12 row mt10">
+                                          <div class="col-1"  style="white-space:nowrap;">导入错误<span>：</span></div>
+                                          <div class="col-2 ml15"><span class="red" id="failure-inventoryRollback">0</span>条</div>
+                                    </div>
+                                    <div class="col-12 row mt10">
+                                          <div class="col-1"  style="white-space:nowrap;">库存总数<span>：</span></div>
+                                          <div class="col-2 ml15"><span id="inventoryTotalNum">0</span>条</div>
+                                    </div>
+                                    <div class="col-12 row mt10">
+                                          <div class="col-1"  style="white-space:nowrap;">业务总数<span>：</span></div>
+                                          <div class="col-2 ml15"><span id="orderTotalNum">0</span>条</div>
+                                    </div>
+                                     <div class="form-group col-12 row">
+		                                    <div class="col-12">
+		                                        <div class="form-row row">
+		                                            <label class="col-2 col-form-label" style="white-space:nowrap;"><span class="fr">电商订单号<span>：</span></span></label>
+		                                            <div class="col-8">
+		                                                <textarea type="text" required="" style="min-height:150px;min-width:550px;" parsley-type="text" class="form-control" id="orderCodes" name="orderCodes"></textarea>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                             </div>
+		                             <div class="form-group  col-12 row">
+		                                    <div class="col-12">
+		                                        <div class="row">
+		                                            <div class="col-5"></div>
+		                                            <input type="button" class="btn btn-info waves-effect waves-light lf" onclick="orderCodesSearch()" style="width: 100px;" value="查询"></input>
+		                                        </div>
+		                                    </div>
+		                                </div>
+
+                                    <div class="col-12 row mt10">
+                                        <table id="message-table-inventoryRollback" class="table table-striped">
+                                        	<thead>
+                        					<tr>
+	                                            <th style="width:100px;text-align:center;">模块</th>
+	                                            <th style="width:100px;text-align:center;">描述</th>
+	                                            <th style="width:100px;text-align:center;">接口编码</th>
+	                                            <th style="width:300px;text-align:center;">单号</th>
+	                                            <th style="width:300px;text-align:center;">错误信息</th>
+                                            </tr>
+                        					</thead>
+	                                        <tbody id="inventoryRollbackBodys">
+	                      				    </tbody>
+
+                                        </table>
+
+                                    </div>
+                               </div>
+
+                               <div class="popupbg" style="display: none">
+                                    <div class="popup_box">
+                                        <img src="/resources/assets/images/uploading.gif" alt="">
+                                        <p>正在上传中...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 综合运维开始 -->
+                            
+                            <div class="tab-pane fade" id="syntheticalOperation">                            
+                            	<p style="text-align:center; inline-block;font-size:20px"><b>数据同步</b></p>
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">同步数据到报表库：</td>		                            	
+										<td>&nbsp;&nbsp;<i class="red">*</i>时间：<input class="inputclass" type="date"  name="dateStr1" id="dateStr1" ></td>																				
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(1);' >同步</button></td>																		
+	                            	</tr>
+                            	</div><br>
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">同步数据到备份库：</td>		                            	
+										<!-- <td>&nbsp;&nbsp;<i class="red">*</i>时间：<input class="inputclass" type="date"  name="dateStr2" id="dateStr2" ></td>-->																				
+	                            		 <td><i class="red">*</i>开始时间：<input class="inputclass" type="date"  name="startDate2" id="startDate2" ></td>																				
+										<td>&nbsp;&nbsp;<i class="red">*</i>结束时间：<input class="inputclass" type="date"  name="endDate2" id="endDate2" ></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(2);' >同步</button></td>																		
+	                            	</tr>
+                            	</div><br>
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">同步数据到XM库    ：</td>		                            	
+										<td>&nbsp;&nbsp;<i class="red">*</i>开始时间：<input class="inputclass" type="date"  name="startDateStr3" id="startDateStr3" ></td>
+										<td>&nbsp;&nbsp;<i class="red">*</i>结束时间：<input class="inputclass" type="date"  name="endDateStr3" id="endDateStr3" ></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(3);' >同步</button></td>
+	                            	</tr>
+                            	</div>
+                            
+                            	<hr style="height:1px;border:none;border-top:1px solid #555555;" />                            
+                            	<p style="text-align:center; inline-block;font-size:20px"><b>爬虫同步</b></p>
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">同步唯品爬虫账单：</td>		                            	
+										<td>&nbsp;&nbsp;用户名：<input class="inputclass" type="text"  name="loginName4" id="loginName4" ></td>																				
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(4);' >同步</button></td>																		
+	                            	</tr>
+                            	</div><br>
+
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">同步云集销量爬虫账单：</td>		                            	
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(5);' >同步</button></td>																		
+	                            	</tr>
+                            	</div><br>
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">同步云集结算账单：</td>		                            	
+										<td>&nbsp;&nbsp;用户名：<input class="inputclass" type="text"  name="loginName6" id="loginName6" ></td>																				
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(6);' >同步</button></td>																		
+	                            	</tr>
+                            	</div><br>
+                           		<div >
+	                            	<tr>
+										<td style="font-size:20px">同步云集爬虫库存    ：&nbsp;&nbsp;&nbsp;&nbsp;</td>		                            	
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(7);' >同步</button></td>																		
+	                            	</tr>
+                            	</div>
+                                <div >
+                                    <tr>
+                                        <td style="font-size:20px">爬虫-同步京东商品-每日销量数据    ：&nbsp;&nbsp;&nbsp;&nbsp;</td>
+										<td>&nbsp;&nbsp;用户名：<input class="inputclass" type="text"  name="loginName14" id="loginName14" ></td>
+										<td>开始时间(同步商品用)：<input class="inputclass" type="date"  name="startDate14" id="startDate14" ></td>
+										<td>结束时间(同步商品用)：<input class="inputclass" type="date"  name="endDate14" id="endDate14" ></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(14);' >同步</button></td>
+                                    </tr>
+                                </div>
+                            	
+                            	<hr style="height:1px;border:none;border-top:1px solid #555555;" />                            
+                            	<p style="text-align:center; inline-block;font-size:20px"><b>业务单据</b></p>
+                            	
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">唯品爬虫账单生成出/入库单：</td>
+										<td>
+										 <div class="form-group col-3 item-webkit-box">
+			                                <label for="" style="font-size: 14px;">出/入：</label>
+			                               <select name="sourceType8" id="sourceType8" class="form-control" style="width: 80px;">
+										    <option value="">全部</option>
+										    <option value="in">入库</option>
+										    <option value="out">出库</option>
+										 </select>
+			                             </div>
+										</td>
+										<td>账单号：<input class="inputclass" type="text"  name="billCodes8" id="billCodes8" ></td>			                            	
+										<td>&nbsp;&nbsp;账单ids：<input class="inputclass" type="text"  name="ids8" id="ids8" ></td>																				
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(8);' >执行</button></td>																		
+	                            	</tr>
+                            	</div><br>
+
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">唯品账单校验：</td>	
+										<td>商家id：<input class="inputclass" type="text"  name="merchantId9" id="merchantId9" ></td>	
+										<td>&nbsp;&nbsp;poNo号：<input class="inputclass" type="text"  name="poNo9" id="poNo9" ></td>	
+										<td>&nbsp;&nbsp;爬虫账单号：<input class="inputclass" type="text"  name="crawlerNo9" id="crawlerNo9" ></td>		                            	
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(9);' >执行</button></td>																		
+	                            	</tr>
+                            	</div><br>
+                            	<div >
+	                            	<tr>
+										<td style="font-size:20px">云集结算账单生成出库单：</td>		                            	
+										<td>&nbsp;&nbsp;<i class="red">*</i>账单类型:
+											<label><input type="radio" name="billType10" value="3" checked>云集发货</label>
+											<label><input type="radio" name="billType10" value="4">云集退货</label>
+										</td>																				
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(10);' >执行</button></td>																		
+	                            	</tr>
+                            	</div>
+                            	<div ><br>
+	                            	<tr>
+										<td style="font-size:20px">云集账单校验：</td>	
+										<td>商家id：<input class="inputclass" type="text"  name="merchantId11" id="merchantId11" ></td>	
+										<td>&nbsp;&nbsp;结算id：<input class="inputclass" type="text"  name="settleId11" id="settleId11" ></td>	
+										<td>&nbsp;&nbsp;skuNO：<input class="inputclass" type="text"  name="skuNo11" id="skuNo11" ></td>		                            												                            	
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick='synOperationSendMQ(11);' >执行</button></td>																		
+	                            	</tr>
+                            	</div>
+                            	<hr>
+                            	<div >
+                            		<p style="text-align:center; inline-block;font-size:20px">订单100订单抓取</p>
+	                            	<div>
+										<td><i class="red">*</i>店铺编码:<input class="inputclass" type="text"  name="shopCode12" id="shopCode12" ></td>																				
+										<td>&nbsp;&nbsp;订单号:<input class="inputclass" type="text"  name="orderNo12" id="orderNo12" ></td>																				
+	                            	</div><br>
+	                            	<div>
+										<td><i class="red">*</i>开始时间：<input class="inputclass" type="date"  name="startDate12" id="startDate12" ></td>																				
+										<td>&nbsp;&nbsp;<i class="red">*</i>结束时间：<input class="inputclass" type="date"  name="endDate12" id="endDate12" ></td>																				
+	                            	</div><br>
+	                            	<tr>
+										<td><p style="text-align:center;"><button type="button" class="btn btn-info" onclick='synOperationSendMQ(12);' >执行</button></p></td>																		
+	                            	</tr>
+                            	</div>
+                            	<hr>
+                            	<div>
+	                            	<tr>
+	                            		<p style="text-align:center; inline-block;font-size:20px">e仓订单抓取：</p>
+										<!-- <td style="font-size:20px">e仓订单抓取：</td> -->	
+										<div>
+										<td><i class="red">*</i>商家编码:<input class="inputclass"  type="text"  name="merchantCode13" id="merchantCode13" ></td>																				
+										<td>&nbsp;&nbsp;订单号:<input class="inputclass"  type="text"  name="orderNo13" id="orderNo13" ></td>																														
+										</div>	 
+										<br>                           	
+										<div>
+										<td><i class="red">*</i>开始时间：<input class="inputclass" type="date"  name="startDate13" id="startDate13" ></td>																														
+										<td>&nbsp;&nbsp;<i class="red">*</i>结束时间：<input class="inputclass" type="date"  name="endDate13" id="endDate13" ></td>																														
+										</div>
+										<div>
+										<p style="text-align:center;"><button type="button" class="btn btn-info" onclick='synOperationSendMQ(13);' >执行</button></p>
+										</div>									
+									</tr>
+                            	</div>
+                            	<hr>
+                            	<div>
+	                            	<tr>
+	                            		<p style="text-align:center; inline-block;font-size:20px">电商订单税费运费分摊：</p>										                           	
+										<div>
+										<td>开始时间：<input class="inputclass" type="datetime-local" step="01"  name="startDate15" id="startDate15" ></td>																														
+										<td>&nbsp;&nbsp;结束时间：<input class="inputclass" type="datetime-local" step="01"  name="endDate15" id="endDate15" ></td>																														
+										</div>
+										<br>
+										<div>
+										<p style="text-align:center;"><button type="button" class="btn btn-info" onclick='synOperationSendMQ(15);' >执行</button></p>
+										</div>									
+									</tr>
+                            	</div>
+
+                            </div>	
+                            <!-- 综合运维 结束-->
+
+							<!-- 电商订单金额导入开始 -->
+							<div class="tab-pane fade" id="amountCoverImport">
+								<div class="form-group  col-12 row">
+									<div class="col-4">
+										<div class="form-row row col-12">
+											<label  class="col-4 col-form-label"  style="white-space:nowrap;">上传文件<span>：</span></label>
+											<div class="col-7 mll">
+												<button type="button" class="btn btn-gradient btn-file" id="btn-amountCover-file">选择文件</button>
+											</div>
+										</div>
+									</div>
+									<div class="col-4 download" style="margin-top:10px;" id="downloadamountCoverTemplate">
+										<a href="#">模板下载</a>
+									</div>
+								</div>
+								<!--  ================================上传文件部分  end===============================================   -->
+								<!--  ================================导入信息显示部分  start ===============================================   -->
+								<div class="col-9 mt10 p-20 ml30"  id="border-amountCover">
+									<div class="col-12 row mt10">
+										<h5 class="black">导入详情:</h5>
+									</div>
+									<div class="col-12 row mt10">
+										<div class="col-1"  style="white-space:nowrap;">导入成功<span>：</span></div>
+										<div class="col-2 ml15"><span id="success-amountCover">0</span>条</div>
+									</div>
+									<div class="col-12 row mt10">
+										<div class="col-1"  style="white-space:nowrap;">导入错误<span>：</span></div>
+										<div class="col-2 ml15"><span class="red" id="failure-amountCover">0</span>条</div>
+									</div>
+
+									<div class="col-12 row mt10">
+										<table id="message-table-amountCover" class="table table-striped">
+											<th style="width:100px;text-align:center;">错误行</th>
+											<th style="width:300px;text-align:center;">错误信息</th>
+										</table>
+									</div>
+
+									<div class="col-12 row mt10">
+										<div class="col-1"  style="white-space:nowrap;">批次跟踪码<span>：</span></div>
+										<div class="col-2 ml15"><input type="text" id="indexCode" name="indexCode"/></div>
+									</div>
+									<div class="col-12 row mt10">
+										<div class="col-2"  style="white-space:nowrap;">合并后总单量<span> ： </span></div>
+										<div class="col-2 ml15"><span id="orderTotalCount">0</span>单</div>
+									</div>
+									<div class="col-12 row mt10">
+										<div class="col-2"  style="white-space:nowrap;">已完成单量<span> ： </span></div>
+										<div class="col-2 ml15"><span id="overCount">0</span>单</div>
+									</div>
+									<div class="form-group  col-12 row">
+										<div class="col-12">
+											<div class="row">
+												<div class="col-5"></div>
+												<input type="button" class="btn btn-info waves-effect waves-light lf" onclick="amountCoverLogSearch()" style="width: 100px;" value="查询"></input>
+											</div>
+										</div>
+									</div>
+									<div class="col-12 row mt10">
+										<table id="message-table-amountCover-log" class="table table-striped">
+											<thead>
+											<tr>
+												<th style="width:100px;text-align:center;">描述</th>
+												<th style="width:100px;text-align:center;">接口编码</th>
+												<th style="width:200px;text-align:center;">单号</th>
+												<th style="width:300px;text-align:center;">错误信息</th>
+											</tr>
+											</thead>
+											<tbody id="amountCoverLogBodys">
+											</tbody>
+										</table>
+
+									</div>
+
+
+								</div>
+								<div class="popupbg" style="display: none">
+									<div class="popup_box">
+										<img src="/resources/assets/images/uploading.gif" alt="">
+										<p>正在上传中...</p>
+									</div>
+								</div>
+							</div>
+						<!-- 电商订单金额导入结束-->
+
+
+								<!-- 文件上传表单 -->
+                            <form enctype="multipart/form-data" id="form-upload">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container -->
+        </div>
+
+    </div> <!-- content -->
+</div>
+<!--======================Modal框===========================  -->
+<div th:include="common/common"></div>
+<style>
+	.red {color: red;}
+	.inputclass{border: 1px solid #dadada;border-radius: 4px;height: 38px;max-width: 18%;font-size: 15px;}
+	.input_msg{color: #495057;}
+    .fail{background: #f00;color: #fff;padding: 4px 6px;border-radius: 3px;}
+    .success{background: #6ea9f3;color: #fff;padding: 4px 6px;border-radius: 3px;}
+</style>
+<script type="text/javascript">
+    /* 查询业务和库存检查 回滚失败的单据 */
+	function orderCodesSearch(){
+		var orderCodes = $("#orderCodes").val();//电商订单单号
+		var closeURL = $module.fn.getModuleUrl(moduleCode,'/dataoperations/getRollbackList.asyn?r='+Math.random());
+    	$custom.request.ajax(closeURL,{"orderCodes":orderCodes},function(data){
+    		var trHtml="";
+    		$("#inventoryRollbackBodys").html(trHtml);
+    		$("#orderTotalNum").text(data.data.orderTotalNum);//业务回滚总条数
+    		$("#inventoryTotalNum").text(data.data.inventoryTotalNum);//库存回滚总条数
+    		if(data.data.rollbackList!=null&&data.data.rollbackList.length>0){
+		    	 for(var i=0;i<data.data.rollbackList.length;i++){
+					var modelCode= data.data.rollbackList[i].model_code;
+					if ('4'==modelCode) {
+						modelCode="库存";
+					}else if ('1'==modelCode) {
+						modelCode="业务";
+					}
+			    		    
+		    		 trHtml+='<tr>';		    		 
+		    	     trHtml+='<td>'+modelCode+'</td>';
+		    	     trHtml+='<td>'+data.data.rollbackList[i].model+'</td>';
+		    	     trHtml+='<td>'+data.data.rollbackList[i].point+'</td>';
+		    	     trHtml+='<td>'+data.data.rollbackList[i].keyword+'</td>';
+		    	     trHtml+='<td>'+data.data.rollbackList[i].exp_msg+'</td>';
+		    		 trHtml+='</tr>'
+		    	 }
+		    	 $("#inventoryRollbackBodys").html(trHtml);
+		    	// console.log("jsonObject====>"+JSON.stringify(objList));
+		    }
+    		
+        });
+	}
+	/*查询电商订单金额更新失败日志*/
+	function amountCoverLogSearch(){
+		var indexCode = $("#indexCode").val();//批次跟踪码
+		var logurl = $module.fn.getModuleUrl(moduleCode,'/dataoperations/getAmountCoverLogList.asyn?r='+Math.random());
+		$custom.request.ajax(logurl,{"indexCode":indexCode},function(data){
+			var trHtml="";
+			$("#amountCoverLogBodys").html(trHtml);
+			$("#overCount").text(data.data.overCount);//业务回滚总条数
+			if(data.data.logList!=null&&data.data.logList.length>0){
+				for(var i=0;i<data.data.logList.length;i++){
+					trHtml+='<tr>';
+					trHtml+='<td style="width:100px;text-align:center;">'+data.data.logList[i].model+'</td>';
+					trHtml+='<td style="width:100px;text-align:center;">'+data.data.logList[i].point+'</td>';
+					trHtml+='<td style="width:200px;text-align:center;">'+data.data.logList[i].keyword+'</td>';
+					trHtml+='<td style="width:300px;text-align:center;">'+data.data.logList[i].expMsg+'</td>';
+					trHtml+='</tr>'
+				}
+				$("#amountCoverLogBodys").html(trHtml);
+			}
+		});
+	}
+	function synOperationSendMQ(tag){
+		
+		var dateStr1 = $("#dateStr1").val();//同步数据到报表库时间
+		var startDate2 = $("#startDate2").val();//同步数据到备份库时间
+		var endDate2 = $("#endDate2").val();//同步数据到备份库时间
+		var startDateStr3 = $("#startDateStr3").val();//同步数据到XM库开始时间
+		var endDateStr3 = $("#endDateStr3").val();//同步数据到XM库结束时间
+		var loginName4 = $("#loginName4").val();//同步唯品爬虫账单 用户名
+		var loginName6 = $("#loginName6").val();//同步云集结算账单  用户名
+		var sourceType8=$('select[name="sourceType8"]').val();//唯品爬虫账单生成出库单 出/入
+		var billCodes8 = $("#billCodes8").val();//唯品爬虫账单生成出库单 账单号
+		var ids8 = $("#ids8").val();//唯品爬虫账单生成出库单 ids
+		var merchantId9 = $("#merchantId9").val();//唯品账单校验 商家id
+		var poNo9 = $("#poNo9").val();//唯品账单校验poNo号
+		var crawlerNo9 = $("#crawlerNo9").val();//唯品账单校验 爬虫账单号		
+		var billType10 = $("input[name='billType10']:checked").val();//云集结算账单生成出库单 账单类型
+		var merchantId11 = $("#merchantId11").val();//云集账单校验 商家id
+		var settleId11 = $("#settleId11").val();//云集账单校验 结算id
+		var skuNo11 = $("#skuNo11").val();//云集账单校验skuNO						
+		var shopCode12 = $("#shopCode12").val();//订单100订单抓取 店铺编码
+		var orderNo12 = $("#orderNo12").val();//订单100订单抓取 订单号
+		var startDate12 = $("#startDate12").val();//订单100订单抓取 开始时间
+		var endDate12 = $("#endDate12").val();//订单100订单抓取 结束时间
+		var merchantCode13 = $("#merchantCode13").val();//e仓订单抓取 商家卓志编码
+		var orderNo13 = $("#orderNo13").val();//e仓订单抓取 订单号
+		var startDate13 = $("#startDate13").val();//e仓订单抓取 开始时间
+		var endDate13 = $("#endDate13").val();//e仓订单抓取 结束时间
+		//爬虫-同步京东商品-每日销量数据
+		var loginName14 = $("#loginName14").val();//用户名
+		var startDate14 = $("#startDate14").val();//开始时间
+		var endDate14 = $("#endDate14").val();//结束时间		
+		//电商订单税费运费分摊
+		var startDate15 = $("#startDate15").val();//开始时间
+		var endDate15 = $("#endDate15").val();//结束时间
+
+		// 定义json
+		var json = {};
+		var operationName='';
+		var topic='';
+		var tags='';
+		if (1==tag) {
+			operationName='同步数据到报表库';
+			if (!dateStr1) {
+				$custom.alert.error("同步数据到报表库时间 不能为空 ");
+				return false;
+			}
+			json['selectTime']=dateStr1;// 同步报表的选择时间
+			topic='derp-report-mq';
+			tags='report-sys-data-tags';
+		}else if (2==tag) {
+			if (!startDate2) {
+				$custom.alert.error("同步数据到备份库开始时间 不能为空 ");
+				return false;
+			}
+			if (!endDate2) {
+				$custom.alert.error("同步数据到备份库结束时间 不能为空 ");
+				return false;
+			}
+			json['startDate']=startDate2;// 开始时间
+			json['endDate']=endDate2;// 结束时间	
+			topic='derp-bxm-mq';
+			tags='derp-syndata-bxm';
+		}else if (3==tag) {
+			operationName='同步数据到XM库';			
+			if (!startDateStr3) {
+				$custom.alert.error("同步数据到XM库开始时间 不能为空 ");
+				return false;
+			}
+
+			if (!endDateStr3) {
+				$custom.alert.error("同步数据到XM库结束时间 不能为空 ");
+				return false;
+			}
+
+			json['startDate']=startDateStr3;// 开始时间
+			json['endDate']=endDateStr3;// 结束时间
+			topic='derp-bxm-mq';
+			tags='sys-xm-data';
+		}else if (4==tag) {
+			operationName='同步唯品爬虫账单';	
+			if (loginName4) {
+				json['loginName']=loginName4;// 同步唯品爬虫账单用户名
+			}
+			topic='derp-order-mq';
+			tags='crawler-vip-bill-tags';
+		}else if (5==tag) {
+			operationName='同步云集销量爬虫账单';
+			topic='derp-order-mq';
+			tags='crawler-bill-yunji-tags';			
+			
+		}else if (6==tag) {
+			operationName='同步云集结算账单';
+			if (loginName6) {
+				json['loginName']=loginName6;// 同步云集结算账单 用户名
+			}
+			topic='derp-order-mq';
+			tags='yunji-account-data-tags';
+		}else if (7==tag) {
+			operationName='同步云集爬虫库存';
+			topic='derp-order-mq';
+			tags='yunji-inventory-data-tags';
+		}else if (8==tag) {
+			operationName='唯品爬虫账单生成出库单';
+			topic='derp-order-mq';
+			tags='create-sale-out-vip-depot-tags';
+			if (sourceType8) {
+				json['sourceType']=sourceType8;// 唯品爬虫账单生成出库单出/入
+			}
+			if (billCodes8) {
+				json['billCodes']=billCodes8;// 唯品爬虫账单生成出库单 账单号
+			}
+			if (ids8) {
+				json['ids']=ids8;// 唯品爬虫账单生成出库单 ids	
+			}
+		}else if (9==tag) {
+			operationName='唯品账单校验';
+			topic='derp-report-mq';
+			tags='vip-auto-veri';
+			if (merchantId9) {
+				json['merchantId']=merchantId9;// 唯品账单校验 商家id		
+			}
+			if (poNo9) {
+				json['poNo']=poNo9;// 唯品账单校验poNo号
+			}
+			if (crawlerNo9) {
+				json['crawlerNo']=crawlerNo9;// 唯品账单校验 爬虫账单号	
+			}										
+		}else if (10==tag) {
+			operationName='云集结算账单生成出库单';			
+			if (!billType10) {
+				$custom.alert.error("云集结算账单生成出库单 账单类型不能为空");
+				return false;
+			}
+			topic='derp-order-mq';
+			tags='yunji-delivery-return-detail-tags';
+			json['sourceType']=billType10;// 账单类型
+			
+		}else if (11==tag) {
+			operationName='云集账单校验';
+			topic='derp-report-mq';
+			tags='yunji-auto-veri';
+			if (merchantId11) {
+				json['merchantId']=merchantId11;// 云集账单校验 商家id		
+			}
+			if (settleId11) {
+				json['settleId']=settleId11;// 云集账单校验 结算id	
+			}
+			if (skuNo11) {
+				json['skuNo']=skuNo11;// 云集账单校验skuNO
+			}
+					
+		}else if (12==tag) {
+			operationName='订单100订单抓取';
+			if (!shopCode12) {
+				$custom.alert.error("订单100订单抓取 店铺编码 不能为空 ");
+				return false;
+			}
+			if (!startDate12) {
+				$custom.alert.error("订单100订单抓取 开始时间 不能为空 ");
+				return false;
+			}
+			if (!endDate12) {
+				$custom.alert.error("订单100订单抓取 结束时间 不能为空 ");
+				return false;
+			}
+			topic='derp-order-mq';
+			tags='grab-smurfs-order-collection-order-tags';
+			json['shopCode']=shopCode12;// 店铺编码
+			json['startDate']=startDate12 +" 00:00:00";// 开始时间
+			json['endDate']=endDate12+" 23:59:59.999";;// 结束时间			
+			json['tag']='2';// 手动触发
+			if (orderNo12) {
+				json['orderNo']=orderNo12;//订单号
+			}
+			
+		}else if (13==tag) {
+			operationName='e仓订单抓取';
+			if (!merchantCode13) {
+				$custom.alert.error("e仓订单抓取 商家卓志编码 不能为空 ");
+				return false;
+			}
+			if (!startDate13) {
+				$custom.alert.error("e仓订单抓取 开始时间 不能为空 ");
+				return false;
+			}
+			if (!endDate13) {
+				$custom.alert.error("e仓订单抓取 结束时间 不能为空 ");
+				return false;
+			}
+			topic='derp-order-mq';
+			tags='grab-ews-delivery-order-tags';
+			json['merchantCode']=merchantCode13;// 商家编码
+			json['startTime']=startDate13+" 00:00:00";// 开始时间
+			json['endTime']=endDate13 +" 23:59:59";// 结束时间
+			json['tag']='2';// 手动触发
+			if (orderNo13) {
+				json['orderId']=orderNo13;// 订单号
+			}
+		}else if (14==tag) {
+			operationName='爬虫-同步京东商品-每日销量';
+			topic='derp-order-mq';
+			tags='crawler-jd-goods-stocksale-tags';
+			json['loginName']=loginName14;//爬虫账号
+			json['startTime']=startDate14+" 00:00:00";// 开始时间
+			json['endTime']=endDate14 +" 23:59:59";// 结束时间
+		}else if (15==tag) {
+			operationName='电商订单税费运费分摊';
+			topic='derp-order-mq';
+			tags='order-apportion-tax-freight-tags';
+			json['startTime']=startDate15;// 开始时间
+			json['endTime']=endDate15;// 结束时间
+		}else {
+			$custom.alert.error("非法操作");
+			return false;
+		}
+		var jsonStr= JSON.stringify(json);			
+		
+	    $custom.alert.warning("确定"+operationName+"操作？",function(){
+	    	var closeURL = $module.fn.getModuleUrl(moduleCode,'/dataoperations/synOperationSendMQ.asyn?r='+Math.random());
+	    	$custom.request.ajax(closeURL,{"json":jsonStr.toString(),"topic":topic,"tags":tags},function(data){
+	    		console.log(data.status =='00');
+	    		console.log(data.message);
+	    		if(data.status =='00'){           	
+	                $custom.alert.success(data.message);
+	                $("#responseMessage").val(data.message);
+	            }else{
+	                $custom.alert.error(data.message);
+	                $("#responseMessage").val(data.message);
+	            }
+	        });
+	    });
+	}
+
+	var type = "" ;
+	
+	$('#tabs a[href="#orderImport"]').on('shown.bs.tab', function(e){
+	    type = "order" ;
+	});
+	
+	$('#tabs a[href="#inventoryRollbackImport"]').on('shown.bs.tab', function(e){
+	    type = "inventoryRollback" ;
+	});
+	
+	$('#tabs a[href="#dataOperation"]').on('shown.bs.tab', function(e){
+	    type = "" ;
+	});
+	
+	$('#tabs a[href="#syntheticalOperation"]').on('shown.bs.tab', function(e){
+	    type = "" ;
+	});
+    $('#tabs a[href="#amountCoverImport"]').on('shown.bs.tab', function(e){
+        type = "amountCover" ;
+    });
+	function sendMS(){
+		$("#responseMessage").val('');
+		var json=$('textarea[name="json"]').val();
+		var tags = $("#tags").val();
+		var topic = $("#topic").val();
+		if (!topic) {
+			$custom.alert.error("topic 不能为空 ");
+			return false;
+		}
+		if (!tags) {
+			$custom.alert.error("tags 不能为空 ");
+			return false;
+		}
+	    if(!isJSON(json)){
+	        return false;
+	    }
+	    $custom.alert.warning("确定此数据操作？",function(){
+	    	var closeURL = $module.fn.getModuleUrl(moduleCode,'/dataoperations/sendMS.asyn?r='+Math.random());
+	    	$custom.request.ajax(closeURL,{"json":json,"topic":topic,"tags":tags},function(data){
+	    		console.log(data.status =='00');
+	    		console.log(data.status ==00);
+	    		console.log(data.message);
+	    		if(data.status =='00'){           	
+	                $custom.alert.success(data.message);
+	                $("#responseMessage").val(data.message);
+	            }else{
+	                $custom.alert.error(data.message);
+	                $("#responseMessage").val(data.message);
+	            }
+	        });
+	    });
+	}
+	
+	//校验是否为正则表达式
+	function isJSON(str) {
+	    if (typeof str == 'string') {
+	        try {
+	            var obj=JSON.parse(str);
+	            if(str.indexOf('{')>-1){
+	                return true;
+	            }else{
+	                $custom.alert.error("json格式错误,请仔细检查业务报文");
+	                return false;
+	            }
+	
+	        } catch(e) {
+	            $custom.alert.error("json格式错误,请仔细检查业务报文");
+	            return false;
+	        }
+	    }
+	    return false;
+	}
+	    
+	function ajaxUpload(url,dataJson,successFun){
+	    var b=$load.invalidLogin();
+	    if(b){
+	        $custom.alert.prompt("登陆失效,请重新登陆",function(){
+	            location.reload();
+	        });
+	    }
+		//正则添加token 校验
+		var reg= /^.*\.asyn\?.*$/;
+		if(reg.test(url)){
+			url+='&token='+token;
+		}else{
+			url+='?token='+token;
+		}
+		//ajax 发送请求
+		$.ajax({
+			type:'post',
+			url:url,
+			dataType: "json",
+			data:dataJson,
+			xhrFields: {
+				withCredentials: true
+			},
+			contentType: false,
+			processData: false,
+			success:successFun,
+	
+		});
+	}
+	
+	$(".download").click(function(){
+		var url = $module.fn.getModuleUrl(moduleCode,'/dataoperations/download.asyn?r='+Math.random()+'&type='+type);
+		window.open(url);
+	});
+	
+	$(function(){
+		
+		//点击上传文件
+		$(".btn-file").click(function(){
+			var input = '<input type="file" name="file" id="file" class="btn-hidden file-import">';
+			$("#form-upload").empty();
+			$("#form-upload").append(input);
+			$("#file").click();
+		});
+		
+		//上传文件到后端
+		$("#form-upload").on("change",'.file-import',function(){
+			//判断是否为excel格式
+			var data = $(this).val().split(".");
+			var suffix = data[data.length-1];
+			if(suffix=="xlsx" || suffix=="xls"){
+				$(".popupbg").show();
+				var formData = new FormData($("#form-upload")[0]);
+				var url = $module.fn.getModuleUrl(moduleCode,'/dataoperations/importData.asyn?r='+Math.random()+'&type='+type);
+				ajaxUpload(url, formData, function(result){
+					$(".popupbg").hide();
+					if(result.state == '200'){
+						$custom.alert.success("导入完成！");
+					}else{
+						$custom.alert.error("导入失败！");
+					}
+					$("#success-"+type).text(result.data["success"]);//成功条数
+					$("#failure-"+type).text(result.data["failure"]);//错误条数
+					if ("inventoryRollback" ==type) {
+						$("#orderCodes").val(result.data["orderCodes"])
+					}// 库存回滚查询单号回填
+					if ("amountCover" ==type) {
+						$("#orderTotalCount").val(result.data["orderTotalCount"]);
+						$("#indexCode").val(result.data["indexCode"]);
+					}//电商订单更新
+
+					//错误信息
+					 $("#message-table-" + type + " tr:gt(0)").remove();
+					$.each(result.data["message"],function(i,d){
+						var tr = "";
+						tr+="<tr><td style='text-align:center;'>"+d.rows+"</td><td style='text-align:center;'>"+d.message+"</td></tr>";
+						$("#message-table-"+type).append(tr);
+					});
+				});
+			}else{
+				$custom.alert.error("请上传正确的excel格式文件");
+			}
+		});
+		
+	});
+
+
+</script>

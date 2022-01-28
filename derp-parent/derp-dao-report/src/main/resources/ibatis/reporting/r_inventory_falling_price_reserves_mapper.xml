@@ -1,0 +1,873 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.InventoryFallingPriceReservesMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="InventoryFallingPriceReservesModelMap" type="InventoryFallingPriceReservesModel" >
+            <result property="id" column="id" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="depotId" column="depot_id" />
+            <result property="depotName" column="depot_name" />
+            <result property="buId" column="bu_id" />
+            <result property="buName" column="bu_name" />
+            <result property="inverntoryStatus" column="inverntory_status" />
+            <result property="goodsId" column="goods_id" />
+            <result property="goodsName" column="goods_name" />
+            <result property="goodsNo" column="goods_no" />
+            <result property="barcode" column="barcode" />
+            <result property="commbarcode" column="commbarcode" />
+            <result property="brandParentId" column="brand_parent_id" />
+            <result property="brandParent" column="brand_parent" />
+            <result property="batchNo" column="batch_no" />
+            <result property="typeId" column="type_id" />
+            <result property="typeName" column="type_name" />
+            <result property="reportMonth" column="report_month" />
+            <result property="reportDate" column="report_date" />
+            <result property="productionDate" column="production_date" />
+            <result property="overdueDate" column="overdue_date" />
+            <result property="overdueMonth" column="overdue_month" />
+            <result property="surplusDays" column="surplus_days" />
+            <result property="totalDays" column="total_days" />
+            <result property="surplusDate" column="surplus_date" />
+            <result property="inverntoryType" column="inverntory_type" />
+            <result property="surplusNum" column="surplus_num" />
+            <result property="surplusProportion" column="surplus_proportion" />
+            <result property="financialSurplusProportion" column="financial_surplus_proportion" />
+            <result property="effectiveInterval" column="effective_interval" />
+            <result property="depreciationReserveProportion" column="depreciation_reserve_proportion" />
+            <result property="settlementPrice" column="settlement_price" />
+            <result property="totalProvision" column="total_provision" />
+            <result property="twoMonthsEffectiveInterval" column="two_months_effective_interval" />
+            <result property="twoMonthsSurplusProportion" column="two_months_surplus_proportion" />
+            <result property="totalAmount" column="total_amount" />
+            <result property="firstShelfDate" column="first_shelf_date" />
+            <result property="inWarehouseDays" column="in_warehouse_days" />
+            <result property="inWarehouseInterval" column="in_warehouse_interval" />
+            <result property="createDate" column="create_date" />
+            <result property="noshelfCode" column="noshelf_code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryFallingPriceReservesModelMap' parameterType='InventoryFallingPriceReservesModel'>
+        select <include refid='sql_columns' /> from r_inventory_falling_price_reserves  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryFallingPriceReservesModelMap' parameterType='InventoryFallingPriceReservesModel'>
+        select <include refid='sql_columns' /> from r_inventory_falling_price_reserves  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryFallingPriceReservesModelMap' parameterType='InventoryFallingPriceReservesModel' >
+        select <include refid='sql_columns' /> from r_inventory_falling_price_reserves  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='InventoryFallingPriceReservesModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_inventory_falling_price_reserves
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='merchantId!=null' >merchant_id  , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id  , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='buId!=null' >bu_id  , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='inverntoryStatus!=null and !"".equals(inverntoryStatus)' > inverntory_status , </if>
+                        <if test='goodsId!=null' >goods_id  , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='brandParentId!=null' >brand_parent_id  , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' > brand_parent , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                        <if test='typeId!=null' >type_id  , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' > type_name , </if>
+                        <if test='reportMonth!=null and !"".equals(reportMonth)' > report_month , </if>
+                        <if test='reportDate!=null' >report_date  , </if>
+                        <if test='productionDate!=null' >production_date  , </if>
+                        <if test='overdueDate!=null' >overdue_date  , </if>
+                        <if test='overdueMonth!=null and !"".equals(overdueMonth)' > overdue_month , </if>
+                        <if test='surplusDays!=null' >surplus_days  , </if>
+                        <if test='totalDays!=null' >total_days  , </if>
+                        <if test='surplusDate!=null' >surplus_date  , </if>
+                        <if test='inverntoryType!=null and !"".equals(inverntoryType)' > inverntory_type , </if>
+                        <if test='surplusNum!=null' >surplus_num  , </if>
+                        <if test='surplusProportion!=null' >surplus_proportion  , </if>
+                        <if test='financialSurplusProportion!=null and !"".equals(financialSurplusProportion)' > financial_surplus_proportion , </if>
+                        <if test='effectiveInterval!=null and !"".equals(effectiveInterval)' > effective_interval , </if>
+                        <if test='depreciationReserveProportion!=null' >depreciation_reserve_proportion  , </if>
+                        <if test='settlementPrice!=null' >settlement_price  , </if>
+                        <if test='totalProvision!=null' >total_provision  , </if>
+                        <if test='twoMonthsEffectiveInterval!=null and !"".equals(twoMonthsEffectiveInterval)' > two_months_effective_interval , </if>
+                        <if test='twoMonthsSurplusProportion!=null' >two_months_surplus_proportion  , </if>
+                        <if test='totalAmount!=null' >total_amount  , </if>
+                        <if test='firstShelfDate!=null' >first_shelf_date  , </if>
+                        <if test='inWarehouseDays!=null' >in_warehouse_days  , </if>
+                        <if test='inWarehouseInterval!=null and !"".equals(inWarehouseInterval)' > in_warehouse_interval , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='noshelfCode!=null and !"".equals(noshelfCode)' > noshelf_code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='inverntoryStatus!=null and !"".equals(inverntoryStatus)' > #{inverntoryStatus} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='brandParentId!=null' > #{brandParentId} , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' > #{brandParent} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                        <if test='typeId!=null' > #{typeId} , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' > #{typeName} , </if>
+                        <if test='reportMonth!=null and !"".equals(reportMonth)' > #{reportMonth} , </if>
+                        <if test='reportDate!=null' > #{reportDate} , </if>
+                        <if test='productionDate!=null' > #{productionDate} , </if>
+                        <if test='overdueDate!=null' > #{overdueDate} , </if>
+                        <if test='overdueMonth!=null and !"".equals(overdueMonth)' > #{overdueMonth} , </if>
+                        <if test='surplusDays!=null' > #{surplusDays} , </if>
+                        <if test='totalDays!=null' > #{totalDays} , </if>
+                        <if test='surplusDate!=null' > #{surplusDate} , </if>
+                        <if test='inverntoryType!=null and !"".equals(inverntoryType)' > #{inverntoryType} , </if>
+                        <if test='surplusNum!=null' > #{surplusNum} , </if>
+                        <if test='surplusProportion!=null' > #{surplusProportion} , </if>
+                        <if test='financialSurplusProportion!=null and !"".equals(financialSurplusProportion)' > #{financialSurplusProportion} , </if>
+                        <if test='effectiveInterval!=null and !"".equals(effectiveInterval)' > #{effectiveInterval} , </if>
+                        <if test='depreciationReserveProportion!=null' > #{depreciationReserveProportion} , </if>
+                        <if test='settlementPrice!=null' > #{settlementPrice} , </if>
+                        <if test='totalProvision!=null' > #{totalProvision} , </if>
+                        <if test='twoMonthsEffectiveInterval!=null and !"".equals(twoMonthsEffectiveInterval)' > #{twoMonthsEffectiveInterval} , </if>
+                        <if test='twoMonthsSurplusProportion!=null' > #{twoMonthsSurplusProportion} , </if>
+                        <if test='totalAmount!=null' > #{totalAmount} , </if>
+                        <if test='firstShelfDate!=null' > #{firstShelfDate} , </if>
+                        <if test='inWarehouseDays!=null' > #{inWarehouseDays} , </if>
+                        <if test='inWarehouseInterval!=null and !"".equals(inWarehouseInterval)' > #{inWarehouseInterval} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='noshelfCode!=null and !"".equals(noshelfCode)' > #{noshelfCode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='InventoryFallingPriceReservesModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_inventory_falling_price_reserves SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='inverntoryStatus!=null and !"".equals(inverntoryStatus)' >inverntory_status= #{inverntoryStatus} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='brandParentId!=null' > brand_parent_id= #{brandParentId} , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                        <if test='typeId!=null' > type_id= #{typeId} , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} , </if>
+                        <if test='reportMonth!=null and !"".equals(reportMonth)' >report_month= #{reportMonth} , </if>
+                        <if test='reportDate!=null' > report_date= #{reportDate} , </if>
+                        <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                        <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                        <if test='overdueMonth!=null and !"".equals(overdueMonth)' >overdue_month= #{overdueMonth} , </if>
+                        <if test='surplusDays!=null' > surplus_days= #{surplusDays} , </if>
+                        <if test='totalDays!=null' > total_days= #{totalDays} , </if>
+                        <if test='surplusDate!=null' > surplus_date= #{surplusDate} , </if>
+                        <if test='inverntoryType!=null and !"".equals(inverntoryType)' >inverntory_type= #{inverntoryType} , </if>
+                        <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                        <if test='surplusProportion!=null' > surplus_proportion= #{surplusProportion} , </if>
+                        <if test='financialSurplusProportion!=null and !"".equals(financialSurplusProportion)' >financial_surplus_proportion= #{financialSurplusProportion} , </if>
+                        <if test='effectiveInterval!=null and !"".equals(effectiveInterval)' >effective_interval= #{effectiveInterval} , </if>
+                        <if test='depreciationReserveProportion!=null' > depreciation_reserve_proportion= #{depreciationReserveProportion} , </if>
+                        <if test='settlementPrice!=null' > settlement_price= #{settlementPrice} , </if>
+                        <if test='totalProvision!=null' > total_provision= #{totalProvision} , </if>
+                        <if test='twoMonthsEffectiveInterval!=null and !"".equals(twoMonthsEffectiveInterval)' >two_months_effective_interval= #{twoMonthsEffectiveInterval} , </if>
+                        <if test='twoMonthsSurplusProportion!=null' > two_months_surplus_proportion= #{twoMonthsSurplusProportion} , </if>
+                        <if test='totalAmount!=null' > total_amount= #{totalAmount} , </if>
+                        <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} , </if>
+                        <if test='inWarehouseDays!=null' > in_warehouse_days= #{inWarehouseDays} , </if>
+                        <if test='inWarehouseInterval!=null and !"".equals(inWarehouseInterval)' >in_warehouse_interval= #{inWarehouseInterval} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='noshelfCode!=null and !"".equals(noshelfCode)' >noshelf_code= #{noshelfCode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_inventory_falling_price_reserves  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_inventory_falling_price_reserves where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            bu_id,
+            bu_name,
+            inverntory_status,
+            goods_id,
+            goods_name,
+            goods_no,
+            barcode,
+            commbarcode,
+            brand_parent_id,
+            brand_parent,
+            batch_no,
+            type_id,
+            type_name,
+            report_month,
+            report_date,
+            production_date,
+            overdue_date,
+            overdue_month,
+            surplus_days,
+            total_days,
+            surplus_date,
+            inverntory_type,
+            surplus_num,
+            surplus_proportion,
+            financial_surplus_proportion,
+            effective_interval,
+            depreciation_reserve_proportion,
+            settlement_price,
+            total_provision,
+            two_months_effective_interval,
+            two_months_surplus_proportion,
+            total_amount,
+            first_shelf_date,
+            in_warehouse_days,
+            in_warehouse_interval,
+            create_date,
+            noshelf_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='inverntoryStatus!=null and !"".equals(inverntoryStatus)' >inverntory_status= #{inverntoryStatus} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='brandParentId!=null' > brand_parent_id= #{brandParentId} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                            <if test='typeId!=null' > type_id= #{typeId} and </if>
+                            <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} and </if>
+                            <if test='reportMonth!=null and !"".equals(reportMonth)' >report_month= #{reportMonth} and </if>
+                            <if test='reportDate!=null' > report_date= #{reportDate} and </if>
+                            <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                            <if test='overdueMonth!=null and !"".equals(overdueMonth)' >overdue_month= #{overdueMonth} and </if>
+                            <if test='surplusDays!=null' > surplus_days= #{surplusDays} and </if>
+                            <if test='totalDays!=null' > total_days= #{totalDays} and </if>
+                            <if test='surplusDate!=null' > surplus_date= #{surplusDate} and </if>
+                            <if test='inverntoryType!=null and !"".equals(inverntoryType)' >inverntory_type= #{inverntoryType} and </if>
+                            <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                            <if test='surplusProportion!=null' > surplus_proportion= #{surplusProportion} and </if>
+                            <if test='financialSurplusProportion!=null and !"".equals(financialSurplusProportion)' >financial_surplus_proportion= #{financialSurplusProportion} and </if>
+                            <if test='effectiveInterval!=null and !"".equals(effectiveInterval)' >effective_interval= #{effectiveInterval} and </if>
+                            <if test='depreciationReserveProportion!=null' > depreciation_reserve_proportion= #{depreciationReserveProportion} and </if>
+                            <if test='settlementPrice!=null' > settlement_price= #{settlementPrice} and </if>
+                            <if test='totalProvision!=null' > total_provision= #{totalProvision} and </if>
+                            <if test='twoMonthsEffectiveInterval!=null and !"".equals(twoMonthsEffectiveInterval)' >two_months_effective_interval= #{twoMonthsEffectiveInterval} and </if>
+                            <if test='twoMonthsSurplusProportion!=null' > two_months_surplus_proportion= #{twoMonthsSurplusProportion} and </if>
+                            <if test='totalAmount!=null' > total_amount= #{totalAmount} and </if>
+                            <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} and </if>
+                            <if test='inWarehouseDays!=null' > in_warehouse_days= #{inWarehouseDays} and </if>
+                            <if test='inWarehouseInterval!=null and !"".equals(inWarehouseInterval)' >in_warehouse_interval= #{inWarehouseInterval} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='noshelfCode!=null and !"".equals(noshelfCode)' >noshelf_code= #{noshelfCode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<select id="listInventoryFallingPriceReservesPage" resultType="InventoryFallingPriceReservesDTO" parameterType="InventoryFallingPriceReservesDTO" >
+            select f.*,t2.superior_parent_brand
+            from r_inventory_falling_price_reserves f
+            LEFT JOIN st_commbarcode t1 ON t1.commbarcode=f.commbarcode
+            LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > f.id= #{id} and </if>
+                            <if test='merchantId!=null' > f.merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >f.merchant_name= #{merchantName} and </if>
+                            <if test='depotIds!=null and !"".equals(depotIds)' >f.depot_id in
+                                <foreach collection='depotIds.split(",")' item='depotId' separator=',' open='(' close=')'>
+                                    #{depotId}
+                                </foreach>
+                                and
+                            </if>
+                            <if test='buIds!=null and !"".equals(buIds)' >f.bu_id in
+                                <foreach collection='buIds.split(",")' item='buId' separator=',' open='(' close=')'>
+                                    #{buId}
+                                </foreach>
+                                and
+                            </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >f.depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > f.bu_id= #{buId} and </if>
+                            <if test='goodsId!=null' > f.goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >f.goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >f.goods_no= #{goodsNo} and </if>
+                            <if test='batchNo!=null and !"".equals(batchNo)' >f.batch_no= #{batchNo} and </if>
+                            <if test='reportDate!=null' >f.report_date= #{reportDate} and </if>
+                            <if test='reportMonth!=null and !"".equals(reportMonth)' >f.report_month= #{reportMonth} and </if>
+                            <if test='productionDate!=null' > f.production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > f.overdue_date= #{overdueDate} and </if>
+                            <if test='surplusDays!=null' > f.surplus_days= #{surplusDays} and </if>
+                            <if test='totalDays!=null' > f.total_days= #{totalDays} and </if>
+                            <if test='surplusDate!=null' > surplus_date= #{surplusDate} and </if>
+                            <if test='inverntoryType!=null and !"".equals(inverntoryType)' >f.inverntory_type= #{inverntoryType} and </if>
+                            <if test='surplusNum!=null' > f.surplus_num= #{surplusNum} and </if>
+                            <if test='surplusProportion!=null' > f.surplus_proportion= #{surplusProportion} and </if>
+                            <if test='effectiveIntervals!=null and !"".equals(effectiveIntervals)' >f.effective_interval in
+                            	<foreach collection='effectiveIntervals.split(",")' item='effectiveInterval' separator=',' open='(' close=')'>
+					            #{effectiveInterval}
+					            </foreach>
+                            and </if>
+                            <if test='depreciationReserveProportion!=null' > f.depreciation_reserve_proportion= #{depreciationReserveProportion} and </if>
+                            <if test='settlementPrice!=null' > f.settlement_price= #{settlementPrice} and </if>
+                            <if test='totalProvision!=null' > f.total_provision= #{totalProvision} and </if>
+                            <if test='createDate!=null' > f.create_date= #{createDate} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >f.commbarcode= #{commbarcode} and </if>
+                </trim>
+            </where>
+            LIMIT #{begin} , #{pageSize} ;
+
+		</select>
+
+		<select id="countInventoryFallingPriceReserves" parameterType="InventoryFallingPriceReservesDTO" resultType="int">
+            select count(1)
+            from r_inventory_falling_price_reserves f
+            LEFT JOIN st_commbarcode t1 ON t1.commbarcode=f.commbarcode
+            LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > f.id= #{id} and </if>
+                            <if test='merchantId!=null' > f.merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >f.merchant_name= #{merchantName} and </if>
+                            <if test='depotIds!=null and !"".equals(depotIds)' >f.depot_id in
+                                <foreach collection='depotIds.split(",")' item='depotId' separator=',' open='(' close=')'>
+                                    #{depotId}
+                                </foreach>
+                                and
+                            </if>
+                            <if test='buIds!=null and !"".equals(buIds)' >f.bu_id in
+                                <foreach collection='buIds.split(",")' item='buId' separator=',' open='(' close=')'>
+                                    #{buId}
+                                </foreach>
+                                and
+                            </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >f.depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > f.bu_id= #{buId} and </if>
+                            <if test='goodsId!=null' > f.goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >f.goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >f.goods_no= #{goodsNo} and </if>
+                            <if test='batchNo!=null and !"".equals(batchNo)' >f.batch_no= #{batchNo} and </if>
+                            <if test='reportDate!=null' >f.report_date= #{reportDate} and </if>
+                            <if test='reportMonth!=null and !"".equals(reportMonth)' >f.report_month= #{reportMonth} and </if>
+                            <if test='productionDate!=null' > f.production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > f.overdue_date= #{overdueDate} and </if>
+                            <if test='surplusDays!=null' > f.surplus_days= #{surplusDays} and </if>
+                            <if test='totalDays!=null' > f.total_days= #{totalDays} and </if>
+                            <if test='surplusDate!=null' > f.surplus_date= #{surplusDate} and </if>
+                            <if test='inverntoryType!=null and !"".equals(inverntoryType)' >f.inverntory_type= #{inverntoryType} and </if>
+                            <if test='surplusNum!=null' > f.surplus_num= #{surplusNum} and </if>
+                            <if test='surplusProportion!=null' > f.surplus_proportion= #{surplusProportion} and </if>
+                            <if test='effectiveIntervals!=null and !"".equals(effectiveIntervals)' >f.effective_interval in
+                            	<foreach collection='effectiveIntervals.split(",")' item='effectiveInterval' separator=',' open='(' close=')'>
+					            #{effectiveInterval}
+					            </foreach>
+                            and </if>
+                            <if test='depreciationReserveProportion!=null' > f.depreciation_reserve_proportion= #{depreciationReserveProportion} and </if>
+                            <if test='settlementPrice!=null' > f.settlement_price= #{settlementPrice} and </if>
+                            <if test='totalProvision!=null' > f.total_provision= #{totalProvision} and </if>
+                            <if test='createDate!=null' > f.create_date= #{createDate} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >f.commbarcode= #{commbarcode} and </if>
+                </trim>
+            </where>
+		</select>
+        <select id="getExportList" resultType="InventoryFallingPriceReservesDTO" parameterType='InventoryFallingPriceReservesDTO'>
+            select f.*,t2.superior_parent_brand as superior_parent_brand_name
+            from r_inventory_falling_price_reserves f
+            LEFT JOIN st_commbarcode t1 ON t1.commbarcode=f.commbarcode
+            LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > f.id= #{id} and </if>
+                    <if test='merchantId!=null' > f.merchant_id= #{merchantId} and </if>
+                    <if test='depotIds!=null and !"".equals(depotIds)' >f.depot_id in
+                        <foreach collection='depotIds.split(",")' item='depotId' separator=',' open='(' close=')'>
+                            #{depotId}
+                        </foreach>
+                        and
+                    </if>
+                    <if test='buIds!=null and !"".equals(buIds)' >f.bu_id in
+                        <foreach collection='buIds.split(",")' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                    <if test='depotName!=null and !"".equals(depotName)' >f.depot_name= #{depotName} and </if>
+                    <if test='buId!=null' > f.bu_id= #{buId} and </if>
+                    <if test='goodsId!=null' > f.goods_id= #{goodsId} and </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' >f.goods_name= #{goodsName} and </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' >f.goods_no= #{goodsNo} and </if>
+                    <if test='batchNo!=null and !"".equals(batchNo)' >f.batch_no= #{batchNo} and </if>
+                    <if test='reportDate!=null' >f.report_date= #{reportDate} and </if>
+                    <if test='reportMonth!=null and !"".equals(reportMonth)' >f.report_month= #{reportMonth} and </if>
+                    <if test='productionDate!=null' > f.production_date= #{productionDate} and </if>
+                    <if test='overdueDate!=null' > f.overdue_date= #{overdueDate} and </if>
+                    <if test='surplusDays!=null' > f.surplus_days= #{surplusDays} and </if>
+                    <if test='totalDays!=null' > f.total_days= #{totalDays} and </if>
+                    <if test='surplusDate!=null' > f.surplus_date= #{surplusDate} and </if>
+                    <if test='inverntoryType!=null and !"".equals(inverntoryType)' >f.inverntory_type= #{inverntoryType} and </if>
+                    <if test='surplusNum!=null' > f.surplus_num= #{surplusNum} and </if>
+                    <if test='surplusProportion!=null' > f.surplus_proportion= #{surplusProportion} and </if>
+                    <if test='effectiveIntervals!=null and !"".equals(effectiveIntervals)' >f.effective_interval in
+                        <foreach collection='effectiveIntervals.split(",")' item='effectiveInterval' separator=',' open='(' close=')'>
+                            #{effectiveInterval}
+                        </foreach>
+                        and </if>
+                    <if test='depreciationReserveProportion!=null' > f.depreciation_reserve_proportion= #{depreciationReserveProportion} and </if>
+                    <if test='settlementPrice!=null' > f.settlement_price= #{settlementPrice} and </if>
+                    <if test='totalProvision!=null' > f.total_provision= #{totalProvision} and </if>
+                    <if test='createDate!=null' > f.create_date= #{createDate} and </if>
+                    <if test='commbarcode!=null and !"".equals(commbarcode)' >f.commbarcode= #{commbarcode} and </if>
+                    <if test='ids!=null and !"".equals(ids)' >f.id in
+                        <foreach collection='ids.split(",")' item='id' separator=',' open='(' close=')'>
+                            #{id}
+                        </foreach> and
+                    </if>
+                </trim>
+            </where>
+        </select>
+
+		<select id="searchByIds" parameterType="java.lang.String" resultMap="InventoryFallingPriceReservesModelMap">
+			select <include refid='sql_columns' /> from r_inventory_falling_price_reserves
+			<where>
+				<if test='ids!=null and !"".equals(ids)' > id in
+	                <foreach collection='ids.split(",")' item='id' separator=',' open='(' close=')'>
+		            	#{id}
+		            </foreach>
+                </if>
+            </where>
+		</select>
+
+		<!-- 删除数据 -->
+        <delete id='delReportByMap' parameterType='map'>
+            delete from r_inventory_falling_price_reserves
+            <include refid='sql_where' />
+        </delete>
+
+        <!-- 关系映射 -->
+        <resultMap id="InventoryWarningCountDtoMap" type="InventoryWarningCountDto" >
+            <result property="effectiveInterval" column="effective_interval" />
+            <result property="surplusNum" column="surplus_num" />
+        </resultMap>
+
+        <select id="countInventoryWarning" resultMap="InventoryWarningCountDtoMap" >
+            select effective_interval, SUM(surplus_num) surplus_num
+            from r_inventory_falling_price_reserves
+            where
+            depot_id = #{depotId}
+            and DATE_FORMAT(report_date,'%Y-%m-%d') = #{reportDate}
+            <if test="merchantId!=null" >
+                and merchant_id = #{merchantId}
+            </if>
+            group by effective_interval
+        </select>
+
+        <select id="getInventoryGoodsNo" parameterType="map" resultType="string">
+        	select goods_no from r_inventory_falling_price_reserves f
+            LEFT JOIN st_commbarcode t1 ON t1.commbarcode=f.commbarcode
+            LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			<where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                    <if test='reportMonth!=null and !"".equals(reportMonth)' >report_month= #{reportMonth} and </if>
+                	<if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >t2.superior_parent_brand= #{superiorParentBrand} and </if>
+                </trim>
+            </where>
+            group by goods_no
+        </select>
+    <!-- 仓库滞销预警(销售洞察) -->
+    <select id="getDepotUnsellableWarning" parameterType="map" resultType="map">
+        SELECT
+        a.brandId,
+        a.brandName,
+        a.inWarehouseInterval,
+        sum(a.totalAmount * IFNULL( b.avg_rate, 1 )) as totalAmount
+        FROM (
+        SELECT
+        price.report_month as month,
+        t2.superior_parent_brand_id as brandId,
+        t2.superior_parent_brand as brandName,
+        price.in_warehouse_interval as inWarehouseInterval,
+        sum(total_amount) as totalAmount
+        FROM
+        r_inventory_falling_price_reserves price
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=price.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantIds!=null' >price.merchant_id in
+                    <foreach collection='merchantIds' item='merchantId' separator=',' open='(' close=')'>
+                        #{merchantId}
+                    </foreach>
+                    and
+                </if>
+                <if test='depotList!=null' > price.depot_id in
+                    <foreach collection='depotList' item='depotId' separator=',' open='(' close=')'>
+                        #{depotId}
+                    </foreach>
+                    and
+                </if>
+                <if test='startDate!=null and !"".equals(startDate)' > price.report_month &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > price.report_month &lt;= #{endDate} and </if>
+                <if test='buList!=null and buList.size() > 0' >price.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                 price.in_warehouse_interval is not null and t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0
+            </trim>
+        </where>
+        GROUP BY t2.superior_parent_brand_id,price.in_warehouse_interval,price.report_month) a
+        LEFT JOIN (SELECT
+        DATE_FORMAT( t1.effective_date, '%Y-%m' ) as month,
+        t1.orig_currency_code,
+        MAX(t1.effective_date) as effective_date,
+        (SELECT avg_rate FROM st_exchange_rate where  tgt_currency_code = 'CNY' and  effective_date=MAX(t1.effective_date) and orig_currency_code= t1.orig_currency_code) as avg_rate
+        FROM
+        st_exchange_rate t1
+        WHERE
+        t1.tgt_currency_code = 'CNY' and t1.orig_currency_code ='HKD'
+        GROUP BY t1.orig_currency_code, DATE_FORMAT( t1.effective_date, '%Y-%m' )) b ON b.month = a.`month`
+        GROUP BY a.brandId,a.inWarehouseInterval
+    </select>
+    <!-- 仓库效期预警(销售洞察) -->
+    <select id="getDepotExpireWarning" parameterType="map" resultType="map">
+        SELECT
+        a.depotId,
+        a.depotName,
+        a.effectiveInterval,
+        sum(a.totalAmount * IFNULL( b.avg_rate, 1 )) as totalAmount
+        FROM (SELECT
+            price.report_month as month,
+            depot_id as depotId,
+            depot_name as depotName,
+            effective_interval as effectiveInterval,
+            sum(total_amount) as totalAmount
+        FROM
+            r_inventory_falling_price_reserves price
+            LEFT JOIN st_commbarcode t1 ON t1.commbarcode=price.commbarcode
+            LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantIds!=null' >price.merchant_id in
+                    <foreach collection='merchantIds' item='merchantId' separator=',' open='(' close=')'>
+                        #{merchantId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandParentList!=null' > t2.superior_parent_brand_id in
+                    <foreach collection='brandParentList' item='brandParentId' separator=',' open='(' close=')'>
+                        #{brandParentId}
+                    </foreach>
+                    and
+                </if>
+                <if test='startDate!=null and !"".equals(startDate)' > price.report_month &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > price.report_month &lt;= #{endDate} and </if>
+                <if test='buList!=null and buList.size() > 0' >price.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                effective_interval is not null and effective_interval !='8'
+                and t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0
+            </trim>
+        </where>
+        GROUP BY depot_id,effective_interval,price.report_month) a
+        LEFT JOIN (SELECT
+        DATE_FORMAT( t1.effective_date, '%Y-%m' ) as month,
+        t1.orig_currency_code,
+        MAX(t1.effective_date) as effective_date,
+        (SELECT avg_rate FROM st_exchange_rate where  tgt_currency_code = 'CNY' and  effective_date=MAX(t1.effective_date) and orig_currency_code= t1.orig_currency_code) as avg_rate
+        FROM
+        st_exchange_rate t1
+        WHERE
+        t1.tgt_currency_code = 'CNY' and t1.orig_currency_code ='HKD'
+        GROUP BY t1.orig_currency_code, DATE_FORMAT( t1.effective_date, '%Y-%m' )) b ON b.month = a.`month`
+        GROUP BY a.depotId,a.effectiveInterval
+    </select>
+    <!-- 仓库效期预警获取品牌(销售洞察) -->
+    <select id="getBrandInDepotExpireWarning" parameterType="map" resultType="map">
+        SELECT
+            t2.superior_parent_brand_id as superiorParentBrandId,
+            t2.superior_parent_brand as superiorParentBrand
+        FROM
+            r_inventory_falling_price_reserves price
+            LEFT JOIN st_commbarcode t1 ON t1.commbarcode = price.commbarcode
+            LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        WHERE
+        <trim suffixOverrides='and'>
+            t2.superior_parent_brand_id IS NOT NULL and
+            <if test='merchantIds!=null '>price.merchant_id in
+                <foreach collection='merchantIds' item='merchantId' separator=',' open='(' close=')'>
+                    #{merchantId}
+                </foreach>
+                and
+            </if>
+            <if test='startDate!=null and !"".equals(startDate)' > price.report_month &gt;= #{startDate} and </if>
+            <if test='endDate!=null and !"".equals(endDate)' > price.report_month &lt;= #{endDate} and </if>
+            <if test='buList!=null and buList.size() > 0' >price.bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>
+                and
+            </if>
+            t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0
+        </trim>
+        GROUP BY t2.superior_parent_brand_id
+    </select>
+    <!-- 仓库滞销预警获取仓库(销售洞察) -->
+    <select id="getDepotInUnsellableWarning" parameterType="map" resultType="map">
+       SELECT
+        depot_id as depotId,
+        depot_name as depotName
+       FROM
+       r_inventory_falling_price_reserves price
+       <where>
+           <trim suffixOverrides='and'>
+               <if test='merchantIds!=null '>price.merchant_id in
+                   <foreach collection='merchantIds' item='merchantId' separator=',' open='(' close=')'>
+                       #{merchantId}
+                   </foreach>
+                   and
+               </if>
+               <if test='startDate!=null and !"".equals(startDate)' > price.report_month &gt;= #{startDate} and </if>
+               <if test='endDate!=null and !"".equals(endDate)' > price.report_month &lt;= #{endDate} and </if>
+               <if test='buList!=null and buList.size() > 0' >price.bu_id in
+                   <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                       #{buId}
+                   </foreach>
+                   and
+               </if>
+           </trim>
+       </where>
+       GROUP BY depot_id
+    </select>
+    <!-- 仓库效期预警导出(销售洞察) -->
+    <select id="getDepotExpireWarningExportList" parameterType="map" resultType="map">
+        SELECT
+            price.merchant_id as merchanrId,
+            price.merchant_name as merchantName,
+            price.depot_id as depotId,
+            price.depot_name as depotName,
+            price.report_month as reportMonth,
+            price.goods_no as goodsNo,
+            price.barcode as barcode,
+            price.commbarcode as commbarcode,
+            price.goods_name as goodsName,
+            t1.comm_brand_parent_name as brandParent,
+            t2.superior_parent_brand as superiorParentBrand,
+            price.production_date as productionDate,
+            price.overdue_date as overdueDate,
+            price.batch_no as batchNo,
+            price.total_days as totalDays,
+            price.surplus_num as surplusNum,
+            price.inverntory_type as inverntoryType,
+            price.surplus_days as surplusDays,
+            price.overdue_month as overdueMonth,
+            price.surplus_proportion as surplusProportion,
+            price.effective_interval as effectiveInterval,
+            price.financial_surplus_proportion as financialSurplusProportion,
+            price.settlement_price as settlementPrice,
+            price.total_amount as totalAmount,
+            price.report_month as reportMonth
+        FROM
+        r_inventory_falling_price_reserves price
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=price.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantIds!=null' >price.merchant_id in
+                    <foreach collection='merchantIds' item='merchantId' separator=',' open='(' close=')'>
+                        #{merchantId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandParentList!=null' > t2.superior_parent_brand_id in
+                    <foreach collection='brandParentList' item='brandParentId' separator=',' open='(' close=')'>
+                        #{brandParentId}
+                    </foreach>
+                    and
+                </if>
+                <if test='startDate!=null and !"".equals(startDate)' > price.report_month &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > price.report_month &lt;= #{endDate} and </if>
+                <if test='buList!=null and buList.size() > 0' >price.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                effective_interval is not null and effective_interval !='8' and
+                t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0
+            </trim>
+        </where>
+    </select>
+    <!-- 仓库滞销预警导出(销售洞察) -->
+    <select id="getDepotUnsellableWarningExportList" parameterType="map" resultType="map">
+        SELECT
+        price.merchant_id as merchanrId,
+        price.merchant_name as merchantName,
+        price.report_date as reportDate,
+        price.depot_id as depotId,
+        price.depot_name as depotName,
+        price.goods_no as goodsNo,
+        price.goods_name as goodsName,
+        price.barcode as barcode,
+        price.batch_no as batchNo,
+        price.production_date as productionDate,
+        price.overdue_date as overdueDate,
+        price.surplus_num as surplusNum,
+        price.inverntory_type as inverntoryType,
+        t1.comm_brand_parent_name as brandParent,
+        t2.superior_parent_brand as superiorParentBrand,
+        price.create_date as createDate,
+        price.in_warehouse_days as inWarehouseDays,
+        price.in_warehouse_interval as inWarehouseInterval,
+        price.settlement_price as settlementPrice,
+        price.total_amount as totalAmount,
+        price.report_month as reportMonth
+        FROM
+        r_inventory_falling_price_reserves price
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=price.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantIds!=null' >price.merchant_id in
+                    <foreach collection='merchantIds' item='merchantId' separator=',' open='(' close=')'>
+                        #{merchantId}
+                    </foreach>
+                    and
+                </if>
+                <if test='depotList!=null' > price.depot_id in
+                    <foreach collection='depotList' item='depotId' separator=',' open='(' close=')'>
+                        #{depotId}
+                    </foreach>
+                    and
+                </if>
+                <if test='startDate!=null and !"".equals(startDate)' > price.report_month &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > price.report_month &lt;= #{endDate} and </if>
+                <if test='buList!=null and buList.size() > 0' >price.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                price.in_warehouse_interval is not null and  t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0
+            </trim>
+        </where>
+    </select>
+    <!-- 获取仓库滞销预警各品牌金额明细-->
+    <select id="getDepotUnsellableDetail" parameterType="map" resultType="map">
+        SELECT
+            a.brandId,
+            a.brandName,
+            a.inWarehouseInterval,
+            sum(a.totalAmount * IFNULL( b.avg_rate, 1 )) as totalAmount
+        FROM (SELECT
+            t2.id as brandId,
+            t2.`name` as brandName,
+            price.in_warehouse_interval as inWarehouseInterval,
+            price.report_month as month,
+            sum(total_amount) as totalAmount
+        FROM
+        r_inventory_falling_price_reserves price
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=price.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantIds!=null' >price.merchant_id in
+                    <foreach collection='merchantIds' item='merchantId' separator=',' open='(' close=')'>
+                        #{merchantId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandParentId!=null ' > t2.superior_parent_brand_id = #{brandParentId} and </if>
+                <if test='inWarehouseInterval!=null and !"".equals(inWarehouseInterval)' > price.in_warehouse_interval = #{inWarehouseInterval} and </if>
+                <if test='depotList!=null' > price.depot_id in
+                    <foreach collection='depotList' item='depotId' separator=',' open='(' close=')'>
+                        #{depotId}
+                    </foreach>
+                    and
+                </if>
+                <if test='startDate!=null and !"".equals(startDate)' > price.report_month &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > price.report_month &lt;= #{endDate} and </if>
+                <if test='buList!=null and buList.size() > 0' >price.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0
+            </trim>
+        </where>
+        GROUP BY t2.id,price.report_month) a
+        LEFT JOIN (SELECT
+        DATE_FORMAT( t1.effective_date, '%Y-%m' ) as month,
+        t1.orig_currency_code,
+        MAX(t1.effective_date) as effective_date,
+        (SELECT avg_rate FROM st_exchange_rate where  tgt_currency_code = 'CNY' and  effective_date=MAX(t1.effective_date) and orig_currency_code= t1.orig_currency_code) as avg_rate
+        FROM
+        st_exchange_rate t1
+        WHERE
+        t1.tgt_currency_code = 'CNY' and t1.orig_currency_code ='HKD'
+        GROUP BY t1.orig_currency_code, DATE_FORMAT( t1.effective_date, '%Y-%m' )) b ON b.month = a.`month`
+        GROUP BY a.brandId
+    </select>
+</mapper>

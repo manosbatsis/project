@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuFinanceLocationAdjustmentDetailsMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuFinanceLocationAdjustmentDetailsModelMap" type="BuFinanceLocationAdjustmentDetailsModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="month" column="month" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="barcode" column="barcode" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+                <result property="operateType" column="operate_type" />
+                <result property="inventoryType" column="inventory_type" />
+                <result property="orderType" column="order_type" />
+                <result property="num" column="num" />
+                <result property="orderId" column="order_id" />
+                <result property="orderCode" column="order_code" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="storePlatformCode" column="store_platform_code" />
+                <result property="outDepotPrice" column="out_depot_price" />
+                <result property="differencePrice" column="difference_price" />
+                <result property="differenceAmount" column="difference_amount" />
+                <result property="costCurrency" column="cost_currency" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="createDate" column="create_date" />
+                <result property="externalCode" column="external_code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuFinanceLocationAdjustmentDetailsModelMap' parameterType='BuFinanceLocationAdjustmentDetailsModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_location_adjustment_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuFinanceLocationAdjustmentDetailsModelMap' parameterType='BuFinanceLocationAdjustmentDetailsModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_location_adjustment_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuFinanceLocationAdjustmentDetailsModelMap' parameterType='BuFinanceLocationAdjustmentDetailsModel' >
+        select <include refid='sql_columns' /> from r_bu_finance_location_adjustment_details  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuFinanceLocationAdjustmentDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_finance_location_adjustment_details
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' > operate_type , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' > inventory_type , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > store_platform_name , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='outDepotPrice!=null' >out_depot_price , </if>
+                        <if test='differencePrice!=null' >difference_price , </if>
+                        <if test='differenceAmount!=null' >difference_amount , </if>
+                        <if test='costCurrency!=null and !"".equals(costCurrency)' > cost_currency , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' > #{operateType} , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' > #{inventoryType} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > #{storePlatformName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='outDepotPrice!=null' > #{outDepotPrice} , </if>
+                        <if test='differencePrice!=null' > #{differencePrice} , </if>
+                        <if test='differenceAmount!=null' > #{differenceAmount} , </if>
+                        <if test='costCurrency!=null and !"".equals(costCurrency)' > #{costCurrency} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuFinanceLocationAdjustmentDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_finance_location_adjustment_details SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' >inventory_type= #{inventoryType} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='outDepotPrice!=null' > out_depot_price= #{outDepotPrice} , </if>
+                        <if test='differencePrice!=null' > difference_price= #{differencePrice} , </if>
+                        <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} , </if>
+                        <if test='costCurrency!=null and !"".equals(costCurrency)' >cost_currency= #{costCurrency} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_finance_location_adjustment_details  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_finance_location_adjustment_details where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            bu_id,
+            bu_name,
+            month,
+            goods_id,
+            goods_no,
+            goods_name,
+            commbarcode,
+            barcode,
+            brand_id,
+            brand_name,
+            superior_parent_brand,
+            stock_location_type_id,
+            stock_location_type_name,
+            operate_type,
+            inventory_type,
+            order_type,
+            num,
+            order_id,
+            order_code,
+            customer_id,
+            customer_name,
+            store_platform_name,
+            store_platform_code,
+            out_depot_price,
+            difference_price,
+            difference_amount,
+            cost_currency,
+            modify_date,
+            create_date,
+            external_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                            <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+                            <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                            <if test='inventoryType!=null and !"".equals(inventoryType)' >inventory_type= #{inventoryType} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='outDepotPrice!=null' > out_depot_price= #{outDepotPrice} and </if>
+                            <if test='differencePrice!=null' > difference_price= #{differencePrice} and </if>
+                            <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} and </if>
+                            <if test='costCurrency!=null and !"".equals(costCurrency)' >cost_currency= #{costCurrency} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+	<!--清除商家月份 删除(事业部财务经销存)库位类型调整明细表-->
+	<delete id='delFinanceLocationAdjustmentDetails' parameterType='map'>
+		delete from r_bu_finance_location_adjustment_details
+		where merchant_id=#{merchantId}  and bu_id= #{buId} and month=#{month} 
+	</delete>
+
+
+</mapper>

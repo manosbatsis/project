@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleFinancingOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleFinancingOrderModelMap" type="SaleFinancingOrderModel" >
+                <result property="id" column="id" />
+                <result property="orderId" column="order_id" />
+                <result property="orderCode" column="order_code" />
+                <result property="externalCode" column="external_code" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="merchantid" column="merchantId" />
+                <result property="merchantname" column="merchantName" />
+                <result property="poNo" column="po_no" />
+                <result property="currency" column="currency" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="saleAmount" column="sale_amount" />
+                <result property="actualMarginAmount" column="actual_margin_amount" />
+                <result property="applyDate" column="apply_date" />
+                <result property="deadlineDate" column="deadline_date" />
+                <result property="marginAmount" column="margin_amount" />
+                <result property="principalAmount" column="principal_amount" />
+                <result property="occupationAmount" column="occupation_amount" />
+                <result property="agencyAmount" column="agency_amount" />
+                <result property="delayAmount" column="delay_amount" />
+                <result property="payableAmount" column="payable_amount" />
+                <result property="ransomer" column="ransomer" />
+                <result property="ransomerName" column="ransomer_name" />
+                <result property="ransomDate" column="ransom_date" />
+                <result property="code" column="code" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierName" column="modifier_name" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleFinancingOrderModelMap' parameterType='SaleFinancingOrderModel'>
+        select <include refid='sql_columns' /> from t_sale_financing_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleFinancingOrderModelMap' parameterType='SaleFinancingOrderModel'>
+        select <include refid='sql_columns' /> from t_sale_financing_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleFinancingOrderModelMap' parameterType='SaleFinancingOrderModel' >
+        select <include refid='sql_columns' /> from t_sale_financing_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleFinancingOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_financing_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='merchantid!=null' >merchantId , </if>
+                        <if test='merchantname!=null and !"".equals(merchantname)' > merchantName , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='saleAmount!=null' >sale_amount , </if>
+                        <if test='actualMarginAmount!=null' >actual_margin_amount , </if>
+                        <if test='applyDate!=null' >apply_date , </if>
+                        <if test='deadlineDate!=null' >deadline_date , </if>
+                        <if test='marginAmount!=null' >margin_amount , </if>
+                        <if test='principalAmount!=null' >principal_amount , </if>
+                        <if test='occupationAmount!=null' >occupation_amount , </if>
+                        <if test='agencyAmount!=null' >agency_amount , </if>
+                        <if test='delayAmount!=null' >delay_amount , </if>
+                        <if test='payableAmount!=null' >payable_amount , </if>
+                        <if test='ransomer!=null' >ransomer , </if>
+                        <if test='ransomerName!=null and !"".equals(ransomerName)' > ransomer_name , </if>
+                        <if test='ransomDate!=null' >ransom_date , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > modifier_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='merchantid!=null' > #{merchantid} , </if>
+                        <if test='merchantname!=null and !"".equals(merchantname)' > #{merchantname} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='saleAmount!=null' > #{saleAmount} , </if>
+                        <if test='actualMarginAmount!=null' > #{actualMarginAmount} , </if>
+                        <if test='applyDate!=null' > #{applyDate} , </if>
+                        <if test='deadlineDate!=null' > #{deadlineDate} , </if>
+                        <if test='marginAmount!=null' > #{marginAmount} , </if>
+                        <if test='principalAmount!=null' > #{principalAmount} , </if>
+                        <if test='occupationAmount!=null' > #{occupationAmount} , </if>
+                        <if test='agencyAmount!=null' > #{agencyAmount} , </if>
+                        <if test='delayAmount!=null' > #{delayAmount} , </if>
+                        <if test='payableAmount!=null' > #{payableAmount} , </if>
+                        <if test='ransomer!=null' > #{ransomer} , </if>
+                        <if test='ransomerName!=null and !"".equals(ransomerName)' > #{ransomerName} , </if>
+                        <if test='ransomDate!=null' > #{ransomDate} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > #{modifierName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleFinancingOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_financing_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='merchantid!=null' > merchantId= #{merchantid} , </if>
+                        <if test='merchantname!=null and !"".equals(merchantname)' >merchantName= #{merchantname} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='saleAmount!=null' > sale_amount= #{saleAmount} , </if>
+                        <if test='actualMarginAmount!=null' > actual_margin_amount= #{actualMarginAmount} , </if>
+                        <if test='applyDate!=null' > apply_date= #{applyDate} , </if>
+                        <if test='deadlineDate!=null' > deadline_date= #{deadlineDate} , </if>
+                        <if test='marginAmount!=null' > margin_amount= #{marginAmount} , </if>
+                        <if test='principalAmount!=null' > principal_amount= #{principalAmount} , </if>
+                        <if test='occupationAmount!=null' > occupation_amount= #{occupationAmount} , </if>
+                        <if test='agencyAmount!=null' > agency_amount= #{agencyAmount} , </if>
+                        <if test='delayAmount!=null' > delay_amount= #{delayAmount} , </if>
+                        <if test='payableAmount!=null' > payable_amount= #{payableAmount} , </if>
+                        <if test='ransomer!=null' > ransomer= #{ransomer} , </if>
+                        <if test='ransomerName!=null and !"".equals(ransomerName)' >ransomer_name= #{ransomerName} , </if>
+                        <if test='ransomDate!=null' > ransom_date= #{ransomDate} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_financing_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_financing_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            order_id,
+            order_code,
+            external_code,
+            customer_id,
+            customer_name,
+            merchantId,
+            merchantName,
+            po_no,
+            currency,
+            bu_id,
+            bu_name,
+            sale_amount,
+            actual_margin_amount,
+            apply_date,
+            deadline_date,
+            margin_amount,
+            principal_amount,
+            occupation_amount,
+            agency_amount,
+            delay_amount,
+            payable_amount,
+            ransomer,
+            ransomer_name,
+            ransom_date,
+            code,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_name,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='merchantid!=null' > merchantId= #{merchantid} and </if>
+                            <if test='merchantname!=null and !"".equals(merchantname)' >merchantName= #{merchantname} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='saleAmount!=null' > sale_amount= #{saleAmount} and </if>
+                            <if test='actualMarginAmount!=null' > actual_margin_amount= #{actualMarginAmount} and </if>
+                            <if test='applyDate!=null' > apply_date= #{applyDate} and </if>
+                            <if test='deadlineDate!=null' > deadline_date= #{deadlineDate} and </if>
+                            <if test='marginAmount!=null' > margin_amount= #{marginAmount} and </if>
+                            <if test='principalAmount!=null' > principal_amount= #{principalAmount} and </if>
+                            <if test='occupationAmount!=null' > occupation_amount= #{occupationAmount} and </if>
+                            <if test='agencyAmount!=null' > agency_amount= #{agencyAmount} and </if>
+                            <if test='delayAmount!=null' > delay_amount= #{delayAmount} and </if>
+                            <if test='payableAmount!=null' > payable_amount= #{payableAmount} and </if>
+                            <if test='ransomer!=null' > ransomer= #{ransomer} and </if>
+                            <if test='ransomerName!=null and !"".equals(ransomerName)' >ransomer_name= #{ransomerName} and </if>
+                            <if test='ransomDate!=null' > ransom_date= #{ransomDate} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 条件查询 -->
+        <select id='searchByDTO' resultType='SaleFinancingOrderDTO' parameterType='SaleFinancingOrderDTO' >
+            select <include refid='sql_columns' /> from t_sale_financing_order  <include refid='sql_where' />
+        </select>
+
+
+
+</mapper>

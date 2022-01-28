@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.MaterialOutDepotMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="MaterialOutDepotModelMap" type="MaterialOutDepotModel" >
+             <result property="id" column="id" />
+             <result property="materialOrderId" column="material_order_id" />
+             <result property="merchantId" column="merchant_id" />
+             <result property="poNo" column="po_no" />
+             <result property="outDepotId" column="out_depot_id" />
+             <result property="outDepotName" column="out_depot_name" />
+             <result property="customerId" column="customer_id" />
+             <result property="customerName" column="customer_name" />
+             <result property="deliverDate" column="deliver_date" />
+             <result property="status" column="status" />
+             <result property="createDate" column="create_date" />
+             <result property="creater" column="creater" />
+             <result property="code" column="code" />
+             <result property="merchantName" column="merchant_name" />
+             <result property="materialOrderCode" column="material_order_code" />
+             <result property="logisticsName" column="logistics_name" />
+             <result property="blNo" column="bl_no" />
+             <result property="wayBillNo" column="way_bill_no" />
+             <result property="importMode" column="import_mode" />
+             <result property="modifyDate" column="modify_date" />
+             <result property="outExternalCode" column="out_external_code" />
+             <result property="currency" column="currency" />
+             <result property="orderSource" column="order_source" />
+             <result property="buName" column="bu_name" />
+             <result property="buId" column="bu_id" />
+             <result property="createName" column="create_name" />
+             <result property="auditor" column="auditor" />
+             <result property="auditDate" column="audit_date" />
+             <result property="auditName" column="audit_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MaterialOutDepotModelMap' parameterType='MaterialOutDepotModel'>
+        select <include refid='sql_columns' /> from t_material_out_depot  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MaterialOutDepotModelMap' parameterType='MaterialOutDepotModel'>
+        select <include refid='sql_columns' /> from t_material_out_depot  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MaterialOutDepotModelMap' parameterType='MaterialOutDepotModel' >
+        select <include refid='sql_columns' /> from t_material_out_depot  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='MaterialOutDepotModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_material_out_depot
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='materialOrderId!=null' >material_order_id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='outDepotId!=null' >out_depot_id , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='materialOrderCode!=null and !"".equals(materialOrderCode)' > material_order_code , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' > logistics_name , </if>
+                        <if test='blNo!=null and !"".equals(blNo)' > bl_no , </if>
+                        <if test='wayBillNo!=null and !"".equals(wayBillNo)' > way_bill_no , </if>
+                        <if test='importMode!=null and !"".equals(importMode)' > import_mode , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='outExternalCode!=null and !"".equals(outExternalCode)' > out_external_code , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' > order_source , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='auditor!=null' >auditor , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='materialOrderId!=null' > #{materialOrderId} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='outDepotId!=null' > #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='materialOrderCode!=null and !"".equals(materialOrderCode)' > #{materialOrderCode} , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' > #{logisticsName} , </if>
+                        <if test='blNo!=null and !"".equals(blNo)' > #{blNo} , </if>
+                        <if test='wayBillNo!=null and !"".equals(wayBillNo)' > #{wayBillNo} , </if>
+                        <if test='importMode!=null and !"".equals(importMode)' > #{importMode} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='outExternalCode!=null and !"".equals(outExternalCode)' > #{outExternalCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' > #{orderSource} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='auditor!=null' > #{auditor} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MaterialOutDepotModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_material_out_depot SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='materialOrderId!=null' > material_order_id= #{materialOrderId} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='materialOrderCode!=null and !"".equals(materialOrderCode)' >material_order_code= #{materialOrderCode} , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} , </if>
+                        <if test='blNo!=null and !"".equals(blNo)' >bl_no= #{blNo} , </if>
+                        <if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} , </if>
+                        <if test='importMode!=null and !"".equals(importMode)' >import_mode= #{importMode} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='auditor!=null' > auditor= #{auditor} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_material_out_depot  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_material_out_depot where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            material_order_id,
+            merchant_id,
+            po_no,
+            out_depot_id,
+            out_depot_name,
+            customer_id,
+            customer_name,
+            deliver_date,
+            status,
+            create_date,
+            creater,
+            code,
+            merchant_name,
+            material_order_code,
+            logistics_name,
+            bl_no,
+            way_bill_no,
+            import_mode,
+            modify_date,
+            out_external_code,
+            currency,
+            order_source,
+            bu_name,
+            bu_id,
+            create_name,
+            auditor,
+            audit_date,
+            audit_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='materialOrderId!=null' > material_order_id= #{materialOrderId} and </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                    <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                    <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                    <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                    <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                    <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                    <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='creater!=null' > creater= #{creater} and </if>
+                    <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                    <if test='materialOrderCode!=null and !"".equals(materialOrderCode)' >material_order_code= #{materialOrderCode} and </if>
+                    <if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} and </if>
+                    <if test='blNo!=null and !"".equals(blNo)' >bl_no= #{blNo} and </if>
+                    <if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} and </if>
+                    <if test='importMode!=null and !"".equals(importMode)' >import_mode= #{importMode} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                    <if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} and </if>
+                    <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                    <if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} and </if>
+                    <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                    <if test='buId!=null' > bu_id= #{buId} and </if>
+                    <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                    <if test='auditor!=null' > auditor= #{auditor} and </if>
+                    <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                    <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+	                status != "006" and 
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 查询条件 -->
+	    <sql id='sql_where_page'>
+	        <where>
+	            <trim suffixOverrides='and'>
+	            	<if test='materialOrderId!=null' > material_order_id= #{materialOrderId} and </if>
+	                <if test='materialOrderCode!=null and !"".equals(materialOrderCode)' >material_order_code= #{materialOrderCode} and </if>
+	                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+	                <if test='deliverDate!=null' > deliver_date between #{deliverDate} and adddate(date(#{deliverDate}),1) and </if>
+	                <if test='poNo!=null and !"".equals(poNo)' >po_no like '%${poNo}%'  and </if>
+	                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+	                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+	                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name like '%${merchantName}%' and </if>
+	                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+	                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+	               <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+	                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+	                </if>
+	                <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+	                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &lt;= #{deliverEndDate} and
+	                </if>
+	                <if test='buId!=null' > bu_id= #{buId} and </if>
+	                <if test='buList!=null and !"".equals(buList)' >bu_id in
+	                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+	                        #{buId}
+	                    </foreach>
+	                    and
+	                </if>
+	                 <if test='ids!=null and !"".equals(ids)' >id in
+	                    <foreach collection="ids.split(',')" item='id' separator=',' open='(' close=')'>
+	                        #{id}
+	                    </foreach>
+                    and
+                	</if>
+	           		 status != "006" and 
+	            </trim>
+	        </where>
+	    </sql>
+    	<!-- 查询所有信息 分页 -->
+	    <select id='listDTOByPage' resultType='MaterialOutDepotDTO' parameterType='MaterialOutDepotDTO'>
+	        select <include refid='sql_columns' /> from t_material_out_depot  <include refid='sql_where_page' />
+	        order by create_date desc
+	    </select>
+		<!-- 查询所有信息-->
+	    <select id='listDTO' resultType='MaterialOutDepotDTO' parameterType='MaterialOutDepotDTO'>
+	        select <include refid='sql_columns' /> from t_material_out_depot  <include refid='sql_where_page' />
+	    </select>
+	    <!-- 根据id查询信息-->
+	    <select id='getDetailDTO' resultType='MaterialOutDepotDTO' parameterType='MaterialOutDepotDTO'>
+	        select <include refid='sql_columns' /> from t_material_out_depot  <include refid='sql_where' />
+	    </select>
+</mapper>

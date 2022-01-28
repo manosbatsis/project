@@ -1,0 +1,316 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.CustomerSalePriceItemMapper'>
+
+         <!-- 关系映射 -->
+    <resultMap id="CustomerSalePriceItemModelMap" type="CustomerSalePriceItemModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="brandName" column="brand_name" />
+                <result property="unitName" column="unit_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="salePrice" column="sale_price" />
+                <result property="goodsId" column="goods_id" />
+                <result property="salePriceId" column="sale_price_id" />
+                <result property="spec" column="spec" />
+                <result property="productTypeId" column="product_type_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="brandId" column="brand_id" />
+                <result property="unitId" column="unit_id" />
+                <result property="goodsClassifyName" column="goods_classify_name" />
+                <result property="id" column="id" />
+                <result property="isGroup" column="is_group" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsName" column="goods_name" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomerSalePriceItemModelMap' parameterType='CustomerSalePriceItemModel'>
+        select <include refid='sql_columns' /> from st_customer_sale_price_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomerSalePriceItemModelMap' parameterType='CustomerSalePriceItemModel'>
+        select <include refid='sql_columns' /> from st_customer_sale_price_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomerSalePriceItemModelMap' parameterType='CustomerSalePriceItemModel' >
+        select <include refid='sql_columns' /> from st_customer_sale_price_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='CustomerSalePriceItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_customer_sale_price_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                <if test='unitName!=null and !"".equals(unitName)' > unit_name , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='salePrice!=null' > sale_price , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='salePriceId!=null' > sale_price_id , </if>
+                <if test='spec!=null and !"".equals(spec)' > spec , </if>
+                <if test='productTypeId!=null' > product_type_id , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='brandId!=null' > brand_id , </if>
+                <if test='unitId!=null' > unit_id , </if>
+                <if test='goodsClassifyName!=null and !"".equals(goodsClassifyName)' > goods_classify_name , </if>
+                <if test='id!=null' > id , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' > is_group , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                <if test='unitName!=null and !"".equals(unitName)' > #{unitName} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='salePrice!=null' > #{salePrice} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='salePriceId!=null' > #{salePriceId} , </if>
+                <if test='spec!=null and !"".equals(spec)' > #{spec} , </if>
+                <if test='productTypeId!=null' > #{productTypeId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='brandId!=null' > #{brandId} , </if>
+                <if test='unitId!=null' > #{unitId} , </if>
+                <if test='goodsClassifyName!=null and !"".equals(goodsClassifyName)' > #{goodsClassifyName} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' > #{isGroup} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='CustomerSalePriceItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_customer_sale_price_item SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                <if test='unitName!=null and !"".equals(unitName)' >unit_name= #{unitName} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='salePrice!=null' > sale_price= #{salePrice} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='salePriceId!=null' > sale_price_id= #{salePriceId} , </if>
+                <if test='spec!=null and !"".equals(spec)' >spec= #{spec} , </if>
+                <if test='productTypeId!=null' > product_type_id= #{productTypeId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                <if test='unitId!=null' > unit_id= #{unitId} , </if>
+                <if test='goodsClassifyName!=null and !"".equals(goodsClassifyName)' >goods_classify_name= #{goodsClassifyName} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' >is_group= #{isGroup} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_customer_sale_price_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_customer_sale_price_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        brand_name,
+        unit_name,
+        modify_date,
+        sale_price,
+        goods_id,
+        sale_price_id,
+        spec,
+        product_type_id,
+        merchant_name,
+        merchant_id,
+        brand_id,
+        unit_id,
+        goods_classify_name,
+        id,
+        is_group,
+        barcode,
+        goods_name,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='unitName!=null and !"".equals(unitName)' >unit_name= #{unitName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='salePrice!=null' > sale_price= #{salePrice} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='salePriceId!=null' > sale_price_id= #{salePriceId} and </if>
+                <if test='spec!=null and !"".equals(spec)' >spec= #{spec} and </if>
+                <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                <if test='unitId!=null' > unit_id= #{unitId} and </if>
+                <if test='goodsClassifyName!=null and !"".equals(goodsClassifyName)' >goods_classify_name= #{goodsClassifyName} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' >is_group= #{isGroup} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+         <!-- 关系映射 -->
+    <resultMap id="CustomerSalePriceItemModelMap1" type="CustomerSalePriceItemModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="brandName" column="brand_name" />
+                <result property="unitName" column="unit_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="salePrice" column="sale_price" />
+                <result property="goodsId" column="goods_id" />
+                <result property="salePriceId" column="sale_price_id" />
+                <result property="spec" column="spec" />
+                <result property="productTypeId" column="product_type_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="brandId" column="brand_id" />
+                <result property="unitId" column="unit_id" />
+                <result property="goodsClassifyName" column="goods_classify_name" />
+                <result property="id" column="id" />
+                <result property="isGroup" column="is_group" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsName" column="goods_name" />
+                <result property="createDate" column="create_date" />
+                
+                <!-- 拓展字段 -->
+                 <result property="expiryDate" column="expiry_date" />
+                <result property="customerId" column="customer_id" />
+                <result property="immediateEffect" column="immediate_effect" />
+                 <result property="customerName" column="customer_name" />
+                <result property="effectiveDate" column="effective_date" />
+                
+    </resultMap>
+    
+	<select id='getListByPage' resultMap='CustomerSalePriceItemModelMap1' parameterType='CustomerSalePriceItemModel'>
+		SELECT
+		  t2.id,
+			t1.customer_name,
+			t1.merchant_name,
+			t2.sale_price,
+			t1.effective_date,
+			t1.expiry_date,
+			t2.barcode,
+			t2.brand_name,
+			t2.unit_name,
+			t2.create_date,
+			t2.goods_name,
+			t2.goods_no,
+			t2.spec
+		FROM
+			st_customer_sale_price_item t2
+		right join st_customer_sale_price t1 on t1.id = t2.sale_price_id
+	 <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t2.goods_no= #{goodsNo} and </if>
+                <if test='unitName!=null and !"".equals(unitName)' >t2.unit_name= #{unitName} and </if>
+                <if test='modifyDate!=null' > t1.modify_date= #{modifyDate} and </if>
+                <if test='salePrice!=null' > t2.sale_price= #{salePrice} and </if>
+                <if test='goodsId!=null' > t2.goods_id= #{goodsId} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >t1.customer_name= #{customerName} and </if>
+                <if test='spec!=null and !"".equals(spec)' >t2.spec= #{spec} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >t1.merchant_name= #{merchantName} and </if>
+                <if test='expiryDate!=null' > t1.expiry_date= #{expiryDate} and </if>
+                <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>
+                <if test='unitId!=null' >t2.unit_id= #{unitId} and </if>
+                <if test='id!=null' > t2.id= #{id} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >t2.barcode= #{barcode} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >t2.goods_name= #{goodsName} and </if>
+                <if test='effectiveDate!=null' > t1.effective_date= #{effectiveDate} and </if>
+                <if test='createDate!=null' > t2.create_date= #{createDate} and </if>
+            </trim>
+        </where>
+        order by t2.id desc
+	</select>
+	<select id="getDetails" resultMap='CustomerSalePriceItemModelMap1' parameterType='CustomerSalePriceItemModel'>
+				SELECT
+		        t2.id,
+				t1.customer_id,
+				t1.customer_name,
+				t1.merchant_name,
+				t1.effective_date,
+				t1.expiry_date,
+				t1.immediate_effect,
+				t2.barcode,
+				t2.brand_name,
+				t1.create_date,
+				t2.goods_name,
+				t2.goods_no,
+				t2.spec,
+				t2.unit_name,
+				t2.sale_price,
+				t2.is_group,
+				t1.customer_code,
+				t1.main_id
+		FROM
+			st_customer_sale_price_item t2
+		right join st_customer_sale_price t1 on t1.id = t2.sale_price_id
+			 <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t2.goods_no= #{goodsNo} and </if>
+                <if test='unitName!=null and !"".equals(unitName)' >t2.unit_name= #{unitName} and </if>
+                <if test='modifyDate!=null' > t1.modify_date= #{modifyDate} and </if>
+                <if test='salePrice!=null' > t2.sale_price= #{salePrice} and </if>
+                <if test='goodsId!=null' > t2.goods_id= #{goodsId} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >t1.customer_name= #{customerName} and </if>
+                <if test='spec!=null and !"".equals(spec)' >t2.spec= #{spec} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >t1.merchant_name= #{merchantName} and </if>
+                <if test='expiryDate!=null' > t1.expiry_date= #{expiryDate} and </if>
+                <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>
+                <if test='unitId!=null' >t2.unit_id= #{unitId} and </if>
+                <if test='id!=null' > t2.id= #{id} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >t2.barcode= #{barcode} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >t2.goods_name= #{goodsName} and </if>
+                <if test='effectiveDate!=null' > t1.effective_date= #{effectiveDate} and </if>
+                <if test='createDate!=null' > t2.create_date= #{createDate} and </if>
+            </trim>
+        </where>
+	</select>
+	
+    <!-- 批量删除数据,根据表头ID删除表体 -->
+    <delete id='delBesidesIds' parameterType='java.util.ArrayList'>
+        delete from st_customer_sale_price_item where sale_price_id = #{salePriceId}
+        <if test="itemIds != null">
+	        and id not in
+	        <foreach collection='itemIds' item='id' separator=',' open='(' close=')'>
+	            #{id}
+	        </foreach>
+        </if>
+    </delete>
+    
+</mapper>

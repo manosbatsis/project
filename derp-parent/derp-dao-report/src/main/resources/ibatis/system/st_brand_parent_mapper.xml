@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.system.BrandParentMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BrandParentModelMap" type="BrandParentModel" >
+                <result property="id" column="id" />
+                <result property="name" column="name" />
+                <result property="englishName" column="english_name" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="superiorParentBrandCode" column="superior_parent_brand_code" />
+                <result property="createDate" column="create_date" />
+                <result property="creater" column="creater" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="modifier" column="modifier" />
+                <result property="superiorParentBrandId" column="superior_parent_brand_id" />
+                <result property="authorizer" column="authorizer" />
+                <result property="type" column="type" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BrandParentModelMap' parameterType='BrandParentModel'>
+        select <include refid='sql_columns' /> from st_brand_parent  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BrandParentModelMap' parameterType='BrandParentModel'>
+        select <include refid='sql_columns' /> from st_brand_parent  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BrandParentModelMap' parameterType='BrandParentModel' >
+        select <include refid='sql_columns' /> from st_brand_parent  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BrandParentModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_brand_parent
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='name!=null and !"".equals(name)' > name , </if>
+                        <if test='englishName!=null and !"".equals(englishName)' > english_name , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' > superior_parent_brand_code , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='superiorParentBrandId!=null' >superior_parent_brand_id , </if>
+                        <if test='authorizer!=null and !"".equals(authorizer)' > authorizer , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                        <if test='englishName!=null and !"".equals(englishName)' > #{englishName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' > #{superiorParentBrandCode} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='superiorParentBrandId!=null' > #{superiorParentBrandId} , </if>
+                        <if test='authorizer!=null and !"".equals(authorizer)' > #{authorizer} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BrandParentModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_brand_parent SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                        <if test='englishName!=null and !"".equals(englishName)' >english_name= #{englishName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' >superior_parent_brand_code= #{superiorParentBrandCode} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} , </if>
+                        <if test='authorizer!=null and !"".equals(authorizer)' >authorizer= #{authorizer} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_brand_parent  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_brand_parent where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            name,
+            english_name,
+            superior_parent_brand,
+            superior_parent_brand_code,
+            create_date,
+            creater,
+            modify_date,
+            modifier,
+            superior_parent_brand_id,
+            authorizer,
+            type
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                            <if test='englishName!=null and !"".equals(englishName)' >english_name= #{englishName} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                            <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' >superior_parent_brand_code= #{superiorParentBrandCode} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} and </if>
+                            <if test='authorizer!=null and !"".equals(authorizer)' >authorizer= #{authorizer} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id="getBrandParentByGoodsId" resultMap="BrandParentModelMap" >
+            select <include refid='sql_columns' />
+            from st_brand_parent
+            where id in
+                  (select c.comm_brand_parent_id from st_commbarcode c
+                      LEFT JOIN st_merchandise_info m on c.commbarcode = m.commbarcode
+                  where m.id = #{goodsId})
+        </select>
+
+
+
+</mapper>

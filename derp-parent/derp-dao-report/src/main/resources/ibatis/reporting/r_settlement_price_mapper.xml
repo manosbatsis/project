@@ -1,0 +1,472 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.SettlementPriceMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="SettlementPriceModelMap" type="SettlementPriceModel" >
+            <result property="goodsId" column="goods_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="countyId" column="county_id" />
+            <result property="price" column="price" />
+            <result property="productTypeName" column="product_type_name" />
+            <result property="unitId" column="unit_id" />
+            <result property="currency" column="currency" />
+            <result property="id" column="id" />
+            <result property="goodsName" column="goods_name" />
+            <result property="barcode" column="barcode" />
+            <result property="countyName" column="county_name" />
+            <result property="createDate" column="create_date" />
+            <result property="goodsNo" column="goods_no" />
+            <result property="brandName" column="brand_name" />
+            <result property="unitName" column="unit_name" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="productId" column="product_id" />
+            <result property="productTypeId" column="product_type_id" />
+            <result property="goodsSpec" column="goods_spec" />
+            <result property="brandId" column="brand_id" />
+            <result property="isGroup" column="is_group" />
+            <result property="effectiveDate" column="effective_date" />
+            <result property="status" column="status" />
+            <result property="adjustPriceResult" column="adjust_price_result" />
+            <result property="createDateRecord" column="createDateRecord" />
+            <result property="createrId" column="creater_id" />
+            <result property="creater" column="creater" />
+            <result property="modifierId" column="modifier_id" />
+            <result property="modifier" column="modifier" />
+            <result property="examinerId" column="examiner_id" />
+            <result property="examineDate" column="examine_date" />
+            <result property="examiner" column="examiner" />
+            <result property="buName" column="bu_name" />
+            <result property="buId" column="bu_id" />
+    </resultMap>
+    
+    <resultMap id="SettlementPriceExamineMap" type="com.topideal.entity.dto.SettlementPriceExamineDTO" >
+            <result property="goodsId" column="goods_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="countyId" column="county_id" />
+            <result property="price" column="price" />
+            <result property="productTypeName" column="product_type_name" />
+            <result property="unitId" column="unit_id" />
+            <result property="currency" column="currency" />
+            <result property="id" column="id" />
+            <result property="goodsName" column="goods_name" />
+            <result property="barcode" column="barcode" />
+            <result property="countyName" column="county_name" />
+            <result property="createDate" column="create_date" />
+            <result property="goodsNo" column="goods_no" />
+            <result property="brandName" column="brand_name" />
+            <result property="unitName" column="unit_name" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="productId" column="product_id" />
+            <result property="productTypeId" column="product_type_id" />
+            <result property="goodsSpec" column="goods_spec" />
+            <result property="brandId" column="brand_id" />
+            <result property="isGroup" column="is_group" />
+            <result property="effectiveDate" column="effective_date" />
+            <result property="status" column="status" />
+            <result property="adjustPriceResult" column="adjust_price_result" />
+            <result property="createDateRecord" column="createDateRecord" />
+            <result property="createrId" column="creater_id" />
+            <result property="creater" column="creater" />
+            <result property="modifierId" column="modifier_id" />
+            <result property="modifier" column="modifier" />
+            <result property="examinerId" column="examiner_id" />
+            <result property="examineDate" column="examine_date" />
+            <result property="examiner" column="examiner" />
+            <result property="historyPrice" column="history_price" />
+            <result property="adjustPriceResult" column="adjust_price_result" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SettlementPriceModelMap' parameterType='SettlementPriceModel'>
+        select <include refid='sql_columns' /> from r_settlement_price  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SettlementPriceModelMap' parameterType='SettlementPriceModel'>
+        select <include refid='sql_columns' /> from r_settlement_price  <include refid='sql_where' />
+        order by id desc 
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SettlementPriceModelMap' parameterType='SettlementPriceModel' >
+        select <include refid='sql_columns' /> from r_settlement_price  <include refid='sql_where' />
+    </select>
+
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='SettlementPriceModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO r_settlement_price
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='countyId!=null' > county_id , </if>
+                <if test='price!=null' > price , </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' > product_type_name , </if>
+                <if test='unitId!=null' > unit_id , </if>
+                <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='countyName!=null and !"".equals(countyName)' > county_name , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                <if test='unitName!=null and !"".equals(unitName)' > unit_name , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='productId!=null' > product_id , </if>
+                <if test='productTypeId!=null' > product_type_id , </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' > goods_spec , </if>
+                <if test='brandId!=null' > brand_id , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' > is_group , </if>
+                <if test='effectiveDate!=null and !"".equals(effectiveDate)' > effective_date , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='createrId!=null' >creater_id , </if>
+                <if test='creater!=null and !"".equals(creater)' > creater , </if>
+                <if test='modifierId!=null' >modifier_id , </if>
+                <if test='modifier!=null and !"".equals(modifier)' > modifier , </if>
+                <if test='examinerId!=null' >examiner_id , </if>
+                <if test='examineDate!=null' >examine_date , </if>
+                <if test='examiner!=null and !"".equals(examiner)' > examiner , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='countyId!=null' > #{countyId} , </if>
+                <if test='price!=null' > #{price} , </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' > #{productTypeName} , </if>
+                <if test='unitId!=null' > #{unitId} , </if>
+                <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='countyName!=null and !"".equals(countyName)' > #{countyName} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                <if test='unitName!=null and !"".equals(unitName)' > #{unitName} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='productId!=null' > #{productId} , </if>
+                <if test='productTypeId!=null' > #{productTypeId} , </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' > #{goodsSpec} , </if>
+                <if test='brandId!=null' > #{brandId} , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' > #{isGroup} , </if>
+                <if test='effectiveDate!=null and !"".equals(effectiveDate)' > #{effectiveDate} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='createrId!=null' > #{createrId} , </if>
+                <if test='creater!=null and !"".equals(creater)' > #{creater} , </if>
+                <if test='modifierId!=null' > #{modifierId} , </if>
+                <if test='modifier!=null and !"".equals(modifier)' > #{modifier} , </if>
+                <if test='examinerId!=null' > #{examinerId} , </if>
+                <if test='examineDate!=null' > #{examineDate} , </if>
+                <if test='examiner!=null and !"".equals(examiner)' > #{examiner} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='SettlementPriceModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  r_settlement_price SET
+        <trim  suffixOverrides=",">
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='countyId!=null' > county_id= #{countyId} , </if>
+                <if test='price!=null' > price= #{price} , </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} , </if>
+                <if test='unitId!=null' > unit_id= #{unitId} , </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='countyName!=null and !"".equals(countyName)' >county_name= #{countyName} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                <if test='unitName!=null and !"".equals(unitName)' >unit_name= #{unitName} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='productId!=null' > product_id= #{productId} , </if>
+                <if test='productTypeId!=null' > product_type_id= #{productTypeId} , </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' >goods_spec= #{goodsSpec} , </if>
+                <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' >is_group= #{isGroup} , </if>
+                <if test='effectiveDate!=null and !"".equals(effectiveDate)' >effective_date= #{effectiveDate} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='createrId!=null' > creater_id= #{createrId} , </if>
+                <if test='creater!=null and !"".equals(creater)' >creater= #{creater} , </if>
+                <if test='modifierId!=null' > modifier_id= #{modifierId} , </if>
+                <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} , </if>
+                <if test='examinerId!=null' > examiner_id= #{examinerId} , </if>
+                <if test='examineDate!=null' > examine_date= #{examineDate} , </if>
+                <if test='examiner!=null and !"".equals(examiner)' >examiner= #{examiner} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_settlement_price  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from r_settlement_price where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_id,
+        merchant_name,
+        merchant_id,
+        county_id,
+        price,
+        product_type_name,
+        unit_id,
+        currency,
+        id,
+        goods_name,
+        barcode,
+        county_name,
+        create_date,
+        goods_no,
+        brand_name,
+        unit_name,
+        modify_date,
+        product_id,
+        product_type_id,
+        goods_spec,
+        brand_id,
+        is_group,
+        effective_date,
+        status,
+        creater_id,
+        creater,
+        modifier_id,
+        modifier,
+        examiner_id,
+        examine_date,
+        examiner,
+        bu_name,
+        bu_id
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='countyId!=null' > county_id= #{countyId} and </if>
+                <if test='price!=null' > price= #{price} and </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} and </if>
+                <if test='unitId!=null' > unit_id= #{unitId} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='countyName!=null and !"".equals(countyName)' >county_name= #{countyName} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='unitName!=null and !"".equals(unitName)' >unit_name= #{unitName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='productId!=null' > product_id= #{productId} and </if>
+                <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' >goods_spec= #{goodsSpec} and </if>
+                <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' >is_group= #{isGroup} and </if>
+                <if test='effectiveDate!=null and !"".equals(effectiveDate)' >effective_date= #{effectiveDate} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createrId!=null' > creater_id= #{createrId} and </if>
+                <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                <if test='modifierId!=null' > modifier_id= #{modifierId} and </if>
+                <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} and </if>
+                <if test='examinerId!=null' > examiner_id= #{examinerId} and </if>
+                <if test='examineDate!=null' > examine_date= #{examineDate} and </if>
+                <if test='examiner!=null and !"".equals(examiner)' >examiner= #{examiner} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+    
+    <!-- 导出的条件查询 -->
+     <select id='queryList' resultType='SettlementPriceDTO' parameterType='SettlementPriceDTO' >
+         SELECT t1.merchant_name,t1.bu_id,t1.bu_name,t1.brand_name,t1.product_type_name,t1.goods_name,t1.barcode,t1.create_date,t2.create_date as createDateRecord,
+        t2.effective_date,t2.price,t2.currency,t2.adjust_price_result , t2.status
+		from r_settlement_price t1 
+		LEFT JOIN r_settlement_price_record t2 ON t1.id=t2.settlement_price_id
+		<where>
+            <trim suffixOverrides='and'>
+                <if test='goodsId!=null' > t1.goods_id= #{goodsId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >t1.merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >t1.goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >t1.barcode= #{barcode} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t1.goods_no= #{goodsNo} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >t1.brand_name= #{brandName} and </if>
+                <if test='productTypeId!=null' >t1.product_type_id= #{productTypeId} and </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' >t1.goods_spec= #{goodsSpec} and </if>
+                <if test='brandId!=null' > t1.brand_id= #{brandId} and </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' >t1.is_group= #{isGroup} and </if>
+                <if test='status!=null and !"".equals(status)' >t1.status= #{status} and </if>
+                <if test='buId!=null ' >t1.bu_id= #{buId} and </if>
+                <if test='buIds!=null' > t1.bu_id in 
+		           	<foreach collection="buIds" separator="," open="(" close=")" item="buId">
+		           		#{buId}
+		           	</foreach>
+		            and 
+	           </if>
+            </trim>
+        </where>
+        		ORDER BY t1.merchant_id,t1.bu_id,t1.brand_id,t1.product_type_id,t1.barcode,t1.effective_date,t2.create_date
+    </select>
+	
+	<!-- 根据商家+商品条码查询存在的记录(剔除修改记录中的id) -->
+	<select id="getListNotInIds" resultMap='SettlementPriceModelMap' parameterType='SettlementPriceModel'>
+        select <include refid='sql_columns' /> from r_settlement_price 
+		<where>
+            <trim suffixOverrides='and'>
+	            <if test='barcode!=null and !"".equals(barcode)' > barcode= #{barcode} and </if>
+	            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+	            <if test='ids!=null and !"".equals(ids)' > id not in ( ${ids} ) and </if>
+            </trim>
+        </where> 
+    </select>
+    
+    <!-- 条件查询 -->
+    <select id='getPriceOne' resultMap='SettlementPriceModelMap' parameterType='map' >
+        select <include refid='sql_columns' /> from r_settlement_price  
+        WHERE merchant_id=#{merchantId} 
+              and barcode=#{barcode}
+		      and effective_date&lt;=#{month} 
+		      and IFNULL(status,'')!='006'
+		limit 1
+    </select>
+    
+    <select id='searchByIds' resultMap='SettlementPriceModelMap' parameterType='java.util.ArrayList'>
+        select <include refid='sql_columns' /> from r_settlement_price
+            WHERE id IN
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+    </select>
+    
+    <select id='listExamineList' parameterType='com.topideal.entity.dto.SettlementPriceExamineDTO' resultMap='SettlementPriceExamineMap'>
+        SELECT
+            t1.*,
+            t2.adjust_price_result
+        FROM
+            r_settlement_price t1
+        LEFT JOIN r_settlement_price_record t2 ON t1.id = t2.settlement_price_id
+        WHERE
+            <if test='effectiveDate!=null and !"".equals(effectiveDate)' > t1.effective_date= #{effectiveDate} and </if>
+            <if test='barcode!=null and !"".equals(barcode)' > t1.barcode= #{barcode} and </if>
+            <if test='buId!=null ' > t1.bu_id= #{buId} and </if>
+            <if test='buIds!=null' > t1.bu_id in 
+	           	<foreach collection="buIds" separator="," open="(" close=")" item="buId">
+	           		#{buId}
+	           	</foreach>
+	            and 
+           </if>
+            t2.`status` = '001' and t1.merchant_id = #{merchantId}
+        LIMIT #{begin} , #{pageSize};
+    </select>
+    
+    <select id='countExamineList' parameterType='com.topideal.entity.dto.SettlementPriceExamineDTO' resultType='int'>
+        SELECT
+            count(1)
+        FROM
+            r_settlement_price t1
+        LEFT JOIN r_settlement_price_record t2 ON t1.id = t2.settlement_price_id
+        WHERE
+            <if test='effectiveDate!=null and !"".equals(effectiveDate)' > t1.effective_date= #{effectiveDate} and </if>
+            <if test='barcode!=null and !"".equals(barcode)' > t1.barcode= #{barcode} and </if>
+            <if test='buIds!=null' > t1.bu_id in 
+	           	<foreach collection="buIds" separator="," open="(" close=")" item="buId">
+	           		#{buId}
+	           	</foreach>
+	            and 
+           </if>
+            t2.`status` = '001' and t1.merchant_id = #{merchantId}
+    </select>
+    
+    <!-- 查询所有信息 分页 -->
+    <select id='getListByPage' resultType='SettlementPriceDTO' parameterType='SettlementPriceDTO'>
+        select <include refid='sql_columns' /> from r_settlement_price  
+		<where>
+            <trim suffixOverrides='and'>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='countyId!=null' > county_id= #{countyId} and </if>
+                <if test='price!=null' > price= #{price} and </if>
+                <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} and </if>
+                <if test='unitId!=null' > unit_id= #{unitId} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='countyName!=null and !"".equals(countyName)' >county_name= #{countyName} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='unitName!=null and !"".equals(unitName)' >unit_name= #{unitName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='productId!=null' > product_id= #{productId} and </if>
+                <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' >goods_spec= #{goodsSpec} and </if>
+                <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                <if test='isGroup!=null and !"".equals(isGroup)' >is_group= #{isGroup} and </if>
+                <if test='effectiveDate!=null and !"".equals(effectiveDate)' >effective_date= #{effectiveDate} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createrId!=null' > creater_id= #{createrId} and </if>
+                <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                <if test='modifierId!=null' > modifier_id= #{modifierId} and </if>
+                <if test='modifier!=null and !"".equals(modifier)' >modifier= #{modifier} and </if>
+                <if test='examinerId!=null' > examiner_id= #{examinerId} and </if>
+                <if test='examineDate!=null' > examine_date= #{examineDate} and </if>
+                <if test='examiner!=null and !"".equals(examiner)' >examiner= #{examiner} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buIds!=null' > bu_id in 
+                	<foreach collection="buIds" separator="," open="(" close=")" item="buId">
+                		#{buId}
+                	</foreach>
+                 and 
+                </if>
+            </trim>
+        </where>
+        order by id desc 
+    </select>
+        <!-- 根据生效月份排序 -->
+    <select id='getListByEffectiveDate'  resultType='SettlementPriceDTO'  parameterType='Map'>	
+		SELECT price, currency, effective_date FROM ( (SELECT t1.price, t1.currency, t1.effective_date AS effective_date 
+		FROM r_settlement_price t1 WHERE (t1.bu_id = #{buId} AND t1.barcode = #{barcode} AND `status` = #{status} AND effective_date &lt;=#{effectiveDate}))
+		UNION ALL 
+		(SELECT t2.price, t2.currency, t2.effective_date FROM r_settlement_price_record t2 
+		WHERE (bu_id = #{buId} AND `status` = #{status} AND effective_date &lt;=#{effectiveDate} AND settlement_price_id IN
+		( SELECT id FROM r_settlement_price WHERE (bu_id = #{buId} AND barcode = #{barcode}) ))) ) o 
+		ORDER BY effective_date DESC
+    </select>
+</mapper>

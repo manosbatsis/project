@@ -1,0 +1,586 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.PreSaleOrderCorrelationMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PreSaleOrderCorrelationModelMap" type="PreSaleOrderCorrelationModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="preSaleOrderId" column="pre_sale_order_id" />
+                <result property="preSaleOrderCode" column="pre_sale_order_code" />
+                <result property="saleOrderCode" column="sale_order_code" />
+                <result property="saleOutDepotCode" column="sale_out_depot_code" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="preNum" column="pre_num" />
+                <result property="saleNum" column="sale_num" />
+                <result property="outNum" column="out_num" />
+                <result property="auditDate" column="audit_date" />
+                <result property="auditor" column="auditor" />
+                <result property="auditName" column="audit_name" />
+                <result property="outDepotDate" column="out_depot_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PreSaleOrderCorrelationModelMap' parameterType='PreSaleOrderCorrelationModel'>
+        select <include refid='sql_columns' /> from t_pre_sale_order_correlation  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PreSaleOrderCorrelationModelMap' parameterType='PreSaleOrderCorrelationModel'>
+        select <include refid='sql_columns' /> from t_pre_sale_order_correlation  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PreSaleOrderCorrelationModelMap' parameterType='PreSaleOrderCorrelationModel' >
+        select <include refid='sql_columns' /> from t_pre_sale_order_correlation  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PreSaleOrderCorrelationModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_pre_sale_order_correlation
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='preSaleOrderId!=null' >pre_sale_order_id , </if>
+                        <if test='preSaleOrderCode!=null and !"".equals(preSaleOrderCode)' > pre_sale_order_code , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > sale_order_code , </if>
+                        <if test='saleOutDepotCode!=null' >sale_out_depot_code , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='preNum!=null' >pre_num , </if>
+                        <if test='saleNum!=null' >sale_num , </if>
+                        <if test='outNum!=null' >out_num , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+                        <if test='auditor!=null' >auditor , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+                        <if test='outDepotDate!=null' >out_depot_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='preSaleOrderId!=null' > #{preSaleOrderId} , </if>
+                        <if test='preSaleOrderCode!=null and !"".equals(preSaleOrderCode)' > #{preSaleOrderCode} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > #{saleOrderCode} , </if>
+                        <if test='saleOutDepotCode!=null' > #{saleOutDepotCode} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='preNum!=null' > #{preNum} , </if>
+                        <if test='saleNum!=null' > #{saleNum} , </if>
+                        <if test='outNum!=null' > #{outNum} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+                        <if test='auditor!=null' > #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+                        <if test='outDepotDate!=null' > #{outDepotDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PreSaleOrderCorrelationModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_pre_sale_order_correlation SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='preSaleOrderId!=null' > pre_sale_order_id= #{preSaleOrderId} , </if>
+                        <if test='preSaleOrderCode!=null and !"".equals(preSaleOrderCode)' >pre_sale_order_code= #{preSaleOrderCode} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} , </if>
+                        <if test='saleOutDepotCode!=null' > sale_out_depot_code= #{saleOutDepotCode} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='preNum!=null' > pre_num= #{preNum} , </if>
+                        <if test='saleNum!=null' > sale_num= #{saleNum} , </if>
+                        <if test='outNum!=null' > out_num= #{outNum} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+                        <if test='auditor!=null' > auditor= #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+                        <if test='outDepotDate!=null' > out_depot_date= #{outDepotDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_pre_sale_order_correlation  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_pre_sale_order_correlation where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            pre_sale_order_id,
+            pre_sale_order_code,
+            sale_order_code,
+            sale_out_depot_code,
+            goods_id,
+            goods_no,
+            goods_code,
+            goods_name,
+            barcode,
+            commbarcode,
+            pre_num,
+            sale_num,
+            out_num,
+            audit_date,
+            auditor,
+            audit_name,
+            out_depot_date,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='preSaleOrderId!=null' > pre_sale_order_id= #{preSaleOrderId} and </if>
+                            <if test='preSaleOrderCode!=null and !"".equals(preSaleOrderCode)' >pre_sale_order_code= #{preSaleOrderCode} and </if>
+                            <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} and </if>
+                            <if test='saleOutDepotCode!=null' > sale_out_depot_code= #{saleOutDepotCode} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='preNum!=null' > pre_num= #{preNum} and </if>
+                            <if test='saleNum!=null' > sale_num= #{saleNum} and </if>
+                            <if test='outNum!=null' > out_num= #{outNum} and </if>
+                            <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                            <if test='auditor!=null' > auditor= #{auditor} and </if>
+                            <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                            <if test='outDepotDate!=null' > out_depot_date= #{outDepotDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <!--某些预售单的预售总量-->
+    <select id='getPreNumByPreSaleId' resultType='java.lang.Integer' parameterType='java.util.ArrayList'>
+        SELECT SUM(pre_num) FROM t_pre_sale_order_correlation
+        WHERE sale_order_code IS NULL AND sale_out_depot_code IS NULL
+        AND goods_id=#{goodsId}
+        AND pre_sale_order_code IN
+        <foreach collection='preSaleOrderCodes' item='preCode' separator=',' open='(' close=')'>
+            #{preCode}
+        </foreach>
+    </select>
+    <!--获得某些预售单的已销售量-->
+    <select id='getSaleNumByPreSaleId' resultType='java.lang.Integer' parameterType='java.util.ArrayList'>
+        SELECT SUM(sale_num) FROM t_pre_sale_order_correlation
+        WHERE  sale_out_depot_code IS NULL
+        AND goods_id=#{goodsId}
+        AND pre_sale_order_code IN
+        <foreach collection='preSaleOrderCodes' item='preCode' separator=',' open='(' close=')'>
+            #{preCode}
+        </foreach>
+    </select>
+
+        <select id="detail" resultType="PreSaleOrderCorrelationDTO" parameterType="PreSaleOrderCorrelationDTO" >
+            SELECT
+              t2.pre_sale_order_code, t1.audit_date, t1.audit_name, t1.customer_name, t1.merchant_name,
+              t1.bu_name, t1.goods_no, t1.goods_name, t1.barcode, t2.pre_num, t1.price, t1.amount,
+              t2.out_num, t2.sale_num
+            FROM
+            (
+                SELECT
+                    o.id, o.`code`, o.audit_date, o.audit_name, o.customer_name, o.merchant_name,
+                    o.bu_name, oi.goods_no, oi.goods_name, oi.barcode,oi.price, oi.amount
+                FROM
+                    t_pre_sale_order o
+                LEFT JOIN t_pre_sale_order_item oi ON o.id = oi.order_id
+                WHERE
+                    o.`code` = #{preSaleOrderCode}
+                AND oi.goods_no = #{goodsNo}
+            ) t1
+            LEFT JOIN (
+                SELECT
+                    oc.goods_no,
+                    oc.pre_sale_order_code,
+                    oc.pre_sale_order_id,
+                    SUM(oc.sale_num) sale_num,
+                    SUM(oc.out_num) out_num,
+                    SUM(oc.pre_num) pre_num
+                FROM
+                    t_pre_sale_order_correlation oc
+                WHERE
+                    oc.pre_sale_order_code = #{preSaleOrderCode}
+                AND oc.goods_no = #{goodsNo}
+                GROUP BY
+                    oc.pre_sale_order_id,
+                    oc.pre_sale_order_code,
+                    oc.goods_no
+            ) t2 on t1.id = t2.pre_sale_order_id
+        </select>
+
+        <select id="detailByCodeAndGoodsNo" parameterType="PreSaleOrderCorrelationDTO" resultType="PreSaleOrderCorrelationDTO" >
+            SELECT
+                t1.sale_order_code,
+                t1.sale_num,
+                t1.audit_name,
+                t1.audit_date,
+                t2.sale_out_depot_code,
+                t2.out_num,
+                t2.out_depot_date
+            FROM (
+                SELECT
+                    c2.sale_order_code,
+                    c2.sale_num,
+                    c2.audit_name,
+                    c2.audit_date
+                FROM
+                    t_pre_sale_order_correlation c2
+                WHERE
+                    c2.pre_sale_order_code =  #{preSaleOrderCode}
+                AND c2.goods_no = #{goodsNo}
+                AND c2.sale_out_depot_code IS NULL
+                AND c2.sale_order_code is not NULL
+            ) t1
+            LEFT JOIN (
+                SELECT
+                    c1.sale_out_depot_code,
+                    c1.out_num,
+                    c1.sale_order_code,
+                    c1.out_depot_date
+                FROM
+                    t_pre_sale_order_correlation c1
+                WHERE
+                    c1.pre_sale_order_code =  #{preSaleOrderCode}
+                AND c1.goods_no = #{goodsNo}
+                AND c1.sale_out_depot_code IS NOT NULL
+            ) t2 ON t1.sale_order_code = t2.sale_order_code
+        </select>
+
+        <select id="listForExport" parameterType="PreSaleOrderCorrelationDTO" resultType="map" >
+            SELECT
+            	oc.id,
+                oc.pre_sale_order_code pre_sale_order_code,
+                oc.goods_id goods_id,
+                oc.goods_no goods_no,
+                oc.barcode barcode,
+                oc.goods_name goods_name,
+                oc.commbarcode,
+                o.customer_id customer_id,
+                o.customer_name customer_name,
+                o.bu_id bu_id,
+                o.bu_name bu_name,
+                o.out_depot_id out_depot_id,
+                o.out_depot_name out_depot_name,
+                o.po_no po_no,
+                SUM(oc.pre_num) pre_num,
+                SUM(oc.sale_num) sale_num,
+                SUM(oc.out_num) out_num,
+                oi.price,
+                oi.amount,
+                max(oc.create_date) create_date
+            FROM
+                t_pre_sale_order_correlation oc
+            LEFT JOIN t_pre_sale_order o ON o.id = oc.pre_sale_order_id
+            LEFT JOIN t_pre_sale_order_item oi ON oi.order_id = o.id and oi.goods_id = oc.goods_id
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > oc.merchant_id = #{merchantId} and </if>
+                    <if test='customerId!=null' > o.customer_id= #{customerId} and </if>
+                    <if test='buId!=null' > o.bu_id= #{buId} and </if>
+                    <if test='buList!=null and !"".equals(buList)' > o.bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                    <if test='outDepotId!=null' > o.out_depot_id= #{outDepotId} and </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' >oc.goods_no= #{goodsNo} and </if>
+                    <if test='barcode!=null and !"".equals(barcode)' >oc.barcode= #{barcode} and </if>
+                    <if test='(auditStartDate!=null and !"".equals(auditStartDate))
+                            or (auditEndDate!=null and !"".equals(auditEndDate))
+                            or (preSaleOrderCode!=null and !"".equals(preSaleOrderCode))
+                            or (outDepotStartDate!=null and !"".equals(outDepotStartDate))
+                            or (outDepotEndDate!=null and !"".equals(outDepotEndDate))' >
+                        oc.pre_sale_order_code IN (
+                        SELECT
+                        ps.pre_sale_order_code
+                        FROM
+                        t_pre_sale_order_correlation ps
+                        WHERE
+                        ps.merchant_id = #{merchantId}
+                        <if test='preSaleOrderCode!=null and !"".equals(preSaleOrderCode)' >and ps.pre_sale_order_code= #{preSaleOrderCode} </if>
+                        <if test='auditStartDate!=null and !"".equals(auditStartDate)' >and ps.audit_date &gt;= #{auditStartDate} </if>
+                        <if test='auditEndDate!=null and !"".equals(auditEndDate)' >and ps.audit_date &lt;= #{auditEndDate} </if>
+                        <if test='outDepotStartDate!=null and !"".equals(outDepotStartDate)' >and ps.out_depot_date&gt;= #{outDepotStartDate} </if>
+                        <if test='outDepotEndDate!=null and !"".equals(outDepotEndDate)' >and ps.out_depot_date&lt;= #{outDepotEndDate} </if>
+                        )
+                    </if>
+                    <if test='ids!=null and !"".equals(ids)' >oc.id in
+	                    <foreach collection="ids.split(',')"  item='id' separator=',' open='(' close=')'>
+	                        #{id}
+	                    </foreach>
+	                    and
+	                </if>
+                </trim>
+            </where>
+            GROUP BY oc.pre_sale_order_code,oc.goods_id,oc.goods_no, oc.barcode,
+            o.customer_id,  o.customer_name,o.bu_id, o.bu_name, o.out_depot_id, o.out_depot_name,
+            o.po_no,oc.commbarcode,oc.goods_name,oi.price,oi.amount
+            ORDER BY create_date desc
+        </select>
+
+        <select id="detailForExport" resultType="map" parameterType="PreSaleOrderCorrelationDTO">
+            SELECT
+                t3.pre_sale_order_code,
+                t3.goods_no,
+                t3.barcode,
+                t3.goods_name,
+                t3.customer_name,
+                t3.bu_name,
+                t3.out_depot_name,
+                t1.sale_order_code,
+                t1.sale_num,
+                t1.audit_name,
+                t1.audit_date,
+                t2.sale_out_depot_code,
+                t2.out_num,
+                t2.out_depot_date
+            FROM
+                (
+                    SELECT DISTINCT
+                        oc.pre_sale_order_code,
+                        oc.goods_no,
+                        oc.barcode,
+                        oc.goods_name,
+                        o.customer_name,
+                        o.bu_name,
+                        o.out_depot_name,
+                        oc.create_date
+                    FROM
+                        t_pre_sale_order_correlation oc
+                    LEFT JOIN t_pre_sale_order o ON o.id = oc.pre_sale_order_id
+                    <where>
+                        <trim suffixOverrides='and'>
+                            oc.sale_order_code IS NOT NULL
+                            <if test='merchantId!=null' >and oc.merchant_id = #{merchantId}  </if>
+                            <if test='customerId!=null' >and o.customer_id= #{customerId}  </if>
+                            <if test='buId!=null' >and o.bu_id= #{buId}  </if>
+                            <if test='outDepotId!=null' >and o.out_depot_id= #{outDepotId}  </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >and oc.goods_no= #{goodsNo}  </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >and oc.barcode= #{barcode}  </if>
+                            <if test='preSaleOrderCode!=null and !"".equals(preSaleOrderCode)' >and oc.pre_sale_order_code= #{preSaleOrderCode} </if>
+                            <if test='auditStartDate!=null and !"".equals(auditStartDate)' >and oc.audit_date &gt;= #{auditStartDate} </if>
+                            <if test='auditEndDate!=null and !"".equals(auditEndDate)' >and oc.audit_date &lt;= #{auditEndDate} </if>
+                            <if test='outDepotStartDate!=null and !"".equals(outDepotStartDate)' >and oc.out_depot_date&gt;= #{outDepotStartDate} </if>
+                            <if test='outDepotEndDate!=null and !"".equals(outDepotEndDate)' >and oc.out_depot_date&lt;= #{outDepotEndDate} </if>
+                            <if test='buList!=null and !"".equals(buList)' >and o.bu_id in
+                                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                                    #{buId}
+                                </foreach>
+                            </if>
+                        </trim>
+
+                    </where>
+                    ORDER BY oc.create_date desc
+                ) t3
+            LEFT JOIN (
+                SELECT
+                    c2.sale_order_code,
+                    c2.sale_num,
+                    c2.audit_name,
+                    c2.audit_date,
+                    c2.pre_sale_order_code,
+                    c2.goods_no
+                FROM
+                    t_pre_sale_order_correlation c2
+                WHERE
+                    c2.sale_out_depot_code IS NULL
+                AND c2.sale_order_code IS NOT NULL
+            ) t1 ON t1.goods_no = t3.goods_no
+            AND t1.pre_sale_order_code = t3.pre_sale_order_code
+            LEFT JOIN (
+                SELECT
+                    c1.sale_out_depot_code,
+                    c1.out_num,
+                    c1.sale_order_code,
+                    c1.out_depot_date,
+                    c1.pre_sale_order_code,
+                    c1.goods_no
+                FROM
+                    t_pre_sale_order_correlation c1
+                WHERE
+                    c1.sale_out_depot_code IS NOT NULL
+            ) t2 ON t1.sale_order_code = t2.sale_order_code
+            AND t2.goods_no = t3.goods_no and t1.pre_sale_order_code = t2.pre_sale_order_code
+        </select>
+
+        <resultMap id="PreSaleOrderCorrelationDTOMap" type="PreSaleOrderCorrelationDTO" >
+            <result property="preSaleOrderCode" column="pre_sale_order_code" />
+            <result property="goodsId" column="goods_id" />
+            <result property="goodsNo" column="goods_no" />
+            <result property="goodsName" column="goods_name" />
+            <result property="barcode" column="barcode" />
+            <result property="preNum" column="pre_num" />
+            <result property="saleNum" column="sale_num" />
+            <result property="outNum" column="out_num" />
+            <result property="outDepotId" column="out_depot_id" />
+            <result property="outDepotName" column="out_depot_name" />
+            <result property="buId" column="bu_id" />
+            <result property="buName" column="bu_name" />
+            <result property="poNo" column="po_no" />
+            <result property="customerId" column="customer_id" />
+            <result property="customerName" column="customer_name" />
+        </resultMap>
+
+        <select id="listPreSaleOrderCorrelationByPage" parameterType="PreSaleOrderCorrelationDTO" resultMap="PreSaleOrderCorrelationDTOMap" >
+            SELECT
+            oc.id id,
+            oc.pre_sale_order_code pre_sale_order_code,
+            oc.goods_id goods_id,
+            oc.goods_no goods_no,
+            oc.barcode barcode,
+            oc.goods_name goods_name,
+            o.customer_id customer_id,
+            o.customer_name customer_name,
+            o.bu_id bu_id,
+            o.bu_name bu_name,
+            o.out_depot_id out_depot_id,
+            o.out_depot_name out_depot_name,
+            o.po_no po_no,
+            SUM(oc.pre_num) pre_num,
+            SUM(oc.sale_num) sale_num,
+            SUM(oc.out_num) out_num,
+            max(oc.create_date) create_date
+            FROM
+            t_pre_sale_order_correlation oc
+            LEFT JOIN t_pre_sale_order o ON o.id = oc.pre_sale_order_id
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='buList!=null and !"".equals(buList)' >o.bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                    <if test='ids!=null and !"".equals(ids)' >oc.id in
+                    <foreach collection="ids.split(',')"  item='id' separator=',' open='(' close=')'>
+                        #{id}
+                    </foreach>
+                    and
+               		</if>
+                    <if test='merchantId!=null' > oc.merchant_id = #{merchantId} and </if>
+                    <if test='customerId!=null' > o.customer_id= #{customerId} and </if>
+                    <if test='buId!=null' > o.bu_id= #{buId} and </if>
+                    <if test='outDepotId!=null' > o.out_depot_id= #{outDepotId} and </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' >oc.goods_no= #{goodsNo} and </if>
+                    <if test='barcode!=null and !"".equals(barcode)' >oc.barcode= #{barcode} and </if>
+                    <if test='(auditStartDate!=null and !"".equals(auditStartDate))
+                            or (auditEndDate!=null and !"".equals(auditEndDate))
+                            or (preSaleOrderCode!=null and !"".equals(preSaleOrderCode))
+                            or (outDepotStartDate!=null and !"".equals(outDepotStartDate))
+                            or (outDepotEndDate!=null and !"".equals(outDepotEndDate))' >
+                        oc.pre_sale_order_code IN (
+                        SELECT
+                        ps.pre_sale_order_code
+                        FROM
+                        t_pre_sale_order_correlation ps
+                        WHERE
+                        ps.merchant_id = #{merchantId}
+                        <if test='preSaleOrderCode!=null and !"".equals(preSaleOrderCode)' >and ps.pre_sale_order_code= #{preSaleOrderCode} </if>
+                        <if test='auditStartDate!=null and !"".equals(auditStartDate)' >
+                            and ps.sale_order_code is null
+                            and ps.audit_date &gt;= #{auditStartDate}
+                        </if>
+                        <if test='auditEndDate!=null and !"".equals(auditEndDate)' >
+                            and ps.sale_order_code is null
+                            and ps.audit_date &lt;= #{auditEndDate}
+                        </if>
+                        <if test='outDepotStartDate!=null and !"".equals(outDepotStartDate)' >and ps.out_depot_date&gt;= #{outDepotStartDate} </if>
+                        <if test='outDepotEndDate!=null and !"".equals(outDepotEndDate)' >and ps.out_depot_date&lt;= #{outDepotEndDate} </if>
+                        )
+                    </if>
+                </trim>
+            </where>
+            GROUP BY oc.pre_sale_order_code,oc.goods_id,oc.goods_no, oc.barcode,
+            o.customer_id,  o.customer_name,o.bu_id, o.bu_name, o.out_depot_id, o.out_depot_name,
+            o.po_no, oc.goods_name
+            ORDER BY create_date desc
+        </select>
+
+        <select id="getTotal" resultType="java.lang.Integer" parameterType="PreSaleOrderCorrelationDTO" >
+            SELECT
+            count(0)
+            FROM (select count(distinct oc.pre_sale_order_code)
+            FROM t_pre_sale_order_correlation oc
+            LEFT JOIN t_pre_sale_order o ON o.id = oc.pre_sale_order_id
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='buList!=null and !"".equals(buList)' >o.bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                    <if test='merchantId!=null' > oc.merchant_id = #{merchantId} and </if>
+                    <if test='customerId!=null' > o.customer_id= #{customerId} and </if>
+                    <if test='buId!=null' > o.bu_id= #{buId} and </if>
+                    <if test='outDepotId!=null' > o.out_depot_id= #{outDepotId} and </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' >oc.goods_no= #{goodsNo} and </if>
+                    <if test='barcode!=null and !"".equals(barcode)' >oc.barcode= #{barcode} and </if>
+                    <if test='preSaleOrderCode!=null and !"".equals(preSaleOrderCode)' > oc.pre_sale_order_code= #{preSaleOrderCode} and</if>
+                    <if test='auditStartDate!=null and !"".equals(auditStartDate)' >
+                         oc.sale_order_code is null and
+                         oc.audit_date &gt;= #{auditStartDate} and
+                    </if>
+                    <if test='auditEndDate!=null and !"".equals(auditEndDate)' >
+                        oc.sale_order_code is null and
+                        oc.audit_date &lt;= #{auditEndDate} and
+                    </if>
+                    <if test='outDepotStartDate!=null and !"".equals(outDepotStartDate)' > oc.out_depot_date&gt;= #{outDepotStartDate} and</if>
+                    <if test='outDepotEndDate!=null and !"".equals(outDepotEndDate)' > oc.out_depot_date&lt;= #{outDepotEndDate} and</if>
+                </trim>
+            </where>
+            group by oc.pre_sale_order_code, oc.goods_no) t1
+        </select>
+</mapper>

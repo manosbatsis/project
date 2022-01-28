@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.TakesStockItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="TakesStockItemModelMap" type="TakesStockItemModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="createTime" column="create_time" />
+                <result property="goodsId" column="goods_id" />
+                <result property="takesStockId" column="takes_stock_id" />
+                <result property="id" column="id" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TakesStockItemModelMap' parameterType='TakesStockItemModel'>
+        select <include refid='sql_columns' /> from s_takes_stock_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TakesStockItemModelMap' parameterType='TakesStockItemModel'>
+        select <include refid='sql_columns' /> from s_takes_stock_item  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TakesStockItemModelMap' parameterType='TakesStockItemModel' >
+        select <include refid='sql_columns' /> from s_takes_stock_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TakesStockItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO s_takes_stock_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='createTime!=null' > create_time , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='takesStockId!=null' > takes_stock_id , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > TRIM(#{goodsNo}) , </if>
+                <if test='createTime!=null' > #{createTime} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='takesStockId!=null' > #{takesStockId} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > TRIM(#{goodsCode}) , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > TRIM(#{goodsName}) , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > TRIM(#{barcode}) , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TakesStockItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  s_takes_stock_item SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= TRIM(#{goodsNo}), </if>
+                <if test='createTime!=null' > create_time= #{createTime} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='takesStockId!=null' > takes_stock_id= #{takesStockId} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= TRIM(#{goodsCode}) , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= TRIM(#{goodsName}) , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= TRIM(#{barcode}) , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from s_takes_stock_item  where id=#{id}
+    </delete>
+     <!-- 删除数据 -->
+    <delete id='delByTakesStockId' parameterType='java.lang.Long'>
+        delete from s_takes_stock_item  where takes_stock_id=#{takesStockId}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from s_takes_stock_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        create_time,
+        goods_id,
+        takes_stock_id,
+        id,
+        goods_code,
+        goods_name,
+        barcode
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='createTime!=null' > create_time= #{createTime} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='takesStockId!=null' > takes_stock_id= #{takesStockId} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	<!-- 检查商品是否使用 -->
+    <select id='checkGoodsIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select 
+        	count(*)
+        from s_takes_stock_item
+        where goods_id = #{id}
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.CrawlerVipExtraDataMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CrawlerVipExtraDataModelMap" type="CrawlerVipExtraDataModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="merchantCode" column="merchant_code" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerCode" column="customer_code" />
+                <result property="saleOrderCode" column="sale_order_code" />
+                <result property="poNo" column="po_no" />
+                <result property="vendorNumber" column="vendor_number" />
+                <result property="vendorName" column="vendor_name" />
+                <result property="brandName" column="brand_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="currencyCode" column="currency_code" />
+                <result property="quantity" column="quantity" />
+                <result property="amount" column="amount" />
+                <result property="processingType" column="processing_type" />
+                <result property="billCode" column="bill_code" />
+                <result property="userCode" column="user_code" />
+                <result property="oldId" column="old_id" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="isUsed" column="is_used" />
+                <result property="platformCostCode" column="platform_cost_code" />
+                <result property="reason" column="reason" />
+                
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CrawlerVipExtraDataModelMap' parameterType='CrawlerVipExtraDataModel'>
+        select <include refid='sql_columns' /> from t_crawler_vip_extra_data  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CrawlerVipExtraDataModelMap' parameterType='CrawlerVipExtraDataModel'>
+        select <include refid='sql_columns' /> from t_crawler_vip_extra_data  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CrawlerVipExtraDataModelMap' parameterType='CrawlerVipExtraDataModel' >
+        select <include refid='sql_columns' /> from t_crawler_vip_extra_data  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+        <insert id='insert' parameterType='CrawlerVipExtraDataModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_crawler_vip_extra_data
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='merchantCode!=null and !"".equals(merchantCode)' > merchant_code , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' > customer_code , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > sale_order_code , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='vendorNumber!=null and !"".equals(vendorNumber)' > vendor_number , </if>
+                        <if test='vendorName!=null and !"".equals(vendorName)' > vendor_name , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='currencyCode!=null and !"".equals(currencyCode)' > currency_code , </if>
+                        <if test='quantity!=null' >quantity , </if>
+                        <if test='amount!=null' >amount , </if>
+                        <if test='processingType!=null and !"".equals(processingType)' > processing_type , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' > bill_code , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > user_code , </if>
+                        <if test='oldId!=null' >old_id , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='isUsed!=null and !"".equals(isUsed)' > is_used , </if>
+                        <if test='platformCostCode!=null and !"".equals(platformCostCode)' > platform_cost_code , </if>
+                        <if test='reason!=null and !"".equals(reason)' > reason , </if>
+                        
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='merchantCode!=null and !"".equals(merchantCode)' > #{merchantCode} , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' > #{customerCode} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > #{saleOrderCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='vendorNumber!=null and !"".equals(vendorNumber)' > #{vendorNumber} , </if>
+                        <if test='vendorName!=null and !"".equals(vendorName)' > #{vendorName} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='currencyCode!=null and !"".equals(currencyCode)' > #{currencyCode} , </if>
+                        <if test='quantity!=null' > #{quantity} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='processingType!=null and !"".equals(processingType)' > #{processingType} , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' > #{billCode} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > #{userCode} , </if>
+                        <if test='oldId!=null' > #{oldId} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='isUsed!=null and !"".equals(isUsed)' > #{isUsed} , </if>
+                        <if test='platformCostCode!=null and !"".equals(platformCostCode)' > #{platformCostCode} , </if>
+                        <if test='reason!=null and !"".equals(reason)' > #{reason} , </if>
+            </trim>
+        </insert>
+
+        <!-- 新增数据 -->
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_crawler_vip_extra_data
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+            			id,
+                        merchant_id ,
+                       	merchant_name ,
+                        merchant_code ,
+                        topideal_code ,
+                        customer_id ,
+                        customer_name ,
+                        customer_code ,
+                        sale_order_code ,
+                        po_no ,
+                        vendor_number ,
+                        vendor_name ,
+                        brand_name ,
+                        goods_no ,
+                        goods_name,
+                        currency_code ,
+                        quantity ,
+                        amount ,
+                        processing_type ,
+                        bill_code ,
+                        user_code ,
+                        old_id ,
+                        create_date ,
+                        modify_date ,
+                        platform_cost_code ,
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+	            <trim prefix="(" suffix=")" suffixOverrides="," >
+	                        #{item.id} ,
+	                        #{item.merchantId} ,
+	                        #{item.merchantName} ,
+	                        #{item.merchantCode} ,
+	                        #{item.topidealCode} ,
+	                        #{item.customerId} ,
+	                        #{item.customerName} ,
+	                        #{item.customerCode} ,
+	                        #{item.saleOrderCode} ,
+	                        #{item.poNo} ,
+	                        #{item.vendorNumber} ,
+	                        #{item.vendorName} ,
+	                        #{item.brandName} ,
+	                        #{item.goodsNo} ,
+	                        #{item.goodsName} ,
+	                        #{item.currencyCode} ,
+	                        #{item.quantity} ,
+	                        #{item.amount} ,
+	                        #{item.processingType} ,
+	                        #{item.billCode} ,
+	                        #{item.userCode} ,
+	                        #{item.oldId} ,
+	                        #{item.createDate} ,
+	                        #{item.modifyDate} ,
+	                        #{item.platformCostCode} ,
+	            </trim>
+            </foreach>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CrawlerVipExtraDataModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_crawler_vip_extra_data SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='merchantCode!=null and !"".equals(merchantCode)' >merchant_code= #{merchantCode} , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='vendorNumber!=null and !"".equals(vendorNumber)' >vendor_number= #{vendorNumber} , </if>
+                        <if test='vendorName!=null and !"".equals(vendorName)' >vendor_name= #{vendorName} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='currencyCode!=null and !"".equals(currencyCode)' >currency_code= #{currencyCode} , </if>
+                        <if test='quantity!=null' > quantity= #{quantity} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='processingType!=null and !"".equals(processingType)' >processing_type= #{processingType} , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} , </if>
+                        <if test='oldId!=null' > old_id= #{oldId} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='isUsed!=null and !"".equals(isUsed)' >is_used= #{isUsed} , </if>
+                        <if test='platformCostCode!=null and !"".equals(platformCostCode)' >platform_cost_code= #{platformCostCode} , </if>
+                        <if test='reason!=null and !"".equals(reason)' > reason= #{reason} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_crawler_vip_extra_data  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_crawler_vip_extra_data where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            merchant_code,
+            topideal_code,
+            customer_id,
+            customer_name,
+            customer_code,
+            sale_order_code,
+            po_no,
+            vendor_number,
+            vendor_name,
+            brand_name,
+            goods_no,
+            goods_name,
+            currency_code,
+            quantity,
+            amount,
+            processing_type,
+            bill_code,
+            user_code,
+            old_id,
+            create_date,
+            modify_date,
+            is_used,
+            platform_cost_code,
+            reason
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='merchantCode!=null and !"".equals(merchantCode)' >merchant_code= #{merchantCode} and </if>
+                            <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} and </if>
+                            <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='vendorNumber!=null and !"".equals(vendorNumber)' >vendor_number= #{vendorNumber} and </if>
+                            <if test='vendorName!=null and !"".equals(vendorName)' >vendor_name= #{vendorName} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='currencyCode!=null and !"".equals(currencyCode)' >currency_code= #{currencyCode} and </if>
+                            <if test='quantity!=null' > quantity= #{quantity} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='processingType!=null and !"".equals(processingType)' >processing_type= #{processingType} and </if>
+                            <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} and </if>
+                            <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} and </if>
+                            <if test='oldId!=null' > old_id= #{oldId} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='isUsed!=null and !"".equals(isUsed)' >is_used= #{isUsed} and </if>
+                            <if test='platformCostCode!=null and !"".equals(platformCostCode)' >platform_cost_code= #{platformCostCode} and </if>
+                            <if test='reason!=null and !"".equals(reason)' > reason= #{reason} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+	<!-- 分组获取平台费用单根据 商家,客户,费用类型,币种 -->
+	<select id="getGroupCrawlerVipExtra" resultType='map' parameterType="map">
+		SELECT merchant_id,user_code,customer_id,bill_code,processing_type,currency_code,
+		CONCAT(merchant_id,user_code,customer_id,bill_code,currency_code,processing_type)as bill_code_key_word
+			from t_crawler_vip_extra_data 
+			where is_used='0' 
+			 <if test='billCode!=null and !"".equals(billCode)' >and bill_code= #{billCode}  </if>
+             <if test='userCode!=null and !"".equals(userCode)' >and user_code= #{userCode}  </if>			
+		GROUP BY merchant_id,user_code,customer_id,bill_code,processing_type,currency_code
+	</select>
+	<!-- 分页获取平台费用单数据 -->
+<!-- 	<select id="getCrawlerVipExtraDatailList" resultMap='CrawlerVipExtraDataModelMap' parameterType='CrawlerVipExtraDataModel'>
+        select <include refid='sql_columns' /> from t_crawler_vip_extra_data  
+        where is_used='0' 
+        and merchant_id= #{merchantId} 
+        and customer_id= #{customerId} 
+        and bill_code= #{billCode} 
+        and processing_type= #{processingType} 
+        and currency_code= #{currencyCode}
+        ORDER BY id ASC 
+        LIMIT #{startIndex},#{pageSize}
+        
+    </select> -->
+    
+    <!-- 获取parmMap平台费用单 判断哪些sku没有配置爬虫商品配置-->
+	<select id="getGoodNoCrawlerVipExtra" resultType='map' parameterType='map'>
+       select goods_no
+       from t_crawler_vip_extra_data  
+        where is_used='0' 
+        and merchant_id= #{merchantId} 
+        and customer_id= #{customerId} 
+        and bill_code= #{billCode} 
+        and user_code= #{userCode}
+        and processing_type= #{processingType} 
+        and currency_code= #{currencyCode}
+        GROUP BY goods_no
+        
+        
+    </select>
+    
+	<!-- 获取平台费用单数据 按分页 -->
+	<select id="getGroupByGoodNoCrawlerVipExtra" resultType='map' parameterType='map'>
+       <!-- select merchant_id,user_code,customer_id,bill_code,processing_type,currency_code,po_no,goods_no,
+       SUM(quantity) as num,SUM(amount) as amount 
+       from t_crawler_vip_extra_data  
+        where is_used='0' 
+        and merchant_id= #{merchantId} 
+        and customer_id= #{customerId} 
+        and bill_code= #{billCode} 
+        and user_code= #{userCode}
+        and processing_type= #{processingType} 
+        and currency_code= #{currencyCode}
+        GROUP BY merchant_id,user_code,customer_id,bill_code,processing_type,currency_code,po_no,goods_no -->
+        
+       select merchant_id,user_code,customer_id,bill_code,processing_type,currency_code,po_no,goods_no,
+       quantity as num,amount as amount,id
+       from t_crawler_vip_extra_data  
+        where is_used='0' 
+        and merchant_id= #{merchantId} 
+        and customer_id= #{customerId} 
+        and bill_code= #{billCode} 
+        and user_code= #{userCode}
+        and processing_type= #{processingType} 
+        and currency_code= #{currencyCode}
+        <if test='goodsNoList!=null and goodsNoList.size()>0' >
+        	 and goods_no not in
+	        <foreach collection='goodsNoList' item='goodsNo' separator=',' open='(' close=')'>
+	            #{goodsNo}
+	        </foreach>
+        </if>
+                
+		limit #{startIndex},5000
+        
+    </select>
+    
+	<!-- 修改 -->
+	<update id='updateCrawlerVipExtra' parameterType='CrawlerVipExtraDataModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  t_crawler_vip_extra_data SET reason=#{reason},modify_date=NOW()
+        where is_used='0' 
+        and merchant_id= #{merchantId} 
+        and goods_no= #{goodsNo}
+        and customer_id= #{customerId} 
+        and bill_code= #{billCode} 
+        and user_code= #{userCode}
+        and processing_type= #{processingType} 
+        and currency_code= #{currencyCode}
+    </update>
+
+	<select id="getPlatformStatementData" parameterType="map" resultType="CrawlerVipExtraDataModel">
+    	select 
+			bill_code,
+			po_no,
+			goods_no ,
+			user_code,
+			customer_id,
+			customer_name,
+			max(goods_name) as goods_name,
+			max(brand_name) as brand_name,
+			sum(amount) as amount,
+			sum(quantity) as  quantity
+			 from t_crawler_vip_extra_data
+    	<where>
+            <trim suffixOverrides='and'>
+                <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} and </if>
+                <if test='type!=null and "7".equals(type)' >
+					processing_type = '客退补贴' 
+					and
+				</if>
+				<if test='type!=null and "8".equals(type)' >
+					processing_type = '活动折扣'
+					and
+				</if>
+				<if test='type!=null and "9".equals(type)' >
+					processing_type = '补偿折扣'
+					and
+				</if>
+            </trim>
+        </where>
+        GROUP BY
+			bill_code,
+			po_no,
+			goods_no,
+			user_code,
+			customer_id,
+			customer_name
+    </select>
+    
+    <select id="getPlatformStatementAmountAndCurrency" parameterType="map" resultType="CrawlerVipExtraDataModel">
+    	SELECT
+			bill_code,
+			currency_code,
+			customer_id,
+			customer_name,
+			sum( amount ) as amount
+		FROM
+			t_crawler_vip_extra_data 
+		<where>
+            <trim suffixOverrides='and'>
+                <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} and </if>
+            </trim>
+        </where>
+		GROUP BY
+			bill_code,
+			currency_code,
+			customer_id,
+			customer_name
+    </select>
+</mapper>

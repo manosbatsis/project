@@ -1,0 +1,454 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventoryGoodsSnapshotMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="InventoryGoodsSnapshotModelMap" type="InventoryGoodsSnapshotModel" >
+            <result property="goodsId" column="goods_id" />
+            <result property="depotId" column="depot_id" />
+            <result property="surplusNum" column="surplus_num" />
+            <result property="availableNum" column="available_num" />
+            <result property="depotType" column="depot_type" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="topidealCode" column="topideal_code" />
+            <result property="ownMonth" column="own_month" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="isTopBooks" column="is_top_books" />
+            <result property="id" column="id" />
+            <result property="goodsName" column="goods_name" />
+            <result property="barcode" column="barcode" />
+            <result property="createDate" column="create_date" />
+            <result property="goodsNo" column="goods_no" />
+            <result property="depotName" column="depot_name" />
+            <result property="brandName" column="brand_name" />
+            <result property="lpn" column="lpn" />
+            <result property="freezeNum" column="freeze_num" />
+            <result property="unit" column="unit" />
+            <result property="brandId" column="brand_id" />
+            <result property="creater" column="creater" />
+            <result property="depotCode" column="depot_code" />
+            <result property="expireNum" column="expire_num" />
+            <result property="badNum" column="bad_num" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryGoodsSnapshotModelMap' parameterType='InventoryGoodsSnapshotModel'>
+        select <include refid='sql_columns' /> from i_inventory_goods_snapshot  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryGoodsSnapshotModelMap' parameterType='InventoryGoodsSnapshotModel'>
+        select <include refid='sql_columns' /> from i_inventory_goods_snapshot  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryGoodsSnapshotModelMap' parameterType='InventoryGoodsSnapshotModel' >
+        select <include refid='sql_columns' /> from i_inventory_goods_snapshot  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventoryGoodsSnapshotModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_goods_snapshot
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='surplusNum!=null' > surplus_num , </if>
+                <if test='availableNum!=null' > available_num , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > depot_type , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' > own_month , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > is_top_books , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                <if test='lpn!=null and !"".equals(lpn)' > lpn , </if>
+                <if test='freezeNum!=null' > freeze_num , </if>
+                <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                <if test='brandId!=null' > brand_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' > depot_code , </if>
+                <if test='expireNum!=null and !"".equals(expireNum)' > expire_num , </if>
+                <if test='badNum!=null and !"".equals(badNum)' > bad_num , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='surplusNum!=null' > #{surplusNum} , </if>
+                <if test='availableNum!=null' > #{availableNum} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' > #{ownMonth} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > #{isTopBooks} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                <if test='lpn!=null and !"".equals(lpn)' > #{lpn} , </if>
+                <if test='freezeNum!=null' > #{freezeNum} , </if>
+                <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                <if test='brandId!=null' > #{brandId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' > #{depotCode} , </if>
+                <if test='expireNum!=null and !"".equals(expireNum)' > #{expireNum} , </if>
+                <if test='badNum!=null and !"".equals(badNum)' > #{badNum} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventoryGoodsSnapshotModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_goods_snapshot SET
+        <trim  suffixOverrides=",">
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} , </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} , </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} , </if>
+                <if test='expireNum!=null and !"".equals(expireNum)' >expire_num= #{expireNum} , </if>
+                <if test='badNum!=null and !"".equals(badNum)' >bad_num= #{badNum} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_goods_snapshot  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_goods_snapshot where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_id,
+        depot_id,
+        surplus_num,
+        available_num,
+        depot_type,
+        merchant_name,
+        topideal_code,
+        own_month,
+        merchant_id,
+        is_top_books,
+        id,
+        goods_name,
+        barcode,
+        create_date,
+        goods_no,
+        depot_name,
+        brand_name,
+        lpn,
+        freeze_num,
+        unit,
+        brand_id,
+        creater,
+        depot_code,
+        expire_num,
+        bad_num
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='expireNum!=null and !"".equals(expireNum)' >expire_num= #{expireNum} and </if>
+                <if test='badNum!=null and !"".equals(badNum)' >bad_num= #{badNum} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+	<!-- 商品批次库存分页查询 -->
+	<select id='getlistByPage' resultType='InventoryGoodsSnapshotDTO' parameterType='InventoryGoodsSnapshotDTO'>
+        select <include refid='sql_columns' /> from i_inventory_goods_snapshot  <include refid='sql_where_by_page' />
+    ORDER BY id DESC
+    </select>
+   <!-- 查询条件 -->
+      <sql id='sql_where_by_page'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='snapshotDate!=null and !"".equals(snapshotDate)' >DATE_FORMAT(create_date,'%Y-%m-%d')= #{snapshotDate} and </if>
+            </trim>
+        </where>
+    </sql>
+    
+    
+
+     <!--导出批次库存明细 -->
+    <select id="exportInventoryGoodsSnapshotModelMap" resultType='Map' parameterType='InventoryGoodsSnapshotModel'>
+	           
+	 SELECT  
+	          id,
+	          merchant_name,
+	          merchant_id,
+	          depot_name,
+	          depot_id,
+	          goods_no,
+	          goods_id,
+	          goods_name,
+	          surplus_num,
+	          freeze_num,
+	          available_num,
+	          bad_num,
+			  expire_num,		       
+	          unit as unit_num,
+	          case when(unit='0') then '托盘'
+	          when(unit='1') then '箱'
+	          when(unit='2') then '件'
+	          ELSE '' END  as  unit,    
+	          lpn,
+	          DATE_FORMAT(create_date,'%Y-%m-%d') as create_date
+	          FROM
+	          i_inventory_goods_snapshot   
+	          
+	        	<include refid='exportInventoryGoodsSnapshotModelMap_sql_where' />
+	        	
+            ORDER BY create_date  DESC
+    </select>
+ <sql id='exportInventoryGoodsSnapshotModelMap_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='snapshotDate!=null and !"".equals(snapshotDate)' >  DATE_FORMAT(create_date,'%Y-%m-%d') = #{snapshotDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+     <!-- 增加仓库现存量数据 -->
+       <update id='updateInventoryGoodsSnapshotAvailableNum' parameterType='java.util.Map' keyProperty="id" useGeneratedKeys="true">
+         UPDATE  i_inventory_goods_snapshot  SET
+           <if test='availableNum !=null' > 
+                available_num=#{availableNum}
+            </if>
+           where  id=#{id}
+    </update>
+    
+    <!-- 删除三个月前且不包含1号的数据 -->
+    <delete id='delData' parameterType='java.lang.Long'>
+        DELETE FROM i_inventory_goods_snapshot 
+        WHERE create_date &lt; Date_Add(date(now()),INTERVAL -3 MONTH) 
+        AND DAY(create_date) != 1 
+    </delete>
+    
+  	<!--   生成库存商品库存快照表查询 -->
+    <select  id="getInventoryGoodsSnapshotList" resultMap='InventoryGoodsSnapshotModelMap' parameterType='InventoryGoodsSnapshotModel'>
+		SELECT		
+			e.*
+		FROM
+			(
+				SELECT
+					a.*, 
+					IFNULL(b.freeze_num, 0) AS freeze_num,
+					IFNULL(c.bad_num, 0) AS bad_num,
+					IFNULL(d.expire_num, 0) AS expire_num,
+					(
+						IFNULL(a.surplus_num, 0) - IFNULL(b.freeze_num, 0) - IFNULL(c.bad_num, 0) - IFNULL(d.expire_num, 0)
+					) AS available_num
+				FROM
+					(
+						SELECT
+							t.merchant_id,t.merchant_name,t.topideal_code,t.depot_id,t.goods_id,t.goods_no,t.unit,t.surplus_num
+						FROM
+							(
+								SELECT
+									merchant_id,merchant_name,topideal_code,depot_id,goods_id,goods_no,unit,
+									IFNULL(sum(surplus_num), 0) AS surplus_num
+								FROM
+									i_inventory_batch_snapshot
+								WHERE
+									merchant_id IS NOT NULL
+								AND DATE_FORMAT(create_date, '%Y-%m-%d') = DATE_FORMAT(#{createDate}, '%Y-%m-%d')
+								GROUP BY merchant_id,merchant_name,topideal_code,depot_id,goods_id,goods_no,unit
+							) t
+					) a
+				LEFT JOIN (
+					SELECT
+						a.merchant_id,a.depot_id,a.goods_id,a.unit,
+						sum(
+							IFNULL(a.freeze_num, 0) - IFNULL(b.unfreeze_num, 0)
+						) AS freeze_num
+					FROM
+						(
+							SELECT
+								merchant_id,depot_id,goods_id,unit,sum(num) AS freeze_num
+							FROM
+								i_inventory_freeze_details
+							WHERE
+								operate_type = '0'
+							GROUP BY merchant_id,depot_id,goods_id,unit
+						) a
+					LEFT JOIN (
+						SELECT
+							merchant_id,depot_id,goods_id,unit,sum(num) AS unfreeze_num
+						FROM
+							i_inventory_freeze_details
+						WHERE
+							operate_type = '1'
+						GROUP BY
+							merchant_id,depot_id,goods_id,unit
+					) b ON a.merchant_id = b.merchant_id
+					AND a.depot_id = b.depot_id
+					AND a.goods_id = b.goods_id
+					AND (
+						a.unit = b.unit
+						OR (
+							a.unit IS NULL
+							AND b.unit IS NULL
+						)
+					)
+					GROUP BY
+						a.merchant_id,a.depot_id,a.goods_id,a.unit
+				) b ON a.merchant_id = b.merchant_id
+				AND a.depot_id = b.depot_id
+				AND a.goods_id = b.goods_id
+				AND (
+					a.unit = b.unit
+					OR (
+						a.unit IS NULL
+						AND b.unit IS NULL
+					)
+				)
+				LEFT JOIN (
+					SELECT
+						merchant_id,depot_id,goods_id,unit,sum(surplus_num) AS bad_num
+					FROM
+						i_inventory_batch_snapshot
+					WHERE
+						type = '1'
+					AND is_expire = '1'
+					AND merchant_id IS NOT NULL
+					AND DATE_FORMAT(create_date, '%Y-%m-%d') = DATE_FORMAT(#{createDate}, '%Y-%m-%d')
+					GROUP BY merchant_id,depot_id,goods_id,unit
+				) c ON a.merchant_id = c.merchant_id
+				AND a.depot_id = c.depot_id
+				AND a.goods_id = c.goods_id
+				AND (
+					a.unit = c.unit
+					OR (
+						a.unit IS NULL
+						AND c.unit IS NULL
+					)
+				)
+				LEFT JOIN (
+					SELECT
+						merchant_id,depot_id,goods_id,unit,sum(surplus_num) AS expire_num
+					FROM
+						i_inventory_batch_snapshot
+					WHERE
+						is_expire = '0'
+					AND (type = '0' OR type = '1')
+					AND merchant_id IS NOT NULL
+					AND DATE_FORMAT(create_date, '%Y-%m-%d') = DATE_FORMAT(#{createDate}, '%Y-%m-%d')
+					GROUP BY merchant_id,depot_id,goods_id,unit
+				) d ON a.merchant_id = d.merchant_id
+				AND a.depot_id = d.depot_id
+				AND a.goods_id = d.goods_id
+				AND (
+					a.unit = d.unit
+					OR (
+						a.unit IS NULL
+						AND d.unit IS NULL
+					)
+				)
+			) e
+		ORDER BY e.goods_id DESC 			  					
+    </select>
+
+</mapper>

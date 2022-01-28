@@ -1,0 +1,370 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleCreditOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleCreditOrderModelMap" type="SaleCreditOrderModel" >
+                <result property="id" column="id" />
+                <result property="saleOrderId" column="sale_order_id" />
+                <result property="saleOrderCode" column="sale_order_code" />
+                <result property="code" column="code" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="poNo" column="po_no" />
+                <result property="currency" column="currency" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="creditAmount" column="credit_amount" />
+                <result property="totalNum" column="total_num" />
+                <result property="payableMarginAmount" column="payable_margin_amount" />
+                <result property="actualMarginAmount" column="actual_margin_amount" />
+                <result property="receiveMarginDate" column="receive_margin_date" />
+                <result property="loanDate" column="loan_date" />
+                <result property="valueDate" column="value_date" />
+                <result property="expireDate" column="expire_date" />
+                <result property="receiveDate" column="receive_date" />
+                <result property="receivePrincipalAmount" column="receive_principal_amount" />
+                <result property="receiveInterestAmount" column="receive_interest_amount" />
+                <result property="status" column="status" />
+                <result property="isSyncFinance" column="is_sync_finance" />
+                <result property="syncDate" column="sync_date" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierName" column="modifier_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="ownMonth" column="own_month" />
+                <result property="sapienceLoanDate" column="sapience_loan_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleCreditOrderModelMap' parameterType='SaleCreditOrderModel'>
+        select <include refid='sql_columns' /> from t_sale_credit_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleCreditOrderModelMap' parameterType='SaleCreditOrderModel'>
+        select <include refid='sql_columns' /> from t_sale_credit_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleCreditOrderModelMap' parameterType='SaleCreditOrderModel' >
+        select <include refid='sql_columns' /> from t_sale_credit_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleCreditOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_credit_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='saleOrderId!=null' >sale_order_id , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > sale_order_code , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='creditAmount!=null' >credit_amount , </if>
+                        <if test='totalNum!=null' >total_num , </if>
+                        <if test='payableMarginAmount!=null' >payable_margin_amount , </if>
+                        <if test='actualMarginAmount!=null' >actual_margin_amount , </if>
+                        <if test='receiveMarginDate!=null' >receive_margin_date , </if>
+                        <if test='loanDate!=null' >loan_date , </if>
+                        <if test='valueDate!=null' >value_date , </if>
+                        <if test='expireDate!=null' >expire_date , </if>
+                        <if test='receiveDate!=null' >receive_date , </if>
+                        <if test='receivePrincipalAmount!=null' >receive_principal_amount , </if>
+                        <if test='receiveInterestAmount!=null' >receive_interest_amount , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='isSyncFinance!=null and !"".equals(isSyncFinance)' > is_sync_finance , </if>
+                        <if test='syncDate!=null' >sync_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > modifier_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' > own_month , </if>
+                        <if test='sapienceLoanDate!=null' >sapience_loan_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='saleOrderId!=null' > #{saleOrderId} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > #{saleOrderCode} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='creditAmount!=null' > #{creditAmount} , </if>
+                        <if test='totalNum!=null' > #{totalNum} , </if>
+                        <if test='payableMarginAmount!=null' > #{payableMarginAmount} , </if>
+                        <if test='actualMarginAmount!=null' > #{actualMarginAmount} , </if>
+                        <if test='receiveMarginDate!=null' > #{receiveMarginDate} , </if>
+                        <if test='loanDate!=null' > #{loanDate} , </if>
+                        <if test='valueDate!=null' > #{valueDate} , </if>
+                        <if test='expireDate!=null' > #{expireDate} , </if>
+                        <if test='receiveDate!=null' > #{receiveDate} , </if>
+                        <if test='receivePrincipalAmount!=null' > #{receivePrincipalAmount} , </if>
+                        <if test='receiveInterestAmount!=null' > #{receiveInterestAmount} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='isSyncFinance!=null and !"".equals(isSyncFinance)' > #{isSyncFinance} , </if>
+                        <if test='syncDate!=null' > #{syncDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > #{modifierName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' > #{ownMonth} , </if>
+                        <if test='sapienceLoanDate!=null' > #{sapienceLoanDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleCreditOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_credit_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='saleOrderId!=null' > sale_order_id= #{saleOrderId} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='creditAmount!=null' > credit_amount= #{creditAmount} , </if>
+                        <if test='totalNum!=null' > total_num= #{totalNum} , </if>
+                        <if test='payableMarginAmount!=null' > payable_margin_amount= #{payableMarginAmount} , </if>
+                        <if test='actualMarginAmount!=null' > actual_margin_amount= #{actualMarginAmount} , </if>
+                        <if test='receiveMarginDate!=null' > receive_margin_date= #{receiveMarginDate} , </if>
+                        <if test='loanDate!=null' > loan_date= #{loanDate} , </if>
+                        <if test='valueDate!=null' > value_date= #{valueDate} , </if>
+                        <if test='expireDate!=null' > expire_date= #{expireDate} , </if>
+                        <if test='receiveDate!=null' > receive_date= #{receiveDate} , </if>
+                        <if test='receivePrincipalAmount!=null' > receive_principal_amount= #{receivePrincipalAmount} , </if>
+                        <if test='receiveInterestAmount!=null' > receive_interest_amount= #{receiveInterestAmount} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='isSyncFinance!=null and !"".equals(isSyncFinance)' >is_sync_finance= #{isSyncFinance} , </if>
+                        <if test='syncDate!=null' > sync_date= #{syncDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} , </if>
+                        <if test='sapienceLoanDate!=null' > sapience_loan_date= #{sapienceLoanDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_credit_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_credit_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            sale_order_id,
+            sale_order_code,
+            code,
+            customer_id,
+            customer_name,
+            merchant_id,
+            merchant_name,
+            po_no,
+            currency,
+            bu_id,
+            bu_name,
+            credit_amount,
+            total_num,
+            payable_margin_amount,
+            actual_margin_amount,
+            receive_margin_date,
+            loan_date,
+            value_date,
+            expire_date,
+            receive_date,
+            receive_principal_amount,
+            receive_interest_amount,
+            status,
+            is_sync_finance,
+            sync_date,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_name,
+            modify_date,
+            own_month,
+            sapience_loan_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='saleOrderId!=null' > sale_order_id= #{saleOrderId} and </if>
+                            <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='creditAmount!=null' > credit_amount= #{creditAmount} and </if>
+                            <if test='totalNum!=null' > total_num= #{totalNum} and </if>
+                            <if test='payableMarginAmount!=null' > payable_margin_amount= #{payableMarginAmount} and </if>
+                            <if test='actualMarginAmount!=null' > actual_margin_amount= #{actualMarginAmount} and </if>
+                            <if test='receiveMarginDate!=null' > receive_margin_date= #{receiveMarginDate} and </if>
+                            <if test='loanDate!=null' > loan_date= #{loanDate} and </if>
+                            <if test='valueDate!=null' > value_date= #{valueDate} and </if>
+                            <if test='expireDate!=null' > expire_date= #{expireDate} and </if>
+                            <if test='receiveDate!=null' > receive_date= #{receiveDate} and </if>
+                            <if test='receivePrincipalAmount!=null' > receive_principal_amount= #{receivePrincipalAmount} and </if>
+                            <if test='receiveInterestAmount!=null' > receive_interest_amount= #{receiveInterestAmount} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='isSyncFinance!=null and !"".equals(isSyncFinance)' >is_sync_finance= #{isSyncFinance} and </if>
+                            <if test='syncDate!=null' > sync_date= #{syncDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                            <if test='sapienceLoanDate!=null' > sapience_loan_date= #{sapienceLoanDate} and </if>
+                            status != "006" and
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+ <!--自定义SQL-->
+        <sql id='sql_where_page'>
+            <where>
+                <trim suffixOverrides='and'>
+                      <if test='id!=null' > id= #{id} and </if>
+                      <if test='saleOrderId!=null' > sale_order_id= #{saleOrderId} and </if>
+                      <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} and </if>
+                      <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                      <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                      <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                      <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                      <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                      <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                      <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                      <if test='buId!=null' > bu_id= #{buId} and </if>
+                      <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                      <if test='creditAmount!=null' > credit_amount= #{creditAmount} and </if>
+                      <if test='totalNum!=null' > total_num= #{totalNum} and </if>
+                      <if test='payableMarginAmount!=null' > payable_margin_amount= #{payableMarginAmount} and </if>
+                      <if test='actualMarginAmount!=null' > actual_margin_amount= #{actualMarginAmount} and </if>
+                      <if test='receiveMarginDate!=null' > receive_margin_date= #{receiveMarginDate} and </if>
+                      <if test='loanDate!=null' > loan_date= #{loanDate} and </if>
+                      <if test='valueDate!=null' > value_date= #{valueDate} and </if>
+                      <if test='expireDate!=null' > expire_date= #{expireDate} and </if>
+                      <if test='receiveDate!=null' > receive_date= #{receiveDate} and </if>
+                      <if test='receivePrincipalAmount!=null' > receive_principal_amount= #{receivePrincipalAmount} and </if>
+                      <if test='receiveInterestAmount!=null' > receive_interest_amount= #{receiveInterestAmount} and </if>
+                      <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                      <if test='isSyncFinance!=null and !"".equals(isSyncFinance)' >is_sync_finance= #{isSyncFinance} and </if>
+                      <if test='syncDate!=null' > sync_date= #{syncDate} and </if>
+                      <if test='buList!=null and !"".equals(buList)' >bu_id in
+		                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+		                        #{buId}
+		                    </foreach>
+		                    and
+	                  </if>
+	                   status != "006" and
+                </trim>
+            </where>
+        </sql>
+		<!-- 查询所有信息 分页 -->
+	    <select id='listDTOByPage' resultType='SaleCreditOrderDTO' parameterType='SaleCreditOrderDTO'>
+	        select <include refid='sql_columns' /> from t_sale_credit_order  <include refid='sql_where_page' /> order by id desc
+	    </select>
+	    <select id='getCreditTypeNum' resultType='map' parameterType='SaleCreditOrderDTO'>
+	        select status, COUNT(1) as num from t_sale_credit_order <include refid='sql_where_page' />
+	        GROUP BY status
+	    </select>
+	    <select id='searchDetail' resultType='SaleCreditOrderDTO' parameterType='SaleCreditOrderDTO' >
+	        select <include refid='sql_columns' /> from t_sale_credit_order  <include refid='sql_where_page' />
+	    </select>
+
+
+        <update id="batchUpdate" parameterType="java.util.List">
+            update t_sale_credit_order
+            <trim prefix="set" suffixOverrides=",">
+                <trim prefix="receive_margin_date =case" suffix="end,">
+                    <foreach collection="saleCreditModels" item="i" index="index">
+                        <if test="i.receiveMarginDate!=null">
+                            when id=#{i.id} then #{i.receiveMarginDate}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="actual_margin_amount =case" suffix="end,">
+                    <foreach collection="saleCreditModels" item="i" index="index">
+                        <if test='i.actualMarginAmount!=null'>
+                            when id=#{i.id} then #{i.actualMarginAmount}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="status =case" suffix="end,">
+                    <foreach collection="saleCreditModels" item="i" index="index">
+                        <if test='i.status!=null and !"".equals(i.status)'>
+                            when id=#{i.id} then #{i.status}
+                        </if>
+                    </foreach>
+                </trim>
+            </trim>
+            where
+            <foreach collection="saleCreditModels" separator="or" item="i" index="index">
+                id=#{i.id}
+            </foreach>
+        </update>
+
+        <select id="listByIds" resultMap='SaleCreditOrderModelMap'>
+            select <include refid='sql_columns' /> from t_sale_credit_order
+            where id in
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </select>
+
+
+</mapper>

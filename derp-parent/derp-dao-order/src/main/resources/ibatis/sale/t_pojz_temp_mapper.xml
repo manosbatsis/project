@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.PojzTempMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PojzTempModelMap" type="PojzTempModel" >
+                <result property="id" column="id" />
+                <result property="datatype" column="datatype" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="saleCode" column="sale_code" />
+                <result property="poNo" column="po_no" />
+                <result property="sku" column="sku" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PojzTempModelMap' parameterType='PojzTempModel'>
+        select <include refid='sql_columns' /> from t_pojz_temp  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PojzTempModelMap' parameterType='PojzTempModel'>
+        select <include refid='sql_columns' /> from t_pojz_temp  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PojzTempModelMap' parameterType='PojzTempModel' >
+        select <include refid='sql_columns' /> from t_pojz_temp  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PojzTempModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_pojz_temp
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='datatype!=null and !"".equals(datatype)' > datatype , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='saleCode!=null and !"".equals(saleCode)' > sale_code , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='sku!=null and !"".equals(sku)' > sku , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='surplusNum!=null' >surplus_num , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='datatype!=null and !"".equals(datatype)' > #{datatype} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='saleCode!=null and !"".equals(saleCode)' > #{saleCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='sku!=null and !"".equals(sku)' > #{sku} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='surplusNum!=null' > #{surplusNum} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PojzTempModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_pojz_temp SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='datatype!=null and !"".equals(datatype)' >datatype= #{datatype} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='saleCode!=null and !"".equals(saleCode)' >sale_code= #{saleCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='sku!=null and !"".equals(sku)' >sku= #{sku} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_pojz_temp  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_pojz_temp where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            datatype,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            sale_code,
+            po_no,
+            sku,
+            goods_no,
+            surplus_num,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='datatype!=null and !"".equals(datatype)' >datatype= #{datatype} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='saleCode!=null and !"".equals(saleCode)' >sale_code= #{saleCode} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='sku!=null and !"".equals(sku)' >sku= #{sku} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <!--唯品4.0-获取商家+仓库+po+货号临时结转余量 -->
+        <select id="getPojzNum" resultType='Integer' parameterType='map'>
+			select SUM(IFNULL(surplus_num ,0)) AS surplus_num
+			from t_pojz_temp
+			where datatype='1' 
+			      and merchant_id=#{merchantId}
+			      and depot_id=#{depotId}
+			      and po_no=#{poNo}
+			      and goods_no in 
+			      <foreach collection='goodsNoList' item='goodsNo' separator=',' open='(' close=')'>
+		          #{goodsNo}
+		          </foreach>
+	    </select>
+
+
+
+
+</mapper>

@@ -1,0 +1,1395 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventoryBatchMapper'>
+
+<!-- 关系映射 -->
+    <resultMap id="InventoryBatchModelMap" type="InventoryBatchModel" >
+            <result property="onWayNum" column="on_way_num" />
+            <result property="goodsId" column="goods_id" />
+            <result property="depotId" column="depot_id" />
+            <result property="surplusNum" column="surplus_num" />
+            <result property="availableNum" column="available_num" />
+            <result property="type" column="type" />
+            <result property="depotType" column="depot_type" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="productionDate" column="production_date" />
+            <result property="topidealCode" column="topideal_code" />
+            <result property="ownMonth" column="own_month" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="isTopBooks" column="is_top_books" />
+            <result property="id" column="id" />
+            <result property="goodsName" column="goods_name" />
+            <result property="barcode" column="barcode" />
+            <result property="createDate" column="create_date" />
+            <result property="goodsNo" column="goods_no" />
+            <result property="overdueDate" column="overdue_date" />
+            <result property="depotName" column="depot_name" />
+            <result property="batchNo" column="batch_no" />
+            <result property="brandName" column="brand_name" />
+            <result property="lpn" column="lpn" />
+            <result property="freezeNum" column="freeze_num" />
+            <result property="unit" column="unit" />
+            <result property="brandId" column="brand_id" />
+            <result property="creater" column="creater" />
+            <result property="depotCode" column="depot_code" />
+            <result property="isExpire" column="is_expire" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="commbarcode" column="commbarcode" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+        select <include refid='sql_columns' /> from i_inventory_batch  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+        select <include refid='sql_columns' /> from i_inventory_batch  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel' >
+        select <include refid='sql_columns' /> from i_inventory_batch  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventoryBatchModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_batch
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='onWayNum!=null' > on_way_num , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='surplusNum!=null' > surplus_num , </if>
+                <if test='availableNum!=null' > available_num , </if>
+                <if test='type!=null and !"".equals(type)' > type , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > depot_type , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' > own_month , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > is_top_books , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                <if test='lpn!=null and !"".equals(lpn)' > lpn , </if>
+                <if test='freezeNum!=null' > freeze_num , </if>
+                <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                <if test='brandId!=null' > brand_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' > depot_code , </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' > is_expire , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='onWayNum!=null' > #{onWayNum} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='surplusNum!=null' > #{surplusNum} , </if>
+                <if test='availableNum!=null' > #{availableNum} , </if>
+                <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' > #{ownMonth} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > #{isTopBooks} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                <if test='lpn!=null and !"".equals(lpn)' > #{lpn} , </if>
+                <if test='freezeNum!=null' > #{freezeNum} , </if>
+                <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                <if test='brandId!=null' > #{brandId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' > #{depotCode} , </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' > #{isExpire} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventoryBatchModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_batch SET
+        <trim  suffixOverrides=",">
+                <if test='onWayNum!=null' > on_way_num= #{onWayNum} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} , </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} , </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} , </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} , </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} , </if>
+                <if test='modifyDate!=null and !"".equals(modifyDate)' >modify_date= #{modifyDate} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_batch  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_batch where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        on_way_num,
+        goods_id,
+        depot_id,
+        surplus_num,
+        available_num,
+        type,
+        depot_type,
+        merchant_name,
+        production_date,
+        topideal_code,
+        own_month,
+        merchant_id,
+        is_top_books,
+        id,
+        goods_name,
+        barcode,
+        create_date,
+        goods_no,
+        overdue_date,
+        depot_name,
+        batch_no,
+        brand_name,
+        lpn,
+        freeze_num,
+        unit,
+        brand_id,
+        creater,
+        depot_code,
+        is_expire,
+        modify_date,
+        commbarcode
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='onWayNum!=null' > on_way_num= #{onWayNum} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} and </if>
+                <if test='modifyDate!=null and !"".equals(modifyDate)' >modify_date= #{modifyDate} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+
+
+
+     <!--自定义SQL-->
+     <!-- 查询条件 -->
+    <sql id='sql_where2'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='onWayNum!=null' > on_way_num= #{onWayNum} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                 <if test='unit==null or "".equals(unit)' >unit is null and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} and </if>
+                 surplus_num&gt;0 
+            </trim>
+        </where>
+    </sql>
+    
+      <resultMap id="InventoryBatchModelMap2" type="InventoryBatchModel" >
+                <result property="onWayNum" column="on_way_num" />
+                <result property="goodsId" column="goods_id" />
+                <result property="depotId" column="depot_id" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="availableNum" column="available_num" />
+                <result property="type" column="type" />
+                <result property="depotType" column="depot_type" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="productionDate" column="production_date" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="isTopBooks" column="is_top_books" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="createDate" column="create_date" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="depotName" column="depot_name" />
+                <result property="batchNo" column="batch_no" />
+                <result property="lpn" column="lpn" />
+                <result property="freezeNum" column="freeze_num" />
+                <result property="unit" column="unit" />
+                <result property="creater" column="creater" />
+                <result property="depotCode" column="depot_code" />
+                <result property="isExpire" column="is_expire" />
+ 		<result property="brandName" column="brand_name" />
+            	<result property="brandId" column="brand_id" />
+                <!-- 扩展字段 -->
+                <result property="surplusDays" column="surplus_days" />
+                <result property="totalDays" column="total_days" />
+                <result property="surplusDate" column="surplus_date" />
+                <result property="validityType" column="validity_type" />
+                <result property="validity_time" column="validity_time" />            
+    </resultMap>
+     
+     
+     
+     
+     <!-- 效期预警 -->
+     <select id="selectInventoryWarningByPage"  resultType='InventoryBatchDTO' parameterType='InventoryBatchDTO'>
+	  select 
+	   	 merchant_id,
+		 depot_id,
+		 depot_name,
+		 merchant_name,
+		 goods_no,
+		 goods_name,
+		 production_date,
+		 overdue_date,
+		 batch_no,
+		 IFNULL(surplus_num,0) AS surplus_num,
+		 unit,
+		 surplus_days, 
+		 total_days,
+		 surplus_date
+	 from (		
+		 select 
+		      merchant_id,
+			  depot_id,
+			  depot_name,
+			  merchant_name,
+			  goods_no,
+			  goods_name,
+			  production_date,
+			  overdue_date,
+			  batch_no,
+			  SUM(IFNULL(qty,0)) as surplus_num,
+			  case unit 
+		    	when '00' then '0'
+		    	when '01' then '1'
+		    	when '02' then '2'
+			  else ''
+			  end as unit,
+		      TIMESTAMPDIFF(DAY, DATE_FORMAT(NOW(),'%Y-%m-%d'), overdue_date) AS surplus_days,
+			  TIMESTAMPDIFF(DAY,production_date,overdue_date) AS total_days,
+			  ROUND(TIMESTAMPDIFF(DAY, DATE_FORMAT(NOW(),'%Y-%m-%d'), overdue_date) / TIMESTAMPDIFF(DAY,production_date,overdue_date),2) AS surplus_date
+		 from i_inventory_real_time_snapshot
+		 where CONCAT(merchant_id,depot_id,DATE_FORMAT(create_date,'%Y-%m-%d')) IN (
+			  select  CONCAT(merchant_id,depot_id,max(DATE_FORMAT(create_date,'%Y-%m-%d'))) 
+		      FROM i_inventory_real_time_snapshot
+			  <where>
+            		<trim suffixOverrides='and'>
+            			<if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no= #{goodsNo} and </if>
+            			<if test='depotId!=null' >  depot_id= #{depotId} and </if>
+            			<if test='merchantId!=null' >  merchant_id= #{merchantId} and </if>
+            			<if test='merchantName!=null and !"".equals(merchantName)' > merchant_name= #{merchantName} and </if>
+            		</trim>
+        	   </where>
+			   GROUP BY merchant_id,depot_id
+		)  and qty >0  
+		AND batch_no IS NOT NULL 
+		AND production_date IS NOT NULL 
+		AND overdue_date IS NOT NULL
+   		<if test='goodsNo!=null and !"".equals(goodsNo)' > and goods_no= #{goodsNo}  </if>
+		<if test='depotId!=null' > and depot_id= #{depotId}  </if>
+		<if test='merchantId!=null' > and merchant_id= #{merchantId}  </if>
+		<if test='merchantName!=null and !"".equals(merchantName)' > and merchant_name= #{merchantName}  </if>
+		GROUP BY 
+		      merchant_id,
+			  depot_id,
+			  depot_name,
+			  merchant_name,
+			  goods_no,
+			  goods_name,
+			  production_date,
+			  overdue_date,
+			  batch_no,
+			  unit
+	   ) t
+	   <where>
+       		<trim suffixOverrides='or'>       		
+       			<if test='validityType1==null and validityType2==null and validityType3==null and validityType4==null and validityType5==null and validityType6==null and validityType7==null'> surplus_num >0 or </if>
+       			<if test='validityType1!=null and "1".equals(validityType1)' > (t.surplus_num >0 and t.surplus_days/t.total_days &gt;0 and t.surplus_days/t.total_days &lt;= 1/10)  or </if>
+		        <if test='validityType2!=null and "2".equals(validityType2)' >  (t.surplus_num >0 and t.surplus_days/t.total_days &gt;1/10 and t.surplus_days/t.total_days &lt;= 1/5) or  </if>
+		       <if test='validityType3!=null and "3".equals(validityType3)' > (t.surplus_num >0 and t.surplus_days/t.total_days &gt;1/5 and t.surplus_days/t.total_days &lt;= 1/3) or  </if>
+		       <if test='validityType4!=null and "4".equals(validityType4)' >   (t.surplus_num >0 and t.surplus_days/t.total_days &gt;1/3 and t.surplus_days/t.total_days &lt;= 1/2)or  </if>
+		       <if test='validityType5!=null and "5".equals(validityType5)' >  (t.surplus_num >0 and t.surplus_days/t.total_days &gt;1/2 and t.surplus_days/t.total_days &lt;= 2/3) or  </if>
+		       <if test='validityType6!=null and "6".equals(validityType6)' >  (t.surplus_num >0 and t.surplus_days/t.total_days &gt;2/3)  or </if>
+		       <if test='validityType7!=null and "7".equals(validityType7)' > (t.surplus_num >0 and t.surplus_days/t.total_days &lt;= 0) or </if>
+      			 
+      		</trim>
+   	   </where>
+	  order by merchant_id,depot_id,goods_no,batch_no,production_date,overdue_date 
+	  	  	  
+     </select>
+     
+      <!-- 查询所有信息 -->
+    <select id="listOrbyOverdueDate" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+        select id,batch_no,production_date,overdue_date,surplus_num from i_inventory_batch  
+         <include refid='sql_where2' />
+         order by if(isnull(overdue_date),1,0),overdue_date
+    </select>
+
+	<!-- 商家库存明细 封装类-->
+<resultMap id="InventoryBatchModelMap3" type="InventoryBatchModel" >
+                <result property="onWayNum" column="on_way_num" />
+                <result property="goodsId" column="goods_id" />
+                <result property="depotId" column="depot_id" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="availableNum" column="available_num" />
+                <result property="type" column="type" />
+                <result property="depotType" column="depot_type" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="productionDate" column="production_date" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="ownMonth" column="own_month" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="isTopBooks" column="is_top_books" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="createDate" column="create_date" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="depotName" column="depot_name" />
+                <result property="batchNo" column="batch_no" />
+                <result property="lpn" column="lpn" />
+                <result property="freezeNum" column="freeze_num" />
+                <result property="unit" column="unit" />
+                <result property="creater" column="creater" />
+                <result property="depotCode" column="depot_code" />
+                <result property="isExpire" column="is_expire" />
+                <result property="badNum" column="bad_num" />
+                <result property="okayNum" column="okay_num" />
+                
+                
+    </resultMap>
+
+
+
+    
+         <!-- 分组筛选出所有不同的商家和仓库 -->
+    <select id="getAllMerchantOrDepot" resultMap='InventoryBatchModelMap'
+		parameterType='InventoryBatchModel'>		
+		SELECT
+			merchant_id,merchant_name,topideal_code,depot_id
+			FROM i_inventory_batch
+			GROUP BY merchant_id,merchant_name,topideal_code,depot_id
+		
+    </select>
+    
+    
+     <!--导出批次库存明细 -->
+    <select id="exportInventoryBatchMap" resultType='Map' parameterType='InventoryBatchDTO'>
+                  
+       SELECT *  FROM (
+	       SELECT
+			id,
+			merchant_id,
+			depot_id,
+			depot_name,
+			merchant_name,
+			goods_no,
+			goods_name,
+			production_date,
+			overdue_date,
+			batch_no,
+			surplus_num,
+			TIMESTAMPDIFF(DAY, NOW(), overdue_date) AS surplus_days,
+			TIMESTAMPDIFF(
+				DAY,
+				production_date,
+				overdue_date
+			) AS total_days,
+			ROUND(
+				TIMESTAMPDIFF(DAY, NOW(), overdue_date) / TIMESTAMPDIFF(
+					DAY,
+					production_date,
+					overdue_date
+				),
+				2
+			) AS surplus_date,
+        case when(type='0') then '正常品'
+	          when(type='1') then '残次品'
+	          ELSE '' END  as  type,     
+	          case when(unit='0') then '托盘'
+	          when(unit='1') then '箱'
+	          when(unit='2') then '件'
+	          ELSE '' END  as  unit,
+        lpn,
+        case when(is_expire='0') then '已过期'
+	          when(is_expire='1') then '未过期'
+	          ELSE '' END  as  is_expire,
+         barcode,
+	 brand_id,
+	    brand_name,
+	    commbarcode
+		FROM
+			i_inventory_batch
+			) a
+	  <include refid='getInventoryBatchByPage_sql_where' />  
+	  
+	  order by a.id desc
+    </select>
+    
+    
+        <sql id='exportInventory_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t.goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >t.depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >t.batch_no= #{batchNo} and </if>
+                <if test='goodsId!=null' > t.goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > t.depot_id= #{depotId} and </if>
+                <if test='type!=null and !"".equals(type)' >t.type= #{type} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >t.merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >t.goods_name= #{goodsName} and </if>
+                
+                <if test='validityType!=null and "1".equals(validityType)' > t.surplus_date &lt; #{validityTime} and </if>
+                <if test='validityType!=null and "2".equals(validityType)' > t.surplus_date &gt; #{validityTime} and </if>
+                <if test='validityType!=null and "5".equals(validityType)' > t.surplus_date &lt;= #{validityTime} and </if>
+            </trim>
+        </where>
+    </sql>
+    
+    
+      <!-- 导出效期预警 -->
+     <select id="exportInventoryWarningMap"  resultType='Map' parameterType='java.util.ArrayList'>
+	
+	  select 
+	   	 merchant_id,
+		 depot_id,
+		 depot_name,
+		 merchant_name,
+		 goods_no,
+		 goods_name,
+		 production_date,
+		 overdue_date,
+		 batch_no,
+		 IFNULL(surplus_num,0) AS surplus_num,
+		 case unit 
+		    when '0' then '托盘'
+		    when '1' then '箱'
+		    when '2' then '件'
+		 else ''
+		 end as unit,
+		 surplus_days, 
+		 total_days,
+		 surplus_date,
+		 case  
+		    when surplus_days/total_days &gt;0 and surplus_days/total_days &lt;= 1/10 then '0＜X≤1/10'
+		    when surplus_days/total_days &gt;1/10 and surplus_days/total_days &lt;= 1/5  then '1/10＜X≤1/5'
+		    when surplus_days/total_days &gt;1/5 and surplus_days/total_days &lt;= 1/3 then '1/5＜X≤1/3'
+		    when surplus_days/total_days &gt;1/3 and surplus_days/total_days &lt;= 1/2 then '1/3＜X≤1/2'
+		    when surplus_days/total_days &gt;1/2 and surplus_days/total_days &lt;= 2/3 then '1/2＜X≤2/3'
+		    when surplus_days/total_days &gt;2/3 then '2/3以上'
+		    when surplus_days/total_days &lt;= 0 then '过期'
+		 else ''
+		 end as surplus_date_section
+	 from (	       		
+		 select  merchant_id,depot_id,depot_name,merchant_name,goods_no,goods_name,
+		 		 production_date,overdue_date,batch_no,
+			     SUM(IFNULL(qty,0)) as surplus_num,
+			     case unit 
+		    	   when '00' then '0'
+		    	   when '01' then '1'
+		    	   when '02' then '2'
+			     else ''
+			     end as unit,
+		         TIMESTAMPDIFF(DAY, DATE_FORMAT( NOW(),'%Y-%m-%d'), overdue_date) AS surplus_days,
+			     TIMESTAMPDIFF(DAY,production_date,overdue_date) AS total_days,
+			     ROUND(TIMESTAMPDIFF(DAY, DATE_FORMAT( NOW(),'%Y-%m-%d'), overdue_date) / TIMESTAMPDIFF(DAY,production_date,overdue_date),2) AS surplus_date
+		 from i_inventory_real_time_snapshot
+		 where CONCAT(merchant_id,depot_id,DATE_FORMAT(create_date,'%Y-%m-%d')) IN (
+			  select  CONCAT(merchant_id,depot_id,max(DATE_FORMAT(create_date,'%Y-%m-%d'))) 
+		      FROM i_inventory_real_time_snapshot
+			  <where>
+            		<trim suffixOverrides='and'>
+            			<if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no= #{goodsNo} and </if>
+            			<if test='depotId!=null' >  depot_id= #{depotId} and </if>
+            			<if test='merchantId!=null' >  merchant_id= #{merchantId} and </if>
+            			<if test='merchantName!=null and !"".equals(merchantName)' > merchant_name= #{merchantName} and </if>
+            		</trim>
+        	   </where>
+			   GROUP BY merchant_id,depot_id
+		) and qty >0  
+		AND batch_no IS NOT NULL 
+		AND production_date IS NOT NULL 
+		AND overdue_date IS NOT NULL
+		<if test='goodsNo!=null and !"".equals(goodsNo)' > and goods_no= #{goodsNo}  </if>
+		<if test='depotId!=null' > and depot_id= #{depotId}  </if>
+		<if test='merchantId!=null' > and merchant_id= #{merchantId}  </if>
+		<if test='merchantName!=null and !"".equals(merchantName)' > and merchant_name= #{merchantName}  </if>
+		GROUP BY 
+		      merchant_id,
+			  depot_id,
+			  depot_name,
+			  merchant_name,
+			  goods_no,
+			  goods_name,
+			  production_date,
+			  overdue_date,
+			  batch_no,
+			  unit
+	   ) t
+	   <where>
+       		<trim suffixOverrides='or'>
+       			<if test='validityType1==null and validityType2==null and validityType3==null and validityType4==null and validityType5==null and validityType6==null and validityType7==null'> t.surplus_num >0 or </if>
+       			<if test='validityType1!=null and "1".equals(validityType1)' > (t.surplus_num >0 and t.surplus_days/t.total_days &gt;0 and t.surplus_days/t.total_days &lt;= 1/10)  or </if>
+		        <if test='validityType2!=null and "2".equals(validityType2)' >  (t.surplus_num >0 and t.surplus_days/t.total_days &gt;1/10 and t.surplus_days/t.total_days &lt;= 1/5) or  </if>
+		       <if test='validityType3!=null and "3".equals(validityType3)' > (t.surplus_num >0 and t.surplus_days/t.total_days &gt;1/5 and t.surplus_days/t.total_days &lt;= 1/3) or  </if>
+		       <if test='validityType4!=null and "4".equals(validityType4)' >   (t.surplus_num >0 and t.surplus_days/t.total_days &gt;1/3 and t.surplus_days/t.total_days &lt;= 1/2)or  </if>
+		       <if test='validityType5!=null and "5".equals(validityType5)' >  (t.surplus_num >0 and t.surplus_days/t.total_days &gt;1/2 and t.surplus_days/t.total_days &lt;= 2/3) or  </if>
+		       <if test='validityType6!=null and "6".equals(validityType6)' >  (t.surplus_num >0 and t.surplus_days/t.total_days &gt;2/3)  or </if>
+		        <if test='validityType7!=null and "7".equals(validityType7)' > (t.surplus_num >0 and t.surplus_days/t.total_days &lt;= 0) or </if>
+      			 
+      		</trim>
+   	   </where>
+	  order by merchant_id,depot_id,goods_no,batch_no,production_date,overdue_date
+	  
+	  
+	  
+     </select>
+     
+     
+     
+     	<!-- 商家库存明细 -->
+	<select id="listProductInventoryDetailsByPage" resultType='InventoryBatchDTO' parameterType='InventoryBatchDTO'>
+
+		SELECT
+			a.*,IFNULL(b.freeze_num, 0) AS freeze_num,IFNULL(c.bad_num, 0) AS bad_num,IFNULL(d.okay_num, 0) AS okay_num,
+			(IFNULL(a.surplus_num, 0) - IFNULL(b.freeze_num, 0) - IFNULL(c.bad_num, 0) - IFNULL(d.okay_num, 0)) AS available_num
+		FROM(
+					SELECT MAX(barcode)as barcode,merchant_id,MAX(merchant_name)as merchant_name,depot_id,MAX(depot_name) as depot_name,goods_id,goods_no,unit,IFNULL(sum(surplus_num), 0) AS surplus_num
+					FROM i_inventory_batch 
+					<include refid='listProductInventoryDetailsByPage_sql_where' />
+					<if test='barcode!=null and !"".equals(barcode)' >  and barcode= #{barcode}  </if>
+					<if test='brandId!=null' >  and brand_id= #{brandId}  </if>	
+					GROUP BY merchant_id,depot_id,goods_id,goods_no,unit
+				) a 
+		LEFT JOIN (
+					SELECT merchant_id,depot_id,goods_id,unit,SUM(IF(operate_type='0',num,-num)) as freeze_num  
+					FROM i_inventory_freeze_details	 	
+					<include refid='listProductInventoryDetailsByPage_sql_where' />
+					GROUP BY merchant_id,depot_id,goods_id,unit			
+			) b  ON a.merchant_id = b.merchant_id AND a.depot_id = b.depot_id AND a.goods_id = b.goods_id AND (a.unit = b.unit OR (a.unit IS NULL AND b.unit IS NULL))
+		LEFT JOIN (
+					SELECT merchant_id,depot_id,goods_id,unit,sum(surplus_num) AS bad_num
+					FROM i_inventory_batch
+					<include refid='listProductInventoryDetailsByPage_sql_where' />
+					<if test='brandId!=null' >  and brand_id= #{brandId}  </if>	
+					<if test='barcode!=null and !"".equals(barcode)' >  and barcode= #{barcode}  </if>	
+					and type = '1'  and is_expire='1'	
+					GROUP BY merchant_id,depot_id,goods_id,unit
+			) c ON a.merchant_id = c.merchant_id AND a.depot_id = c.depot_id AND a.goods_id = c.goods_id AND (a.unit = c.unit OR (a.unit IS NULL AND c.unit IS NULL))
+		LEFT JOIN (
+					SELECT merchant_id,depot_id,goods_id,unit,sum(surplus_num) AS okay_num
+					FROM i_inventory_batch
+					<include refid='listProductInventoryDetailsByPage_sql_where' />
+					<if test='brandId!=null' >  and brand_id= #{brandId}  </if>	
+					<if test='barcode!=null and !"".equals(barcode)' >  and barcode= #{barcode}  </if>	
+					and is_expire='0'  and(type = '0' or type = '1') 
+					GROUP BY merchant_id,depot_id,goods_id,unit
+			) d  ON a.merchant_id = d.merchant_id AND a.depot_id = d.depot_id AND a.goods_id = d.goods_id AND (a.unit = d.unit OR (a.unit IS NULL AND d.unit IS NULL))
+     		 ORDER BY a.goods_id DESC
+
+	</select>
+    
+    <sql id='listProductInventoryDetailsByPage_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+            	<if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+            	<if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no= #{goodsNo} and </if>
+                <if test='goodsId!=null' >  goods_id= #{goodsId}  and</if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name= #{merchantName}  and</if>           		
+           		<if test='depotIdsList!=null and depotIdsList.size()>0' > 
+					  depot_id in 
+					<foreach collection='depotIdsList' item='depotId' separator=',' open='(' close=')'>
+						#{depotId}			
+					</foreach> 	
+					and		    			 
+		 		</if>
+            </trim>
+        </where>
+    </sql>
+     
+     
+     
+	<!-- 导出商家库存明细sheet0 -->
+	<select id="exportProductInventoryDetails" resultType='InventoryBatchDTO' parameterType='InventoryBatchDTO'>
+			SELECT
+			a.*,IFNULL(b.freeze_num, 0) AS freeze_num,IFNULL(c.bad_num, 0) AS bad_num,IFNULL(d.okay_num, 0) AS okay_num,
+			(IFNULL(a.surplus_num, 0) - IFNULL(b.freeze_num, 0) - IFNULL(c.bad_num, 0) - IFNULL(d.okay_num, 0)) AS available_num
+		FROM(
+					SELECT MAX(barcode)as barcode,merchant_id,MAX(merchant_name)as merchant_name,depot_id,MAX(goods_name) as goods_name,MAX(depot_name) as depot_name,goods_id,goods_no,unit,IFNULL(sum(surplus_num), 0) AS surplus_num
+					FROM i_inventory_batch 
+					<include refid='listProductInventoryDetailsByPage_sql_where' />	
+					<if test='brandId!=null' >  and brand_id= #{brandId}  </if>	
+					<if test='barcode!=null and !"".equals(barcode)' >  and barcode= #{barcode}  </if>									
+					GROUP BY merchant_id,depot_id,goods_id,goods_no,unit
+				) a 
+		LEFT JOIN (
+					SELECT merchant_id,depot_id,goods_id,unit,SUM(IF(operate_type='0',num,-num)) as freeze_num  
+					FROM i_inventory_freeze_details	 
+					<include refid='listProductInventoryDetailsByPage_sql_where' />					
+					GROUP BY merchant_id,depot_id,goods_id,unit			
+			) b  ON a.merchant_id = b.merchant_id AND a.depot_id = b.depot_id AND a.goods_id = b.goods_id AND (a.unit = b.unit OR (a.unit IS NULL AND b.unit IS NULL))
+		LEFT JOIN (
+					SELECT merchant_id,depot_id,goods_id,unit,sum(surplus_num) AS bad_num
+					FROM i_inventory_batch
+					<include refid='listProductInventoryDetailsByPage_sql_where' />	
+					<if test='brandId!=null' >  and brand_id= #{brandId}  </if>	
+					<if test='barcode!=null and !"".equals(barcode)' >  and barcode= #{barcode}  </if>										
+					and type = '1'  and is_expire='1'	
+					GROUP BY merchant_id,depot_id,goods_id,unit
+			) c ON a.merchant_id = c.merchant_id AND a.depot_id = c.depot_id AND a.goods_id = c.goods_id AND (a.unit = c.unit OR (a.unit IS NULL AND c.unit IS NULL))
+		LEFT JOIN (
+					SELECT merchant_id,depot_id,goods_id,unit,sum(surplus_num) AS okay_num
+					FROM i_inventory_batch
+					<include refid='listProductInventoryDetailsByPage_sql_where' />	
+					<if test='brandId!=null' >  and brand_id= #{brandId}  </if>	
+					<if test='barcode!=null and !"".equals(barcode)' >  and barcode= #{barcode}  </if>					
+					and is_expire='0'  and(type = '0' or type = '1') 
+					GROUP BY merchant_id,depot_id,goods_id,unit
+			) d  ON a.merchant_id = d.merchant_id AND a.depot_id = d.depot_id AND a.goods_id = d.goods_id AND (a.unit = d.unit OR (a.unit IS NULL AND d.unit IS NULL))
+
+     		 ORDER BY a.goods_id DESC
+
+	</select>
+	
+	
+	<!-- 导出商家库存明细sheet1 -->
+	<select id="getInventoryBatchExport" resultType='InventoryBatchDTO' parameterType='InventoryBatchDTO'>
+			select <include refid='sql_columns' /> from i_inventory_batch  
+     		<include refid='listProductInventoryDetailsByPage_sql_where' />	
+     		<if test='brandId!=null' >  and brand_id= #{brandId}  </if>	
+     		<if test='barcode!=null and !"".equals(barcode)' >  and barcode= #{barcode}  </if>					
+     		 ORDER BY goods_id DESC
+
+	</select>
+	
+	
+	
+    
+
+    
+    
+    
+    
+    
+    <!-- 扣减库存余量数据 -->
+    <update id='updateLowerGoodsNum' parameterType='java.util.Map' keyProperty="id" useGeneratedKeys="true">
+         UPDATE  i_inventory_batch SET
+           <if test='onWayNum !=null' > 
+                surplus_num=surplus_num -#{onWayNum},
+                modify_date=NOW()
+            </if>
+           where  id=#{id}
+          <!--   <if test='onWayNum !=null' > 
+             and  surplus_num -#{onWayNum} &gt;= 0
+            </if> -->
+
+    </update>
+    
+        <!-- 增加库存余量数据 -->
+       <update id='updateAddGoodsNum' parameterType='java.util.Map' keyProperty="id" useGeneratedKeys="true">
+         UPDATE  i_inventory_batch SET
+           <if test='onWayNum !=null' > 
+                surplus_num=surplus_num+#{onWayNum},
+                modify_date=NOW()
+            </if>
+           where  id=#{id}
+    </update>
+    
+    
+    <!-- 统计批次库存明细 好品和坏品 已过期的数量 -->
+    <select id="countInventoryAmount"  resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+
+	SELECT IFNULL(SUM(surplus_num),0) AS surplus_num
+	FROM i_inventory_batch
+	WHERE
+	<choose>
+		<when test="merchantId !=null">
+			merchant_id =#{merchantId}
+			AND is_expire = '0'
+			and(type = '0' or type = '1') 
+		</when>
+		<otherwise>
+			is_expire = '0'
+		    and(type = '0' or type = '1') 
+		</otherwise>
+	</choose>
+             
+    </select>
+    
+    
+      <!--扣减库存接口 查询单个批次库存明细 -->
+    <select id="searchByInventoryBatchModel" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+        SELECT    
+        id,   
+        batch_no,  
+        production_date,
+        overdue_date, 
+        surplus_num
+        from i_inventory_batch  
+         <where>
+            <trim suffixOverrides='and'>
+                <if test='onWayNum!=null' > on_way_num= #{onWayNum} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} and </if>
+                <if test='unit==null  or  "".equals(unit)' >   unit is null  and </if>
+            </trim>
+        </where>
+    </select>
+
+	<!-- 按商品批次效期的维度进行库存余量统计 -->
+	<select id="searchInventoryBatchModelByGoodsList" resultMap='InventoryBatchModelMap'
+		parameterType='InventoryBatchModel'>
+		SELECT
+			merchant_id,
+			merchant_name,
+			topideal_code,
+			t.depot_id,
+			depot_name,
+			depot_code,
+			is_top_books,
+			depot_type,
+			t.goods_id,
+			goods_name,
+			goods_no,
+			batch_no,
+			production_date,
+			overdue_date,
+			type,
+			unit,
+			lpn,
+			is_expire,
+			surplus_num,
+			freeze_num,
+			own_month,
+			barcode,
+			commbarcode,
+			brand_id,
+			brand_name
+		FROM(
+			SELECT
+						merchant_id,
+				merchant_name,
+				topideal_code,
+				depot_id,
+				depot_code,
+				is_top_books,
+				depot_type,
+				goods_id,
+				goods_no,
+				batch_no,
+				production_date,
+				overdue_date,
+				type,
+				unit,
+				lpn,
+				is_expire,
+				SUM(surplus_num) AS surplus_num,
+				sum(freeze_num) AS freeze_num,
+				own_month,
+				barcode
+			FROM
+				i_inventory_batch 
+			GROUP BY
+				merchant_id,
+				merchant_name,
+				topideal_code,
+				depot_id,
+				depot_code,
+				is_top_books,
+				depot_type,
+				goods_id,
+				goods_no,
+				batch_no,
+				production_date,
+				overdue_date,
+				type,
+				unit,
+				lpn,
+				is_expire,
+				own_month,
+				barcode
+			)t
+			LEFT JOIN (
+			select goods_id,goods_name,commbarcode,brand_id,brand_name from i_inventory_batch where id in(
+			select max(id) from i_inventory_batch GROUP BY goods_id
+			)
+			) t1 on t.goods_id=t1.goods_id
+			 LEFT JOIN (
+			select depot_id,depot_name from i_inventory_batch where id in(
+			select max(id) from i_inventory_batch GROUP BY depot_id
+			)
+			) t2 on t.depot_id=t2.depot_id
+
+
+	</select>
+       
+       
+       
+       
+
+
+	
+	       <!-- 查询一条商家库存明细的 可用量字段 -->
+	<select id="getProductInventoryDetailsByOne" resultMap='InventoryBatchModelMap3' parameterType='InventoryBatchModel'>
+		SELECT aa.merchant_id,aa.depot_id,aa.goods_id,aa.unit,IFNULL(aa.surplus_num, 0)-IFNULL(bb.freeze_num, 0) as available_num   
+			from (
+				SELECT  a.merchant_id,a.depot_id,a.goods_id,a.unit,SUM(a.surplus_num)as surplus_num
+				from  i_inventory_batch a
+				WHERE a.type='0' and a.is_expire='1' 
+				 and a.merchant_id= #{merchantId} and a.depot_id= #{depotId} and a.goods_id= #{goodsId}
+				<if test='unit!=null and !"".equals(unit)' >and   a.unit= #{unit}  </if>
+			    <if test='unit==null  or  "".equals(unit)' >and   a.unit is null  </if>
+				GROUP BY a.merchant_id,a.depot_id,a.goods_id,a.unit
+			) aa LEFT JOIN 
+			(
+				SELECT b.merchant_id,b.depot_id,b.goods_id,b.unit,SUM(b.num0-b.num1) as freeze_num
+				 from (
+					SELECT merchant_id,depot_id,goods_id,unit,operate_type,
+					IF (operate_type='1',SUM(num),0) as num1,
+					IF (operate_type='0',SUM(num),0)as num0,
+					SUM(num)
+					 from i_inventory_freeze_details
+					WHERE merchant_id= #{merchantId} and depot_id= #{depotId} and goods_id= #{goodsId}
+					<if test='unit!=null and !"".equals(unit)' >and   unit= #{unit}  </if>
+				    <if test='unit==null  or  "".equals(unit)' >and   unit is null  </if>
+					GROUP BY merchant_id,depot_id,goods_id,unit,operate_type
+				)b
+				GROUP BY b.merchant_id,b.depot_id,b.goods_id,b.unit
+			)bb ON aa.merchant_id = bb.merchant_id AND aa.depot_id = bb.depot_id AND aa.goods_id = bb.goods_id AND (aa.unit = bb.unit OR (aa.unit IS NULL AND bb.unit IS NULL))
+				
+	</select>
+	
+	
+	
+	      <!-- 更具传入条件统计所有的库存余量 -->
+    <select id="getInventoryBatchModelAllSurplusNum" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+        select      
+         SUM(surplus_num) AS surplus_num
+         from i_inventory_batch  
+         <where>
+            <trim suffixOverrides='and'>
+                <if test='onWayNum!=null' > on_way_num= #{onWayNum} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} and </if>
+                <if test='unit==null  or  "".equals(unit)' >   unit is null  and </if>
+            </trim>
+        </where>
+    </select>
+    
+    
+    
+	      <!--查询批次库存余量为0的数据 -->
+    <select id="getInventoryBatchModelByZero" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+       select *  from i_inventory_batch   where surplus_num=0
+    </select>
+    
+    
+    
+    <!-- 批次库存明细列表 -->
+     <select id="getInventoryBatchByPage"  resultType='InventoryBatchDTO' parameterType='InventoryBatchDTO'>
+	     SELECT *  FROM (
+	       SELECT
+			id,
+			merchant_id,
+			depot_id,
+			depot_name,
+			merchant_name,
+			goods_no,
+			goods_name,
+			production_date,
+			overdue_date,
+			batch_no,
+			surplus_num,
+			TIMESTAMPDIFF(DAY, NOW(), overdue_date) AS surplus_days,
+			TIMESTAMPDIFF(
+				DAY,
+				production_date,
+				overdue_date
+			) AS total_days,
+			ROUND(
+				TIMESTAMPDIFF(DAY, NOW(), overdue_date) / TIMESTAMPDIFF(
+					DAY,
+					production_date,
+					overdue_date
+				),
+				2
+			) AS surplus_date,
+        type,
+        lpn,
+        unit,
+        is_expire,
+        barcode,
+        brand_id,
+        brand_name,
+        commbarcode
+        
+		FROM
+			i_inventory_batch
+			) a
+	  <include refid='getInventoryBatchByPage_sql_where' />  
+	  
+	  order by a.id desc
+     </select>
+     
+      <sql id='getInventoryBatchByPage_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >a.goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > a.overdue_date= #{overdueDate} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >a.depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >a.batch_no= #{batchNo} and </if>
+                <if test='depotId!=null' > a.depot_id= #{depotId} and </if>
+                <if test='type!=null and !"".equals(type)' >a.type= #{type} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >a.merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > a.merchant_id= #{merchantId} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >a.goodsName= #{goodsName} and </if>
+ 		<if test='brandId!=null' > a.brand_id= #{brandId} and </if>
+                <if test='barcode!=null and !"".equals(barcode)'> a.barcode= #{barcode} and </if>
+                <if test='validityType!=null and "1".equals(validityType)' > a.surplus_date &lt; #{validityTime} and </if>
+                <if test='validityType!=null and "2".equals(validityType)' > a.surplus_date &gt; #{validityTime} and </if>
+                <if test='validityType!=null and "5".equals(validityType)' > a.surplus_date &lt;= #{validityTime} and </if>
+                <if test='validityType!=null and "8".equals(validityType)' > a.surplus_days &lt; #{validityTime} and </if>
+                <if test='validityType!=null and "9".equals(validityType)' > a.surplus_days &gt; #{validityTime} and </if>
+            </trim>
+        </where>
+    </sql>
+    
+    <select id="getInventoryBatchModelByGoodsBatchList" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+
+	SELECT a.*,t1.goods_name,t2.depot_name FROM (
+		SELECT
+		merchant_id,
+		merchant_name,
+		depot_id,
+		goods_id,
+		goods_no,
+		batch_no,
+		production_date,
+		overdue_date,
+		unit,
+		type,
+		depot_type,
+		topideal_code,
+		is_top_books,
+		SUM(surplus_num) AS surplus_num
+		FROM
+		i_inventory_batch t
+		GROUP BY
+		merchant_id,
+		merchant_name,
+		depot_id,
+		goods_id,
+		goods_no,
+		batch_no,
+		production_date,
+		overdue_date,
+		unit,
+		type,
+		depot_type,
+		topideal_code,
+		is_top_books
+		) a
+	LEFT JOIN (
+	select goods_id,goods_name from i_inventory_batch where id in(
+	select max(id) from i_inventory_batch GROUP BY goods_id
+	)
+	) t1 on a.goods_id=t1.goods_id
+	 LEFT JOIN (
+	select depot_id,depot_name from i_inventory_batch where id in(
+	select max(id) from i_inventory_batch GROUP BY depot_id
+	)
+	) t2 on a.depot_id=t2.depot_id
+      <include refid='getInventoryBatchModelByGoodsBatchList_sql_where' />  
+    
+    </select>
+    
+     <sql id='getInventoryBatchModelByGoodsBatchList_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > a.goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' > a.depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > a.batch_no= #{batchNo} and </if>
+                <if test='goodsId!=null' > a.goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > a.depot_id= #{depotId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > a.merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > a.merchant_id= #{merchantId} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > a.goods_name= #{goodsName} and </if>
+            </trim>
+        </where>
+    </sql>
+    
+    
+       <!-- 条件查询 -->
+    <select id='getInventoryBatchModelMapByOne' resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel' >
+        select <include refid='sql_columns' /> from i_inventory_batch 
+        
+        
+         <include refid='getInventoryBatchModelMapByOne_sql_where' />
+    </select>
+    
+    
+    
+    <!-- 查询条件 -->
+    <sql id='getInventoryBatchModelMapByOne_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='onWayNum!=null' > on_way_num= #{onWayNum} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>       
+                <choose>
+                   <when test='productionDate!=null' >
+                        production_date= #{productionDate} and 
+                   </when>
+                   <otherwise>
+                        production_date  is NULL   and 
+                   </otherwise>
+                </choose>          
+                     <choose>
+                   <when test='overdueDate!=null' >
+                        overdue_date= #{overdueDate} and 
+                   </when>
+                   <otherwise>
+                        overdue_date  is NULL   and 
+                   </otherwise>
+                </choose>               
+                <choose>
+                   <when test='batchNo!=null and !"".equals(batchNo)' >
+                        batch_no= #{batchNo} and 
+                   </when>
+                   <otherwise>
+                        batch_no  is NULL   and 
+                   </otherwise>
+                </choose>               
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} and </if>
+            </trim>
+        </where>
+    </sql>
+	
+	<!-- 检查商品是否使用 -->
+    <select id='checkGoodsIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select 
+        	count(*)
+        from i_inventory_batch
+        where goods_id = #{id}
+    </select>
+    <!-- 检查商品是否使用 -->
+    <select id='checkDepotIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select 
+        	count(*)
+        from i_inventory_batch
+        where depot_id = #{depotId}
+    </select>
+    
+    
+    <!--加库存接口 查询单个批次库存明细 -->
+    <select id="searchInventoryBatchForAdd" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+        SELECT    
+        id,   
+        batch_no,  
+        production_date,
+        overdue_date, 
+        surplus_num
+        from i_inventory_batch  
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+            	<if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='onWayNum!=null' > on_way_num= #{onWayNum} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='lpn!=null and !"".equals(lpn)' >lpn= #{lpn} and </if>
+                <if test='freezeNum!=null' > freeze_num= #{freezeNum} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='unit==null  or  "".equals(unit)' >   unit is null  and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='batchNo==null or "".equals(batchNo)' > batch_no is null and </if>
+                <if test='productionDate==null' > production_date is null and </if>
+                <if test='overdueDate==null' > overdue_date is null and </if>
+            </trim>
+        </where>
+         limit 1
+    </select>
+    
+    
+    	<!-- 查询库存可用量 -->
+	
+	<select id="getAvailableNum" resultMap='InventoryBatchModelMap3' parameterType='InventoryBatchModel'>
+		SELECT aa.merchant_id,aa.depot_id,aa.goods_id,aa.unit,IFNULL(aa.surplus_num, 0)-IFNULL(bb.freeze_num, 0) as available_num   
+			from (
+				SELECT  a.merchant_id,a.depot_id,a.goods_id,a.unit,SUM(a.surplus_num)as surplus_num
+				from  i_inventory_batch a
+				WHERE a.type='0' and a.is_expire='1' 
+				 and a.merchant_id= #{merchantId} and a.depot_id= #{depotId} and a.goods_id= #{goodsId}
+				<if test='unit!=null and !"".equals(unit)' >and   a.unit= #{unit}  </if>
+			    <if test='unit==null  or  "".equals(unit)' >and   a.unit is null  </if>
+				GROUP BY a.merchant_id,a.depot_id,a.goods_id,a.unit
+			) aa LEFT JOIN 
+			(
+				SELECT b.merchant_id,b.depot_id,b.goods_id,b.unit,SUM(b.num0-b.num1) as freeze_num
+				 from (
+					SELECT merchant_id,depot_id,goods_id,unit,operate_type,
+					IF (operate_type='1',SUM(num),0) as num1,
+					IF (operate_type='0',SUM(num),0)as num0,
+					SUM(num)
+					 from i_inventory_freeze_details
+					WHERE merchant_id= #{merchantId} and depot_id= #{depotId} and goods_id= #{goodsId}
+					<if test='unit!=null and !"".equals(unit)' >and   unit= #{unit}  </if>
+				    <if test='unit==null  or  "".equals(unit)' >and   unit is null  </if>
+					GROUP BY merchant_id,depot_id,goods_id,unit,operate_type
+				)b
+				GROUP BY b.merchant_id,b.depot_id,b.goods_id,b.unit
+			)bb ON aa.merchant_id = bb.merchant_id AND aa.depot_id = bb.depot_id AND aa.goods_id = bb.goods_id AND (aa.unit = bb.unit OR (aa.unit IS NULL AND bb.unit IS NULL))			
+	</select>
+	
+	<!-- 根据商家,仓库,商品,理货单位,批次,好坏品,过期品 查询库存余量  -->
+	<select id='getBadOrExpiredSurplusNum' resultType="java.util.Map"
+		parameterType='InventoryBatchModel'>
+		SELECT
+		SUM(surplus_num) AS surplus_num
+		FROM
+		i_inventory_batch
+		WHERE
+		merchant_id = #{merchantId}
+		and depot_id= #{depotId}
+		and goods_id = #{goodsId}
+		<if test='unit!=null and !"".equals(unit)' >and   unit= #{unit}  </if>
+		<if test='type!=null and !"".equals(type)' >and  type = #{type}</if>
+		<if test='batchNo!=null and !"".equals(batchNo)' >and  batch_no = #{batchNo}</if>
+		<if test='isExpire!=null and !"".equals(isExpire)' >and  is_expire = #{isExpire}</if>
+	
+	</select>
+	  
+   <!-- 	根据仓库ID 查询仓库 库存余量不为0的所有批次是否都有批次、效期 -->
+	<select id="getBatchValidation" resultMap='InventoryBatchModelMap'  parameterType="InventoryBatchModel"> 
+		SELECT
+		    id,
+			depot_id,
+			batch_no,
+			production_date,
+			overdue_date
+		FROM
+			i_inventory_batch
+		WHERE  depot_id= #{depotId}  
+				AND (
+					production_date IS NULL
+					OR overdue_date IS NULL
+					OR batch_no IS NULL
+				)
+	</select>
+	
+	<!-- 获取批次库存已经过期 但是 过期状态还是未过期 的数据 -->
+	<select id="getIsexpireInventoryBatchlist" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+        select <include refid='sql_columns' /> 
+        from i_inventory_batch  
+        where is_expire='1' and DATE_FORMAT(overdue_date, '%Y-%m-%d')&lt;=DATE_FORMAT(NOW(), '%Y-%m-%d')
+    </select>
+    
+    <!--  获取最小的创建日期(首次上架日期) -->
+    <select id="getMinDate" resultMap='InventoryBatchModelMap' parameterType='InventoryBatchModel'>
+		SELECT <include refid='sql_columns' /> from i_inventory_batch 
+			where merchant_id= #{merchantId}
+				and depot_id=#{depotId}
+				and goods_id=#{goodsId}
+				<if test='unit!=null and !"".equals(unit)' >and   unit= #{unit}  </if>
+				<if test='unit==null or  "".equals(unit)' >and   unit is null  </if>
+				<if test='batchNo!=null and !"".equals(batchNo)' >and  batch_no = #{batchNo}</if>
+				<if test='batchNo==null or "".equals(batchNo)' >and  batch_no is null</if>
+				<if test='productionDate!=null' >and production_date= #{productionDate}  </if>
+				<if test='productionDate==null' >and production_date is null  </if>
+                <if test='overdueDate!=null' > and overdue_date= #{overdueDate}  </if>
+                <if test='overdueDate==null' > and overdue_date is null  </if>
+		ORDER BY id ASC
+		LIMIT 1
+ 	</select>
+    
+    
+</mapper>

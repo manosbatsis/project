@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.base.ExchangeRateConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ExchangeRateConfigModelMap" type="ExchangeRateConfigModel" >
+                <result property="id" column="id" />
+                <result property="origCurrencyCode" column="orig_currency_code" />
+                <result property="origCurrencyName" column="orig_currency_name" />
+                <result property="tgtCurrencyCode" column="tgt_currency_code" />
+                <result property="tgtCurrencyName" column="tgt_currency_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="dataSource" column="data_source" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ExchangeRateConfigModelMap' parameterType='ExchangeRateConfigModel'>
+        select <include refid='sql_columns' /> from st_exchange_rate_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ExchangeRateConfigModelMap' parameterType='ExchangeRateConfigModel'>
+        select <include refid='sql_columns' /> from st_exchange_rate_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ExchangeRateConfigModelMap' parameterType='ExchangeRateConfigModel' >
+        select <include refid='sql_columns' /> from st_exchange_rate_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ExchangeRateConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_exchange_rate_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='origCurrencyCode!=null and !"".equals(origCurrencyCode)' > orig_currency_code , </if>
+                        <if test='origCurrencyName!=null and !"".equals(origCurrencyName)' > orig_currency_name , </if>
+                        <if test='tgtCurrencyCode!=null and !"".equals(tgtCurrencyCode)' > tgt_currency_code , </if>
+                        <if test='tgtCurrencyName!=null and !"".equals(tgtCurrencyName)' > tgt_currency_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > data_source , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='origCurrencyCode!=null and !"".equals(origCurrencyCode)' > #{origCurrencyCode} , </if>
+                        <if test='origCurrencyName!=null and !"".equals(origCurrencyName)' > #{origCurrencyName} , </if>
+                        <if test='tgtCurrencyCode!=null and !"".equals(tgtCurrencyCode)' > #{tgtCurrencyCode} , </if>
+                        <if test='tgtCurrencyName!=null and !"".equals(tgtCurrencyName)' > #{tgtCurrencyName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > #{dataSource} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ExchangeRateConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_exchange_rate_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='origCurrencyCode!=null and !"".equals(origCurrencyCode)' >orig_currency_code= #{origCurrencyCode} , </if>
+                        <if test='origCurrencyName!=null and !"".equals(origCurrencyName)' >orig_currency_name= #{origCurrencyName} , </if>
+                        <if test='tgtCurrencyCode!=null and !"".equals(tgtCurrencyCode)' >tgt_currency_code= #{tgtCurrencyCode} , </if>
+                        <if test='tgtCurrencyName!=null and !"".equals(tgtCurrencyName)' >tgt_currency_name= #{tgtCurrencyName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_exchange_rate_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_exchange_rate_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            orig_currency_code,
+            orig_currency_name,
+            tgt_currency_code,
+            tgt_currency_name,
+            create_date,
+            modify_date,
+            creater,
+            create_name,
+            data_source
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='origCurrencyCode!=null and !"".equals(origCurrencyCode)' >orig_currency_code= #{origCurrencyCode} and </if>
+                            <if test='origCurrencyName!=null and !"".equals(origCurrencyName)' >orig_currency_name= #{origCurrencyName} and </if>
+                            <if test='tgtCurrencyCode!=null and !"".equals(tgtCurrencyCode)' >tgt_currency_code= #{tgtCurrencyCode} and </if>
+                            <if test='tgtCurrencyName!=null and !"".equals(tgtCurrencyName)' >tgt_currency_name= #{tgtCurrencyName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+	 	<!-- 查询所有信息 分页 -->
+	    <select id='getListByPage' resultType='ExchangeRateConfigDTO' parameterType='ExchangeRateConfigDTO'>
+	        select <include refid='sql_columns' /> from st_exchange_rate_config  <include refid='sql_where' />  ORDER BY id DESC
+	    </select>
+
+		<select id='listForExport' resultType="map" parameterType='ExchangeRateConfigModel'>
+	        select <include refid='sql_columns' /> from st_exchange_rate_config  <include refid='sql_where' />  ORDER BY id DESC
+	    </select>
+
+
+</mapper>

@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleFinancingOrderItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleFinancingOrderItemModelMap" type="SaleFinancingOrderItemModel" >
+                <result property="id" column="id" />
+                <result property="orderId" column="order_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="barcode" column="barcode" />
+                <result property="num" column="num" />
+                <result property="price" column="price" />
+                <result property="amount" column="amount" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="createDate" column="create_date" />
+                <result property="contractNo" column="contract_no" />
+                <result property="ransomPrice" column="ransom_price" />
+                <result property="ransomAmount" column="ransom_amount" />
+                <result property="remark" column="remark" />
+                <result property="principal" column="principal" />
+                <result property="occupationFee" column="occupation_fee" />
+                <result property="agencyFee" column="agency_fee" />
+                <result property="delayFee" column="delay_fee" />
+                <result property="payableFee" column="payable_fee" />
+                <result property="margin" column="margin" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleFinancingOrderItemModelMap' parameterType='SaleFinancingOrderItemModel'>
+        select <include refid='sql_columns' /> from t_sale_financing_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleFinancingOrderItemModelMap' parameterType='SaleFinancingOrderItemModel'>
+        select <include refid='sql_columns' /> from t_sale_financing_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleFinancingOrderItemModelMap' parameterType='SaleFinancingOrderItemModel' >
+        select <include refid='sql_columns' /> from t_sale_financing_order_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleFinancingOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_financing_order_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='amount!=null' >amount , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                        <if test='ransomPrice!=null' >ransom_price , </if>
+                        <if test='ransomAmount!=null' >ransom_amount , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='principal!=null' >principal , </if>
+                        <if test='occupationFee!=null' >occupation_fee , </if>
+                        <if test='agencyFee!=null' >agency_fee , </if>
+                        <if test='delayFee!=null' >delay_fee , </if>
+                        <if test='payableFee!=null' >payable_fee , </if>
+                        <if test='margin!=null' >margin , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='contractNo!=null and !"".equals(contractno)' > #{contractNo} , </if>
+                        <if test='ransomPrice!=null' > #{ransomPrice} , </if>
+                        <if test='ransomAmount!=null' > #{ransomAmount} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='principal!=null' > #{principal} , </if>
+                        <if test='occupationFee!=null' > #{occupationFee} , </if>
+                        <if test='agencyFee!=null' > #{agencyFee} , </if>
+                        <if test='delayFee!=null' > #{delayFee} , </if>
+                        <if test='payableFee!=null' > #{payableFee} , </if>
+                        <if test='margin!=null' > #{margin} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleFinancingOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_financing_order_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                        <if test='ransomPrice!=null' > ransom_price= #{ransomPrice} , </if>
+                        <if test='ransomAmount!=null' > ransom_amount= #{ransomAmount} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='principal!=null' > principal= #{principal} , </if>
+                        <if test='occupationFee!=null' > occupation_fee= #{occupationFee} , </if>
+                        <if test='agencyFee!=null' > agency_fee= #{agencyFee} , </if>
+                        <if test='delayFee!=null' > delay_fee= #{delayFee} , </if>
+                        <if test='payableFee!=null' > payable_fee= #{payableFee} , </if>
+                        <if test='margin!=null' > margin= #{margin} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_financing_order_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_financing_order_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            order_id,
+            goods_id,
+            goods_code,
+            goods_name,
+            goods_no,
+            commbarcode,
+            barcode,
+            num,
+            price,
+            amount,
+            tallying_unit,
+            modify_date,
+            create_date,
+            contract_no,
+            ransom_price,
+            ransom_amount,
+            remark,
+            principal,
+            occupation_fee,
+            agency_fee,
+            delay_fee,
+            payable_fee,
+            margin
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='contractNo!=null and !"".equals(contractNo)' >contractNo= #{contractNo} and </if>
+                            <if test='ransomPrice!=null' > ransom_price= #{ransomPrice} and </if>
+                            <if test='ransomAmount!=null' > ransom_amount= #{ransomAmount} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='principal!=null' > principal= #{principal} and </if>
+                            <if test='occupationFee!=null' > occupation_fee= #{occupationFee} and </if>
+                            <if test='agencyFee!=null' > agency_fee= #{agencyFee} and </if>
+                            <if test='delayFee!=null' > delay_fee= #{delayFee} and </if>
+                            <if test='payableFee!=null' > payable_fee= #{payableFee} and </if>
+                            <if test='margin!=null' > margin= #{margin} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<select id="listByDTO" resultType='SaleFinancingOrderItemDTO' parameterType='SaleFinancingOrderItemDTO'>
+            select <include refid='sql_columns' /> from t_sale_financing_order_item  <include refid='sql_where' />
+        </select>
+
+
+
+</mapper>

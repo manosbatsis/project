@@ -1,0 +1,489 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.SaleTargetAchievementMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleTargetAchievementModelMap" type="SaleTargetAchievementModel" >
+                <result property="id" column="id" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="month" column="month" />
+                <result property="goodsName" column="goods_name" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="brandParent" column="brand_parent" />
+                <result property="toBNum" column="to_b_num" />
+                <result property="toBRate" column="to_b_rate" />
+                <result property="toCNum" column="to_c_num" />
+                <result property="toCRate" column="to_c_rate" />
+                <result property="type" column="type" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="num" column="num" />
+                <result property="rate" column="rate" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleTargetAchievementModelMap' parameterType='SaleTargetAchievementModel'>
+        select <include refid='sql_columns' /> from r_sale_target_achievement  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleTargetAchievementModelMap' parameterType='SaleTargetAchievementModel'>
+        select <include refid='sql_columns' /> from r_sale_target_achievement  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleTargetAchievementModelMap' parameterType='SaleTargetAchievementModel' >
+        select <include refid='sql_columns' /> from r_sale_target_achievement  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleTargetAchievementModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_sale_target_achievement
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' > brand_parent , </if>
+                        <if test='toBNum!=null' >to_b_num , </if>
+                        <if test='toBRate!=null' >to_b_rate , </if>
+                        <if test='toCNum!=null' >to_c_num , </if>
+                        <if test='toCRate!=null' >to_c_rate , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > store_platform_name , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='rate!=null' >rate , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' > #{brandParent} , </if>
+                        <if test='toBNum!=null' > #{toBNum} , </if>
+                        <if test='toBRate!=null' > #{toBRate} , </if>
+                        <if test='toCNum!=null' > #{toCNum} , </if>
+                        <if test='toCRate!=null' > #{toCRate} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > #{storePlatformName} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='rate!=null' > #{rate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleTargetAchievementModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_sale_target_achievement SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} , </if>
+                        <if test='toBNum!=null' > to_b_num= #{toBNum} , </if>
+                        <if test='toBRate!=null' > to_b_rate= #{toBRate} , </if>
+                        <if test='toCNum!=null' > to_c_num= #{toCNum} , </if>
+                        <if test='toCRate!=null' > to_c_rate= #{toCRate} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='rate!=null' > rate= #{rate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_sale_target_achievement  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_sale_target_achievement where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bu_id,
+            bu_name,
+            month,
+            goods_name,
+            commbarcode,
+            brand_parent,
+            to_b_num,
+            to_b_rate,
+            to_c_num,
+            to_c_rate,
+            type,
+            store_platform_name,
+            num,
+            rate,
+            create_date,
+            modify_date,
+            shop_code,
+            shop_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='toBNum!=null' > to_b_num= #{toBNum} and </if>
+                            <if test='toBRate!=null' > to_b_rate= #{toBRate} and </if>
+                            <if test='toCNum!=null' > to_c_num= #{toCNum} and </if>
+                            <if test='toCRate!=null' > to_c_rate= #{toCRate} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='rate!=null' > rate= #{rate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<delete id='deleteByMap' parameterType='map'>
+	        delete from r_sale_target_achievement  <include refid='sql_where' />
+	    </delete>
+
+		<!-- 查询所有信息 分页 -->
+	    <select id='getListByPage' resultType='SaleTargetAchievementDTO' parameterType='SaleTargetAchievementDTO'>
+	        select <include refid='sql_columns' /> from r_sale_target_achievement  
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buIds!=null' > bu_id in 
+			                	<foreach collection="buIds" item="buId" separator="," open="(" close=")">
+			            			#{buId}
+			            		</foreach>
+			            		and 
+			                </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name like CONCAT('%', #{goodsName}, '%') and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='toBNum!=null' > to_b_num= #{toBNum} and </if>
+                            <if test='toBRate!=null' > to_b_rate= #{toBRate} and </if>
+                            <if test='toCNum!=null' > to_c_num= #{toCNum} and </if>
+                            <if test='toCRate!=null' > to_c_rate= #{toCRate} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='rate!=null' > rate= #{rate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='startMonth!=null and !"".equals(startMonth)' >`month` &gt;= #{startMonth} and</if>
+                            <if test='endMonth!=null and !"".equals(endMonth)' >`month` &lt;= #{endMonth} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                </trim>
+            </where>
+	    </select>
+	    
+	    <select id='getExportList' resultType='SaleTargetAchievementDTO' parameterType='SaleTargetAchievementDTO'>
+	        select 
+	        	bu_id,
+	            bu_name,
+	            goods_name,
+	            commbarcode,
+	            brand_parent,
+	            <if test='type!=null and "1".equals(type)' >
+	            SUM(IFNULL(to_b_num,0)) AS to_b_num,
+	            SUM(IFNULL(to_b_rate,0)) AS to_b_rate,
+	            SUM(IFNULL(to_c_num,0)) AS to_c_num,
+	            SUM(IFNULL(to_c_rate,0)) AS to_c_rate,
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            </if>
+	            <if test='type!=null and "2".equals(type)' >
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            store_platform_name,
+	            </if>
+	            <if test='type!=null and "3".equals(type)' >
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            shop_name,
+	            shop_code,
+	            </if>
+	            type,
+	            max(create_date),
+	            max(modify_date)
+	        from r_sale_target_achievement  
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buIds!=null' > bu_id in 
+			                	<foreach collection="buIds" item="buId" separator="," open="(" close=")">
+			            			#{buId}
+			            		</foreach>
+			            		and 
+			                </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name like CONCAT('%', #{goodsName}, '%') and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='toBNum!=null' > to_b_num= #{toBNum} and </if>
+                            <if test='toBRate!=null' > to_b_rate= #{toBRate} and </if>
+                            <if test='toCNum!=null' > to_c_num= #{toCNum} and </if>
+                            <if test='toCRate!=null' > to_c_rate= #{toCRate} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='rate!=null' > rate= #{rate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='startMonth!=null and !"".equals(startMonth)' >`month` &gt;= #{startMonth} and</if>
+                            <if test='endMonth!=null and !"".equals(endMonth)' >`month` &lt;= #{endMonth} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                </trim>
+            </where>
+            group by bu_id,
+	            bu_name,
+	            goods_name,
+	            commbarcode,
+	            brand_parent,
+	            <trim suffixOverrides=','>
+	            type,
+		            <if test='type!=null and "2".equals(type)' >
+			            store_platform_name ,
+		            </if>
+		            <if test='type!=null and "3".equals(type)' >
+			            shop_name ,
+			            shop_code ,
+		            </if>
+	            </trim>
+	    </select>
+	    
+	    <select id="getExsitplatform" resultType="string">
+	    	SELECT
+				store_platform_name
+			FROM
+				r_sale_target_achievement
+			where type = '2'
+			GROUP BY
+				store_platform_name
+			ORDER BY
+				store_platform_name
+	    </select>
+	    
+	    <select id="getExsitShopName" resultType="string">
+	    	SELECT
+				shop_name
+			FROM
+				r_sale_target_achievement
+			where type = '3'
+			GROUP BY
+				shop_name
+			ORDER BY
+				shop_name
+	    </select>
+
+		<select id="listGroupDto" resultType='SaleTargetAchievementDTO' parameterType='SaleTargetAchievementDTO'>
+			select 
+	            bu_id,
+	            bu_name,
+	            goods_name,
+	            commbarcode,
+	            brand_parent,
+	            <if test='type!=null and "1".equals(type)' >
+	            SUM(IFNULL(to_b_num,0)) AS to_b_num,
+	            SUM(IFNULL(to_b_rate,0)) AS to_b_rate,
+	            SUM(IFNULL(to_c_num,0)) AS to_c_num,
+	            SUM(IFNULL(to_c_rate,0)) AS to_c_rate,
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            </if>
+	            <if test='type!=null and "2".equals(type)' >
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            store_platform_name,
+	            </if>
+	            <if test='type!=null and "3".equals(type)' >
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            shop_name,
+	            shop_code,
+	            </if>
+	            type,
+	            max(create_date),
+	            max(modify_date)
+			 from r_sale_target_achievement  
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buIds!=null' > bu_id in 
+			                	<foreach collection="buIds" item="buId" separator="," open="(" close=")">
+			            			#{buId}
+			            		</foreach>
+			            		and 
+			                </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name like CONCAT('%', #{goodsName}, '%') and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='toBNum!=null' > to_b_num= #{toBNum} and </if>
+                            <if test='toBRate!=null' > to_b_rate= #{toBRate} and </if>
+                            <if test='toCNum!=null' > to_c_num= #{toCNum} and </if>
+                            <if test='toCRate!=null' > to_c_rate= #{toCRate} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='rate!=null' > rate= #{rate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='startMonth!=null and !"".equals(startMonth)' >`month` &gt;= #{startMonth} and</if>
+                            <if test='endMonth!=null and !"".equals(endMonth)' >`month` &lt;= #{endMonth} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                </trim>
+            </where>
+            group by bu_id,
+	            bu_name,
+	            goods_name,
+	            commbarcode,
+	            brand_parent,
+	            <trim suffixOverrides=','>
+	            type,
+		            <if test='type!=null and "2".equals(type)' >
+			            store_platform_name ,
+		            </if>
+		            <if test='type!=null and "3".equals(type)' >
+			            shop_name ,
+			            shop_code ,
+		            </if>
+	            </trim>
+            <if test='type!=null and "1".equals(type) and begin!=null and pageSize != null' >
+            limit #{begin}, #{pageSize}
+            </if>
+		</select>
+		
+		<select id="countGroupDto" resultType='java.lang.Integer' parameterType='SaleTargetAchievementDTO'>
+			select count(*) from 
+			(
+			select 
+	            bu_id,
+	            bu_name,
+	            goods_name,
+	            commbarcode,
+	            brand_parent,
+	            <if test='type!=null and "1".equals(type)' >
+	            SUM(IFNULL(to_b_num,0)) AS to_b_num,
+	            SUM(IFNULL(to_b_rate,0)) AS to_b_rate,
+	            SUM(IFNULL(to_c_num,0)) AS to_c_num,
+	            SUM(IFNULL(to_c_rate,0)) AS to_c_rate,
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            </if>
+	            <if test='type!=null and "2".equals(type)' >
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            store_platform_name,
+	            </if>
+	            <if test='type!=null and "3".equals(type)' >
+	            SUM(IFNULL(num,0)) AS num,
+	            SUM(IFNULL(rate,0)) AS rate,
+	            shop_name,
+	            shop_code,
+	            </if>
+	            type,
+	            max(create_date),
+	            max(modify_date)
+			 from r_sale_target_achievement  
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buIds!=null' > bu_id in 
+			                	<foreach collection="buIds" item="buId" separator="," open="(" close=")">
+			            			#{buId}
+			            		</foreach>
+			            		and 
+			                </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name like CONCAT('%', #{goodsName}, '%') and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='toBNum!=null' > to_b_num= #{toBNum} and </if>
+                            <if test='toBRate!=null' > to_b_rate= #{toBRate} and </if>
+                            <if test='toCNum!=null' > to_c_num= #{toCNum} and </if>
+                            <if test='toCRate!=null' > to_c_rate= #{toCRate} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='rate!=null' > rate= #{rate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='startMonth!=null and !"".equals(startMonth)' >`month` &gt;= #{startMonth} and</if>
+                            <if test='endMonth!=null and !"".equals(endMonth)' >`month` &lt;= #{endMonth} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                </trim>
+            </where>
+            group by bu_id,
+	            bu_name,
+	            goods_name,
+	            commbarcode,
+	            brand_parent,
+	            <trim suffixOverrides=','>
+	            type,
+		            <if test='type!=null and "2".equals(type)' >
+			            store_platform_name ,
+		            </if>
+		            <if test='type!=null and "3".equals(type)' >
+			            shop_name ,
+			            shop_code ,
+		            </if>
+	            </trim>
+	            ) t
+		</select>
+</mapper>

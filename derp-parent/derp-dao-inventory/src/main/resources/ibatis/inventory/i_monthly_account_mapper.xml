@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.MonthlyAccountMapper'>
+
+     <!-- 关系映射 -->
+    <resultMap id="MonthlyAccountModelMap" type="MonthlyAccountModel" >
+                <result property="depotName" column="depot_name" />
+                <result property="orderNo" column="order_no" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="endDate" column="end_date" />
+                <result property="depotId" column="depot_id" />
+                <result property="planName" column="plan_name" />
+                <result property="settlementDate" column="settlement_date" />
+                <result property="depotType" column="depot_type" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="firstDate" column="first_date" />
+                <result property="creater" column="creater" />
+                <result property="settlementMonth" column="settlement_month" />
+                <result property="id" column="id" />
+                <result property="state" column="state" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MonthlyAccountModelMap' parameterType='MonthlyAccountModel'>
+        select <include refid='sql_columns' /> from i_monthly_account  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MonthlyAccountModelMap' parameterType='MonthlyAccountModel'>
+        select <include refid='sql_columns' /> from i_monthly_account  <include refid='sql_where' />
+        ORDER BY settlement_month DESC
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MonthlyAccountModelMap' parameterType='MonthlyAccountModel' >
+        select <include refid='sql_columns' /> from i_monthly_account  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='MonthlyAccountModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_monthly_account
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > order_no , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='endDate!=null' > end_date , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='planName!=null and !"".equals(planName)' > plan_name , </if>
+                <if test='settlementDate!=null' > settlement_date , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > depot_type , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='firstDate!=null' > first_date , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='settlementMonth!=null and !"".equals(settlementMonth)' > settlement_month , </if>
+                <if test='id!=null' > id , </if>
+                <if test='state!=null and !"".equals(state)' > state , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > #{orderNo} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='endDate!=null' > #{endDate} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='planName!=null and !"".equals(planName)' > #{planName} , </if>
+                <if test='settlementDate!=null' > #{settlementDate} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='firstDate!=null' > #{firstDate} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='settlementMonth!=null and !"".equals(settlementMonth)' > #{settlementMonth} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='state!=null and !"".equals(state)' > #{state} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='MonthlyAccountModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_monthly_account SET
+        <trim  suffixOverrides=",">
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='endDate!=null' > end_date= #{endDate} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='planName!=null and !"".equals(planName)' >plan_name= #{planName} , </if>
+                <if test='settlementDate!=null' > settlement_date= #{settlementDate} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='firstDate!=null' > first_date= #{firstDate} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='settlementMonth!=null and !"".equals(settlementMonth)' >settlement_month= #{settlementMonth} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_monthly_account  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_monthly_account where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        depot_name,
+        order_no,
+        modify_date,
+        end_date,
+        depot_id,
+        plan_name,
+        settlement_date,
+        depot_type,
+        merchant_name,
+        topideal_code,
+        merchant_id,
+        first_date,
+        creater,
+        settlement_month,
+        id,
+        state,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='endDate!=null' > end_date= #{endDate} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='planName!=null and !"".equals(planName)' >plan_name= #{planName} and </if>
+                <if test='settlementDate!=null' > settlement_date= #{settlementDate} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='firstDate!=null' > first_date= #{firstDate} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='settlementMonth!=null and !"".equals(settlementMonth)' >settlement_month= #{settlementMonth} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+    
+<!--自定义SQL-->
+ <!-- 查询所有信息 分页 -->
+    <select id='listDTOByPage' resultType='MonthlyAccountDTO' parameterType='MonthlyAccountDTO'>
+        select <include refid='sql_columns' /> from i_monthly_account  <include refid='sql_where' />
+        ORDER BY settlement_month DESC
+    </select>
+    <!-- 条件查询 -->
+    <select id='searchDTOById' resultType='MonthlyAccountDTO' parameterType='MonthlyAccountDTO' >
+        select <include refid='sql_columns' /> from i_monthly_account  <include refid='sql_where' />
+    </select>
+<!-- 库存扣减接口归属月份大于等于月结主表所属月份 并且未结转的 所有数据-->
+    <select id="getMonthlyAccountListByMonth" resultMap='MonthlyAccountModelMap' parameterType='MonthlyAccountModel'>
+        select <include refid='sql_columns' /> from i_monthly_account  <include refid='getMonthlyAccountListByMonth_sql_where' />
+        
+        order by  settlement_month ASC; 
+        
+    </select>
+
+<sql id='getMonthlyAccountListByMonth_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='settlementMonth!=null and !"".equals(settlementMonth)' >settlement_month &gt;= #{settlementMonth} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+            </trim>
+        </where>
+    </sql>
+    
+        <!-- 导出月结表头 -->
+    <select id="exportMonthlyAccountMap"  resultType='Map' parameterType='MonthlyAccountModel'>
+         select 
+         merchant_name,
+         depot_name,
+         settlement_month,
+         first_date,
+         end_date,
+         settlement_date,
+         case when state='1' then '未结转'
+         when state='2' then '已结转'
+	      ELSE '' END  as  state,
+	      case when depot_type='1' then '按计算库存量结转、按仓库现存量结转'
+          when depot_type='2' then '按计算库存量结转'
+	      ELSE '' END  as  depot_type
+          from i_monthly_account  <include refid='sql_where' />
+    
+    </select>
+    
+    <!-- 根据条件获取数据 -->
+    <select id='getMonthlyAccount' resultMap='MonthlyAccountModelMap' parameterType='MonthlyAccountModel'>
+        select <include refid='sql_columns' /> from i_monthly_account  <include refid='selectMonthlyAccountModelMapByOne_sql_where' />
+    </select>
+    
+    
+    <!-- 查询条件 -->
+    <sql id='selectMonthlyAccountModelMapByOne_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='settlementMonth!=null and !"".equals(settlementMonth)' >settlement_month= #{settlementMonth} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} and </if>
+                <if test='endDate!=null' > end_date= #{endDate} and </if>
+                <if test='planName!=null and !"".equals(planName)' >plan_name= #{planName} and </if>
+                <if test='settlementDate!=null' > settlement_date= #{settlementDate} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='firstDate!=null' > first_date= #{firstDate} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='snapshotDate!=null and !"".equals(snapshotDate)' > DATE_FORMAT(create_date,'%Y-%m-%d') = #{snapshotDate} and </if>
+            </trim>
+        </where>
+    </sql>
+	<!--  获取上个月的 所有加减明细商家和仓库 -->
+    <select id="getAllMonthlyMerchantOrDepotByTime" resultMap='MonthlyAccountModelMap'>
+		SELECT t1.merchant_id,t1.merchant_name,t1.topideal_code,t2.depot_id
+		from i_monthly_account t1
+		LEFT JOIN  i_monthly_account_item  t2 ON t1.id=t2.monthly_account_id
+ 		WHERE  t2.settlement_num>0 AND t1.settlement_month=#{lastMonth}
+		GROUP BY t1.merchant_id,t1.merchant_name,t1.topideal_code,t2.depot_id
+	</select>
+	
+	<!-- 获取本月之前的月结账单 刷新月结和生成月结专用 -->
+	 <select id="getBeforeMonthMonthlyAccount" resultMap='MonthlyAccountModelMap'>
+		 select <include refid='sql_columns' /> from i_monthly_account  		 
+		 where merchant_id= #{merchantId} and depot_id= #{depotId} and settlement_month &lt;#{settlementMonth}				 
+	</select>
+
+    <select id="listOrderBySettlementMonth" resultMap='MonthlyAccountModelMap' parameterType='MonthlyAccountModel'>
+        select <include refid='sql_columns' /> from i_monthly_account
+        <include refid='sql_where' />
+        ORDER BY settlement_month ASC
+    </select>
+    <!-- 查询之前是否有过月结 -->
+    <select id="getAfterMonthlyAccountCount" resultType="java.lang.Integer" parameterType='MonthlyAccountModel'>
+        select count(*) from i_monthly_account
+        where merchant_id= #{merchantId} 
+        and depot_id= #{depotId} 
+        and settlement_month &gt; #{settlementMonth} 
+        and state= '2'
+    </select>
+
+
+    <select id="countByMonthlyAccount" resultType='java.lang.Integer' parameterType='MonthlyAccountModel'>
+        select count(0) from i_monthly_account
+        <include refid='sql_where' />
+    </select>
+    
+    
+</mapper>

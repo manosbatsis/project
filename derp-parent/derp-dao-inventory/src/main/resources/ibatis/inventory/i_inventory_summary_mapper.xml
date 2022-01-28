@@ -1,0 +1,551 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventorySummaryMapper'>
+
+<!-- 关系映射 -->
+    <resultMap id="InventorySummaryModelMap" type="InventorySummaryModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="depotName" column="depot_name" />
+                <result property="noSaleDate" column="no_sale_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="saleOnwayNum" column="sale_onway_num" />
+                <result property="depotId" column="depot_id" />
+                <result property="openingInventoryNum" column="opening_inventory_num" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="turnoverDays" column="turnover_days" />
+                <result property="availableNum" column="available_num" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="eOnwayNum" column="e_onway_num" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="inDepotTotal" column="in_depot_total" />
+                <result property="onwayNum" column="onway_num" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="returnGoodsNum" column="return_goods_num" />
+                <result property="outDepotTotal" column="out_depot_total" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventorySummaryModelMap' parameterType='InventorySummaryModel'>
+        select <include refid='sql_columns' /> from i_inventory_summary  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventorySummaryModelMap' parameterType='InventorySummaryModel'>
+        select <include refid='sql_columns' /> from i_inventory_summary  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventorySummaryModelMap' parameterType='InventorySummaryModel' >
+        select <include refid='sql_columns' /> from i_inventory_summary  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventorySummaryModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_summary
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null' > goods_no , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='noSaleDate!=null' > no_sale_date , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='saleOnwayNum!=null' > sale_onway_num , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='openingInventoryNum!=null' > opening_inventory_num , </if>
+                <if test='surplusNum!=null' > surplus_num , </if>
+                <if test='turnoverDays!=null' > turnover_days , </if>
+                <if test='availableNum!=null' > available_num , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='eOnwayNum!=null' > e_onway_num , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='inDepotTotal!=null' > in_depot_total , </if>
+                <if test='onwayNum!=null' > onway_num , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='returnGoodsNum!=null' > return_goods_num , </if>
+                <if test='outDepotTotal!=null' > out_depot_total , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null' > #{goodsNo} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='noSaleDate!=null' > #{noSaleDate} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='saleOnwayNum!=null' > #{saleOnwayNum} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='openingInventoryNum!=null' > #{openingInventoryNum} , </if>
+                <if test='surplusNum!=null' > #{surplusNum} , </if>
+                <if test='turnoverDays!=null' > #{turnoverDays} , </if>
+                <if test='availableNum!=null' > #{availableNum} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='eOnwayNum!=null' > #{eOnwayNum} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='inDepotTotal!=null' > #{inDepotTotal} , </if>
+                <if test='onwayNum!=null' > #{onwayNum} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='returnGoodsNum!=null' > #{returnGoodsNum} , </if>
+                <if test='outDepotTotal!=null' > #{outDepotTotal} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventorySummaryModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_summary SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null' > goods_no= #{goodsNo} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='noSaleDate!=null' > no_sale_date= #{noSaleDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='saleOnwayNum!=null' > sale_onway_num= #{saleOnwayNum} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='openingInventoryNum!=null' > opening_inventory_num= #{openingInventoryNum} , </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                <if test='turnoverDays!=null' > turnover_days= #{turnoverDays} , </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='eOnwayNum!=null' > e_onway_num= #{eOnwayNum} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='inDepotTotal!=null' > in_depot_total= #{inDepotTotal} , </if>
+                <if test='onwayNum!=null' > onway_num= #{onwayNum} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='returnGoodsNum!=null' > return_goods_num= #{returnGoodsNum} , </if>
+                <if test='outDepotTotal!=null' > out_depot_total= #{outDepotTotal} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_summary  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_summary where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        depot_name,
+        no_sale_date,
+        goods_id,
+        sale_onway_num,
+        depot_id,
+        opening_inventory_num,
+        surplus_num,
+        turnover_days,
+        available_num,
+        merchant_name,
+        e_onway_num,
+        merchant_id,
+        in_depot_total,
+        onway_num,
+        id,
+        goods_name,
+        return_goods_num,
+        out_depot_total,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null' > goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='noSaleDate!=null' > no_sale_date= #{noSaleDate} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='saleOnwayNum!=null' > sale_onway_num= #{saleOnwayNum} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='openingInventoryNum!=null' > opening_inventory_num= #{openingInventoryNum} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='turnoverDays!=null' > turnover_days= #{turnoverDays} and </if>
+                <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='eOnwayNum!=null' > e_onway_num= #{eOnwayNum} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='inDepotTotal!=null' > in_depot_total= #{inDepotTotal} and </if>
+                <if test='onwayNum!=null' > onway_num= #{onwayNum} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='returnGoodsNum!=null' > return_goods_num= #{returnGoodsNum} and </if>
+                <if test='outDepotTotal!=null' > out_depot_total= #{outDepotTotal} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+    <resultMap id="InventorySummaryModelMap2" type="InventorySummaryModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="depotName" column="depot_name" />
+                <result property="noSaleDate" column="no_sale_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="saleOnwayNum" column="sale_onway_num" />
+                <result property="depotId" column="depot_id" />
+                <result property="openingInventoryNum" column="opening_inventory_num" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="turnoverDays" column="turnover_days" />
+                <result property="availableNum" column="available_num" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="eOnwayNum" column="e_onway_num" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="inDepotTotal" column="in_depot_total" />
+                <result property="onwayNum" column="onway_num" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="returnGoodsNum" column="return_goods_num" />
+                <result property="outDepotTotal" column="out_depot_total" />
+                <result property="createDate" column="create_date" />
+                
+                <!-- 用于sql的统计查询 -->
+                <result property="transferOutNum" column="transfer_out_num" />
+                <result property="lastMonth" column="last_month" />
+                <result property="currentMonth" column="current_month" />
+
+    </resultMap>
+
+ 
+ <sql id='listInventorySummaryByPage_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > a.goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='noSaleDate!=null' > a.no_sale_date= #{noSaleDate} and </if>
+                <if test='goodsId!=null' > a.goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > a.depot_id= #{depotId} and </if>
+                <if test='openingInventoryNum!=null' > opening_inventory_num= #{openingInventoryNum} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >a.merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > a.merchant_id= #{merchantId} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >a.goods_name= #{goodsName} and </if>
+                <if test='createDate!=null' > a.create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+<!-- 导出商品收发汇总 -->
+   <select id="exportInventorySummary" resultType='InventorySummaryDTO' parameterType='InventorySummaryModel'>
+select   
+		merchant_id,
+		merchant_name,
+		depot_id,
+	    goods_id,
+	    goods_no,
+	    unit 
+	FROM
+	i_inventory_details a
+       <include refid='exportInventorySummary_sql_where' />
+	GROUP BY
+	merchant_id,
+	merchant_name,
+	depot_id,
+    goods_id,
+    goods_no,
+    unit 
+    
+   
+   </select>
+ 
+ <sql id='exportInventorySummary_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo) ' > a.goods_no= #{goodsNo} and </if>
+                <if test='goodsId!=null' > a.goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > a.depot_id= #{depotId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >a.merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null'  > a.merchant_id= #{merchantId} and </if>
+                <if test='createDate!=null' > a.create_date= #{createDate} and </if>
+                <if test='currentMonth!=null and !"".equals(currentMonth) ' > DATE_FORMAT(a.divergence_date,'%Y-%m')=#{currentMonth} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+
+
+
+
+<!-- 商品收发汇总分页 -->
+<select id="listInventorySummaryPage" resultType='InventorySummaryDTO' parameterType='InventorySummaryDTO'>
+	select   
+		merchant_id,
+		merchant_name,
+		depot_id,
+	    goods_id,
+	    goods_no,
+	    unit 
+	FROM
+	i_inventory_details t
+	FORCE INDEX (`inventory_details_spsfmxbypage1_index`)
+     where  
+	     merchant_id= #{merchantId}
+	     <if test='depotId!=null' >and depot_id= #{depotId}  </if>
+	     <if test='goodsId!=null' >and  goods_id= #{goodsId}  </if>
+	     <if test='goodsNo!=null and !"".equals(goodsNo)' >and  goods_no= #{goodsNo}  </if>
+	     and  DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth}
+	GROUP BY
+	merchant_id,
+	merchant_name,
+	depot_id,
+    goods_id,
+    goods_no,
+    unit 
+    LIMIT #{begin}, #{pageSize}
+</select>
+<!-- 商品收发汇总分页数量 -->
+<select id="listInventorySummaryCount" resultType="java.lang.Integer" parameterType='InventorySummaryDTO'>
+	SELECT COUNT(*) from (
+		select   
+			merchant_id,
+			merchant_name,
+			depot_id,
+		    goods_id,
+		    goods_no,
+		    unit 
+		FROM
+		i_inventory_details t
+	     where  
+		     merchant_id= #{merchantId}
+		     <if test='depotId!=null' >and depot_id= #{depotId}  </if>
+		     <if test='goodsId!=null' >and  goods_id= #{goodsId}  </if>
+		     <if test='goodsNo!=null and !"".equals(goodsNo)' >and  goods_no= #{goodsNo}  </if>
+		     and  DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth}
+		GROUP BY
+		merchant_id,
+		merchant_name,
+		depot_id,
+	    goods_id,
+	    goods_no,
+	    unit 
+    )t
+</select>
+
+<select id="getInitInventoryNum" resultMap='InventorySummaryModelMap2' parameterType='InventorySummaryModel'>
+	select  
+		merchant_id,
+		depot_id,
+		goods_no,
+		SUM(init_num) as opening_inventory_num  
+	from  i_init_inventory
+	where merchant_id= #{merchantId} and depot_id= #{depotId} and  goods_no= #{goodsNo} 
+	<if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	<if test='unit==null or "".equals(unit)' >and unit is null </if>
+	and state='2' 
+	GROUP BY  
+	merchant_id,
+	depot_id,
+	goods_no
+</select>
+
+<select id="getOpeningInventoryNum" resultMap='InventorySummaryModelMap2' parameterType='InventorySummaryModel'>
+	select  
+		merchant_id,
+		depot_id,
+		goods_no,
+		SUM(IFNULL(settlement_num,surplus_num)) as opening_inventory_num  
+	from  i_monthly_account_item
+	where merchant_id= #{merchantId} and depot_id= #{depotId} and goods_no= #{goodsNo} 
+	and DATE_FORMAT(create_date,'%Y-%m')=#{currentMonth} 
+	<if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	<if test='unit==null or "".equals(unit)' >and unit is null </if> 
+	GROUP BY  
+	merchant_id,
+	depot_id,
+	goods_no
+</select>
+
+<select id="getOutDepotTotal" resultMap='InventorySummaryModelMap2' parameterType='InventorySummaryModel'>
+	select
+	   merchant_id,
+	   depot_id,
+	   goods_no,
+	   SUM(num) as out_depot_total 
+	 FROM  i_inventory_details
+	 where merchant_id= #{merchantId} and depot_id= #{depotId}  and  goods_no= #{goodsNo} 
+	 and DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth} and operate_type='0' 
+	 <if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	 <if test='unit==null or "".equals(unit)' >and unit is null </if>
+ 	 GROUP BY 
+ 	 merchant_id,
+ 	 depot_id,
+ 	 goods_no 
+</select>
+
+<select id="getInDepotTotal" resultMap='InventorySummaryModelMap2' parameterType='InventorySummaryModel'>
+	select
+	   merchant_id,
+	   depot_id,
+	   goods_no,
+	   SUM(num) as in_depot_total 
+	FROM  i_inventory_details
+	where merchant_id= #{merchantId} and depot_id= #{depotId} and  goods_no= #{goodsNo} 
+  	and DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth} and  operate_type='1'   
+  	<if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	<if test='unit==null or "".equals(unit)' >and unit is null </if>
+    GROUP BY 
+    merchant_id,
+    depot_id,
+    goods_no 
+</select>
+
+<select id="getEOnwayNum" resultMap='InventorySummaryModelMap2' parameterType='InventorySummaryModel'>
+	select  
+		a.merchant_id,
+		a.depot_id,
+		a.goods_no,
+		SUM(IFNULL(a.num,0)-IFNULL(b.num,0) ) as e_onway_num  
+	from  (
+		select  
+			merchant_id,
+			depot_id,
+			goods_no,
+			SUM(num) as num 
+		from  i_inventory_freeze_details  
+		where merchant_id= #{merchantId} and depot_id= #{depotId} and goods_no= #{goodsNo} 
+        and source='007' and DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth} and operate_type='0' 
+        <if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	    <if test='unit==null or "".equals(unit)' >and unit is null </if>
+		GROUP BY  
+		merchant_id,
+		depot_id,
+		goods_no
+	) a LEFT JOIN(
+		select  
+			merchant_id,
+			depot_id,
+			goods_no,SUM(num) as num    
+		from  i_inventory_freeze_details  
+		where merchant_id= #{merchantId} and depot_id= #{depotId} and  goods_no= #{goodsNo} 
+   		and source='007' and DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth} and operate_type='1' 
+   		<if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	    <if test='unit==null or "".equals(unit)' >and unit is null </if>
+  		GROUP BY  
+  		merchant_id,
+  		depot_id,
+  		goods_no 
+	) b on a.merchant_id=b.merchant_id and a.depot_id=b.depot_id and a.goods_no=b.goods_no 
+	GROUP BY  
+	a.merchant_id,
+	a.depot_id,
+	a.goods_no 
+</select>
+
+<select id="getTransferOutNum" resultMap='InventorySummaryModelMap2' parameterType='InventorySummaryModel'>
+	select  
+		a.merchant_id,
+		a.depot_id,
+		a.goods_no,
+		SUM(IFNULL(a.num,0)-IFNULL(b.num,0)) as transfer_out_num  
+	from (
+		select  
+			merchant_id,
+			depot_id,
+			goods_no,
+			SUM(num) as num 
+		from  i_inventory_freeze_details 
+		where merchant_id= #{merchantId} and depot_id= #{depotId} and  goods_no= #{goodsNo} 
+        and source ='009' and DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth} and operate_type='0' 
+        <if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	    <if test='unit==null or "".equals(unit)' >and unit is null </if>
+		GROUP BY  
+		merchant_id,
+		depot_id,
+		goods_no  
+	) a LEFT JOIN(
+		select  
+			merchant_id,
+			depot_id,
+			goods_no,
+			SUM(num) as num    
+		from i_inventory_freeze_details  
+		where merchant_id= #{merchantId} and depot_id= #{depotId} and  goods_no= #{goodsNo} 
+ 		and source ='009' and DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth} and operate_type='1' 
+ 		<if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	    <if test='unit==null or "".equals(unit)' >and unit is null </if>
+ 		GROUP BY  
+ 		merchant_id,
+ 		depot_id,
+ 		goods_no 
+	) b on a.merchant_id=b.merchant_id  and  a.depot_id=b.depot_id and a.goods_no=b.goods_no 
+	GROUP BY  
+	a.merchant_id,
+	a.depot_id,
+	a.goods_no 
+</select>
+
+<select id="getSaleOnwayNum" resultMap='InventorySummaryModelMap2' parameterType='InventorySummaryModel'>
+	select  
+		a.merchant_id,
+		a.depot_id,
+		a.goods_no,
+		SUM(IFNULL(a.num,0)-IFNULL(b.num,0) ) as sale_onway_num  
+	from (
+		select 
+			merchant_id,
+			depot_id,
+			goods_no,
+			SUM(num) as num     
+		from i_inventory_freeze_details  
+		where merchant_id= #{merchantId} and depot_id= #{depotId} and goods_no= #{goodsNo} 
+ 		and source ='002' and DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth} and operate_type='0'  
+ 		<if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	    <if test='unit==null or "".equals(unit)' >and unit is null </if>
+  		GROUP BY  
+  		merchant_id,
+  		depot_id,
+  		goods_no  
+	) a LEFT JOIN (
+		select  
+			merchant_id,
+			depot_id,
+			goods_no,
+			SUM(num) as num    
+		from i_inventory_freeze_details  
+		where  merchant_id= #{merchantId} and depot_id= #{depotId} and  goods_no= #{goodsNo} 
+ 		and source ='002' and DATE_FORMAT(divergence_date,'%Y-%m')=#{currentMonth} and operate_type='1' 
+ 		and unit = #{unit} 
+  		GROUP BY  
+  		merchant_id,
+  		depot_id,
+  		goods_no 
+	) b on a.merchant_id=b.merchant_id and  a.depot_id=b.depot_id and a.goods_no=b.goods_no 
+	GROUP BY  
+	a.merchant_id,
+	a.depot_id,
+	a.goods_no 
+</select>
+
+<select id="getAverageNum" resultType='Map' parameterType='InventorySummaryModel'>
+	select   
+		merchant_id,
+		depot_id,
+		goods_no,
+		round(SUM(num)/120) AS average_num  
+	FROM  i_inventory_details
+	where merchant_id= #{merchantId} and depot_id= #{depotId} and goods_no= #{goodsNo} 
+	and  source in('003','008')  and  operate_type='0' 
+	and  DATE_FORMAT(divergence_date,'%Y-%m-%d') between DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 120 DAY),'%Y-%m-%d') and DATE_FORMAT(NOW(),'%Y-%m-%d') 
+	<if test='unit!=null and !"".equals(unit)' >and unit= #{unit} </if>
+	<if test='unit==null or "".equals(unit)' >and unit is null </if>
+ 	GROUP BY 
+ 	merchant_id,
+ 	depot_id,
+ 	goods_no 
+</select>
+
+</mapper>

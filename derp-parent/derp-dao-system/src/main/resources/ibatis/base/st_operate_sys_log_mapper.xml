@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.base.OperateSysLogMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="OperateSysLogModelMap" type="OperateSysLogModel" >
+                <result property="id" column="id" />
+                <result property="module" column="module" />
+                <result property="relId" column="rel_id" />
+                <result property="operateId" column="operate_id" />
+                <result property="operater" column="operater" />
+                <result property="operateAction" column="operate_action" />
+                <result property="operateRemark" column="operate_remark" />
+                <result property="operateResult" column="operate_result" />
+                <result property="operateDate" column="operate_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OperateSysLogModelMap' parameterType='OperateSysLogModel'>
+        select <include refid='sql_columns' /> from st_operate_sys_log  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OperateSysLogModelMap' parameterType='OperateSysLogModel'>
+        select <include refid='sql_columns' /> from st_operate_sys_log  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OperateSysLogModelMap' parameterType='OperateSysLogModel' >
+        select <include refid='sql_columns' /> from st_operate_sys_log  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OperateSysLogModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_operate_sys_log
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='module!=null and !"".equals(module)' > module , </if>
+                        <if test='relId!=null' >rel_id , </if>
+                        <if test='operateId!=null' >operate_id , </if>
+                        <if test='operater!=null and !"".equals(operater)' > operater , </if>
+                        <if test='operateAction!=null and !"".equals(operateAction)' > operate_action , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' > operate_remark , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' > operate_result , </if>
+                        <if test='operateDate!=null' >operate_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='module!=null and !"".equals(module)' > #{module} , </if>
+                        <if test='relId!=null' > #{relId} , </if>
+                        <if test='operateId!=null' > #{operateId} , </if>
+                        <if test='operater!=null and !"".equals(operater)' > #{operater} , </if>
+                        <if test='operateAction!=null and !"".equals(operateAction)' > #{operateAction} , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' > #{operateRemark} , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' > #{operateResult} , </if>
+                        <if test='operateDate!=null' > #{operateDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OperateSysLogModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_operate_sys_log SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='module!=null and !"".equals(module)' >module= #{module} , </if>
+                        <if test='relId!=null' > rel_id= #{relId} , </if>
+                        <if test='operateId!=null' > operate_id= #{operateId} , </if>
+                        <if test='operater!=null and !"".equals(operater)' >operater= #{operater} , </if>
+                        <if test='operateAction!=null and !"".equals(operateAction)' >operate_action= #{operateAction} , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' >operate_remark= #{operateRemark} , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' >operate_result= #{operateResult} , </if>
+                        <if test='operateDate!=null' > operate_date= #{operateDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_operate_sys_log  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_operate_sys_log where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            module,
+            rel_id,
+            operate_id,
+            operater,
+            operate_action,
+            operate_remark,
+            operate_result,
+            operate_date,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='module!=null and !"".equals(module)' >module= #{module} and </if>
+                            <if test='relId!=null' > rel_id= #{relId} and </if>
+                            <if test='operateId!=null' > operate_id= #{operateId} and </if>
+                            <if test='operater!=null and !"".equals(operater)' >operater= #{operater} and </if>
+                            <if test='operateAction!=null and !"".equals(operateAction)' >operate_action= #{operateAction} and </if>
+                            <if test='operateRemark!=null and !"".equals(operateRemark)' >operate_remark= #{operateRemark} and </if>
+                            <if test='operateResult!=null and !"".equals(operateResult)' >operate_result= #{operateResult} and </if>
+                            <if test='operateDate!=null' > operate_date= #{operateDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+    <resultMap id="OperateSysLogDTOMap" type="OperateSysLogModel" >
+        <result property="id" column="id" />
+        <result property="module" column="module" />
+        <result property="relId" column="rel_id" />
+        <result property="operateId" column="operate_id" />
+        <result property="operater" column="operater" />
+        <result property="operateAction" column="operate_action" />
+        <result property="operateRemark" column="operate_remark" />
+        <result property="operateResult" column="operate_result" />
+        <result property="operateDate" column="operate_date" />
+        <result property="createDate" column="create_date" />
+        <result property="modifyDate" column="modify_date" />
+    </resultMap>
+
+
+    <select id="getOperateSysLog" resultMap="OperateSysLogDTOMap" parameterType="OperateSysLogDTO">
+        select <include refid='sql_columns' /> from st_operate_sys_log  <include refid='sql_where' />
+    </select>
+
+    <!-- 批量插入数据 -->
+    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO st_operate_sys_log
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            id,
+            module,
+            rel_id,
+            operate_id,
+            operater,
+            operate_action,
+            operate_remark,
+            operate_result,
+            operate_date,
+            create_date,
+            modify_date
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                #{item.id} ,
+                #{item.module} ,
+                #{item.relId} ,
+                #{item.operateId} ,
+                #{item.operater} ,
+                #{item.operateAction} ,
+                #{item.operateRemark} ,
+                #{item.operateResult} ,
+                #{item.operateDate} ,
+                #{item.createDate} ,
+                #{item.modifyDate} ,
+            </trim>
+        </foreach>
+    </insert>
+
+</mapper>

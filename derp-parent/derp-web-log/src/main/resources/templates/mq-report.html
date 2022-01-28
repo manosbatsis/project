@@ -1,0 +1,206 @@
+<!-- Start content -->
+<style>
+    .item-webkit-box{
+        display: -webkit-box !important;
+        flex-flow: nowrap !important;
+    }
+    .item-webkit-box .form-control{
+        width:160px !important;
+        margin-left: 5px !important;
+    }
+</style>
+<div class="content">
+    <div class="container-fluid mt80">
+
+        <div class="row">
+            <!--  title   start  -->
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <div class="col-12 row">
+                        <div>
+                            <ol class="breadcrumb">
+                                <li><i class="block"></i> 当前位置：</li>
+                                <li class="breadcrumb-item"><a href="#">MQ日志管理</a></li>
+                                <li class="breadcrumb-item active"><a href="#">报表日志</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--  title   end  -->
+                    <!--  过滤条件查询  start  -->
+                    <!--  ================================过滤条件 start  ===============================================   -->
+                    <style>.input_msg{color: #495057;}</style>
+                    <form id="form1" >
+						<div class="form-inline form-group">
+                            <div class="form-group col-3 item-webkit-box">
+	                          <label for="" class="form_title">接口编码：</label>
+	                          <input class="form-control" type="text" name="point" id="point" required="" >
+                            </div>
+                           <div class="form-group col-3 item-webkit-box">
+                               <label for="" class="form_title">状态 ：</label>
+                               <select  class="form-control" name="state" id="state">
+                                 </select>
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                <div class="form_btn">
+                                    <button type="button" class="btn btn-info" onclick='$mytable.fn.reload();' >查询</button>
+                                	<button type="reset" class="btn btn-light waves-effect waves-light">重置</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--  ================================过滤条件  end===============================================   -->
+                    <!-- 过滤条件查询  end  -->
+                    <div class="btn_group col-12">
+                      	<button type="button" class="btn btn-find waves-effect waves-light btn_default" onclick="exportLogs();">导出</button>
+                    </div>
+                    <!-- 过滤条件查询  end  -->
+                   <div class="btn_group col-12">
+                    </div>
+                    <!--  ================================表格 ===============================================   -->
+                   <table id="datatable-buttons" class="nowrap table table-striped" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>报表编码</th>
+                                <th>关键字</th>
+                                <th>描述</th>
+                                <th>请求时间</th>
+                                <th>消费时间</th>
+                                <th>耗时</th>
+                                <th style="width:50px;">状态</th>
+                                <th>异常信息</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBody">
+                            </tbody>
+                        </table>
+                    <!--  ================================表格  end ===============================================   -->
+                </div>
+            </div>
+            <!--======================Modal框===========================  -->
+        </div>
+        <!-- End row -->
+        <!-- end row -->
+    </div> <!-- container -->
+</div> <!-- content -->
+<!--======================Modal框===========================  -->
+<div th:include="modals/s002"></div>
+<div th:include="common/common"></div>
+<!--======================Modal框===========================  -->
+<style>
+    .fail{background: #f00;color: #fff;padding: 4px 6px;border-radius: 3px;}
+    .success{background: #6ea9f3;color: #fff;padding: 4px 6px;border-radius: 3px;}
+</style>
+<script type="text/javascript">
+$module.constant.getConstantListByNameURL.call($('select[name="state"]')[0],"log_statusList",null);
+    $(document).ready(function() {
+    	var listURL = $module.fn.getModuleUrl(moduleCode,"/reportlog/list.asyn");
+        //初始化
+        $mytable.fn.init();
+        //配置表格参数
+        $mytable.params={
+            url:listURL+'?r='+Math.random(),
+            columns:[
+                {data:'point'},{data:'keyword'},{data:'desc'},{data:'startDate'},{data:'endDate'},{data:'endDate'},{data:'state'},{data:'expMsg'},
+                { //操作
+                    orderable: false,
+                    width: "100px",
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        $m001.params.jsonMessage[row.id]=row;
+                        return '<a   href="javascript:;"   onclick="$m001.init(\''+row.id+'\')" >查看报文</a>';
+                    }
+                }
+            ],
+            formid:'#form1'
+        }
+        //每一行都进行 回调
+        $mytable.rewriter.fnRowCallback=function(nRow, aData, iDisplayIndex){
+            //开始时间
+            if (aData.startDate!= null) {
+                var date = new Date(aData.startDate);
+                $('td:eq(3)', nRow).html(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+            }
+            if (aData.endDate!= null) {
+                var date = new Date(aData.endDate);
+                $('td:eq(4)', nRow).html(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+            }
+            //耗时
+            $('td:eq(5)', nRow).html((aData.endDate/1000-aData.startDate/1000).toFixed(2)+"秒");
+            //状态
+            if(aData.state==0){
+                $('td:eq(6)', nRow).html('<span class="fail">失败</span>');
+            }else if(aData.state==1){
+                $('td:eq(6)', nRow).html('<span class="success">成功</span>');
+            }else if(aData.state==2){
+            	$('td:eq(6)', nRow).html('<span class="closed">已关闭</span>');
+            }else{
+            	$('td:eq(6)', nRow).html('<span class="success">重推成功</span>');
+            }
+            //异常提示
+            if(aData.expMsg!=null&&aData.expMsg!=""&&aData.expMsg!=undefined) {
+                $('td:eq(7)', nRow).html("<span title='" + aData.expMsg + "'>" + aData.expMsg.substring(0, 10) + "...</span>");
+            }
+        };
+        //生成列表信息s
+        $('#datatable-buttons').mydatatables();
+        //时间插件
+        $('.date-input').mydate();
+        //时间初始化
+        $('[type="reset"]').click();
+
+    } );
+
+    // 点击展开功能
+    $(".unfold").click(function () {
+        $(".form_con").toggleClass('hauto');
+        if($(this).text() == '展开功能'){
+            $(this).text('收起功能');
+        }else{
+            $(this).text('展开功能');
+        }
+    })
+
+    /**
+     * 全选
+     */
+    $('#datatable-buttons').on("change", ":checkbox", function() {
+        // 列表复选框
+        if ($(this).is("[name='keeperUserGroup-checkable']")) {
+            // 全选
+            $(":checkbox", '#datatable-buttons').prop("checked",$(this).prop("checked"));
+            if($(this).is(':checked')){
+                $('#datatable-buttons tbody tr').addClass('success');
+            }else{
+                $('#datatable-buttons tbody tr').removeClass('success');
+            }
+        }else{
+            // 一般复选
+            var checkbox = $("tbody :checkbox", '#datatable-buttons');
+            $(":checkbox[name='cb-check-all']", '#datatable-buttons').prop('checked', checkbox.length == checkbox.filter(':checked').length);
+            $(this).parents('tr').toggleClass('success');
+        }
+    });
+    
+    
+    //导出
+    function exportLogs(){
+    	var point = $("#point").val();
+    	var state = $("#state").val();
+    	//var endDateStr = $("#endDateStr").val();
+    	var countURL = $module.fn.getModuleUrl(moduleCode,"/reportlog/count.asyn");
+    	$custom.request.ajax(countURL+'?r='+Math.random(),
+    			{"point":point,"state":state},function(data){
+    				var count=data.data;
+    				if (count>50000) {
+    					$custom.alert.error("导出数量不能超过50000条");
+    					return false;
+					} 
+	    	$custom.alert.warning("导出数量有"+data.data+"，是否确认导出？",function(){    		
+	    		var exporttURL = $module.fn.getModuleUrl(moduleCode,"/reportlog/exportLogs.asyn?point="+point+"&state="+state);
+            	location.href=exporttURL;
+        	});
+    	});
+    }
+    
+</script>

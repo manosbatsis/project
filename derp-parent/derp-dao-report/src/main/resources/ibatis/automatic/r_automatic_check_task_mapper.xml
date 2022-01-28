@@ -1,0 +1,266 @@
+﻿<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.automatic.AutomaticCheckTaskMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="AutomaticCheckTaskModelMap" type="AutomaticCheckTaskModel" >
+                <result property="id" column="id" />
+                <result property="taskCode" column="task_code" />
+                <result property="taskType" column="task_type" />
+                <result property="checkStartDate" column="check_start_date" />
+                <result property="checkEndDate" column="check_end_date" />
+                <result property="checkResult" column="check_result" />
+                <result property="state" column="state" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="outDepotCode" column="out_depot_code" />
+                <result property="storePlatformCode" column="store_platform_code" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="remark" column="remark" />
+                <result property="sourcePath" column="source_path" />
+                <result property="storePath" column="store_path" />
+                <result property="dataSource" column="data_source" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierName" column="modifier_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="isMark" column="is_mark" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AutomaticCheckTaskModelMap' parameterType='AutomaticCheckTaskModel'>
+        select <include refid='sql_columns' /> from r_automatic_check_task  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AutomaticCheckTaskModelMap' parameterType='AutomaticCheckTaskModel'>
+        select <include refid='sql_columns' /> from r_automatic_check_task  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AutomaticCheckTaskModelMap' parameterType='AutomaticCheckTaskModel' >
+        select <include refid='sql_columns' /> from r_automatic_check_task  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='AutomaticCheckTaskModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_automatic_check_task
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='taskCode!=null and !"".equals(taskCode)' > task_code , </if>
+                        <if test='taskType!=null and !"".equals(taskType)' > task_type , </if>
+                        <if test='checkStartDate!=null' >check_start_date , </if>
+                        <if test='checkEndDate!=null' >check_end_date , </if>
+                        <if test='checkResult!=null and !"".equals(checkResult)' > check_result , </if>
+                        <if test='state!=null and !"".equals(state)' > state , </if>
+                        <if test='outDepotId!=null' >out_depot_id , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                        <if test='outDepotCode!=null and !"".equals(outDepotCode)' > out_depot_code , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='sourcePath!=null and !"".equals(sourcePath)' > source_path , </if>
+                        <if test='storePath!=null and !"".equals(storePath)' > store_path , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > data_source , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > modifier_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='isMark!=null and !"".equals(isMark)' > is_mark , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='taskCode!=null and !"".equals(taskCode)' > #{taskCode} , </if>
+                        <if test='taskType!=null and !"".equals(taskType)' > #{taskType} , </if>
+                        <if test='checkStartDate!=null' > #{checkStartDate} , </if>
+                        <if test='checkEndDate!=null' > #{checkEndDate} , </if>
+                        <if test='checkResult!=null and !"".equals(checkResult)' > #{checkResult} , </if>
+                        <if test='state!=null and !"".equals(state)' > #{state} , </if>
+                        <if test='outDepotId!=null' > #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                        <if test='outDepotCode!=null and !"".equals(outDepotCode)' > #{outDepotCode} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='sourcePath!=null and !"".equals(sourcePath)' > #{sourcePath} , </if>
+                        <if test='storePath!=null and !"".equals(storePath)' > #{storePath} , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > #{dataSource} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > #{modifierName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='isMark!=null and !"".equals(isMark)' > #{isMark} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='AutomaticCheckTaskModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_automatic_check_task SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='taskCode!=null and !"".equals(taskCode)' >task_code= #{taskCode} , </if>
+                        <if test='taskType!=null and !"".equals(taskType)' >task_type= #{taskType} , </if>
+                        <if test='checkStartDate!=null' > check_start_date= #{checkStartDate} , </if>
+                        <if test='checkEndDate!=null' > check_end_date= #{checkEndDate} , </if>
+                        <if test='checkResult!=null and !"".equals(checkResult)' >check_result= #{checkResult} , </if>
+                        <if test='state!=null and !"".equals(state)' >state= #{state} , </if>
+                        <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                        <if test='outDepotCode!=null and !"".equals(outDepotCode)' >out_depot_code= #{outDepotCode} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='sourcePath!=null and !"".equals(sourcePath)' >source_path= #{sourcePath} , </if>
+                        <if test='storePath!=null and !"".equals(storePath)' >store_path= #{storePath} , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='isMark!=null and !"".equals(isMark)' >is_mark= #{isMark} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_automatic_check_task  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_automatic_check_task where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            task_code,
+            task_type,
+            check_start_date,
+            check_end_date,
+            check_result,
+            state,
+            out_depot_id,
+            out_depot_name,
+            out_depot_code,
+            store_platform_code,
+            shop_code,
+            shop_name,
+            merchant_id,
+            merchant_name,
+            remark,
+            source_path,
+            store_path,
+            data_source,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_name,
+            modify_date,
+            is_mark
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='taskCode!=null and !"".equals(taskCode)' >task_code= #{taskCode} and </if>
+                            <if test='taskType!=null and !"".equals(taskType)' >task_type= #{taskType} and </if>
+                            <if test='checkStartDate!=null' > check_start_date= #{checkStartDate} and </if>
+                            <if test='checkEndDate!=null' > check_end_date= #{checkEndDate} and </if>
+                            <if test='checkResult!=null and !"".equals(checkResult)' >check_result= #{checkResult} and </if>
+                            <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                            <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                            <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                            <if test='outDepotCode!=null and !"".equals(outDepotCode)' >out_depot_code= #{outDepotCode} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='sourcePath!=null and !"".equals(sourcePath)' >source_path= #{sourcePath} and </if>
+                            <if test='storePath!=null and !"".equals(storePath)' >store_path= #{storePath} and </if>
+                            <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='isMark!=null and !"".equals(isMark)' >is_mark= #{isMark} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+	<!-- 查询条件 -->
+    <sql id='sql_where_page'>
+        <where>
+            <trim suffixOverrides='and'>
+            	<if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+            	<if test='taskType!=null and !"".equals(taskType)' >task_type= #{taskType} and </if>
+            	<if test='checkStartDate!=null and !"".equals(checkStartDate)' >
+                   date_format(check_start_date,'%Y-%m-%d') &gt;= #{checkStartDate} and
+                </if>
+                <if test='checkEndDate!=null and !"".equals(checkEndDate)' >
+                    date_format(check_end_date,'%Y-%m-%d')  &lt;= #{checkEndDate} and
+                </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name LIKE CONCAT('%',#{createName},'%')  and </if>
+            	<if test='checkResult!=null and !"".equals(checkResult)' >check_result= #{checkResult} and </if>
+            	<if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+            	 <if test='createDate!=null' > 
+            		 date_format(create_date,'%Y-%m-%d') = date_format(#{createDate},'%Y-%m-%d') and
+            	  </if>
+                 <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                 <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                 <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                 <if test='taskCode!=null and !"".equals(taskCode)' >task_code= #{taskCode} and </if>
+            </trim>
+        </where>
+    </sql>
+    <!-- 查询所有信息 分页 -->
+    <select id='queryDTOListByPage' resultType='AutomaticCheckTaskDTO' parameterType='AutomaticCheckTaskDTO'>
+        select <include refid='sql_columns' /> from r_automatic_check_task  <include refid='sql_where_page' /> order by id desc
+    </select>
+    
+        <!-- 条件查询 -->
+    <select id='getAutomaticCheckTaskDTOById' resultType='AutomaticCheckTaskDTO' parameterType='AutomaticCheckTaskDTO' >
+        select <include refid='sql_columns' /> from r_automatic_check_task  <include refid='sql_where' />
+    </select>
+
+
+
+
+</mapper>

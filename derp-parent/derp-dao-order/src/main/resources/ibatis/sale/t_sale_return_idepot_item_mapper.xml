@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleReturnIdepotItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="SaleReturnIdepotItemModelMap" type="SaleReturnIdepotItemModel" >
+            <result property="overdueDate" column="overdue_date" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="returnBatchNo" column="return_batch_no" />
+            <result property="sreturnIdepotId" column="sreturn_idepot_id" />
+            <result property="inGoodsId" column="in_goods_id" />
+            <result property="expireNum" column="expire_num" />
+            <result property="inGoodsNo" column="in_goods_no" />
+            <result property="productionDate" column="production_date" />
+            <result property="returnNum" column="return_num" />
+            <result property="inGoodsName" column="in_goods_name" />
+            <result property="inGoodsCode" column="in_goods_code" />
+            <result property="creater" column="creater" />
+            <result property="id" column="id" />
+            <result property="wornNum" column="worn_num" />
+            <result property="barcode" column="barcode" />
+            <result property="createDate" column="create_date" />
+            <result property="commbarcode" column="commbarcode" />
+            <result property="poNo" column="po_no" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleReturnIdepotItemModelMap' parameterType='SaleReturnIdepotItemModel'>
+        select <include refid='sql_columns' /> from t_sale_return_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleReturnIdepotItemModelMap' parameterType='SaleReturnIdepotItemModel'>
+        select <include refid='sql_columns' /> from t_sale_return_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleReturnIdepotItemModelMap' parameterType='SaleReturnIdepotItemModel' >
+        select <include refid='sql_columns' /> from t_sale_return_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='SaleReturnIdepotItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_sale_return_idepot_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='returnBatchNo!=null and !"".equals(returnBatchNo)' > return_batch_no , </if>
+                <if test='sreturnIdepotId!=null' > sreturn_idepot_id , </if>
+                <if test='inGoodsId!=null' > in_goods_id , </if>
+                <if test='expireNum!=null' > expire_num , </if>
+                <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > in_goods_no , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='returnNum!=null' > return_num , </if>
+                <if test='inGoodsName!=null and !"".equals(inGoodsName)' > in_goods_name , </if>
+                <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > in_goods_code , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='wornNum!=null' > worn_num , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='returnBatchNo!=null and !"".equals(returnBatchNo)' > #{returnBatchNo} , </if>
+                <if test='sreturnIdepotId!=null' > #{sreturnIdepotId} , </if>
+                <if test='inGoodsId!=null' > #{inGoodsId} , </if>
+                <if test='expireNum!=null' > #{expireNum} , </if>
+                <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > #{inGoodsNo} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='returnNum!=null' > #{returnNum} , </if>
+                <if test='inGoodsName!=null and !"".equals(inGoodsName)' > #{inGoodsName} , </if>
+                <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > #{inGoodsCode} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='wornNum!=null' > #{wornNum} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='SaleReturnIdepotItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_sale_return_idepot_item SET
+        <trim  suffixOverrides=",">
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='returnBatchNo!=null and !"".equals(returnBatchNo)' >return_batch_no= #{returnBatchNo} , </if>
+                <if test='sreturnIdepotId!=null' > sreturn_idepot_id= #{sreturnIdepotId} , </if>
+                <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} , </if>
+                <if test='expireNum!=null' > expire_num= #{expireNum} , </if>
+                <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='returnNum!=null' > return_num= #{returnNum} , </if>
+                <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} , </if>
+                <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_return_idepot_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_sale_return_idepot_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        overdue_date,
+        modify_date,
+        return_batch_no,
+        sreturn_idepot_id,
+        in_goods_id,
+        expire_num,
+        in_goods_no,
+        production_date,
+        return_num,
+        in_goods_name,
+        in_goods_code,
+        creater,
+        id,
+        worn_num,
+        barcode,
+        create_date,
+        commbarcode,
+        po_no
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='returnBatchNo!=null and !"".equals(returnBatchNo)' >return_batch_no= #{returnBatchNo} and </if>
+                <if test='sreturnIdepotId!=null' > sreturn_idepot_id= #{sreturnIdepotId} and </if>
+                <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} and </if>
+                <if test='expireNum!=null' > expire_num= #{expireNum} and </if>
+                <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='returnNum!=null' > return_num= #{returnNum} and </if>
+                <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} and </if>
+                <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	<!-- 检查商品是否使用 -->
+    <select id='checkGoodsIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select
+        	count(*)
+        from t_sale_return_idepot_item t1
+        left join t_sale_return_idepot t2 on t1.sreturn_idepot_id = t2.id
+        where t2.status in ('012') and t1.in_goods_id = #{id}
+    </select>
+    <!-- 查询所有信息 -->
+    <select id="listDTO" resultType='SaleReturnIdepotItemDTO' parameterType='SaleReturnIdepotItemDTO'>
+        select <include refid='sql_columns' /> from t_sale_return_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <select id="listBySreturnIdepotIds" resultMap="SaleReturnIdepotItemModelMap">
+        select
+            <include refid='sql_columns' />
+        from t_sale_return_idepot_item
+        where sreturn_idepot_id in
+        <foreach collection='sreturnIdepotIds' item='orderId' separator=',' open='(' close=')'>
+            #{orderId}
+        </foreach>
+    </select>
+
+    <select id="getDetailsByReceive" resultMap="SaleReturnIdepotItemModelMap">
+        select <include refid='sql_columns' /> from t_sale_return_idepot_item
+        where in_goods_no = #{goodsNo}
+        and po_no = #{poNo}
+        and sreturn_idepot_id = (select id from t_sale_return_idepot where code = #{code} )
+    </select>
+</mapper>

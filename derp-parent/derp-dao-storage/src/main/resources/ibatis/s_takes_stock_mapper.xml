@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.TakesStockMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="TakesStockModelMap" type="TakesStockModel" >
+                <result property="depotName" column="depot_name" />
+                <result property="createUserId" column="create_user_id" />
+                <result property="code" column="code" />
+                <result property="submitUsername" column="submit_username" />
+                <result property="depotId" column="depot_id" />
+                <result property="remark" column="remark" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="submitUserId" column="submit_user_id" />
+                <result property="submitTime" column="submit_time" />
+                <result property="createUsername" column="create_username" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="createTime" column="create_time" />
+                <result property="serverType" column="server_type" />
+                <result property="model" column="model" />
+                <result property="id" column="id" />
+                <result property="status" column="status" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TakesStockModelMap' parameterType='TakesStockModel'>
+        select <include refid='sql_columns' /> from s_takes_stock  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TakesStockModelMap' parameterType='TakesStockModel'>
+        select <include refid='sql_columns' /> from s_takes_stock  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TakesStockModelMap' parameterType='TakesStockModel' >
+        select <include refid='sql_columns' /> from s_takes_stock  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TakesStockModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO s_takes_stock
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='createUserId!=null' > create_user_id , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' > submit_username , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='submitUserId!=null' > submit_user_id , </if>
+                <if test='submitTime!=null' > submit_time , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > create_username , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='createTime!=null' > create_time , </if>
+                <if test='serverType!=null and !"".equals(serverType)' > server_type , </if>
+                <if test='model!=null and !"".equals(model)' > model , </if>
+                <if test='id!=null' > id , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > TRIM(#{depotName}), </if>
+                <if test='createUserId!=null' > #{createUserId} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' > TRIM(#{submitUsername}) , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='remark!=null and !"".equals(remark)' > TRIM(#{remark}) , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > TRIM(#{merchantName}) , </if>
+                <if test='submitUserId!=null' > #{submitUserId} , </if>
+                <if test='submitTime!=null' > #{submitTime} , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > TRIM(#{createUsername}) , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='createTime!=null' > #{createTime} , </if>
+                <if test='serverType!=null and !"".equals(serverType)' > TRIM(#{serverType}) , </if>
+                <if test='model!=null and !"".equals(model)' > TRIM(#{model}) , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='status!=null and !"".equals(status)' > TRIM(#{status}) , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TakesStockModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  s_takes_stock SET
+        <trim  suffixOverrides=",">
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= TRIM(#{depotName}) , </if>
+                <if test='createUserId!=null' > create_user_id= #{createUserId} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' >submit_username= TRIM(#{submitUsername}) , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= TRIM(#{remark}) , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= TRIM(#{merchantName}) , </if>
+                <if test='submitUserId!=null' > submit_user_id= #{submitUserId} , </if>
+                <if test='submitTime!=null' > submit_time= #{submitTime} , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= TRIM(#{createUsername}) , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='createTime!=null' > create_time= #{createTime} , </if>
+                <if test='serverType!=null and !"".equals(serverType)' >server_type= TRIM(#{serverType}) , </if>
+                <if test='model!=null and !"".equals(model)' >model= TRIM(#{model}) , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='status!=null and !"".equals(status)' >status= TRIM(#{status}) , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from s_takes_stock  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from s_takes_stock where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        depot_name,
+        create_user_id,
+        code,
+        submit_username,
+        depot_id,
+        remark,
+        merchant_name,
+        submit_user_id,
+        submit_time,
+        create_username,
+        merchant_id,
+        create_time,
+        server_type,
+        model,
+        id,
+        status
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='createUserId!=null' > create_user_id= #{createUserId} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' >submit_username= #{submitUsername} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='submitUserId!=null' > submit_user_id= #{submitUserId} and </if>
+                <if test='submitTime!=null' > submit_time= #{submitTime} and </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='createTime!=null' > create_time= #{createTime} and </if>
+                <if test='serverType!=null and !"".equals(serverType)' >server_type= #{serverType} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                status!='006'
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+    <select id="listDTOByPage" resultType="TakesStockDTO" parameterType="TakesStockDTO" >
+        select <include refid='sql_columns' /> from s_takes_stock  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <select id="getDetail" resultType="TakesStockDTO" parameterType="java.lang.Long" >
+        select <include refid='sql_columns' /> from s_takes_stock where id = #{id}
+    </select>
+
+</mapper>

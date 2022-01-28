@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.EmailConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="EmailConfigModelMap" type="EmailConfigModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="accountPeriodDay" column="account_period_day" />
+                <result property="advanceReminderDay" column="advance_reminder_day" />
+                <result property="accountUnitType" column="account_unit_type" />
+                <result property="reminderUnitType" column="reminder_unit_type" />
+                <result property="reminderType" column="reminder_type" />
+                <result property="baseTimeType" column="base_time_type" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='EmailConfigModelMap' parameterType='EmailConfigModel'>
+        select <include refid='sql_columns' /> from st_email_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='EmailConfigModelMap' parameterType='EmailConfigModel'>
+        select <include refid='sql_columns' /> from st_email_config  <include refid='sql_where' />
+        ORDER BY  id DESC
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='EmailConfigModelMap' parameterType='EmailConfigModel' >
+        select <include refid='sql_columns' /> from st_email_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='EmailConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_email_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='accountPeriodDay!=null' >account_period_day , </if>
+                        <if test='advanceReminderDay!=null and !"".equals(advanceReminderDay)'>advance_reminder_day , </if>
+                        <if test='accountUnitType!=null and !"".equals(accountUnitType)' > account_unit_type , </if>
+                        <if test='reminderUnitType!=null and !"".equals(reminderUnitType)' > reminder_unit_type , </if>
+                        <if test='reminderType!=null and !"".equals(reminderType)' > reminder_type , </if>
+                        <if test='baseTimeType!=null and !"".equals(baseTimeType)' > base_time_type , </if>
+                        <if test='status!=null and !"".equals(status)' > `status` , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='accountPeriodDay!=null' > #{accountPeriodDay} , </if>
+                        <if test='advanceReminderDay!=null and !"".equals(advanceReminderDay)'> #{advanceReminderDay} , </if>
+                        <if test='accountUnitType!=null and !"".equals(accountUnitType)' > #{accountUnitType} , </if>
+                        <if test='reminderUnitType!=null and !"".equals(reminderUnitType)' > #{reminderUnitType} , </if>
+                        <if test='reminderType!=null and !"".equals(reminderType)' > #{reminderType} , </if>
+                        <if test='baseTimeType!=null and !"".equals(baseTimeType)' > #{baseTimeType} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='EmailConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_email_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='accountPeriodDay!=null' > account_period_day= #{accountPeriodDay} , </if>
+                        <if test='advanceReminderDay!=null and !"".equals(advanceReminderDay)' > advance_reminder_day= #{advanceReminderDay} , </if>
+                        <if test='accountUnitType!=null and !"".equals(accountUnitType)' >account_unit_type= #{accountUnitType} , </if>
+                        <if test='reminderUnitType!=null and !"".equals(reminderUnitType)' >reminder_unit_type= #{reminderUnitType} , </if>
+                        <if test='reminderType!=null and !"".equals(reminderType)' >reminder_type= #{reminderType} , </if>
+                        <if test='baseTimeType!=null and !"".equals(baseTimeType)' >base_time_type= #{baseTimeType} , </if>
+                        <if test='status!=null and !"".equals(status)' >`status`= #{status} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_email_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_email_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            account_period_day,
+            advance_reminder_day,
+            account_unit_type,
+            reminder_unit_type,
+            reminder_type,
+            base_time_type,
+            `status`,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='accountPeriodDay!=null' > account_period_day= #{accountPeriodDay} and </if>
+                            <if test='advanceReminderDay!=null and !"".equals(advanceReminderDay)' > advance_reminder_day= #{advanceReminderDay} and </if>
+                            <if test='accountUnitType!=null and !"".equals(accountUnitType)' >account_unit_type= #{accountUnitType} and </if>
+                            <if test='reminderUnitType!=null and !"".equals(reminderUnitType)' >reminder_unit_type= #{reminderUnitType} and </if>
+                            <if test='reminderType!=null and !"".equals(reminderType)' >reminder_type= #{reminderType} and </if>
+                            <if test='baseTimeType!=null and !"".equals(baseTimeType)' >base_time_type= #{baseTimeType} and </if>
+                            <if test='status!=null and !"".equals(status)' >`status`= #{status} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id='getListByPage' resultType='EmailConfigDTO' parameterType='EmailConfigDTO'>
+	        select <include refid='sql_columns' /> from st_email_config  
+			<where>
+                <trim suffixOverrides='and'>
+                     <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                     <if test='status!=null and !"".equals(status)' >`status`= #{status} and </if>
+                     <if test='customerId!=null' > customer_id = #{customerId} and </if>
+                </trim>
+            </where>
+	        ORDER BY  id DESC
+        </select>
+        
+        <select id='searchDTOById' resultType='EmailConfigDTO' parameterType='java.lang.Long'>
+            select <include refid='sql_columns' /> from st_email_config  where id = #{id}
+        </select>
+
+
+
+</mapper>

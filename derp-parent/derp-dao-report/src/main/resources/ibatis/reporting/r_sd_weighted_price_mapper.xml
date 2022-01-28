@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.SdWeightedPriceMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SdWeightedPriceModelMap" type="SdWeightedPriceModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="goodsName" column="goods_name" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="currency" column="currency" />
+                <result property="price" column="price" />
+                <result property="effectiveMonth" column="effective_month" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SdWeightedPriceModelMap' parameterType='SdWeightedPriceModel'>
+        select <include refid='sql_columns' /> from r_sd_weighted_price  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SdWeightedPriceModelMap' parameterType='SdWeightedPriceModel'>
+        select <include refid='sql_columns' /> from r_sd_weighted_price  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SdWeightedPriceModelMap' parameterType='SdWeightedPriceModel' >
+        select <include refid='sql_columns' /> from r_sd_weighted_price  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SdWeightedPriceModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_sd_weighted_price
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='effectiveMonth!=null and !"".equals(effectiveMonth)' > effective_month , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='effectiveMonth!=null and !"".equals(effectiveMonth)' > #{effectiveMonth} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SdWeightedPriceModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_sd_weighted_price SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='effectiveMonth!=null and !"".equals(effectiveMonth)' >effective_month= #{effectiveMonth} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_sd_weighted_price  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_sd_weighted_price where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            goods_name,
+            commbarcode,
+            brand_id,
+            brand_name,
+            currency,
+            price,
+            effective_month,
+            bu_id,
+            bu_name,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='effectiveMonth!=null and !"".equals(effectiveMonth)' >effective_month= #{effectiveMonth} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <sql id='sql_where1'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                <if test='effectiveMonth!=null and !"".equals(effectiveMonth)' >effective_month= #{effectiveMonth} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+		         <if test='buList!=null and !"".equals(buList)' > bu_id in
+		             <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+		                 #{buId}
+		             </foreach>
+		             and
+		         </if>                  
+                <if test='createDateStart!=null and !"".equals(createDateStart)' >
+                    date_format(create_date,'%Y-%m-%d %H:%i:%S') &gt;= #{createDateStart} and
+                </if>
+                <if test='createDateEnd!=null and !"".equals(createDateEnd)' >
+                    date_format(create_date,'%Y-%m-%d %H:%i:%S') &lt;= #{createDateEnd} and
+                </if>
+                <if test='ids!=null and !"".equals(ids)' > id in
+                    <foreach collection="ids.split(',')" item="id" separator="," open="(" close=")">
+                        #{id}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="getDtoListByPage" resultType="SdWeightedPriceDTO" parameterType="SdWeightedPriceDTO" >
+        select <include refid='sql_columns' /> from r_sd_weighted_price
+        <include refid='sql_where1' />
+        order by id desc
+    </select>
+    <select id="listPrice" resultType="SdWeightedPriceDTO" parameterType="SdWeightedPriceDTO" >
+        select <include refid='sql_columns' /> from r_sd_weighted_price
+        <include refid='sql_where1' />      
+        order by id desc
+    </select>
+
+     <!-- 根据条件删除 加权单价数据 -->
+    <delete id='delSdWeightedPrice' parameterType='map'>
+		delete from r_sd_weighted_price
+		where merchant_id=#{merchantId} and effective_month=#{month} and  bu_id= #{buId}
+	</delete>    
+	
+			<!-- 获取最近一个月的sd加权单价 -->
+		<select id="getLastWeightedPrice" resultType="SdWeightedPriceDTO" parameterType='map'>
+            select <include refid='sql_columns' /> from r_sd_weighted_price
+            where merchant_id=#{merchantId} 
+            and effective_month &lt;#{month} 
+            and  bu_id= #{buId} 
+            and commbarcode= #{commbarcode}
+            and price !=0
+            order by effective_month desc
+			LIMIT 1
+        </select>
+	
+</mapper>

@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.platformdata.OrealPurchaseOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="OrealPurchaseOrderModelMap" type="OrealPurchaseOrderModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="custname" column="custname" />
+                <result property="vordercode" column="vordercode" />
+                <result property="vdef1" column="vdef1" />
+                <result property="dorderdate" column="dorderdate" />
+                <result property="vdef13" column="vdef13" />
+                <result property="adress" column="adress" />
+                <result property="source" column="source" />
+                <result property="docname" column="docname" />
+                <result property="vdef7" column="vdef7" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OrealPurchaseOrderModelMap' parameterType='OrealPurchaseOrderModel'>
+        select <include refid='sql_columns' /> from t_oreal_purchase_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OrealPurchaseOrderModelMap' parameterType='OrealPurchaseOrderModel'>
+        select <include refid='sql_columns' /> from t_oreal_purchase_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OrealPurchaseOrderModelMap' parameterType='OrealPurchaseOrderModel' >
+        select <include refid='sql_columns' /> from t_oreal_purchase_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OrealPurchaseOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_oreal_purchase_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='custname!=null and !"".equals(custname)' > custname , </if>
+                        <if test='vordercode!=null and !"".equals(vordercode)' > vordercode , </if>
+                        <if test='vdef1!=null and !"".equals(vdef1)' > vdef1 , </if>
+                        <if test='dorderdate!=null' >dorderdate , </if>
+                        <if test='vdef13!=null and !"".equals(vdef13)' > vdef13 , </if>
+                        <if test='adress!=null and !"".equals(adress)' > adress , </if>
+                        <if test='source!=null and !"".equals(source)' > source , </if>
+                        <if test='docname!=null and !"".equals(docname)' > docname , </if>
+                        <if test='vdef7!=null and !"".equals(vdef7)' > vdef7 , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='custname!=null and !"".equals(custname)' > #{custname} , </if>
+                        <if test='vordercode!=null and !"".equals(vordercode)' > #{vordercode} , </if>
+                        <if test='vdef1!=null and !"".equals(vdef1)' > #{vdef1} , </if>
+                        <if test='dorderdate!=null' > #{dorderdate} , </if>
+                        <if test='vdef13!=null and !"".equals(vdef13)' > #{vdef13} , </if>
+                        <if test='adress!=null and !"".equals(adress)' > #{adress} , </if>
+                        <if test='source!=null and !"".equals(source)' > #{source} , </if>
+                        <if test='docname!=null and !"".equals(docname)' > #{docname} , </if>
+                        <if test='vdef7!=null and !"".equals(vdef7)' > #{vdef7} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OrealPurchaseOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_oreal_purchase_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='custname!=null and !"".equals(custname)' >custname= #{custname} , </if>
+                        <if test='vordercode!=null and !"".equals(vordercode)' >vordercode= #{vordercode} , </if>
+                        <if test='vdef1!=null and !"".equals(vdef1)' >vdef1= #{vdef1} , </if>
+                        <if test='dorderdate!=null' > dorderdate= #{dorderdate} , </if>
+                        <if test='vdef13!=null and !"".equals(vdef13)' >vdef13= #{vdef13} , </if>
+                        <if test='adress!=null and !"".equals(adress)' >adress= #{adress} , </if>
+                        <if test='source!=null and !"".equals(source)' >source= #{source} , </if>
+                        <if test='docname!=null and !"".equals(docname)' >docname= #{docname} , </if>
+                        <if test='vdef7!=null and !"".equals(vdef7)' >vdef7= #{vdef7} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_oreal_purchase_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_oreal_purchase_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            bu_id,
+            bu_name,
+            custname,
+            vordercode,
+            vdef1,
+            dorderdate,
+            vdef13,
+            adress,
+            source,
+            docname,
+            vdef7,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='custname!=null and !"".equals(custname)' >custname= #{custname} and </if>
+                            <if test='vordercode!=null and !"".equals(vordercode)' >vordercode= #{vordercode} and </if>
+                            <if test='vdef1!=null and !"".equals(vdef1)' >vdef1= #{vdef1} and </if>
+                            <if test='dorderdate!=null' > dorderdate= #{dorderdate} and </if>
+                            <if test='vdef13!=null and !"".equals(vdef13)' >vdef13= #{vdef13} and </if>
+                            <if test='adress!=null and !"".equals(adress)' >adress= #{adress} and </if>
+                            <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                            <if test='docname!=null and !"".equals(docname)' >docname= #{docname} and </if>
+                            <if test='vdef7!=null and !"".equals(vdef7)' >vdef7= #{vdef7} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        
+        
+         <!--详情 -->
+	    <select id='searchDTODetail' resultType='OrealPurchaseOrderDTO' parameterType='OrealPurchaseOrderDTO' >
+	        select <include refid='sql_columns' /> from t_oreal_purchase_order  <include refid='sql_where' />
+	    </select>
+        
+		<!-- 分页 -->
+		<select id='getListByPage' resultType='OrealPurchaseOrderDTO' parameterType='OrealPurchaseOrderDTO'>
+	        select <include refid='sql_columns' /> 
+	        from t_oreal_purchase_order 
+	        where 1=1
+			<if test='merchantId!=null' > and merchant_id= #{merchantId}  </if>
+			<if test='buId!=null' > and bu_id= #{buId}  </if>
+			<if test='vdef7!=null and !"".equals(vdef7)' > and vdef7= #{vdef7}  </if>
+			<if test='vordercode!=null and !"".equals(vordercode)' >and vordercode= #{vordercode}  </if>
+			<if test='dorderdateStartDate!=null and !"".equals(dorderdateStartDate)' > and dorderdate &gt;= #{dorderdateStartDate}  </if>
+			<if test='dorderdateEndDate!=null and !"".equals(dorderdateEndDate)' > and dorderdate &lt;= #{dorderdateEndDate}  </if>
+	        
+	        order by id desc
+	    </select>
+	    <!-- 导出 -->
+	    <select id='getExportList' resultType='map' parameterType='OrealPurchaseOrderDTO'>
+	          select 
+	          t1.merchant_id,
+			  t1.merchant_name,
+			  t1.bu_id,
+			  t1.bu_name,
+			  t1.custname,
+			  t1.vordercode,
+			  t1.vdef1,
+			  t1.dorderdate,
+			  t1.vdef13,
+			  t1.adress,
+			  t1.source,
+			  t1.docname,
+			  t1.vdef7,
+			  t1.create_date,
+			  t2.oreal_purchase_order_id,
+			  t2.invbasdoc,
+			  t2.cinvmecode,
+			  t2.invname,
+			  t2.vdef5,
+			  t2.nordernum,
+			  t2.refsaleprice,
+			  t2.vmemo
+			
+			 from  t_oreal_purchase_order t1
+			LEFT JOIN t_oreal_purchase_order_item t2 ON t1.id=t2.oreal_purchase_order_id
+			where 1=1
+			<if test='merchantId!=null' > and t1.merchant_id= #{merchantId}  </if>
+			<if test='buId!=null' > and t1.bu_id= #{buId}  </if>
+			<if test='vdef7!=null and !"".equals(vdef7)' > and t1.vdef7= #{vdef7}  </if>
+			<if test='vordercode!=null and !"".equals(vordercode)' >and vordercode= #{vordercode}  </if>			
+			<if test='dorderdateStartDate!=null and !"".equals(dorderdateStartDate)' > and t1.dorderdate &gt;= #{dorderdateStartDate}  </if>
+			<if test='dorderdateEndDate!=null and !"".equals(dorderdateEndDate)' > and t1.dorderdate &lt;= #{dorderdateEndDate}  </if>
+			order by t1.id desc
+			
+
+	    </select>
+
+
+</mapper>

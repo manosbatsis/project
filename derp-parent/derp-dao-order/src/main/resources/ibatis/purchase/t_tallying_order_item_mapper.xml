@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.TallyingOrderItemMapper'>
+
+     <!-- 关系映射 -->
+    <resultMap id="TallyingOrderItemModelMap" type="TallyingOrderItemModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="lackNum" column="lack_num" />
+                <result property="goodsId" column="goods_id" />
+                <result property="normalNum" column="normal_num" />
+                <result property="length" column="length" />
+                <result property="volume" column="volume" />
+                <result property="grossWeight" column="gross_weight" />
+                <result property="netWeight" column="net_weight" />
+                <result property="multiNum" column="multi_num" />
+                <result property="creater" column="creater" />
+                <result property="width" column="width" />
+                <result property="id" column="id" />
+                <result property="purchaseNum" column="purchase_num" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="createName" column="create_name" />
+                <result property="tallyingOrderId" column="tallying_order_id" />
+                <result property="tallyingNum" column="tallying_num" />
+                <result property="createDate" column="create_date" />
+                <result property="height" column="height" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TallyingOrderItemModelMap' parameterType='TallyingOrderItemModel'>
+        select <include refid='sql_columns' /> from t_tallying_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TallyingOrderItemModelMap' parameterType='TallyingOrderItemModel'>
+        select <include refid='sql_columns' /> from t_tallying_order_item  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TallyingOrderItemModelMap' parameterType='TallyingOrderItemModel' >
+        select <include refid='sql_columns' /> from t_tallying_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TallyingOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_tallying_order_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='lackNum!=null' > lack_num , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='normalNum!=null' > normal_num , </if>
+                <if test='length!=null' > length , </if>
+                <if test='volume!=null' > volume , </if>
+                <if test='grossWeight!=null' > gross_weight , </if>
+                <if test='netWeight!=null' > net_weight , </if>
+                <if test='multiNum!=null' > multi_num , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='width!=null' > width , </if>
+                <if test='id!=null' > id , </if>
+                <if test='purchaseNum!=null' > purchase_num , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                <if test='tallyingOrderId!=null' > tallying_order_id , </if>
+                <if test='tallyingNum!=null' > tallying_num , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='height!=null' > height , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='lackNum!=null' > #{lackNum} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='normalNum!=null' > #{normalNum} , </if>
+                <if test='length!=null' > #{length} , </if>
+                <if test='volume!=null' > #{volume} , </if>
+                <if test='grossWeight!=null' > #{grossWeight} , </if>
+                <if test='netWeight!=null' > #{netWeight} , </if>
+                <if test='multiNum!=null' > #{multiNum} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='width!=null' > #{width} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='purchaseNum!=null' > #{purchaseNum} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                <if test='tallyingOrderId!=null' > #{tallyingOrderId} , </if>
+                <if test='tallyingNum!=null' > #{tallyingNum} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='height!=null' > #{height} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TallyingOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_tallying_order_item SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='lackNum!=null' > lack_num= #{lackNum} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='normalNum!=null' > normal_num= #{normalNum} , </if>
+                <if test='length!=null' > length= #{length} , </if>
+                <if test='volume!=null' > volume= #{volume} , </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} , </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} , </if>
+                <if test='multiNum!=null' > multi_num= #{multiNum} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='width!=null' > width= #{width} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='purchaseNum!=null' > purchase_num= #{purchaseNum} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                <if test='tallyingOrderId!=null' > tallying_order_id= #{tallyingOrderId} , </if>
+                <if test='tallyingNum!=null' > tallying_num= #{tallyingNum} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='height!=null' > height= #{height} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_tallying_order_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_tallying_order_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        lack_num,
+        goods_id,
+        normal_num,
+        length,
+        volume,
+        gross_weight,
+        net_weight,
+        multi_num,
+        creater,
+        width,
+        id,
+        purchase_num,
+        tallying_unit,
+        goods_name,
+        barcode,
+        create_name,
+        tallying_order_id,
+        tallying_num,
+        create_date,
+        height
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='lackNum!=null' > lack_num= #{lackNum} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='normalNum!=null' > normal_num= #{normalNum} and </if>
+                <if test='length!=null' > length= #{length} and </if>
+                <if test='volume!=null' > volume= #{volume} and </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} and </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} and </if>
+                <if test='multiNum!=null' > multi_num= #{multiNum} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='width!=null' > width= #{width} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='purchaseNum!=null' > purchase_num= #{purchaseNum} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                <if test='tallyingOrderId!=null' > tallying_order_id= #{tallyingOrderId} and </if>
+                <if test='tallyingNum!=null' > tallying_num= #{tallyingNum} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='height!=null' > height= #{height} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+	<!--自定义SQL-->
+    <!-- 检查商品是否使用 -->
+    <select id='checkGoodsIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select 
+        	count(*)
+        from t_tallying_order_item t1
+        left join t_tallying_order t2 on t1.tallying_order_id = t2.id
+        where t2.state in ('009','010','004') and t1.goods_id = #{id}
+    </select>
+
+
+
+</mapper>

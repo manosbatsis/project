@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventoryFreezeDetailsHistoryMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="InventoryFreezeDetailsHistoryModelMap" type="InventoryFreezeDetailsHistoryModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="depotName" column="depot_name" />
+                <result property="batchNo" column="batch_no" />
+                <result property="orderNo" column="order_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="num" column="num" />
+                <result property="depotId" column="depot_id" />
+                <result property="operateType" column="operate_type" />
+                <result property="source" column="source" />
+                <result property="type" column="type" />
+                <result property="depotType" column="depot_type" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="sourceDate" column="source_date" />
+                <result property="unit" column="unit" />
+                <result property="businessNo" column="business_no" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="isTopBooks" column="is_top_books" />
+                <result property="statusName" column="status_name" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="divergenceDate" column="divergence_date" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="buCode" column="bu_code" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryFreezeDetailsHistoryModelMap' parameterType='InventoryFreezeDetailsHistoryModel'>
+        select <include refid='sql_columns' /> from i_inventory_freeze_details_history  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryFreezeDetailsHistoryModelMap' parameterType='InventoryFreezeDetailsHistoryModel'>
+        select <include refid='sql_columns' /> from i_inventory_freeze_details_history  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryFreezeDetailsHistoryModelMap' parameterType='InventoryFreezeDetailsHistoryModel' >
+        select <include refid='sql_columns' /> from i_inventory_freeze_details_history  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventoryFreezeDetailsHistoryModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_freeze_details_history
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > order_no , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='num!=null' > num , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='operateType!=null and !"".equals(operateType)' > operate_type , </if>
+                <if test='source!=null and !"".equals(source)' > source , </if>
+                <if test='type!=null and !"".equals(type)' > type , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > depot_type , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='sourceDate!=null' > source_date , </if>
+                <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' > business_no , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > is_top_books , </if>
+                <if test='statusName!=null and !"".equals(statusName)' > status_name , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='divergenceDate!=null' > divergence_date , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buCode!=null and !"".equals(buCode)' > bu_code , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > #{orderNo} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='num!=null' > #{num} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='operateType!=null and !"".equals(operateType)' > #{operateType} , </if>
+                <if test='source!=null and !"".equals(source)' > #{source} , </if>
+                <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='sourceDate!=null' > #{sourceDate} , </if>
+                <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' > #{businessNo} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > #{isTopBooks} , </if>
+                <if test='statusName!=null and !"".equals(statusName)' > #{statusName} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='divergenceDate!=null' > #{divergenceDate} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buCode!=null and !"".equals(buCode)' > #{buCode} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventoryFreezeDetailsHistoryModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_freeze_details_history SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='num!=null' > num= #{num} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} , </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} , </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='sourceDate!=null' > source_date= #{sourceDate} , </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} , </if>
+                <if test='statusName!=null and !"".equals(statusName)' >status_name= #{statusName} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buCode!=null and !"".equals(buCode)' >bu_code= #{buCode} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_freeze_details_history  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_freeze_details_history where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        depot_name,
+        batch_no,
+        order_no,
+        goods_id,
+        num,
+        depot_id,
+        operate_type,
+        source,
+        type,
+        depot_type,
+        merchant_name,
+        source_date,
+        unit,
+        business_no,
+        merchant_id,
+        is_top_books,
+        status_name,
+        id,
+        goods_name,
+        status,
+        create_date,
+        divergence_date,
+        bu_id,
+        bu_name,
+        bu_code
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='num!=null' > num= #{num} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='sourceDate!=null' > source_date= #{sourceDate} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='statusName!=null and !"".equals(statusName)' >status_name= #{statusName} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='buCode!=null and !"".equals(buCode)' >bu_code= #{buCode} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	<insert id='insertHistory'>
+		INSERT INTO i_inventory_freeze_details_history (
+			SELECT
+				*
+			FROM
+				i_inventory_freeze_details t1
+			WHERE
+				t1.business_no IN (
+					SELECT
+						t2.business_no
+					FROM
+						i_inventory_freeze_details_move_log t2
+					WHERE
+						t2.`type` = '1'
+				)
+		)
+	</insert>
+
+	<!-- 批量根据id向冻结解冻历史表插入数据 -->
+	<insert id='insertBathHistory' parameterType='java.util.ArrayList'>
+		INSERT INTO i_inventory_freeze_details_history (
+			SELECT
+				*
+			FROM
+				i_inventory_freeze_details t1
+			WHERE
+				t1.id in
+		<foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+		)
+	</insert>
+
+
+</mapper>

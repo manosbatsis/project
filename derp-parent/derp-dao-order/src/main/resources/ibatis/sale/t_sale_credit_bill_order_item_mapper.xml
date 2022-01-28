@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleCreditBillOrderItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleCreditBillOrderItemModelMap" type="SaleCreditBillOrderItemModel" >
+                <result property="id" column="id" />
+                <result property="creditBillOrderId" column="credit_bill_order_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="barcode" column="barcode" />
+                <result property="num" column="num" />
+                <result property="principalAmount" column="principal_amount" />
+                <result property="marginAmount" column="margin_amount" />
+                <result property="occupationAmount" column="occupation_amount" />
+                <result property="agencyAmount" column="agency_amount" />
+                <result property="delayAmount" column="delay_amount" />
+                <result property="receivableAmount" column="receivable_amount" />
+                <result property="createDate" column="create_date" />
+                <result property="discountDelayAmount" column="discount_delay_amount" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleCreditBillOrderItemModelMap' parameterType='SaleCreditBillOrderItemModel'>
+        select <include refid='sql_columns' /> from t_sale_credit_bill_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleCreditBillOrderItemModelMap' parameterType='SaleCreditBillOrderItemModel'>
+        select <include refid='sql_columns' /> from t_sale_credit_bill_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleCreditBillOrderItemModelMap' parameterType='SaleCreditBillOrderItemModel' >
+        select <include refid='sql_columns' /> from t_sale_credit_bill_order_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleCreditBillOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_credit_bill_order_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='creditBillOrderId!=null' >credit_bill_order_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='principalAmount!=null' >principal_amount , </if>
+                        <if test='marginAmount!=null' >margin_amount , </if>
+                        <if test='occupationAmount!=null' >occupation_amount , </if>
+                        <if test='agencyAmount!=null' >agency_amount , </if>
+                        <if test='delayAmount!=null' >delay_amount , </if>
+                        <if test='receivableAmount!=null' >receivable_amount , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='discountDelayAmount!=null' >discount_delay_amount , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='creditBillOrderId!=null' > #{creditBillOrderId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='principalAmount!=null' > #{principalAmount} , </if>
+                        <if test='marginAmount!=null' > #{marginAmount} , </if>
+                        <if test='occupationAmount!=null' > #{occupationAmount} , </if>
+                        <if test='agencyAmount!=null' > #{agencyAmount} , </if>
+                        <if test='delayAmount!=null' > #{delayAmount} , </if>
+                        <if test='receivableAmount!=null' > #{receivableAmount} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='discountDelayAmount!=null' > #{discountDelayAmount} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleCreditBillOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_credit_bill_order_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='creditBillOrderId!=null' > credit_bill_order_id= #{creditBillOrderId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='principalAmount!=null' > principal_amount= #{principalAmount} , </if>
+                        <if test='marginAmount!=null' > margin_amount= #{marginAmount} , </if>
+                        <if test='occupationAmount!=null' > occupation_amount= #{occupationAmount} , </if>
+                        <if test='agencyAmount!=null' > agency_amount= #{agencyAmount} , </if>
+                        <if test='delayAmount!=null' > delay_amount= #{delayAmount} , </if>
+                        <if test='receivableAmount!=null' > receivable_amount= #{receivableAmount} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='discountDelayAmount!=null' > discount_delay_amount= #{discountDelayAmount} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_credit_bill_order_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_credit_bill_order_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            credit_bill_order_id,
+            goods_id,
+            goods_code,
+            goods_name,
+            goods_no,
+            commbarcode,
+            barcode,
+            num,
+            principal_amount,
+            margin_amount,
+            occupation_amount,
+            agency_amount,
+            delay_amount,
+            receivable_amount,
+            create_date,
+            discount_delay_amount
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                     <if test='id!=null' > id= #{id} and </if>
+                     <if test='creditBillOrderId!=null' > credit_bill_order_id= #{creditBillOrderId} and </if>
+                     <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                     <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                     <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                     <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                     <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                     <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                     <if test='num!=null' > num= #{num} and </if>
+                     <if test='principalAmount!=null' > principal_amount= #{principalAmount} and </if>
+                     <if test='marginAmount!=null' > margin_amount= #{marginAmount} and </if>
+                     <if test='occupationAmount!=null' > occupation_amount= #{occupationAmount} and </if>
+                     <if test='agencyAmount!=null' > agency_amount= #{agencyAmount} and </if>
+                     <if test='delayAmount!=null' > delay_amount= #{delayAmount} and </if>
+                     <if test='receivableAmount!=null' > receivable_amount= #{receivableAmount} and </if>
+                     <if test='createDate!=null' > create_date= #{createDate} and </if>
+                     <if test='discountDelayAmount!=null' > discount_delay_amount= #{discountDelayAmount} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+	<!-- 获取赊销单对应商品已赎回数量 -->
+    <select id='getRedempNum' resultType='Integer' parameterType='map' >
+        select sum(num) from t_sale_credit_bill_order_item where goods_id = #{goodsId} and
+		credit_bill_order_id in ( select id from t_sale_credit_bill_order where credit_order_id = #{creditOrderId} and status != '006')
+    </select>
+
+
+
+</mapper>

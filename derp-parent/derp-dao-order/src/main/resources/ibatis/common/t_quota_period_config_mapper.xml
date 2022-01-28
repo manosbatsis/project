@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.QuotaPeriodConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="QuotaPeriodConfigModelMap" type="QuotaPeriodConfigModel" >
+                <result property="id" column="id" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="configObjectId" column="config_object_id" />
+                <result property="configObjectName" column="config_object_name" />
+                <result property="quotaType" column="quota_type" />
+                <result property="currency" column="currency" />
+                <result property="periodQuota" column="period_quota" />
+                <result property="periodDate" column="period_date" />
+                <result property="status" column="status" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="auditer" column="auditer" />
+                <result property="auditName" column="audit_name" />
+                <result property="auditDate" column="audit_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='QuotaPeriodConfigModelMap' parameterType='QuotaPeriodConfigModel'>
+        select <include refid='sql_columns' /> from t_quota_period_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='QuotaPeriodConfigModelMap' parameterType='QuotaPeriodConfigModel'>
+        select <include refid='sql_columns' /> from t_quota_period_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='QuotaPeriodConfigModelMap' parameterType='QuotaPeriodConfigModel' >
+        select <include refid='sql_columns' /> from t_quota_period_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='QuotaPeriodConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_quota_period_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='configObjectId!=null' >config_object_id , </if>
+                        <if test='configObjectName!=null and !"".equals(configObjectName)' > config_object_name , </if>
+                        <if test='quotaType!=null and !"".equals(quotaType)' > quota_type , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='periodQuota!=null' >period_quota , </if>
+                        <if test='periodDate!=null' >period_date , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='auditer!=null' >auditer , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='configObjectId!=null' > #{configObjectId} , </if>
+                        <if test='configObjectName!=null and !"".equals(configObjectName)' > #{configObjectName} , </if>
+                        <if test='quotaType!=null and !"".equals(quotaType)' > #{quotaType} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='periodQuota!=null' > #{periodQuota} , </if>
+                        <if test='periodDate!=null' > #{periodDate} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='auditer!=null' > #{auditer} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='QuotaPeriodConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_quota_period_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='configObjectId!=null' > config_object_id= #{configObjectId} , </if>
+                        <if test='configObjectName!=null and !"".equals(configObjectName)' >config_object_name= #{configObjectName} , </if>
+                        <if test='quotaType!=null and !"".equals(quotaType)' >quota_type= #{quotaType} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='periodQuota!=null' > period_quota= #{periodQuota} , </if>
+                        <if test='periodDate!=null' > period_date= #{periodDate} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='auditer!=null' > auditer= #{auditer} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_quota_period_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_quota_period_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bu_id,
+            bu_name,
+            config_object_id,
+            config_object_name,
+            quota_type,
+            currency,
+            period_quota,
+            period_date,
+            status,
+            creater,
+            create_name,
+            create_date,
+            modify_date,
+            auditer,
+            audit_name,
+            audit_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='configObjectId!=null' > config_object_id= #{configObjectId} and </if>
+                            <if test='configObjectName!=null and !"".equals(configObjectName)' >config_object_name= #{configObjectName} and </if>
+                            <if test='quotaType!=null and !"".equals(quotaType)' >quota_type= #{quotaType} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='periodQuota!=null' > period_quota= #{periodQuota} and </if>
+                            <if test='periodDate!=null' > period_date= #{periodDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='auditer!=null' > auditer= #{auditer} and </if>
+                            <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                            <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<select id='getListByPage' resultType='QuotaPeriodConfigDTO' parameterType='QuotaPeriodConfigDTO'>
+	        select <include refid='sql_columns' /> from t_quota_period_config  <include refid='sql_where' />
+	        order by id desc
+	    </select>
+
+
+
+</mapper>

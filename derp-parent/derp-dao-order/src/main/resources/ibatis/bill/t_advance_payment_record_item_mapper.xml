@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.AdvancePaymentRecordItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="AdvancePaymentRecordItemModelMap" type="AdvancePaymentRecordItemModel" >
+                <result property="id" column="id" />
+                <result property="advancePaymentId" column="advance_payment_id" />
+                <result property="paymentDate" column="payment_date" />
+                <result property="paymentAmount" column="payment_amount" />
+                <result property="serialNo" column="serial_no" />
+                <result property="verificationNo" column="verification_no" />
+                <result property="creatorId" column="creator_id" />
+                <result property="creatorName" column="creator_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AdvancePaymentRecordItemModelMap' parameterType='AdvancePaymentRecordItemModel'>
+        select <include refid='sql_columns' /> from t_advance_payment_record_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AdvancePaymentRecordItemModelMap' parameterType='AdvancePaymentRecordItemModel'>
+        select <include refid='sql_columns' /> from t_advance_payment_record_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AdvancePaymentRecordItemModelMap' parameterType='AdvancePaymentRecordItemModel' >
+        select <include refid='sql_columns' /> from t_advance_payment_record_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='AdvancePaymentRecordItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_advance_payment_record_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='advancePaymentId!=null' >advance_payment_id , </if>
+                        <if test='paymentDate!=null' >payment_date , </if>
+                        <if test='paymentAmount!=null' >payment_amount , </if>
+                        <if test='serialNo!=null and !"".equals(serialNo)' > serial_no , </if>
+                        <if test='verificationNo!=null and !"".equals(verificationNo)' > verification_no , </if>
+                        <if test='creatorId!=null' >creator_id , </if>
+                        <if test='creatorName!=null and !"".equals(creatorName)' > creator_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='advancePaymentId!=null' > #{advancePaymentId} , </if>
+                        <if test='paymentDate!=null' > #{paymentDate} , </if>
+                        <if test='paymentAmount!=null' > #{paymentAmount} , </if>
+                        <if test='serialNo!=null and !"".equals(serialNo)' > #{serialNo} , </if>
+                        <if test='verificationNo!=null and !"".equals(verificationNo)' > #{verificationNo} , </if>
+                        <if test='creatorId!=null' > #{creatorId} , </if>
+                        <if test='creatorName!=null and !"".equals(creatorName)' > #{creatorName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='AdvancePaymentRecordItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_advance_payment_record_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='advancePaymentId!=null' > advance_payment_id= #{advancePaymentId} , </if>
+                        <if test='paymentDate!=null' > payment_date= #{paymentDate} , </if>
+                        <if test='paymentAmount!=null' > payment_amount= #{paymentAmount} , </if>
+                        <if test='serialNo!=null and !"".equals(serialNo)' >serial_no= #{serialNo} , </if>
+                        <if test='verificationNo!=null and !"".equals(verificationNo)' >verification_no= #{verificationNo} , </if>
+                        <if test='creatorId!=null' > creator_id= #{creatorId} , </if>
+                        <if test='creatorName!=null and !"".equals(creatorName)' >creator_name= #{creatorName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_advance_payment_record_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_advance_payment_record_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            advance_payment_id,
+            payment_date,
+            payment_amount,
+            serial_no,
+            verification_no,
+            creator_id,
+            creator_name,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='advancePaymentId!=null' > advance_payment_id= #{advancePaymentId} and </if>
+                            <if test='paymentDate!=null' > payment_date= #{paymentDate} and </if>
+                            <if test='paymentAmount!=null' > payment_amount= #{paymentAmount} and </if>
+                            <if test='serialNo!=null and !"".equals(serialNo)' >serial_no= #{serialNo} and </if>
+                            <if test='verificationNo!=null and !"".equals(verificationNo)' >verification_no= #{verificationNo} and </if>
+                            <if test='creatorId!=null' > creator_id= #{creatorId} and </if>
+                            <if test='creatorName!=null and !"".equals(creatorName)' >creator_name= #{creatorName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

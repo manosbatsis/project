@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.TallyingOrderMapper'>
+ <!-- 关系映射 -->
+    <resultMap id="TallyingOrderModelMap" type="TallyingOrderModel" >
+                <result property="depotName" column="depot_name" />
+                <result property="code" column="code" />
+                <result property="orderId" column="order_id" />
+                <result property="confirmUserName" column="confirm_user_name" />
+                <result property="contractNo" column="contract_no" />
+                <result property="depotId" column="depot_id" />
+                <result property="type" column="type" />
+                <result property="confirmUser" column="confirm_user" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="confirmDate" column="confirm_date" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="creater" column="creater" />
+                <result property="orderCode" column="order_code" />
+                <result property="tallyingDate" column="tallying_date" />
+                <result property="id" column="id" />
+                <result property="state" column="state" />
+                <result property="createDate" column="create_date" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TallyingOrderModelMap' parameterType='TallyingOrderModel'>
+        select <include refid='sql_columns' /> from t_tallying_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TallyingOrderModelMap' parameterType='TallyingOrderModel'>
+        select <include refid='sql_columns' /> from t_tallying_order  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TallyingOrderModelMap' parameterType='TallyingOrderModel' >
+        select <include refid='sql_columns' /> from t_tallying_order  <include refid='sql_where' />
+    </select>
+
+    <select id='getDTODetails' resultMap='TallyingOrderModelMap3' parameterType='TallyingOrderDTO' >
+        select <include refid='sql_columns' /> from t_tallying_order
+        where id = #{id}
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TallyingOrderModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_tallying_order
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='orderId!=null' > order_id , </if>
+                <if test='confirmUserName!=null and !"".equals(confirmUserName)' > confirm_user_name , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='type!=null and !"".equals(type)' > type , </if>
+                <if test='confirmUser!=null' > confirm_user , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='confirmDate!=null' > confirm_date , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                <if test='tallyingDate!=null' > tallying_date , </if>
+                <if test='id!=null' > id , </if>
+                <if test='state!=null and !"".equals(state)' > state , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='orderId!=null' > #{orderId} , </if>
+                <if test='confirmUserName!=null and !"".equals(confirmUserName)' > #{confirmUserName} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                <if test='confirmUser!=null' > #{confirmUser} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='confirmDate!=null' > #{confirmDate} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                <if test='tallyingDate!=null' > #{tallyingDate} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='state!=null and !"".equals(state)' > #{state} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TallyingOrderModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_tallying_order SET
+        <trim  suffixOverrides=",">
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='orderId!=null' > order_id= #{orderId} , </if>
+                <if test='confirmUserName!=null and !"".equals(confirmUserName)' >confirm_user_name= #{confirmUserName} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                <if test='confirmUser!=null' > confirm_user= #{confirmUser} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='confirmDate!=null' > confirm_date= #{confirmDate} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                <if test='tallyingDate!=null' > tallying_date= #{tallyingDate} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_tallying_order  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_tallying_order where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        depot_name,
+        code,
+        order_id,
+        confirm_user_name,
+        contract_no,
+        depot_id,
+        type,
+        confirm_user,
+        merchant_name,
+        confirm_date,
+        merchant_id,
+        creater,
+        order_code,
+        tallying_date,
+        id,
+        state,
+        create_date,
+        bu_name,
+        bu_id
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='orderId!=null' > order_id= #{orderId} and </if>
+                <if test='confirmUserName!=null and !"".equals(confirmUserName)' >confirm_user_name= #{confirmUserName} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='confirmUser!=null' > confirm_user= #{confirmUser} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='confirmDate!=null' > confirm_date= #{confirmDate} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                <if test='tallyingDate!=null' > DATE_FORMAT(tallying_date,'%Y-%m-%d')= DATE_FORMAT(#{tallyingDate},'%Y-%m-%d') and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+    <!-- 查询条件 -->
+    <sql id='sql_where1'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='orderId!=null' > order_id= #{orderId} and </if>
+                <if test='confirmUserName!=null and !"".equals(confirmUserName)' >confirm_user_name= #{confirmUserName} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='confirmUser!=null' > confirm_user= #{confirmUser} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='confirmDate!=null' > confirm_date= #{confirmDate} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                <if test='tallyingDate!=null' > tallying_date= #{tallyingDate} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='tallyingStartDate!=null and !"".equals(tallyingStartDate)' >
+                    DATE_FORMAT(tallying_date,'%Y-%m-%d %H:%i:%S') &gt;= #{tallyingStartDate} and
+                </if>
+                <if test='tallyingEndDate!=null and !"".equals(tallyingEndDate)' >
+                    DATE_FORMAT(tallying_date,'%Y-%m-%d %H:%i:%S') &lt;= #{tallyingEndDate} and
+                </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buIds!=null' > bu_id in
+                	<foreach collection="buIds" item="buId" separator="," open="(" close=")">
+            			#{buId}
+            		</foreach>
+            		and
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+	<update id="modifyOrderState" parameterType='TallyingOrderModel'  keyProperty="ids" useGeneratedKeys="true">
+    	UPDATE  t_tallying_order SET state= #{state}
+    	<where>
+            id in (${ids})
+        </where>
+    </update>
+
+	<!-- 表头关系映射 -->
+    <resultMap id="TallyingOrderModelMap2" type="TallyingOrderDTO" >
+                <result property="depotName" column="depot_name" />
+                <result property="code" column="code" />
+                <result property="contractNo" column="contract_no" />
+                <result property="depotId" column="depot_id" />
+                <result property="confirmDate" column="confirm_date" />
+                <result property="confirmUser" column="confirm_user" />
+                <result property="declareOrderCode" column="declare_order_code" />
+                <result property="declareOrderId" column="declare_order_id" />
+                <result property="creater" column="creater" />
+                <result property="tallyingDate" column="tallying_date" />
+                <result property="id" column="id" />
+                <result property="state" column="state" />
+                <result property="createDate" column="create_date" />
+                <result property="confirmUserName" column="confirm_user_name" />
+                <result property="orderCode" column="order_code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+
+                <association property="itemList" column="id" select="getItem" />
+    </resultMap>
+
+    <resultMap id="TallyingOrderModelMap3" type="TallyingOrderDTO" >
+                <result property="depotName" column="depot_name" />
+                <result property="code" column="code" />
+                <result property="contractNo" column="contract_no" />
+                <result property="depotId" column="depot_id" />
+                <result property="confirmDate" column="confirm_date" />
+                <result property="confirmUser" column="confirm_user" />
+                <result property="declareOrderCode" column="declare_order_code" />
+                <result property="declareOrderId" column="declare_order_id" />
+                <result property="creater" column="creater" />
+                <result property="tallyingDate" column="tallying_date" />
+                <result property="id" column="id" />
+                <result property="state" column="state" />
+                <result property="createDate" column="create_date" />
+                <result property="confirmUserName" column="confirm_user_name" />
+                <result property="orderCode" column="order_code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+
+                <association property="itemList" column="id" select="getItem" />
+    </resultMap>
+
+    <!-- 表体关系映射 -->
+    <resultMap id="TallyingOrderItemModelMap" type="TallyingOrderItemModel" >
+                <result property="multiNum" column="multi_num" />
+                <result property="lackNum" column="lack_num" />
+                <result property="goodsId" column="goods_id" />
+                <result property="normalNum" column="normal_num" />
+                <result property="id" column="id" />
+                <result property="purchaseNum" column="purchase_num" />
+                <result property="tallyingOrderId" column="tallying_order_id" />
+                <result property="tallyingNum" column="tallying_num" />
+                <result property="tallyingUnit" column="tallying_unit" />
+
+                <!-- 拓展字段 -->
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+    </resultMap>
+
+    <!-- 表头查询表体 -->
+	<select id="getItem" resultMap="TallyingOrderItemModelMap" parameterType="java.lang.Long">
+		select
+		t1.id,t1.tallying_order_id,t1.goods_id,t1.purchase_num,t1.tallying_num,
+		t1.normal_num,t1.multi_num,t1.lack_num,t1.goods_name,t1.goods_no,
+		t1.barcode,t1.tallying_unit
+		from t_tallying_order_item t1
+		where t1.tallying_order_id = #{id}
+	</select>
+
+    <!-- 条件查询，会把表体、理货单商品批次详情都关联查询出来 -->
+    <select id='getDetails' resultMap='TallyingOrderModelMap2' parameterType='TallyingOrderDTO' >
+        select <include refid='sql_columns' /> from t_tallying_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询，会把表体、理货单商品批次详情都关联查询出来 -->
+    <select id='getListDetails' resultMap='TallyingOrderModelMap3' parameterType='TallyingOrderDTO' >
+        select <include refid='sql_columns' /> from t_tallying_order
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                <if test='tallyingStartDate!=null and !"".equals(tallyingStartDate)' >
+                    tallying_date &gt;= #{tallyingStartDate} and
+                </if>
+                <if test='tallyingEndDate!=null and !"".equals(tallyingEndDate)' >
+                    tallying_date &lt; #{tallyingEndDate} and
+                </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buIds!=null' > bu_id in
+                	<foreach collection="buIds" item="buId" separator="," open="(" close=")">
+            			#{buId}
+            		</foreach>
+            		and
+                </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 采购模块查询所有理货单 分页 -->
+    <select id='getListByPage' resultType='TallyingOrderDTO' parameterType='TallyingOrderDTO'>
+        select <include refid='sql_columns' /> from t_tallying_order
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                <if test='tallyingStartDate!=null and !"".equals(tallyingStartDate)' >
+                    tallying_date &gt;= #{tallyingStartDate} and
+                </if>
+                <if test='tallyingEndDate!=null and !"".equals(tallyingEndDate)' >
+                    tallying_date &lt; #{tallyingEndDate} and
+                </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buIds!=null' > bu_id in
+                	<foreach collection="buIds" item="buId" separator="," open="(" close=")">
+            			#{buId}
+            		</foreach>
+            		and
+                </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="getPendingConfirmOrders" resultType="PendingConfirmTallyingOrderVo" >
+        select
+          id, code, depot_name depotName, tallying_date tallyingDate, type orderType, bu_name buName
+        from t_tallying_order
+        where state = '009'
+            <if test='merchantId!=null' > and  merchant_id= #{merchantId} </if>
+            <if test='buList!=null and buList.size() > 0' >and bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>
+            </if>
+            and DATE_FORMAT(tallying_date, '%Y') >= '2020'
+    </select>
+
+    <select id="countPendingConfirmOrders" resultType="java.lang.Integer" >
+        select
+            count(1)
+        from t_tallying_order
+        where state = '009'
+        <if test='merchantId!=null' > and  merchant_id= #{merchantId} </if>
+        <if test='buList!=null and buList.size() > 0' >and bu_id in
+            <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                #{buId}
+            </foreach>
+        </if>
+        and DATE_FORMAT(tallying_date, '%Y') >= '2020'
+    </select>
+
+    <!-- 查询所有信息 分页dto -->
+    <select id='listDTOByPage' resultType='TallyingOrderDTO' parameterType='TallyingOrderDTO'>
+        select <include refid='sql_columns' /> from t_tallying_order  <include refid='sql_where1' /> order by id desc
+    </select>
+
+</mapper>

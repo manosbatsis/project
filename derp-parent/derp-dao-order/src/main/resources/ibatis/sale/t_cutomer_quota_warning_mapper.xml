@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.CutomerQuotaWarningMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CutomerQuotaWarningModelMap" type="CutomerQuotaWarningModel" >
+                <result property="id" column="id" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerQuota" column="customer_quota" />
+                <result property="currency" column="currency" />
+                <result property="quotaType" column="quota_type" />
+                <result property="saleNoshelfAmount" column="sale_noshelf_amount" />
+                <result property="nobillAmount" column="nobill_amount" />
+                <result property="noconfirmAmount" column="noconfirm_amount" />
+                <result property="noinvoiceAmount" column="noinvoice_amount" />
+                <result property="noreturnAmount" column="noreturn_amount" />
+                <result property="availableAmount" column="available_amount" />
+                <result property="periodQuota" column="period_quota" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CutomerQuotaWarningModelMap' parameterType='CutomerQuotaWarningModel'>
+        select <include refid='sql_columns' /> from t_cutomer_quota_warning  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CutomerQuotaWarningModelMap' parameterType='CutomerQuotaWarningModel'>
+        select <include refid='sql_columns' /> from t_cutomer_quota_warning  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CutomerQuotaWarningModelMap' parameterType='CutomerQuotaWarningModel' >
+        select <include refid='sql_columns' /> from t_cutomer_quota_warning  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='CutomerQuotaWarningModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_cutomer_quota_warning
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='customerQuota!=null' >customer_quota , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='quotaType!=null and !"".equals(quotaType)' > quota_type , </if>
+                        <if test='saleNoshelfAmount!=null' >sale_noshelf_amount , </if>
+                        <if test='nobillAmount!=null' >nobill_amount , </if>
+                        <if test='noconfirmAmount!=null' >noconfirm_amount , </if>
+                        <if test='noinvoiceAmount!=null' >noinvoice_amount , </if>
+                        <if test='noreturnAmount!=null' >noreturn_amount , </if>
+                        <if test='availableAmount!=null' >available_amount , </if>
+                        <if test='periodQuota!=null' >period_quota , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='customerQuota!=null' > #{customerQuota} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='quotaType!=null and !"".equals(quotaType)' > #{quotaType} , </if>
+                        <if test='saleNoshelfAmount!=null' > #{saleNoshelfAmount} , </if>
+                        <if test='nobillAmount!=null' > #{nobillAmount} , </if>
+                        <if test='noconfirmAmount!=null' > #{noconfirmAmount} , </if>
+                        <if test='noinvoiceAmount!=null' > #{noinvoiceAmount} , </if>
+                        <if test='noreturnAmount!=null' > #{noreturnAmount} , </if>
+                        <if test='availableAmount!=null' > #{availableAmount} , </if>
+                        <if test='periodQuota!=null' > #{periodQuota} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CutomerQuotaWarningModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_cutomer_quota_warning SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='customerQuota!=null' > customer_quota= #{customerQuota} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='quotaType!=null and !"".equals(quotaType)' >quota_type= #{quotaType} , </if>
+                        <if test='saleNoshelfAmount!=null' > sale_noshelf_amount= #{saleNoshelfAmount} , </if>
+                        <if test='nobillAmount!=null' > nobill_amount= #{nobillAmount} , </if>
+                        <if test='noconfirmAmount!=null' > noconfirm_amount= #{noconfirmAmount} , </if>
+                        <if test='noinvoiceAmount!=null' > noinvoice_amount= #{noinvoiceAmount} , </if>
+                        <if test='noreturnAmount!=null' > noreturn_amount= #{noreturnAmount} , </if>
+                        <if test='availableAmount!=null' > available_amount= #{availableAmount} , </if>
+                        <if test='periodQuota!=null' > period_quota= #{periodQuota} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_cutomer_quota_warning  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_cutomer_quota_warning where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bu_id,
+            bu_name,
+            customer_id,
+            customer_name,
+            customer_quota,
+            currency,
+            quota_type,
+            sale_noshelf_amount,
+            nobill_amount,
+            noconfirm_amount,
+            noinvoice_amount,
+            noreturn_amount,
+            available_amount,
+            period_quota,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='customerQuota!=null' > customer_quota= #{customerQuota} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='quotaType!=null and !"".equals(quotaType)' >quota_type= #{quotaType} and </if>
+                            <if test='saleNoshelfAmount!=null' > sale_noshelf_amount= #{saleNoshelfAmount} and </if>
+                            <if test='nobillAmount!=null' > nobill_amount= #{nobillAmount} and </if>
+                            <if test='noconfirmAmount!=null' > noconfirm_amount= #{noconfirmAmount} and </if>
+                            <if test='noinvoiceAmount!=null' > noinvoice_amount= #{noinvoiceAmount} and </if>
+                            <if test='noreturnAmount!=null' > noreturn_amount= #{noreturnAmount} and </if>
+                            <if test='availableAmount!=null' > available_amount= #{availableAmount} and </if>
+                            <if test='periodQuota!=null' > period_quota= #{periodQuota} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <sql id='sql_where_page'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='customerQuota!=null' > customer_quota= #{customerQuota} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='quotaType!=null and !"".equals(quotaType)' >quota_type= #{quotaType} and </if>
+                <if test='saleNoshelfAmount!=null' > sale_noshelf_amount= #{saleNoshelfAmount} and </if>
+                <if test='nobillAmount!=null' > nobill_amount= #{nobillAmount} and </if>
+                <if test='noconfirmAmount!=null' > noconfirm_amount= #{noconfirmAmount} and </if>
+                <if test='noinvoiceAmount!=null' > noinvoice_amount= #{noinvoiceAmount} and </if>
+                <if test='noreturnAmount!=null' > noreturn_amount= #{noreturnAmount} and </if>
+                <if test='availableAmount!=null' > available_amount= #{availableAmount} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='buList!=null and !"".equals(buList)' >bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <!-- 查询所有信息 分页 -->
+    <select id='listDTOByPage' resultType='CutomerQuotaWarningDTO' parameterType='CutomerQuotaWarningDTO'>
+        select <include refid='sql_columns' /> from t_cutomer_quota_warning
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='customerQuota!=null' > customer_quota= #{customerQuota} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='quotaType!=null and !"".equals(quotaType)' >quota_type= #{quotaType} and </if>
+                <if test='saleNoshelfAmount!=null' > sale_noshelf_amount= #{saleNoshelfAmount} and </if>
+                <if test='nobillAmount!=null' > nobill_amount= #{nobillAmount} and </if>
+                <if test='noconfirmAmount!=null' > noconfirm_amount= #{noconfirmAmount} and </if>
+                <if test='noinvoiceAmount!=null' > noinvoice_amount= #{noinvoiceAmount} and </if>
+                <if test='noreturnAmount!=null' > noreturn_amount= #{noreturnAmount} and </if>
+                <if test='availableAmount!=null' > available_amount= #{availableAmount} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='buList!=null and !"".equals(buList)' >bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+		order by create_date desc
+    </select>
+    <!-- 查询所有信息-->
+    <select id='listDTO' resultType='CutomerQuotaWarningDTO' parameterType='CutomerQuotaWarningDTO'>
+        select <include refid='sql_columns' /> from t_cutomer_quota_warning
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='customerQuota!=null' > customer_quota= #{customerQuota} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='quotaType!=null and !"".equals(quotaType)' >quota_type= #{quotaType} and </if>
+                <if test='saleNoshelfAmount!=null' > sale_noshelf_amount= #{saleNoshelfAmount} and </if>
+                <if test='nobillAmount!=null' > nobill_amount= #{nobillAmount} and </if>
+                <if test='noconfirmAmount!=null' > noconfirm_amount= #{noconfirmAmount} and </if>
+                <if test='noinvoiceAmount!=null' > noinvoice_amount= #{noinvoiceAmount} and </if>
+                <if test='noreturnAmount!=null' > noreturn_amount= #{noreturnAmount} and </if>
+                <if test='availableAmount!=null' > available_amount= #{availableAmount} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='buList!=null and !"".equals(buList)' >bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='ids!=null' > id in
+                    <foreach collection="ids.split(',')" item="id" separator="," open='(' close=')'>
+                        #{id}
+                    </foreach>
+                 </if>
+            </trim>
+        </where>
+    </select>
+
+</mapper>

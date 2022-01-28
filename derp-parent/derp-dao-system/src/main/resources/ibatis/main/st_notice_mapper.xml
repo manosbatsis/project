@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.NoticeMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="NoticeModelMap" type="NoticeModel" >
+                <result property="id" column="id" />
+                <result property="title" column="title" />
+                <result property="contentBody" column="content_body" />
+                <result property="status" column="status" />
+                <result property="type" column="type" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="publishDate" column="publish_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='NoticeModelMap' parameterType='NoticeModel'>
+        select <include refid='sql_columns' /> from st_notice  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='NoticeModelMap' parameterType='NoticeModel'>
+        select <include refid='sql_columns' /> from st_notice  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='NoticeModelMap' parameterType='NoticeModel' >
+        select <include refid='sql_columns' /> from st_notice  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='NoticeModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_notice
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='title!=null and !"".equals(title)' > title , </if>
+                        <if test='contentBody!=null and !"".equals(contentBody)' > content_body , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='publishDate!=null' >publish_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='title!=null and !"".equals(title)' > #{title} , </if>
+                        <if test='contentBody!=null and !"".equals(contentBody)' > #{contentBody} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='publishDate!=null' > #{publishDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='NoticeModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_notice SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='title!=null and !"".equals(title)' >title= #{title} , </if>
+                        <if test='contentBody!=null and !"".equals(contentBody)' >content_body= #{contentBody} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='publishDate!=null' > publish_date= #{publishDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_notice  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_notice where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            title,
+            content_body,
+            status,
+            type,
+            create_date,
+            modify_date,
+            publish_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='title!=null and !"".equals(title)' >title= #{title} and </if>
+                            <if test='contentBody!=null and !"".equals(contentBody)' >content_body= #{contentBody} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='publishDate!=null' > publish_date= #{publishDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <select id='getListByPage' resultType='NoticeDTO' parameterType='NoticeDTO'>
+        select <include refid='sql_columns' /> from st_notice  
+        <where>
+             <trim suffixOverrides='and'>
+                         <if test='id!=null' > id= #{id} and </if>
+                         <if test='title!=null and !"".equals(title)' >title= #{title} and </if>
+                         <if test='contentBody!=null and !"".equals(contentBody)' >content_body= #{contentBody} and </if>
+                         <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                         <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                         <if test='createDate!=null' > create_date= #{createDate} and </if>
+                         <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                         <if test='publishStartDate!=null' > <![CDATA[publish_date >= #{publishStartDate} and ]]> </if>
+                         <if test='publishEndDate!=null' > <![CDATA[publish_date <= #{publishEndDate} and ]]> </if>
+             </trim>
+       </where>
+       ORDER BY create_date DESC
+    </select>
+
+    <select id='searchDTOById' resultType='NoticeDTO' parameterType='java.lang.Long' >
+        select <include refid='sql_columns' /> from st_notice  where id = #{id}
+    </select>
+    
+    <select id='getNoticeByUser' resultType='NoticeDTO' parameterType='map' >
+        SELECT
+		    t1.*, t2.`status` as read_status
+		FROM
+		    st_notice t1
+		LEFT JOIN st_notice_user_rel t2 ON t1.id = t2.notice_id
+		WHERE
+		    t2.user_id = #{userId} ORDER BY t1.publish_date DESC
+		LIMIT #{begin} , #{pageSize}
+    </select>
+    
+    <select id='getUnReadAmountByUser' resultType='java.lang.Integer' parameterType='java.lang.Long' >
+        SELECT
+            count(1)
+        FROM
+            st_notice t1
+        LEFT JOIN st_notice_user_rel t2 ON t1.id = t2.notice_id
+        WHERE
+            t2.user_id = #{userId} and t2.status = '0'
+    </select>
+    
+    <select id='getNoticeAccountByUser' resultType='java.lang.Integer' parameterType='java.lang.Long' >
+        SELECT
+            count(1)
+        FROM
+            st_notice t1
+        LEFT JOIN st_notice_user_rel t2 ON t1.id = t2.notice_id
+        WHERE
+            t2.user_id = #{userId} 
+    </select>
+    
+    <select id='getAfterNotice' resultType='NoticeModel' parameterType='java.lang.Long' >
+        SELECT * FROM st_notice WHERE publish_date &lt;
+		(SELECT
+		    publish_date
+		FROM
+		    st_notice 
+		WHERE
+		    id = #{noticeId}
+		ORDER BY
+		    publish_date DESC) AND `status` = '002'
+		ORDER BY publish_date DESC LIMIT 1
+    </select>
+    
+    <select id='getBeforeNotice' resultType='NoticeModel' parameterType='java.lang.Long' >
+        SELECT * FROM st_notice WHERE publish_date &gt;
+        (SELECT
+            publish_date
+        FROM
+            st_notice 
+        WHERE
+            id = #{noticeId}
+        ORDER BY
+            publish_date DESC) AND `status` = '002'
+        ORDER BY publish_date LIMIT 1
+    </select>
+ 
+</mapper>

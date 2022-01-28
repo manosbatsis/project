@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.OrderReturnIdepotBatchMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="OrderReturnIdepotBatchModelMap" type="OrderReturnIdepotBatchModel" >
+                <result property="id" column="id" />
+                <result property="itemId" column="item_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="returnNum" column="return_num" />
+                <result property="badGoodsNum" column="bad_goods_num" />
+                <result property="batchNo" column="batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OrderReturnIdepotBatchModelMap' parameterType='OrderReturnIdepotBatchModel'>
+        select <include refid='sql_columns' /> from t_order_return_idepot_batch  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OrderReturnIdepotBatchModelMap' parameterType='OrderReturnIdepotBatchModel'>
+        select <include refid='sql_columns' /> from t_order_return_idepot_batch  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OrderReturnIdepotBatchModelMap' parameterType='OrderReturnIdepotBatchModel' >
+        select <include refid='sql_columns' /> from t_order_return_idepot_batch  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OrderReturnIdepotBatchModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_order_return_idepot_batch
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='itemId!=null' >item_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='returnNum!=null' >return_num , </if>
+                        <if test='badGoodsNum!=null' >bad_goods_num , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                        <if test='productionDate!=null' >production_date , </if>
+                        <if test='overdueDate!=null' >overdue_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='itemId!=null' > #{itemId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='returnNum!=null' > #{returnNum} , </if>
+                        <if test='badGoodsNum!=null' > #{badGoodsNum} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                        <if test='productionDate!=null' > #{productionDate} , </if>
+                        <if test='overdueDate!=null' > #{overdueDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OrderReturnIdepotBatchModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_order_return_idepot_batch SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='itemId!=null' > item_id= #{itemId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='returnNum!=null' > return_num= #{returnNum} , </if>
+                        <if test='badGoodsNum!=null' > bad_goods_num= #{badGoodsNum} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                        <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                        <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_order_return_idepot_batch  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_order_return_idepot_batch where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            item_id,
+            goods_id,
+            goods_no,
+            goods_name,
+            return_num,
+            bad_goods_num,
+            batch_no,
+            production_date,
+            overdue_date,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='itemId!=null' > item_id= #{itemId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='returnNum!=null' > return_num= #{returnNum} and </if>
+                            <if test='badGoodsNum!=null' > bad_goods_num= #{badGoodsNum} and </if>
+                            <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                            <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

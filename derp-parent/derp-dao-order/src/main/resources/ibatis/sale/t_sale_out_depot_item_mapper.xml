@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleOutDepotItemMapper'>
+
+       <!-- 关系映射 -->
+    <resultMap id="SaleOutDepotItemModelMap" type="SaleOutDepotItemModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="saleOutDepotId" column="sale_out_depot_id" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="saleNum" column="sale_num" />
+                <result property="transferBatchNo" column="transfer_batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="transferNum" column="transfer_num" />
+                <result property="wornNum" column="worn_num" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="crawlerBillId" column="crawler_bill_id" />
+                <result property="createDate" column="create_date" />
+                <result property="billType" column="bill_type" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="price" column="price" />
+                <result property="saleItemId" column="sale_item_id" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleOutDepotItemModelMap' parameterType='SaleOutDepotItemModel'>
+        select <include refid='sql_columns' /> from t_sale_out_depot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleOutDepotItemModelMap' parameterType='SaleOutDepotItemModel'>
+        select <include refid='sql_columns' /> from t_sale_out_depot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleOutDepotItemModelMap' parameterType='SaleOutDepotItemModel' >
+        select <include refid='sql_columns' /> from t_sale_out_depot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='SaleOutDepotItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_sale_out_depot_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='saleOutDepotId!=null' > sale_out_depot_id , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='saleNum!=null' > sale_num , </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' > transfer_batch_no , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='transferNum!=null' > transfer_num , </if>
+                <if test='wornNum!=null' > worn_num , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='crawlerBillId!=null' > crawler_bill_id , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='billType!=null and !"".equals(billType)' > bill_type , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                <if test='price!=null' > price , </if>
+                <if test='saleItemId!=null' >sale_item_id , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='saleOutDepotId!=null' > #{saleOutDepotId} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='saleNum!=null' > #{saleNum} , </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' > #{transferBatchNo} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='transferNum!=null' > #{transferNum} , </if>
+                <if test='wornNum!=null' > #{wornNum} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='crawlerBillId!=null' > #{crawlerBillId} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='billType!=null and !"".equals(billType)' > #{billType} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                <if test='price!=null' > #{price} , </if>
+                <if test='saleItemId!=null' > #{saleItemId} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='SaleOutDepotItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_sale_out_depot_item SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='saleNum!=null' > sale_num= #{saleNum} , </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' >transfer_batch_no= #{transferBatchNo} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='transferNum!=null' > transfer_num= #{transferNum} , </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='crawlerBillId!=null' > crawler_bill_id= #{crawlerBillId} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                <if test='price!=null' >price= #{price} , </if>
+                <if test='saleItemId!=null' > sale_item_id= #{saleItemId} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_out_depot_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_sale_out_depot_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        overdue_date,
+        sale_out_depot_id,
+        modify_date,
+        goods_id,
+        sale_num,
+        transfer_batch_no,
+        production_date,
+        transfer_num,
+        worn_num,
+        creater,
+        id,
+        goods_code,
+        tallying_unit,
+        goods_name,
+        barcode,
+        crawler_bill_id,
+        create_date,
+        bill_type,
+        commbarcode,
+        price,
+        sale_item_id
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='saleNum!=null' > sale_num= #{saleNum} and </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' >transfer_batch_no= #{transferBatchNo} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='transferNum!=null' > transfer_num= #{transferNum} and </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='crawlerBillId!=null' > crawler_bill_id= #{crawlerBillId} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                <if test='price!=null' >price= #{price} and </if>
+                <if test='saleItemId!=null' > sale_item_id= #{saleItemId} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	<!-- 检查商品是否使用 -->
+    <select id='checkGoodsIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select
+        	count(*)
+        from t_sale_out_depot_item t1
+        left join t_sale_out_depot t2 on t1.sale_out_depot_id = t2.id
+        where t2.status in ('017','018') and t1.goods_id = #{id}
+    </select>
+	<!-- 查询所有信息 -->
+    <select id="listItemDTO" resultType='SaleOutDepotItemDTO' parameterType='SaleOutDepotItemDTO'>
+        select t1.goods_no,
+        t1.overdue_date,
+        t1.sale_out_depot_id,
+        t1.modify_date,
+        t1.goods_id,
+        t1.sale_num,
+        t1.transfer_batch_no,
+        t1.production_date,
+        t1.transfer_num,
+        t1.worn_num,
+        t1.creater,
+        t1.id,
+        t1.goods_code,
+        t1.tallying_unit,
+        t1.goods_name,
+        t1.barcode,
+        t1.crawler_bill_id,
+        t1.create_date,
+        t1.bill_type,
+        t1.commbarcode,
+        t2.price,
+        t1.sale_item_id
+        from t_sale_out_depot_item  t1 left join t_sale_order_item t2 on t1.sale_item_id = t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t1.goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > t1.overdue_date= #{overdueDate} and </if>
+                <if test='saleOutDepotId!=null' > t1.sale_out_depot_id= #{saleOutDepotId} and </if>
+                <if test='modifyDate!=null' > t1.modify_date= #{modifyDate} and </if>
+                <if test='goodsId!=null' > t1.goods_id= #{goodsId} and </if>
+                <if test='saleNum!=null' > t1.sale_num= #{saleNum} and </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' >t1.transfer_batch_no= #{transferBatchNo} and </if>
+                <if test='productionDate!=null' > t1.production_date= #{productionDate} and </if>
+                <if test='transferNum!=null' > t1.transfer_num= #{transferNum} and </if>
+                <if test='wornNum!=null' > t1.worn_num= #{wornNum} and </if>
+                <if test='creater!=null' > t1.creater= #{creater} and </if>
+                <if test='id!=null' > t1.id= #{id} and </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >t1.goods_code= #{goodsCode} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >t1.tallying_unit= #{tallyingUnit} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >t1.goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >t1.barcode= #{barcode} and </if>
+                <if test='crawlerBillId!=null' > t1.crawler_bill_id= #{crawlerBillId} and </if>
+                <if test='createDate!=null' > t1.create_date= #{createDate} and </if>
+                <if test='billType!=null and !"".equals(billType)' >t1.bill_type= #{billType} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >t1.commbarcode= #{commbarcode} and </if>
+                <if test='price!=null' >t2.price= #{price} and </if>
+                <if test='saleItemId!=null' > t1.sale_item_id= #{saleItemId} and </if>
+            </trim>
+        </where>
+    </select>
+
+    	<!-- 查询某个销售出库单的商品多个批次按失效日期降序排 -->
+    <select id="listItemByOverdueDate" resultType='SaleOutDepotItemDTO' parameterType='SaleOutDepotItemDTO'>
+        select <include refid='sql_columns' /> from t_sale_out_depot_item  <include refid='sql_where' />
+         order by overdue_date ASC,transfer_batch_no ASC
+    </select>
+
+    <!--生成上架入库-查询出库单商品剩余可分配余量按失效日期升序 -->
+    <select id="listCountSurplusNum" resultType='map' parameterType='map'>
+        select tt.outnum,outti.id,outti.goods_id,outti.goods_no,outti.transfer_batch_no,outti.production_date,outti.overdue_date,outti.sale_item_id
+        from (
+            select outi.id,(IFNULL(outi.transfer_num,0)+IFNULL(outi.worn_num,0))-IFNULL(sin.inmum,0) as outnum
+            from t_sale_out_depot_item outi
+            left join (
+                select sale_out_depot_item_id,sum(IFNULL(normal_num,0)+IFNULL(damaged_num,0)) as inmum
+                from t_sale_shelf_idepot_item i
+                left join t_sale_shelf_idepot s on s.id=i.sshelf_idepot_id
+                where s.sale_out_depot_id=#{saleOutDepotId} and s.state in('012','028')
+                group by sale_out_depot_item_id
+            ) sin on outi.id=sin.sale_out_depot_item_id
+            where outi.sale_out_depot_id=#{saleOutDepotId}
+        ) tt
+        left join t_sale_out_depot_item outti on tt.id=outti.id
+        where outti.sale_item_id=#{saleItemId}
+        order by if(isnull(outti.overdue_date),1,0),outti.overdue_date
+    </select>
+
+
+    	<!-- 查询某个销售出库单的商品多个批次按失效日期降序排 -->
+    <select id="getItemGroupByOutId" resultType="map" >
+        SELECT SUM(IFNULL(transfer_num,0))+SUM(IFNULL(worn_num,0)) as num,sale_item_id,goods_id
+        	from t_sale_out_depot_item
+		where sale_out_depot_id= #{saleOutDepotId}
+		GROUP BY sale_item_id,goods_id
+    </select>
+
+</mapper>

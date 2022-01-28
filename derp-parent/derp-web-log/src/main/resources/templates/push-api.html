@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Start content -->
+<style>
+    .item-webkit-box{
+        display: -webkit-box !important;
+        flex-flow: nowrap !important;
+    }
+    .item-webkit-box .form-control{
+        width:160px !important;
+        margin-left: 5px !important;
+    }
+</style>
+<div class="content">
+    <div class="container-fluid mt80">
+ 
+        <div class="row">
+                     <!--  title   start  -->
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                <div class="col-12 row">
+                    <div>
+                       <ol class="breadcrumb">
+                       <li><i class="block"></i> 当前位置：</li>
+                        <li class="breadcrumb-item"><a href="#">MQ日志管理</a></li>
+                                <li class="breadcrumb-item active"><a href="#">推送外部API日志</a></li>
+                    </ol>
+                    </div>
+            </div>
+                    <!--  title   end  -->
+                   <!--  过滤条件查询  start  -->
+                    <!--  ================================过滤条件 start  ===============================================   -->
+                    <form id="form1" >
+					<div class="form-inline form-group">
+                            <div class="form-group col-3 item-webkit-box">
+                                 <label for="" class="form_title">接口编码：</label>
+                                     <div th:if=" ${point} eq '1'">
+                               		<input class="form-control" type="text"  name="point" id="point" required="" >
+                                </div>
+                                <div th:if=" ${point} ne '1'">
+                               		<input class="form-control" type="text" name="point" id="point" required="" th:value="${point}">
+                               </div>
+                               <div th:if=" ${id} eq '1'">
+                               		<input type="hidden"  name="id"  required="" >
+                               	</div>
+                                <div th:if=" ${id} ne '1'">
+                               		<input type="hidden"  name="id"  required=""  th:value="${id }">
+                               	</div>
+                           </div>
+                           <div class="form-group col-3 item-webkit-box">
+                              <label for="" class="form_title">关键字 ：</label>
+                              <div th:if=" ${keyword} eq '1'">
+                               		<input class="form-control" type="text" name="keyword" id="keyword" required="" >
+                               	</div>
+                                <div th:if=" ${keyword} ne '1'">
+                               		<input class="form-control" type="text" name="keyword" id="keyword" required="" th:value="${keyword }">
+                               	</div>
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                <label for="" class="form_title">状态：</label>
+                                <select  class="form-control" name="state" id="state">
+                                </select>
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                <div class="form_btn">
+                                    <button type="button" class="btn btn-info" onclick='$mytable.fn.reload();' >查询</button>
+                                	<button type="reset" class="btn btn-light waves-effect waves-light">重置</button>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="form-inline">
+                            <div class="form-group col-3 item-webkit-box">
+                                 <label for="" class="form_title">消费时间：</label>
+                                 <input class="form-control date-input" type="text"  name="endDateStr" id="endDateStr" required="" >
+                            </div>
+                            <!-- <div class="form-group col-3 item-webkit-box">
+                                 <label for="" class="form_title">耗时：</label>
+                                 <select  class="form-control" name="difference" id="difference">
+                                 </select>
+                            </div> -->
+                            <div class="form-group col-3 item-webkit-box">
+                                  <label for="" class="form_title">查询范围：</label>
+                                  <select  class="form-control" name="selectScope" id="selectScope">
+                                   </select>
+                            </div>
+                        </div>
+                    </form>
+                    <!--  ================================过滤条件  end===============================================   -->
+                    <!-- 过滤条件查询  end  -->
+                     <div class="btn_group col-12">
+                       	<!--<button type="button" class="btn btn-info" onclick="pushMQ();">批量重推</button>-->
+                       	<button type="button" class="btn btn-find waves-effect waves-light btn_default" onclick="exportLogs();">导出</button>
+                       	<!-- <button type="button" class="btn btn-find waves-effect waves-light btn_default" id="importButton">导入重推</button> -->
+                    </div>
+                    <!--  ================================表格 ===============================================   -->
+                    <table id="datatable-buttons" class="nowrap table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                        	<th>
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" name="keeperUserGroup-checkable" class="group-checkable" />
+                                        <span></span>
+                                    </label>
+                                </th>
+                            <th>接口编码</th>
+                            <th>关键字</th>
+                            <th>接口说明</th>
+                            <th>请求时间</th>
+                            <th>消费时间</th>
+                            <th>耗时</th>
+                            <th>描述</th>
+                            <th style="width:50px;">状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tBody">
+                        </tbody>
+                    </table>
+                    <!--  ================================表格  end ===============================================   -->
+            </div>
+            </div>
+                <!--======================Modal框===========================  -->
+        </div>
+        <!-- End row -->
+        <!-- end row -->
+    </div> <!-- container -->
+</div> <!-- content -->
+
+<!--======================Modal框===========================  -->
+<div th:include="modals/s001"></div>
+<div th:include="common/common"></div>
+<style>
+	.input_msg{color: #495057;}
+    .fail{background: #f00;color: #fff;padding: 4px 6px;border-radius: 3px;}
+    .success{background: #6ea9f3;color: #fff;padding: 4px 6px;border-radius: 3px;}
+</style>
+<script type="text/javascript">
+$module.constant.getConstantListByNameURL.call($('select[name="state"]')[0],"log_statusList",null);
+$module.constant.getConstantListByNameURL.call($('select[name="selectScope"]')[0],"log_selectScopeList","1");
+$module.constant.getConstantListByNameURL.call($('select[name="difference"]')[0],"log_differenceList",null);
+    $(document).ready(function() {
+    	var listURL = $module.fn.getModuleUrl(moduleCode,"/pushapilog/list.asyn");
+        //重推地址
+        var resetSend = $module.fn.getModuleUrl(moduleCode,"/pushapilog/resetSend.asyn");
+        $m001.params.resetSendURL=resetSend+'?r='+Math.random();
+        //初始化
+        $mytable.fn.init();
+        //清空json中数据
+        $m001.params.jsonMessage={};
+        //配置表格参数
+        $mytable.params={
+            url:listURL+'?r='+Math.random(),
+            columns:[
+				{ //复选框单元格
+				    className: "td-checkbox",
+				    orderable: false,
+				    width: "30px",
+				    data: null,
+				    render: function (data, type, row, meta) {
+				        return '<input type="checkbox" class="iCheck">';
+				    }
+				},
+                {data:'point'},{data:'keyword'},{data:'model'},{data:'startDate'},{data:'endDate'},{data:'endDate'},{data:'desc'},{data:'state'},
+                { //操作
+                    orderable: false,
+                    width: "100px",
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        $m001.params.jsonMessage[row.id]=row;
+                        return '<a   href="javascript:;"   onclick="$m001.init(\''+row.id+'\')" >查看报文</a>';
+                    }
+                },
+            ],
+            formid:'#form1'
+        }
+        //每一行都进行 回调
+        $mytable.rewriter.fnRowCallback=function(nRow, aData, iDisplayIndex){
+            //开始时间
+            if (aData.startDate!= null) {
+                var date = new Date(aData.startDate);
+                $('td:eq(4)', nRow).html(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+            }
+            if (aData.endDate!= null) {
+                var date = new Date(aData.endDate);
+                $('td:eq(5)', nRow).html(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+            }
+            //耗时
+                $('td:eq(6)', nRow).html((aData.endDate/1000-aData.startDate/1000).toFixed(2)+"秒");
+            //状态
+            if(aData.state==0){
+                $('td:eq(8)', nRow).html('<span class="fail">失败</span>');
+            }else if(aData.state==1){
+                $('td:eq(8)', nRow).html('<span class="success">成功</span>');
+            }else if(aData.state==3){
+                $('td:eq(8)', nRow).html('<span class="success">重推成功</span>');
+            }else if(aData.state==2){
+                $('td:eq(8)', nRow).html('<span class="closed">已关闭</span>');
+            }
+
+
+        };
+        //生成列表信息s
+        $('#datatable-buttons').mydatatables();
+        //时间插件
+        $('.date-input').mydate();
+        //时间初始化
+        $('[type="reset"]').click();
+        
+      //全选
+	    $("input[name='keeperUserGroup-checkable']").on("change", function(){
+	        if($(this).is(':checked')){
+	            $(":checkbox", '#datatable-buttons').prop("checked",$(this).prop("checked"));
+	        }else{
+	            $(":checkbox", '#datatable-buttons').prop("checked",false);
+	        }
+	    })
+    } );
+    
+    // 点击展开功能
+    $(".unfold").click(function () {
+        $(".form_con").toggleClass('hauto');
+        if($(this).text() == '展开功能'){
+            $(this).text('收起功能');
+        }else{
+            $(this).text('展开功能');
+        }
+    })
+    
+    /**
+     * 全选
+     */
+    $('#datatable-buttons').on("change", ":checkbox", function() {
+        // 列表复选框
+        if ($(this).is("[name='keeperUserGroup-checkable']")) {
+            // 全选
+            $(":checkbox", '#datatable-buttons').prop("checked",$(this).prop("checked"));
+            if($(this).is(':checked')){
+                $('#datatable-buttons tbody tr').addClass('success');
+            }else{
+                $('#datatable-buttons tbody tr').removeClass('success');
+            }
+        }else{
+            // 一般复选
+            var checkbox = $("tbody :checkbox", '#datatable-buttons');
+            $(":checkbox[name='cb-check-all']", '#datatable-buttons').prop('checked', checkbox.length == checkbox.filter(':checked').length);
+            $(this).parents('tr').toggleClass('success');
+        }
+    });
+    
+    //批量重推
+    function pushMQ(){
+    	var ids=$mytable.fn.getCheckedRow();
+        if(ids==null||ids==''||ids==undefined){
+            $custom.alert.warningText("至少选择一条记录！");
+            return ;
+        }
+        $custom.alert.warning("确定确认选中对象？",function(){
+        	var pushMQURL = $module.fn.getModuleUrl(moduleCode,"/pushapilog/batchResetSend.asyn");
+            $custom.request.ajax(pushMQURL+'?r='+Math.random(),{"ids":ids},function(data){
+                if(data.state==200){
+                    $custom.alert.success("批量重推成功");
+                    //删除成功，重新加载页面
+                    $mytable.fn.reload();
+                }else{
+                    $custom.alert.error("批量重推失败");
+                }
+            });
+        });
+    }
+
+    //导出
+    function exportLogs(){
+    	var point = $("#point").val();
+    	var keyword = $("#keyword").val();
+    	var state = $("#state").val();
+    	var endDateStr = $("#endDateStr").val();
+    	
+    	var selectScope = $("#selectScope").val();
+    	var countURL = $module.fn.getModuleUrl(moduleCode,"/pushapilog/count.asyn");
+    	$custom.request.ajax(countURL+'?r='+Math.random(),
+    			{"point":point,"keyword":keyword,"state":state,"endDateStr":endDateStr,"selectScope":selectScope},function(data){
+    				var count=data.data;
+    				if (count>50000) {
+    					$custom.alert.error("导出数量不能超过50000条");
+    					return false;
+					} 
+	    	$custom.alert.warning("导出数量有"+data.data+"，是否确认导出？",function(){
+	    		var exportURL = $module.fn.getModuleUrl(moduleCode,"/pushapilog/exportLogs.asyn?point="+point+"&keyword="+keyword+"&state="+state+"&endDateStr="+endDateStr+"&selectScope="+selectScope);
+            	location.href=exportURL;
+        	});
+    	});
+    }
+
+    
+</script>

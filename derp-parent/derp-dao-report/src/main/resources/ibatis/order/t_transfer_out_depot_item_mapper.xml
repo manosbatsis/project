@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.TransferOutDepotItemMapper'>
+
+        <!-- 关系映射 -->
+    <resultMap id="TransferOutDepotItemModelMap" type="TransferOutDepotItemModel" >
+                <result property="overdueDate" column="overdue_date" />
+                <result property="outGoodsCode" column="out_goods_code" />
+                <result property="transferDepotId" column="transfer_depot_id" />
+                <result property="outGoodsName" column="out_goods_name" />
+                <result property="transferBatchNo" column="transfer_batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="outGoodsId" column="out_goods_id" />
+                <result property="transferNum" column="transfer_num" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="barcode" column="barcode" />
+                <result property="outGoodsNo" column="out_goods_no" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="outCommbarcode" column="out_commbarcode" />
+                <result property="expireNum" column="expire_num" />
+                <result property="wornNum" column="worn_num" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TransferOutDepotItemModelMap' parameterType='TransferOutDepotItemModel'>
+        select <include refid='sql_columns' /> from t_transfer_out_depot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TransferOutDepotItemModelMap' parameterType='TransferOutDepotItemModel'>
+        select <include refid='sql_columns' /> from t_transfer_out_depot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TransferOutDepotItemModelMap' parameterType='TransferOutDepotItemModel' >
+        select <include refid='sql_columns' /> from t_transfer_out_depot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TransferOutDepotItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_transfer_out_depot_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' > out_goods_code , </if>
+                <if test='transferDepotId!=null' > transfer_depot_id , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' > out_goods_name , </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' > transfer_batch_no , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='outGoodsId!=null' > out_goods_id , </if>
+                <if test='transferNum!=null' > transfer_num , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' > out_goods_no , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='outCommbarcode!=null and !"".equals(outCommbarcode)' > out_commbarcode , </if>
+                <if test='expireNum!=null' > expire_num , </if>
+                <if test='wornNum!=null' > worn_num , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' > #{outGoodsCode} , </if>
+                <if test='transferDepotId!=null' > #{transferDepotId} , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' > #{outGoodsName} , </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' > #{transferBatchNo} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='outGoodsId!=null' > #{outGoodsId} , </if>
+                <if test='transferNum!=null' > #{transferNum} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' > #{outGoodsNo} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='modifyDate!=null' > #{modify_date} , </if>
+                <if test='outCommbarcode!=null and !"".equals(outCommbarcode)' > #{outCommbarcode} , </if>
+                <if test='expireNum!=null' > #{expireNum} , </if>
+                <if test='wornNum!=null' > #{wornNum} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TransferOutDepotItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_transfer_out_depot_item SET
+        <trim  suffixOverrides=",">
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' >out_goods_code= #{outGoodsCode} , </if>
+                <if test='transferDepotId!=null' > transfer_depot_id= #{transferDepotId} , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' >out_goods_name= #{outGoodsName} , </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' >transfer_batch_no= #{transferBatchNo} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='outGoodsId!=null' > out_goods_id= #{outGoodsId} , </if>
+                <if test='transferNum!=null' > transfer_num= #{transferNum} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >out_goods_no= #{outGoodsNo} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='outCommbarcode!=null and !"".equals(outCommbarcode)' >out_commbarcode= #{outCommbarcode} , </if>
+                <if test='expireNum!=null' > expire_num= #{expireNum} , </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_transfer_out_depot_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_transfer_out_depot_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        overdue_date,
+        out_goods_code,
+        transfer_depot_id,
+        out_goods_name,
+        transfer_batch_no,
+        production_date,
+        out_goods_id,
+        transfer_num,
+        creater,
+        id,
+        tallying_unit,
+        barcode,
+        out_goods_no,
+        create_date,
+        modify_date,
+        out_commbarcode,
+        expire_num,
+        worn_num
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' >out_goods_code= #{outGoodsCode} and </if>
+                <if test='transferDepotId!=null' > transfer_depot_id= #{transferDepotId} and </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' >out_goods_name= #{outGoodsName} and </if>
+                <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' >transfer_batch_no= #{transferBatchNo} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='outGoodsId!=null' > out_goods_id= #{outGoodsId} and </if>
+                <if test='transferNum!=null' > transfer_num= #{transferNum} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >out_goods_no= #{outGoodsNo} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='outCommbarcode!=null and !"".equals(outCommbarcode)' >out_commbarcode= #{outCommbarcode} and </if>
+                <if test='expireNum!=null' > expire_num= #{expireNum} and </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} and </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!--自定义SQL-->
+    <select id="getVIPOutDepotAccount" parameterType="map" resultType="int">
+           SELECT
+                SUM(IFNULL(t1.transfer_num, 0))
+            FROM
+                t_transfer_out_depot_item t1
+            LEFT JOIN t_transfer_out_depot t2 ON t1.transfer_depot_id = t2.id
+            LEFT JOIN t_transfer_order t3 ON t2.transfer_order_id = t3.id
+            WHERE
+                t3.po_no = #{poNo}
+            AND t3.merchant_id = #{merchantId}
+            AND t2.in_depot_id = #{inDepotId}
+            AND t2.out_depot_id = #{outDepotId}
+            AND t2.status = '016'
+            AND t1.out_commbarcode = #{commbarcode}
+     </select>
+     
+     <select id="getVIPOutDepotDetails" parameterType="map" resultType="map">
+           SELECT
+                t2.merchant_id as merchant_id ,
+		        t2.merchant_name as merchant_name ,
+		        t1.out_commbarcode as commbarcode ,
+		        t1.out_goods_name as goods_name ,
+		        t1.out_goods_id as goods_id ,
+		        t1.out_goods_no as goods_no ,
+		        t1.create_date as create_date ,
+                t1.modify_date as modify_date ,
+		        t3.po_no as po_no ,
+		        t2.transfer_order_code as transfer_order , 
+		        t2.code as transfer_depot_order ,
+		        t1.transfer_num as transfer_num , 
+		        t2.transfer_date as transfer_time 
+            FROM
+                t_transfer_out_depot_item t1
+            LEFT JOIN t_transfer_out_depot t2 ON t1.transfer_depot_id = t2.id
+            LEFT JOIN t_transfer_order t3 ON t2.transfer_order_id = t3.id
+            WHERE
+                t3.po_no = #{poNo}
+            AND t3.merchant_id = #{merchantId}
+            AND t2.in_depot_id = #{inDepotId}
+            AND t2.out_depot_id = #{outDepotId}
+            AND t2.status = '016'
+            AND t1.out_commbarcode = #{commbarcode}
+     </select>
+
+</mapper>

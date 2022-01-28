@@ -1,0 +1,1185 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.OrderMapper'>
+
+   <!-- 关系映射 -->
+        <resultMap id="OrderModelMap" type="OrderModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="externalCode" column="external_code" />
+                <result property="wayBillNo" column="way_bill_no" />
+                <result property="tradingDate" column="trading_date" />
+                <result property="status" column="status" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="auditDate" column="audit_date" />
+                <result property="declareDate" column="declare_date" />
+                <result property="releaseDate" column="release_date" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="logisticsName" column="logistics_name" />
+                <result property="importMode" column="import_mode" />
+                <result property="makerTel" column="maker_tel" />
+                <result property="makerName" column="maker_name" />
+                <result property="makerRegisterNo" column="maker_register_no" />
+                <result property="receiverName" column="receiver_name" />
+                <result property="receiverTel" column="receiver_tel" />
+                <result property="receiverCountry" column="receiver_country" />
+                <result property="receiverProvince" column="receiver_province" />
+                <result property="receiverCity" column="receiver_city" />
+                <result property="receiverArea" column="receiver_area" />
+                <result property="receiverAddress" column="receiver_address" />
+                <result property="orderSource" column="order_source" />
+                <result property="declarePlan" column="declare_plan" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="inspectStatus" column="inspect_status" />
+                <result property="customsStatus" column="customs_status" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="remark" column="remark" />
+                <result property="creater" column="creater" />
+                <result property="createDate" column="create_date" />
+                <result property="wayFrtFee" column="way_frt_fee" />
+                <result property="wayIndFee" column="way_ind_fee" />
+                <result property="taxes" column="taxes" />
+                <result property="goodsAmount" column="goods_amount" />
+                <result property="payment" column="payment" />
+                <result property="discount" column="discount" />
+                <result property="makingTime" column="making_time" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="saleCom" column="sale_com" />
+                <result property="currency" column="currency" />
+                <result property="shopTypeCode" column="shop_type_code" />
+                <result property="exOrderId" column="ex_order_id" />
+                <result property="weight" column="weight" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="isGenerate" column="is_generate" />
+                <result property="tradePayment" column="trade_payment" />
+                <result property="tradePaymentTax" column="trade_payment_tax" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OrderModelMap' parameterType='OrderModel'>
+        select <include refid='sql_columns' /> from t_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OrderModelMap' parameterType='OrderModel'>
+        select <include refid='sql_columns' /> from t_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OrderModelMap' parameterType='OrderModel' >
+        select <include refid='sql_columns' /> from t_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                        <if test='wayBillNo!=null and !"".equals(wayBillNo)' > way_bill_no , </if>
+                        <if test='tradingDate!=null' >trading_date , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+                        <if test='declareDate!=null' >declare_date , </if>
+                        <if test='releaseDate!=null' >release_date , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' > logistics_name , </if>
+                        <if test='importMode!=null and !"".equals(importMode)' > import_mode , </if>
+                        <if test='makerTel!=null and !"".equals(makerTel)' > maker_tel , </if>
+                        <if test='makerName!=null and !"".equals(makerName)' > maker_name , </if>
+                        <if test='makerRegisterNo!=null and !"".equals(makerRegisterNo)' > maker_register_no , </if>
+                        <if test='receiverName!=null and !"".equals(receiverName)' > receiver_name , </if>
+                        <if test='receiverTel!=null and !"".equals(receiverTel)' > receiver_tel , </if>
+                        <if test='receiverCountry!=null and !"".equals(receiverCountry)' > receiver_country , </if>
+                        <if test='receiverProvince!=null and !"".equals(receiverProvince)' > receiver_province , </if>
+                        <if test='receiverCity!=null and !"".equals(receiverCity)' > receiver_city , </if>
+                        <if test='receiverArea!=null and !"".equals(receiverArea)' > receiver_area , </if>
+                        <if test='receiverAddress!=null and !"".equals(receiverAddress)' > receiver_address , </if>
+                        <if test='orderSource!=null' >order_source , </if>
+                        <if test='declarePlan!=null' >declare_plan , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='inspectStatus!=null and !"".equals(inspectStatus)' > inspect_status , </if>
+                        <if test='customsStatus!=null and !"".equals(customsStatus)' > customs_status , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > store_platform_name , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='wayFrtFee!=null' >way_frt_fee , </if>
+                        <if test='wayIndFee!=null' >way_ind_fee , </if>
+                        <if test='taxes!=null' >taxes , </if>
+                        <if test='goodsAmount!=null' >goods_amount , </if>
+                        <if test='payment!=null' >payment , </if>
+                        <if test='discount!=null' >discount , </if>
+                        <if test='makingTime!=null' >making_time , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='saleCom!=null' >sale_com , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > shop_type_code , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' > ex_order_id , </if>
+                        <if test='weight!=null' >weight , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='isGenerate!=null and !"".equals(isGenerate)' > is_generate , </if>
+                        <if test='tradePayment!=null' >trade_payment , </if>
+                        <if test='tradePaymentTax!=null' >trade_payment_tax , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                        <if test='wayBillNo!=null and !"".equals(wayBillNo)' > #{wayBillNo} , </if>
+                        <if test='tradingDate!=null' > #{tradingDate} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+                        <if test='declareDate!=null' > #{declareDate} , </if>
+                        <if test='releaseDate!=null' > #{releaseDate} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' > #{logisticsName} , </if>
+                        <if test='importMode!=null and !"".equals(importMode)' > #{importMode} , </if>
+                        <if test='makerTel!=null and !"".equals(makerTel)' > #{makerTel} , </if>
+                        <if test='makerName!=null and !"".equals(makerName)' > #{makerName} , </if>
+                        <if test='makerRegisterNo!=null and !"".equals(makerRegisterNo)' > #{makerRegisterNo} , </if>
+                        <if test='receiverName!=null and !"".equals(receiverName)' > #{receiverName} , </if>
+                        <if test='receiverTel!=null and !"".equals(receiverTel)' > #{receiverTel} , </if>
+                        <if test='receiverCountry!=null and !"".equals(receiverCountry)' > #{receiverCountry} , </if>
+                        <if test='receiverProvince!=null and !"".equals(receiverProvince)' > #{receiverProvince} , </if>
+                        <if test='receiverCity!=null and !"".equals(receiverCity)' > #{receiverCity} , </if>
+                        <if test='receiverArea!=null and !"".equals(receiverArea)' > #{receiverArea} , </if>
+                        <if test='receiverAddress!=null and !"".equals(receiverAddress)' > #{receiverAddress} , </if>
+                        <if test='orderSource!=null' > #{orderSource} , </if>
+                        <if test='declarePlan!=null' > #{declarePlan} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='inspectStatus!=null and !"".equals(inspectStatus)' > #{inspectStatus} , </if>
+                        <if test='customsStatus!=null and !"".equals(customsStatus)' > #{customsStatus} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > #{storePlatformName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='wayFrtFee!=null' > #{wayFrtFee} , </if>
+                        <if test='wayIndFee!=null' > #{wayIndFee} , </if>
+                        <if test='taxes!=null' > #{taxes} , </if>
+                        <if test='goodsAmount!=null' > #{goodsAmount} , </if>
+                        <if test='payment!=null' > #{payment} , </if>
+                        <if test='discount!=null' > #{discount} , </if>
+                        <if test='makingTime!=null' > #{makingTime} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='saleCom!=null' > #{saleCom} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > #{shopTypeCode} , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' > #{exOrderId} , </if>
+                        <if test='weight!=null' > #{weight} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='isGenerate!=null and !"".equals(isGenerate)' > #{isGenerate} , </if>
+                        <if test='tradePayment!=null' > #{tradePayment} , </if>
+                        <if test='tradePaymentTax!=null' > #{tradePaymentTax} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                        <if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} , </if>
+                        <if test='tradingDate!=null' > trading_date= #{tradingDate} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+                        <if test='declareDate!=null' > declare_date= #{declareDate} , </if>
+                        <if test='releaseDate!=null' > release_date= #{releaseDate} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} , </if>
+                        <if test='importMode!=null and !"".equals(importMode)' >import_mode= #{importMode} , </if>
+                        <if test='makerTel!=null and !"".equals(makerTel)' >maker_tel= #{makerTel} , </if>
+                        <if test='makerName!=null and !"".equals(makerName)' >maker_name= #{makerName} , </if>
+                        <if test='makerRegisterNo!=null and !"".equals(makerRegisterNo)' >maker_register_no= #{makerRegisterNo} , </if>
+                        <if test='receiverName!=null and !"".equals(receiverName)' >receiver_name= #{receiverName} , </if>
+                        <if test='receiverTel!=null and !"".equals(receiverTel)' >receiver_tel= #{receiverTel} , </if>
+                        <if test='receiverCountry!=null and !"".equals(receiverCountry)' >receiver_country= #{receiverCountry} , </if>
+                        <if test='receiverProvince!=null and !"".equals(receiverProvince)' >receiver_province= #{receiverProvince} , </if>
+                        <if test='receiverCity!=null and !"".equals(receiverCity)' >receiver_city= #{receiverCity} , </if>
+                        <if test='receiverArea!=null and !"".equals(receiverArea)' >receiver_area= #{receiverArea} , </if>
+                        <if test='receiverAddress!=null and !"".equals(receiverAddress)' >receiver_address= #{receiverAddress} , </if>
+                        <if test='orderSource!=null' > order_source= #{orderSource} , </if>
+                        <if test='declarePlan!=null' > declare_plan= #{declarePlan} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='inspectStatus!=null and !"".equals(inspectStatus)' >inspect_status= #{inspectStatus} , </if>
+                        <if test='customsStatus!=null and !"".equals(customsStatus)' >customs_status= #{customsStatus} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} , </if>
+                        <if test='wayIndFee!=null' > way_ind_fee= #{wayIndFee} , </if>
+                        <if test='taxes!=null' > taxes= #{taxes} , </if>
+                        <if test='goodsAmount!=null' > goods_amount= #{goodsAmount} , </if>
+                        <if test='payment!=null' > payment= #{payment} , </if>
+                        <if test='discount!=null' > discount= #{discount} , </if>
+                        <if test='makingTime!=null' > making_time= #{makingTime} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='saleCom!=null' > sale_com= #{saleCom} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} , </if>
+                        <if test='weight!=null' > weight= #{weight} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='isGenerate!=null and !"".equals(isGenerate)' >is_generate= #{isGenerate} , </if>
+                        <if test='tradePayment!=null' > trade_payment= #{tradePayment} , </if>
+                        <if test='tradePaymentTax!=null' > trade_payment_tax= #{tradePaymentTax} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            external_code,
+            way_bill_no,
+            trading_date,
+            status,
+            depot_id,
+            depot_name,
+            audit_date,
+            declare_date,
+            release_date,
+            deliver_date,
+            logistics_name,
+            import_mode,
+            maker_tel,
+            maker_name,
+            maker_register_no,
+            receiver_name,
+            receiver_tel,
+            receiver_country,
+            receiver_province,
+            receiver_city,
+            receiver_area,
+            receiver_address,
+            order_source,
+            declare_plan,
+            merchant_name,
+            merchant_id,
+            inspect_status,
+            customs_status,
+            store_platform_name,
+            remark,
+            creater,
+            create_date,
+            way_frt_fee,
+            way_ind_fee,
+            taxes,
+            goods_amount,
+            payment,
+            discount,
+            making_time,
+            modify_date,
+            customer_id,
+            customer_name,
+            shop_code,
+            shop_name,
+            sale_com,
+            currency,
+            shop_type_code,
+            ex_order_id,
+            weight,
+            tallying_unit,
+            is_generate,
+            trade_payment,
+            trade_payment_tax
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} and </if>
+                            <if test='tradingDate!=null' > trading_date= #{tradingDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                            <if test='declareDate!=null' > declare_date= #{declareDate} and </if>
+                            <if test='releaseDate!=null' > release_date= #{releaseDate} and </if>
+                            <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                            <if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} and </if>
+                            <if test='importMode!=null and !"".equals(importMode)' >import_mode= #{importMode} and </if>
+                            <if test='makerTel!=null and !"".equals(makerTel)' >maker_tel= #{makerTel} and </if>
+                            <if test='makerName!=null and !"".equals(makerName)' >maker_name= #{makerName} and </if>
+                            <if test='makerRegisterNo!=null and !"".equals(makerRegisterNo)' >maker_register_no= #{makerRegisterNo} and </if>
+                            <if test='receiverName!=null and !"".equals(receiverName)' >receiver_name= #{receiverName} and </if>
+                            <if test='receiverTel!=null and !"".equals(receiverTel)' >receiver_tel= #{receiverTel} and </if>
+                            <if test='receiverCountry!=null and !"".equals(receiverCountry)' >receiver_country= #{receiverCountry} and </if>
+                            <if test='receiverProvince!=null and !"".equals(receiverProvince)' >receiver_province= #{receiverProvince} and </if>
+                            <if test='receiverCity!=null and !"".equals(receiverCity)' >receiver_city= #{receiverCity} and </if>
+                            <if test='receiverArea!=null and !"".equals(receiverArea)' >receiver_area= #{receiverArea} and </if>
+                            <if test='receiverAddress!=null and !"".equals(receiverAddress)' >receiver_address= #{receiverAddress} and </if>
+                            <if test='orderSource!=null' > order_source= #{orderSource} and </if>
+                            <if test='declarePlan!=null' > declare_plan= #{declarePlan} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='inspectStatus!=null and !"".equals(inspectStatus)' >inspect_status= #{inspectStatus} and </if>
+                            <if test='customsStatus!=null and !"".equals(customsStatus)' >customs_status= #{customsStatus} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} and </if>
+                            <if test='wayIndFee!=null' > way_ind_fee= #{wayIndFee} and </if>
+                            <if test='taxes!=null' > taxes= #{taxes} and </if>
+                            <if test='goodsAmount!=null' > goods_amount= #{goodsAmount} and </if>
+                            <if test='payment!=null' > payment= #{payment} and </if>
+                            <if test='discount!=null' > discount= #{discount} and </if>
+                            <if test='makingTime!=null' > making_time= #{makingTime} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='saleCom!=null' > sale_com= #{saleCom} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                            <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} and </if>
+                            <if test='weight!=null' > weight= #{weight} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='isGenerate!=null and !"".equals(isGenerate)' >is_generate= #{isGenerate} and </if>
+                            <if test='tradePayment!=null' > trade_payment= #{tradePayment} and </if>
+                            <if test='tradePaymentTax!=null' > trade_payment_tax= #{tradePaymentTax} and </if>
+                            status != "006" and
+                </trim>
+            </where>
+        </sql>
+
+<!--自定义SQL-->
+	<!-- 查询条件 -->
+	<sql id='sql_where_page'>
+		<where>
+            <trim suffixOverrides='and'>
+            	<if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                <if test='code!=null and !"".equals(code)' >t.code= #{code} and </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' >t.external_code= #{externalCode} and </if>
+               <if test='tradingStartDate!=null and !"".equals(tradingStartDate)' >
+                   date_format(trading_date,'%Y-%m-%d %H:%i:%S') &gt;= #{tradingStartDate} and
+                </if>
+                <if test='tradingEndDate!=null and !"".equals(tradingEndDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &lt;= #{tradingEndDate} and
+                </if>
+                <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+                </if>
+                <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &lt;= #{deliverEndDate} and
+                </if>
+                <if test='depotId!=null' > t.depot_id= #{depotId} and </if>
+                <if test='wayBillNo!=null and !"".equals(wayBillNo)' >t.way_bill_no= #{wayBillNo} and </if>
+                <if test='status!=null and !"".equals(status)' >t.status= #{status} and </if>
+                <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                <if test='orderSource!=null' > order_source= #{orderSource} and </if>
+                <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} and </if>
+                <if test='ids!=null and !"".equals(ids)' >t.id in
+                    <foreach collection="ids.split(',')"  item='id' separator=',' open='(' close=')'>
+                        #{id}
+                    </foreach>
+                    and
+                </if>
+                <if test='externalCodeList!=null and externalCodeList.size() > 0' >t.external_code in
+                    <foreach collection="externalCodeList"  item='externalCode' separator=',' open='(' close=')'>
+                        #{externalCode}
+                    </foreach>
+                    and
+                </if>
+                 t.status != "006" and
+            </trim>
+        </where>
+    </sql>
+	<resultMap id="OrderModelMap1" type="OrderModel" >
+				<result property="shopCode" column="shop_code" />
+				<result property="shopName" column="shop_name" />
+            	<result property="depotName" column="depot_name" />
+                <result property="makerTel" column="maker_tel" />
+                <result property="declareDate" column="declare_date" />
+                <result property="importMode" column="import_mode" />
+                <result property="receiverTel" column="receiver_tel" />
+                <result property="code" column="code" />
+                <result property="externalCode" column="external_code" />
+                <result property="tradingDate" column="trading_date" />
+                <result property="goodsAmount" column="goods_amount" />
+                <result property="depotId" column="depot_id" />
+                <result property="taxes" column="taxes" />
+                <result property="receiverProvince" column="receiver_province" />
+                <result property="remark" column="remark" />
+                <result property="declarePlan" column="declare_plan" />
+                <result property="receiverCity" column="receiver_city" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="receiverCountry" column="receiver_country" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="payment" column="payment" />
+                <result property="id" column="id" />
+                <result property="makerName" column="maker_name" />
+                <result property="auditDate" column="audit_date" />
+                <result property="createDate" column="create_date" />
+                <result property="depotName" column="depot_name" />
+                <result property="orderSource" column="order_source" />
+                <result property="releaseDate" column="release_date" />
+                <result property="receiverName" column="receiver_name" />
+                <result property="receiverArea" column="receiver_area" />
+                <result property="makerRegisterNo" column="maker_register_no" />
+                <result property="inspectStatus" column="inspect_status" />
+                <result property="wayFrtFee" column="way_frt_fee" />
+                <result property="logisticsName" column="logistics_name" />
+                <result property="receiverAddress" column="receiver_address" />
+                <result property="wayIndFee" column="way_ind_fee" />
+                <result property="creater" column="creater" />
+                <result property="wayBillNo" column="way_bill_no" />
+                <result property="status" column="status" />
+                <result property="customsStatus" column="customs_status" />
+
+               <collection property="itemList" javaType="list" ofType="OrderItemModel" column="s_id">
+                	<result property="goodsId" column="goods_id" />
+	                <result property="price" column="price" />
+	                <result property="num" column="num" />
+	                <result property="goodsCode" column="goods_code" />
+	                <result property="decTotal" column="dec_total" />
+	                <result property="goodsName" column="goods_name" />
+	                <result property="barcode" column="barcode" />
+	                <result property="originalPrice" column="original_price" />
+                	<result property="originalDecTotal" column="original_dec_total" />
+	                <!-- 拓展字段 -->
+	                <result property="batchNo" column="batch_no" />
+	                <result property="goodsNo" column="goods_no" />
+	                <result property="productionDate" column="production_date" />
+	                <result property="overdueDate" column="overdue_date" />
+               </collection>
+    </resultMap>
+
+    	<resultMap id="OrderModelMap2" type="OrderDTO" >
+				<result property="shopName" column="shop_name" />
+            	<result property="depotName" column="depot_name" />
+                <result property="externalCode" column="external_code" />
+                <result property="goodsAmount" column="goods_amount" />
+                <result property="depotId" column="depot_id" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="id" column="id" />
+                <result property="depotName" column="depot_name" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="goodsId" column="goods_id" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="itemId" column="item_id" />
+    </resultMap>
+
+
+
+	<!-- 查询所有信息 分页 -->
+    <select id='listOrderAndItemByPage' resultType='OrderDTO' parameterType='OrderDTO'>
+        select t.*,t1.goods_id,t1.goods_name,t1.num,t1.price,t1.dec_total,t1.goods_code,t1.barcode,t1.goods_no
+        from t_order t
+        left join t_order_item t1 on t1.order_id=t.id
+        <include refid='sql_where_page' />
+		order by t.id desc
+    </select>
+
+	<!-- 查询所有信息 -->
+    <select id="queryList" resultType='Integer' parameterType='OrderModel'>
+        select count(*)from t_order t <include refid='sql_where_page' />
+    </select>
+
+    <!-- 统计信息数量 -->
+    <select id="queryDtoListCount" resultType='Integer' parameterType='OrderDto'>
+        select count(id) from t_order t
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='makerTel!=null and !"".equals(makerTel)' >maker_tel= #{makerTel} and </if>
+                <if test='declareDate!=null' > declare_date= #{declareDate} and </if>
+                <if test='importMode!=null and !"".equals(importMode)' >import_mode= #{importMode} and </if>
+                <if test='receiverTel!=null and !"".equals(receiverTel)' >receiver_tel= #{receiverTel} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                <if test='tradingStartDate!=null and !"".equals(tradingStartDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &gt;= #{tradingStartDate} and
+                </if>
+                <if test='tradingEndDate!=null and !"".equals(tradingEndDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &lt;= #{tradingEndDate} and
+                </if>
+                <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+                </if>
+                <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &lt;= #{deliverEndDate} and
+                </if>
+                <if test='goodsAmount!=null' > goods_amount= #{goodsAmount} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='taxes!=null' > taxes= #{taxes} and </if>
+                <if test='discount!=null' > discount= #{discount} and </if>
+                <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                <if test='receiverProvince!=null and !"".equals(receiverProvince)' >receiver_province= #{receiverProvince} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='declarePlan!=null' > declare_plan= #{declarePlan} and </if>
+                <if test='receiverCity!=null and !"".equals(receiverCity)' >receiver_city= #{receiverCity} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='storePlatformName!=null and !"".equals(storePlatformName) ' >store_platform_name= #{storePlatformName} and </if>
+
+				<if test='receiverCountry!=null and !"".equals(receiverCountry)' >receiver_country= #{receiverCountry} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                <if test='payment!=null' > payment= #{payment} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='makerName!=null and !"".equals(makerName)' >maker_name= #{makerName} and </if>
+                <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='makingTime!=null' > making_time= #{makingTime} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='orderSource!=null' > order_source= #{orderSource} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='releaseDate!=null' > release_date= #{releaseDate} and </if>
+                <if test='receiverName!=null and !"".equals(receiverName)' >receiver_name= #{receiverName} and </if>
+                <if test='receiverArea!=null and !"".equals(receiverArea)' >receiver_area= #{receiverArea} and </if>
+                <if test='makerRegisterNo!=null and !"".equals(makerRegisterNo)' >maker_register_no= #{makerRegisterNo} and </if>
+                <if test='inspectStatus!=null and !"".equals(inspectStatus)' >inspect_status= #{inspectStatus} and </if>
+                <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} and </if>
+                <if test='receiverAddress!=null and !"".equals(receiverAddress)' >receiver_address= #{receiverAddress} and </if>
+                <if test='wayIndFee!=null' > way_ind_fee= #{wayIndFee} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='customsStatus!=null and !"".equals(customsStatus)' >customs_status= #{customsStatus} and </if>
+                <if test='orderSource!=null' > order_source= #{orderSource} and </if>
+                <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} and </if>
+                <if test='isGenerate!=null and !"".equals(isGenerate)' >is_generate= #{isGenerate} and </if>
+                <if test='ids!=null and !"".equals(ids)' > id in
+	                <foreach collection="ids.split(',')"  item='id' separator=',' open='(' close=')'>
+			            #{id}
+			        </foreach>
+			        and
+                </if>
+            	  status != '006' and
+            </trim>
+        </where>
+    </select>
+
+    <!-- 根据条件查询需要导出的数据 -->
+    <select id="getExportOrderMap" resultType='Map' parameterType='OrderDTO'>
+		select t.*,
+		t2.goods_no,
+		t2.goods_code,
+		t2.goods_name,
+		t2.price,t2.num ,
+		t2.barcode,
+		t.sale_com,
+		t2.dec_total,
+		t2.original_price,
+		t2.original_dec_total,
+		t2.goods_discount,
+		t2.sale_com as goods_sale_com,
+		t2.tax as goods_tax,
+		t2.bu_name,
+        t2.trade_dec_total,
+        t2.trade_dec_tax,
+        t2.goods_id,
+        t2.stock_location_type_name
+        from t_order_item t2
+        left join  t_order t on t.id = t2.order_id
+       <include refid='sql_where_page' />
+       order by t.id desc limit ${begin},${pageSize}
+    </select>
+
+
+	<!-- 根据外部订单号查询电商订单 抓取第e仓电商订单和抓取跨境宝订单100数据专用 -->
+	 <select id="selectByExternalCode"  resultMap='OrderModelMap' parameterType='java.util.ArrayList' >
+         SELECT id, code, external_code from t_order where external_code in
+        <foreach collection='list' item='externalCode' separator=',' open='(' close=')'>
+            #{externalCode}
+        </foreach>
+        <if test='merchantId!=null' > and merchant_id= #{merchantId} </if>
+         and status != "006"
+    </select>
+    <!-- 查询所有信息 分页 -->
+    <select id='newDtoListByPage' resultType='OrderDto' parameterType='OrderDto'>
+        select <include refid='sql_columns' /> from t_order t
+                  <where>
+            <trim suffixOverrides='and'>
+                <if test='makerTel!=null and !"".equals(makerTel)' >maker_tel= #{makerTel} and </if>
+                <if test='declareDate!=null' > declare_date= #{declareDate} and </if>
+                <if test='importMode!=null and !"".equals(importMode)' >import_mode= #{importMode} and </if>
+                <if test='receiverTel!=null and !"".equals(receiverTel)' >receiver_tel= #{receiverTel} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                <if test='tradingStartDate!=null and !"".equals(tradingStartDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &gt;= #{tradingStartDate} and
+                </if>
+                <if test='tradingEndDate!=null and !"".equals(tradingEndDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &lt;= #{tradingEndDate} and
+                </if>
+                <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+                </if>
+                <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &lt;= #{deliverEndDate} and
+                </if>
+                <if test='goodsAmount!=null' > goods_amount= #{goodsAmount} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='taxes!=null' > taxes= #{taxes} and </if>
+                <if test='discount!=null' > discount= #{discount} and </if>
+                <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                <if test='receiverProvince!=null and !"".equals(receiverProvince)' >receiver_province= #{receiverProvince} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='declarePlan!=null' > declare_plan= #{declarePlan} and </if>
+                <if test='receiverCity!=null and !"".equals(receiverCity)' >receiver_city= #{receiverCity} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='storePlatformName!=null and !"".equals(storePlatformName) ' >store_platform_name= #{storePlatformName} and </if>
+          	    <if test='receiverCountry!=null and !"".equals(receiverCountry)' >receiver_country= #{receiverCountry} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                <if test='payment!=null' > payment= #{payment} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='makerName!=null and !"".equals(makerName)' >maker_name= #{makerName} and </if>
+                <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='makingTime!=null' > making_time= #{makingTime} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='orderSource!=null' > order_source= #{orderSource} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='releaseDate!=null' > release_date= #{releaseDate} and </if>
+                <if test='receiverName!=null and !"".equals(receiverName)' >receiver_name= #{receiverName} and </if>
+                <if test='receiverArea!=null and !"".equals(receiverArea)' >receiver_area= #{receiverArea} and </if>
+                <if test='makerRegisterNo!=null and !"".equals(makerRegisterNo)' >maker_register_no= #{makerRegisterNo} and </if>
+                <if test='inspectStatus!=null and !"".equals(inspectStatus)' >inspect_status= #{inspectStatus} and </if>
+                <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} and </if>
+                <if test='receiverAddress!=null and !"".equals(receiverAddress)' >receiver_address= #{receiverAddress} and </if>
+                <if test='wayIndFee!=null' > way_ind_fee= #{wayIndFee} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='customsStatus!=null and !"".equals(customsStatus)' >customs_status= #{customsStatus} and </if>
+                <if test='orderSource!=null' > order_source= #{orderSource} and </if>
+                <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} and </if>
+                <if test='isGenerate!=null and !"".equals(isGenerate)' >is_generate= #{isGenerate} and </if>
+            	  status != "006" and
+            </trim>
+        </where>
+    	order by id desc
+    </select>
+
+    <select id="getImportOrderCountByIds" resultType="int" parameterType='java.util.ArrayList'>
+    	SELECT COUNT(1) FROM t_order where id in
+    	<foreach collection='ids' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    	 and order_source = '2'
+    </select>
+    <!-- 根据外部单号和商品ID查询已经发货订单 -->
+    <select id="getGoodNumByExternalCodeAndGoodsId" resultType="int"  parameterType='map' >
+		SELECT
+			SUM( num ) AS orderNum
+		FROM
+			t_order t1
+			LEFT JOIN t_order_item t2 ON t1.id = t2.order_id
+		WHERE
+			t1.external_code = #{externalCode}
+			AND t2.goods_id = #{goodsId}
+			AND t1.merchant_id = #{merchantId}
+			AND t1.status = '4'
+    </select>
+
+     <select id='searchDtoById' resultType='OrderDto' parameterType='OrderDto' >
+        select <include refid='sql_columns' /> from  t_order <include refid='sql_where' />
+    </select>
+
+
+            <!-- 查询事业部为空以及状态为出库中的数据 -->
+    <select id="businessUnitRecordExport" resultMap="OrderModelMap2"  parameterType='OrderDTO' >
+        select * from (
+            SELECT id,deliver_date,depot_id,depot_name,external_code,store_platform_name,shop_name
+            FROM t_order
+            where merchant_id= #{merchantId} and `status`='027'
+            <if test='depotId!=null' > and depot_id= #{depotId}</if>
+            <if test='storePlatformName!=null and !"".equals(storePlatformName) ' > and store_platform_name= #{storePlatformName}</if>
+            <if test='shopCode!=null and !"".equals(shopCode)' > and shop_code= #{shopCode}  </if>
+            <if test='externalCode!=null and !"".equals(externalCode)' > and external_code= #{externalCode}</if>
+        ) t1
+        INNER join (
+            SELECT id AS item_id,order_id,goods_id,goods_no,barcode,goods_name
+            FROM t_order_item
+            where bu_id IS NULL
+            <if test='goodsNo!=null and !"".equals(goodsNo)' >
+                and goods_no in
+                <foreach collection='goodsNo.split(",")' item='item' separator=',' open='(' close=')'>
+                    #{item}
+                </foreach>
+            </if>
+            <if test='barcode!=null and !"".equals(barcode)' >
+                and barcode in
+                <foreach collection='barcode.split(",")' item='item' separator=',' open='(' close=')'>
+                    #{item}
+                </foreach>
+            </if>
+            <if test='itemIdsList!=null and itemIdsList.size()>0' >
+                and id in
+                <foreach collection='itemIdsList' item='itemId' separator=',' open='(' close=')'>
+                    #{itemId}
+                </foreach>
+            </if>
+        ) t2 on t2.order_id=t1.id
+        order by t1.id desc
+
+
+    </select>
+
+
+
+
+        <!-- 查询事业部为空以及状态为出库中的数据 -->
+    <select id="listBusinessUnitRecordByPage" resultMap="OrderModelMap2"  parameterType='OrderDTO' >
+        select * from (
+            SELECT id,deliver_date,depot_id,depot_name,external_code,store_platform_name,shop_name
+            FROM t_order
+            where merchant_id= #{merchantId} and `status`='027'
+            <if test='depotId!=null' > and depot_id= #{depotId}</if>
+            <if test='storePlatformName!=null and !"".equals(storePlatformName) ' > and store_platform_name= #{storePlatformName}</if>
+            <if test='shopCode!=null and !"".equals(shopCode)' > and shop_code= #{shopCode}  </if>
+            <if test='externalCode!=null and !"".equals(externalCode)' > and external_code= #{externalCode}</if>
+        ) t1
+        INNER join (
+            SELECT id AS item_id,order_id,goods_id,goods_no,barcode,goods_name
+            FROM t_order_item
+            where bu_id IS NULL
+            <if test='goodsNo!=null and !"".equals(goodsNo)' >
+                and goods_no in
+                <foreach collection='goodsNo.split(",")' item='item' separator=',' open='(' close=')'>
+                    #{item}
+                </foreach>
+            </if>
+            <if test='barcode!=null and !"".equals(barcode)' >
+                and barcode in
+                <foreach collection='barcode.split(",")' item='item' separator=',' open='(' close=')'>
+                    #{item}
+                </foreach>
+            </if>
+        ) t2 on t2.order_id=t1.id
+        order by t1.id desc
+
+		<!--SELECT t1.external_code,t1.store_platform_name,t1.shop_name,t1.depot_name,t2.goods_id,t2.goods_no,
+		t2.barcode,t2.goods_name,t1.deliver_date,t1.id AS id,t2.id AS s_id,t1.depot_id
+		FROM t_order t1 INNER JOIN t_order_item t2
+		ON t1.id=t2.order_id
+		   <where>
+            <trim suffixOverrides='and'>
+            	<if test='depotId!=null' > t1.depot_id= #{depotId} and </if>
+            	<if test='storePlatformName!=null and !"".equals(storePlatformName) ' >t1.store_platform_name= #{storePlatformName} and </if>
+            	<if test='shopCode!=null and !"".equals(shopCode)' >t1.shop_code= #{shopCode} and </if>
+            	<if test='goodsNo!=null and !"".equals(goodsNo)' >
+					t2.goods_no in
+				 <foreach collection='goodsNo.split(",")' item='item' separator=',' open='(' close=')'>
+					#{item}
+				</foreach>
+					and
+				 </if>
+				 <if test='barcode!=null and !"".equals(barcode)' >
+					t2.barcode in
+				 <foreach collection='barcode.split(",")' item='item' separator=',' open='(' close=')'>
+					#{item}
+				</foreach>
+					and
+				 </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' >t1.external_code= #{externalCode} and </if>
+                 <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                 t2.bu_id IS NULL AND t1.`status`='027' and
+            </trim>
+        </where>
+        	order by t1.create_date desc-->
+    </select>
+    <!-- 迁移数据到历史表 -->
+    <insert id='synsMoveToHistory' parameterType='map'>
+        insert into t_order_history select t.* from t_order t
+        where t.deliver_date &lt; #{divergenceDate}
+    </insert>
+    <!-- 删除已迁移到历史表的数据 -->
+    <delete id='delMoveToHistory' parameterType='map'>
+        delete from t_order
+        where deliver_date &lt; #{divergenceDate}
+    </delete>
+    <!-- 获取表头税费运费与表体税费运费之和不等的电商订单 -->
+	<select id='getApportionOrder' resultType='Long'>
+        SELECT tt.id from (
+         SELECT
+            t.id,
+            t.create_date,
+            t.taxes as tax1,
+            t.way_frt_fee as way_frt_fee1,
+            (SELECT IFNULL(SUM(way_frt_fee),0)  from t_order_item where order_id=t.id ) as way_frt_fee,
+            (SELECT IFNULL(SUM(tax),0)  from t_order_item where order_id=t.id ) as tax
+        from t_order t
+        where  status != '006'
+        and (
+                (DATE_FORMAT(t.create_date,'%Y-%m-%d %H:%i:%S') &gt;= DATE_FORMAT(#{startDate} ,'%Y-%m-%d %H:%i:%S')
+                and DATE_FORMAT(t.create_date,'%Y-%m-%d %H:%i:%S') &lt;= DATE_FORMAT(#{endDate} ,'%Y-%m-%d %H:%i:%S') )
+                or (DATE_FORMAT(t.modify_date,'%Y-%m-%d %H:%i:%S') &gt;= DATE_FORMAT(#{startDate} ,'%Y-%m-%d %H:%i:%S')
+                and DATE_FORMAT(t.modify_date,'%Y-%m-%d %H:%i:%S') &lt;= DATE_FORMAT(#{endDate} ,'%Y-%m-%d %H:%i:%S'))
+            )
+        HAVING tax1!=tax or way_frt_fee1!=way_frt_fee
+        LIMIT 0,100) tt;
+	</select>
+
+    <select id="listOrderByDTO" resultType="OrderDTO" parameterType="OrderDTO" >
+        select
+            id,
+            code,
+            external_code,
+            deliver_date,
+            merchant_name,
+            merchant_id,
+            store_platform_name,
+            payment,
+            customer_id,
+            customer_name,
+            shop_code,
+            shop_name,
+            currency,
+            shop_type_code
+        from t_order
+        <where>
+            <trim suffixOverrides='and'>
+                status= '4' and
+                <if test='month!=null and !"".equals(month)' >
+                    date_format(deliver_date,'%Y-%m') =  #{month} and
+                </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+            </trim>
+        </where>
+        order by id
+        limit #{begin},#{pageSize}
+    </select>
+
+    <select id="countOrderByDTO" resultType="map" parameterType="OrderDTO" >
+        select
+        t.merchant_id merchantId,
+        t.shop_code shopCode,
+        t.customer_id customerId,
+        t.shop_type_code shopTypeCode,
+        t.store_platform_name storePlatformName,
+        count(0) itemNum
+        from t_order t
+        <where>
+            <trim suffixOverrides='and'>
+                t.status= '4' and
+                <if test='month!=null and !"".equals(month)' >
+                    date_format(t.deliver_date,'%Y-%m') =  #{month} and
+                </if>
+                <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >t.shop_code= #{shopCode} and </if>
+                <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >t.shop_type_code= #{shopTypeCode} and </if>
+                <if test='storePlatformName!=null and !"".equals(storePlatformName)' >t.store_platform_name= #{storePlatformName} and </if>
+            </trim>
+        </where>
+        GROUP BY t.merchant_id, t.shop_code, t.shop_type_code, t.store_platform_name,t.customer_id
+    </select>
+
+    <select id="selectByExOrderId"  resultMap='OrderModelMap' parameterType='java.util.ArrayList' >
+        SELECT <include refid='sql_columns' /> from t_order where ex_order_id in
+        <foreach collection='list' item='exOrderId' separator=',' open='(' close=')'>
+            #{exOrderId}
+        </foreach>
+        <if test='merchantId!=null' > and merchant_id= #{merchantId} </if>
+        and status != "006"
+    </select>
+
+        <select id="countOrderByCostDTO" resultType="map" parameterType="OrderDTO" >
+            select
+                t.merchant_id merchantId,
+                t.store_platform_name storePlatformName,
+                count(id) itemNum
+            from t_order t
+            <where>
+                <trim suffixOverrides='and'>
+                    t.status= '4' and
+                    <if test='month!=null and !"".equals(month)' >
+                        date_format(t.deliver_date,'%Y-%m') =  #{month} and
+                    </if>
+                    <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                    <if test='shopCode!=null and !"".equals(shopCode)' >t.shop_code= #{shopCode} and </if>
+                    <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >t.shop_type_code= #{shopTypeCode} and </if>
+                    <if test='storePlatformName!=null and !"".equals(storePlatformName)' >t.store_platform_name= #{storePlatformName} and </if>
+                </trim>
+            </where>
+            GROUP BY t.merchant_id, t.shop_code, t.shop_type_code, t.store_platform_name
+        </select>
+
+        <update id="batchUpdateStatus" parameterType="list" >
+            update t_order set is_generate = #{isGenerate}, modify_date = now() where id in
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </update>
+
+
+        <update id="batchUpdateStatusByCode" parameterType="list" >
+            update t_order set is_generate = #{isGenerate}, modify_date = now() where code in
+            <foreach collection='codes' item='code' separator=',' open='(' close=')'>
+                #{code}
+            </foreach>
+        </update>
+    <select id="getExportOrderCount" resultType='Integer' parameterType='OrderDTO'>
+        select count(1)
+        from t_order_item t2
+        left join  t_order t on t.id = t2.order_id
+        <include refid='sql_where_page' />
+        order by t.id desc
+    </select>
+
+    <select id="selectDTOListByMap"  resultType='OrderDTO' parameterType='map' >
+        SELECT <include refid='sql_columns' />
+        from t_order
+        <where>
+        <trim suffixOverrides='and'>
+            <if test='externalCodeList != null and externalCodeList.size() >0 ' > external_code in
+                <foreach collection='externalCodeList' item='externalCode' separator=',' open='(' close=')'>
+                    #{externalCode}
+                </foreach>
+            </if>
+            <if test='merchantId!=null' > and merchant_id= #{merchantId} </if>
+            <if test='status!=null' > and status = #{status} </if>
+            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > and store_platform_name = #{storePlatformCode} </if>
+            <if test='isGenerate!=null and !"".equals(isGenerate)' > and is_generate = #{isGenerate} </if>
+        </trim>
+        </where>
+    </select>
+
+    <select id="listInvailDTOByPage"  resultType='OrderDTO' parameterType='map' >
+        SELECT <include refid='sql_columns' />
+        from t_order
+        <where>
+            <trim suffixOverrides='and'>
+                status != "006" and
+                <if test='tradingStartDate!=null and !"".equals(tradingStartDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &gt;= #{tradingStartDate} and
+                </if>
+                <if test='tradingEndDate!=null and !"".equals(tradingEndDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &lt;= #{tradingEndDate} and
+                </if>
+                <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+                </if>
+                <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &lt;= #{deliverEndDate} and
+                </if>
+                trading_date > deliver_date and
+            </trim>
+        </where>
+    </select>
+
+    <select id="queryInvailDtoListCount"  resultType='int' parameterType='map' >
+        SELECT count(1)
+        from t_order
+        <where>
+            <trim suffixOverrides='and'>
+                status != "006" and
+                <if test='tradingStartDate!=null and !"".equals(tradingStartDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &gt;= #{tradingStartDate} and
+                </if>
+                <if test='tradingEndDate!=null and !"".equals(tradingEndDate)' >
+                    date_format(trading_date,'%Y-%m-%d %H:%i:%S') &lt;= #{tradingEndDate} and
+                </if>
+                <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+                </if>
+                <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+                    date_format(deliver_date,'%Y-%m-%d %H:%i:%S') &lt;= #{deliverEndDate} and
+                </if>
+                trading_date > deliver_date and
+            </trim>
+        </where>
+    </select>
+
+    <!-- 批量插入数据 -->
+    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_order
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            id,
+            code,
+            external_code,
+            way_bill_no,
+            trading_date,
+            status,
+            depot_id,
+            depot_name,
+            audit_date,
+            declare_date,
+            release_date,
+            deliver_date,
+            logistics_name,
+            import_mode,
+            maker_tel,
+            maker_name,
+            maker_register_no,
+            receiver_name,
+            receiver_tel,
+            receiver_country,
+            receiver_province,
+            receiver_city,
+            receiver_area,
+            receiver_address,
+            order_source,
+            declare_plan,
+            merchant_name,
+            merchant_id,
+            inspect_status,
+            customs_status,
+            store_platform_name,
+            remark,
+            creater,
+            create_date,
+            way_frt_fee,
+            way_ind_fee,
+            taxes,
+            goods_amount,
+            payment,
+            discount,
+            making_time,
+            modify_date,
+            customer_id,
+            customer_name,
+            shop_code,
+            shop_name,
+            sale_com,
+            currency,
+            shop_type_code,
+            ex_order_id,
+            weight,
+            tallying_unit,
+            is_generate,
+            trade_payment,
+            trade_payment_tax
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                #{item.id},
+                #{item.code},
+                #{item.externalCode},
+                #{item.wayBillNo},
+                #{item.tradingDate},
+                #{item.status},
+                #{item.depotId},
+                #{item.depotName},
+                #{item.auditDate},
+                #{item.declareDate},
+                #{item.releaseDate},
+                #{item.deliverDate},
+                #{item.logisticsName},
+                #{item.importMode},
+                #{item.makerTel},
+                #{item.makerName},
+                #{item.makerRegisterNo},
+                #{item.receiverName},
+                #{item.receiverTel},
+                #{item.receiverCountry},
+                #{item.receiverProvince},
+                #{item.receiverCity},
+                #{item.receiverArea},
+                #{item.receiverAddress},
+                #{item.orderSource},
+                #{item.declarePlan},
+                #{item.merchantName},
+                #{item.merchantId},
+                #{item.inspectStatus},
+                #{item.customsStatus},
+                #{item.storePlatformName},
+                #{item.remark},
+                #{item.creater},
+                #{item.createDate},
+                #{item.wayFrtFee},
+                #{item.wayIndFee},
+                #{item.taxes},
+                #{item.goodsAmount},
+                #{item.payment},
+                #{item.discount},
+                #{item.makingTime},
+                #{item.modifyDate},
+                #{item.customerId},
+                #{item.customerName},
+                #{item.shopCode},
+                #{item.shopName},
+                #{item.saleCom},
+                #{item.currency},
+                #{item.shopTypeCode},
+                #{item.exOrderId},
+                #{item.weight},
+                #{item.tallyingUnit},
+                #{item.isGenerate},
+                #{item.tradePayment},
+                #{item.tradePaymentTax}
+            </trim>
+        </foreach>
+    </insert>
+     <!-- 查询所有信息 -->
+    <select id="listDTO" resultType="OrderDTO"  parameterType='OrderDTO'>
+        select <include refid='sql_columns' /> from t_order t  <include refid='sql_where_page' />
+    </select>
+</mapper>

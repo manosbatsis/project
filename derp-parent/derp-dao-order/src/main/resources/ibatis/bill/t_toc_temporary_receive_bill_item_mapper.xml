@@ -1,0 +1,752 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.TocTemporaryReceiveBillItemMapper'>
+
+      <!-- 关系映射 -->
+    <resultMap id="TocTemporaryReceiveBillItemModelMap" type="TocTemporaryReceiveBillItemModel" >
+            <result property="id" column="id" />
+            <result property="billId" column="bill_id" />
+            <result property="orderCode" column="order_code" />
+            <result property="externalCode" column="external_code" />
+            <result property="month" column="month" />
+            <result property="shopTypeCode" column="shop_type_code" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="buId" column="bu_id" />
+            <result property="buName" column="bu_name" />
+            <result property="customerId" column="customer_id" />
+            <result property="customerName" column="customer_name" />
+            <result property="shopCode" column="shop_code" />
+            <result property="shopName" column="shop_name" />
+            <result property="storePlatformCode" column="store_platform_code" />
+            <result property="saleNum" column="sale_num" />
+            <result property="temporaryCurrency" column="temporary_currency" />
+            <result property="temporaryRmbAmount" column="temporary_rmb_amount" />
+            <result property="writeOffAmount" column="write_off_amount" />
+            <result property="settlementOriAmount" column="settlement_ori_amount" />
+            <result property="settlementRmbAmount" column="settlement_rmb_amount" />
+            <result property="originalCurrency" column="original_currency" />
+            <result property="settlementMark" column="settlement_mark" />
+            <result property="settlementDate" column="settlement_date" />
+            <result property="settlementCode" column="settlement_code" />
+            <result property="createDate" column="create_date" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="orderType" column="order_type" />
+            <result property="parentBrandName" column="parent_brand_name" />
+            <result property="parentBrandId" column="parent_brand_id" />
+            <result property="parentBrandCode" column="parent_brand_code" />
+            <result property="billInDate" column="bill_in_date" />
+            <result property="settlementItemId" column="settlement_item_id" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TocTemporaryReceiveBillItemModelMap' parameterType='TocTemporaryReceiveBillItemModel'>
+        select <include refid='sql_columns' /> from t_toc_temporary_receive_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TocTemporaryReceiveBillItemModelMap' parameterType='TocTemporaryReceiveBillItemModel'>
+        select <include refid='sql_columns' /> from t_toc_temporary_receive_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TocTemporaryReceiveBillItemModelMap' parameterType='TocTemporaryReceiveBillItemModel' >
+        select <include refid='sql_columns' /> from t_toc_temporary_receive_bill_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='TocTemporaryReceiveBillItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_toc_temporary_receive_bill_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='billId!=null' >bill_id  , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > shop_type_code , </if>
+                        <if test='merchantId!=null' >merchant_id  , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='buId!=null' >bu_id  , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='customerId!=null' >customer_id  , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='saleNum!=null' >sale_num  , </if>
+                        <if test='temporaryCurrency!=null and !"".equals(temporaryCurrency)' > temporary_currency , </if>
+                        <if test='temporaryRmbAmount!=null' >temporary_rmb_amount  , </if>
+                        <if test='writeOffAmount!=null' >write_off_amount  , </if>
+                        <if test='settlementOriAmount!=null' >settlement_ori_amount  , </if>
+                        <if test='settlementRmbAmount!=null' >settlement_rmb_amount  , </if>
+                        <if test='originalCurrency!=null and !"".equals(originalCurrency)' > original_currency , </if>
+                        <if test='settlementMark!=null and !"".equals(settlementMark)' > settlement_mark , </if>
+                        <if test='settlementDate!=null' >settlement_date  , </if>
+                        <if test='settlementCode!=null and !"".equals(settlementCode)' > settlement_code , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='modifyDate!=null' >modify_date  , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name , </if>
+                        <if test='parentBrandId!=null' >parent_brand_id  , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > parent_brand_code , </if>
+                        <if test='billInDate!=null' >bill_in_date  , </if>
+                        <if test='settlementItemId!=null and !"".equals(settlementItemId)' > settlement_item_id , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billId!=null' > #{billId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > #{shopTypeCode} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='saleNum!=null' > #{saleNum} , </if>
+                        <if test='temporaryCurrency!=null and !"".equals(temporaryCurrency)' > #{temporaryCurrency} , </if>
+                        <if test='temporaryRmbAmount!=null' > #{temporaryRmbAmount} , </if>
+                        <if test='writeOffAmount!=null' > #{writeOffAmount} , </if>
+                        <if test='settlementOriAmount!=null' > #{settlementOriAmount} , </if>
+                        <if test='settlementRmbAmount!=null' > #{settlementRmbAmount} , </if>
+                        <if test='originalCurrency!=null and !"".equals(originalCurrency)' > #{originalCurrency} , </if>
+                        <if test='settlementMark!=null and !"".equals(settlementMark)' > #{settlementMark} , </if>
+                        <if test='settlementDate!=null' > #{settlementDate} , </if>
+                        <if test='settlementCode!=null and !"".equals(settlementCode)' > #{settlementCode} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > #{parentBrandCode} , </if>
+                        <if test='billInDate!=null' > #{billInDate} , </if>
+                        <if test='settlementItemId!=null and !"".equals(settlementItemId)' > #{settlementItemId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='TocTemporaryReceiveBillItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_toc_temporary_receive_bill_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billId!=null' > bill_id= #{billId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='saleNum!=null' > sale_num= #{saleNum} , </if>
+                        <if test='temporaryCurrency!=null and !"".equals(temporaryCurrency)' >temporary_currency= #{temporaryCurrency} , </if>
+                        <if test='temporaryRmbAmount!=null' > temporary_rmb_amount= #{temporaryRmbAmount} , </if>
+                        <if test='writeOffAmount!=null' > write_off_amount= #{writeOffAmount} , </if>
+                        <if test='settlementOriAmount!=null' > settlement_ori_amount= #{settlementOriAmount} , </if>
+                        <if test='settlementRmbAmount!=null' > settlement_rmb_amount= #{settlementRmbAmount} , </if>
+                        <if test='originalCurrency!=null and !"".equals(originalCurrency)' >original_currency= #{originalCurrency} , </if>
+                        <if test='settlementMark!=null and !"".equals(settlementMark)' >settlement_mark= #{settlementMark} , </if>
+                        <if test='settlementDate!=null' > settlement_date= #{settlementDate} , </if>
+                        <if test='settlementCode!=null and !"".equals(settlementCode)' >settlement_code= #{settlementCode} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} , </if>
+                        <if test='billInDate!=null' > bill_in_date= #{billInDate} , </if>
+                        <if test='settlementItemId!=null and !"".equals(settlementItemId)' >settlement_item_id= #{settlementItemId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_toc_temporary_receive_bill_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_toc_temporary_receive_bill_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_id,
+            order_code,
+            external_code,
+            month,
+            shop_type_code,
+            merchant_id,
+            merchant_name,
+            bu_id,
+            bu_name,
+            customer_id,
+            customer_name,
+            shop_code,
+            shop_name,
+            store_platform_code,
+            sale_num,
+            temporary_currency,
+            temporary_rmb_amount,
+            write_off_amount,
+            settlement_ori_amount,
+            settlement_rmb_amount,
+            original_currency,
+            settlement_mark,
+            settlement_date,
+            settlement_code,
+            create_date,
+            modify_date,
+            order_type,
+            parent_brand_name,
+            parent_brand_id,
+            parent_brand_code,
+            bill_in_date,
+            settlement_item_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='saleNum!=null' > sale_num= #{saleNum} and </if>
+                            <if test='temporaryCurrency!=null and !"".equals(temporaryCurrency)' >temporary_currency= #{temporaryCurrency} and </if>
+                            <if test='temporaryRmbAmount!=null' > temporary_rmb_amount= #{temporaryRmbAmount} and </if>
+                            <if test='writeOffAmount!=null' > write_off_amount= #{writeOffAmount} and </if>
+                            <if test='settlementOriAmount!=null' > settlement_ori_amount= #{settlementOriAmount} and </if>
+                            <if test='settlementRmbAmount!=null' > settlement_rmb_amount= #{settlementRmbAmount} and </if>
+                            <if test='originalCurrency!=null and !"".equals(originalCurrency)' >original_currency= #{originalCurrency} and </if>
+                            <if test='settlementMark!=null and !"".equals(settlementMark)' >settlement_mark= #{settlementMark} and </if>
+                            <if test='settlementDate!=null' > settlement_date= #{settlementDate} and </if>
+                            <if test='settlementCode!=null and !"".equals(settlementCode)' >settlement_code= #{settlementCode} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} and </if>
+                            <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} and </if>
+                            <if test='billInDate!=null' > bill_in_date= #{billInDate} and </if>
+                            <if test='settlementItemId!=null and !"".equals(settlementItemId)' >settlement_item_id= #{settlementItemId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+		<!--自定义SQL-->
+        <sql id='dto_sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <choose>
+                        <when test='billIds!=null and !"".equals(billIds)'>
+                            bill_id in
+                            <foreach collection="billIds.split(',')" open="(" close=")" separator="," item="id">
+                                #{id}
+                            </foreach>
+                            <if test='settlementMark!=null and !"".equals(settlementMark)' >and settlement_mark= #{settlementMark}  </if>
+                        </when>
+                        <otherwise>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='saleNum!=null' > sale_num= #{saleNum} and </if>
+                            <if test='temporaryCurrency!=null and !"".equals(temporaryCurrency)' >temporary_currency= #{temporaryCurrency} and </if>
+                            <if test='temporaryRmbAmount!=null' > temporary_rmb_amount= #{temporaryRmbAmount} and </if>
+                            <if test='settlementOriAmount!=null' > settlement_ori_amount= #{settlementOriAmount} and </if>
+                            <if test='settlementRmbAmount!=null' > settlement_rmb_amount= #{settlementRmbAmount} and </if>
+                            <if test='originalCurrency!=null and !"".equals(originalCurrency)' >original_currency= #{originalCurrency} and </if>
+                            <if test='settlementMark!=null and !"".equals(settlementMark)' >settlement_mark= #{settlementMark} and </if>
+                            <if test='settlementDate!=null' > settlement_date= #{settlementDate} and </if>
+                            <if test='settlementCode!=null and !"".equals(settlementCode)' >settlement_code= #{settlementCode} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='monthStart!=null and !"".equals(monthStart)' >
+                                month &gt;= #{monthStart} and
+                            </if>
+                            <if test='monthEnd!=null and !"".equals(monthEnd)' >
+                                month &lt;= #{monthEnd} and
+                            </if>
+                            <if test='compareBillInDate and monthBillLastDate != null' >
+                                bill_in_date > #{monthBillLastDate} and
+                            </if>
+                            <if test='smallEqBillInDate' >
+                                (bill_in_date is null or bill_in_date &lt;= #{monthBillLastDate}) and
+                            </if>
+                            <if test='searchVerifyStatus' >
+                                settlement_mark in ('1','2') and
+                            </if>
+                            <if test='settlementItemId!=null and !"".equals(settlementItemId)' >settlement_item_id= #{settlementItemId} and </if>
+                        </otherwise>
+                    </choose>
+                </trim>
+            </where>
+        </sql>
+
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_toc_temporary_receive_bill_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                id,
+                bill_id,
+                order_code,
+                external_code,
+                month,
+                shop_type_code,
+                merchant_id,
+                merchant_name,
+                bu_id,
+                bu_name,
+                customer_id,
+                customer_name,
+                shop_code,
+                shop_name,
+                store_platform_code,
+                sale_num,
+                temporary_currency,
+                temporary_rmb_amount,
+                settlement_ori_amount,
+                settlement_rmb_amount,
+                original_currency,
+                settlement_mark,
+                settlement_date,
+                settlement_code,
+                order_type,
+                parent_brand_id,
+                parent_brand_name,
+                parent_brand_code,
+                settlement_item_id
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+                <trim prefix="(" suffix=")" suffixOverrides="," >
+                    #{item.id} ,
+                    #{item.billId} ,
+                    #{item.orderCode} ,
+                    #{item.externalCode} ,
+                    #{item.month} ,
+                    #{item.shopTypeCode} ,
+                    #{item.merchantId} ,
+                    #{item.merchantName} ,
+                    #{item.buId} ,
+                    #{item.buName} ,
+                    #{item.customerId} ,
+                    #{item.customerName} ,
+                    #{item.shopCode} ,
+                    #{item.shopName} ,
+                    #{item.storePlatformCode} ,
+                    #{item.saleNum} ,
+                    #{item.temporaryCurrency} ,
+                    #{item.temporaryRmbAmount} ,
+                    #{item.settlementOriAmount} ,
+                    #{item.settlementRmbAmount} ,
+                    #{item.originalCurrency} ,
+                    #{item.settlementMark} ,
+                    #{item.settlementDate} ,
+                    #{item.settlementCode},
+                    #{item.orderType},
+                    #{item.parentBrandId},
+                    #{item.parentBrandName},
+                    #{item.parentBrandCode},
+                    #{item.settlementItemId}
+                </trim>
+            </foreach>
+        </insert>
+
+        <delete id="deleteByModel" parameterType="TocTemporaryReceiveBillItemModel" >
+            delete from t_toc_temporary_receive_bill_item  <include refid='sql_where' />
+        </delete>
+
+        <select id='getListByPage' resultType='TocTemporaryReceiveBillItemDTO' parameterType='TocTemporaryReceiveBillItemDTO'>
+            select <include refid='sql_columns' /> from t_toc_temporary_receive_bill_item  <include refid='dto_sql_where' />
+            order by external_code, id desc
+        </select>
+
+        <select id="countBillNum" resultType="java.lang.Integer" >
+            select count(0)
+            from t_toc_temporary_receive_bill_item
+            where merchant_id = #{merchantId}
+            <if test='buIds!=null' >
+                and bu_id in
+                <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                    #{buId}
+                </foreach>
+            </if>
+            <if test='ids!=null' >
+                and bill_id in
+                <foreach collection="ids" item="id" separator="," open="(" close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </select>
+
+        <select id="countTempBillNum" resultType="java.lang.Integer" parameterType='TocTemporaryReceiveBillItemDTO'>
+            select count(0)
+            from t_toc_temporary_receive_bill_item  <include refid='dto_sql_where' />
+        </select>
+
+        <select id="listItemPrice" resultType="map" >
+             select
+                 bill_id billId,
+                 settlement_mark settlementMark,
+                 count(DISTINCT external_code) num,
+                 sum(temporary_rmb_amount) as temporaryRmbAmount
+             from t_toc_temporary_receive_bill_item
+             <where>
+                bill_id = #{billId}
+                 <if test='buIds!=null' >
+                     and bu_id in
+                     <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                         #{buId}
+                     </foreach>
+                 </if>
+             </where>
+             group by bill_id, settlement_mark
+        </select>
+
+        <select id="listForExportItem" resultType="TocTemporaryReceiveBillItemDTO" >
+            select <include refid='sql_columns' /> from t_toc_temporary_receive_bill_item
+            <where>
+                <if test='buIds!=null' >
+                    bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                </if>
+                <if test='ids!=null' >
+                    and bill_id in
+                    <foreach collection="ids" item="id" separator="," open="(" close=")">
+                        #{id}
+                    </foreach>
+                </if>
+            </where>
+            order by bill_id desc
+            limit #{begin},#{pageSize}
+        </select>
+
+        <update id="batchUpdate" parameterType="java.util.List" >
+            update t_toc_temporary_receive_bill_item
+            <trim prefix="set" suffixOverrides=",">
+                <trim prefix="settlement_rmb_amount =case" suffix="end,">
+                    <foreach collection="billItemModelList" item="i" index="index">
+                        <if test="i.settlementRmbAmount!=null">
+                            when id=#{i.id} then #{i.settlementRmbAmount}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="settlement_ori_amount =case" suffix="end,">
+                    <foreach collection="billItemModelList" item="i" index="index">
+                        <if test="i.settlementOriAmount!=null">
+                            when id=#{i.id} then #{i.settlementOriAmount}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="settlement_mark =case" suffix="end,">
+                    <foreach collection="billItemModelList" item="i" index="index">
+                        <if test="i.settlementMark!=null">
+                            when id=#{i.id} then #{i.settlementMark}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="settlement_date =case" suffix="end,">
+                    <foreach collection="billItemModelList" item="i" index="index">
+                        when id=#{i.id} then #{i.settlementDate}
+                    </foreach>
+                </trim>
+                <trim prefix="settlement_code =case" suffix="end,">
+                    <foreach collection="billItemModelList" item="i" index="index">
+                        <if test='i.settlementCode!=null and !"".equals(i.settlementCode)'>
+                            when id=#{i.id} then #{i.settlementCode}
+                        </if>
+                        <if test='i.settlementCode != null and "".equals(i.settlementCode)'>
+                            when id=#{i.id} then null
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="original_currency =case" suffix="end,">
+                    <foreach collection="billItemModelList" item="i" index="index">
+                        when id=#{i.id} then #{i.originalCurrency}
+                    </foreach>
+                </trim>
+                <trim prefix="bill_in_date =case" suffix="end,">
+                    <foreach collection="billItemModelList" item="i" index="index">
+                        when id=#{i.id} then #{i.billInDate}
+                    </foreach>
+                </trim>
+            </trim>
+            where
+            <foreach collection="billItemModelList" separator="or" item="i" index="index" >
+                id=#{i.id}
+            </foreach>
+        </update>
+
+    <select id="countByBillIdAndStatus" resultType="map">
+        select sum(temporary_rmb_amount) as temporaryRmbAmount, count(DISTINCT order_code) totalNum from
+        t_toc_temporary_receive_bill_item
+        where bill_id = #{id}
+        <if test='settlementStatus!=null and !"".equals(settlementStatus)'>
+            and settlement_mark = #{settlementStatus}
+        </if>
+    </select>
+
+    <select id="listForExportTempItemPage" resultType="map">
+        select
+        <include refid='sql_columns'/>
+        from t_toc_temporary_receive_bill_item
+        <include refid='dto_sql_where'/>
+        order by bill_id desc, external_code
+        limit ${begin},${pageSize}
+    </select>
+
+    <select id="getMaxSettlementDate" resultType="java.sql.Timestamp">
+        select max(settlement_date)
+        from t_toc_temporary_receive_bill_item
+        where bill_id = #{billId}
+    </select>
+
+    <select id="getItemListPage" parameterType="TocTemporaryReceiveBillItemDTO"
+            resultMap='TocTemporaryReceiveBillItemModelMap'>
+            select <include refid='sql_columns' /> from t_toc_temporary_receive_bill_item  <include refid='dto_sql_where' />
+            order by id desc
+            limit ${begin},${pageSize}
+        </select>
+
+        <select id="getOrderCodesPage" parameterType="TocTemporaryReceiveBillItemDTO" resultType="java.lang.String">
+            select
+              order_code
+            from t_toc_temporary_receive_bill_item
+            <include refid='dto_sql_where' />
+            order by id desc
+            limit ${begin},${pageSize}
+        </select>
+
+        <select id="getExternalCodesPage" parameterType="TocTemporaryReceiveBillItemDTO" resultType="java.lang.String">
+            select
+            external_code
+            from t_toc_temporary_receive_bill_item
+            <include refid='dto_sql_where' />
+            order by id desc
+            limit ${begin},${pageSize}
+        </select>
+
+        <select id="getItemListByOrderList" resultMap='TocTemporaryReceiveBillItemModelMap'>
+            select
+                id,
+                bill_id,
+                order_type,
+                order_code,
+                external_code,
+                settlement_ori_amount,
+                settlement_rmb_amount,
+                original_currency,
+                settlement_date,
+                settlement_code,
+                settlement_mark,
+                temporary_rmb_amount,
+                write_off_amount
+            from t_toc_temporary_receive_bill_item
+            where
+                merchant_id = #{merchantId}
+                and bu_id = #{buId}
+                and store_platform_code = #{storePlatformCode}
+            <if test='orderCodes!=null' >
+                and order_code in
+                <foreach collection="orderCodes" item="orderCode" separator="," open="(" close=")">
+                    #{orderCode}
+                </foreach>
+            </if>
+            <if test='externalCodes!=null' >
+                and external_code in
+                <foreach collection="externalCodes" item="orderCode" separator="," open="(" close=")">
+                    #{orderCode}
+                </foreach>
+            </if>
+            <if test='settlementMark!=null and !"".equals(settlementMark)' >
+                and settlement_mark != #{settlementMark}
+            </if>
+            order by id desc
+        </select>
+
+        <update id="updateVerifyItems" >
+            UPDATE t_toc_temporary_receive_bill_item ttt0,
+            (
+                SELECT tt0.id,tt2.original_amount,tt2.rmb_amount,tt2.codes,tt2.itemIds,
+                tt2.settlement_date,tt2.settlement_currency,tt2.bill_in_date
+                from t_toc_temporary_receive_bill_item tt0,
+                (
+                    SELECT
+                        t1.external_code,
+                        t1.bill_type,
+                        sum(if(bill_type='0', original_amount, -original_amount)) original_amount,
+                        sum(if(bill_type='0', rmb_amount, -rmb_amount)) rmb_amount,
+                        t2.`code` codes,
+                        t1.id itemIds,
+                        MAX(t2.settlement_date) AS settlement_date,
+                        MAX(t2.settlement_currency) AS settlement_currency,
+                        t2.bill_in_date as bill_in_date,
+                        t1.bill_id
+                    FROM t_toc_settlement_receive_bill_item t1
+                    LEFT JOIN t_toc_settlement_receive_bill t2 ON t1.bill_id = t2.id
+                    WHERE
+                    t1.id in (
+                        SELECT a.id
+                        FROM t_toc_settlement_receive_bill_item a
+                        LEFT JOIN t_toc_settlement_receive_bill b ON a.bill_id = b.id
+                        WHERE
+                        <if test='settlementId!=null' >
+                            b.id = #{settlementId} and
+                        </if>
+                        b.merchant_id = #{merchantId} and
+                        b.bu_id = #{buId} and
+                        b.store_platform_code = #{storePlatformCode} and
+                        b.bill_status in ('02', '03', '04', '05')
+                        and a.external_code in
+                        <foreach collection="orderCodes" item="orderCode" separator="," open="(" close=")">
+                            #{orderCode}
+                        </foreach>
+                        and a.temp_bill_id is null
+                        GROUP BY a.external_code, a.bill_type,a.bill_id
+                    )
+                    group by  t1.external_code, t1.bill_type,t1.bill_id
+                ) tt2
+                WHERE
+                    tt0.merchant_id = #{merchantId}
+                    and tt0.bu_id = #{buId}
+                    and tt0.store_platform_code = #{storePlatformCode}
+                    and tt0.external_code = tt2.external_code
+                    AND tt0.order_type = tt2.bill_type
+                    AND tt0.settlement_code is null
+                    AND tt0.id is not null
+                    group by tt0.external_code, tt0.order_type, tt2.bill_id
+                )ttt1
+            SET ttt0.settlement_ori_amount = ttt1.original_amount,
+            ttt0.settlement_rmb_amount = ttt1.rmb_amount,
+            ttt0.settlement_code = ttt1.codes,
+            ttt0.settlement_item_id = ttt1.itemIds,
+            ttt0.settlement_date = ttt1.settlement_date,
+            ttt0.settlement_mark = IF (ABS(ttt0.temporary_rmb_amount-ttt1.rmb_amount) = 0, '2', '0'),
+            ttt0.original_currency = ttt1.settlement_currency,
+            ttt0.bill_in_date = ttt1.bill_in_date
+            WHERE
+                ttt0.id=ttt1.id
+        </update>
+
+        <select id="countByBillIds" resultType="map">
+            select bill_id billId,
+                SUM(temporary_rmb_amount) as temporaryRmbAmount,
+                count(order_code) totalNum,
+                SUM(IFNULL(write_off_amount, 0)+IFNULL(settlement_rmb_amount,0)) alreadyReceiveAmount,
+                SUM(IFNULL(temporary_rmb_amount,0)-IFNULL(write_off_amount, 0)-IFNULL(settlement_rmb_amount,0)) noSettlementAmount,
+                count(if(settlement_mark='0',true,null)) noSettlementNum,
+                max(settlement_date) settlementDate
+            from t_toc_temporary_receive_bill_item
+            where bill_id in
+            <foreach collection="billIds" item="billId" separator="," open="(" close=")">
+                #{billId}
+            </foreach>
+            group by bill_id
+        </select>
+
+        <select id="summaryByDTO" resultType="TocTemporaryReceiveBillDTO" parameterType="TocTemporaryReceiveBillItemDTO">
+            select merchant_id as merchantId,merchant_name as merchantName,month,shop_type_code as shopTypeCode,
+            store_platform_code as storePlatformCode,shop_code as shopCode,shop_name as shopName,
+            bu_id as buId, bu_name as buName,parent_brand_name as parentBrandName,
+            SUM(temporary_rmb_amount) as totalReceiveAmount,
+            count(order_code) totalReceiveNum,
+            SUM(IF(settlement_mark!='0', IFNULL(write_off_amount, 0)+IFNULL(settlement_rmb_amount,0), 0)) alreadyReceiveAmount,
+            SUM(IF(settlement_mark='0', temporary_rmb_amount-IFNULL(write_off_amount, 0)-IFNULL(settlement_rmb_amount,0), 0)) lastReceiveAmount,
+            count(if(settlement_mark='0',true,null)) lastReceiveNum,
+            max(settlement_date) settlementEndMonth
+            from t_toc_temporary_receive_bill_item
+            <include refid='dto_sql_where' />
+            group by merchant_id,merchant_name,`month`,shop_type_code,store_platform_code,
+            shop_code,shop_name,bu_id,bu_name,parent_brand_name
+        </select>
+
+        <select id="countPunchNum" resultType="java.lang.Integer">
+            select
+                count(t.external_code)*2
+            from (SELECT external_code,
+                         (SUM(IFNULL(temporary_rmb_amount,0))-SUM(IFNULL(settlement_rmb_amount,0))-sum(IFNULL(write_off_amount, 0))) amount
+                  FROM
+                      t_toc_temporary_receive_bill_item
+                  WHERE
+                      bill_id = #{billId}
+                  and settlement_mark = '0'
+                  GROUP BY
+                      external_code) t
+            where t.amount = 0
+        </select>
+
+        <update id="updateEndItemBill" >
+            update t_toc_temporary_receive_bill_item
+            set write_off_amount = (IFNULL(temporary_rmb_amount, 0)-IFNULL(settlement_rmb_amount, 0)),
+                settlement_mark = '1'
+            where bill_id = #{billId}
+            <if test='!"2".equals(punchType)' >
+                and external_code in
+                    (select t.external_code
+                     from (SELECT external_code,
+                                 (SUM(IFNULL(temporary_rmb_amount,0))-SUM(IFNULL(settlement_rmb_amount,0))-sum(IFNULL(write_off_amount, 0))) amount
+                           FROM t_toc_temporary_receive_bill_item
+                           WHERE bill_id = #{billId}
+                           and settlement_mark = '0'
+                           GROUP BY external_code) t
+                    where
+                    <if test='"0".equals(punchType)' >
+                        t.amount = 0
+                    </if>
+                    <if test='"1".equals(punchType)' >
+                        t.amount != 0
+                    </if>)
+            </if>
+            <if test='"2".equals(punchType)' >
+                and settlement_mark = '0'
+            </if>
+        </update>
+
+</mapper>

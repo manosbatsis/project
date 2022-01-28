@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.ReminderEmailRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ReminderEmailRelModelMap" type="ReminderEmailRelModel" >
+                <result property="id" column="id" />
+                <result property="configId" column="config_id" />
+                <result property="type" column="type" />
+                <result property="reminderType" column="reminder_type" />
+                <result property="roleId" column="role_id" />
+                <result property="roleName" column="role_name" />
+                <result property="billType" column="bill_type" />
+                <result property="userId" column="user_id" />
+                <result property="userName" column="user_name" />
+                <result property="reminderChannel" column="reminder_channel" />
+                <result property="templateCode" column="template_code" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ReminderEmailRelModelMap' parameterType='ReminderEmailRelModel'>
+        select <include refid='sql_columns' /> from st_reminder_email_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ReminderEmailRelModelMap' parameterType='ReminderEmailRelModel'>
+        select <include refid='sql_columns' /> from st_reminder_email_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ReminderEmailRelModelMap' parameterType='ReminderEmailRelModel' >
+        select <include refid='sql_columns' /> from st_reminder_email_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ReminderEmailRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_reminder_email_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='configId!=null' >config_id , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='reminderType!=null and !"".equals(reminderType)' > reminder_type , </if>
+                        <if test='roleId!=null' >role_id , </if>
+                        <if test='roleName!=null and !"".equals(roleName)' > role_name , </if>
+                        <if test='billType!=null and !"".equals(billType)' > bill_type , </if>
+                        <if test='userId!=null' >user_id , </if>
+                        <if test='userName!=null and !"".equals(userName)' > user_name , </if>
+                        <if test='reminderChannel!=null and !"".equals(reminderChannel)' > reminder_channel , </if>
+                        <if test='templateCode!=null and !"".equals(templateCode)' > template_code , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='configId!=null' > #{configId} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='reminderType!=null and !"".equals(reminderType)' > #{reminderType} , </if>
+                        <if test='roleId!=null' > #{roleId} , </if>
+                        <if test='roleName!=null and !"".equals(roleName)' > #{roleName} , </if>
+                        <if test='billType!=null and !"".equals(billType)' > #{billType} , </if>
+                        <if test='userId!=null' > #{userId} , </if>
+                        <if test='userName!=null and !"".equals(userName)' > #{userName} , </if>
+                        <if test='reminderChannel!=null and !"".equals(reminderChannel)' > #{reminderChannel} , </if>
+                        <if test='templateCode!=null and !"".equals(templateCode)' > #{templateCode} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ReminderEmailRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_reminder_email_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='configId!=null' > config_id= #{configId} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='reminderType!=null and !"".equals(reminderType)' >reminder_type= #{reminderType} , </if>
+                        <if test='roleId!=null' > role_id= #{roleId} , </if>
+                        <if test='roleName!=null and !"".equals(roleName)' >role_name= #{roleName} , </if>
+                        <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} , </if>
+                        <if test='userId!=null' > user_id= #{userId} , </if>
+                        <if test='userName!=null and !"".equals(userName)' >user_name= #{userName} , </if>
+                        <if test='reminderChannel!=null and !"".equals(reminderChannel)' >reminder_channel= #{reminderChannel} , </if>
+                        <if test='templateCode!=null and !"".equals(templateCode)' >template_code= #{templateCode} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_reminder_email_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_reminder_email_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            config_id,
+            type,
+            reminder_type,
+            role_id,
+            role_name,
+            bill_type,
+            user_id,
+            user_name,
+            reminder_channel,
+            template_code,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='configId!=null' > config_id= #{configId} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='reminderType!=null and !"".equals(reminderType)' >reminder_type= #{reminderType} and </if>
+                            <if test='roleId!=null' > role_id= #{roleId} and </if>
+                            <if test='roleName!=null and !"".equals(roleName)' >role_name= #{roleName} and </if>
+                            <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} and </if>
+                            <if test='userId!=null' > user_id= #{userId} and </if>
+                            <if test='userName!=null and !"".equals(userName)' >user_name= #{userName} and </if>
+                            <if test='reminderChannel!=null and !"".equals(reminderChannel)' >reminder_channel= #{reminderChannel} and </if>
+                            <if test='templateCode!=null and !"".equals(templateCode)' >template_code= #{templateCode} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <select id="getConfigById" resultType="ReminderEmailRelDTO" parameterType='Long'>
+        select <include refid='sql_columns' /> from st_reminder_email_rel  where config_id= #{configId}
+    </select>
+
+    <select id="getConfigIdAndType" resultMap="ReminderEmailRelModelMap" >
+        select <include refid='sql_columns' /> from st_reminder_email_rel where config_id= #{configId} and type= #{type}
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.InWarehouseTempMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="InWarehouseTempModelMap" type="InWarehouseTempModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="divergenceDate" column="divergence_date" />
+                <result property="warehouseNum" column="warehouse_num" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="price" column="price" />
+                <result property="currency" column="currency" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InWarehouseTempModelMap' parameterType='InWarehouseTempModel'>
+        select <include refid='sql_columns' /> from r_in_warehouse_temp  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InWarehouseTempModelMap' parameterType='InWarehouseTempModel'>
+        select <include refid='sql_columns' /> from r_in_warehouse_temp  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InWarehouseTempModelMap' parameterType='InWarehouseTempModel' >
+        select <include refid='sql_columns' /> from r_in_warehouse_temp  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='InWarehouseTempModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_in_warehouse_temp
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='divergenceDate!=null' >divergence_date , </if>
+                        <if test='warehouseNum!=null' >warehouse_num , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='divergenceDate!=null' > #{divergenceDate} , </if>
+                        <if test='warehouseNum!=null' > #{warehouseNum} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='InWarehouseTempModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_in_warehouse_temp SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} , </if>
+                        <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_in_warehouse_temp  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_in_warehouse_temp where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            merchant_id,
+            merchant_name,
+            bu_id,
+            bu_name,
+            commbarcode,
+            divergence_date,
+            warehouse_num,
+            depot_id,
+            depot_name,
+            price,
+            currency,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} and </if>
+                            <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<select id="getInWarehouseTempDetail" parameterType='InWarehouseTempModel' resultMap='InWarehouseTempModelMap'>
+			select <include refid='sql_columns' /> from r_in_warehouse_temp
+			where bu_id =#{buId} 
+				AND merchant_id NOT IN (
+				     SELECT id FROM st_merchant_info
+				     WHERE topideal_code IN ('1000004669', '1000000594', '1000000544', '1000000726', '1000005406','toipidealtest'))
+				<if test='commbarcode!=null and !"".equals(commbarcode)' > and commbarcode = #{commbarcode}</if>
+				<if test='month!=null and !"".equals(month)' > and DATE_FORMAT(divergence_date,'%Y-%m') &lt;= #{month}</if>
+			order by divergence_date desc 
+		</select>
+
+
+
+</mapper>

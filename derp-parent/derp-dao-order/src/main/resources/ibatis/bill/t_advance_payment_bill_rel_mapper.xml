@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.AdvancePaymentBillRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="AdvancePaymentBillRelModelMap" type="AdvancePaymentBillRelModel" >
+                <result property="id" column="id" />
+                <result property="advancePaymentId" column="advance_payment_id" />
+                <result property="purchaseOrderId" column="purchase_order_id" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AdvancePaymentBillRelModelMap' parameterType='AdvancePaymentBillRelModel'>
+        select <include refid='sql_columns' /> from t_advance_payment_bill_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AdvancePaymentBillRelModelMap' parameterType='AdvancePaymentBillRelModel'>
+        select <include refid='sql_columns' /> from t_advance_payment_bill_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AdvancePaymentBillRelModelMap' parameterType='AdvancePaymentBillRelModel' >
+        select <include refid='sql_columns' /> from t_advance_payment_bill_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='AdvancePaymentBillRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_advance_payment_bill_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='advancePaymentId!=null' >advance_payment_id , </if>
+                        <if test='purchaseOrderId!=null' >purchase_order_id , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='advancePaymentId!=null' > #{advancePaymentId} , </if>
+                        <if test='purchaseOrderId!=null' > #{purchaseOrderId} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='AdvancePaymentBillRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_advance_payment_bill_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='advancePaymentId!=null' > advance_payment_id= #{advancePaymentId} , </if>
+                        <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_advance_payment_bill_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_advance_payment_bill_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            advance_payment_id,
+            purchase_order_id,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='advancePaymentId!=null' > advance_payment_id= #{advancePaymentId} and </if>
+                            <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

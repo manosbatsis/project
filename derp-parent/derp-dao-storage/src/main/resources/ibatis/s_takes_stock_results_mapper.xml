@@ -1,0 +1,360 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.TakesStockResultsMapper'>
+
+<!-- 关系映射 -->
+    <resultMap id="TakesStockResultsModelMap" type="TakesStockResultsModel" >
+                <result property="depotName" column="depot_name" />
+                <result property="code" column="code" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="takesStockId" column="takes_stock_id" />
+                <result property="depotId" column="depot_id" />
+                <result property="sourceTime" column="source_time" />
+                <result property="takesStockCode" column="takes_stock_code" />
+                <result property="remark" column="remark" />
+                <result property="confirmTime" column="confirm_time" />
+                <result property="dismissRemark" column="dismiss_remark" />
+                <result property="confirmUserId" column="confirm_user_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="sourceType" column="source_type" />
+                <result property="sourceCode" column="source_code" />
+                <result property="confirmUsername" column="confirm_username" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="serverType" column="server_type" />
+                <result property="model" column="model" />
+                <result property="id" column="id" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="poNo" column="po_no" />
+                <result property="poDate" column="po_date" />
+                <result property="currency" column="currency" />
+                <result property="inConfirmUserId" column="in_confirm_user_id" />
+                <result property="inConfirmUsername" column="in_confirm_username" />
+                <result property="inConfirmTime" column="in_confirm_time" />
+                <result property="createUserId" column="create_user_id" />
+                <result property="createUsername" column="create_username" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TakesStockResultsModelMap' parameterType='TakesStockResultsModel'>
+        select <include refid='sql_columns' /> from s_takes_stock_results  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TakesStockResultsModelMap' parameterType='TakesStockResultsModel'>
+        select <include refid='sql_columns' /> from s_takes_stock_results  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TakesStockResultsModelMap' parameterType='TakesStockResultsModel' >
+        select <include refid='sql_columns' /> from s_takes_stock_results  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TakesStockResultsModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO s_takes_stock_results
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='takesStockId!=null' > takes_stock_id , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='sourceTime!=null' > source_time , </if>
+                <if test='takesStockCode!=null and !"".equals(takesStockCode)' > takes_stock_code , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='confirmTime!=null' > confirm_time , </if>
+                <if test='dismissRemark!=null and !"".equals(dismissRemark)' > dismiss_remark , </if>
+                <if test='confirmUserId!=null' > confirm_user_id , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='sourceType!=null and !"".equals(sourceType)' > source_type , </if>
+                <if test='sourceCode!=null and !"".equals(sourceCode)' > source_code , </if>
+                <if test='confirmUsername!=null and !"".equals(confirmUsername)' > confirm_username , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='serverType!=null and !"".equals(serverType)' > server_type , </if>
+                <if test='model!=null and !"".equals(model)' > model , </if>
+                <if test='id!=null' > id , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no , </if>
+                <if test='poDate!=null' > po_date , </if>
+                <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                <if test='inConfirmUserId!=null' >in_confirm_user_id , </if>
+                <if test='inConfirmUsername!=null and !"".equals(inConfirmUsername)' > in_confirm_username , </if>
+                <if test='inConfirmTime!=null' >in_confirm_time , </if>
+                <if test='createUserId!=null' > create_user_id , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > create_username , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > TRIM(#{depotName}) , </if>
+                <if test='code!=null and !"".equals(code)' > TRIM(#{code}) , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='takesStockId!=null' > #{takesStockId} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='sourceTime!=null' > #{sourceTime} , </if>
+                <if test='takesStockCode!=null and !"".equals(takesStockCode)' > TRIM(#{takesStockCode}) , </if>
+                <if test='remark!=null and !"".equals(remark)' > TRIM(#{remark}) , </if>
+                <if test='confirmTime!=null' > #{confirmTime} , </if>
+                <if test='dismissRemark!=null and !"".equals(dismissRemark)' > TRIM(#{dismissRemark}) , </if>
+                <if test='confirmUserId!=null' > #{confirmUserId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > TRIM(#{merchantName}) , </if>
+                <if test='sourceType!=null and !"".equals(sourceType)' > TRIM(#{sourceType}) , </if>
+                <if test='sourceCode!=null and !"".equals(sourceCode)' > TRIM(#{sourceCode}) , </if>
+                <if test='confirmUsername!=null and !"".equals(confirmUsername)' > TRIM(#{confirmUsername}) , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='serverType!=null and !"".equals(serverType)' > TRIM(#{serverType}) , </if>
+                <if test='model!=null and !"".equals(model)' > TRIM(#{model}) , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='status!=null and !"".equals(status)' > TRIM(#{status}) , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                <if test='poDate!=null' > #{poDate} , </if>
+                <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                <if test='inConfirmUserId!=null' > #{inConfirmUserId} , </if>
+                <if test='inConfirmUsername!=null and !"".equals(inConfirmUsername)' > #{inConfirmUsername} , </if>
+                <if test='inConfirmTime!=null' > #{inConfirmTime} , </if>
+                <if test='createUserId!=null' > #{createUserId} , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > #{createUsername}, </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TakesStockResultsModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  s_takes_stock_results SET
+        <trim  suffixOverrides=",">
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= TRIM(#{depotName}) , </if>
+                <if test='code!=null and !"".equals(code)' >code= TRIM(#{code}) , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='takesStockId!=null' > takes_stock_id= #{takesStockId} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='sourceTime!=null' > source_time= #{sourceTime} , </if>
+                <if test='takesStockCode!=null and !"".equals(takesStockCode)' >takes_stock_code= TRIM(#{takesStockCode}) , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= TRIM(#{remark}) , </if>
+                <if test='confirmTime!=null' > confirm_time= #{confirmTime} , </if>
+                <if test='dismissRemark!=null and !"".equals(dismissRemark)' >dismiss_remark= TRIM(#{dismissRemark}) , </if>
+                <if test='confirmUserId!=null' > confirm_user_id= #{confirmUserId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= TRIM(#{merchantName}) , </if>
+                <if test='sourceType!=null and !"".equals(sourceType)' >source_type= TRIM(#{sourceType}) , </if>
+                <if test='sourceCode!=null and !"".equals(sourceCode)' >source_code= TRIM(#{sourceCode}) , </if>
+                <if test='confirmUsername!=null and !"".equals(confirmUsername)' >confirm_username= TRIM(#{confirmUsername}) , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='serverType!=null and !"".equals(serverType)' >server_type= TRIM(#{serverType}) , </if>
+                <if test='model!=null and !"".equals(model)' >model= TRIM(#{model}) , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='status!=null and !"".equals(status)' >status= TRIM(#{status}) , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                <if test='poDate!=null' > po_date= #{poDate} , </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                <if test='inConfirmUserId!=null' > in_confirm_user_id= #{inConfirmUserId} , </if>
+                <if test='inConfirmUsername!=null and !"".equals(inConfirmUsername)' >in_confirm_username= #{inConfirmUsername} , </if>
+                <if test='inConfirmTime!=null' > in_confirm_time= #{inConfirmTime} , </if>
+                <if test='createUserId!=null' > create_user_id= #{createUserId} , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername}, </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from s_takes_stock_results  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from s_takes_stock_results where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        depot_name,
+        code,
+        modify_date,
+        takes_stock_id,
+        depot_id,
+        source_time,
+        takes_stock_code,
+        remark,
+        confirm_time,
+        dismiss_remark,
+        confirm_user_id,
+        merchant_name,
+        source_type,
+        source_code,
+        confirm_username,
+        merchant_id,
+        server_type,
+        model,
+        id,
+        status,
+        create_date,
+        po_date,
+        po_no,
+        currency,
+        in_confirm_user_id,
+        in_confirm_username,
+        in_confirm_time,
+        create_user_id,
+        create_username
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='takesStockId!=null' > takes_stock_id= #{takesStockId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='sourceTime!=null' > source_time= #{sourceTime} and </if>
+                <if test='takesStockCode!=null and !"".equals(takesStockCode)' >takes_stock_code= #{takesStockCode} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='confirmTime!=null' > confirm_time= #{confirmTime} and </if>
+                <if test='dismissRemark!=null and !"".equals(dismissRemark)' >dismiss_remark= #{dismissRemark} and </if>
+                <if test='confirmUserId!=null' > confirm_user_id= #{confirmUserId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='sourceType!=null and !"".equals(sourceType)' >source_type= #{sourceType} and </if>
+                <if test='sourceCode!=null and !"".equals(sourceCode)' >source_code= #{sourceCode} and </if>
+                <if test='confirmUsername!=null and !"".equals(confirmUsername)' >confirm_username= #{confirmUsername} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='serverType!=null and !"".equals(serverType)' >server_type= #{serverType} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                <if test='poDate!=null' > po_date= #{poDate} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='inConfirmUserId!=null' > in_confirm_user_id= #{inConfirmUserId} and </if>
+                <if test='inConfirmUsername!=null and !"".equals(inConfirmUsername)' >in_confirm_username= #{inConfirmUsername} and </if>
+                <if test='inConfirmTime!=null' > in_confirm_time= #{inConfirmTime} and </if>
+                <if test='createUserId!=null' > create_user_id= #{createUserId} and </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} and </if>
+                 status != '006' and
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+
+    <select id='getListByPage' resultMap='TakesStockResultsModelMap' parameterType='TakesStockResultsModel'>
+        select <include refid='sql_columns' /> from s_takes_stock_results  <include refid='sql_where' />
+        order by id desc
+    </select>
+
+    <select id='getDTOListByPage' resultType='TakesStockResultsDTO' parameterType='TakesStockResultsDTO'>
+        select <include refid='sql_columns' /> from s_takes_stock_results  <include refid='sql_where' />
+        order by id desc
+    </select>
+
+    <select id="getDetail" resultType='TakesStockResultsDTO' parameterType='java.lang.Long'>
+        select <include refid='sql_columns' /> from s_takes_stock_results
+        where id = #{id}
+    </select>
+
+    <select id='getItemByResultIds' resultType='map' parameterType='java.util.ArrayList' >
+        SELECT
+            t.code,
+            t.depot_id,
+            i.goods_id,
+            i.goods_no,
+            i.batch_no,
+            i.is_damage,
+            i.overdue_date,
+            i.tally_unit,
+            i.deficient_num
+        FROM
+            s_takes_stock_results t,
+            s_takes_stock_result_item i
+        WHERE
+            t.id = i.takes_stock_result_id
+        AND i.type = '2'
+        AND t.status = '023'
+        AND i.takes_stock_result_id IN
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="getListByIds" resultMap='TakesStockResultsModelMap' parameterType='java.util.ArrayList'>
+        select <include refid='sql_columns' /> from s_takes_stock_results
+        WHERE status = '023'
+        and id IN
+        <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </select>
+
+    <sql id="export_sql_where" >
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='code!=null and !"".equals(code)' >t.code= #{code} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='status!=null and !"".equals(status)' >t.status= #{status} and </if>
+                <if test='model!=null and !"".equals(model)' >t.model= #{model} and </if>
+                <if test='serverType!=null and !"".equals(serverType)' >t.server_type= #{serverType} and </if>
+                <if test='status==null or "".equals(status)' >t.status!= '006' and </if>
+                <if test='ids!=null and !"".equals(ids)' >t.id in
+                    <foreach collection="ids.split(',')" item='id' separator=',' open='(' close=')'>
+                        #{id}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="listForExport" parameterType="TakesStockResultsDTO" resultType='map' >
+        SELECT
+            t.code,
+            t.takes_stock_code,
+            t.status,
+            t.depot_name,
+            t.server_type,
+            t.model,
+            t.source_time,
+            t.create_username,
+            t.in_confirm_username,
+            t.in_confirm_time,
+            t.remark
+        FROM  s_takes_stock_results t
+        <include refid='export_sql_where' />
+        order by t.id desc
+    </select>
+
+    <select id="listForExportItem" parameterType="TakesStockResultsDTO" resultType='map' >
+        SELECT
+            t.code,
+            ti.bu_name,
+            ti.goods_no,
+            ti.goods_name,
+            ti.barcode,
+            ti.settlement_price,
+            ti.surplus_num,
+            ti.deficient_num,
+            ti.type,
+            ti.batch_no,
+            ti.is_damage,
+            ti.adjust_total,
+            ti.production_date,
+            ti.overdue_date,
+            ti.tally_unit,
+            ti.reason_des,
+            ti.stock_location_type_name
+        FROM  s_takes_stock_results t
+        LEFT JOIN s_takes_stock_result_item ti ON t.id = ti.takes_stock_result_id
+        <include refid='export_sql_where' />
+        order by t.id desc
+    </select>
+</mapper>

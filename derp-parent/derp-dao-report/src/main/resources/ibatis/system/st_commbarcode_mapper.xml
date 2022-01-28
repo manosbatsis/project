@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.system.CommbarcodeMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CommbarcodeModelMap" type="CommbarcodeModel" >
+                <result property="id" column="id" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="commBrandParentId" column="comm_brand_parent_id" />
+                <result property="commBrandParentName" column="comm_brand_parent_name" />
+                <result property="commTypeId" column="comm_type_id" />
+                <result property="commTypeName" column="comm_type_name" />
+                <result property="commGoodsName" column="comm_goods_name" />
+                <result property="maintainStatus" column="maintain_status" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CommbarcodeModelMap' parameterType='CommbarcodeModel'>
+        select <include refid='sql_columns' /> from st_commbarcode  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CommbarcodeModelMap' parameterType='CommbarcodeModel'>
+        select <include refid='sql_columns' /> from st_commbarcode  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CommbarcodeModelMap' parameterType='CommbarcodeModel' >
+        select <include refid='sql_columns' /> from st_commbarcode  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='CommbarcodeModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_commbarcode
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='commBrandParentId!=null' >comm_brand_parent_id , </if>
+                        <if test='commBrandParentName!=null and !"".equals(commBrandParentName)' > comm_brand_parent_name , </if>
+                        <if test='commTypeId!=null' >comm_type_id , </if>
+                        <if test='commTypeName!=null and !"".equals(commTypeName)' > comm_type_name , </if>
+                        <if test='commGoodsName!=null and !"".equals(commGoodsName)' > comm_goods_name , </if>
+                        <if test='maintainStatus!=null and !"".equals(maintainStatus)' > maintain_status , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='commBrandParentId!=null' > #{commBrandParentId} , </if>
+                        <if test='commBrandParentName!=null and !"".equals(commBrandParentName)' > #{commBrandParentName} , </if>
+                        <if test='commTypeId!=null' > #{commTypeId} , </if>
+                        <if test='commTypeName!=null and !"".equals(commTypeName)' > #{commTypeName} , </if>
+                        <if test='commGoodsName!=null and !"".equals(commGoodsName)' > #{commGoodsName} , </if>
+                        <if test='maintainStatus!=null and !"".equals(maintainStatus)' > #{maintainStatus} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CommbarcodeModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_commbarcode SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='commBrandParentId!=null' > comm_brand_parent_id= #{commBrandParentId} , </if>
+                        <if test='commBrandParentName!=null and !"".equals(commBrandParentName)' >comm_brand_parent_name= #{commBrandParentName} , </if>
+                        <if test='commTypeId!=null' > comm_type_id= #{commTypeId} , </if>
+                        <if test='commTypeName!=null and !"".equals(commTypeName)' >comm_type_name= #{commTypeName} , </if>
+                        <if test='commGoodsName!=null and !"".equals(commGoodsName)' >comm_goods_name= #{commGoodsName} , </if>
+                        <if test='maintainStatus!=null and !"".equals(maintainStatus)' >maintain_status= #{maintainStatus} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_commbarcode  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_commbarcode where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            commbarcode,
+            comm_brand_parent_id,
+            comm_brand_parent_name,
+            comm_type_id,
+            comm_type_name,
+            comm_goods_name,
+            maintain_status,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='commBrandParentId!=null' > comm_brand_parent_id= #{commBrandParentId} and </if>
+                            <if test='commBrandParentName!=null and !"".equals(commBrandParentName)' >comm_brand_parent_name= #{commBrandParentName} and </if>
+                            <if test='commTypeId!=null' > comm_type_id= #{commTypeId} and </if>
+                            <if test='commTypeName!=null and !"".equals(commTypeName)' >comm_type_name= #{commTypeName} and </if>
+                            <if test='commGoodsName!=null and !"".equals(commGoodsName)' >comm_goods_name= #{commGoodsName} and </if>
+                            <if test='maintainStatus!=null and !"".equals(maintainStatus)' >maintain_status= #{maintainStatus} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+</mapper>

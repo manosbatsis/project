@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.TocSettlementReceiveBillVerifyItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="TocSettlementReceiveBillVerifyItemModelMap" type="TocSettlementReceiveBillVerifyItemModel" >
+                <result property="id" column="id" />
+                <result property="billId" column="bill_id" />
+                <result property="price" column="price" />
+                <result property="receiveDate" column="receive_date" />
+                <result property="receiceNo" column="receice_no" />
+                <result property="verifyDate" column="verify_date" />
+                <result property="verifyId" column="verify_id" />
+                <result property="verifier" column="verifier" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="ncId" column="nc_id" />
+                <result property="verifyMonth" column="verify_month" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TocSettlementReceiveBillVerifyItemModelMap' parameterType='TocSettlementReceiveBillVerifyItemModel'>
+        select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_verify_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TocSettlementReceiveBillVerifyItemModelMap' parameterType='TocSettlementReceiveBillVerifyItemModel'>
+        select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_verify_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TocSettlementReceiveBillVerifyItemModelMap' parameterType='TocSettlementReceiveBillVerifyItemModel' >
+        select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_verify_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='TocSettlementReceiveBillVerifyItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_toc_settlement_receive_bill_verify_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='billId!=null' >bill_id , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='receiveDate!=null' >receive_date , </if>
+                        <if test='receiceNo!=null and !"".equals(receiceNo)' > receice_no , </if>
+                        <if test='verifyDate!=null' >verify_date , </if>
+                        <if test='verifyId!=null' >verify_id , </if>
+                        <if test='verifier!=null and !"".equals(verifier)' > verifier , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='ncId!=null' >nc_id  , </if>
+                        <if test='verifyMonth!=null and !"".equals(verifyMonth)' > verify_month , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billId!=null' > #{billId} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='receiveDate!=null' > #{receiveDate} , </if>
+                        <if test='receiceNo!=null and !"".equals(receiceNo)' > #{receiceNo} , </if>
+                        <if test='verifyDate!=null' > #{verifyDate} , </if>
+                        <if test='verifyId!=null' > #{verifyId} , </if>
+                        <if test='verifier!=null and !"".equals(verifier)' > #{verifier} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='ncId!=null' > #{ncId} , </if>
+                        <if test='verifyMonth!=null and !"".equals(verifyMonth)' > #{verifyMonth} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='TocSettlementReceiveBillVerifyItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_toc_settlement_receive_bill_verify_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billId!=null' > bill_id= #{billId} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='receiveDate!=null' > receive_date= #{receiveDate} , </if>
+                        <if test='receiceNo!=null and !"".equals(receiceNo)' >receice_no= #{receiceNo} , </if>
+                        <if test='verifyDate!=null' > verify_date= #{verifyDate} , </if>
+                        <if test='verifyId!=null' > verify_id= #{verifyId} , </if>
+                        <if test='verifier!=null and !"".equals(verifier)' >verifier= #{verifier} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='ncId!=null' > nc_id= #{ncId} , </if>
+                        <if test='verifyMonth!=null and !"".equals(verifyMonth)' >verify_month= #{verifyMonth} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_toc_settlement_receive_bill_verify_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_toc_settlement_receive_bill_verify_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_id,
+            price,
+            receive_date,
+            receice_no,
+            verify_date,
+            verify_id,
+            verifier,
+            create_date,
+            modify_date,
+            nc_id,
+            verify_month
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='receiveDate!=null' > receive_date= #{receiveDate} and </if>
+                            <if test='receiceNo!=null and !"".equals(receiceNo)' >receice_no= #{receiceNo} and </if>
+                            <if test='verifyDate!=null' > verify_date= #{verifyDate} and </if>
+                            <if test='verifyId!=null' > verify_id= #{verifyId} and </if>
+                            <if test='verifier!=null and !"".equals(verifier)' >verifier= #{verifier} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='ncId!=null' > nc_id= #{ncId} and </if>
+                            <if test='verifyMonth!=null and !"".equals(verifyMonth)' >verify_month= #{verifyMonth} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id="getAllPriceByBillIds" resultType="double">
+            select IFNULL(sum(price),0) price from t_toc_settlement_receive_bill_verify_item
+            where 1=1
+            <if test='idList!=null and idList.size()>0'>
+                and bill_id in
+                <foreach collection='idList' item='id' separator=',' open='(' close=')'>
+                    #{id}
+                </foreach>
+            </if>
+        </select>
+
+    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_toc_settlement_receive_bill_verify_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            bill_id,
+            price,
+            receive_date,
+            receice_no,
+            verify_date,
+            verify_id,
+            verifier,
+            create_date,
+            modify_date,
+            nc_id
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.id} ,
+                #{item.billId} ,
+                #{item.price} ,
+                #{item.receiveDate} ,
+                #{item.receiceNo} ,
+                #{item.verifyDate},
+                #{item.verifyId},
+                #{item.verifier},
+                #{item.createDate},
+                #{item.modifyDate},
+                #{item.ncId}
+            </trim>
+        </foreach>
+    </insert>
+
+    <select id="getLatestReceiveDate" resultType="java.sql.Timestamp" >
+        select max(receive_date) from t_toc_settlement_receive_bill_verify_item where id = #{billId}
+    </select>
+
+    <select id="getVerifyAmountByBillIds" resultType="map" >
+        select bill_id billId, SUM( price ) amount
+        from t_toc_settlement_receive_bill_verify_item
+        where verify_month &lt;= #{month}
+        and bill_id in
+        <foreach collection='billIds' item='billId' separator=',' open='(' close=')'>
+            #{billId}
+        </foreach>
+        group by bill_id
+    </select>
+
+</mapper>

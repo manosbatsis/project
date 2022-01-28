@@ -1,0 +1,102 @@
+package com.topideal.dao.main.impl;
+
+import com.topideal.common.system.ibatis.PageDataModel;
+import com.topideal.dao.main.CustomerMainDao;
+import com.topideal.entity.dto.main.CustomerMainDTO;
+import com.topideal.entity.vo.main.CustomerMainModel;
+import com.topideal.mapper.main.CustomerMainMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * Created by weixiaolei on 2018/4/10.
+ * @author lchenxing
+ */
+@Repository
+public class CustomerMainDaoImpl implements CustomerMainDao {
+
+    @Autowired
+    private CustomerMainMapper mapper;
+	
+	/**
+	 * 列表查询
+	 * @param model
+	 */
+	@Override
+	public List<CustomerMainModel> list(CustomerMainModel model) throws SQLException {
+		return mapper.list(model);
+	}
+	/**
+	 * 新增
+	 * @param model
+	 */
+    @Override
+    public Long save(CustomerMainModel model) throws SQLException {
+        int num=mapper.insert(model);
+        if(num==1){
+            return model.getId();
+        }
+        return null;
+    }
+    
+	/**
+     * 删除
+     * @param ids
+     */
+    @Override
+    public int delete(List ids) throws SQLException {
+        return mapper.batchDel(ids);
+    }
+    
+	/**
+     * 修改
+     * @param model
+     */
+    @Override
+    public int modify(CustomerMainModel  model) throws SQLException {
+        return mapper.update(model);
+    }
+    
+	/**
+     * 分页查询
+     * @param model
+     */
+    @Override
+    public CustomerMainModel  searchByPage(CustomerMainModel  model) throws SQLException{
+        PageDataModel<CustomerMainModel> pageModel=mapper.listByPage(model);
+        return (CustomerMainModel ) pageModel.getModel();
+    }
+    
+    /**
+     * 通过id查询实体类信息
+     * @param id
+     */
+    @Override
+    public CustomerMainModel  searchById(Long id)throws SQLException {
+        CustomerMainModel  model=new CustomerMainModel ();
+        model.setId(id);
+        return mapper.get(model);
+    }
+    
+      /**
+     	* 根据商家实体类查询商品
+     	* @param model
+     	* */
+	@Override
+	public CustomerMainModel searchByModel(CustomerMainModel model) throws SQLException {
+		return mapper.get(model);
+	}
+	@Override
+	public CustomerMainDTO listCustomerMain(CustomerMainDTO dto) {
+		PageDataModel<CustomerMainDTO> pageModel=mapper.getListByPage(dto);
+        return (CustomerMainDTO ) pageModel.getModel();
+	}
+	@Override
+	public CustomerMainDTO searchDTOById(Long id) {
+		return mapper.searchDTOById(id);
+	}
+
+}

@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.SdPurchaseConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SdPurchaseConfigModelMap" type="SdPurchaseConfigModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="supplierId" column="supplier_id" />
+                <result property="supplierName" column="supplier_name" />
+                <result property="effectiveTime" column="effective_time" />
+                <result property="invalidTime" column="invalid_time" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="creator" column="creator" />
+                <result property="creatorId" column="creator_id" />
+                <result property="examineDate" column="examine_date" />
+                <result property="examiner" column="examiner" />
+                <result property="examinerId" column="examiner_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SdPurchaseConfigModelMap' parameterType='SdPurchaseConfigModel'>
+        select <include refid='sql_columns' /> from t_sd_purchase_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SdPurchaseConfigModelMap' parameterType='SdPurchaseConfigModel'>
+        select <include refid='sql_columns' /> from t_sd_purchase_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SdPurchaseConfigModelMap' parameterType='SdPurchaseConfigModel' >
+        select <include refid='sql_columns' /> from t_sd_purchase_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SdPurchaseConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sd_purchase_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='supplierId!=null' >supplier_id , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+                        <if test='effectiveTime!=null' >effective_time , </if>
+                        <if test='invalidTime!=null' >invalid_time , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='creator!=null and !"".equals(creator)' > creator , </if>
+                        <if test='creatorId!=null' >creator_id , </if>
+                        <if test='examineDate!=null' >examine_date , </if>
+                        <if test='examiner!=null and !"".equals(examiner)' > examiner , </if>
+                        <if test='examinerId!=null' >examiner_id , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='supplierId!=null' > #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+                        <if test='effectiveTime!=null' > #{effectiveTime} , </if>
+                        <if test='invalidTime!=null' > #{invalidTime} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='creator!=null and !"".equals(creator)' > #{creator} , </if>
+                        <if test='creatorId!=null' > #{creatorId} , </if>
+                        <if test='examineDate!=null' > #{examineDate} , </if>
+                        <if test='examiner!=null and !"".equals(examiner)' > #{examiner} , </if>
+                        <if test='examinerId!=null' > #{examinerId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SdPurchaseConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sd_purchase_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='supplierId!=null' > supplier_id= #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+                        <if test='effectiveTime!=null' > effective_time= #{effectiveTime} , </if>
+                        <if test='invalidTime!=null' > invalid_time= #{invalidTime} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='creator!=null and !"".equals(creator)' >creator= #{creator} , </if>
+                        <if test='creatorId!=null' > creator_id= #{creatorId} , </if>
+                        <if test='examineDate!=null' > examine_date= #{examineDate} , </if>
+                        <if test='examiner!=null and !"".equals(examiner)' >examiner= #{examiner} , </if>
+                        <if test='examinerId!=null' > examiner_id= #{examinerId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sd_purchase_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sd_purchase_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            bu_id,
+            bu_name,
+            supplier_id,
+            supplier_name,
+            effective_time,
+            invalid_time,
+            status,
+            create_date,
+            creator,
+            creator_id,
+            examine_date,
+            examiner,
+            examiner_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                            <if test='effectiveTime!=null' > effective_time= #{effectiveTime} and </if>
+                            <if test='invalidTime!=null' > invalid_time= #{invalidTime} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='creator!=null and !"".equals(creator)' >creator= #{creator} and </if>
+                            <if test='creatorId!=null' > creator_id= #{creatorId} and </if>
+                            <if test='examineDate!=null' > examine_date= #{examineDate} and </if>
+                            <if test='examiner!=null and !"".equals(examiner)' >examiner= #{examiner} and </if>
+                            <if test='examinerId!=null' > examiner_id= #{examinerId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 查询所有信息 分页 -->
+	    <select id='getListByPage' resultType='SdPurchaseConfigDTO' parameterType='SdPurchaseConfigDTO'>
+	        select <include refid='sql_columns' /> from t_sd_purchase_config  <include refid='sql_where' />
+	        order by create_date desc
+	    </select>
+	    
+	    <!-- 条件查询 -->
+	    <select id='searchDTO' resultType='SdPurchaseConfigDTO' parameterType='SdPurchaseConfigDTO' >
+	        select <include refid='sql_columns' /> from t_sd_purchase_config  <include refid='sql_where' />
+	    </select>
+
+		<select id="getLastestModel" resultType='SdPurchaseConfigModel' parameterType='SdPurchaseConfigModel'>
+			SELECT <include refid='sql_columns' /> from t_sd_purchase_config 
+			<where>
+                <trim suffixOverrides='and'>
+                      <if test='id!=null' > id= #{id} and </if>
+                      <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                      <if test='buId!=null' > bu_id= #{buId} and </if>
+                      <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                      <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                      effective_time &lt;= NOW() and invalid_time &gt;= NOW() 
+                </trim>
+            </where>
+            order by create_date desc limit 1
+		</select>
+
+</mapper>

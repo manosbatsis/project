@@ -1,0 +1,201 @@
+
+#-------------OP---------------------
+#实时库存查询
+op_v2_14: ${op.v2.14}
+
+#-----------跨境宝-------------------
+epass_v: ${epass.v}
+epass_appSecret: ${epass.appSecret}
+epass_appKey: ${epass.appKey}
+epass_api: ${epass.api}
+
+#采购订单
+epass_001_method: ${epass.001.method}
+#确认理货
+epass_002_method: ${epass.002.method}
+#销售出仓订单
+epass_003_method: ${epass.003.method}
+#调拨指令推送
+epass_004_method: ${epass.004.method}
+
+#---------海外仓----------------------
+#实时库存查询接口地址
+ofc_c2_9: ${ofc.c2.9}
+
+#---------蓝精灵----------------------
+smurfs_api: ${smurfs.api}
+smurfs_appkey: ${smurfs.appkey}
+smurfs_appsecret: ${smurfs.appsecret}
+smurfs_recipients: ${smurfs.recipients}
+smurfs_host: ${smurfs.host}
+smurfs_upload_version: ${smurfs.uploadVersion}
+
+#---------蓝精灵日志----------------------
+#smurfs_log_api: ${smurfs.log.api}
+smurfs_log_appkey: ${smurfs.log.appkey}
+smurfs_log_appsecret: ${smurfs.log.appsecret}
+smurfs_log_recipients: ${smurfs.log.recipients}
+smurfs_log_host: ${smurfs.log.host}
+#smurfs_log_path: ${smurfs.log.path}
+
+#--------第e仓------------------------
+#定时抓取发货订单
+ews_w4_10: ${ews.w4.10}
+#抓取商家的卓志编码
+ews_topidealcode: ${ews.topidealcode}
+
+#-------GSS实时库存-------------------
+#实时快照查询-菜鸟
+gss_g2_url: ${gss.g2.url}
+#GSS实时库存查询接口-非菜鸟
+gss_g2_batch_url: ${gss.g2.batch.url}
+
+#------------------金融正式环境地址-----------------
+finance_api: ${finance.api}
+finance_appkey: ${finance.appkey}
+finance_appsecret: ${finance.appsecret}
+finance_v: ${finance.v}
+#商品分类查询接口
+finance_001_method: ${finance.001.method}
+#商品同步接口（通用库)
+finance_002_method: ${finance.002.method}
+
+#融资申请接口
+finance_api2: ${finance.api2}
+finance_appkey2: ${finance.appkey2}
+finance_appsecret2: ${finance.appsecret2}
+finance_v2: ${finance.v2}
+finance_001_method2: ${finance.001.method2}
+#企业还款赎回接收接口
+finance_002_method2: ${finance.002.method2}
+#还款试算
+finance_003_method2: ${finance.003.method2}
+#商品同步接口
+finance_api3: ${finance.api3}
+finance_001_method3: ${finance.001.method3}
+#----------------汇率系统环境地址-----------------
+currency_api: ${currency.api}
+currency_appkey: ${currency.appkey}
+currency_appsecret: ${currency.appsecret}
+currency_v: ${currency.v}
+#获取汇率接口
+currency_001_method: ${currency.001.method}
+#获取平均汇率接口
+currency_002_method: ${currency.002.method}
+
+#----------------淘宝菜鸟商品查询接口--------
+taobao_api: ${taobao.api}
+
+#-----------------下推主数据商品同步接口-------
+maindata_syncGoods_url: ${maindata.syncGoods.url}
+maindata_source: ${maindata.source}
+maindata_sync_url: ${maindata.sync.url}
+maindata_sync_001_Method: ${maindata.sync.001.method}
+
+#-----------------众邦云仓库查询接口------------
+ywms_api: ${ywms.api}
+ywms_appkey: ${ywms.appkey}
+ywms_secret: ${ywms.secret}
+ywms_customerId: ${ywms.customerId}
+ywms_format: ${ywms.format}
+ywms_v: ${ywms.v}
+#货主
+ywms_ownerCode: ${ywms.ownerCode}
+#货主对应公司主体
+ywms_topidealCode: ${ywms.topidealCode}
+#商家在众邦云仓有库存的商品货号
+ywms_goodsNos: ${ywms.goodsNos}
+
+#------------------财务nc接口----------------------
+#nc api地址
+nc_api: ${nc.api}
+#nc appkey
+nc_appKey: ${nc.appKey}
+#nc 公钥
+nc_publicKey: ${nc.publicKey}
+#nc 秘钥
+nc_privateKey: ${nc.privateKey}
+#nc 来源系统
+nc_sourceType: ${nc.sourceType}
+
+
+#------------------卓普信接口----------------------
+#卓普信 地址
+sapience_url: ${sapience.url}
+#卓普信 appkey
+sapience_appKey: ${sapience.appKey}
+#卓普信 密钥
+sapience_appSecret: ${sapience.appSecret}
+
+#------------------欧莱雅接口----------------------
+#卓普信 地址
+oreal_url: ${oreal.url}
+#token用户名
+oreal_token_username: ${oreal.token.username}
+#token密码
+oreal_token_password: ${oreal.token.password}
+#认证用户名
+oreal_auth_username: ${oreal.auth.username}
+#认证密码
+oreal_auth_password: ${oreal.auth.password}
+#account 账号
+oreal_account_username: ${oreal.account.username}
+#获取token方法
+oreal_001_method: ${oreal.001.method}
+#获取商品方法
+oreal_002_method: ${oreal.002.method}
+
+#------------------机器人----------------------
+#是否启用经销精灵
+jx_enable: ${jx.enable}
+#环境备注
+jx_remark: ${jx.remark}
+#经销精灵
+jx_webhook_url: ${jx.webhook.url}
+
+#------------------OA接口----------------------
+#获取员工信息接口地址
+oa_url1: ${oa.url1}
+#流程创建接口地址
+oa_url2: ${oa.url2}
+#流程ID
+oa_workflow_id: ${oa.workflow.id}
+#系统来源
+oa_lyxt: ${oa.lyxt}
+
+#从OA获取框架合同接口地址
+oa_purchase_frame_contract_url: ${oa.purchase.frame.contract.url}
+oa_purchase_frame_contract_formId: ${oa.purchase.frame.contract.formId}
+
+#从OA获取试单申请接口地址
+oa_purchase_try_apply_url: ${oa.purchase.try.apply.url}
+oa_purchase_try_apply_formId: ${oa.purchase.try.apply.formId}
+
+#采购发起OA流程接口地址
+oa_purchase_workflow_id_url: ${oa.purchase.workflow.id.url}
+#采购发起OA流程ID
+oa_purchase_workflow_id: ${oa.purchase.workflow.id}
+
+#------------------PMS接口对接----------------------
+pms_url: ${pms.url}
+
+#------------------内部交易金额数量差异接口----------------------
+baoxin_email: ${baoxin.email}
+baojian_email: ${baojian.email}
+muying_email: ${muying.email}
+
+#------------------内部邮件预警接收人(开发和实施)-------------------------
+internal_alert_email: ${internal.alert.email}
+
+#-------------------DSTP-------------------------------------
+dstp_url: ${dstp.url}
+#appkey key=卓志编码 value=appkey  0000138-宝信 1000000204-健太 1000000626-润佰贸易 0000134-卓烨贸易
+dstp_appkey_0000138: ${dstp.appkey_0000138}
+dstp_appkey_1000000204: ${dstp.appkey_1000000204}
+dstp_appkey_1000000626: ${dstp.appkey_1000000626}
+dstp_appkey_0000134: ${dstp.appkey_0000134}
+#appsecret key=卓志编码 value=appsecret
+dstp_appsecret_0000138: ${dstp.appsecret_0000138}
+dstp_appsecret_1000000204: ${dstp.appsecret_1000000204}
+dstp_appsecret_1000000626: ${dstp.appsecret_1000000626}
+dstp_appsecret_0000134: ${dstp.appsecret_0000134}

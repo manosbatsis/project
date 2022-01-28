@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleSdOrderItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleSdOrderItemModelMap" type="SaleSdOrderItemModel" >
+                <result property="id" column="id" />
+                <result property="saleSdOrderId" column="sale_sd_order_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="num" column="num" />
+                <result property="price" column="price" />
+                <result property="amount" column="amount" />
+                <result property="sdRatio" column="sd_ratio" />
+                <result property="sdPrice" column="sd_price" />
+                <result property="sdAmount" column="sd_amount" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="saleItemId" column="sale_item_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleSdOrderItemModelMap' parameterType='SaleSdOrderItemModel'>
+        select <include refid='sql_columns' /> from t_sale_sd_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleSdOrderItemModelMap' parameterType='SaleSdOrderItemModel'>
+        select <include refid='sql_columns' /> from t_sale_sd_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleSdOrderItemModelMap' parameterType='SaleSdOrderItemModel' >
+        select <include refid='sql_columns' /> from t_sale_sd_order_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleSdOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_sd_order_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='saleSdOrderId!=null' >sale_sd_order_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='amount!=null' >amount , </if>
+                        <if test='sdRatio!=null' >sd_ratio , </if>
+                        <if test='sdPrice!=null' >sd_price , </if>
+                        <if test='sdAmount!=null' >sd_amount , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='saleItemId!=null' >sale_item_id , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='saleSdOrderId!=null' > #{saleSdOrderId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='sdRatio!=null' > #{sdRatio} , </if>
+                        <if test='sdPrice!=null' > #{sdPrice} , </if>
+                        <if test='sdAmount!=null' > #{sdAmount} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='saleItemId!=null' > #{saleItemId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleSdOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_sd_order_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='saleSdOrderId!=null' > sale_sd_order_id= #{saleSdOrderId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='sdRatio!=null' > sd_ratio= #{sdRatio} , </if>
+                        <if test='sdPrice!=null' > sd_price= #{sdPrice} , </if>
+                        <if test='sdAmount!=null' > sd_amount= #{sdAmount} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='saleItemId!=null' > sale_item_id= #{saleItemId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_sd_order_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_sd_order_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            sale_sd_order_id,
+            goods_id,
+            goods_no,
+            goods_name,
+            barcode,
+            tallying_unit,
+            commbarcode,
+            num,
+            price,
+            amount,
+            sd_ratio,
+            sd_price,
+            sd_amount,
+            create_date,
+            modify_date,
+            sale_item_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='saleSdOrderId!=null' > sale_sd_order_id= #{saleSdOrderId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='sdRatio!=null' > sd_ratio= #{sdRatio} and </if>
+                            <if test='sdPrice!=null' > sd_price= #{sdPrice} and </if>
+                            <if test='sdAmount!=null' > sd_amount= #{sdAmount} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='saleItemId!=null' > sale_item_id= #{saleItemId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 查询所有信息 -->
+	    <select id='listDTO' resultType='SaleSdOrderItemDTO' parameterType='SaleSdOrderItemDTO'>
+	        select 
+	        id,
+            sale_sd_order_id,
+            goods_id,
+            goods_no,
+            goods_name,
+            barcode,
+            tallying_unit,
+            commbarcode,
+            num,
+            sd_ratio,            
+            <choose>
+	            <when test='"2".equals(orderType)'>
+	             	ifnull(-1 * price,0) as price,
+		            ifnull(-1 * amount,0) as amount,
+		            ifnull(-1 * sd_price,0) as sd_price,
+		            ifnull(-1 * sd_amount,0)as sd_amount,
+	            </when>
+	            <otherwise>
+	            	price,
+           			amount,
+            		sd_price,
+            		sd_amount,
+	            </otherwise>
+            </choose>   
+            create_date,
+            modify_date
+	        from t_sale_sd_order_item  <include refid='sql_where' />
+	    </select>
+	    
+	    <delete id="delItemBySaleSdIds" parameterType='java.util.ArrayList'>
+	      delete from t_sale_sd_order_item
+		  where sale_sd_order_id in
+	        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            	#{id}
+            </foreach>
+	    </delete>
+</mapper>

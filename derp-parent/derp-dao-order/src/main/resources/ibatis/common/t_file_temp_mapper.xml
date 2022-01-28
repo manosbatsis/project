@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.FileTempMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="FileTempModelMap" type="FileTempModel" >
+                <result property="id" column="id" />
+                <result property="title" column="title" />
+                <result property="code" column="code" />
+                <result property="contentBody" column="content_body" />
+                <result property="type" column="type" />
+                <result property="status" column="status" />
+                <result property="cusType" column="cus_type" />
+                <result property="toUrl" column="to_url" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='FileTempModelMap' parameterType='FileTempModel'>
+        select <include refid='sql_columns' /> from t_file_temp  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='FileTempModelMap' parameterType='FileTempModel'>
+        select <include refid='sql_columns' /> from t_file_temp  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='FileTempModelMap' parameterType='FileTempModel' >
+        select <include refid='sql_columns' /> from t_file_temp  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='FileTempModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_file_temp
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='title!=null and !"".equals(title)' > title , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='contentBody!=null and !"".equals(contentBody)' > content_body , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='cusType!=null and !"".equals(cusType)' > cus_type , </if>
+                        <if test='toUrl!=null and !"".equals(toUrl)' > to_url , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='title!=null and !"".equals(title)' > #{title} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='contentBody!=null and !"".equals(contentBody)' > #{contentBody} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='cusType!=null and !"".equals(cusType)' > #{cusType} , </if>
+                        <if test='toUrl!=null and !"".equals(toUrl)' > #{toUrl} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='FileTempModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_file_temp SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='title!=null and !"".equals(title)' >title= #{title} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='contentBody!=null and !"".equals(contentBody)' >content_body= #{contentBody} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='cusType!=null and !"".equals(cusType)' >cus_type= #{cusType} , </if>
+                        <if test='toUrl!=null and !"".equals(toUrl)' >to_url= #{toUrl} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_file_temp  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_file_temp where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            title,
+            code,
+            content_body,
+            type,
+            status,
+            cus_type,
+            to_url,
+            create_date,
+            modify_date,
+            merchant_id,
+            merchant_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='title!=null and !"".equals(title)' >title= #{title} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='contentBody!=null and !"".equals(contentBody)' >content_body= #{contentBody} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='cusType!=null and !"".equals(cusType)' >cus_type= #{cusType} and </if>
+                            <if test='toUrl!=null and !"".equals(toUrl)' >to_url= #{toUrl} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and</if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 查询所有信息 分页 -->
+	    <select id='getPageList' resultType='FileTempDTO' parameterType='FileTempDTO'>
+            SELECT
+                f.id, f.type, f.`code`, f.content_body,f.cus_type,f.merchant_name,
+                f.title, f.`status`,f.create_date, GROUP_CONCAT(fr.customer_name) customers
+            from t_file_temp f
+            LEFT JOIN t_file_temp_customer_rel fr on f.id = fr.file_id
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > f.merchant_id= #{merchantId} and </if>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='title!=null and !"".equals(title)' >f.title like CONCAT('%','${title}','%') and </if>
+                    <if test='code!=null and !"".equals(code)' >f.code= #{code} and </if>
+                    <if test='contentBody!=null and !"".equals(contentBody)' >f.content_body= #{contentBody} and </if>
+                    <if test='type!=null and !"".equals(type)' >f.type= #{type} and </if>
+                    <if test='status!=null and !"".equals(status)' >f.status= #{status} and </if>
+                    <if test='createDate!=null' > f.create_date= #{createDate} and </if>
+                    <if test='customerIds!=null' >
+                     f.id in (select a.file_id from t_file_temp_customer_rel a where a.customer_id in
+                        <foreach collection='customerIds' item='customerId' separator=',' open='(' close=')'>
+                            #{customerId}
+                        </foreach>
+                        )
+                     and
+                    </if>
+                </trim>
+            </where>
+            GROUP BY f.id, f.type, f.`code`, f.content_body,f.cus_type,f.merchant_name,f.title, f.`status`,f.create_date
+            order by f.id desc
+            limit #{begin}, #{pageSize}
+	    </select>
+	    
+	    <select id='coutPageList' resultType='java.lang.Integer' parameterType='FileTempDTO'>
+	    	SELECT COUNT(*) FROM
+            (SELECT
+                f.id, f.type, f.`code`, f.content_body,f.cus_type,
+                f.title, f.`status`,f.create_date, GROUP_CONCAT(fr.customer_name) customers
+            from t_file_temp f
+            LEFT JOIN t_file_temp_customer_rel fr on f.id = fr.file_id
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > f.merchant_id= #{merchantId} and </if>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='title!=null and !"".equals(title)' >f.title= #{title} and </if>
+                    <if test='code!=null and !"".equals(code)' >f.code= #{code} and </if>
+                    <if test='contentBody!=null and !"".equals(contentBody)' >f.content_body= #{contentBody} and </if>
+                    <if test='type!=null and !"".equals(type)' >f.type= #{type} and </if>
+                    <if test='status!=null and !"".equals(status)' >f.status= #{status} and </if>
+                    <if test='createDate!=null' > f.create_date= #{createDate} and </if>
+                    <if test='customerIds!=null' >
+                     fr.customer_id in
+                        <foreach collection='customerIds' item='customerId' separator=',' open='(' close=')'>
+                            #{customerId}
+                        </foreach>
+                     and
+                    </if>
+                </trim>
+            </where>
+            GROUP BY f.id, f.type, f.`code`, f.content_body,f.cus_type,f.title, f.`status`,f.create_date
+            order by f.id desc
+            ) t
+	    </select>
+
+        <delete id="delByFileId" parameterType="java.lang.Long" >
+            delete from t_file_temp_customer_rel where file_id = #{fileId}
+        </delete>
+
+        <select id='listFileTempInfo' resultType='FileTempDTO' parameterType='FileTempDTO'>
+            SELECT
+            f.id, f.type, f.`code`, f.content_body,f.cus_type, f.to_url,
+            f.title, f.`status`,f.create_date, GROUP_CONCAT(fr.customer_name) customers
+            from t_file_temp f
+            LEFT JOIN t_file_temp_customer_rel fr on f.id = fr.file_id
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > f.merchant_id= #{merchantId} and </if>
+                    <if test='title!=null and !"".equals(title)' >f.title like CONCAT('%','${title}','%') and </if>
+                    <if test='type!=null and !"".equals(type)' >f.type= #{type} and </if>
+                    <if test='customerIds!=null' >
+                        fr.customer_id in
+                        <foreach collection='customerIds' item='customerId' separator=',' open='(' close=')'>
+                            #{customerId}
+                        </foreach>
+                        and
+                    </if>
+                </trim>
+            </where>
+            GROUP BY f.id, f.type, f.`code`, f.content_body,f.cus_type,f.title, f.`status`,f.create_date
+            order by f.id desc
+        </select>
+
+
+</mapper>

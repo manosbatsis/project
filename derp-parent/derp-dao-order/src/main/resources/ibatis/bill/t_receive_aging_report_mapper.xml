@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.ReceiveAgingReportMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ReceiveAgingReportModelMap" type="ReceiveAgingReportModel" >
+            <result property="id" column="id" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="buId" column="bu_id" />
+            <result property="buName" column="bu_name" />
+            <result property="customerId" column="customer_id" />
+            <result property="customerName" column="customer_name" />
+            <result property="currency" column="currency" />
+            <result property="rate" column="rate" />
+            <result property="effectiveDate" column="effective_date" />
+            <result property="originalAmount" column="original_amount" />
+            <result property="costOriginalAmount" column="cost_original_amount" />
+            <result property="rmbAmount" column="rmb_amount" />
+            <result property="costRmbAmount" column="cost_rmb_amount" />
+            <result property="receiveCostOriginalAmount" column="receive_cost_original_amount" />
+            <result property="receiveIncomeOriginalAmount" column="receive_income_original_amount" />
+            <result property="thirtyAmount" column="thirty_amount" />
+            <result property="sixtyAmount" column="sixty_amount" />
+            <result property="ninetyAmount" column="ninety_amount" />
+            <result property="onetwentyAmount" column="onetwenty_amount" />
+            <result property="twentyAboveAmount" column="twenty_above_amount" />
+            <result property="accountDay" column="account_day" />
+            <result property="accountAmount" column="account_amount" />
+            <result property="overdueAmount" column="overdue_amount" />
+            <result property="createDate" column="create_date" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="rmbCurrency" column="rmb_currency" />
+            <result property="channelType" column="channel_type" />
+            <result property="simpleName" column="simple_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ReceiveAgingReportModelMap' parameterType='ReceiveAgingReportModel'>
+        select <include refid='sql_columns' /> from t_receive_aging_report  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ReceiveAgingReportModelMap' parameterType='ReceiveAgingReportModel'>
+        select <include refid='sql_columns' /> from t_receive_aging_report  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ReceiveAgingReportModelMap' parameterType='ReceiveAgingReportModel' >
+        select <include refid='sql_columns' /> from t_receive_aging_report  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ReceiveAgingReportModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_receive_aging_report
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='merchantId!=null' >merchant_id  , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='buId!=null' >bu_id  , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='customerId!=null' >customer_id  , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='rate!=null' >rate  , </if>
+                        <if test='effectiveDate!=null' >effective_date  , </if>
+                        <if test='originalAmount!=null' >original_amount  , </if>
+                        <if test='costOriginalAmount!=null' >cost_original_amount  , </if>
+                        <if test='rmbAmount!=null' >rmb_amount  , </if>
+                        <if test='costRmbAmount!=null' >cost_rmb_amount  , </if>
+                        <if test='receiveCostOriginalAmount!=null' >receive_cost_original_amount  , </if>
+                        <if test='receiveIncomeOriginalAmount!=null' >receive_income_original_amount  , </if>
+                        <if test='thirtyAmount!=null' >thirty_amount  , </if>
+                        <if test='sixtyAmount!=null' >sixty_amount  , </if>
+                        <if test='ninetyAmount!=null' >ninety_amount  , </if>
+                        <if test='onetwentyAmount!=null' >onetwenty_amount  , </if>
+                        <if test='twentyAboveAmount!=null' >twenty_above_amount  , </if>
+                        <if test='accountDay!=null' >account_day  , </if>
+                        <if test='accountAmount!=null' >account_amount  , </if>
+                        <if test='overdueAmount!=null' >overdue_amount  , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='modifyDate!=null' >modify_date  , </if>
+                        <if test='rmbCurrency!=null and !"".equals(rmbCurrency)' > rmb_currency , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' > channel_type , </if>
+                        <if test='simpleName!=null and !"".equals(simpleName)' > simple_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='rate!=null' > #{rate} , </if>
+                        <if test='effectiveDate!=null' > #{effectiveDate} , </if>
+                        <if test='originalAmount!=null' > #{originalAmount} , </if>
+                        <if test='costOriginalAmount!=null' > #{costOriginalAmount} , </if>
+                        <if test='rmbAmount!=null' > #{rmbAmount} , </if>
+                        <if test='costRmbAmount!=null' > #{costRmbAmount} , </if>
+                        <if test='receiveCostOriginalAmount!=null' > #{receiveCostOriginalAmount} , </if>
+                        <if test='receiveIncomeOriginalAmount!=null' > #{receiveIncomeOriginalAmount} , </if>
+                        <if test='thirtyAmount!=null' > #{thirtyAmount} , </if>
+                        <if test='sixtyAmount!=null' > #{sixtyAmount} , </if>
+                        <if test='ninetyAmount!=null' > #{ninetyAmount} , </if>
+                        <if test='onetwentyAmount!=null' > #{onetwentyAmount} , </if>
+                        <if test='twentyAboveAmount!=null' > #{twentyAboveAmount} , </if>
+                        <if test='accountDay!=null' > #{accountDay} , </if>
+                        <if test='accountAmount!=null' > #{accountAmount} , </if>
+                        <if test='overdueAmount!=null' > #{overdueAmount} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='rmbCurrency!=null and !"".equals(rmbCurrency)' > #{rmbCurrency} , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' > #{channelType} , </if>
+                        <if test='simpleName!=null and !"".equals(simpleName)' > #{simpleName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ReceiveAgingReportModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_receive_aging_report SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='rate!=null' > rate= #{rate} , </if>
+                        <if test='effectiveDate!=null' > effective_date= #{effectiveDate} , </if>
+                        <if test='originalAmount!=null' > original_amount= #{originalAmount} , </if>
+                        <if test='costOriginalAmount!=null' > cost_original_amount= #{costOriginalAmount} , </if>
+                        <if test='rmbAmount!=null' > rmb_amount= #{rmbAmount} , </if>
+                        <if test='costRmbAmount!=null' > cost_rmb_amount= #{costRmbAmount} , </if>
+                        <if test='receiveCostOriginalAmount!=null' > receive_cost_original_amount= #{receiveCostOriginalAmount} , </if>
+                        <if test='receiveIncomeOriginalAmount!=null' > receive_income_original_amount= #{receiveIncomeOriginalAmount} , </if>
+                        <if test='thirtyAmount!=null' > thirty_amount= #{thirtyAmount} , </if>
+                        <if test='sixtyAmount!=null' > sixty_amount= #{sixtyAmount} , </if>
+                        <if test='ninetyAmount!=null' > ninety_amount= #{ninetyAmount} , </if>
+                        <if test='onetwentyAmount!=null' > onetwenty_amount= #{onetwentyAmount} , </if>
+                        <if test='twentyAboveAmount!=null' > twenty_above_amount= #{twentyAboveAmount} , </if>
+                        <if test='accountDay!=null' > account_day= #{accountDay} , </if>
+                        <if test='accountAmount!=null' > account_amount= #{accountAmount} , </if>
+                        <if test='overdueAmount!=null' > overdue_amount= #{overdueAmount} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='rmbCurrency!=null and !"".equals(rmbCurrency)' >rmb_currency= #{rmbCurrency} , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} , </if>
+                        <if test='simpleName!=null and !"".equals(simpleName)' >simple_name= #{simpleName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_receive_aging_report  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_receive_aging_report where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            bu_id,
+            bu_name,
+            customer_id,
+            customer_name,
+            currency,
+            rate,
+            effective_date,
+            original_amount,
+            cost_original_amount,
+            rmb_amount,
+            cost_rmb_amount,
+            receive_cost_original_amount,
+            receive_income_original_amount,
+            thirty_amount,
+            sixty_amount,
+            ninety_amount,
+            onetwenty_amount,
+            twenty_above_amount,
+            account_day,
+            account_amount,
+            overdue_amount,
+            create_date,
+            modify_date,
+            rmb_currency,
+            channel_type,
+            simple_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='rate!=null' > rate= #{rate} and </if>
+                            <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                            <if test='originalAmount!=null' > original_amount= #{originalAmount} and </if>
+                            <if test='costOriginalAmount!=null' > cost_original_amount= #{costOriginalAmount} and </if>
+                            <if test='rmbAmount!=null' > rmb_amount= #{rmbAmount} and </if>
+                            <if test='costRmbAmount!=null' > cost_rmb_amount= #{costRmbAmount} and </if>
+                            <if test='receiveCostOriginalAmount!=null' > receive_cost_original_amount= #{receiveCostOriginalAmount} and </if>
+                            <if test='receiveIncomeOriginalAmount!=null' > receive_income_original_amount= #{receiveIncomeOriginalAmount} and </if>
+                            <if test='thirtyAmount!=null' > thirty_amount= #{thirtyAmount} and </if>
+                            <if test='sixtyAmount!=null' > sixty_amount= #{sixtyAmount} and </if>
+                            <if test='ninetyAmount!=null' > ninety_amount= #{ninetyAmount} and </if>
+                            <if test='onetwentyAmount!=null' > onetwenty_amount= #{onetwentyAmount} and </if>
+                            <if test='twentyAboveAmount!=null' > twenty_above_amount= #{twentyAboveAmount} and </if>
+                            <if test='accountDay!=null' > account_day= #{accountDay} and </if>
+                            <if test='accountAmount!=null' > account_amount= #{accountAmount} and </if>
+                            <if test='overdueAmount!=null' > overdue_amount= #{overdueAmount} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='rmbCurrency!=null and !"".equals(rmbCurrency)' >rmb_currency= #{rmbCurrency} and </if>
+                            <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} and </if>
+                            <if test='simpleName!=null and !"".equals(simpleName)' >simple_name= #{simpleName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+    <sql id='sql_where_dto'>
+        <where>
+            <trim suffixOverrides='and'>
+            <choose>
+                <when test='ids!=null and !"".equals(ids)'>
+                    id in
+                    <foreach collection="ids.split(',')" item="id" open="(" close=")" separator=",">
+                        #{id}
+                    </foreach>
+                </when>
+                <otherwise>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                    <if test='buId!=null' > bu_id= #{buId} and </if>
+                    <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                    <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                    <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                    <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                    <if test='rate!=null' > rate= #{rate} and </if>
+                    <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                    <if test='originalAmount!=null' > original_amount= #{originalAmount} and </if>
+                    <if test='rmbAmount!=null' > rmb_amount= #{rmbAmount} and </if>
+                    <if test='thirtyAmount!=null' > thirty_amount= #{thirtyAmount} and </if>
+                    <if test='sixtyAmount!=null' > sixty_amount= #{sixtyAmount} and </if>
+                    <if test='ninetyAmount!=null' > ninety_amount= #{ninetyAmount} and </if>
+                    <if test='onetwentyAmount!=null' > onetwenty_amount= #{onetwentyAmount} and </if>
+                    <if test='twentyAboveAmount!=null' > twenty_above_amount= #{twentyAboveAmount} and </if>
+                    <if test='accountDay!=null' > account_day= #{accountDay} and </if>
+                    <if test='accountAmount!=null' > account_amount= #{accountAmount} and </if>
+                    <if test='overdueAmount!=null' > overdue_amount= #{overdueAmount} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                    <if test='rmbCurrency!=null and !"".equals(rmbCurrency)' >rmb_currency= #{rmbCurrency} and </if>
+                    <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} and </if>
+                    <if test='simpleName!=null and !"".equals(simpleName)' >simple_name= #{simpleName} and </if>
+                    <if test='buList!=null and !"".equals(buList)' >bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                </otherwise>
+            </choose>
+            </trim>
+        </where>
+    </sql>
+
+
+    <select id="getDTOListByPage" resultType="ReceiveAgingReportDTO" parameterType="ReceiveAgingReportDTO">
+        select <include refid='sql_columns' /> from t_receive_aging_report  <include refid='sql_where_dto' />
+    </select>
+
+    <select id="listForExport" resultType="ReceiveAgingReportDTO" parameterType="ReceiveAgingReportDTO">
+        select <include refid='sql_columns' /> from t_receive_aging_report  <include refid='sql_where_dto' />
+    </select>
+
+    <select id="deleteByReceiveAging" parameterType="map">
+        delete from t_receive_aging_report
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} and </if>
+            </trim>
+        </where>
+    </select>
+
+    <select id="getMaxRefrshDate" resultType="map">
+        select max(create_date) maxDate from t_receive_aging_report
+        where merchant_id=#{merchantId}
+    </select>
+
+    <select id="listBySearchQuery" resultType="ReceiveAgingReportDTO">
+        select <include refid='sql_columns' /> from t_receive_aging_report
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} and </if>
+            </trim>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.inventory.BuInventoryMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuInventoryModelMap" type="BuInventoryModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="depotCode" column="depot_code" />
+                <result property="depotType" column="depot_type" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="barcode" column="barcode" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="wornNum" column="worn_num" />
+                <result property="okNum" column="ok_num" />
+                <result property="unit" column="unit" />
+                <result property="month" column="month" />
+                <result property="creater" column="creater" />
+                <result property="createDate" column="create_date" />
+                <result property="departmentId" column="department_id" />
+                <result property="departmentName" column="department_name" />
+                <result property="parentBrandId" column="parent_brand_id" />
+                <result property="parentBrandName" column="parent_brand_name" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="superiorParentBrandId" column="superior_parent_brand_id" />
+                <result property="departmentCode" column="department_code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuInventoryModelMap' parameterType='BuInventoryModel'>
+        select <include refid='sql_columns' /> from i_bu_inventory  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuInventoryModelMap' parameterType='BuInventoryModel'>
+        select <include refid='sql_columns' /> from i_bu_inventory  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuInventoryModelMap' parameterType='BuInventoryModel' >
+        select <include refid='sql_columns' /> from i_bu_inventory  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuInventoryModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO i_bu_inventory
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' > depot_code , </if>
+                        <if test='depotType!=null and !"".equals(depotType)' > depot_type , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='surplusNum!=null' >surplus_num , </if>
+                        <if test='wornNum!=null' >worn_num , </if>
+                        <if test='okNum!=null' >ok_num , </if>
+                        <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='departmentId!=null' >department_id , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' >department_name , </if>
+                        <if test='parentBrandId!=null' >parent_brand_id , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='superiorParentBrandId!=null' >superior_parent_brand_id  , </if>
+                        <if test='departmentCode!=null and !"".equals(departmentCode)' > department_code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' > #{depotCode} , </if>
+                        <if test='depotType!=null and !"".equals(depotType)' > #{depotType} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='surplusNum!=null' > #{surplusNum} , </if>
+                        <if test='wornNum!=null' > #{wornNum} , </if>
+                        <if test='okNum!=null' > #{okNum} , </if>
+                        <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='departmentId!=null' > #{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > #{departmentName} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > #{parentBrandName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='superiorParentBrandId!=null' > #{superiorParentBrandId} , </if>
+                        <if test='departmentCode!=null and !"".equals(departmentCode)' > #{departmentCode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuInventoryModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  i_bu_inventory SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} , </if>
+                        <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                        <if test='wornNum!=null' > worn_num= #{wornNum} , </if>
+                        <if test='okNum!=null' > ok_num= #{okNum} , </if>
+                        <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='departmentId!=null' > department_id=#{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > department_name=#{departmentName} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id=#{parentBrandId} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name=#{parentBrandName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand=#{superiorParentBrand} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} , </if>
+                        <if test='departmentCode!=null and !"".equals(departmentCode)' >department_code= #{departmentCode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_bu_inventory  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from i_bu_inventory where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            topideal_code,
+            depot_id,
+            depot_name,
+            depot_code,
+            depot_type,
+            bu_id,
+            bu_name,
+            goods_id,
+            goods_name,
+            goods_no,
+            commbarcode,
+            barcode,
+            brand_id,
+            brand_name,
+            surplus_num,
+            worn_num,
+            ok_num,
+            unit,
+            month,
+            creater,
+            create_date,
+            department_id,
+            department_name,
+            parent_brand_id,
+            parent_brand_name,
+            superior_parent_brand,
+            modify_date,
+            superior_parent_brand_id,
+            department_code            
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                            <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                            <if test='wornNum!=null' > worn_num= #{wornNum} and </if>
+                            <if test='okNum!=null' > ok_num= #{okNum} and </if>
+                            <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='departmentId!=null' > department_id=#{departmentId} and </if>
+                            <if test='departmentName!=null and !"".equals(departmentName)' > department_name=#{departmentName} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id=#{parentBrandId} and </if>
+                            <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name=#{parentBrandName} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand=#{superiorParentBrand} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} and </if>
+                            <if test='departmentCode!=null and !"".equals(departmentCode)' >department_code= #{departmentCode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+		<!-- 获取事业部库存库存余量 -->
+	    <select id='getBuDepotEndNumForMap' resultType="map" parameterType='map'>    
+	    	SELECT CONCAT(depot_id,'_',bu_id,'_',goods_no)AS depot_id_bu_id_goods_no,depot_id,bu_id,goods_no,unit,goods_id,
+			SUM(surplus_num)as surplus_num,SUM(worn_num) as worn_num,SUM(ok_num) as ok_num
+			from i_bu_inventory 
+			where  merchant_id= #{merchantId}  and bu_id= #{buId} and month=#{month}
+			and depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)			
+			GROUP BY merchant_id,depot_id,bu_id,goods_no,unit,goods_id     
+	    </select>
+	    
+	            <!--自定义SQL-->
+       <!--   获取的 按商家 仓库事业库存分组的统计量 -->
+		<select id="getBarcodeMonthBuInventory" resultType='map' parameterType='map'>		
+			SELECT unit,SUM(surplus_num) as surplus_num,SUM(ok_num)as ok_num,SUM(worn_num) as worn_num 
+			from i_bu_inventory 
+			where month=#{month}
+			and merchant_id= #{merchantId}
+			and depot_id= #{depotId}
+			and bu_id= #{buId}
+			and barcode= #{barcode}
+			GROUP BY unit
+    	</select>
+		<!--   获取的 按商家 仓库事业库存分组的统计量 -->
+		<select id="getBeforeMonthBarcodeCount" resultType="java.lang.Integer" parameterType='map'>		
+			SELECT  COUNT(*)
+			from i_bu_inventory 
+			where month &lt;#{month}
+			and merchant_id= #{merchantId}
+			and depot_id= #{depotId}
+			and bu_id= #{buId}
+			and barcode= #{barcode}
+
+    	</select>
+
+	   <!--  删除  事业部库存数据 -->
+	    <delete id='delBuInventory' parameterType='map'>
+	        delete from i_bu_inventory  
+	        where merchant_id= #{merchantId}
+	        and depot_id= #{depotId}
+	        and month= #{month}
+	    </delete>
+	    
+	    <select id='getMonthlyAutoVeriListGroupByBarcode' parameterType='map' resultType="map">
+	    	SELECT
+				merchant_id,
+				depot_id,
+				barcode,
+				goods_no,
+				MAX(goods_name) as goods_name,
+				SUM(IFNULL(surplus_num, 0)) AS surplus_num,
+				SUM(IFNULL(ok_num, 0)) AS ok_num,
+				SUM(IFNULL(worn_num, 0)) AS worn_num
+			FROM
+				i_bu_inventory
+			WHERE
+				merchant_id = #{merchantId}
+			AND month = #{month}
+			<choose>
+            	<when test="depotId!=null">
+            		and depot_id = #{depotId}
+            	</when>
+            	<otherwise>
+            		and depot_id in (SELECT id from st_depot_info where type in ('a', 'b', 'c', 'd', 'g'))
+            	</otherwise>
+            </choose>
+			GROUP BY
+				merchant_id,
+				depot_id,
+				barcode,
+				goods_no
+	    </select>
+
+        <select id="getLatestInventory" resultMap='BuInventoryModelMap' parameterType='BuInventoryModel'>
+            SELECT
+                bu_id,
+                bu_name,
+                max(month) month,
+                goods_no,
+                goods_id
+            FROM
+                i_bu_inventory
+            WHERE
+                merchant_id = #{merchantId}
+            AND depot_id = #{depotId}
+            AND goods_no = #{goodsNo}
+            and surplus_num > 0
+            GROUP BY bu_id, bu_name,goods_id,goods_no
+        </select>
+        
+        <select id="getNegativeNumList" resultType='BuInventoryModel' parameterType='map'>
+        	SELECT
+                <include refid='sql_columns' />
+            FROM
+                i_bu_inventory
+            WHERE
+                month = #{month}
+            and (surplus_num &lt; 0 or worn_num &lt; 0 or ok_num &lt; 0)
+            order by merchant_id
+        </select>
+
+        <select id="getBuInventoryByCommbarcode" resultType='BuInventoryModel'>
+            SELECT
+                merchant_id,
+                merchant_name,
+                depot_id,
+                depot_name,
+                bu_id,
+                bu_name,
+                commbarcode,
+                unit,
+                SUM(surplus_num) surplus_num
+            FROM
+                i_bu_inventory
+            WHERE month =  #{month}
+                and depot_id in (select id from st_depot_info where type in ('a','c','d'))
+                and bu_id in
+                <foreach collection='buIds' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>
+            GROUP BY
+                merchant_id,
+                merchant_name,
+                depot_id,
+                depot_name,
+                bu_id,
+                bu_name,
+                commbarcode,
+                unit
+        </select>
+
+    <!--    部门库存统计（经营报表）-->
+    <select id="getDepartmentInventoryStatistic" resultType='ManageDepartmentInventoryDTO' parameterType="map">
+        SELECT
+            IFNULL(a.department_id, -1) as departmentId,a.department_name as departmentName,
+            <if test='groupByParentBrandFlag'>a.superior_parent_brand as parentBrandName, a.superior_parent_brand_id as parentBrandId,</if>
+            <if test='groupByBrandParentFlag'>a.parent_brand_id as brandParentId, a.parent_brand_name as brandParent,</if>
+            <if test='groupByBuIdFlag'>a.bu_id as buId, a.bu_name as buName,</if>
+            <if test='groupByMerchantFlag'>a.merchant_id as merchantId, a.merchant_name as merchantName,</if>
+            <if test='groupByDepotFlag'>a.depot_id as depotId, a.depot_name as depotName,</if>
+            <if test='groupByEffectiveInterval'>b.effective_interval as effectiveInterval,</if>
+            IFNULL(sum(b.num),0) as num,
+            IFNULL(sum(b.num * IFNULL(c.ori_weighted_price, 0)),0) as inventoryAmount
+        from i_bu_inventory a left join i_bu_inventory_item b on a.id = b.bu_inventory_id
+        left join r_inventory_analysis c on a.merchant_id = c.merchant_id and a.bu_id = c.bu_id
+            and a.depot_id = c.depot_id and a.commbarcode = c.commbarcode and a.month = c.month
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='departmentIds!=null and departmentIds.size() > 0' > a.department_id in
+                    <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")">
+                        #{departmentId}
+                    </foreach>
+                    and
+                </if>
+                <if test='buIds != null and buIds.size() > 0' > a.bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='parentBrandIds !=null and parentBrandIds.size() > 0'> a.superior_parent_brand_id in
+                    <foreach collection="parentBrandIds" item="parentBrandId" separator="," open="(" close=")">
+                        #{parentBrandId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandParentIds !=null and brandParentIds.size() > 0'> a.parent_brand_id in
+                    <foreach collection="brandParentIds" item="brandId" separator="," open="(" close=")">
+                        #{brandId}
+                    </foreach>
+                    and
+                </if>
+                <if test='merchantIds !=null and merchantIds.size() > 0'> a.merchant_id in
+                    <foreach collection="merchantIds" item="merchantId" separator="," open="(" close=")">
+                        #{merchantId}
+                    </foreach>
+                    and
+                </if>
+                <if test='outDepotIds !=null and outDepotIds.size() > 0'> a.depot_id in
+                    <foreach collection="outDepotIds" item="depotId" separator="," open="(" close=")">
+                        #{depotId}
+                    </foreach>
+                    and
+                </if>
+                <if test='month !=null and !"".equals(month)'> a.month = #{month} and </if>
+            </trim>
+        </where>
+        group by a.department_id
+        <if test='groupByParentBrandFlag'> ,a.superior_parent_brand_id</if>
+        <if test='groupByBrandParentFlag'> ,a.parent_brand_id</if>
+        <if test='groupByBuIdFlag'> ,a.bu_id</if>
+        <if test='groupByMerchantFlag'> ,a.merchant_id</if>
+        <if test='groupByDepotFlag'>,a.depot_id</if>
+        <if test='groupByEffectiveInterval'>,b.effective_interval</if>
+        <if test='groupByMonthFlag'>,a.month</if>
+<!--        order by a.department_code-->
+    </select>
+</mapper>

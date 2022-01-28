@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.GroupMerchandiseContrastDetailHistoryMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="GroupMerchandiseContrastDetailHistoryModelMap" type="GroupMerchandiseContrastDetailHistoryModel" >
+                <result property="id" column="id" />
+                <result property="groupMerchandiseId" column="group_merchandise_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="brand" column="brand" />
+                <result property="num" column="num" />
+                <result property="price" column="price" />
+                <result property="modifyId" column="modify_id" />
+                <result property="editor" column="editor" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='GroupMerchandiseContrastDetailHistoryModelMap' parameterType='GroupMerchandiseContrastDetailHistoryModel'>
+        select <include refid='sql_columns' /> from t_group_merchandise_contrast_detail_history  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='GroupMerchandiseContrastDetailHistoryModelMap' parameterType='GroupMerchandiseContrastDetailHistoryModel'>
+        select <include refid='sql_columns' /> from t_group_merchandise_contrast_detail_history  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='GroupMerchandiseContrastDetailHistoryModelMap' parameterType='GroupMerchandiseContrastDetailHistoryModel' >
+        select <include refid='sql_columns' /> from t_group_merchandise_contrast_detail_history  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='GroupMerchandiseContrastDetailHistoryModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_group_merchandise_contrast_detail_history
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='groupMerchandiseId!=null' >group_merchandise_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='brand!=null and !"".equals(brand)' > brand , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='modifyId!=null' >modify_id , </if>
+                        <if test='editor!=null and !"".equals(editor)' > editor , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='groupMerchandiseId!=null' > #{groupMerchandiseId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='brand!=null and !"".equals(brand)' > #{brand} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='modifyId!=null' > #{modifyId} , </if>
+                        <if test='editor!=null and !"".equals(editor)' > #{editor} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='GroupMerchandiseContrastDetailHistoryModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_group_merchandise_contrast_detail_history SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='groupMerchandiseId!=null' > group_merchandise_id= #{groupMerchandiseId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='brand!=null and !"".equals(brand)' >brand= #{brand} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='modifyId!=null' > modify_id= #{modifyId} , </if>
+                        <if test='editor!=null and !"".equals(editor)' >editor= #{editor} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_group_merchandise_contrast_detail_history  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_group_merchandise_contrast_detail_history where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            group_merchandise_id,
+            goods_id,
+            goods_no,
+            goods_name,
+            barcode,
+            brand,
+            num,
+            price,
+            modify_id,
+            editor,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='groupMerchandiseId!=null' > group_merchandise_id= #{groupMerchandiseId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='brand!=null and !"".equals(brand)' >brand= #{brand} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='modifyId!=null' > modify_id= #{modifyId} and </if>
+                            <if test='editor!=null and !"".equals(editor)' >editor= #{editor} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <delete id='batchDelByGroupId' parameterType='java.lang.Long'>
+            delete from t_group_merchandise_contrast_detail_history where group_merchandise_id = #{groupMerchandiseId}
+        </delete>
+
+
+
+</mapper>

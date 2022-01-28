@@ -1,0 +1,36 @@
+
+spring:
+    profiles:
+        include:
+            - apollo #apollo配置文件
+            - dbsystem #主服务库
+            - rocketmq #mq配置文件
+            - mongo #mongo配置文件
+            - redis #redis配置文件
+            - externalapi #外部接口配置文件
+            - idmsso #idm单点登录1
+    mvc:
+        view:
+            prefix: /WEB-INF/views/ #返回的前缀
+            suffix: .jsp #返回的后缀
+    servlet:
+        multipart:
+            max-file-size: 50MB
+            enabled: true
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        serialization:
+            write-dates-as-timestamps: false
+
+server:
+    port: 9010
+    servlet:
+        context-path: /
+        session:
+            tracking-modes: cookie
+            timeout: 14420 #超时时间 单位秒 3600=1小时 14400=4小时 因单点票据信息存储在web回话
+mybatis:
+    configLocation: classpath:mybatis-config.xml
+    type-aliases-package: com.topideal.entity
+    mapper-locations: classpath:ibatis/**/*.xml

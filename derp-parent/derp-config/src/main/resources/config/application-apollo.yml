@@ -1,0 +1,12 @@
+#------------apollo配置中心----------------------
+app:
+   id: apollo-derp
+env: DEV
+apollo: 
+    meta: http://10.10.102.180:9102 
+    #meta: http://121.33.205.118:9100
+    bootstrap: 
+         enabled: true #true：应用启动阶段是否向Spring容器注入被托管的properties文件配置信息
+         namespaces: db-mysql.yml,db-mongo.yml,db-redis.yml,rocketmq.yml,gateway-eureka.yml,idmsso.yml,update-tabale-goodsinfo,external-api-config,synchronization-table
+
+#------------apollo配置中心----------------------

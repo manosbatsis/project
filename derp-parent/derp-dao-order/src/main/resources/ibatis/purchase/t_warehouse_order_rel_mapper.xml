@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.WarehouseOrderRelMapper'>
+
+     <!-- 关系映射 -->
+    <resultMap id="WarehouseOrderRelModelMap" type="WarehouseOrderRelModel" >
+                <result property="modifyDate" column="modify_date" />
+                <result property="warehouseId" column="warehouse_id" />
+                <result property="purchaseOrderId" column="purchase_order_id" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='WarehouseOrderRelModelMap' parameterType='WarehouseOrderRelModel'>
+        select <include refid='sql_columns' /> from t_warehouse_order_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='WarehouseOrderRelModelMap' parameterType='WarehouseOrderRelModel'>
+        select <include refid='sql_columns' /> from t_warehouse_order_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='WarehouseOrderRelModelMap' parameterType='WarehouseOrderRelModel' >
+        select <include refid='sql_columns' /> from t_warehouse_order_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='WarehouseOrderRelModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_warehouse_order_rel
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='warehouseId!=null' > warehouse_id , </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='warehouseId!=null' > #{warehouseId} , </if>
+                <if test='purchaseOrderId!=null' > #{purchaseOrderId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='WarehouseOrderRelModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_warehouse_order_rel SET
+        <trim  suffixOverrides=",">
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='warehouseId!=null' > warehouse_id= #{warehouseId} , </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_warehouse_order_rel  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_warehouse_order_rel where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        modify_date,
+        warehouse_id,
+        purchase_order_id,
+        creater,
+        id,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='warehouseId!=null' > warehouse_id= #{warehouseId} and </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	<resultMap id="PurchaseWarehouseModelMap" type="PurchaseWarehouseModel" >
+                <result property="id" column="id" />
+                <result property="inboundDate" column="inbound_date" />
+    </resultMap>
+    
+	<!-- 根据采购单id获取最后入仓时间 -->
+    <select id='getInboundDateById' resultMap='PurchaseWarehouseModelMap' parameterType='java.lang.Long' >
+		select t1.id,t1.inbound_date from t_purchase_warehouse t1
+		where t1.id in (
+		select t2.warehouse_id from t_warehouse_order_rel t2 
+		where t2.purchase_order_id=#{id})
+		order by t1.inbound_date
+    </select>
+
+	<!-- 根据采购单id获取最后入仓时间 -->
+    <select id='listOrderByAudthTime' resultMap='WarehouseOrderRelModelMap' parameterType='java.lang.Long' >
+		select t1.* from t_warehouse_order_rel t1 LEFT JOIN t_purchase_order t2 on t1.purchase_order_id = t2.id
+		WHERE t1.warehouse_id = #{id} ORDER BY t2.audit_date
+    </select>
+
+    <select id="countWriteOffNum" resultType="java.lang.Integer" >
+        select count(t1.id) count
+        from t_purchase_warehouse t1
+            LEFT JOIN t_warehouse_order_rel t2 on t1.id = t2.warehouse_id
+        where t2.purchase_order_id = #{purchaseId}
+        and t1.is_write_off = #{isWriteOff}
+        and t1.state = '012'
+    </select>
+</mapper>

@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.PlatformPurchaseOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PlatformPurchaseOrderModelMap" type="PlatformPurchaseOrderModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="platformDepotName" column="platform_depot_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="poNo" column="po_no" />
+                <result property="orderTime" column="order_time" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="submitDate" column="submit_date" />
+                <result property="submiter" column="submiter" />
+                <result property="submitName" column="submit_name" />
+                <result property="resaleDate" column="resale_date" />
+                <result property="resaler" column="resaler" />
+                <result property="resaleName" column="resale_name" />
+                <result property="currency" column="currency" />
+                <result property="amount" column="amount" />
+                <result property="num" column="num" />
+                <result property="platformStatus" column="platform_status" />
+                <result property="status" column="status" />
+                <result property="saleCode" column="sale_code" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="orderSource" column="order_source" />
+                <result property="userCode" column="user_code" />
+                <result property="prNo" column="pr_no" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PlatformPurchaseOrderModelMap' parameterType='PlatformPurchaseOrderModel'>
+        select <include refid='sql_columns' /> from t_platform_purchase_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PlatformPurchaseOrderModelMap' parameterType='PlatformPurchaseOrderModel'>
+        select <include refid='sql_columns' /> from t_platform_purchase_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='getListByPage' resultType='PlatformPurchaseOrderDTO' parameterType='PlatformPurchaseOrderDTO'>
+        select <include refid='sql_columns' /> from t_platform_purchase_order
+        <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                    <if test='platformDepotName!=null and !"".equals(platformDepotName)' >platform_depot_name= #{platformDepotName} and </if>
+                    <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                    <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >
+                 	po_no in
+                 	<foreach collection="poNo.split(',')" separator="," item="po" open="(" close=")">
+                 		#{po}
+                 	</foreach>
+                 	and
+                 </if>
+                    <if test='prNo!=null and !"".equals(prNo)' >
+                        pr_no in
+                        <foreach collection="prNo.split(',')" separator="," item="pr" open="(" close=")">
+                            #{pr}
+                        </foreach>
+                        and
+                    </if>
+                    <if test='orderTime!=null' > order_time= #{orderTime} and </if>
+                    <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                    <if test='submitDate!=null' > submit_date= #{submitDate} and </if>
+                    <if test='submiter!=null' > submiter= #{submiter} and </if>
+                    <if test='submitName!=null and !"".equals(submitName)' >submit_name= #{submitName} and </if>
+                    <if test='resaleDate!=null' > resale_date= #{resaleDate} and </if>
+                    <if test='resaler!=null' > resaler= #{resaler} and </if>
+                    <if test='resaleName!=null and !"".equals(resaleName)' >resale_name= #{resaleName} and </if>
+                    <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                    <if test='amount!=null' > amount= #{amount} and </if>
+                    <if test='num!=null' > num= #{num} and </if>
+                    <if test='platformStatus!=null and !"".equals(platformStatus)' >platform_status= #{platformStatus} and </if>
+                    <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                    <if test='saleCode!=null and !"".equals(saleCode)' >sale_code= #{saleCode} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                    <if test='orderTimeStartDate!=null and !"".equals(orderTimeStartDate)' > order_time &gt;= #{orderTimeStartDate} and </if>
+                	<if test='orderTimeEndDate!=null and !"".equals(orderTimeEndDate)' > order_time &lt;= #{orderTimeEndDate} and </if>
+                	<if test='deliverStartDate!=null and !"".equals(deliverStartDate)' > deliver_date &gt;= #{deliverStartDate} and </if>
+                	<if test='deliverEndDate!=null and !"".equals(deliverEndDate)' > deliver_date &lt;= #{deliverEndDate} and </if>
+                </trim>
+            </where>
+
+        order by create_date desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PlatformPurchaseOrderModelMap' parameterType='PlatformPurchaseOrderModel' >
+        select <include refid='sql_columns' /> from t_platform_purchase_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PlatformPurchaseOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_platform_purchase_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='platformDepotName!=null and !"".equals(platformDepotName)' > platform_depot_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='orderTime!=null' >order_time , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='submitDate!=null' >submit_date , </if>
+                        <if test='submiter!=null' >submiter , </if>
+                        <if test='submitName!=null and !"".equals(submitName)' > submit_name , </if>
+                        <if test='resaleDate!=null' >resale_date , </if>
+                        <if test='resaler!=null' >resaler , </if>
+                        <if test='resaleName!=null and !"".equals(resaleName)' > resale_name , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='amount!=null' >amount , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='platformStatus!=null and !"".equals(platformStatus)' > platform_status , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='saleCode!=null and !"".equals(saleCode)' > sale_code , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' > order_source , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > user_code , </if>
+                        <if test='prNo!=null and !"".equals(prNo)' > pr_no , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='platformDepotName!=null and !"".equals(platformDepotName)' > #{platformDepotName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='orderTime!=null' > #{orderTime} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='submitDate!=null' > #{submitDate} , </if>
+                        <if test='submiter!=null' > #{submiter} , </if>
+                        <if test='submitName!=null and !"".equals(submitName)' > #{submitName} , </if>
+                        <if test='resaleDate!=null' > #{resaleDate} , </if>
+                        <if test='resaler!=null' > #{resaler} , </if>
+                        <if test='resaleName!=null and !"".equals(resaleName)' > #{resaleName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='platformStatus!=null and !"".equals(platformStatus)' > #{platformStatus} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='saleCode!=null and !"".equals(saleCode)' > #{saleCode} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' > #{orderSource} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > #{userCode} , </if>
+                        <if test='prNo!=null and !"".equals(prNo)' > #{prNo} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PlatformPurchaseOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_platform_purchase_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='platformDepotName!=null and !"".equals(platformDepotName)' >platform_depot_name= #{platformDepotName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='orderTime!=null' > order_time= #{orderTime} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='submitDate!=null' > submit_date= #{submitDate} , </if>
+                        <if test='submiter!=null' > submiter= #{submiter} , </if>
+                        <if test='submitName!=null and !"".equals(submitName)' >submit_name= #{submitName} , </if>
+                        <if test='resaleDate!=null' > resale_date= #{resaleDate} , </if>
+                        <if test='resaler!=null' > resaler= #{resaler} , </if>
+                        <if test='resaleName!=null and !"".equals(resaleName)' >resale_name= #{resaleName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='platformStatus!=null and !"".equals(platformStatus)' >platform_status= #{platformStatus} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='saleCode!=null and !"".equals(saleCode)' >sale_code= #{saleCode} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} , </if>
+                        <if test='prNo!=null and !"".equals(prNo)' >pr_no= #{prNo} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+        <update id='updateWhenSubmit' parameterType='PlatformPurchaseOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_platform_purchase_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='platformDepotName!=null and !"".equals(platformDepotName)' >platform_depot_name= #{platformDepotName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='orderTime!=null' > order_time= #{orderTime} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        submit_date= #{submitDate} ,
+                        submiter= #{submiter} ,
+                        submit_name= #{submitName} ,
+                        <if test='resaleDate!=null' > resale_date= #{resaleDate} , </if>
+                        <if test='resaler!=null' > resaler= #{resaler} , </if>
+                        <if test='resaleName!=null and !"".equals(resaleName)' >resale_name= #{resaleName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='platformStatus!=null and !"".equals(platformStatus)' >platform_status= #{platformStatus} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        sale_code= #{saleCode} ,
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_platform_purchase_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_platform_purchase_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            platform_depot_name,
+            customer_id,
+            customer_name,
+            po_no,
+            order_time,
+            deliver_date,
+            submit_date,
+            submiter,
+            submit_name,
+            resale_date,
+            resaler,
+            resale_name,
+            currency,
+            amount,
+            num,
+            platform_status,
+            status,
+            sale_code,
+            create_date,
+            modify_date,
+            order_source,
+            user_code,
+            pr_no
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='platformDepotName!=null and !"".equals(platformDepotName)' >platform_depot_name= #{platformDepotName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='orderTime!=null' > order_time= #{orderTime} and </if>
+                            <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                            <if test='submitDate!=null' > submit_date= #{submitDate} and </if>
+                            <if test='submiter!=null' > submiter= #{submiter} and </if>
+                            <if test='submitName!=null and !"".equals(submitName)' >submit_name= #{submitName} and </if>
+                            <if test='resaleDate!=null' > resale_date= #{resaleDate} and </if>
+                            <if test='resaler!=null' > resaler= #{resaler} and </if>
+                            <if test='resaleName!=null and !"".equals(resaleName)' >resale_name= #{resaleName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='platformStatus!=null and !"".equals(platformStatus)' >platform_status= #{platformStatus} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='saleCode!=null and !"".equals(saleCode)' >sale_code= #{saleCode} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} and </if>
+                            <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} and </if>
+                            <if test='prNo!=null and !"".equals(prNo)' >pr_no= #{prNo} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <sql id='sql_where_page'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                    <if test='platformDepotName!=null and !"".equals(platformDepotName)' >platform_depot_name= #{platformDepotName} and </if>
+                    <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                    <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                    <if test='orderTime!=null' > order_time= #{orderTime} and </if>
+                    <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                    <if test='resaleDate!=null' > resale_date= #{resaleDate} and </if>
+                    <if test='resaler!=null' > resaler= #{resaler} and </if>
+                    <if test='resaleName!=null and !"".equals(resaleName)' >resale_name= #{resaleName} and </if>
+                    <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                    <if test='amount!=null' > amount= #{amount} and </if>
+                    <if test='num!=null' > num= #{num} and </if>
+                    <if test='platformStatus!=null and !"".equals(platformStatus)' >platform_status= #{platformStatus} and </if>
+                    <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                    <if test='saleCode!=null and !"".equals(saleCode)' >sale_code like CONCAT('%',#{saleCode},'%') and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                    <if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} and </if>
+                    <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} and </if>
+                    <if test='prNo!=null and !"".equals(prNo)' >pr_no= #{prNo} and </if>
+                </trim>
+            </where>
+        </sql>
+
+		<!-- 条件查询 -->
+	    <select id='searchDTOById' resultType='PlatformPurchaseOrderDTO' parameterType='java.lang.Long' >
+	        select <include refid='sql_columns' /> from t_platform_purchase_order  where id = #{id}
+	    </select>
+
+		<select id='getExportList' resultType='PlatformPurchaseOrderExportDTO' parameterType='PlatformPurchaseOrderExportDTO' >
+	        SELECT
+				t1.*, t2.amount as item_amount,
+					t2.num as item_num, t2.platform_barcode,
+					t2.platform_goods_name, t2.price,
+					t2.receipt_bad_num, t2.receipt_ok_num
+			FROM
+				t_platform_purchase_order t1
+				LEFT JOIN t_platform_purchase_order_item t2 ON t1.id = t2.order_id
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                            <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >
+	                        	t1.po_no in
+	                        	<foreach collection="poNo.split(',')" separator="," item="po" open="(" close=")">
+	                        		#{po}
+	                        	</foreach>
+	                        	and
+	                        </if>
+	                        <if test='ids!=null and !"".equals(ids)' >
+	                        	t1.id in
+	                        	<foreach collection="ids.split(',')" separator="," item="id" open="(" close=")">
+	                        		#{id}
+	                        	</foreach>
+	                        	and
+	                        </if>
+                            <if test='prNo!=null and !"".equals(prNo)' >
+                                pr_no in
+                                <foreach collection="prNo.split(',')" separator="," item="pr" open="(" close=")">
+                                    #{pr}
+                                </foreach>
+                                and
+                            </if>
+                            <if test='status!=null and !"".equals(status)' >t1.status= #{status} and </if>
+                            <if test='orderTimeStartDate!=null and !"".equals(orderTimeStartDate)' > t1.order_time &gt;= #{orderTimeStartDate} and </if>
+                        	<if test='orderTimeEndDate!=null and !"".equals(orderTimeEndDate)' > t1.order_time &lt;= #{orderTimeEndDate} and </if>
+                </trim>
+            </where>
+
+        order by t1.create_date desc
+	    </select>
+
+        <select id="listPlatformPurchaseOrderByCodeAndPoNo"
+                resultType="com.topideal.entity.dto.sale.PlatformPurchaseOrderDTO" parameterType="com.topideal.entity.dto.sale.PlatformPurchaseOrderDTO">
+            select
+                t1.id,
+                t1.merchant_id,
+                t1.po_no,
+                t1.deliver_date,
+                t2.platform_barcode,
+                t2.receipt_ok_num,
+                t2.receipt_bad_num
+            from t_platform_purchase_order t1 left join t_platform_purchase_order_item t2 on t1.id = t2.order_id
+            WHERE t1.po_no = #{poNo} and t1.merchant_id = #{merchantId}
+        </select>
+
+
+
+
+	<!-- 分页查询近两个月的平台采购单(平台采购单未上架信息发送消息) -->
+	<select id='getPurchaseOrderMonth' resultMap='PlatformPurchaseOrderModelMap' parameterType='map' >
+        select <include refid='sql_columns' /> from t_platform_purchase_order
+		where deliver_date &gt;= DATE_ADD(NOW(), INTERVAL - 2 MONTH)
+		and deliver_date is not null
+		ORDER BY merchant_id ASC
+		limit #{startIndex},#{pageSize}
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='listDTO' resultType='PlatformPurchaseOrderDTO' parameterType='PlatformPurchaseOrderDTO' >
+        select <include refid='sql_columns' /> from t_platform_purchase_order  <include refid='sql_where_page' />
+    </select>
+
+</mapper>

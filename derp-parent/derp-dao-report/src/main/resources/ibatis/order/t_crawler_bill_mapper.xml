@@ -1,0 +1,818 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.CrawlerBillMapper'>
+
+      <!-- 关系映射 -->
+      <resultMap id="CrawlerBillModelMap" type="CrawlerBillModel" >
+              <result property="id" column="id" />
+              <result property="merchantId" column="merchant_id" />
+              <result property="poNo" column="po_no" />
+              <result property="customerName" column="customer_name" />
+              <result property="poTime" column="po_time" />
+              <result property="goodsNo" column="goods_no" />
+              <result property="totalSalesQty" column="total_sales_qty" />
+              <result property="isUsed" column="is_used" />
+              <result property="type" column="type" />
+              <result property="billCode" column="bill_code" />
+              <result property="billDate" column="bill_date" />
+              <result property="billType" column="bill_type" />
+              <result property="processingType" column="processing_type" />
+              <result property="billPrice" column="bill_price" />
+              <result property="merchantCode" column="merchant_code" />
+              <result property="customerCode" column="customer_code" />
+              <result property="brandName" column="brand_name" />
+              <result property="scheduleNo" column="schedule_no" />
+              <result property="scheduleName" column="schedule_name" />
+              <result property="saleOrderCode" column="sale_order_code" />
+              <result property="merchandiser" column="merchandiser" />
+              <result property="goodsName" column="goods_name" />
+              <result property="billAmount" column="bill_amount" />
+              <result property="totalBillAmount" column="total_bill_amount" />
+              <result property="currencyCode" column="currency_code" />
+              <result property="originPo" column="origin_po" />
+              <result property="contractNumber" column="contract_number" />
+              <result property="fobType" column="fob_type" />
+              <result property="hid" column="hid" />
+              <result property="start" column="start" />
+              <result property="length" column="length" />
+              <result property="dataSign" column="data_sign" />
+              <result property="lotNumber" column="lot_number" />
+              <result property="normName" column="norm_name" />
+              <result property="categoryName" column="category_name" />
+              <result property="upcNo" column="upc_no" />
+              <result property="taxRate" column="tax_rate" />
+              <result property="totalReturnQty" column="total_return_qty" />
+              <result property="billTaxPrice" column="bill_tax_price" />
+              <result property="userCode" column="user_code" />
+              <result property="merchantName" column="merchant_name" />
+              <result property="customerId" column="customer_id" />
+              <result property="topidealCode" column="topideal_code" />
+              <result property="proxyId" column="proxy_id" />
+              <result property="oldId" column="old_id" />
+              <result property="createDate" column="create_date" />
+              <result property="modifyDate" column="modify_date" />
+              <result property="isVerify" column="is_verify" />
+              <result property="outCode" column="out_code" />
+      </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CrawlerBillModelMap' parameterType='CrawlerBillModel'>
+        select <include refid='sql_columns' /> from t_crawler_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CrawlerBillModelMap' parameterType='CrawlerBillModel'>
+        select <include refid='sql_columns' /> from t_crawler_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CrawlerBillModelMap' parameterType='CrawlerBillModel' >
+        select <include refid='sql_columns' /> from t_crawler_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='CrawlerBillModel' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_crawler_bill
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test='id!=null' >id , </if>
+                    <if test='merchantId!=null' >merchant_id , </if>
+                    <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                    <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                    <if test='poTime!=null' >po_time , </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                    <if test='totalSalesQty!=null' >total_sales_qty , </if>
+                    <if test='isUsed!=null and !"".equals(isUsed)' > is_used , </if>
+                    <if test='type!=null and !"".equals(type)' > type , </if>
+                    <if test='billCode!=null and !"".equals(billCode)' > bill_code , </if>
+                    <if test='billDate!=null' >bill_date , </if>
+                    <if test='billType!=null and !"".equals(billType)' > bill_type , </if>
+                    <if test='processingType!=null and !"".equals(processingType)' > processing_type , </if>
+                    <if test='billPrice!=null' >bill_price , </if>
+                    <if test='merchantCode!=null and !"".equals(merchantCode)' > merchant_code , </if>
+                    <if test='customerCode!=null and !"".equals(customerCode)' > customer_code , </if>
+                    <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                    <if test='scheduleNo!=null and !"".equals(scheduleNo)' > schedule_no , </if>
+                    <if test='scheduleName!=null and !"".equals(scheduleName)' > schedule_name , </if>
+                    <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > sale_order_code , </if>
+                    <if test='merchandiser!=null and !"".equals(merchandiser)' > merchandiser , </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                    <if test='billAmount!=null' >bill_amount , </if>
+                    <if test='totalBillAmount!=null' >total_bill_amount , </if>
+                    <if test='currencyCode!=null and !"".equals(currencyCode)' > currency_code , </if>
+                    <if test='originPo!=null and !"".equals(originPo)' > origin_po , </if>
+                    <if test='contractNumber!=null and !"".equals(contractNumber)' > contract_number , </if>
+                    <if test='fobType!=null and !"".equals(fobType)' > fob_type , </if>
+                    <if test='hid!=null and !"".equals(hid)' > hid , </if>
+                    <if test='start!=null and !"".equals(start)' > start , </if>
+                    <if test='length!=null and !"".equals(length)' > length , </if>
+                    <if test='dataSign!=null and !"".equals(dataSign)' > data_sign , </if>
+                    <if test='lotNumber!=null and !"".equals(lotNumber)' > lot_number , </if>
+                    <if test='normName!=null and !"".equals(normName)' > norm_name , </if>
+                    <if test='categoryName!=null and !"".equals(categoryName)' > category_name , </if>
+                    <if test='upcNo!=null and !"".equals(upcNo)' > upc_no , </if>
+                    <if test='taxRate!=null' >tax_rate , </if>
+                    <if test='totalReturnQty!=null' >total_return_qty , </if>
+                    <if test='billTaxPrice!=null' >bill_tax_price , </if>
+                    <if test='userCode!=null and !"".equals(userCode)' > user_code , </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                    <if test='customerId!=null' >customer_id , </if>
+                    <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                    <if test='proxyId!=null' >proxy_id , </if>
+                    <if test='oldId!=null' >old_id , </if>
+                    <if test='createDate!=null' >create_date , </if>
+                    <if test='modifyDate!=null' >modify_date , </if>
+                    <if test='isVerify!=null and !"".equals(isVerify)' > is_verify , </if>
+                    <if test='outCode!=null and !"".equals(outCode)' > out_code , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test='id!=null' > #{id} , </if>
+                    <if test='merchantId!=null' > #{merchantId} , </if>
+                    <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                    <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                    <if test='poTime!=null' > #{poTime} , </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                    <if test='totalSalesQty!=null' > #{totalSalesQty} , </if>
+                    <if test='isUsed!=null and !"".equals(isUsed)' > #{isUsed} , </if>
+                    <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                    <if test='billCode!=null and !"".equals(billCode)' > #{billCode} , </if>
+                    <if test='billDate!=null' > #{billDate} , </if>
+                    <if test='billType!=null and !"".equals(billType)' > #{billType} , </if>
+                    <if test='processingType!=null and !"".equals(processingType)' > #{processingType} , </if>
+                    <if test='billPrice!=null' > #{billPrice} , </if>
+                    <if test='merchantCode!=null and !"".equals(merchantCode)' > #{merchantCode} , </if>
+                    <if test='customerCode!=null and !"".equals(customerCode)' > #{customerCode} , </if>
+                    <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                    <if test='scheduleNo!=null and !"".equals(scheduleNo)' > #{scheduleNo} , </if>
+                    <if test='scheduleName!=null and !"".equals(scheduleName)' > #{scheduleName} , </if>
+                    <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > #{saleOrderCode} , </if>
+                    <if test='merchandiser!=null and !"".equals(merchandiser)' > #{merchandiser} , </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                    <if test='billAmount!=null' > #{billAmount} , </if>
+                    <if test='totalBillAmount!=null' > #{totalBillAmount} , </if>
+                    <if test='currencyCode!=null and !"".equals(currencyCode)' > #{currencyCode} , </if>
+                    <if test='originPo!=null and !"".equals(originPo)' > #{originPo} , </if>
+                    <if test='contractNumber!=null and !"".equals(contractNumber)' > #{contractNumber} , </if>
+                    <if test='fobType!=null and !"".equals(fobType)' > #{fobType} , </if>
+                    <if test='hid!=null and !"".equals(hid)' > #{hid} , </if>
+                    <if test='start!=null and !"".equals(start)' > #{start} , </if>
+                    <if test='length!=null and !"".equals(length)' > #{length} , </if>
+                    <if test='dataSign!=null and !"".equals(dataSign)' > #{dataSign} , </if>
+                    <if test='lotNumber!=null and !"".equals(lotNumber)' > #{lotNumber} , </if>
+                    <if test='normName!=null and !"".equals(normName)' > #{normName} , </if>
+                    <if test='categoryName!=null and !"".equals(categoryName)' > #{categoryName} , </if>
+                    <if test='upcNo!=null and !"".equals(upcNo)' > #{upcNo} , </if>
+                    <if test='taxRate!=null' > #{taxRate} , </if>
+                    <if test='totalReturnQty!=null' > #{totalReturnQty} , </if>
+                    <if test='billTaxPrice!=null' > #{billTaxPrice} , </if>
+                    <if test='userCode!=null and !"".equals(userCode)' > #{userCode} , </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                    <if test='customerId!=null' > #{customerId} , </if>
+                    <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                    <if test='proxyId!=null' > #{proxyId} , </if>
+                    <if test='oldId!=null' > #{oldId} , </if>
+                    <if test='createDate!=null' > #{createDate} , </if>
+                    <if test='modifyDate!=null' > #{modifyDate} , </if>
+                    <if test='isVerify!=null and !"".equals(isVerify)' > #{isVerify} , </if>
+                    <if test='outCode!=null and !"".equals(outCode)' > #{outCode} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='CrawlerBillModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  t_crawler_bill SET
+        <trim  suffixOverrides=",">
+                    <if test='id!=null' > id= #{id} , </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                    <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                    <if test='poTime!=null' > po_time= #{poTime} , </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                    <if test='totalSalesQty!=null' > total_sales_qty= #{totalSalesQty} , </if>
+                    <if test='isUsed!=null and !"".equals(isUsed)' >is_used= #{isUsed} , </if>
+                    <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                    <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} , </if>
+                    <if test='billDate!=null' > bill_date= #{billDate} , </if>
+                    <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} , </if>
+                    <if test='processingType!=null and !"".equals(processingType)' >processing_type= #{processingType} , </if>
+                    <if test='billPrice!=null' > bill_price= #{billPrice} , </if>
+                    <if test='merchantCode!=null and !"".equals(merchantCode)' >merchant_code= #{merchantCode} , </if>
+                    <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} , </if>
+                    <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                    <if test='scheduleNo!=null and !"".equals(scheduleNo)' >schedule_no= #{scheduleNo} , </if>
+                    <if test='scheduleName!=null and !"".equals(scheduleName)' >schedule_name= #{scheduleName} , </if>
+                    <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} , </if>
+                    <if test='merchandiser!=null and !"".equals(merchandiser)' >merchandiser= #{merchandiser} , </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                    <if test='billAmount!=null' > bill_amount= #{billAmount} , </if>
+                    <if test='totalBillAmount!=null' > total_bill_amount= #{totalBillAmount} , </if>
+                    <if test='currencyCode!=null and !"".equals(currencyCode)' >currency_code= #{currencyCode} , </if>
+                    <if test='originPo!=null and !"".equals(originPo)' >origin_po= #{originPo} , </if>
+                    <if test='contractNumber!=null and !"".equals(contractNumber)' >contract_number= #{contractNumber} , </if>
+                    <if test='fobType!=null and !"".equals(fobType)' >fob_type= #{fobType} , </if>
+                    <if test='hid!=null and !"".equals(hid)' >hid= #{hid} , </if>
+                    <if test='start!=null and !"".equals(start)' >start= #{start} , </if>
+                    <if test='length!=null and !"".equals(length)' >length= #{length} , </if>
+                    <if test='dataSign!=null and !"".equals(dataSign)' >data_sign= #{dataSign} , </if>
+                    <if test='lotNumber!=null and !"".equals(lotNumber)' >lot_number= #{lotNumber} , </if>
+                    <if test='normName!=null and !"".equals(normName)' >norm_name= #{normName} , </if>
+                    <if test='categoryName!=null and !"".equals(categoryName)' >category_name= #{categoryName} , </if>
+                    <if test='upcNo!=null and !"".equals(upcNo)' >upc_no= #{upcNo} , </if>
+                    <if test='taxRate!=null' > tax_rate= #{taxRate} , </if>
+                    <if test='totalReturnQty!=null' > total_return_qty= #{totalReturnQty} , </if>
+                    <if test='billTaxPrice!=null' > bill_tax_price= #{billTaxPrice} , </if>
+                    <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} , </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                    <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                    <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                    <if test='proxyId!=null' > proxy_id= #{proxyId} , </if>
+                    <if test='oldId!=null' > old_id= #{oldId} , </if>
+                    <if test='createDate!=null' > create_date= #{createDate} , </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                    <if test='isVerify!=null and !"".equals(isVerify)' >is_verify= #{isVerify} , </if>
+                    <if test='outCode!=null and !"".equals(outCode)' >out_code= #{outCode} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_crawler_bill  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_crawler_bill where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        id,
+        merchant_id,
+        po_no,
+        customer_name,
+        po_time,
+        goods_no,
+        total_sales_qty,
+        is_used,
+        type,
+        bill_code,
+        bill_date,
+        bill_type,
+        processing_type,
+        bill_price,
+        merchant_code,
+        customer_code,
+        brand_name,
+        schedule_no,
+        schedule_name,
+        sale_order_code,
+        merchandiser,
+        goods_name,
+        bill_amount,
+        total_bill_amount,
+        currency_code,
+        origin_po,
+        contract_number,
+        fob_type,
+        hid,
+        start,
+        length,
+        data_sign,
+        lot_number,
+        norm_name,
+        category_name,
+        upc_no,
+        tax_rate,
+        total_return_qty,
+        bill_tax_price,
+        user_code,
+        merchant_name,
+        customer_id,
+        topideal_code,
+        proxy_id,
+        old_id,
+        create_date,
+        modify_date,
+        is_verify,
+        out_code
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                        <if test='id!=null' > id= #{id} and </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                        <if test='poTime!=null' > po_time= #{poTime} and </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                        <if test='totalSalesQty!=null' > total_sales_qty= #{totalSalesQty} and </if>
+                        <if test='isUsed!=null and !"".equals(isUsed)' >is_used= #{isUsed} and </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                        <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} and </if>
+                        <if test='billDate!=null' > bill_date= #{billDate} and </if>
+                        <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} and </if>
+                        <if test='processingType!=null and !"".equals(processingType)' >processing_type= #{processingType} and </if>
+                        <if test='billPrice!=null' > bill_price= #{billPrice} and </if>
+                        <if test='merchantCode!=null and !"".equals(merchantCode)' >merchant_code= #{merchantCode} and </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} and </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                        <if test='scheduleNo!=null and !"".equals(scheduleNo)' >schedule_no= #{scheduleNo} and </if>
+                        <if test='scheduleName!=null and !"".equals(scheduleName)' >schedule_name= #{scheduleName} and </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} and </if>
+                        <if test='merchandiser!=null and !"".equals(merchandiser)' >merchandiser= #{merchandiser} and </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                        <if test='billAmount!=null' > bill_amount= #{billAmount} and </if>
+                        <if test='totalBillAmount!=null' > total_bill_amount= #{totalBillAmount} and </if>
+                        <if test='currencyCode!=null and !"".equals(currencyCode)' >currency_code= #{currencyCode} and </if>
+                        <if test='originPo!=null and !"".equals(originPo)' >origin_po= #{originPo} and </if>
+                        <if test='contractNumber!=null and !"".equals(contractNumber)' >contract_number= #{contractNumber} and </if>
+                        <if test='fobType!=null and !"".equals(fobType)' >fob_type= #{fobType} and </if>
+                        <if test='hid!=null and !"".equals(hid)' >hid= #{hid} and </if>
+                        <if test='start!=null and !"".equals(start)' >start= #{start} and </if>
+                        <if test='length!=null and !"".equals(length)' >length= #{length} and </if>
+                        <if test='dataSign!=null and !"".equals(dataSign)' >data_sign= #{dataSign} and </if>
+                        <if test='lotNumber!=null and !"".equals(lotNumber)' >lot_number= #{lotNumber} and </if>
+                        <if test='normName!=null and !"".equals(normName)' >norm_name= #{normName} and </if>
+                        <if test='categoryName!=null and !"".equals(categoryName)' >category_name= #{categoryName} and </if>
+                        <if test='upcNo!=null and !"".equals(upcNo)' >upc_no= #{upcNo} and </if>
+                        <if test='taxRate!=null' > tax_rate= #{taxRate} and </if>
+                        <if test='totalReturnQty!=null' > total_return_qty= #{totalReturnQty} and </if>
+                        <if test='billTaxPrice!=null' > bill_tax_price= #{billTaxPrice} and </if>
+                        <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} and </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                        <if test='proxyId!=null' > proxy_id= #{proxyId} and </if>
+                        <if test='oldId!=null' > old_id= #{oldId} and </if>
+                        <if test='createDate!=null' > create_date= #{createDate} and </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                        <if test='isVerify!=null and !"".equals(isVerify)' >is_verify= #{isVerify} and </if>
+                        <if test='outCode!=null and !"".equals(outCode)' >out_code= #{outCode} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+	<insert id="batchIn" parameterType="java.util.List">
+	INSERT INTO t_crawler_bill (
+	<include refid="sql_columns" />)
+	VALUES
+	<foreach collection="orderList" item="item" index="index"  separator=",">
+		(
+		#{item.scheduleName} ,#{item.hid} , #{item.totalsalesqty} ,
+		#{item.customerCode} , #{item.type} , #{item.currencycode} ,
+		#{item.poTime} , #{item.billAmount} ,
+		#{item.poNo} , #{item.merchantId}
+		, #{item.billPrice} , #{item.originpo} ,#{item.datasign} ,
+		#{item.normname} ,#{item.id} , #{item.goodsName},
+		#{item.saleOrderCode} , #{item.goodsNo} ,#{item.merchantCode} ,
+		#{item.brandName}, #{item.taxrate} , #{item.totalBillAmount} ,
+		#{item.merchandiser} , #{item.start}
+		,#{item.length} , #{item.billCode} , #{item.upcNo} , #{item.customerName}
+		,#{item.billTaxPrice} , #{item.processingtype} , #{item.fobtype} ,
+		#{item.scheduleNo} , #{item.contractnumber} , #{item.lotnumber},
+		#{item.totalreturnqty} , #{item.categoryname},#{item.userCode},#{item.isUsed}
+		)
+	</foreach>
+</insert>
+
+	<select id='searchBillGroup' resultMap='CrawlerBillModelMap' parameterType='CrawlerBillModel' >
+        select bill_code from t_crawler_bill 
+		where bill_code is not null and type ='2'
+		and is_used = '0'
+		GROUP BY bill_code
+    </select>
+
+      <!-- 关系映射 -->
+    <resultMap id="CrawlerBillModelMap2" type="CrawlerBillModel" >
+                <result property="scheduleName" column="schedule_name" />
+                <result property="hid" column="hid" />
+                <result property="processingType" column="processing_type" />
+                <result property="customerCode" column="customer_code" />
+                <result property="type" column="type" />
+                <result property="categoryName" column="category_name" />
+                <result property="poTime" column="po_time" />
+                <result property="userCode" column="user_code" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="billAmount" column="bill_amount" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="poNo" column="po_no" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="billPrice" column="bill_price" />
+                <result property="customerId" column="customer_id" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="createDate" column="create_date" />
+                <result property="saleOrderCode" column="sale_order_code" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="fobType" column="fob_type" />
+                <result property="merchantCode" column="merchant_code" />
+                <result property="brandName" column="brand_name" />
+                <result property="totalBillAmount" column="total_bill_amount" />
+                <result property="dataSign" column="data_sign" />
+                <result property="normName" column="norm_name" />
+                <result property="totalReturnQty" column="total_return_qty" />
+                <result property="merchandiser" column="merchandiser" />
+                <result property="start" column="start" />
+                <result property="length" column="length" />
+                <result property="contractNumber" column="contract_number" />
+                <result property="totalSalesQty" column="total_sales_qty" />
+                <result property="billCode" column="bill_code" />
+                <result property="billDate" column="bill_date" />
+                <result property="lotNumber" column="lot_number" />
+                <result property="upcNo" column="upc_no" />
+                <result property="oldId" column="old_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="isUsed" column="is_used" />
+                <result property="billTaxPrice" column="bill_tax_price" />
+                <result property="taxRate" column="tax_rate" />
+                <result property="scheduleNo" column="schedule_no" />
+                <result property="originPo" column="origin_po" />
+                <result property="currencyCode" column="currency_code" />
+                <result property="proxyId" column="proxy_id" />
+                
+                <result property="monthSaleCount" column="current_month_sale_count" /><!-- 当月销售量 -->
+                <result property="monthDays" column="month_days" /><!-- 当月天数 -->
+                <result property="yearSaleCount" column="year_sale_count" /><!-- 年度销售量 -->
+                <!-- 账单开始时间 -->
+                <result property="startBillDate" column="start_bill_date" />
+                <!-- 账单结束时间 -->
+                <result property="endBillDate" column="end_bill_date" />
+    </resultMap>
+
+
+	<!-- 根据实体条件查询，返回集合 -->
+	<select id='listBillModel' resultMap='CrawlerBillModelMap2' parameterType='CrawlerBillModel' >
+        select id,merchant_id,goods_no,proxy_id,total_sales_qty,customer_id,bill_date from t_crawler_bill 
+		<where>
+			<trim suffixOverrides='and'>
+				<if test="type !=null and type != ''" >and type = #{type} </if>
+				<choose>
+					<!-- <when test="billDate !=null">and DATE_FORMAT(bill_date,'%Y%m%d') = DATE_FORMAT(#{billDate} ,'%Y%m%d')</when>
+					<otherwise>and DATE_FORMAT(bill_date,'%Y%m%d') = DATE_FORMAT(date_sub(now(),interval 1 day),'%Y%m%d')</otherwise> -->
+					
+					<when test="billDate !=null">and DATE_FORMAT(bill_date,'%Y') = DATE_FORMAT(#{billDate} ,'%Y')</when>
+					<otherwise>and DATE_FORMAT(bill_date,'%Y') = DATE_FORMAT(date_sub(now(),interval 1 day),'%Y')</otherwise>
+				</choose>
+			</trim>
+		</where>
+    </select>
+    
+
+    
+    <!-- 云集采销日报获取当年的 账单数据 -->
+    <select id='getYearYunjiCrawlerBill' resultType="map" parameterType='CrawlerBillModel' >
+        select merchant_id,goods_no,SUM(total_sales_qty) as total_sales_qty 
+         from t_crawler_bill 
+        where type = '1' 
+        and merchant_id=#{merchantId}
+        and DATE_FORMAT(bill_date, '%Y')=DATE_FORMAT(#{billDate},'%Y')
+        and  total_sales_qty >0
+        GROUP BY  merchant_id,goods_no
+    </select>
+    
+    <!-- 云集采销日报获取当月的 账单数据 -->
+    <select id='getMonthYunjiCrawlerBill' resultType="map" parameterType='CrawlerBillModel' >
+        select merchant_id,goods_no,SUM(total_sales_qty) as total_sales_qty 
+         from t_crawler_bill 
+        where type = '1' 
+        and merchant_id=#{merchantId}
+        and DATE_FORMAT(bill_date, '%Y-%m')=DATE_FORMAT(#{billDate},'%Y-%m')
+        and  total_sales_qty >0
+        GROUP BY  merchant_id,goods_no
+    </select>
+    
+    <!-- 云集采销日报获取当日的 账单数据 -->
+    <select id='getDayYunjiCrawlerBill' resultType="map" parameterType='CrawlerBillModel' >
+        select merchant_id,goods_no,SUM(total_sales_qty) as total_sales_qty 
+         from t_crawler_bill 
+        where type = '1' 
+        and merchant_id=#{merchantId}
+        and DATE_FORMAT(bill_date, '%Y-%m-%d')=DATE_FORMAT(#{billDate},'%Y-%m-%d')
+        and  total_sales_qty >0
+        GROUP BY  merchant_id,goods_no
+    </select>    
+    
+
+	<!-- 定时器:查询返回昨天的类型为1的爬虫账单 -->
+	<!-- <select id='synYunJiByDate' resultMap='CrawlerBillModelMap2' parameterType='CrawlerBillModel'>
+		select
+		id,merchant_id,goods_no,proxy_id,total_sales_qty,customer_id,bill_date from t_crawler_bill where type = '1'
+		<if test='startBillDate!=null' >and bill_date &gt;= #{startBillDate}</if>发货开始时间
+        <if test='endBillDate!=null' >and bill_date &lt;= #{endBillDate}</if>发货结束时间
+	</select> -->
+	
+	<!-- 根据po、sku（单个/多个）去爬虫账单表账单总量 -->
+	<select id="getBillByPoAndSku" resultType="map" >
+		select GROUP_CONCAT(id) as ids , 
+			sum(total_sales_qty) as totalSalesQty ,
+			max(bill_date) as billRecentDate ,
+			max(po_time) as poTime,
+			goods_no
+		from t_crawler_bill
+		where type = '2' 
+			and (bill_type = '00' or bill_type = '01') 
+		<if test="skus != null and skus.size() > 0">
+			and goods_no in
+			<foreach collection='skus' item='skus' separator=',' open='(' close=')'>
+	            #{skus}
+	        </foreach>
+        </if>
+		<if test='poNo!=null and !"".equals(poNo)' > and po_no= #{poNo}  </if>
+		<if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId}  </if>
+		GROUP BY goods_no
+	</select> 
+	
+	<!-- 根据本商家id、仓库id、po号、标准条码在汇总表汇总总量 -->
+	<select id="getSumBillQty" resultType="map" >
+		select sum(total_sales_qty) as sumTotalSalesQty
+		from t_crawler_bill
+		<where>
+			<trim suffixOverrides='and'>
+				<if test='poNo!=null and !"".equals(poNo)' > and po_no= #{poNo}  </if>
+				<if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId}  </if>
+				<if test='goodsNo!=null and !"".equals(goodsNo)' > and goods_no= #{goodsNo}  </if>
+			</trim>
+		</where>
+		GROUP BY merchant_id , po_no , goods_no
+	</select> 
+    
+    <select id="countByPoAndSkus" resultType="int" parameterType="map">
+        select count(1) as totalNum from t_crawler_bill where 
+            <trim suffixOverrides='and'>
+                <if test="skus != null and skus.size() > 0">
+                         goods_no in
+                    <foreach collection='skus' item='skus' separator=',' open='(' close=')'>
+                        #{skus}
+                    </foreach>
+                    and
+                </if>
+                <if test='poNo!=null and !"".equals(poNo)' > po_no= #{poNo} and </if>
+                <if test='merchantId!=null and !"".equals(merchantId)' > merchant_id= #{merchantId}  and</if>
+                <if test='type!=null and !"".equals(type)' > type= #{type}  and</if>
+                (bill_type = '00' or bill_type = '01') 
+            </trim>
+    </select>
+    
+    <select id="listByPoAndSkus" resultMap="CrawlerBillModelMap" parameterType="map">
+    	select schedule_name,
+        hid,
+        processing_type,
+        customer_code,
+        type,
+        category_name,
+        po_time,
+        user_code,
+        merchant_name,
+        bill_amount,
+        topideal_code,
+        po_no,
+        merchant_id,
+        bill_price,
+        customer_id,
+        id,
+        goods_name,
+        create_date,
+        sale_order_code,
+        goods_no,
+        fob_type,
+        merchant_code,
+        brand_name,
+        total_bill_amount,
+        modify_date,
+        data_sign,
+        norm_name,
+        total_return_qty,
+        merchandiser,
+        start,
+        length,
+        contract_number,
+        total_sales_qty,
+        bill_code,
+        bill_date,
+        lot_number,
+        upc_no,
+        old_id,
+        customer_name,
+        is_used,
+        bill_tax_price,
+        tax_rate,
+        schedule_no,
+        origin_po,
+        currency_code,
+        proxy_id,
+        bill_type,
+        is_verify from t_crawler_bill where 
+    		<trim suffixOverrides='and'>
+				<if test='merchantId!=null and !"".equals(merchantId)' > merchant_id= #{merchantId}  and</if>
+				<if test='poNo!=null and !"".equals(poNo)' > po_no= #{poNo} and </if>
+				<if test='type!=null and !"".equals(type)' > type= #{type}  and</if>
+	       		<if test="skus != null and skus.size() > 0">
+						 goods_no in
+					<foreach collection='skus' item='skus' separator=',' open='(' close=')'>
+			            #{skus}
+			        </foreach>
+			        and
+		        </if>
+  				(bill_type = '00' or bill_type = '01') 
+  			</trim>
+  			limit #{begin} , #{pageSize}
+    </select>
+    
+    <select id="getBillTypeByBillCode" resultType="string" parameterType="string">
+        select bill_type from t_crawler_bill where bill_code = #{vipBillCode} limit 1
+    </select>
+    
+    <select id="getCustomerNameByPO" resultType="string" parameterType="string">
+        SELECT DISTINCT customer_name FROM t_crawler_bill where po_no = #{poNo}
+    </select>
+    
+    <select id="getVipAutoVeriList" parameterType="map" resultType="map">
+    SELECT 
+		GROUP_CONCAT(ids) as ids,  
+		  merchant_id,
+		    merchant_name,
+		    po_no,
+		    goods_no,
+		    bill_code,
+		    bill_date,
+		    ABS(SUM(total_sales_qty)) AS total_sales_qty,
+		    vip_veri_bill_type FROM
+		(
+	        SELECT
+	            GROUP_CONCAT(id) as ids,
+			    merchant_id,
+			    merchant_name,
+			    po_no,
+			    goods_no,
+			    bill_code,
+			    bill_date,
+			    SUM(total_sales_qty) AS total_sales_qty,
+			  "00" as vip_veri_bill_type
+			FROM
+			    t_crawler_bill
+			WHERE
+			    type = '2' AND (processing_type in ('库存买断','Sales(销售)', 'Customer Return(客退)', 'Allocation(调拨)', 'Allocation(Reverse)(调拨-反向)' )  OR processing_type is null ) 
+			    AND total_sales_qty &gt;= 0 
+	            <if test='poNo!=null and !"".equals(poNo)' > and po_no= #{poNo}  </if>
+	            <if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId} </if>
+	            <if test='crawlerNo!=null and !"".equals(crawlerNo)' > and bill_code= #{crawlerNo} </if>
+	            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > and goods_no= #{crawlerGoodsNo} </if>
+			GROUP BY merchant_id,
+			    merchant_name,
+			    po_no,
+			    goods_no,
+			    bill_code,
+			    bill_date
+			UNION
+			SELECT
+			    GROUP_CONCAT(id) as ids,
+			    merchant_id,
+			    merchant_name,
+			    po_no,
+			    goods_no,
+			    bill_code,
+			    bill_date,
+			    SUM(total_sales_qty) AS total_sales_qty,
+			  "06" as vip_veri_bill_type
+			FROM
+			    t_crawler_bill
+			WHERE
+			    type = '2' AND (processing_type in ('库存买断','Sales(销售)', 'Customer Return(客退)', 'Allocation(调拨)', 'Allocation(Reverse)(调拨-反向)' )  OR processing_type is null ) 
+			    AND total_sales_qty &lt; 0 
+			    <if test='poNo!=null and !"".equals(poNo)' > and po_no= #{poNo}  </if>
+	            <if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId} </if>
+	            <if test='crawlerNo!=null and !"".equals(crawlerNo)' > and bill_code= #{crawlerNo} </if>
+	            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > and goods_no= #{crawlerGoodsNo} </if>
+			GROUP BY merchant_id,
+			    merchant_name,
+			    po_no,
+			    goods_no,
+			    bill_code,
+			    bill_date
+			UNION
+			SELECT
+			    GROUP_CONCAT(id) as ids,
+			    merchant_id,
+			    merchant_name,
+			    po_no,
+			    goods_no,
+			    bill_code,
+			    bill_date,
+			    SUM(total_sales_qty) AS total_sales_qty,
+			  "02" as vip_veri_bill_type
+			FROM
+			    t_crawler_bill
+			WHERE
+			    type = '2' AND processing_type in('Inventory shortage(库存盘亏)', 'Scrap(报废)', 'Inspection inventory output(国检出库)') 
+			    AND total_sales_qty &gt;= 0 
+			    <if test='poNo!=null and !"".equals(poNo)' > and po_no= #{poNo}  </if>
+	            <if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId} </if>
+	            <if test='crawlerNo!=null and !"".equals(crawlerNo)' > and bill_code= #{crawlerNo} </if>
+	            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > and goods_no= #{crawlerGoodsNo} </if>
+			GROUP BY merchant_id,
+			    merchant_name,
+			    po_no,
+			    goods_no,
+			    bill_code,
+			    bill_date
+			UNION
+			SELECT
+			    GROUP_CONCAT(id) as ids,
+			    merchant_id,
+			    merchant_name,
+			    po_no,
+			    goods_no,
+			    bill_code,
+			    bill_date,
+			    SUM(total_sales_qty) AS total_sales_qty,
+			  "04" as vip_veri_bill_type
+			FROM
+			    t_crawler_bill
+			WHERE
+			    type = '2' AND processing_type in('Inventory shortage(库存盘亏)', 'Scrap(报废)', 'Inventory overage(库存盘盈)') 
+			    AND total_sales_qty &lt; 0 
+			    <if test='poNo!=null and !"".equals(poNo)' > and po_no= #{poNo}  </if>
+	            <if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId} </if>
+	            <if test='crawlerNo!=null and !"".equals(crawlerNo)' > and bill_code= #{crawlerNo} </if>
+	            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > and goods_no= #{crawlerGoodsNo} </if>
+			GROUP BY merchant_id,
+			    merchant_name,
+			    po_no,
+			    goods_no,
+			    bill_code,
+			    bill_date
+			) t
+        GROUP BY
+           merchant_id,
+           merchant_name,
+           po_no,
+           goods_no,
+           bill_code,
+           bill_date,
+           vip_veri_bill_type
+    </select>
+    
+    <update id="updateVipVeriState" parameterType='map' keyProperty="id" useGeneratedKeys="true">
+        update t_crawler_bill SET is_verify = '1' where 
+		<if test='poNo!=null and !"".equals(poNo)' > po_no= #{poNo}  </if>
+        <if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId} </if>
+        <if test='billCode!=null and !"".equals(billCode)' > and bill_code= #{billCode} </if>
+        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > and goods_no= #{crawlerGoodsNo} </if>
+    </update> 
+    
+    <select id="getDecreaseNum" parameterType="map" resultType="int">
+        SELECT
+              SUM(total_sales_qty) AS total_sales_qty
+            FROM
+                t_crawler_bill
+            WHERE
+                type = '2' 
+                <if test='billType!=null and !"".equals(billType)' > and bill_type = #{billType} </if>
+                <if test='poNo!=null and !"".equals(poNo)' > and po_no= #{poNo}  </if>
+                <if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId} </if>
+                <if test='billCode!=null and !"".equals(billCode)' > and bill_code= #{billCode} </if>
+                <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > and goods_no= #{crawlerGoodsNo} </if>
+            GROUP BY merchant_id,
+                merchant_name,
+                po_no,
+                goods_no,
+                bill_code,
+                bill_type
+    </select>
+    
+    <select id="getUnVeriList" parameterType="map" resultType="map">
+    	SELECT
+		    merchant_id,
+		    merchant_name,
+		    po_no,
+		    goods_no,
+		    bill_code,
+		    bill_date
+		FROM
+		    t_crawler_bill
+		WHERE
+		    type = '2' AND (processing_type in ('库存买断','Sales(销售)', 'Customer Return(客退)', 'Allocation(调拨)', 'Allocation(Reverse)(调拨-反向)' ,'Inventory shortage(库存盘亏)', 'Scrap(报废)', 'Inventory overage(库存盘盈)', 'Inspection inventory output(国检出库)')  OR processing_type is null )
+		    AND (is_verify = 0 OR is_verify is NULL)
+		    <if test='poNo!=null and !"".equals(poNo)' > and po_no= #{poNo}  </if>
+            <if test='merchantId!=null and !"".equals(merchantId)' > and merchant_id= #{merchantId} </if>
+            <if test='crawlerNo!=null and !"".equals(crawlerNo)' > and bill_code= #{crawlerNo} </if>
+		GROUP BY merchant_id,
+		    merchant_name,
+		    po_no,
+		    goods_no,
+		    bill_code,
+		    bill_date
+    </select>
+</mapper>

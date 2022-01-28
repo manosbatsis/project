@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.7.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.topideal</groupId>
+    <artifactId>derp-parent</artifactId>
+    <version>4.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>derp-parent</name>
+    <url>http://maven.apache.org</url>
+
+
+    <modules>
+        <module>derp-config</module>
+        <module>derp-common</module>
+        <module>derp-json-mq</module>
+        <module>derp-external-api</module>
+        <module>derp-mongo</module>
+        <module>derp-dao-system</module>
+        <module>derp-dao-order</module>
+        <module>derp-dao-report</module>
+        <module>derp-dao-inventory</module>
+        <module>derp-dao-storage</module>
+        <module>derp-dao-log</module>
+        <module>test-derp</module>
+        <module>derp-api</module>
+        <module>derp-eureka</module>
+        <module>derp-gateway</module>
+        <module>derp-mq-autolog</module>
+        <module>derp-mq-erp</module>
+        <module>derp-mq-inventory</module>
+        <module>derp-mq-log</module>
+        <module>derp-mq-order</module>
+        <module>derp-mq-push-api</module>
+        <module>derp-mq-report</module>
+        <module>derp-mq-storage</module>
+        <module>derp-report-api</module>
+        <module>derp-syns-canal</module>
+        <module>derp-web-erp</module>
+        <module>derp-web-inventory</module>
+        <module>derp-web-log</module>
+        <module>derp-web-order</module>
+        <module>derp-web-report</module>
+        <module>derp-web-storage</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mysql.version>5.1.17</mysql.version>
+        <mybatis.version>2.1.0</mybatis.version>
+        <rocketmq.version>3.2.6</rocketmq.version>
+        <tomcat.version>8.5.37</tomcat.version>
+    </properties>
+
+    <!-- 管理依赖版本号，子项目不显式引用版本号，则引用此位置的版本号 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring-cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR5</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- log4j -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j</artifactId>
+                <version>1.3.8.RELEASE</version>
+            </dependency>
+            <!-- shiro start -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>1.4.0</version>
+            </dependency>
+            <!-- shiro end -->
+            <!-- druid start -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.11</version>
+            </dependency>
+            <!--   mysql  start -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!--  rocketMQ -->
+            <dependency>
+                <groupId>com.alibaba.rocketmq</groupId>
+                <artifactId>rocketmq-all</artifactId>
+                <version>${rocketmq.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>1.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.5</version>
+            </dependency>
+            <!--   jstl  start -->
+            <dependency>
+                <groupId>jstl</groupId>
+                <artifactId>jstl </artifactId>
+                <version>1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>taglibs</groupId>
+                <artifactId>standard</artifactId>
+                <version>1.1.2</version>
+            </dependency>
+
+            <!-- apache -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.6</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-httpclient</groupId>
+                <artifactId>commons-httpclient</artifactId>
+                <version>3.1</version>
+            </dependency>
+
+            <!-- 关于excel的操作 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml-schemas</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.syncthemall</groupId>
+                <artifactId>boilerpipe</artifactId>
+                <version>1.2.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+                <version>2.11.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+                <version>1.4.01</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.xmlbeans</groupId>
+                <artifactId>xmlbeans</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>sax</groupId>
+                <artifactId>sax</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sourceforge.jexcelapi</groupId>
+                <artifactId>jxl</artifactId>
+                <version>2.6.12</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>20090211</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.json-lib</groupId>
+                <artifactId>json-lib</artifactId>
+                <version>2.4</version>
+                <classifier>jdk15</classifier>
+            </dependency>
+            <!-- gson start -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.6.2</version>
+            </dependency>
+            <!--  alibaba  json -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.58</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.9.3</version>
+            </dependency>
+            <dependency>
+                <groupId> org.aspectj</groupId>
+                <artifactId> aspectjweaver</artifactId>
+                <version> 1.8.7</version>
+            </dependency>
+
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.9.0</version>
+            </dependency>
+
+            <!-- apollo配置中心 -->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>1.4.0</version>
+            </dependency>
+
+            <!-- 日志sdk -->
+            <dependency>
+                <groupId>com.smurfs</groupId>
+                <artifactId>smurfs-gateway-sdk</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>priv.smurfs.tools</groupId>
+                <artifactId>smurfs-tools-http</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+
+            <!-- swagger start-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.8.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>1.9.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>20.0</version>
+            </dependency>
+            <!-- swagger end-->
+            <!--单点的登录start-->
+            <dependency>
+                <groupId>net.unicon.cas</groupId>
+                <artifactId>cas-client-autoconfig-support</artifactId>
+                <version>2.2.0-GA</version>
+            </dependency>
+            <!--单点的登录end-->
+        </dependencies>
+    </dependencyManagement>
+    <!-- maven  -->
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!-- 资源文件拷贝插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- java编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- 源码包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

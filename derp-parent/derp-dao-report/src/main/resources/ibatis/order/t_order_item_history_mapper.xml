@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.OrderItemHistoryMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="OrderItemModelMap" type="OrderItemModel" >
+                <result property="id" column="id" />
+                <result property="orderId" column="order_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="price" column="price" />
+                <result property="num" column="num" />
+                <result property="decTotal" column="dec_total" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="deliveryPrice" column="delivery_price" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="createDate" column="create_date" />
+                <result property="goodsDiscount" column="goods_discount" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="saleCom" column="sale_com" />
+                <result property="originalPrice" column="original_price" />
+                <result property="originalDecTotal" column="original_dec_total" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="tax" column="tax" />
+                <result property="skuId" column="sku_id" />
+                <result property="wayFrtFee" column="way_frt_fee" />
+                <result property="orderBatchNo" column="order_batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="tradeDecTotal" column="trade_dec_total" />
+                <result property="tradeDecTax" column="trade_dec_tax" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OrderItemModelMap' parameterType='OrderItemModel'>
+        select <include refid='sql_columns' /> from t_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OrderItemModelMap' parameterType='OrderItemModel'>
+        select <include refid='sql_columns' /> from t_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OrderItemModelMap' parameterType='OrderItemModel' >
+        select <include refid='sql_columns' /> from t_order_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_order_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='decTotal!=null' >dec_total , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='deliveryPrice!=null' >delivery_price , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='goodsDiscount!=null' >goods_discount , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='saleCom!=null' >sale_com , </if>
+                        <if test='originalPrice!=null' >original_price , </if>
+                        <if test='originalDecTotal!=null' >original_dec_total , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='tax!=null' >tax , </if>
+                        <if test='skuId!=null and !"".equals(skuId)' > sku_id , </if>
+                        <if test='wayFrtFee!=null' >way_frt_fee , </if>
+                        <if test='orderBatchNo!=null and !"".equals(orderBatchNo)' > order_batch_no , </if>
+                        <if test='productionDate!=null' >production_date , </if>
+                        <if test='overdueDate!=null' >overdue_date , </if>
+                        <if test='tradeDecTotal!=null' >trade_dec_total , </if>
+                        <if test='tradeDecTax!=null' >trade_dec_tax , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='decTotal!=null' > #{decTotal} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='deliveryPrice!=null' > #{deliveryPrice} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='goodsDiscount!=null' > #{goodsDiscount} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='saleCom!=null' > #{saleCom} , </if>
+                        <if test='originalPrice!=null' > #{originalPrice} , </if>
+                        <if test='originalDecTotal!=null' > #{originalDecTotal} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='tax!=null' > #{tax} , </if>
+                        <if test='skuId!=null and !"".equals(skuId)' > #{skuId} , </if>
+                        <if test='wayFrtFee!=null' > #{wayFrtFee} , </if>
+                        <if test='orderBatchNo!=null and !"".equals(orderBatchNo)' > #{orderBatchNo} , </if>
+                        <if test='productionDate!=null' > #{productionDate} , </if>
+                        <if test='overdueDate!=null' > #{overdueDate} , </if>
+                        <if test='tradeDecTotal!=null' > #{tradeDecTotal} , </if>
+                        <if test='tradeDecTax!=null' > #{tradeDecTax} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_order_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='decTotal!=null' > dec_total= #{decTotal} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='deliveryPrice!=null' > delivery_price= #{deliveryPrice} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='goodsDiscount!=null' > goods_discount= #{goodsDiscount} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='saleCom!=null' > sale_com= #{saleCom} , </if>
+                        <if test='originalPrice!=null' > original_price= #{originalPrice} , </if>
+                        <if test='originalDecTotal!=null' > original_dec_total= #{originalDecTotal} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='tax!=null' > tax= #{tax} , </if>
+                        <if test='skuId!=null and !"".equals(skuId)' >sku_id= #{skuId} , </if>
+                        <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} , </if>
+                        <if test='orderBatchNo!=null and !"".equals(orderBatchNo)' >order_batch_no= #{orderBatchNo} , </if>
+                        <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                        <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                        <if test='tradeDecTotal!=null' > trade_dec_total= #{tradeDecTotal} , </if>
+                        <if test='tradeDecTax!=null' > trade_dec_tax= #{tradeDecTax} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_order_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_order_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            order_id,
+            goods_name,
+            goods_id,
+            price,
+            num,
+            dec_total,
+            goods_code,
+            barcode,
+            goods_no,
+            delivery_price,
+            modify_date,
+            create_date,
+            goods_discount,
+            commbarcode,
+            sale_com,
+            original_price,
+            original_dec_total,
+            bu_id,
+            bu_name,
+            tax,
+            sku_id,
+            way_frt_fee,
+            order_batch_no,
+            production_date,
+            overdue_date,
+            trade_dec_total,
+            trade_dec_tax,
+            stock_location_type_id,
+            stock_location_type_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='decTotal!=null' > dec_total= #{decTotal} and </if>
+                            <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='deliveryPrice!=null' > delivery_price= #{deliveryPrice} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='goodsDiscount!=null' > goods_discount= #{goodsDiscount} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='saleCom!=null' > sale_com= #{saleCom} and </if>
+                            <if test='originalPrice!=null' > original_price= #{originalPrice} and </if>
+                            <if test='originalDecTotal!=null' > original_dec_total= #{originalDecTotal} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='tax!=null' > tax= #{tax} and </if>
+                            <if test='skuId!=null and !"".equals(skuId)' >sku_id= #{skuId} and </if>
+                            <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} and </if>
+                            <if test='orderBatchNo!=null and !"".equals(orderBatchNo)' >order_batch_no= #{orderBatchNo} and </if>
+                            <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                            <if test='tradeDecTotal!=null' > trade_dec_total= #{tradeDecTotal} and </if>
+                            <if test='tradeDecTax!=null' > trade_dec_tax= #{tradeDecTax} and </if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                            <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

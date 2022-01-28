@@ -1,0 +1,585 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.VipPoBillVerificationMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="VipPoBillVerificationModelMap" type="VipPoBillVerificationModel" >
+        <result property="id" column="id" />
+        <result property="merchantId" column="merchant_id" />
+        <result property="merchantName" column="merchant_name" />
+        <result property="customerId" column="customer_id" />
+        <result property="customerName" column="customer_name" />
+        <result property="depotId" column="depot_id" />
+        <result property="depotName" column="depot_name" />
+        <result property="po" column="PO" />
+        <result property="poDate" column="po_date" />
+        <result property="commbarcode" column="commbarcode" />
+        <result property="firstShelfDate" column="first_shelf_date" />
+        <result property="billTotalAccount" column="bill_total_account" />
+        <result property="billRecentDate" column="bill_recent_date" />
+        <result property="outDepotTotalAccont" column="out_depot_total_accont" />
+        <result property="nationalInspectionSampleAccount" column="national_inspection_sample_account" />
+        <result property="saleReturnAccount" column="sale_return_account" />
+        <result property="scrapAccount" column="scrap_account" />
+        <result property="inventorySurplusAccount" column="inventory_surplus_account" />
+        <result property="inventoryDeficientAccount" column="inventory_deficient_account" />
+        <result property="unsettledAccount" column="unsettled_account" />
+        <result property="unverificateAccount" column="unverificate_account" />
+        <result property="undepotAccount" column="undepot_account" />
+        <result property="days" column="days" />
+        <result property="createDate" column="create_date" />
+        <result property="modifyDate" column="modify_date" />
+        <result property="shelfTotalAccount" column="shelf_total_account" />
+        <result property="shelfDamagedAccount" column="shelf_damaged_account" />
+        <result property="vipHcAccount" column="vip_hc_account" />
+        <result property="transferInAccount" column="transfer_in_account" />
+        <result property="transferOutAccount" column="transfer_out_account" />
+        <result property="status" column="status" />
+        <result property="overDate" column="over_date" />
+        <result property="operatorId" column="operator_id" />
+        <result property="operator" column="operator" />
+        <result property="superiorParentBrand" column="superior_parent_brand" />
+        <result property="brandParent" column="brand_parent" />
+        <result property="buId" column="bu_id" />
+        <result property="buName" column="bu_name" />
+        <result property="salePrice" column="sale_price" />
+        <result property="inventoryAmount" column="inventory_amount" />
+        <result property="currency" column="currency" />
+        <result property="goodsName" column="goods_name" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='VipPoBillVerificationModelMap' parameterType='VipPoBillVerificationModel'>
+        select <include refid='sql_columns' /> from r_vip_po_bill_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='VipPoBillVerificationModelMap' parameterType='VipPoBillVerificationModel'>
+        select <include refid='sql_columns' /> from r_vip_po_bill_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='VipPoBillVerificationModelMap' parameterType='VipPoBillVerificationModel' >
+        select <include refid='sql_columns' /> from r_vip_po_bill_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='VipPoBillVerificationModel' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO r_vip_po_bill_verification
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test='id!=null' >id  , </if>
+            <if test='merchantId!=null' >merchant_id  , </if>
+            <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+            <if test='customerId!=null' >customer_id  , </if>
+            <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+            <if test='depotId!=null' >depot_id  , </if>
+            <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+            <if test='po!=null and !"".equals(po)' > PO , </if>
+            <if test='poDate!=null' >po_date  , </if>
+            <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+            <if test='firstShelfDate!=null' >first_shelf_date  , </if>
+            <if test='billTotalAccount!=null' >bill_total_account  , </if>
+            <if test='billRecentDate!=null' >bill_recent_date  , </if>
+            <if test='outDepotTotalAccont!=null' >out_depot_total_accont  , </if>
+            <if test='nationalInspectionSampleAccount!=null' >national_inspection_sample_account  , </if>
+            <if test='saleReturnAccount!=null' >sale_return_account  , </if>
+            <if test='scrapAccount!=null' >scrap_account  , </if>
+            <if test='inventorySurplusAccount!=null' >inventory_surplus_account  , </if>
+            <if test='inventoryDeficientAccount!=null' >inventory_deficient_account  , </if>
+            <if test='unsettledAccount!=null' >unsettled_account  , </if>
+            <if test='unverificateAccount!=null' >unverificate_account  , </if>
+            <if test='undepotAccount!=null' >undepot_account  , </if>
+            <if test='days!=null' >days  , </if>
+            <if test='createDate!=null' >create_date  , </if>
+            <if test='modifyDate!=null' >modify_date  , </if>
+            <if test='shelfTotalAccount!=null' >shelf_total_account  , </if>
+            <if test='shelfDamagedAccount!=null' >shelf_damaged_account  , </if>
+            <if test='vipHcAccount!=null' >vip_hc_account  , </if>
+            <if test='transferInAccount!=null' >transfer_in_account  , </if>
+            <if test='transferOutAccount!=null' >transfer_out_account  , </if>
+            <if test='status!=null and !"".equals(status)' > status , </if>
+            <if test='overDate!=null' >over_date  , </if>
+            <if test='operatorId!=null' >operator_id  , </if>
+            <if test='operator!=null and !"".equals(operator)' > operator , </if>
+            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+            <if test='brandParent!=null and !"".equals(brandParent)' > brand_parent , </if>
+            <if test='buId!=null' >bu_id  , </if>
+            <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+            <if test='salePrice!=null' >sale_price  , </if>
+            <if test='inventoryAmount!=null' >inventory_amount  , </if>
+            <if test='currency!=null and !"".equals(currency)' > currency , </if>
+            <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test='id!=null' > #{id} , </if>
+            <if test='merchantId!=null' > #{merchantId} , </if>
+            <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+            <if test='customerId!=null' > #{customerId} , </if>
+            <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+            <if test='depotId!=null' > #{depotId} , </if>
+            <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+            <if test='po!=null and !"".equals(po)' > #{po} , </if>
+            <if test='poDate!=null' > #{poDate} , </if>
+            <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+            <if test='firstShelfDate!=null' > #{firstShelfDate} , </if>
+            <if test='billTotalAccount!=null' > #{billTotalAccount} , </if>
+            <if test='billRecentDate!=null' > #{billRecentDate} , </if>
+            <if test='outDepotTotalAccont!=null' > #{outDepotTotalAccont} , </if>
+            <if test='nationalInspectionSampleAccount!=null' > #{nationalInspectionSampleAccount} , </if>
+            <if test='saleReturnAccount!=null' > #{saleReturnAccount} , </if>
+            <if test='scrapAccount!=null' > #{scrapAccount} , </if>
+            <if test='inventorySurplusAccount!=null' > #{inventorySurplusAccount} , </if>
+            <if test='inventoryDeficientAccount!=null' > #{inventoryDeficientAccount} , </if>
+            <if test='unsettledAccount!=null' > #{unsettledAccount} , </if>
+            <if test='unverificateAccount!=null' > #{unverificateAccount} , </if>
+            <if test='undepotAccount!=null' > #{undepotAccount} , </if>
+            <if test='days!=null' > #{days} , </if>
+            <if test='createDate!=null' > #{createDate} , </if>
+            <if test='modifyDate!=null' > #{modifyDate} , </if>
+            <if test='shelfTotalAccount!=null' > #{shelfTotalAccount} , </if>
+            <if test='shelfDamagedAccount!=null' > #{shelfDamagedAccount} , </if>
+            <if test='vipHcAccount!=null' > #{vipHcAccount} , </if>
+            <if test='transferInAccount!=null' > #{transferInAccount} , </if>
+            <if test='transferOutAccount!=null' > #{transferOutAccount} , </if>
+            <if test='status!=null and !"".equals(status)' > #{status} , </if>
+            <if test='overDate!=null' > #{overDate} , </if>
+            <if test='operatorId!=null' > #{operatorId} , </if>
+            <if test='operator!=null and !"".equals(operator)' > #{operator} , </if>
+            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+            <if test='brandParent!=null and !"".equals(brandParent)' > #{brandParent} , </if>
+            <if test='buId!=null' > #{buId} , </if>
+            <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+            <if test='salePrice!=null' > #{salePrice} , </if>
+            <if test='inventoryAmount!=null' > #{inventoryAmount} , </if>
+            <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+            <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='VipPoBillVerificationModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  r_vip_po_bill_verification SET
+        <trim  suffixOverrides=",">
+            <if test='id!=null' > id= #{id} , </if>
+            <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+            <if test='customerId!=null' > customer_id= #{customerId} , </if>
+            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+            <if test='depotId!=null' > depot_id= #{depotId} , </if>
+            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+            <if test='po!=null and !"".equals(po)' >PO= #{po} , </if>
+            <if test='poDate!=null' > po_date= #{poDate} , </if>
+            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+            <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} , </if>
+            <if test='billTotalAccount!=null' > bill_total_account= #{billTotalAccount} , </if>
+            <if test='billRecentDate!=null' > bill_recent_date= #{billRecentDate} , </if>
+            <if test='outDepotTotalAccont!=null' > out_depot_total_accont= #{outDepotTotalAccont} , </if>
+            <if test='nationalInspectionSampleAccount!=null' > national_inspection_sample_account= #{nationalInspectionSampleAccount} , </if>
+            <if test='saleReturnAccount!=null' > sale_return_account= #{saleReturnAccount} , </if>
+            <if test='scrapAccount!=null' > scrap_account= #{scrapAccount} , </if>
+            <if test='inventorySurplusAccount!=null' > inventory_surplus_account= #{inventorySurplusAccount} , </if>
+            <if test='inventoryDeficientAccount!=null' > inventory_deficient_account= #{inventoryDeficientAccount} , </if>
+            <if test='unsettledAccount!=null' > unsettled_account= #{unsettledAccount} , </if>
+            <if test='unverificateAccount!=null' > unverificate_account= #{unverificateAccount} , </if>
+            <if test='undepotAccount!=null' > undepot_account= #{undepotAccount} , </if>
+            <if test='days!=null' > days= #{days} , </if>
+            <if test='createDate!=null' > create_date= #{createDate} , </if>
+            <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            <if test='shelfTotalAccount!=null' > shelf_total_account= #{shelfTotalAccount} , </if>
+            <if test='shelfDamagedAccount!=null' > shelf_damaged_account= #{shelfDamagedAccount} , </if>
+            <if test='vipHcAccount!=null' > vip_hc_account= #{vipHcAccount} , </if>
+            <if test='transferInAccount!=null' > transfer_in_account= #{transferInAccount} , </if>
+            <if test='transferOutAccount!=null' > transfer_out_account= #{transferOutAccount} , </if>
+            <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+            <if test='overDate!=null' > over_date= #{overDate} , </if>
+            <if test='operatorId!=null' > operator_id= #{operatorId} , </if>
+            <if test='operator!=null and !"".equals(operator)' >operator= #{operator} , </if>
+            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} , </if>
+            <if test='buId!=null' > bu_id= #{buId} , </if>
+            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+            <if test='salePrice!=null' > sale_price= #{salePrice} , </if>
+            <if test='inventoryAmount!=null' > inventory_amount= #{inventoryAmount} , </if>
+            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_vip_po_bill_verification  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from r_vip_po_bill_verification where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            depot_id,
+            depot_name,
+            PO,
+            po_date,
+            commbarcode,
+            first_shelf_date,
+            bill_total_account,
+            bill_recent_date,
+            out_depot_total_accont,
+            national_inspection_sample_account,
+            sale_return_account,
+            scrap_account,
+            inventory_surplus_account,
+            inventory_deficient_account,
+            unsettled_account,
+            unverificate_account,
+            undepot_account,
+            days,
+            create_date,
+            modify_date,
+            shelf_total_account,
+            shelf_damaged_account,
+            vip_hc_account,
+            transfer_in_account,
+            transfer_out_account,
+            status,
+            over_date,
+            operator_id,
+            operator,
+            superior_parent_brand,
+            brand_parent,
+            bu_id,
+            bu_name,
+            sale_price,
+            inventory_amount,
+            currency,
+            goods_name
+        </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='po!=null and !"".equals(po)' >PO= #{po} and </if>
+                <if test='poDate!=null' > po_date= #{poDate} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} and </if>
+                <if test='billTotalAccount!=null' > bill_total_account= #{billTotalAccount} and </if>
+                <if test='billRecentDate!=null' > bill_recent_date= #{billRecentDate} and </if>
+                <if test='outDepotTotalAccont!=null' > out_depot_total_accont= #{outDepotTotalAccont} and </if>
+                <if test='nationalInspectionSampleAccount!=null' > national_inspection_sample_account= #{nationalInspectionSampleAccount} and </if>
+                <if test='saleReturnAccount!=null' > sale_return_account= #{saleReturnAccount} and </if>
+                <if test='scrapAccount!=null' > scrap_account= #{scrapAccount} and </if>
+                <if test='inventorySurplusAccount!=null' > inventory_surplus_account= #{inventorySurplusAccount} and </if>
+                <if test='inventoryDeficientAccount!=null' > inventory_deficient_account= #{inventoryDeficientAccount} and </if>
+                <if test='unsettledAccount!=null' > unsettled_account= #{unsettledAccount} and </if>
+                <if test='unverificateAccount!=null' > unverificate_account= #{unverificateAccount} and </if>
+                <if test='undepotAccount!=null' > undepot_account= #{undepotAccount} and </if>
+                <if test='days!=null' > days= #{days} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='shelfTotalAccount!=null' > shelf_total_account= #{shelfTotalAccount} and </if>
+                <if test='shelfDamagedAccount!=null' > shelf_damaged_account= #{shelfDamagedAccount} and </if>
+                <if test='vipHcAccount!=null' > vip_hc_account= #{vipHcAccount} and </if>
+                <if test='transferInAccount!=null' > transfer_in_account= #{transferInAccount} and </if>
+                <if test='transferOutAccount!=null' > transfer_out_account= #{transferOutAccount} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='overDate!=null' > over_date= #{overDate} and </if>
+                <if test='operatorId!=null' > operator_id= #{operatorId} and </if>
+                <if test='operator!=null and !"".equals(operator)' >operator= #{operator} and </if>
+                <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='salePrice!=null' > sale_price= #{salePrice} and </if>
+                <if test='inventoryAmount!=null' > inventory_amount= #{inventoryAmount} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!--自定义SQL-->
+		<!-- 查询账单账单状态未完结的所有po、标准条码、sku。 -->
+		<select id="getUnVeriPoBill" resultMap="VipPoBillVerificationModelMap" parameterType='VipPoBillVerificationModel'>
+			select <include refid='sql_columns' /> from r_vip_po_bill_verification 
+				<!-- where (IFNULL(bill_total_account,0) - IFNULL(shelf_total_account,0) != 0)  -->
+				where status != '1'
+				<if test='merchantId!=null' > and merchant_id= #{merchantId}  </if>
+				<if test='po!=null and !"".equals(po)' > and PO = #{po}  </if>
+				<if test='depotId!=null and !"".equals(depotId)' > and depot_id = #{depotId}  </if>
+		</select>
+
+		<select id="listVipPoBillVeriList" resultType="VipPoBillVerificationDTO" parameterType='VipPoBillVerificationDTO'>
+			select *,IFNULL(shelf_total_account,0)*IFNULL(sale_price,0) as shelfTotalAmount
+			from r_vip_po_bill_verification
+			<where>
+				<trim suffixOverrides='and'>
+                      <if test='id!=null' > id= #{id} and </if>
+                      <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                      <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                      <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                      <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                      <if test='po!=null and !"".equals(po)' >PO= #{po} and </if>
+                      <if test='poDate!=null' > po_date= #{poDate} and </if>
+                      <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                      <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} and </if>
+                      <if test='billTotalAccount!=null' > bill_total_account= #{billTotalAccount} and </if>
+                      <if test='billRecentDate!=null' > bill_recent_date= #{billRecentDate} and </if>
+                      <if test='outDepotTotalAccont!=null' > out_depot_total_accont= #{outDepotTotalAccont} and </if>
+                      <if test='nationalInspectionSampleAccount!=null' > national_inspection_sample_account= #{nationalInspectionSampleAccount} and </if>
+                      <if test='saleReturnAccount!=null' > sale_return_account= #{saleReturnAccount} and </if>
+                      <if test='unsettledAccount!=null' > unsettled_account= #{unsettledAccount} and </if>
+                      <if test='unverificateAccount!=null' > unverificate_account= #{unverificateAccount} and </if>
+                      <if test='createDate!=null' > create_date= #{createDate} and </if>
+                      <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                      <if test='buId!=null' > bu_id= #{buId} and </if>
+                      <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                      <if test='buList!=null and !"".equals(buList)' >bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                      </if>
+                      <if test='days!=null' >
+                      	 <choose>
+                      	 	<when test="days==0">
+                      	 		(days &lt; 30 or days IS NULL) 
+                      	 	</when>
+                      	 	<when test="days==30">
+                      	 		(days &gt;= 30 and days &lt; 60)
+                      	 	</when>
+                      	 	<when test="days==60">
+                      	 		(days &gt;= 60 and days &lt; 90)
+                      	 	</when>
+                      	 	<when test="days==90">
+                      	 		days &gt;= 90
+                      	 	</when>
+                      	 	<when test="days==120">
+                      	 		days &gt;= 120
+                      	 	</when>
+                      	 	<when test="days==180">
+                      	 		days &gt;= 180
+                      	 	</when>
+                      	 </choose>
+                      </if>
+                </trim>
+			</where>
+			ORDER BY create_date desc
+			<if test='begin!=null and pageSize != null and pageSize != 0'>
+				LIMIT #{begin} , #{pageSize} ;
+			</if>
+		</select>
+
+		<select id="getVipPoBillVeriListCount" resultType="int" parameterType='VipPoBillVerificationDTO'>
+			select count(1) from r_vip_po_bill_verification
+			<where>
+				<trim suffixOverrides='and'>
+                      <if test='id!=null' > id= #{id} and </if>
+                      <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                      <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                      <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                      <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                      <if test='po!=null and !"".equals(po)' >PO= #{po} and </if>
+                      <if test='poDate!=null' > po_date= #{poDate} and </if>
+                      <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                      <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} and </if>
+                      <if test='billTotalAccount!=null' > bill_total_account= #{billTotalAccount} and </if>
+                      <if test='billRecentDate!=null' > bill_recent_date= #{billRecentDate} and </if>
+                      <if test='outDepotTotalAccont!=null' > out_depot_total_accont= #{outDepotTotalAccont} and </if>
+                      <if test='nationalInspectionSampleAccount!=null' > national_inspection_sample_account= #{nationalInspectionSampleAccount} and </if>
+                      <if test='saleReturnAccount!=null' > sale_return_account= #{saleReturnAccount} and </if>
+                      <if test='unsettledAccount!=null' > unsettled_account= #{unsettledAccount} and </if>
+                      <if test='unverificateAccount!=null' > unverificate_account= #{unverificateAccount} and </if>
+                      <if test='createDate!=null' > create_date= #{createDate} and </if>
+                      <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                      <if test='buId!=null' > bu_id= #{buId} and </if>
+                      <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                      <if test='buList!=null and !"".equals(buList)' >bu_id in
+                         <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                         </foreach>
+                         and
+                      </if>
+                      <if test='days!=null' >
+                      	 <choose>
+                      	 	<when test="days==0">
+                      	 		(days &lt; 30 or days IS NULL) 
+                      	 	</when>
+                      	 	<when test="days==30">
+                      	 		(days &gt;= 30 and days &lt; 60)
+                      	 	</when>
+                      	 	<when test="days==60">
+                      	 		(days &gt;= 60 and days &lt; 90)
+                      	 	</when>
+                      	 	<when test="days==90">
+                      	 		days &gt;= 90
+                      	 	</when>
+                      	 	<when test="days==120">
+                      	 		days &gt;= 120
+                      	 	</when>
+                      	 	<when test="days==180">
+                      	 		days &gt;= 180
+                      	 	</when>
+                      	 </choose>
+                      </if>
+                </trim>
+			</where>
+		</select>
+
+		<select id="searchByIds" parameterType='java.util.ArrayList'  resultMap="VipPoBillVerificationModelMap" >
+			select <include refid='sql_columns' /> from r_vip_po_bill_verification where id in 
+			<foreach collection='list' item='id' separator=',' open='(' close=')'>
+            	#{id}
+            </foreach>
+		</select>
+		
+		<select id="listVipPoBillVeriPoList" resultType="VipPoBillVerificationDTO" parameterType='VipPoBillVerificationDTO'>
+			select merchant_id,
+				merchant_name,
+				PO,
+				po_date,
+				status,
+				over_date,
+				operator from r_vip_po_bill_verification
+			<where>
+				<trim suffixOverrides='and'>
+                      <if test='id!=null' > id= #{id} and </if>
+                      <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                      <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                      <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                      <if test='po!=null and !"".equals(po)' >PO= #{po} and </if>
+                      <if test='status!=null and !"".equals(status)'> status= #{status} and </if>
+                </trim>
+			</where>
+			GROUP BY merchant_id,
+					merchant_name,
+					PO,
+					po_date,
+					status,
+					over_date,
+					operator
+			<if test='begin!=null and pageSize != null and pageSize != 0'>
+				LIMIT #{begin} , #{pageSize} ;
+			</if>
+		</select>
+
+		<select id="getVipPoBillVeriPoListCount" resultType="int" parameterType='VipPoBillVerificationModel'>
+			select count(1) from 
+			(select merchant_id,
+					merchant_name,
+					PO,
+					po_date,
+					status,
+					over_date,
+					operator from r_vip_po_bill_verification
+			<where>
+				<trim suffixOverrides='and'>
+                      <if test='id!=null' > id= #{id} and </if>
+                      <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                      <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                      <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                      <if test='po!=null and !"".equals(po)' >PO= #{po} and </if>
+                      <if test='status!=null and !"".equals(status)'> status= #{status} and </if>
+                </trim>
+			</where>
+			GROUP BY merchant_id,
+					merchant_name,
+					PO,
+					po_date,
+					status,
+					over_date,
+					operator
+					) t
+		</select>
+		
+		<!-- 根据PO获取未结算量 -->
+		<select id="countUnsettledAccount" resultType="int" parameterType="VipPoBillVerificationModel">
+			select sum(unsettled_account) from r_vip_po_bill_verification
+			<where>
+				<trim suffixOverrides='and'>
+					<if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+					<if test='po!=null and !"".equals(po)' >PO= #{po} and </if>
+					<if test='status!=null and !"".equals(status)' > status= #{status} and </if>
+				</trim>
+			</where>
+		</select>
+		
+		<update id='modifyStatus' parameterType='VipPoBillVerificationModel' >
+            UPDATE  r_vip_po_bill_verification SET
+            <trim  suffixOverrides=",">
+                        <if test='operator!=null' > operator= #{operator} , </if>
+                        <if test='operatorId!=null' > operator_id= #{operatorId} , </if>
+                        <if test='status!=null and !"".equals(status)' > status= #{status} , </if>
+                        <if test='overDate!=null' > over_date= #{overDate} , </if>
+            </trim>
+            <where>
+                merchant_id = #{merchantId} and PO = #{po}
+            </where>
+        </update>
+        
+        <select id="getListByPo" resultMap="VipPoBillVerificationModelMap" parameterType='map'>
+			select <include refid='sql_columns' /> from r_vip_po_bill_verification
+			<where>
+				<trim suffixOverrides='and'>
+                      <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                      <if test='status!=null and !"".equals(status)' > status= #{status} and </if>
+                      <if test="pos != null and pos.size() > 0">
+						 PO in
+						<foreach collection='pos' item='po' separator=',' open='(' close=')'>
+				            #{po}
+				        </foreach>
+				        and
+		        	  </if>
+                </trim>
+			</where>
+		</select>
+		
+		<select	id="getDataTime" resultType="map" parameterType='java.lang.Long'>
+			SELECT
+				DATE_FORMAT(MAX(bill_recent_date),'%Y-%m-%d') AS billDate
+			FROM
+				r_vip_po_bill_verification
+			WHERE
+				merchant_id = #{merchantId}
+		</select>
+    <!--添加备注-->
+    <update id='updateNecessaryValue' parameterType='VipPoBillVerificationModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  r_vip_po_bill_verification SET
+        <trim  suffixOverrides=",">
+            <if test='poDate!=null' > po_date= #{poDate} , </if>
+            <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} , </if>
+            <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            <if test='shelfTotalAccount!=null' > shelf_total_account= #{shelfTotalAccount} , </if>
+            <if test='shelfDamagedAccount!=null' > shelf_damaged_account= #{shelfDamagedAccount} , </if>
+            bill_total_account= #{billTotalAccount} ,
+            bill_recent_date= #{billRecentDate} ,
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+</mapper>

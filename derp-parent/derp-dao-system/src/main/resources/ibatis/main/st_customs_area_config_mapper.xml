@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.CustomsAreaConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CustomsAreaConfigModelMap" type="CustomsAreaConfigModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="name" column="name" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+        </resultMap>
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomsAreaConfigModelMap' parameterType='CustomsAreaConfigModel'>
+        select <include refid='sql_columns' /> from st_customs_area_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomsAreaConfigModelMap' parameterType='CustomsAreaConfigModel'>
+        select <include refid='sql_columns' /> from st_customs_area_config  <include refid='sql_where' />
+    </select>
+
+
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomsAreaConfigModelMap' parameterType='CustomsAreaConfigModel' >
+        select <include refid='sql_columns' /> from st_customs_area_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='CustomsAreaConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_customs_area_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='name!=null and !"".equals(name)' > name , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CustomsAreaConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_customs_area_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_customs_area_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_customs_area_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            name,
+            status,
+            create_date,
+            modify_date,
+            creater,
+            create_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                             status=1 and
+                </trim>
+                
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <sql id='sql_like_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >code like CONCAT('%',#{code},'%') and </if>
+                <if test='name!=null and !"".equals(name)' >name like CONCAT('%',#{name},'%') and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                status=1 and
+            </trim>
+
+        </where>
+    </sql>
+
+    <select id="getListByPage" resultType='CustomsAreaConfigDTO' parameterType='CustomsAreaConfigDTO'>
+        select <include refid='sql_columns' /> from st_customs_area_config  <include refid='sql_where' /> order by id DESC
+    </select>
+
+
+
+		<resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+            <result property="value" column="id" />
+            <result property="label" column="name" />
+        </resultMap>
+      	<!--   获取下拉框 -->
+ 		<select id="getCustomsSelectBean" resultMap='SelectBeans' parameterType='DepotCustomsRelModel'>
+           select id as id,name as name from st_customs_area_config  where  status=1
+        </select>
+
+    <select id="listByLike" resultMap='CustomsAreaConfigModelMap' parameterType='CustomsAreaConfigModel'>
+        select <include refid='sql_columns' /> from st_customs_area_config  <include refid='sql_like_where' />
+    </select>
+
+</mapper>

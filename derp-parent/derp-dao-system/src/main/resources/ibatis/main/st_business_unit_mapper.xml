@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.BusinessUnitMapper'>
+
+    <!-- 关系映射 -->
+        <resultMap id="BusinessUnitModelMap" type="BusinessUnitModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="name" column="name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="departmentId" column="department_id" />
+                <result property="departmentName" column="department_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BusinessUnitModelMap' parameterType='BusinessUnitModel'>
+        select <include refid='sql_columns' /> from st_business_unit  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BusinessUnitModelMap' parameterType='BusinessUnitModel'>
+        select <include refid='sql_columns' /> from st_business_unit  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BusinessUnitModelMap' parameterType='BusinessUnitModel' >
+        select <include refid='sql_columns' /> from st_business_unit  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BusinessUnitModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_business_unit
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='name!=null and !"".equals(name)' > name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='departmentId!=null' >department_id , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > department_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='departmentId!=null' > #{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > #{departmentName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BusinessUnitModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_business_unit SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='departmentId!=null' > department_id= #{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' >department_name= #{departmentName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_business_unit  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_business_unit where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            name,
+            create_date,
+            modify_date,
+            department_id,
+            department_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='departmentId!=null' > department_id= #{departmentId} and </if>
+                            <if test='departmentName!=null and !"".equals(departmentName)' >department_name= #{departmentName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <!-- 查询条件 -->
+        <sql id='sql_where_page'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                    <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                    <if test='departmentId!=null' > department_id= #{departmentId} and </if>
+                    <if test='departmentName!=null and !"".equals(departmentName)' >department_name= #{departmentName} and </if>
+                    <if test='departmentIds!=null and !"".equals(departmentIds)' > department_id in
+                        <foreach collection="departmentIds.split(',')" item="departmentId" separator="," open="(" close=")">
+                            #{departmentId}
+                        </foreach>
+                        and
+                    </if>
+                </trim>
+            </where>
+        </sql>
+
+        <sql id='sql_like_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='code!=null and !"".equals(code)' >code like CONCAT('%',#{code},'%') and </if>
+                    <if test='name!=null and !"".equals(name)' >name like CONCAT('%',#{name},'%') and </if>
+                </trim>
+            </where>
+        </sql>
+
+		<!-- 查询是否被引用 -->
+		<select id="judgeQuote" parameterType='BusinessUnitModel' resultMap="BusinessUnitModelMap">
+			select <include refid='sql_columns' /> from st_business_unit
+				where id = ( select  distinct bu_id from st_merchant_bu_rel where bu_id =#{id} ) OR 
+						  id = ( select  distinct bu_id from st_user_bu_rel where bu_id =#{id} ) OR 
+						  id = ( select  distinct bu_id from st_merchant_depot_bu_rel where bu_id =#{id})
+		</select>
+
+        <select id='searchDTOByPage' resultType='BusinessUnitDTO' parameterType='BusinessUnitDTO'>
+        select <include refid='sql_columns' /> from st_business_unit  
+        <where>
+           <trim suffixOverrides='and'>
+               <if test='id!=null' > id= #{id} and </if>
+               <if test='code!=null and !"".equals(code)' >code like CONCAT('%','${code}','%') and </if>
+               <if test='name!=null and !"".equals(name)' >name like CONCAT('%','${name}','%') and </if>
+               <if test='createDate!=null' > create_date= #{createDate} and </if>
+               <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+               <if test='departmentId!=null' > department_id= #{departmentId} and </if>
+               <if test='departmentName!=null and !"".equals(departmentName)' >department_name LIKE CONCAT('%',#{departmentName},'%') and </if>
+           </trim>
+       </where>
+       order by create_date DESC
+       </select>
+       <!-- 查询编码/名称是否已存在 -->
+		<select id="getcheckCodeName" parameterType='BusinessUnitDTO' resultType='BusinessUnitDTO'>
+			select * from st_business_unit
+			where 1=1
+			 <if test='id!=null' > and id!= #{id} </if>
+			<if test='code!=null and !"".equals(code)' > and code= #{code} </if>
+			<if test='name!=null and !"".equals(name)' > and name= #{name} </if>
+		</select>
+    <!-- 查询所有信息 -->
+    <select id="listDTO" parameterType='BusinessUnitDTO' resultType='BusinessUnitDTO'>
+        select <include refid='sql_columns' /> from st_business_unit  <include refid='sql_where_page' />
+    </select>
+
+    <select id="listDTOByLike" parameterType='BusinessUnitDTO' resultType='BusinessUnitDTO'>
+        select <include refid='sql_columns' /> from st_business_unit  <include refid='sql_like_where' />
+    </select>
+</mapper>

@@ -1,0 +1,415 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.PurchaseTryApplyOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PurchaseTryApplyOrderModelMap" type="PurchaseTryApplyOrderModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="formName" column="form_name" />
+                <result property="creater" column="creater" />
+                <result property="createrName" column="creater_name" />
+                <result property="businessManager" column="business_manager" />
+                <result property="businessManagerName" column="business_manager_name" />
+                <result property="businessDeptName" column="business_dept_name" />
+                <result property="businessDept" column="business_dept" />
+                <result property="effectiveCode" column="effective_code" />
+                <result property="projectName" column="project_name" />
+                <result property="annualPurPlanAmount" column="annual_pur_plan_amount" />
+                <result property="proAccLimit" column="pro_acc_limit" />
+                <result property="deliveryType" column="delivery_type" />
+                <result property="otherDelType" column="other_del_type" />
+                <result property="ourContSignComy" column="our_cont_sign_comy" />
+                <result property="counterpartContSignComy" column="counterpart_cont_sign_comy" />
+                <result property="supplierType" column="supplier_type" />
+                <result property="otherSupplier" column="other_supplier" />
+                <result property="brandName" column="brand_name" />
+                <result property="comtyType" column="comty_type" />
+                <result property="otherComty" column="other_comty" />
+                <result property="counterpartDesc" column="counterpart_desc" />
+                <result property="supProdDesc" column="sup_prod_desc" />
+                <result property="otherMonAppoint" column="other_mon_appoint" />
+                <result property="returnGoodsApp" column="return_goods_app" />
+                <result property="purchaseType" column="purchase_type" />
+                <result property="oaBillCode" column="oa_bill_code" />
+                <result property="appState" column="app_state" />
+                <result property="businessMode" column="business_mode" />
+                <result property="dataId" column="data_id" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="supplierId" column="supplier_id" />
+                <result property="supplierName" column="supplier_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseTryApplyOrderModelMap' parameterType='PurchaseTryApplyOrderModel'>
+        select <include refid='sql_columns' /> from t_purchase_try_apply_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseTryApplyOrderModelMap' parameterType='PurchaseTryApplyOrderModel'>
+        select <include refid='sql_columns' /> from t_purchase_try_apply_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseTryApplyOrderModelMap' parameterType='PurchaseTryApplyOrderModel' >
+        select <include refid='sql_columns' /> from t_purchase_try_apply_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PurchaseTryApplyOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_purchase_try_apply_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='formName!=null and !"".equals(formName)' > form_name , </if>
+                        <if test='creater!=null and !"".equals(creater)' > creater , </if>
+                        <if test='createrName!=null and !"".equals(createrName)' > creater_name , </if>
+                        <if test='businessManager!=null and !"".equals(businessManager)' > business_manager , </if>
+                        <if test='businessManagerName!=null and !"".equals(businessManagerName)' > business_manager_name , </if>
+                        <if test='businessDeptName!=null and !"".equals(businessDeptName)' > business_dept_name , </if>
+                        <if test='businessDept!=null and !"".equals(businessDept)' > business_dept , </if>
+                        <if test='effectiveCode!=null and !"".equals(effectiveCode)' > effective_code , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > project_name , </if>
+                        <if test='annualPurPlanAmount!=null and !"".equals(annualPurPlanAmount)' > annual_pur_plan_amount , </if>
+                        <if test='proAccLimit!=null and !"".equals(proAccLimit)' > pro_acc_limit , </if>
+                        <if test='deliveryType!=null and !"".equals(deliveryType)' > delivery_type , </if>
+                        <if test='otherDelType!=null and !"".equals(otherDelType)' > other_del_type , </if>
+                        <if test='ourContSignComy!=null and !"".equals(ourContSignComy)' > our_cont_sign_comy , </if>
+                        <if test='counterpartContSignComy!=null and !"".equals(counterpartContSignComy)' > counterpart_cont_sign_comy , </if>
+                        <if test='supplierType!=null and !"".equals(supplierType)' > supplier_type , </if>
+                        <if test='otherSupplier!=null and !"".equals(otherSupplier)' > other_supplier , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='comtyType!=null and !"".equals(comtyType)' > comty_type , </if>
+                        <if test='otherComty!=null and !"".equals(otherComty)' > other_comty , </if>
+                        <if test='counterpartDesc!=null and !"".equals(counterpartDesc)' > counterpart_desc , </if>
+                        <if test='supProdDesc!=null and !"".equals(supProdDesc)' > sup_prod_desc , </if>
+                        <if test='otherMonAppoint!=null and !"".equals(otherMonAppoint)' > other_mon_appoint , </if>
+                        <if test='returnGoodsApp!=null and !"".equals(returnGoodsApp)' > return_goods_app , </if>
+                        <if test='purchaseType!=null and !"".equals(purchaseType)' > purchase_type , </if>
+                        <if test='oaBillCode!=null and !"".equals(oaBillCode)' > oa_bill_code , </if>
+                        <if test='appState!=null and !"".equals(appState)' > app_state , </if>
+                        <if test='businessMode!=null and !"".equals(businessMode)' > business_mode , </if>
+                        <if test='dataId!=null and !"".equals(dataId)' > data_id , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='supplierId!=null' >supplier_id  , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='formName!=null and !"".equals(formName)' > #{formName} , </if>
+                        <if test='creater!=null and !"".equals(creater)' > #{creater} , </if>
+                        <if test='createrName!=null and !"".equals(createrName)' > #{creater_name} , </if>
+                        <if test='businessManager!=null and !"".equals(businessManager)' > #{businessManager} , </if>
+                        <if test='businessDeptName!=null and !"".equals(businessDeptName)' > #{businessDeptName} , </if>
+                        <if test='businessDept!=null and !"".equals(businessDept)' > #{businessDept} , </if>
+                        <if test='effectiveCode!=null and !"".equals(effectiveCode)' > #{effectiveCode} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > #{projectName} , </if>
+                        <if test='annualPurPlanAmount!=null and !"".equals(annualPurPlanAmount)' > #{annualPurPlanAmount} , </if>
+                        <if test='proAccLimit!=null and !"".equals(proAccLimit)' > #{proAccLimit} , </if>
+                        <if test='deliveryType!=null and !"".equals(deliveryType)' > #{deliveryType} , </if>
+                        <if test='otherDelType!=null and !"".equals(otherDelType)' > #{otherDelType} , </if>
+                        <if test='ourContSignComy!=null and !"".equals(ourContSignComy)' > #{ourContSignComy} , </if>
+                        <if test='counterpartContSignComy!=null and !"".equals(counterpartContSignComy)' > #{counterpartContSignComy} , </if>
+                        <if test='supplierType!=null and !"".equals(supplierType)' > #{supplierType} , </if>
+                        <if test='otherSupplier!=null and !"".equals(otherSupplier)' > #{otherSupplier} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='comtyType!=null and !"".equals(comtyType)' > #{comtyType} , </if>
+                        <if test='otherComty!=null and !"".equals(otherComty)' > #{otherComty} , </if>
+                        <if test='counterpartDesc!=null and !"".equals(counterpartDesc)' > #{counterpartDesc} , </if>
+                        <if test='supProdDesc!=null and !"".equals(supProdDesc)' > #{supProdDesc} , </if>
+                        <if test='otherMonAppoint!=null and !"".equals(otherMonAppoint)' > #{otherMonAppoint} , </if>
+                        <if test='returnGoodsApp!=null and !"".equals(returnGoodsApp)' > #{returnGoodsApp} , </if>
+                        <if test='purchaseType!=null and !"".equals(purchaseType)' > #{purchaseType} , </if>
+                        <if test='oaBillCode!=null and !"".equals(oaBillCode)' > #{oaBillCode} , </if>
+                        <if test='appState!=null and !"".equals(appState)' > #{appState} , </if>
+                        <if test='businessMode!=null and !"".equals(businessMode)' > #{businessMode} , </if>
+                        <if test='dataId!=null and !"".equals(dataId)' > #{dataId} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='supplierId!=null' > #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PurchaseTryApplyOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_purchase_try_apply_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='formName!=null and !"".equals(formName)' >form_name= #{formName} , </if>
+                        <if test='creater!=null and !"".equals(creater)' >creater= #{creater} , </if>
+                        <if test='createrName!=null and !"".equals(createrName)' >creater_name= #{createrName} , </if>
+                        <if test='businessManager!=null and !"".equals(businessManager)' >business_manager= #{businessManager} , </if>
+                        <if test='businessManagerName!=null and !"".equals(businessManagerName)' >business_manager_name= #{businessManagerName} , </if>
+                        <if test='businessDeptName!=null and !"".equals(businessDeptName)' >business_dept_name= #{businessDeptName} , </if>
+                        <if test='businessDept!=null and !"".equals(businessDept)' >business_dept= #{businessDept} , </if>
+                        <if test='effectiveCode!=null and !"".equals(effectiveCode)' >effective_code= #{effectiveCode} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} , </if>
+                        <if test='annualPurPlanAmount!=null and !"".equals(annualPurPlanAmount)' >annual_pur_plan_amount= #{annualPurPlanAmount} , </if>
+                        <if test='proAccLimit!=null and !"".equals(proAccLimit)' >pro_acc_limit= #{proAccLimit} , </if>
+                        <if test='deliveryType!=null and !"".equals(deliveryType)' >delivery_type= #{deliveryType} , </if>
+                        <if test='otherDelType!=null and !"".equals(otherDelType)' >other_del_type= #{otherDelType} , </if>
+                        <if test='ourContSignComy!=null and !"".equals(ourContSignComy)' >our_cont_sign_comy= #{ourContSignComy} , </if>
+                        <if test='counterpartContSignComy!=null and !"".equals(counterpartContSignComy)' >counterpart_cont_sign_comy= #{counterpartContSignComy} , </if>
+                        <if test='supplierType!=null and !"".equals(supplierType)' >supplier_type= #{supplierType} , </if>
+                        <if test='otherSupplier!=null and !"".equals(otherSupplier)' >other_supplier= #{otherSupplier} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='comtyType!=null and !"".equals(comtyType)' >comty_type= #{comtyType} , </if>
+                        <if test='otherComty!=null and !"".equals(otherComty)' >other_comty= #{otherComty} , </if>
+                        <if test='counterpartDesc!=null and !"".equals(counterpartDesc)' >counterpart_desc= #{counterpartDesc} , </if>
+                        <if test='supProdDesc!=null and !"".equals(supProdDesc)' >sup_prod_desc= #{supProdDesc} , </if>
+                        <if test='otherMonAppoint!=null and !"".equals(otherMonAppoint)' >other_mon_appoint= #{otherMonAppoint} , </if>
+                        <if test='returnGoodsApp!=null and !"".equals(returnGoodsApp)' >return_goods_app= #{returnGoodsApp} , </if>
+                        <if test='purchaseType!=null and !"".equals(purchaseType)' >purchase_type= #{purchaseType} , </if>
+                        <if test='oaBillCode!=null and !"".equals(oaBillCode)' >oa_bill_code= #{oaBillCode} , </if>
+                        <if test='appState!=null and !"".equals(appState)' >app_state= #{appState} , </if>
+                        <if test='businessMode!=null and !"".equals(businessMode)' >business_mode= #{businessMode} , </if>
+                        <if test='dataId!=null and !"".equals(dataId)' >data_id= #{dataId} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='supplierId!=null' > supplier_id= #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_try_apply_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_purchase_try_apply_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            form_name,
+            creater,
+            creater_name,
+            business_manager,
+            business_manager_name,
+            business_dept_name,
+            business_dept,
+            effective_code,
+            project_name,
+            annual_pur_plan_amount,
+            pro_acc_limit,
+            delivery_type,
+            other_del_type,
+            our_cont_sign_comy,
+            counterpart_cont_sign_comy,
+            supplier_type,
+            other_supplier,
+            brand_name,
+            comty_type,
+            other_comty,
+            counterpart_desc,
+            sup_prod_desc,
+            other_mon_appoint,
+            return_goods_app,
+            purchase_type,
+            oa_bill_code,
+            app_state,
+            business_mode,
+            data_id,
+            create_date,
+            modify_date,
+            supplier_id,
+            supplier_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='formName!=null and !"".equals(formName)' >form_name= #{formName} and </if>
+                            <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                            <if test='createrName!=null and !"".equals(createrName)' >creater_name= #{createrName} and </if>
+                            <if test='businessManager!=null and !"".equals(businessManager)' >business_manager= #{businessManager} and </if>
+                            <if test='businessManagerName!=null and !"".equals(businessManagerName)' >business_manager_name= #{businessManagerName} and </if>
+                            <if test='businessDeptName!=null and !"".equals(businessDeptName)' >business_dept_name= #{businessDeptName} and </if>
+                            <if test='businessDept!=null and !"".equals(businessDept)' >business_dept= #{businessDept} and </if>
+                            <if test='effectiveCode!=null and !"".equals(effectiveCode)' >effective_code= #{effectiveCode} and </if>
+                            <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                            <if test='annualPurPlanAmount!=null and !"".equals(annualPurPlanAmount)' >annual_pur_plan_amount= #{annualPurPlanAmount} and </if>
+                            <if test='proAccLimit!=null and !"".equals(proAccLimit)' >pro_acc_limit= #{proAccLimit} and </if>
+                            <if test='deliveryType!=null and !"".equals(deliveryType)' >delivery_type= #{deliveryType} and </if>
+                            <if test='otherDelType!=null and !"".equals(otherDelType)' >other_del_type= #{otherDelType} and </if>
+                            <if test='ourContSignComy!=null and !"".equals(ourContSignComy)' >our_cont_sign_comy= #{ourContSignComy} and </if>
+                            <if test='counterpartContSignComy!=null and !"".equals(counterpartContSignComy)' >counterpart_cont_sign_comy= #{counterpartContSignComy} and </if>
+                            <if test='supplierType!=null and !"".equals(supplierType)' >supplier_type= #{supplierType} and </if>
+                            <if test='otherSupplier!=null and !"".equals(otherSupplier)' >other_supplier= #{otherSupplier} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='comtyType!=null and !"".equals(comtyType)' >comty_type= #{comtyType} and </if>
+                            <if test='otherComty!=null and !"".equals(otherComty)' >other_comty= #{otherComty} and </if>
+                            <if test='counterpartDesc!=null and !"".equals(counterpartDesc)' >counterpart_desc= #{counterpartDesc} and </if>
+                            <if test='supProdDesc!=null and !"".equals(supProdDesc)' >sup_prod_desc= #{supProdDesc} and </if>
+                            <if test='otherMonAppoint!=null and !"".equals(otherMonAppoint)' >other_mon_appoint= #{otherMonAppoint} and </if>
+                            <if test='returnGoodsApp!=null and !"".equals(returnGoodsApp)' >return_goods_app= #{returnGoodsApp} and </if>
+                            <if test='purchaseType!=null and !"".equals(purchaseType)' >purchase_type= #{purchaseType} and </if>
+                            <if test='oaBillCode!=null and !"".equals(oaBillCode)' >oa_bill_code= #{oaBillCode} and </if>
+                            <if test='appState!=null and !"".equals(appState)' >app_state= #{appState} and </if>
+                            <if test='businessMode!=null and !"".equals(businessMode)' >business_mode= #{businessMode} and </if>
+                            <if test='dataId!=null and !"".equals(dataId)' >data_id= #{dataId} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_purchase_try_apply_order
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            id,
+            merchant_id,
+            merchant_name,
+            form_name,
+            creater,
+            creater_name,
+            business_manager,
+            business_manager_name,
+            business_dept,
+            business_dept_name,
+            effective_code,
+            project_name,
+            annual_pur_plan_amount,
+            pro_acc_limit,
+            delivery_type,
+            other_del_type,
+            our_cont_sign_comy,
+            counterpart_cont_sign_comy,
+            supplier_id,
+            supplier_name,
+            supplier_type,
+            other_supplier,
+            brand_name,
+            comty_type,
+            other_comty,
+            counterpart_desc,
+            sup_prod_desc,
+            other_mon_appoint,
+            return_goods_app,
+            purchase_type,
+            oa_bill_code,
+            app_state,
+            business_mode,
+            data_id
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                #{item.id} ,
+                #{item.merchantId} ,
+                #{item.merchantName} ,
+                #{item.formName} ,
+                #{item.creater} ,
+                #{item.createrName} ,
+                #{item.businessManager} ,
+                #{item.businessManagerName} ,
+                #{item.businessDept} ,
+                #{item.businessDeptName} ,
+                #{item.effectiveCode} ,
+                #{item.projectName} ,
+                #{item.annualPurPlanAmount} ,
+                #{item.proAccLimit} ,
+                #{item.deliveryType} ,
+                #{item.otherDelType} ,
+                #{item.ourContSignComy},
+                #{item.counterpartContSignComy},
+                #{item.supplierId},
+                #{item.supplierName},
+                #{item.supplierType},
+                #{item.otherSupplier},
+                #{item.brandName},
+                #{item.comtyType},
+                #{item.otherComty},
+                #{item.counterpartDesc},
+                #{item.supProdDesc},
+                #{item.otherMonAppoint},
+                #{item.returnGoodsApp},
+                #{item.purchaseType},
+                #{item.oaBillCode},
+                #{item.appState},
+                #{item.businessMode},
+                #{item.dataId}
+            </trim>
+        </foreach>
+    </insert>
+
+    <select id='listDTOByPage' resultType='PurchaseTryApplyOrderDTO' parameterType='PurchaseTryApplyOrderDTO'>
+        select
+        <include refid='sql_columns' />
+        from t_purchase_try_apply_order
+        <include refid='sql_where' />
+    </select>
+
+    <select id='getDetail' resultType='PurchaseTryApplyOrderDTO' parameterType='PurchaseTryApplyOrderDTO'>
+        select
+        <include refid='sql_columns' />
+        from t_purchase_try_apply_order
+        <include refid='sql_where' />
+    </select>
+
+    <select id='listOaBillCodeSelect' resultType='PurchaseTryApplyOrderDTO' parameterType='PurchaseTryApplyOrderDTO' >
+        select <include refid='sql_columns' />
+        from t_purchase_try_apply_order
+        <where>
+        <trim suffixOverrides='and'>
+            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+        </trim>
+        </where>
+    </select>
+
+    <select id='countByDTO' resultType='int' parameterType='PurchaseTryApplyOrderDTO'>
+        select
+        count(1)
+        from t_purchase_try_apply_order
+        <include refid='sql_where' />
+    </select>
+
+    <select id='listForExport' resultType='PurchaseTryApplyOrderDTO' parameterType='PurchaseTryApplyOrderDTO'>
+        select
+        <include refid='sql_columns' />
+        from t_purchase_try_apply_order
+        <include refid='sql_where' />
+        order by oa_bill_code desc
+        limit ${begin},${pageSize}
+    </select>
+
+    <select id='getLatestDTO' resultType='PurchaseTryApplyOrderDTO' parameterType="PurchaseTryApplyOrderDTO">
+        select
+        <include refid='sql_columns' />
+        from t_purchase_try_apply_order
+        <include refid='sql_where' />
+        order by create_date desc
+        limit 1
+    </select>
+</mapper>

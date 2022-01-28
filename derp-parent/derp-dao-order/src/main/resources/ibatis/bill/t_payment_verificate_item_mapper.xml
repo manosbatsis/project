@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.PaymentVerificateItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PaymentVerificateItemModelMap" type="PaymentVerificateItemModel" >
+                <result property="id" column="id" />
+                <result property="paymentId" column="payment_id" />
+                <result property="relCode" column="rel_code" />
+                <result property="billStatus" column="bill_status" />
+                <result property="draweeId" column="drawee_id" />
+                <result property="drawee" column="drawee" />
+                <result property="paymentDate" column="payment_date" />
+                <result property="serialNo" column="serial_no" />
+                <result property="verificateAmount" column="verificate_amount" />
+                <result property="currentVerificateAmount" column="current_verificate_amount" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="ncId" column="nc_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PaymentVerificateItemModelMap' parameterType='PaymentVerificateItemModel'>
+        select <include refid='sql_columns' /> from t_payment_verificate_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PaymentVerificateItemModelMap' parameterType='PaymentVerificateItemModel'>
+        select <include refid='sql_columns' /> from t_payment_verificate_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PaymentVerificateItemModelMap' parameterType='PaymentVerificateItemModel' >
+        select <include refid='sql_columns' /> from t_payment_verificate_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PaymentVerificateItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_payment_verificate_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='paymentId!=null' >payment_id , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' > rel_code , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' > bill_status , </if>
+                        <if test='draweeId!=null' >drawee_id , </if>
+                        <if test='drawee!=null and !"".equals(drawee)' > drawee , </if>
+                        <if test='paymentDate!=null' >payment_date , </if>
+                        <if test='serialNo!=null and !"".equals(serialNo)' > serial_no , </if>
+                        <if test='verificateAmount!=null' >verificate_amount , </if>
+                        <if test='currentVerificateAmount!=null' >current_verificate_amount , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='ncId!=null' >nc_id  , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='paymentId!=null' > #{paymentId} , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' > #{relCode} , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' > #{billStatus} , </if>
+                        <if test='draweeId!=null' > #{draweeId} , </if>
+                        <if test='drawee!=null and !"".equals(drawee)' > #{drawee} , </if>
+                        <if test='paymentDate!=null' > #{paymentDate} , </if>
+                        <if test='serialNo!=null and !"".equals(serialNo)' > #{serialNo} , </if>
+                        <if test='verificateAmount!=null' > #{verificateAmount} , </if>
+                        <if test='currentVerificateAmount!=null' > #{currentVerificateAmount} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='ncId!=null' > #{ncId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PaymentVerificateItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_payment_verificate_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='paymentId!=null' > payment_id= #{paymentId} , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' >rel_code= #{relCode} , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} , </if>
+                        <if test='draweeId!=null' > drawee_id= #{draweeId} , </if>
+                        <if test='drawee!=null and !"".equals(drawee)' >drawee= #{drawee} , </if>
+                        <if test='paymentDate!=null' > payment_date= #{paymentDate} , </if>
+                        <if test='serialNo!=null and !"".equals(serialNo)' >serial_no= #{serialNo} , </if>
+                        <if test='verificateAmount!=null' > verificate_amount= #{verificateAmount} , </if>
+                        <if test='currentVerificateAmount!=null' > current_verificate_amount= #{currentVerificateAmount} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='ncId!=null' > nc_id= #{ncId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_payment_verificate_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_payment_verificate_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            payment_id,
+            rel_code,
+            bill_status,
+            drawee_id,
+            drawee,
+            payment_date,
+            serial_no,
+            verificate_amount,
+            current_verificate_amount,
+            create_date,
+            modify_date,
+            nc_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='paymentId!=null' > payment_id= #{paymentId} and </if>
+                            <if test='relCode!=null and !"".equals(relCode)' >rel_code= #{relCode} and </if>
+                            <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} and </if>
+                            <if test='draweeId!=null' > drawee_id= #{draweeId} and </if>
+                            <if test='drawee!=null and !"".equals(drawee)' >drawee= #{drawee} and </if>
+                            <if test='paymentDate!=null' > payment_date= #{paymentDate} and </if>
+                            <if test='serialNo!=null and !"".equals(serialNo)' >serial_no= #{serialNo} and </if>
+                    <if test='verificateAmount!=null'>verificate_amount= #{verificateAmount} and</if>
+                    <if test='currentVerificateAmount!=null'>current_verificate_amount= #{currentVerificateAmount} and
+                    </if>
+                    <if test='createDate!=null'>create_date= #{createDate} and</if>
+                    <if test='modifyDate!=null'>modify_date= #{modifyDate} and</if>
+                    <if test='ncId!=null'>nc_id= #{ncId} and</if>
+                </trim>
+            </where>
+        </sql>
+
+    <!--自定义SQL-->
+    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_payment_verificate_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            payment_id,
+            rel_code,
+            bill_status,
+            drawee_id,
+            drawee,
+            payment_date,
+            serial_no,
+            verificate_amount,
+            current_verificate_amount,
+            create_date,
+            modify_date,
+            nc_id
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.id},
+                #{item.paymentId},
+                #{item.relCode},
+                #{item.billStatus},
+                #{item.draweeId},
+                #{item.drawee},
+                #{item.paymentDate},
+                #{item.serialNo},
+                #{item.verificateAmount},
+                #{item.currentVerificateAmount},
+                #{item.createDate},
+                #{item.modifyDate},
+                #{item.ncId}
+            </trim>
+        </foreach>
+    </insert>
+	<!-- 批量更新数据 -->
+    <update id='batchUpdatePaymentId' >
+        update t_payment_summary set payment_id = #{paymentId}        
+        where id in
+        <foreach collection="list" separator="," item="id" open='(' close=')'>
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

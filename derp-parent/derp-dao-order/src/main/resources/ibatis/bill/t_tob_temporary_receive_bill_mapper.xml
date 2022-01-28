@@ -1,0 +1,513 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.TobTemporaryReceiveBillMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="TobTemporaryReceiveBillModelMap" type="TobTemporaryReceiveBillModel" >
+                <result property="id" column="id" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="orderCode" column="order_code" />
+                <result property="shelfCode" column="shelf_code" />
+                <result property="currency" column="currency" />
+                <result property="saleType" column="sale_type" />
+                <result property="poNo" column="po_no" />
+                <result property="shelfDate" column="shelf_date" />
+                <result property="receiveCode" column="receive_code" />
+                <result property="status" column="status" />
+                <result property="shelfAmount" column="shelf_amount" />
+                <result property="shelfRebateAmount" column="shelf_rebate_amount" />
+                <result property="outBillPlanDate" column="out_bill_plan_date" />
+                <result property="outBillRealDate" column="out_bill_real_date" />
+                <result property="confirmPlanDate" column="confirm_plan_date" />
+                <result property="confirmRealDate" column="confirm_real_date" />
+                <result property="invoicingPlanDate" column="invoicing_plan_date" />
+                <result property="invoicingRealDate" column="invoicing_real_date" />
+                <result property="paymentPlanDate" column="payment_plan_date" />
+                <result property="paymentRealDate" column="payment_real_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="receiveId" column="receive_id" />
+                <result property="rebateStatus" column="rebate_status" />
+                <result property="orderType" column="order_type" />
+                <result property="isWriteOff" column="is_write_off" />
+                <result property="originalShelfCode" column="original_shelf_code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TobTemporaryReceiveBillModelMap' parameterType='TobTemporaryReceiveBillModel'>
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TobTemporaryReceiveBillModelMap' parameterType='TobTemporaryReceiveBillModel'>
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TobTemporaryReceiveBillModelMap' parameterType='TobTemporaryReceiveBillModel' >
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='TobTemporaryReceiveBillModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_tob_temporary_receive_bill
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='shelfCode!=null and !"".equals(shelfCode)' > shelf_code , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='saleType!=null and !"".equals(saleType)' > sale_type , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='shelfDate!=null' >shelf_date , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > receive_code , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='shelfAmount!=null' >shelf_amount , </if>
+                        <if test='shelfRebateAmount!=null' >shelf_rebate_amount , </if>
+                        <if test='outBillPlanDate!=null' >out_bill_plan_date , </if>
+                        <if test='outBillRealDate!=null' >out_bill_real_date , </if>
+                        <if test='confirmPlanDate!=null' >confirm_plan_date , </if>
+                        <if test='confirmRealDate!=null' >confirm_real_date , </if>
+                        <if test='invoicingPlanDate!=null' >invoicing_plan_date , </if>
+                        <if test='invoicingRealDate!=null' >invoicing_real_date , </if>
+                        <if test='paymentPlanDate!=null' >payment_plan_date , </if>
+                        <if test='paymentRealDate!=null' >payment_real_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='receiveId!=null' >receive_id , </if>
+                        <if test='rebateStatus!=null and !"".equals(rebateStatus)'>rebate_status,</if>
+                        <if test='orderType!=null and !"".equals(orderType)'>order_type,</if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)'>is_write_off,</if>
+                        <if test='originalShelfCode!=null and !"".equals(originalShelfCode)'>original_shelf_code,</if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='shelfCode!=null and !"".equals(shelfCode)' > #{shelfCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='saleType!=null and !"".equals(saleType)' > #{saleType} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='shelfDate!=null' > #{shelfDate} , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > #{receiveCode} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='shelfAmount!=null' > #{shelfAmount} , </if>
+                        <if test='shelfRebateAmount!=null' > #{shelfRebateAmount} , </if>
+                        <if test='outBillPlanDate!=null' > #{outBillPlanDate} , </if>
+                        <if test='outBillRealDate!=null' > #{outBillRealDate} , </if>
+                        <if test='confirmPlanDate!=null' > #{confirmPlanDate} , </if>
+                        <if test='confirmRealDate!=null' > #{confirmRealDate} , </if>
+                        <if test='invoicingPlanDate!=null' > #{invoicingPlanDate} , </if>
+                        <if test='invoicingRealDate!=null' > #{invoicingRealDate} , </if>
+                        <if test='paymentPlanDate!=null' > #{paymentPlanDate} , </if>
+                        <if test='paymentRealDate!=null' > #{paymentRealDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='receiveId!=null' > #{receiveId} , </if>
+                        <if test='rebateStatus!=null and !"".equals(rebateStatus)'>#{rebateStatus},</if>
+                        <if test='orderType!=null and !"".equals(orderType)'>#{orderType},</if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)'>#{isWriteOff},</if>
+                        <if test='originalShelfCode!=null and !"".equals(originalShelfCode)'>#{originalShelfCode},</if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='TobTemporaryReceiveBillModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_tob_temporary_receive_bill SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='shelfCode!=null and !"".equals(shelfCode)' >shelf_code= #{shelfCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='shelfDate!=null' > shelf_date= #{shelfDate} , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' >receive_code= #{receiveCode} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='shelfAmount!=null' > shelf_amount= #{shelfAmount} , </if>
+                        <if test='shelfRebateAmount!=null' > shelf_rebate_amount= #{shelfRebateAmount} , </if>
+                        <if test='outBillPlanDate!=null' > out_bill_plan_date= #{outBillPlanDate} , </if>
+                        <if test='outBillRealDate!=null' > out_bill_real_date= #{outBillRealDate} , </if>
+                        <if test='confirmPlanDate!=null' > confirm_plan_date= #{confirmPlanDate} , </if>
+                        <if test='confirmRealDate!=null' > confirm_real_date= #{confirmRealDate} , </if>
+                        <if test='invoicingPlanDate!=null' > invoicing_plan_date= #{invoicingPlanDate} , </if>
+                        <if test='invoicingRealDate!=null' > invoicing_real_date= #{invoicingRealDate} , </if>
+                        <if test='paymentPlanDate!=null' > payment_plan_date= #{paymentPlanDate} , </if>
+                        <if test='paymentRealDate!=null' > payment_real_date= #{paymentRealDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='receiveId!=null' > receive_id= #{receiveId} , </if>
+                        <if test='rebateStatus!=null and !"".equals(rebateStatus)'>rebate_status=#{rebateStatus},</if>
+                        <if test='orderType!=null and !"".equals(orderType)'>order_type=#{orderType},</if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)'>is_write_off=#{isWriteOff},</if>
+                        <if test='originalShelfCode!=null and !"".equals(originalShelfCode)'>original_shelf_code=#{originalShelfCode},</if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_tob_temporary_receive_bill  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_tob_temporary_receive_bill where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bu_id,
+            bu_name,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            order_code,
+            shelf_code,
+            currency,
+            sale_type,
+            po_no,
+            shelf_date,
+            receive_code,
+            status,
+            shelf_amount,
+            shelf_rebate_amount,
+            out_bill_plan_date,
+            out_bill_real_date,
+            confirm_plan_date,
+            confirm_real_date,
+            invoicing_plan_date,
+            invoicing_real_date,
+            payment_plan_date,
+            payment_real_date,
+            create_date,
+            modify_date,
+            receive_id,
+            rebate_status,
+            order_type,
+            is_write_off,
+            original_shelf_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='shelfCode!=null and !"".equals(shelfCode)' >shelf_code= #{shelfCode} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='receiveCode!=null and !"".equals(receiveCode)' >receive_code= #{receiveCode} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='shelfAmount!=null' > shelf_amount= #{shelfAmount} and </if>
+                            <if test='shelfRebateAmount!=null' > shelf_rebate_amount= #{shelfRebateAmount} and </if>
+                            <if test='outBillPlanDate!=null' > out_bill_plan_date= #{outBillPlanDate} and </if>
+                            <if test='outBillRealDate!=null' > out_bill_real_date= #{outBillRealDate} and </if>
+                            <if test='confirmPlanDate!=null' > confirm_plan_date= #{confirmPlanDate} and </if>
+                            <if test='confirmRealDate!=null' > confirm_real_date= #{confirmRealDate} and </if>
+                            <if test='invoicingPlanDate!=null' > invoicing_plan_date= #{invoicingPlanDate} and </if>
+                            <if test='invoicingRealDate!=null' > invoicing_real_date= #{invoicingRealDate} and </if>
+                            <if test='paymentPlanDate!=null' > payment_plan_date= #{paymentPlanDate} and </if>
+                            <if test='paymentRealDate!=null' > payment_real_date= #{paymentRealDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='receiveId!=null' > receive_id= #{receiveId} and </if>
+                            <if test='rebateStatus!=null and !"".equals(rebateStatus)'>rebate_status=#{rebateStatus} and</if>
+                            <if test='orderType!=null and !"".equals(orderType)'>order_type=#{orderType} and</if>
+                            <if test='isWriteOff!=null and !"".equals(isWriteOff)'>is_write_off=#{isWriteOff} and</if>
+                            <if test='originalShelfCode!=null and !"".equals(originalShelfCode)'>original_shelf_code=#{originalShelfCode} and</if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <sql id='dto_sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='buId!=null' > bu_id= #{buId} and </if>
+                    <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                    <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                    <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                    <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                    <if test='shelfCode!=null and !"".equals(shelfCode)' >shelf_code= #{shelfCode} and </if>
+                    <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                    <if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} and </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >po_no like CONCAT('%',#{poNo},'%') and </if>
+                    <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                    <if test='shelfMonth!=null and !"".equals(shelfMonth)' >DATE_FORMAT(shelf_date, '%Y-%m')=#{shelfMonth} and </if>
+                    <if test='receiveCode!=null and !"".equals(receiveCode)' >receive_code= #{receiveCode} and </if>
+                    <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                    <if test='rebateStatus!=null and !"".equals(rebateStatus)'>rebate_status=#{rebateStatus} and</if>
+                    <if test='outBillPlanDate!=null' > out_bill_plan_date= #{outBillPlanDate} and </if>
+                    <if test='outBillRealDate!=null' > out_bill_real_date= #{outBillRealDate} and </if>
+                    <if test='confirmPlanDate!=null' > confirm_plan_date= #{confirmPlanDate} and </if>
+                    <if test='confirmRealDate!=null' > confirm_real_date= #{confirmRealDate} and </if>
+                    <if test='invoicingPlanDate!=null' > invoicing_plan_date= #{invoicingPlanDate} and </if>
+                    <if test='invoicingRealDate!=null' > invoicing_real_date= #{invoicingRealDate} and </if>
+                    <if test='paymentPlanDate!=null' > payment_plan_date= #{paymentPlanDate} and </if>
+                    <if test='paymentRealDate!=null' > payment_real_date= #{paymentRealDate} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                    <if test='receiveId!=null' > receive_id= #{receiveId} and </if>
+                    <if test='orderType!=null and !"".equals(orderType)'>order_type=#{orderType} and</if>
+                    <if test='buList!=null and !"".equals(buList)' >bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                </trim>
+            </where>
+        </sql>
+        <sql id='export_sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <choose>
+                        <when test='ids!=null and !"".equals(ids)'>
+                            id in
+                            <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                                #{id}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='shelfCode!=null and !"".equals(shelfCode)' >shelf_code= #{shelfCode} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='shelfMonth!=null and !"".equals(shelfMonth)' >DATE_FORMAT(shelf_date, '%Y-%m')=#{shelfMonth} and </if>
+                            <if test='buList!=null and !"".equals(buList)' >bu_id in
+                                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                                    #{buId}
+                                </foreach>
+                                and
+                            </if>
+                        </otherwise>
+                    </choose>
+                </trim>
+            </where>
+        </sql>
+
+        <select id="listToBTempBillByPage" parameterType='TobTemporaryReceiveBillDTO' resultType="TobTemporaryReceiveBillDTO">
+            select
+                <include refid='sql_columns' />
+            from t_tob_temporary_receive_bill
+            <include refid='dto_sql_where' />
+            order by create_date desc
+        </select>
+
+        <select id="listForExport" parameterType='TobTemporaryReceiveBillDTO' resultType="TobTemporaryReceiveBillDTO">
+            select
+                <include refid='sql_columns' />
+            from t_tob_temporary_receive_bill
+            <include refid='export_sql_where' />
+            order by create_date desc
+        </select>
+
+        <update id="batchUpdate" parameterType="java.util.List" >
+            update t_tob_temporary_receive_bill
+            <trim prefix="set" suffixOverrides=",">
+                <trim prefix="out_bill_real_date =case" suffix="end,">
+                    <foreach collection="models" item="i" index="index">
+                        when id=#{i.id} then #{i.outBillRealDate}
+                    </foreach>
+                </trim>
+                <trim prefix="confirm_real_date =case" suffix="end,">
+                    <foreach collection="models" item="i" index="index">
+                        when id=#{i.id} then #{i.confirmRealDate}
+                    </foreach>
+                </trim>
+                <trim prefix="invoicing_real_date =case" suffix="end,">
+                    <foreach collection="models" item="i" index="index">
+                        when id=#{i.id} then #{i.invoicingRealDate}
+                    </foreach>
+                </trim>
+                <trim prefix="payment_real_date =case" suffix="end,">
+                    <foreach collection="models" item="i" index="index">
+                        when id=#{i.id} then #{i.paymentRealDate}
+                    </foreach>
+                </trim>
+                <trim prefix="receive_id =case" suffix="end,">
+                    <foreach collection="models" item="i" index="index">
+                        when id=#{i.id} then #{i.receiveId}
+                    </foreach>
+                </trim>
+                <trim prefix="receive_code =case" suffix="end,">
+                    <foreach collection="models" item="i" index="index">
+                        when id=#{i.id} then #{i.receiveCode}
+                    </foreach>
+                </trim>
+                <trim prefix="status =case" suffix="end,">
+                    <foreach collection="models" item="i" index="index">
+                        <if test="i.status!=null">
+                            when id=#{i.id} then #{i.status}
+                        </if>
+                    </foreach>
+                </trim>
+                <trim prefix="rebate_status =case" suffix="end,">
+                    <foreach collection="models" item="i" index="index">
+                        when id=#{i.id} then #{i.rebateStatus}
+                    </foreach>
+                </trim>
+            </trim>
+            where
+            <foreach collection="models" separator="or" item="i" index="index" >
+                id=#{i.id}
+            </foreach>
+        </update>
+
+
+        <select id="searchDTOById" resultType="TobTemporaryReceiveBillDTO">
+            select <include refid='sql_columns' />
+            from t_tob_temporary_receive_bill where id = #{id}
+        </select>
+
+        <select id="listBillByRelIds" resultType="TobTemporaryReceiveBillDTO" >
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill
+            where id IN
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </select>
+
+        <select id="listBySearchQuery"  resultType="TobTemporaryReceiveBillDTO" parameterType="map">
+            select merchant_id merchantId,merchant_name merchantName,customer_id customerId,customer_name customerName,bu_id buId,bu_name buName,currency from t_tob_temporary_receive_bill
+            <where>
+                ( status!='5' or rebate_status!='5' )
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' >and merchant_id= #{merchantId}  </if>
+                    <if test='customerId!=null' >and customer_id= #{customerId} </if>
+                    <if test='buId!=null' >and bu_id= #{buId} </if>
+                    <if test='currency!=null and !"".equals(currency)' >and currency= #{currency} </if>
+                </trim>
+            </where>
+            group by merchant_id,customer_id,bu_id,currency
+        </select>
+
+
+        <!--根据商家+事业部+客户+币种获取账单的记录-->
+        <select id="getItemBySearch" parameterType="map" resultType='Map'>
+             SELECT
+                a.shelf_code shelfCode,
+                a.po_no poNo,
+                date_format(a.shelf_date,'%Y-%m') month,
+                (a.shelf_amount - IFnull(b.verifiyAmount, 0)) amount
+            FROM
+                t_tob_temporary_receive_bill a
+                left join
+                ( SELECT id,tob_id, IFnull(sum( verifiy_amount ),0) verifiyAmount FROM t_tob_temp_verify_rel where type='0' GROUP BY tob_id ) b on a.id = b.tob_id
+            WHERE
+                a.bu_id = #{buId}
+                AND a.merchant_id = #{merchantId}
+                AND a.customer_id = #{customerId}
+                and a.currency=#{currency}
+                and a.status!='5'
+
+        </select>
+
+        <select id="getTocTemprayCostBillDTO" parameterType="map" resultType='Map'>
+             SELECT
+				ifnull(sum(a.shelf_rebate_amount),0)- ifnull(sum( b.verifiy_amount),0) amount
+            FROM
+                t_tob_temporary_receive_bill a
+                LEFT JOIN ( SELECT tob_id, sum( verifiy_amount ) verifiy_amount FROM t_tob_temp_verify_rel WHERE type = '1' GROUP BY tob_id ) b ON a.id = b.tob_id
+            WHERE
+                a.`rebate_status` != 5
+                AND a.bu_id = #{buId}
+                AND a.merchant_id = #{merchantId}
+                AND a.customer_id = #{customerId}
+                and a.currency=#{currency}
+        </select>
+
+        <select id="listByDto" resultType="TobTemporaryReceiveBillDTO">
+            select
+            <include refid='sql_columns' />
+            from t_tob_temporary_receive_bill
+            <include refid='dto_sql_where' />
+        </select>
+
+        <select id="listByShelfCodes" resultType="TobTemporaryReceiveBillDTO" >
+            select <include refid='sql_columns' />
+            from t_tob_temporary_receive_bill
+            <where>
+                <trim suffixOverrides='and'>
+                    status = '1' and
+                    <if test='merchantId!=null' >merchant_id= #{merchantId}  and</if>
+                    <if test='isWriteOff!=null and !"".equals(isWriteOff)'>is_write_off=#{isWriteOff} and</if>
+                    <if test='shelfCodes!=null and shelfCodes.size > 0' >
+                          shelf_code in
+                        <foreach collection='shelfCodes' item='shelfCode' separator=',' open='(' close=')'>
+                            #{shelfCode}
+                        </foreach>
+                    </if>
+                </trim>
+            </where>
+        </select>
+
+        <update id="batchUpdateStatus" >
+            update t_tob_temporary_receive_bill set
+            <if test='status!=null and !"".equals(status)' >status = #{status}</if>
+            <if test='rebateStatus!=null and !"".equals(rebateStatus)' >rebate_status = #{rebateStatus}</if>
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='ids!=null and !"".equals(ids)' >id in
+                        <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                            #{id}
+                        </foreach>
+                        and
+                    </if>
+                </trim>
+            </where>
+        </update>
+</mapper>

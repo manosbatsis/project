@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.CustomerBankMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CustomerBankModelMap" type="CustomerBankModel" >
+                <result property="id" column="id" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="depositBank" column="deposit_bank" />
+                <result property="bankAccount" column="bank_account" />
+                <result property="beneficiaryName" column="beneficiary_name" />
+                <result property="bankAddress" column="bank_address" />
+                <result property="swiftCode" column="swift_code" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="createDate" column="create_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomerBankModelMap' parameterType='CustomerBankModel'>
+        select <include refid='sql_columns' /> from st_customer_bank  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomerBankModelMap' parameterType='CustomerBankModel'>
+        select <include refid='sql_columns' /> from st_customer_bank  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomerBankModelMap' parameterType='CustomerBankModel' >
+        select <include refid='sql_columns' /> from st_customer_bank  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='CustomerBankModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_customer_bank
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='depositBank!=null and !"".equals(depositBank)' > deposit_bank , </if>
+                        <if test='bankAccount!=null and !"".equals(bankAccount)' > bank_account , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > beneficiary_name , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' > bank_address , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' > swift_code , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='depositBank!=null and !"".equals(depositBank)' > #{depositBank} , </if>
+                        <if test='bankAccount!=null and !"".equals(bankAccount)' > #{bankAccount} , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > #{beneficiaryName} , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' > #{bankAddress} , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' > #{swiftCode} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CustomerBankModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_customer_bank SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} , </if>
+                        <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_customer_bank  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_customer_bank where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            customer_id,
+            customer_name,
+            deposit_bank,
+            bank_account,
+            beneficiary_name,
+            bank_address,
+            swift_code,
+            modify_date,
+            create_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} and </if>
+                            <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} and </if>
+                            <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} and </if>
+                            <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} and </if>
+                            <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <select id="getCustomerBySupplierId" resultType="CustomerBankDTO">
+            select <include refid='sql_columns' /> from st_customer_bank
+            where id in(select customer_bank_id from st_customer_bank_merchant_rel where customer_id =#{customerId} and merchant_id =#{merchantId} )
+    </select>
+
+	<!-- 根据条件删除 客户银行信息 -->
+	<delete id='deleteByParam' parameterType='map'>
+        delete from st_customer_bank  where customer_id= #{customerId}
+    </delete>
+    
+
+       <!--获取客户银行信息t-->
+    <select id="getCustomerBankList" resultType="CustomerBankDTO">
+    
+    		SELECT t1.*,t2.merchantIdStr,t2.merchantNameStr
+    		from
+			(
+			SELECT * from st_customer_bank  where  customer_id= #{customerId}
+			)t1
+			LEFT JOIN  
+			(
+			select customer_bank_id,GROUP_CONCAT(merchant_name) as merchantNameStr,
+			GROUP_CONCAT(merchant_id) as merchantIdStr
+			            from st_customer_bank_merchant_rel where customer_id= #{customerId}
+			            group by customer_bank_id
+			) t2 ON t1.id=t2.customer_bank_id
+
+    </select>
+	
+
+</mapper>

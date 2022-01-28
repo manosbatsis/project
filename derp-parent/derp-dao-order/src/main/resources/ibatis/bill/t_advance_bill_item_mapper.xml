@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.AdvanceBillItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="AdvanceBillItemModelMap" type="AdvanceBillItemModel" >
+                <result property="id" column="id" />
+                <result property="advanceId" column="advance_id" />
+                <result property="relCode" column="rel_code" />
+                <result property="projectId" column="project_id" />
+                <result property="projectName" column="project_name" />
+                <result property="poNo" column="po_no" />
+                <result property="amount" column="amount" />
+                <result property="remark" column="remark" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AdvanceBillItemModelMap' parameterType='AdvanceBillItemModel'>
+        select <include refid='sql_columns' /> from t_advance_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AdvanceBillItemModelMap' parameterType='AdvanceBillItemModel'>
+        select <include refid='sql_columns' /> from t_advance_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AdvanceBillItemModelMap' parameterType='AdvanceBillItemModel' >
+        select <include refid='sql_columns' /> from t_advance_bill_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='AdvanceBillItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_advance_bill_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='advanceId!=null' >advance_id , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' > rel_code , </if>
+                        <if test='projectId!=null' >project_id , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > project_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='amount!=null' >amount , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='advanceId!=null' > #{advanceId} , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' > #{relCode} , </if>
+                        <if test='projectId!=null' > #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > #{projectName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='AdvanceBillItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_advance_bill_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='advanceId!=null' > advance_id= #{advanceId} , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' >rel_code= #{relCode} , </if>
+                        <if test='projectId!=null' > project_id= #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_advance_bill_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_advance_bill_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            advance_id,
+            rel_code,
+            project_id,
+            project_name,
+            po_no,
+            amount,
+            remark,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='advanceId!=null' > advance_id= #{advanceId} and </if>
+                            <if test='relCode!=null and !"".equals(relCode)' >rel_code= #{relCode} and </if>
+                            <if test='projectId!=null' > project_id= #{projectId} and </if>
+                            <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <resultMap id="AdvanceBillItemDTOMap" type="AdvanceBillItemDTO" >
+            <result property="id" column="id" />
+            <result property="advanceId" column="advance_id" />
+            <result property="relCode" column="rel_code" />
+            <result property="projectId" column="project_id" />
+            <result property="projectName" column="project_name" />
+            <result property="poNo" column="po_no" />
+            <result property="amount" column="amount" />
+            <result property="remark" column="remark" />
+            <result property="createDate" column="create_date" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="sumAmount" column="sum_amount" />
+        </resultMap>
+
+        <select id="getAdvanceById" resultMap="AdvanceBillItemDTOMap" parameterType="java.lang.Long">
+            select <include refid='sql_columns' /> from t_advance_bill_item  where advance_id=#{advanceId}
+        </select>
+
+        <delete id="delItems" parameterType="java.lang.Long">
+            delete from t_advance_bill_item WHERE advance_id = #{advanceId}
+        </delete>
+
+        <!--根据费项+预收账单维度获取预收总金额-->
+        <select id="synNcItemByIds"  resultMap="AdvanceBillItemDTOMap">
+            SELECT
+            advance_id,project_id,SUM( amount ) sum_amount
+            FROM
+            t_advance_bill_item
+            where advance_id in
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            GROUP BY project_id,advance_id
+        </select>
+
+
+        <select id="listItemPrice" resultType="map">
+            SELECT
+                advance_id advanceId,
+                ifnull(SUM( amount ), 0) totalPrice,
+                GROUP_CONCAT( DISTINCT po_no SEPARATOR '&amp;' ) poNo,
+                GROUP_CONCAT( DISTINCT rel_code SEPARATOR '&amp;' ) relCode
+            FROM
+            t_advance_bill_item
+            WHERE
+                advance_id IN
+                <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                    #{id}
+                </foreach>
+             GROUP BY advance_id
+        </select>
+
+        <select id="listItemPriceByOrderCodes" resultType="map">
+            SELECT
+            advance_id advanceId,
+            SUM( amount ) totalPrice
+            FROM
+            t_advance_bill_item
+            WHERE
+            advance_id IN
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            and rel_code IN
+            <foreach collection='orderCodes' item='orderCode' separator=',' open='(' close=')'>
+                #{orderCode}
+            </foreach>
+            GROUP BY advance_id
+        </select>
+
+        <select id="listWithoutVerify" resultType="AdvanceBillItemDTO" parameterType="list">
+            select
+                a.code advanceCode,
+                ai.id,
+                ai.advance_id,
+                ai.rel_code,
+                ai.project_id,
+                ai.project_name,
+                ai.po_no,
+                ai.amount,
+                ai.remark,
+                ai.create_date,
+                ai.modify_date
+            from t_advance_bill a
+            left join t_advance_bill_item ai on a.id = ai.advance_id
+            where a.bill_status in ('02','03','04')
+            and ai.id not in (select v.advance_id from t_receive_bill_verify_item v WHERE v.type = '1')
+            and ai.rel_code in
+            <foreach collection='orderCodes' item='orderCode' separator=',' open='(' close=')'>
+                #{orderCode}
+            </foreach>
+        </select>
+
+        <select id="listByIds"  resultType="AdvanceBillItemModel">
+            select
+            <include refid='sql_columns' />
+            from t_advance_bill_item
+            where id in
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </select>
+
+<!-- 开票获取预收体数据 -->
+       <select id="getAdvanceBillItemList"  resultType="map" >
+        select 
+        rel_code,po_no,SUM(amount)as amount,
+		GROUP_CONCAT( DISTINCT remark SEPARATOR ',' ) remark
+        from t_advance_bill_item
+        where advance_id IN
+        <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+        GROUP BY rel_code,po_no
+    </select>
+</mapper>

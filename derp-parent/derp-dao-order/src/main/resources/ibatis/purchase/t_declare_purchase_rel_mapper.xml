@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.DeclarePurchaseRelMapper'>
+
+   <!-- 关系映射 -->
+    <resultMap id="DeclarePurchaseRelModelMap" type="DeclarePurchaseRelModel" >
+                <result property="declareOrderId" column="declare_order_id" />
+                <result property="id" column="id" />
+                <result property="purchaseOrderId" column="purchase_order_id" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='DeclarePurchaseRelModelMap' parameterType='DeclarePurchaseRelModel'>
+        select <include refid='sql_columns' /> from t_declare_purchase_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='DeclarePurchaseRelModelMap' parameterType='DeclarePurchaseRelModel'>
+        select <include refid='sql_columns' /> from t_declare_purchase_rel  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='DeclarePurchaseRelModelMap' parameterType='DeclarePurchaseRelModel' >
+        select <include refid='sql_columns' /> from t_declare_purchase_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='DeclarePurchaseRelModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_declare_purchase_rel
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='declareOrderId!=null' > declare_order_id , </if>
+                <if test='id!=null' > id , </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='declareOrderId!=null' > #{declareOrderId} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='purchaseOrderId!=null' > #{purchaseOrderId} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='DeclarePurchaseRelModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_declare_purchase_rel SET
+        <trim  suffixOverrides=",">
+                <if test='declareOrderId!=null' > declare_order_id= #{declareOrderId} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_declare_purchase_rel  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_declare_purchase_rel where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        declare_order_id,
+        id,
+        purchase_order_id
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='declareOrderId!=null' > declare_order_id= #{declareOrderId} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	<resultMap id="DeclareOrderModelMap" type="DeclareOrderModel" >
+				<result property="id" column="id" />
+                <result property="arriveDate" column="arrive_date" />
+    </resultMap>
+	
+	<!-- 根据采购订单id获取所有预申报的预计到港时间 -->
+	<select id='getTimeById' resultMap='DeclareOrderModelMap' parameterType='java.lang.Long'>
+        select 
+        	t1.id,t1.arrive_date
+        from t_declare_order t1
+		where t1.id in(
+			select 
+				t2.declare_order_id 
+			from t_declare_purchase_rel t2
+			where t2.purchase_order_id = #{id}
+		)
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,16 @@
+
+jdbccrawler: #爬虫库
+      url: ${crawlerdb.url}
+      username: ${crawlerdb.user}
+      password: ${crawlerdb.password}
+
+crinventory: #库存
+      url: ${derpdb.inventory.url}
+      username: ${derpdb.inventory.username}
+      password: ${derpdb.inventory.password}
+
+jdbcscm: #采购计划报表
+      url: ${scmdb.url}
+      username: ${scmdb.user}
+      password: ${scmdb.password}
+

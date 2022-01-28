@@ -1,0 +1,56 @@
+#报表excel文件存放目录
+report: 
+    basepath: ${report.basepath}
+
+#业务发票文件存放目录
+order:
+    basepath: ${order.basepath}
+#主服务商品图片压缩包存放目录
+system:
+    basepath: ${system.basepath}    
+
+synreport: #报表库
+     url: ${syn.report.url}
+     username: ${syn.report.username}
+     password: ${syn.report.password}
+     database: ${syn.report.database}
+syninventory: #库存库
+     url: ${syn.inventory.url}
+     username: ${syn.inventory.username}
+     password: ${syn.inventory.password}
+     database: ${syn.inventory.database}
+synorder:    #业务库
+     url: ${syn.order.url}
+     username: ${syn.order.username}
+     password: ${syn.order.password}
+     database: ${syn.order.database}    
+synstorage:   #仓储库
+     url: ${syn.storage.url}
+     username: ${syn.storage.username}
+     password: ${syn.storage.password}
+     database: ${syn.storage.database}
+synsystem:    #主服务库
+     url: ${syn.system.url}
+     username: ${syn.system.username}
+     password: ${syn.system.password}
+     database: ${syn.system.database}
+     
+#库存需要同步的表
+syninventory_table: ${syn.inventory.table}
+#库存需要同步的大数据表
+syninventory_big_table: ${syn.inventorybig.table}
+#库存需要单独同步的表
+syninventory_independent_table: ${syn.inventory.independent.table}
+#业务库需要同步的表
+synorder_table: ${syn.order.table}
+#业务库需要同步的表大数据表
+synorder_big_table: ${syn.orderbig.table}
+#仓储需要同步的表
+synstorage_table: ${syn.storage.table}
+#主服务需要同步的表
+synsystem_table: ${syn.system.table}
+
+#canal实时同步配置
+syncanal:
+  host: ${canal.host} #10.10.103.67:2181canal服务端ip
+  subscribe: ${canal.subscribe} #canal监听库表

@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.PurchaseWarehouseMapper'>
+
+         <!-- 关系映射 -->
+    <resultMap id="PurchaseWarehouseModelMap" type="PurchaseWarehouseModel" >
+                <result property="code" column="code" />
+                <result property="lbxNo" column="lbx_no" />
+                <result property="contractNo" column="contract_no" />
+                <result property="inboundDate" column="inbound_date" />
+                <result property="depotId" column="depot_id" />
+                <result property="tallyingOrderCode" column="tallying_order_code" />
+                <result property="crossStatus" column="cross_status" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="warehouseDate" column="warehouse_date" />
+                <result property="declareOrderId" column="declare_order_id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="declareOrderCode" column="declare_order_code" />
+                <result property="tallyingDate" column="tallying_date" />
+                <result property="id" column="id" />
+                <result property="state" column="state" />
+                <result property="tallyingOrderId" column="tallying_order_id" />
+                <result property="createDate" column="create_date" />
+                <result property="depotName" column="depot_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="confirmDate" column="confirm_date" />
+                <result property="palletNum" column="pallet_num" />
+                <result property="warehouser" column="warehouser" />
+                <result property="creater" column="creater" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="businessModel" column="business_model" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="correlationStatus" column="correlation_status" />
+                <result property="extraCode" column="extra_code" />
+                <result property="currency" column="currency" />
+                <result property="isWriteOff" column="is_write_off" />
+                <result property="oriWarehouseCode" column="ori_warehouse_code" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseWarehouseModelMap' parameterType='PurchaseWarehouseModel'>
+        select <include refid='sql_columns' /> from t_purchase_warehouse  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseWarehouseModelMap' parameterType='PurchaseWarehouseModel'>
+        select <include refid='sql_columns' /> from t_purchase_warehouse  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseWarehouseModelMap' parameterType='PurchaseWarehouseModel' >
+        select <include refid='sql_columns' /> from t_purchase_warehouse  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='PurchaseWarehouseModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_purchase_warehouse
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' > lbx_no , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                <if test='inboundDate!=null' > inbound_date , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='tallyingOrderCode!=null and !"".equals(tallyingOrderCode)' > tallying_order_code , </if>
+                <if test='crossStatus!=null and !"".equals(crossStatus)' > cross_status , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='warehouseDate!=null' > warehouse_date , </if>
+                <if test='declareOrderId!=null' > declare_order_id , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='declareOrderCode!=null and !"".equals(declareOrderCode)' > declare_order_code , </if>
+                <if test='tallyingDate!=null' > tallying_date , </if>
+                <if test='id!=null' > id , </if>
+                <if test='state!=null and !"".equals(state)' > state , </if>
+                <if test='tallyingOrderId!=null' > tallying_order_id , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='confirmDate!=null' > confirm_date , </if>
+                <if test='palletNum!=null' > pallet_num , </if>
+                <if test='warehouser!=null' > warehouser , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='businessModel!=null and !"".equals(businessModel)' > business_model , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='correlationStatus!=null and !"".equals(correlationStatus)' > correlation_status , </if>
+                <if test='extraCode!=null and !"".equals(extraCode)' > extra_code , </if>
+                <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                <if test='isWriteOff!=null and !"".equals(isWriteOff)' > is_write_off , </if>
+                <if test='oriWarehouseCode!=null and !"".equals(oriWarehouseCode)' > ori_warehouse_code , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' > #{lbxNo} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                <if test='inboundDate!=null' > #{inboundDate} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='tallyingOrderCode!=null and !"".equals(tallyingOrderCode)' > #{tallyingOrderCode} , </if>
+                <if test='crossStatus!=null and !"".equals(crossStatus)' > #{crossStatus} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='warehouseDate!=null' > #{warehouseDate} , </if>
+                <if test='declareOrderId!=null' > #{declareOrderId} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='declareOrderCode!=null and !"".equals(declareOrderCode)' > #{declareOrderCode} , </if>
+                <if test='tallyingDate!=null' > #{tallyingDate} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='state!=null and !"".equals(state)' > #{state} , </if>
+                <if test='tallyingOrderId!=null' > #{tallyingOrderId} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='confirmDate!=null' > #{confirmDate} , </if>
+                <if test='palletNum!=null' > #{palletNum} , </if>
+                <if test='warehouser!=null' > #{warehouser} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                <if test='businessModel!=null and !"".equals(businessModel)' > #{businessModel} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='correlationStatus!=null and !"".equals(correlationStatus)' > #{correlationStatus} , </if>
+                <if test='extraCode!=null and !"".equals(extraCode)' > #{extraCode} , </if>
+                <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                <if test='isWriteOff!=null and !"".equals(isWriteOff)' > #{isWriteOff} , </if>
+                <if test='oriWarehouseCode!=null and !"".equals(oriWarehouseCode)' > #{oriWarehouseCode} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='PurchaseWarehouseModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_purchase_warehouse SET
+        <trim  suffixOverrides=",">
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                <if test='inboundDate!=null' > inbound_date= #{inboundDate} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='tallyingOrderCode!=null and !"".equals(tallyingOrderCode)' >tallying_order_code= #{tallyingOrderCode} , </if>
+                <if test='crossStatus!=null and !"".equals(crossStatus)' >cross_status= #{crossStatus} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='warehouseDate!=null' > warehouse_date= #{warehouseDate} , </if>
+                <if test='declareOrderId!=null' > declare_order_id= #{declareOrderId} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='declareOrderCode!=null and !"".equals(declareOrderCode)' >declare_order_code= #{declareOrderCode} , </if>
+                <if test='tallyingDate!=null' > tallying_date= #{tallyingDate} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} , </if>
+                <if test='tallyingOrderId!=null' > tallying_order_id= #{tallyingOrderId} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='confirmDate!=null' > confirm_date= #{confirmDate} , </if>
+                <if test='palletNum!=null' > pallet_num= #{palletNum} , </if>
+                <if test='warehouser!=null' > warehouser= #{warehouser} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='correlationStatus!=null and !"".equals(correlationStatus)' >correlation_status= #{correlationStatus} , </if>
+                <if test='extraCode!=null and !"".equals(extraCode)' >extra_code= #{extraCode} , </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                <if test='isWriteOff!=null and !"".equals(isWriteOff)' >is_write_off= #{isWriteOff} , </if>
+                <if test='oriWarehouseCode!=null and !"".equals(oriWarehouseCode)' >ori_warehouse_code= #{oriWarehouseCode} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_warehouse  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_purchase_warehouse where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        code,
+        lbx_no,
+        contract_no,
+        inbound_date,
+        depot_id,
+        tallying_order_code,
+        cross_status,
+        merchant_name,
+        warehouse_date,
+        declare_order_id,
+        merchant_id,
+        declare_order_code,
+        tallying_date,
+        id,
+        state,
+        tallying_order_id,
+        create_date,
+        depot_name,
+        modify_date,
+        confirm_date,
+        pallet_num,
+        warehouser,
+        creater,
+        tallying_unit,
+        business_model,
+        bu_name,
+        bu_id,
+        correlation_status,
+        extra_code,
+        currency,
+        is_write_off,
+        ori_warehouse_code
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='inboundDate!=null' > inbound_date= #{inboundDate} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='tallyingOrderCode!=null and !"".equals(tallyingOrderCode)' >tallying_order_code= #{tallyingOrderCode} and </if>
+                <if test='crossStatus!=null and !"".equals(crossStatus)' >cross_status= #{crossStatus} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='warehouseDate!=null' > warehouse_date= #{warehouseDate} and </if>
+                <if test='declareOrderId!=null' > declare_order_id= #{declareOrderId} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='declareOrderCode!=null and !"".equals(declareOrderCode)' >declare_order_code= #{declareOrderCode} and </if>
+                <if test='tallyingDate!=null' > tallying_date= #{tallyingDate} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='tallyingOrderId!=null' > tallying_order_id= #{tallyingOrderId} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='confirmDate!=null' > confirm_date= #{confirmDate} and </if>
+                <if test='palletNum!=null' > pallet_num= #{palletNum} and </if>
+                <if test='warehouser!=null' > warehouser= #{warehouser} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='correlationStatus!=null and !"".equals(correlationStatus)' >correlation_status= #{correlationStatus} and </if>
+                <if test='extraCode!=null and !"".equals(extraCode)' >extra_code= #{extraCode} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='isWriteOff!=null and !"".equals(isWriteOff)' >is_write_off= #{isWriteOff} and </if>
+                <if test='oriWarehouseCode!=null and !"".equals(oriWarehouseCode)' >ori_warehouse_code= #{oriWarehouseCode} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	
+		<!-- 对外api分页查询的数据 -->
+	 <select id='getListPage' resultType="map" >
+        SELECT
+	        t1.id,  
+	        t1.`code`,
+	        t1.lbx_no,
+	        t1.contract_no,
+	        t1.inbound_date,
+	        t1.depot_id,
+	        t1.tallying_order_code,
+	        t1.cross_status,
+	        t1.merchant_name,
+	        t1.warehouse_date,
+	        t1.confirm_date,
+	        t1.pallet_num,
+	        t1.declare_order_id,
+	        t1.merchant_id,
+	        t1.warehouser,
+	        t1.creater,
+	        t1.declare_order_code,
+	        t1.tallying_date,
+	        t1.state,
+	        t1.tallying_unit,
+	        t1.tallying_order_id,
+	        t1.create_date,
+			t2.type as depot_type,
+			t2.`code` as depot_code,
+			t2.depot_code as depot_code1,
+			t2.`name` as depot_name,
+			t2.id as depot_id
+	from t_purchase_warehouse t1
+	LEFT JOIN st_depot_info t2 ON t1.depot_id=t2.id
+	
+	WHERE  t1.merchant_id= #{merchantId} 
+	AND (t1.state='007' or t1.state='012' or t1.state='006')
+	and t1.bu_id in (
+		SELECT id from st_business_unit WHERE `code` IN (	
+			'E071100',
+			'I020300',
+			'I020200'
+		)
+	)	
+	AND (t1.create_date &gt;= #{startTime} OR t1.modify_date &gt;= #{startTime})
+	AND  (t1.create_date &lt;= #{endTime} OR t1.modify_date &lt;= #{endTime})
+    limit #{startIndex},#{pageSize}
+
+    </select>
+    
+    <select id='getListCount' resultType="java.lang.Integer" >
+    	SELECT count(1)
+    	from t_purchase_warehouse t1
+		LEFT JOIN st_depot_info t2 ON t1.depot_id=t2.id
+	WHERE  t1.merchant_id= #{merchantId} 
+	AND (t1.state='007' or t1.state='012' or t1.state='006')
+	and t1.bu_id in (
+		SELECT id from st_business_unit WHERE `code` IN (	
+			'E071100',
+			'I020300',
+			'I020200'
+		)
+	)				
+ 	AND (t1.create_date &gt;= #{startTime} OR t1.modify_date &gt;= #{startTime})
+	AND  (t1.create_date &lt;= #{endTime} OR t1.modify_date &lt;= #{endTime})
+    </select>
+    
+    <select id='getOrderInfo' resultType="map" parameterType="java.lang.Long" >
+    	select o.currency,o.po_no,o.supplier_name,c.code AS supplier_code 
+    	from t_purchase_order o
+		left join st_customer_info c ON o.supplier_id=c.id
+		where o.id=#{orderId}
+    </select>
+         <!-- 关系映射 -->
+    <resultMap id="PurchaseWarehouseDTOMap" type="PurchaseWarehouseDTO" >
+                <result property="code" column="code" />
+                <result property="lbxNo" column="lbx_no" />
+                <result property="contractNo" column="contract_no" />
+                <result property="inboundDate" column="inbound_date" />
+                <result property="depotId" column="depot_id" />
+                <result property="tallyingOrderCode" column="tallying_order_code" />
+                <result property="crossStatus" column="cross_status" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="warehouseDate" column="warehouse_date" />
+                <result property="declareOrderId" column="declare_order_id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="declareOrderCode" column="declare_order_code" />
+                <result property="tallyingDate" column="tallying_date" />
+                <result property="id" column="id" />
+                <result property="state" column="state" />
+                <result property="tallyingOrderId" column="tallying_order_id" />
+                <result property="createDate" column="create_date" />
+                <result property="depotName" column="depot_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="confirmDate" column="confirm_date" />
+                <result property="palletNum" column="pallet_num" />
+                <result property="warehouser" column="warehouser" />
+                <result property="creater" column="creater" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="businessModel" column="business_model" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+    </resultMap>
+    <!-- 查询采购入库单创建时间为某个区间的（上周/上个月）的并且已入库数据 -->
+    <select id='getByTimeOrder' resultMap='PurchaseWarehouseDTOMap' parameterType='PurchaseWarehouseDTO' >
+        select <include refid='sql_columns' /> from t_purchase_warehouse 
+        	<where>
+        	state='012' and merchant_id=#{merchantId} and bu_id=#{buId} and 
+            <trim suffixOverrides='and'>
+               <if test='createStartDate!=null and !"".equals(createStartDate)' >
+                    date_format(create_date,'%Y-%m-%d %H:%i:%S') &gt;= #{createStartDate} and
+                </if>
+                <if test='createEndDate!=null and !"".equals(createEndDate)' >
+                    date_format(create_date,'%Y-%m-%d %H:%i:%S') &lt;= #{createEndDate} and
+                </if>
+            </trim>
+            </where>
+    </select>
+    
+    <select id="getPurchaseOrderIdByWarehouse" resultType="string" parameterType="map">
+    	SELECT GROUP_CONCAT(t2.purchase_order_id) as ids from 
+		t_purchase_warehouse t1
+		LEFT JOIN
+		t_warehouse_order_rel t2
+		ON t1.id = t2.warehouse_id
+		WHERE t1.`code` = #{warehouseCode}
+    </select>
+    
+    <!--  获取2020-09-01未勾稽入库单  -->
+    <select id="getUnCorrelateList" resultType="PurchaseWarehouseModel" parameterType="map">
+    	select <include refid='sql_columns' /> from t_purchase_warehouse  
+		where  DATE_SUB(CURDATE(), INTERVAL 15 DAY) &lt;= date(create_date)
+			and correlation_status != '2'
+			and `state` != '006'
+		order by merchant_id
+    </select>
+    
+    <!-- 在库天数获取采购入入库订单 -->
+    <select id="getInWarehouseDaysDetail" parameterType="map" resultType="map">
+    	SELECT t1.code,t3.commbarcode,t2.tallying_unit,sum(IFNULL(t2.tallying_num,0)) AS num
+		FROM t_purchase_warehouse t1
+		LEFT JOIN t_purchase_warehouse_item t2 ON t1.id = t2.warehouse_id
+		LEFT JOIN t_purchase_order_item pi ON pi.id=t2.purchase_item_id
+        LEFT JOIN t_purchase_order p on p.id=pi.purchase_order_id
+		LEFT JOIN st_merchandise_info t3 ON t2.goods_id = t3.id
+		LEFT JOIN st_depot_info t4 ON t4.id = t1.depot_id
+		WHERE t1.bu_id = #{buId}
+			AND DATE_FORMAT(t1.inbound_date, '%Y-%m') &lt;= #{month}
+			AND t1.merchant_id NOT IN (
+				SELECT id FROM st_merchant_info
+				WHERE topideal_code IN ('1000004669','1000000594','1000000544','1000000726','1000005406','toipidealtest'))
+			AND t1.state = '012'
+			AND (p.write_off_date is null or DATE_FORMAT(p.write_off_date, '%Y-%m')>#{month})
+			AND t4.type IN ( 'a', 'c' )
+		GROUP BY t1.`code`,t3.commbarcode,t2.tallying_unit
+		ORDER BY t1.inbound_date DESC
+    </select>
+</mapper>

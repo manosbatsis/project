@@ -1,0 +1,1203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.SaleDataMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleDataModelMap" type="SaleDataModel" >
+                <result property="id" column="id" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="month" column="month" />
+                <result property="reportDate" column="report_date" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="brandParent" column="brand_parent" />
+                <result property="type" column="type" />
+                <result property="storePlatformCode" column="store_platform_code" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="num" column="num" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="saleCurrency" column="sale_currency" />
+                <result property="saleAmount" column="sale_amount" />
+                <result property="cnyRate" column="cny_rate" />
+                <result property="cnyAmount" column="cny_amount" />
+                <result property="orderType" column="order_type" />
+                <result property="channelType" column="channel_type" />
+                <result property="innerMerchantType" column="inner_merchant_type" />
+                <result property="customerType" column="customer_type" />
+                <result property="departmentId" column="department_id" />
+                <result property="departmentName" column="department_name" />
+                <result property="parentBrandName" column="parent_brand_name" />
+                <result property="parentBrandId" column="parent_brand_id" />
+                <result property="parentBrandCode" column="parent_brand_code" />
+                <result property="hkRate" column="hk_rate" />
+                <result property="hkAmount" column="hk_amount" />
+                <result property="brandParentId" column="brand_parent_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleDataModelMap' parameterType='SaleDataModel'>
+        select <include refid='sql_columns' /> from r_sale_data  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleDataModelMap' parameterType='SaleDataModel'>
+        select <include refid='sql_columns' /> from r_sale_data  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleDataModelMap' parameterType='SaleDataModel' >
+        select <include refid='sql_columns' /> from r_sale_data  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleDataModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_sale_data
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='outDepotId!=null' >out_depot_id , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='reportDate!=null' >report_date , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' > brand_parent , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > store_platform_name , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' > sale_currency , </if>
+                        <if test='saleAmount!=null' >sale_amount , </if>
+                        <if test='cnyRate!=null' >cny_rate , </if>
+                        <if test='cnyAmount!=null' >cny_amount , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' > channel_type , </if>
+                        <if test='innerMerchantType!=null and !"".equals(innerMerchantType)' > inner_merchant_type , </if>
+                        <if test='departmentId!=null' > department_id , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > department_name , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > parent_brand_code , </if>
+                        <if test='hkRate!=null' > hk_rate , </if>
+                        <if test='hkAmount!=null' > hk_amount , </if>
+                        <if test='brandParentId!=null' > brand_parent_id , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='outDepotId!=null' > #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='reportDate!=null' > #{reportDate} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' > #{brandParent} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > #{storePlatformName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' > #{saleCurrency} , </if>
+                        <if test='saleAmount!=null' > #{saleAmount} , </if>
+                        <if test='cnyRate!=null' > #{cnyRate} , </if>
+                        <if test='cnyAmount!=null' > #{cnyAmount} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' > #{channelType} , </if>
+                        <if test='innerMerchantType!=null and !"".equals(innerMerchantType)' > #{innerMerchantType} , </if>
+                        <if test='customerType!=null and !"".equals(customerType)' > #{customerType} , </if>
+                        <if test='departmentId!=null' > #{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > #{departmentName} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > #{parentBrandCode} , </if>
+                        <if test='hkRate!=null' > #{hkRate} , </if>
+                        <if test='hkAmount!=null' > #{hkAmount} , </if>
+                        <if test='brandParentId!=null' > #{brandParentId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleDataModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_sale_data SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='reportDate!=null' > report_date= #{reportDate} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' >sale_currency= #{saleCurrency} , </if>
+                        <if test='saleAmount!=null' > sale_amount= #{saleAmount} , </if>
+                        <if test='cnyRate!=null' > cny_rate= #{cnyRate} , </if>
+                        <if test='cnyAmount!=null' > cny_amount= #{cnyAmount} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} , </if>
+                        <if test='innerMerchantType!=null and !"".equals(innerMerchantType)' >inner_merchant_type= #{innerMerchantType} , </if>
+                        <if test='customerType!=null and !"".equals(customerType)' >customer_type= #{customerType} , </if>
+                        <if test='departmentId!=null' > department_id=#{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > department_name=#{departmentName} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id=#{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > parent_brand_code=#{parentBrandCode} , </if>
+                        <if test='hkRate!=null' > hk_rate=#{hkRate} , </if>
+                        <if test='hkAmount!=null' > hk_amount=#{hkAmount} , </if>
+                        <if test='brandParentId!=null' > brand_parent_id=#{brandParentId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_sale_data  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_sale_data where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bu_id,
+            bu_name,
+            merchant_id,
+            merchant_name,
+            out_depot_id,
+            out_depot_name,
+            customer_name,
+            customer_id,
+            month,
+            report_date,
+            goods_no,
+            commbarcode,
+            brand_parent,
+            type,
+            store_platform_code,
+            store_platform_name,
+            shop_code,
+            shop_name,
+            num,
+            create_date,
+            modify_date,
+            sale_currency,
+            sale_amount,
+            cny_rate,
+            cny_amount,
+            order_type,
+            channel_type,
+            inner_merchant_type,
+            customer_type,
+            department_id,
+            department_name,
+            parent_brand_name,
+            parent_brand_id,
+            parent_brand_code,
+            hk_rate,
+            hk_amount,
+            brand_parent_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                            <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='reportDate!=null' > report_date= #{reportDate} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='saleCurrency!=null and !"".equals(saleCurrency)' >sale_currency= #{saleCurrency} and </if>
+                            <if test='saleAmount!=null' > sale_amount= #{saleAmount} and </if>
+                            <if test='cnyRate!=null' > cny_rate= #{cnyRate} and </if>
+                            <if test='cnyAmount!=null' > cny_amount= #{cnyAmount} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='channelType!=null and !"".equals(channelType)' >channel_type= #{channelType} and </if>
+                            <if test='innerMerchantType!=null and !"".equals(innerMerchantType)' >inner_merchant_type= #{innerMerchantType} and </if>
+                            <if test='customerType!=null and !"".equals(customerType)' >customer_type= #{customerType} and </if>
+                            <if test='departmentId!=null' > department_id=#{departmentId} and </if>
+                            <if test='departmentName!=null and !"".equals(departmentName)' > department_name=#{departmentName} and </if>
+                            <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id=#{parentBrandId} and </if>
+                            <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > parent_brand_code=#{parentBrandCode} and </if>
+                            <if test='hkRate!=null' > hk_rate=#{hkRate} and </if>
+                            <if test='hkAmount!=null' > hk_amount=#{hkAmount} and </if>
+                            <if test='brandParentId!=null' > brand_parent_id=#{brandParentId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<delete id='deleteByMap' parameterType='map'>
+	        delete from r_sale_data  <include refid='sql_where' />
+	    </delete>
+
+		<!-- 新增数据 -->
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_sale_data
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        id , 
+                        bu_id , 
+                        bu_name , 
+                        merchant_id , 
+                        merchant_name , 
+                        out_depot_id , 
+                        out_depot_name , 
+                        customer_name , 
+                        customer_id ,
+                        month , 
+                        report_date ,
+                        goods_no , 
+                        commbarcode , 
+                        brand_parent , 
+                        type , 
+                        store_platform_code , 
+                        store_platform_name , 
+                        shop_code , 
+                        shop_name , 
+                        num , 
+                        create_date , 
+                        modify_date ,
+                        sale_currency,
+                        sale_amount,
+                        cny_rate,
+                        cny_amount,
+                        order_type,
+                        channel_type,
+                        inner_merchant_type,
+                        customer_type,
+                        department_id,
+                        department_name,
+                        parent_brand_name,
+                        parent_brand_id,
+                        parent_brand_code,
+                        hk_rate,
+                        hk_amount,
+                        brand_parent_id
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+	            <trim prefix="(" suffix=")" suffixOverrides="," >
+	                        #{item.id} , 
+	                        #{item.buId} , 
+	                        #{item.buName} , 
+	                        #{item.merchantId} , 
+	                        #{item.merchantName} , 
+	                        #{item.outDepotId} , 
+	                        #{item.outDepotName} , 
+	                        #{item.customerName} , 
+	                        #{item.customerId} , 
+	                        #{item.month} , 
+	                        #{item.reportDate} , 
+	                        #{item.goodsNo} ,
+	                        #{item.commbarcode} , 
+	                        #{item.brandParent} , 
+	                        #{item.type} , 
+	                        #{item.storePlatformCode} , 
+	                        #{item.storePlatformName} , 
+	                        #{item.shopCode} , 
+	                        #{item.shopName} , 
+	                        #{item.num} , 
+	                        #{item.createDate} , 
+	                        #{item.modifyDate} ,
+	                        #{item.saleCurrency} ,
+	                        #{item.saleAmount} ,
+	                        #{item.cnyRate} ,
+	                        #{item.cnyAmount} ,
+	                        #{item.orderType} ,
+	                        #{item.channelType} ,
+	                        #{item.innerMerchantType},
+	                        #{item.customerType},
+                            #{item.departmentId},
+                            #{item.departmentName},
+                            #{item.parentBrandName},
+                            #{item.parentBrandId},
+                            #{item.parentBrandCode},
+                            #{item.hkRate},
+                            #{item.hkAmount},
+                            #{item.brandParentId}
+	            </trim>
+            </foreach>
+        </insert>
+
+		<select id = "countByMap" resultType="map" parameterType="map">
+			SELECT
+				commbarcode,
+				bu_id,
+				max(bu_name),
+				<if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code, </if>
+				<if test='shopCode!=null and !"".equals(shopCode)' >max(shop_name) as shop_name, </if>
+				month ,
+				SUM(num) AS num
+			FROM
+				r_sale_data
+			<where>
+				<trim suffixOverrides='and'>
+					<if test='buId!=null' > bu_id= #{buId} and </if>
+					<if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+					<if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+					<if test='types!=null and !"".equals(types)' >
+						type in 
+						<foreach collection='types.split(",")' item='type' separator=',' open='(' close=')'>
+			            #{type}
+			            </foreach>
+			            and 
+				 	</if>
+				 	<if test='shopCode!=null and !"".equals(shopCode)' >
+				 		shop_code in 
+				 		<foreach collection='shopCode.split(",")' item='shopCode' separator=',' open='(' close=')'>
+			            #{shopCode}
+			            </foreach>
+			            and
+				 	</if>
+				 	<if test='notInshopCode!=null and !"".equals(notInshopCode)' >
+				 		shop_code not in 
+				 		<foreach collection='notInshopCode.split(",")' item='shopCode' separator=',' open='(' close=')'>
+			            #{shopCode}
+			            </foreach>
+			            and
+				 	</if>
+				</trim>
+			</where>
+			GROUP BY
+				commbarcode,
+				bu_id,
+				<if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code, </if>
+				`month`
+		</select>
+
+    <!-- 获取 月销售额达成-->
+    <select id="getMonthAmount" resultType='SaleDataDTO' parameterType='SaleDataDTO'>
+        SELECT
+            sum(case when order_type='1' then cny_amount else 0 end) as sale_amount_a,
+            sum(case when order_type='2' then cny_amount else 0 end) as sale_amount_b,
+            sum(case when order_type='3' then cny_amount else 0 end) as agency_deliver_amount,
+            sum(case when order_type='4' then cny_amount else 0 end) as pop_amount,
+            sum(case when order_type='5' then cny_amount else 0 end) as agency_sale_amount
+        FROM `r_sale_data`
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='month!=null and !"".equals(month)' >`month` = #{month} and </if>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            and inner_merchant_type = '0'
+        </where>
+    </select>
+
+    <!-- 获取 年销售额达成-->
+    <select id="getYearAmount" resultType='SaleDataDTO' parameterType='SaleDataDTO'>
+        SELECT
+            sum(case when order_type='1' then cny_amount else 0 end) as sale_amount_a,
+            sum(case when order_type='2' then cny_amount else 0 end) as sale_amount_b,
+            sum(case when order_type='3' then cny_amount else 0 end) as agency_deliver_amount,
+            sum(case when order_type='4' then cny_amount else 0 end) as pop_amount,
+            sum(case when order_type='5' then cny_amount else 0 end) as agency_sale_amount
+        FROM `r_sale_data`
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='month!=null and !"".equals(month)' >left(`month`,4) = #{month} and </if>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            and inner_merchant_type = '0'
+        </where>
+    </select>
+    <!-- 获取 品牌销售额前八的数据-->
+    <select id="getBrandSaleTop" resultType='SaleDataDTO'>
+        SELECT
+        <choose>
+            <when test='dto.isParentBrand != null and !"".equals(dto.isParentBrand) and dto.isParentBrand == "1"' >
+                brand.name as brand_parent,
+            </when>
+            <otherwise>
+                brand.superior_parent_brand as brand_parent,
+            </otherwise>
+        </choose>
+        sum(cny_amount) as cny_amount  FROM r_sale_data sd
+        LEFT JOIN st_commbarcode comm ON sd.commbarcode=comm.commbarcode
+        LEFT JOIN st_brand_parent brand ON comm.comm_brand_parent_id=brand.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > sd.bu_id= #{dto.buId} and </if>
+                <if test='startDate!=null and !"".equals(startDate)' > sd.report_date &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > sd.report_date &lt;= #{endDate} and </if>
+                <if test='dto.buIds!=null' > sd.bu_id in
+                    <foreach collection="dto.buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            and sd.inner_merchant_type = '0' and
+            <choose>
+                <when test='dto.isParentBrand != null and !"".equals(dto.isParentBrand) and dto.isParentBrand == "1"' >
+                    brand.id is not null and brand.name is not null GROUP BY brand.id
+                </when>
+                <otherwise>
+                    brand.superior_parent_brand_id is not null and brand.superior_parent_brand is not null GROUP BY brand.superior_parent_brand_id
+                </otherwise>
+            </choose>
+            ORDER BY sum(cny_amount) desc LIMIT 8
+        </where>
+    </select>
+
+    <!-- 获取 客户销售额前八的数据-->
+    <select id="getCusSaleTop" resultType='SaleDataDTO'>
+        SELECT
+       		b.customer_id,
+            IFNULL((SELECT simple_name FROM st_customer_info a WHERE a.id=b.customer_id),b.customer_id) AS customer_name,
+            sum(b.cny_amount) as cny_amount
+        FROM r_sale_data b
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > b.bu_id= #{dto.buId} and </if>
+                <if test='startDate!=null and !"".equals(startDate)' > b.report_date &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > b.report_date &lt;= #{endDate} and </if>
+                <if test='dto.channelType!=null and !"".equals(dto.channelType)' > b.channel_type = #{dto.channelType} and </if>
+                <if test='dto.buIds!=null' > b.bu_id in
+                    <foreach collection="dto.buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>                
+            </trim>
+            and b.inner_merchant_type = '0' and b.customer_id is not null
+        </where>
+        GROUP BY b.customer_id ORDER BY sum(b.cny_amount) desc LIMIT 8
+    </select>
+    
+    <!-- 获取 品牌销售额 其他的数据-->
+    <select id="getBrandSaleOther" resultType='SaleDataDTO'>
+        SELECT
+         '其他'  as brand_parent,
+        sum(cny_amount) as cny_amount  FROM r_sale_data sd
+        LEFT JOIN st_commbarcode comm ON sd.commbarcode=comm.commbarcode
+        LEFT JOIN st_brand_parent brand ON comm.comm_brand_parent_id=brand.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > sd.bu_id= #{dto.buId} and </if>
+                <if test='startDate!=null and !"".equals(startDate)' > sd.report_date &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > sd.report_date &lt;= #{endDate} and </if>
+                <if test='dto.buIds!=null' > sd.bu_id in
+                    <foreach collection="dto.buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='names!=null' >
+                    <choose>
+                        <when test='dto.isParentBrand != null and !"".equals(dto.isParentBrand) and dto.isParentBrand == "1"' >
+                            brand.id is not null and brand.name is not null and
+                            brand.name not in
+                            <foreach collection="names" item="bname" separator="," open="(" close=")">
+                                #{bname}
+                            </foreach>
+                            and
+                        </when>
+                        <otherwise>
+                            brand.superior_parent_brand_id is not null and brand.superior_parent_brand is not null and
+                            brand.superior_parent_brand not in
+                            <foreach collection="names" item="bname" separator="," open="(" close=")">
+                                #{bname}
+                            </foreach>
+                            and
+                        </otherwise>
+                    </choose>
+
+                </if>
+            </trim>
+            and inner_merchant_type = '0'
+        </where>
+    </select>
+
+    <!-- 获取 客户销售额 其他 的数据-->
+    <select id="getCusSaleOther" resultType='SaleDataDTO'>
+        SELECT
+       		'其他'  as customer_name,
+            sum(b.cny_amount) as cny_amount
+        FROM r_sale_data b
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > b.bu_id= #{dto.buId} and </if>
+                <if test='startDate!=null and !"".equals(startDate)' > b.report_date &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > b.report_date &lt;= #{endDate} and </if>
+                <if test='dto.channelType!=null and !"".equals(dto.channelType)' > b.channel_type = #{dto.channelType} and </if>
+                <if test='dto.buIds!=null' > b.bu_id in
+                    <foreach collection="dto.buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='ids!=null' > IFNULL(b.customer_id,'') not in
+                    <foreach collection="ids" item="custId" separator="," open="(" close=")">
+                        #{custId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            and b.inner_merchant_type = '0'
+        </where>
+    </select>
+
+    <select id="getSaleDataByCommbarcode" resultType='SaleDataModel' parameterType='list'>
+        SELECT
+            merchant_id,
+            out_depot_id,
+            bu_id,
+            commbarcode,
+            SUM(num) num
+        FROM
+            r_sale_data
+        WHERE
+            month in
+            <foreach collection='months' item='month' separator=',' open='(' close=')'>
+                #{month}
+            </foreach>
+        GROUP BY
+            merchant_id,
+            out_depot_id,
+            bu_id,
+            commbarcode
+    </select>
+    <!-- 累计销售汇总表 -->
+    <select id='getListAddSale' resultType='SaleDataDTO' parameterType='SaleDataDTO'>								
+			SELECT tt.bu_id,tt.customer_id,tt.commbarcode ,tt.sale_currency ,
+						MAX(tt.bu_name) as bu_name,
+						MAX(tt.customer_name) as customer_name,
+						MAX(tt.`goods_name`) as goods_name,
+						t2.`name` as brand_parent,
+						t2.superior_parent_brand as superior_parent_brand,
+						SUM(tt.num)as num,
+						SUM(tt.sale_amount)as sale_amount,
+						SUM(tt.add_weighted_amount) as add_weighted_amount,
+						CONCAT(#{monthStart},'~',#{monthEnd}) as `month`
+						
+			from (
+			
+			SELECT  t.bu_id,t.customer_id,t3.commbarcode ,t.sale_currency,t.`month`,
+						MAX(t.bu_name) as bu_name,
+						MAX(t.customer_name) as customer_name,
+						MAX(t3.`name`) as goods_name,
+						if(t.type='5' or t.type='6' or t.type='8' or t.type='11' or t.type='14',-SUM(t.num),SUM(t.num)) as num,
+						if(t.type='5' or t.type='6' or t.type='8' or t.type='11' or t.type='14',-SUM(t.sale_amount),SUM(t.sale_amount)) as sale_amount,
+						(SELECT price from r_weighted_price where  merchant_id=t.merchant_id and commbarcode=t3.commbarcode and effective_month= t.`month` and bu_id=t.bu_id) as price,
+						(SELECT price from r_weighted_price where  merchant_id=t.merchant_id and commbarcode=t3.commbarcode and effective_month= t.`month` and bu_id=t.bu_id)* (if(t.type='5' or t.type='6' or t.type='8' or t.type='11' or t.type='14',-SUM(t.num),SUM(t.num)) ) as add_weighted_amount
+
+			
+			 from r_sale_data t
+			LEFT JOIN st_merchandise_info t3 ON t.goods_no=t3.goods_no and t.merchant_id=t3.merchant_id
+			where t.merchant_id= #{merchantId} 
+			and t.month &gt;= #{monthStart} 
+			and t.month &lt;=#{monthEnd}	
+			<if test='buId!=null' >and t.bu_id= #{buId}  </if>				
+            <if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>               
+            </if>		              
+			<if test='goodsName!=null and !"".equals(goodsName)' >and t3.name= #{goodsName}  </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)' >and t3.commbarcode= #{commbarcode}  </if>						  								
+			<if test='customerId!=null' > and t.customer_id= #{customerId}  </if>
+	
+			GROUP BY t.bu_id,t.customer_id,t3.commbarcode ,t.sale_currency,t.`month`,t.type
+			
+			)tt
+				LEFT JOIN st_commbarcode t1 ON t1.commbarcode=tt.commbarcode
+				LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   where t2.id in 
+				<foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				</foreach>    
+			</if> 
+			
+			GROUP BY tt.bu_id,tt.customer_id,tt.commbarcode ,tt.sale_currency
+			ORDER BY  tt.bu_id,tt.customer_id,tt.commbarcode ,tt.sale_currency DESC
+			LIMIT #{begin},#{pageSize}
+			
+	</select>  
+	
+		<!-- 获取最大创建时间 -->
+	    <select id='getMaxCreatDate' resultType='SaleDataDTO' parameterType='SaleDataDTO'>														
+			SELECT  			
+			MAX(t.create_date)as create_date
+			from r_sale_data t
+			LEFT JOIN st_merchandise_info t3 ON t.goods_no=t3.goods_no and t.merchant_id=t3.merchant_id
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t3.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			where t.merchant_id= #{merchantId} 
+			and t.month &gt;= #{monthStart} 
+			and t.month &lt;=#{monthEnd}	
+			<if test='buId!=null' >and t.bu_id= #{buId}  </if>	
+			            <if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>               
+            </if>		              
+			<if test='goodsName!=null and !"".equals(goodsName)' >and t3.name= #{goodsName}  </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)' >and t3.commbarcode= #{commbarcode}  </if>						  								
+			<if test='customerId!=null' > and t.customer_id= #{customerId}  </if>
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   and  t2.id in 
+				<foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				</foreach>    
+			</if> 		
+		</select>  
+	
+	
+    <!-- 累计销售汇总表总量 -->
+    <select id='getListAddSaleCount' resultType='Integer' parameterType='SaleDataDTO'>								
+			
+			SELECT count(*) from  (
+			SELECT count(*)
+			from (
+			
+			SELECT  t.bu_id,t.customer_id,t3.commbarcode ,t.sale_currency,t.`month`,
+						MAX(t.create_date) as create_date,
+						MAX(t.bu_name) as bu_name,
+						MAX(t.customer_name) as customer_name,
+						MAX(t3.`name`) as goods_name,
+						SUM(t.num)as num,
+						SUM(t.sale_amount)as sale_amount,
+						(SELECT price from r_weighted_price where  merchant_id=t.merchant_id and commbarcode=t3.commbarcode and effective_month= t.`month` and bu_id=t.bu_id) as price,
+						(SELECT price from r_weighted_price where  merchant_id=t.merchant_id and commbarcode=t3.commbarcode and effective_month= t.`month` and bu_id=t.bu_id)* num as add_weighted_amount
+						
+			
+			 from r_sale_data t
+			LEFT JOIN st_merchandise_info t3 ON t.goods_no=t3.goods_no and t.merchant_id=t3.merchant_id
+			where t.merchant_id= #{merchantId} 
+			and t.month &gt;= #{monthStart} 
+			and t.month &lt;=#{monthEnd}	
+			<if test='buId!=null' >and t.bu_id= #{buId}  </if>	
+			<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>               
+            </if>		              
+			<if test='goodsName!=null and !"".equals(goodsName)' >and t3.name= #{goodsName}  </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)' >and t3.commbarcode= #{commbarcode}  </if>						  								
+			<if test='customerId!=null' > and t.customer_id= #{customerId}  </if>
+	
+			GROUP BY t.bu_id,t.customer_id,t3.commbarcode ,t.sale_currency,t.`month`,t.type
+			
+			)tt
+				LEFT JOIN st_commbarcode t1 ON t1.commbarcode=tt.commbarcode
+				LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   where t2.id in 
+				<foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				</foreach>    
+			</if> 
+			
+			GROUP BY tt.bu_id,tt.customer_id,tt.commbarcode ,tt.sale_currency
+		)tt1
+			
+	</select> 
+   
+   <!-- 累计销售汇总表导出-->
+   <select id='getListAddExport' resultType='SaleDataDTO' parameterType='SaleDataDTO'>								
+			SELECT tt.bu_id,tt.customer_id,tt.commbarcode ,tt.sale_currency ,MAX(tt.create_date) as create_date,
+						MAX(tt.bu_name) as bu_name,
+						MAX(tt.customer_name) as customer_name,
+						MAX(tt.`goods_name`) as goods_name,
+						MAX(tt.merchant_name_temp) as merchant_name,
+						t2.`name` as brand_parent,
+						t2.superior_parent_brand as superior_parent_brand,
+						SUM(tt.num)as num,
+						SUM(tt.sale_amount)as sale_amount,
+						SUM(tt.add_weighted_amount) as add_weighted_amount,
+						#{monthStart} as monthStart,
+						#{monthEnd} as monthEnd
+			from (
+			
+			SELECT  t.bu_id,t.customer_id,t3.commbarcode ,t.sale_currency,t.`month`,
+						MAX(t.create_date) as create_date,
+						MAX(t.merchant_name) as merchant_name_temp,
+						MAX(t.bu_name) as bu_name,
+						MAX(t.customer_name) as customer_name,
+						MAX(t3.`name`) as goods_name,
+						if(t.type='5' or t.type='6' or t.type='8' or t.type='11' or t.type='14',-SUM(t.num),SUM(t.num)) as num,
+						if(t.type='5' or t.type='6' or t.type='8' or t.type='11' or t.type='14',-SUM(t.sale_amount),SUM(t.sale_amount)) as sale_amount,
+						(SELECT price from r_weighted_price where  merchant_id=t.merchant_id and commbarcode=t3.commbarcode and effective_month= t.`month` and bu_id=t.bu_id) as price,
+						(SELECT price from r_weighted_price where  merchant_id=t.merchant_id and commbarcode=t3.commbarcode and effective_month= t.`month` and bu_id=t.bu_id)* (if(t.type='5' or t.type='6' or t.type='8' or t.type='11' or t.type='14',-SUM(t.num),SUM(t.num)) ) as add_weighted_amount
+			
+			 from r_sale_data t
+			LEFT JOIN st_merchandise_info t3 ON t.goods_no=t3.goods_no and t.merchant_id=t3.merchant_id
+			where t.merchant_id= #{merchantId} 
+			and t.month &gt;= #{monthStart} 
+			and t.month &lt;=#{monthEnd}	
+			<if test='buId!=null' >and t.bu_id= #{buId}  </if>
+			<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>               
+            </if>				              
+			<if test='goodsName!=null and !"".equals(goodsName)' >and t3.name= #{goodsName}  </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)' >and t3.commbarcode= #{commbarcode}  </if>						  								
+			<if test='customerId!=null' > and t.customer_id= #{customerId}  </if>
+	
+			GROUP BY t.bu_id,t.customer_id,t3.commbarcode ,t.sale_currency,t.`month`,t.type
+			
+			)tt
+				LEFT JOIN st_commbarcode t1 ON t1.commbarcode=tt.commbarcode
+				LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   where t2.id in 
+				<foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				</foreach>    
+			</if> 
+			
+			GROUP BY tt.bu_id,tt.customer_id,tt.commbarcode ,tt.sale_currency
+			ORDER BY  tt.bu_id,tt.customer_id,tt.commbarcode ,tt.sale_currency DESC
+			
+	</select>
+    <!-- 获取年度销售量(销售洞察)-->
+    <select  id='getSaleAmountYear' resultType='map'>
+        SELECT MONTH(CONCAT(`month`,'-01')) as month,sum(cny_amount) as cnyAmount FROM r_sale_data  sd
+        LEFT JOIN st_commbarcode comm ON sd.commbarcode=comm.commbarcode
+        LEFT JOIN st_brand_parent brand ON comm.comm_brand_parent_id=brand.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > sd.bu_id= #{dto.buId} and </if>
+                <if test='brandIds !=null and !"".equals(brandIds)' >
+                    <choose>
+                        <when test='isParentBrand == "1" ' >
+                            brand.id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </when>
+                        <otherwise>
+                            brand.superior_parent_brand_id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test='dto.buIds!=null' > sd.bu_id in
+                    <foreach collection="dto.buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <choose>
+                    <when test='dto.month !=null and !"".equals(dto.month)'>
+                        YEAR(CONCAT(`month`,'-01')) = #{dto.month} and
+                    </when>
+                    <otherwise>
+                        YEAR(CONCAT(`month`,'-01')) = YEAR(NOW()) and
+                    </otherwise>
+                </choose>
+            </trim>
+            and brand.superior_parent_brand_id is not null and brand.superior_parent_brand is not null and brand.superior_parent_brand_id !=0
+            and sd.inner_merchant_type = '0'
+        </where>
+        GROUP BY sd.`month`
+    </select>
+
+    <!-- 获取月度达成和年度达成导出列表(销售洞察)-->
+    <select  id='getAchieveExportList' resultType='map' parameterType='map'>
+        SELECT
+        department_id as departmentId,
+        department_name as  departmentName,
+        bu_id as buId,
+        bu_name as  buName,
+        parent_brand_id as parentBrandId,
+        parent_brand_name as  parentBrandName,      
+        sum(case when `month`=#{month} then hk_amount else 0 end) as monthAchieveAmount,
+        sum(case when YEAR(CONCAT(`month`,'-01'))=YEAR(CONCAT(#{month},'-01')) then hk_amount else 0 end) as yearAchieveAmount
+        FROM `r_sale_data`
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            and inner_merchant_type = '0'
+        </where>
+        GROUP BY buId,department_id,parent_brand_id having monthAchieveAmount > 0
+    </select>
+    <!-- 获取客户销量导出列表(销售洞察)-->
+    <select  id='getCustomerExportList' resultType='map'>
+        SELECT
+            sd.merchant_id as merchantId,
+            sd.merchant_name as merchantName,
+            sd.bu_id as buId,
+            sd.bu_name as buName,
+            sd.out_depot_id as outDepotId,
+            sd.out_depot_name as outDepotName,
+            sd.customer_id as customerId,
+            sd.customer_name as customerName,
+            sd.goods_no as goodsNo,
+            goods.barcode as barcode,
+            goods.`name` as goodsName,
+            sd.`month` as month,
+            '人民币' as currency,
+            brand.superior_parent_brand as superiorParentBrand,
+            brand.`name` as parentBrand,
+            cny_amount as cynAmount
+        FROM r_sale_data sd
+        LEFT JOIN st_commbarcode comm ON sd.commbarcode=comm.commbarcode
+        LEFT JOIN st_brand_parent brand ON comm.comm_brand_parent_id=brand.id
+        LEFT JOIN st_merchandise_info goods ON goods.goods_no=sd.goods_no and goods.merchant_id=sd.merchant_id and status='1'
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > sd.bu_id= #{dto.buId} and </if>
+                <if test='startDate!=null and !"".equals(startDate)' > sd.report_date &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > sd.report_date &lt;= #{endDate} and </if>
+                <if test='dto.channelType!=null and !"".equals(dto.channelType)' > sd.channel_type = #{dto.channelType} and </if>
+                <if test='dto.buIds!=null' > sd.bu_id in
+                    <foreach collection="dto.buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            and sd.inner_merchant_type = '0' and sd.customer_id is not null
+        </where>
+    </select>
+    <!-- 获取品牌销量导出列表(销售洞察)-->
+    <select  id='getBrandExportList' resultType='map' >
+        SELECT
+            sd.merchant_id as merchantId,
+            sd.merchant_name as merchantName,
+            sd.bu_id as buId,
+            sd.bu_name as buName,
+            sd.out_depot_id as outDepotId,
+            sd.out_depot_name as outDepotName,
+            sd.customer_id as customerId,
+            sd.customer_name as customerName,
+            sd.goods_no as goodsNo,
+            goods.barcode as barcode,
+            goods.`name` as goodsName,
+            sd.`month` as month,
+            brand.superior_parent_brand as superiorParentBrand,
+            brand.`name` as parentBrand,
+            cny_amount as cynAmount
+        FROM r_sale_data sd
+        LEFT JOIN st_commbarcode comm ON sd.commbarcode=comm.commbarcode
+        LEFT JOIN st_brand_parent brand ON comm.comm_brand_parent_id=brand.id
+        LEFT JOIN st_merchandise_info goods ON goods.goods_no=sd.goods_no and goods.merchant_id=sd.merchant_id and status='1'
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > sd.bu_id= #{dto.buId} and </if>
+                <if test='startDate!=null and !"".equals(startDate)' > sd.report_date &gt;= #{startDate} and </if>
+                <if test='endDate!=null and !"".equals(endDate)' > sd.report_date &lt;= #{endDate} and </if>
+                <if test='dto.buIds!=null' > sd.bu_id in
+                    <foreach collection="dto.buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            and sd.inner_merchant_type = '0' and
+            brand.superior_parent_brand_id is not null and brand.id is not null
+        </where>
+    </select>
+    <!-- 年度进销存 根据事业部、月份、标准条码 汇总销售量(销售洞察)-->
+    <select id="getSaleCnyAmountList" resultType="map">
+        SELECT
+            month,
+            bu_id as buId,
+            t2.id as brandId,
+            sum(cny_amount) as cnyAmount
+        from r_sale_data sd
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=sd.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buList!=null' > bu_id in
+                    <foreach collection="buList" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandIds !=null and !"".equals(brandIds)' >
+                    <choose>
+                        <when test='isParentBrand == "1" ' >
+                            t2.id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </when>
+                        <otherwise>
+                            t2.superior_parent_brand_id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test='month !=null and !"".equals(month)'> YEAR(CONCAT(`month`,'-01')) = #{month} and </if>
+                t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0 and inner_merchant_type = '0'
+            </trim>
+        </where>
+        group by month,bu_id,t2.id having sum(cny_amount) != 0
+    </select>
+
+    <!-- 部门销售金额统计(经营管理)-->
+    <select id="getDepartmentSalesAmountStatistic" resultType="ManageDepartmentSaleDataDTO" parameterType="map">
+        SELECT
+            IFNULL(department_id, -1) as departmentId,department_name as departmentName,
+        <if test='groupByParentBrandFlag'> parent_brand_name as parentBrandName,parent_brand_id as parentBrandId,</if>
+        <if test='groupByBrandParentFlag'> brand_parent as brandParent,brand_parent_id as brandParentId,</if>
+        <if test='groupByBuIdFlag'> bu_id as buId,bu_name as buName,</if>
+        <if test='groupByMerchantFlag'> merchant_id as merchantId,merchant_name as merchantName,</if>
+        <if test='groupByChannelTypeFlag'> channel_type as channelType,</if>
+        <if test='groupByCustomerFlag'> customer_id as customerId,customer_name as customerName,</if>
+        <if test='groupByDepotFlag'> out_depot_name as outDepotName,out_depot_id as outDepotId, </if>
+        <if test='groupByPlatformFlag'> store_platform_code as storePlatformCode,store_platform_name as storePlatformName,</if>
+        sum(case when month = #{beforeMonth} then IFNULL(IF(type='5' or type='6' or type='8' or type='11' or type='14',-hk_amount, hk_amount), 0) else 0 end) as monthAmount3,
+        sum(case when month = #{middleMonth} then IFNULL(IF(type='5' or type='6' or type='8' or type='11' or type='14',-hk_amount, hk_amount), 0) else 0 end) as monthAmount2,
+        sum(case when month = #{targetMonth} then IFNULL(IF(type='5' or type='6' or type='8' or type='11' or type='14',-hk_amount, hk_amount), 0) else 0 end) as monthAmount1
+        from r_sale_data
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='departmentIds!=null and departmentIds.size() > 0' > department_id in
+                    <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")">
+                        #{departmentId}
+                    </foreach>
+                    and
+                </if>
+                <if test='buIds != null and buIds.size() > 0' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='parentBrandIds !=null and parentBrandIds.size() > 0'> parent_brand_id in
+                    <foreach collection="parentBrandIds" item="brandId" separator="," open="(" close=")">
+                        #{brandId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandParentIds != null and brandParentIds.size() > 0' > brand_parent_id in
+                    <foreach collection="brandParentIds" item="brandId" separator="," open="(" close=")">
+                        #{brandId}
+                    </foreach>
+                    and
+                </if>
+                <if test='merchantIds != null and merchantIds.size() > 0' > merchant_id in
+                    <foreach collection="merchantIds" item="merchantId" separator="," open="(" close=")">
+                        #{merchantId}
+                    </foreach>
+                    and
+                </if>
+                <if test='channelTypes!=null  and channelTypes.size() > 0' > channel_type in
+                    <foreach collection="channelTypes" item="channelType" separator="," open="(" close=")">
+                        #{channelType}
+                    </foreach>
+                    and
+                </if>
+                <if test='month !=null and !"".equals(month)'> month between #{beforeMonth} and #{targetMonth} and </if>
+                <if test='customerIds !=null and customerIds.size() > 0'> customer_id in
+                    <foreach collection="customerIds" item="customerId" separator="," open="(" close=")">
+                        #{customerId}
+                    </foreach>
+                    and
+                </if>
+                <if test='outDepotIds !=null and outDepotIds.size() > 0'> out_depot_id in
+                    <foreach collection="outDepotIds" item="outDepotId" separator="," open="(" close=")">
+                        #{outDepotId}
+                    </foreach>
+                    and
+                </if>
+                <if test='storePlatformCodeList !=null and storePlatformCodeList.size() > 0'> store_platform_code in
+                    <foreach collection="storePlatformCodeList" item="storePlatformCode" separator="," open="(" close=")">
+                        #{storePlatformCode}
+                    </foreach>
+                    and
+                </if>
+                inner_merchant_type = '0' and
+            </trim>
+        </where>
+        group by
+            <if test='groupByParentBrandFlag'> parent_brand_id,</if>
+            <if test='groupByBrandParentFlag'> brand_parent_id,</if>
+            <if test='groupByBuIdFlag'> bu_id,</if>
+            <if test='groupByMerchantFlag'> merchant_id,</if>
+            <if test='groupByChannelTypeFlag'> channel_type,</if>
+            <if test='groupByCustomerFlag'> customer_id,</if>
+            <if test='groupByDepotFlag'> out_depot_id,</if>
+            <if test='groupByPlatformFlag'> store_platform_code,</if>
+            department_id
+        order by 1
+        <if test='orderByAmount1 != null and "DESC".equals(orderByAmount1) '>
+            ,monthAmount1 desc
+        </if>
+        <if test='orderByAmount1 != null and "ASC".equals(orderByAmount1) '>
+            ,monthAmount1 asc
+        </if>
+        <if test='orderByAmount2 != null and "DESC".equals(orderByAmount2) '>
+            ,monthAmount2 desc
+        </if>
+        <if test='orderByAmount2 == null or "ASC".equals(orderByAmount2) '>
+            ,monthAmount2 asc
+        </if>
+        <if test='orderByAmount3 == null or "DESC".equals(orderByAmount3) '>
+            ,monthAmount3 desc
+        </if>
+        <if test='orderByAmount3 == null or "ASC".equals(orderByAmount3) '>
+            ,monthAmount3 asc
+        </if>
+    </select>
+    <!-- 获取 月度和年度销售额达成-->
+    <select id="getMonthYearAchieveAmount" parameterType='map'  resultType="map">
+        SELECT
+        parent_brand_id as parentBrandId,
+        parent_brand_name as  parentBrandName,
+        sum(case when `month`=#{month} then hk_amount else 0 end) as monthAchieveAmount,
+        sum(case when YEAR(CONCAT(`month`,'-01'))=YEAR(CONCAT(#{month},'-01')) then hk_amount else 0 end) as yearAchieveAmount
+        FROM `r_sale_data`
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            and inner_merchant_type = '0'
+        </where>
+        GROUP BY parent_brand_id  having monthAchieveAmount > 0
+    </select>
+
+    <!-- 部门销售金额达成统计(经营管理)-->
+    <select id="getDepartmentSalesAchieveStatistic" resultType="ManageDepartmentSaleAchieveDTO" parameterType="map">
+        SELECT
+        <if test='groupByDepartmentFlag'> IFNULL(department_id, -1) as departmentId,department_name as departmentName,</if>
+        <if test='groupByParentBrandFlag'> parent_brand_name as parentBrandName,parent_brand_id as parentBrandId,</if>
+        <if test='month !=null and !"".equals(month)'>
+            #{month} as month,
+            sum(case when `month`=#{month} then IFNULL(IF(type='5' or type='6' or type='8' or type='11' or type='14',-hk_amount, hk_amount), 0) else 0 end) as monthAchieveAmount,
+            sum(case when YEAR(CONCAT(`month`,'-01'))=YEAR(CONCAT(#{month},'-01')) then IFNULL(IF(type='5' or type='6' or type='8' or type='11' or type='14',-hk_amount, hk_amount), 0) else 0 end) as yearAchieveAmount
+        </if>
+        <if test='year !=null and !"".equals(year)'>
+            month,
+            sum(IFNULL(IF(type='5' or type='6' or type='8' or type='11' or type='14',-hk_amount, hk_amount), 0)) as monthAchieveAmount,
+            sum(case when YEAR(CONCAT(`month`,'-01'))=#{year} then IFNULL(IF(type='5' or type='6' or type='8' or type='11' or type='14',-hk_amount, hk_amount), 0) else 0 end) as yearAchieveAmount
+        </if>
+        from r_sale_data
+        <where>
+            <trim suffixOverrides='and'>
+                inner_merchant_type = '0' and
+                <if test='departmentIds!=null and departmentIds.size() > 0' > department_id in
+                    <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")">
+                        #{departmentId}
+                    </foreach>
+                    and
+                </if>
+                <if test='buIds != null and buIds.size() > 0' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='parentBrandIds !=null and parentBrandIds.size() > 0'> parent_brand_id in
+                    <foreach collection="parentBrandIds" item="brandId" separator="," open="(" close=")">
+                        #{brandId}
+                    </foreach>
+                    and
+                </if>
+                <if test='month !=null and !"".equals(month)'> YEAR(CONCAT(`month`,'-01'))=YEAR(CONCAT(#{month},'-01')) and </if>
+                <if test='year !=null and !"".equals(year)'> YEAR(CONCAT(`month`,'-01'))=#{year} and </if>
+            </trim>
+        </where>
+        group by 1
+        <if test='groupByDepartmentFlag'>,department_id</if>
+        <if test='groupByParentBrandFlag'> ,parent_brand_id</if>
+        <if test='groupByMonthFlag'>,month</if>
+    </select>
+</mapper>

@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.InventoryLocationAdjustmentOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="InventoryLocationAdjustmentOrderModelMap" type="InventoryLocationAdjustmentOrderModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="state" column="state" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="remark" column="remark" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="auditor" column="auditor" />
+                <result property="auditName" column="audit_name" />
+                <result property="auditDate" column="audit_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="ownDate" column="own_date" />
+                <result property="type" column="type" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryLocationAdjustmentOrderModelMap' parameterType='InventoryLocationAdjustmentOrderModel'>
+        select <include refid='sql_columns' /> from t_inventory_location_adjustment_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryLocationAdjustmentOrderModelMap' parameterType='InventoryLocationAdjustmentOrderModel'>
+        select <include refid='sql_columns' /> from t_inventory_location_adjustment_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryLocationAdjustmentOrderModelMap' parameterType='InventoryLocationAdjustmentOrderModel' >
+        select <include refid='sql_columns' /> from t_inventory_location_adjustment_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='InventoryLocationAdjustmentOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_inventory_location_adjustment_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='state!=null and !"".equals(state)' > state , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='auditor!=null' >auditor , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='ownDate!=null' >own_date , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='state!=null and !"".equals(state)' > #{state} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='auditor!=null' > #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='ownDate!=null' > #{ownDate} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='InventoryLocationAdjustmentOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_inventory_location_adjustment_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='state!=null and !"".equals(state)' >state= #{state} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='auditor!=null' > auditor= #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='ownDate!=null' > own_date= #{ownDate} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_inventory_location_adjustment_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_inventory_location_adjustment_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            state,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            bu_id,
+            bu_name,
+            remark,
+            creater,
+            create_name,
+            create_date,
+            auditor,
+            audit_name,
+            audit_date,
+            modify_date,
+            own_date,
+            type,
+            customer_id,
+            customer_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='auditor!=null' > auditor= #{auditor} and </if>
+                            <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                            <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='ownDate!=null' > own_date= #{ownDate} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 查询库库位调整单 -->
+		<select id='getLocationAdjustmentOrder' resultType='map' parameterType='map'>	
+			SELECT 
+				t1.id as location_order_id,t1.`code` as location_order_code,t1.create_date,t1.own_date,t1.type,
+				t1.customer_id,t1.customer_name,t1.depot_id,
+				t2.order_code,t2.external_code,
+				t2.increase_goods_id,t2.reduce_goods_id,				
+				t2.adjust_num,t2.inventory_type,t2.platform_code,t2.platform_name,t2.shop_code,t2.shop_name,t2.tallying_unit
+			from t_inventory_location_adjustment_order t1
+			LEFT JOIN t_inventory_location_adjustment_order_item t2 ON t1.id=t2.inventory_location_id
+				WHERE t1.merchant_id=#{merchantId}
+				and t1.depot_id in (
+					SELECT id from  st_depot_info where type IN ('a','c','d')
+				)
+				and t1.bu_id=#{buId} 
+				and DATE_FORMAT(t1.own_date, '%Y-%m')=#{month}
+				and t1.state='003'
+				and t1.type in ('DSDD','XSCK')
+				 
+		</select>
+
+
+</mapper>

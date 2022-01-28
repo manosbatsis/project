@@ -1,0 +1,585 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.TocSettlementReceiveBillCostItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="TocSettlementReceiveBillCostItemModelMap" type="TocSettlementReceiveBillCostItemModel" >
+                <result property="id" column="id" />
+                <result property="billId" column="bill_id" />
+                <result property="externalCode" column="external_code" />
+                <result property="projectId" column="project_id" />
+                <result property="projectName" column="project_name" />
+                <result property="platformProjectId" column="platform_project_id" />
+                <result property="platformProjectName" column="platform_project_name" />
+                <result property="originalAmount" column="original_amount" />
+                <result property="rmbAmount" column="rmb_amount" />
+                <result property="settlementRate" column="settlement_rate" />
+                <result property="parentBrandName" column="parent_brand_name" />
+                <result property="parentBrandId" column="parent_brand_id" />
+                <result property="parentBrandCode" column="parent_brand_code" />
+                <result property="num" column="num" />
+                <result property="billType" column="bill_type" />
+                <result property="dataSource" column="data_source" />
+                <result property="remark" column="remark" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="orderCode" column="order_code" />
+                <result property="tempCostBillId" column="temp_cost_bill_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TocSettlementReceiveBillCostItemModelMap' parameterType='TocSettlementReceiveBillCostItemModel'>
+        select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_cost_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TocSettlementReceiveBillCostItemModelMap' parameterType='TocSettlementReceiveBillCostItemModel'>
+        select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_cost_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TocSettlementReceiveBillCostItemModelMap' parameterType='TocSettlementReceiveBillCostItemModel' >
+        select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_cost_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='TocSettlementReceiveBillCostItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_toc_settlement_receive_bill_cost_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='billId!=null' >bill_id , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                        <if test='projectId!=null' >project_id , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > project_name , </if>
+                        <if test='platformProjectId!=null' >platform_project_id , </if>
+                        <if test='platformProjectName!=null and !"".equals(platformProjectName)' > platform_project_name , </if>
+                        <if test='originalAmount!=null' >original_amount , </if>
+                        <if test='rmbAmount!=null' >rmb_amount , </if>
+                        <if test='settlementRate!=null' >settlement_rate , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name , </if>
+                        <if test='parentBrandId!=null' >parent_brand_id , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > parent_brand_code , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='billType!=null and !"".equals(billType)' > bill_type , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > data_source , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>   
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='tempCostBillId!=null' > temp_cost_bill_id , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billId!=null' > #{billId} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                        <if test='projectId!=null' > #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > #{projectName} , </if>
+                        <if test='platformProjectId!=null' > #{platformProjectId}, </if>
+                        <if test='platformProjectName!=null and !"".equals(platformProjectName)' > #{platformProjectName} , </if>
+                        <if test='originalAmount!=null' > #{originalAmount} , </if>
+                        <if test='rmbAmount!=null' > #{rmbAmount} , </if>
+                        <if test='settlementRate!=null' > #{settlementRate} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > #{parentBrandCode} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='billType!=null and !"".equals(billType)' > #{billType}  , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > #{dataSource}  , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>  
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='tempCostBillId!=null' > #{tempCostBillId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='TocSettlementReceiveBillCostItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_toc_settlement_receive_bill_cost_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billId!=null' > bill_id= #{billId} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                        <if test='projectId!=null' > project_id= #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} , </if>
+                        <if test='platformProjectId!=null' > platform_project_id= #{platformProjectId}, </if>
+                        <if test='platformProjectName!=null and !"".equals(platformProjectName)' > platform_project_name= #{platformProjectName} , </if>
+                        <if test='originalAmount!=null' > original_amount= #{originalAmount} , </if>
+                        <if test='rmbAmount!=null' > rmb_amount= #{rmbAmount} , </if>
+                        <if test='settlementRate!=null' > settlement_rate= #{settlementRate} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='billType!=null and !"".equals(billType)' > bill_type= #{billType}  , </if>
+                        <if test='dataSource!=null and !"".equals(dataSource)' > data_source= #{dataSource}  , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>                          
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='tempCostBillId!=null' >temp_cost_bill_id= #{tempCostBillId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_toc_settlement_receive_bill_cost_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_toc_settlement_receive_bill_cost_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_id,
+            external_code,
+            project_id,
+            project_name,
+            platform_project_id,
+            platform_project_name,
+            original_amount,
+            rmb_amount,
+            settlement_rate,
+            parent_brand_name,
+            parent_brand_id,
+            parent_brand_code,
+            num,
+            bill_type,
+            data_source,
+            remark,
+            create_date,
+            modify_date,
+            order_code,
+            temp_cost_bill_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='projectId!=null' > project_id= #{projectId} and </if>
+                            <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                            <if test='platformProjectId!=null' > platform_project_id= #{platformProjectId} and </if>
+                            <if test='platformProjectName!=null and !"".equals(platformProjectName)' >platform_project_name= #{platformProjectName} and </if>
+                            <if test='originalAmount!=null' > original_amount= #{originalAmount} and </if>
+                            <if test='rmbAmount!=null' > rmb_amount= #{rmbAmount} and </if>
+                            <if test='settlementRate!=null' > settlement_rate= #{settlementRate} and </if>
+                            <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} and </if>
+                            <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='billType!=null and !"".equals(billType)' > bill_type= #{billType}  and </if>
+                            <if test='dataSource!=null and !"".equals(dataSource)' > data_source= #{dataSource}  and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if> 
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='tempCostBillId!=null' >temp_cost_bill_id= #{tempCostBillId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <sql id='sql_dto_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <choose>
+                <when test='billIds!=null and !"".equals(billIds)'>
+                    bill_id in
+                    <foreach collection="billIds.split(',')" open="(" close=")" separator="," item="id">
+                        #{id}
+                    </foreach>
+                </when>
+                <otherwise>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='billId!=null' > bill_id= #{billId} and </if>
+                    <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                    <if test='projectId!=null' > project_id= #{projectId} and </if>
+                    <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                    <if test='platformProjectId!=null' > platform_project_id= #{platformProjectId} and </if>
+                    <if test='platformProjectName!=null and !"".equals(platformProjectName)' >platform_project_name= #{platformProjectName} and </if>
+                    <if test='originalAmount!=null' > original_amount= #{originalAmount} and </if>
+                    <if test='rmbAmount!=null' > rmb_amount= #{rmbAmount} and </if>
+                    <if test='settlementRate!=null' > settlement_rate= #{settlementRate} and </if>
+                    <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} and </if>
+                    <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} and </if>
+                    <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} and </if>
+                    <if test='num!=null' > num= #{num} and </if>
+                    <if test='billType!=null and !"".equals(billType)' > bill_type= #{billType}  and </if>
+                    <if test='dataSource!=null and !"".equals(dataSource)' > data_source= #{dataSource}  and </if>
+                    <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                    <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                    <if test='tempCostBillId!=null' >temp_cost_bill_id= #{tempCostBillId} and </if>
+                </otherwise>
+                </choose>
+            </trim>
+        </where>
+    </sql>
+
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_toc_settlement_receive_bill_cost_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                id,
+                bill_id,
+                external_code,
+                project_id,
+                project_name,
+                platform_project_id,
+                platform_project_name,
+                original_amount,
+                rmb_amount,
+                settlement_rate,
+                parent_brand_name,
+                parent_brand_id,
+                parent_brand_code,
+                num,
+                bill_type,
+                data_source,
+                order_code,
+                remark
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+                <trim prefix="(" suffix=")" suffixOverrides="," >
+                    #{item.id} ,
+                    #{item.billId} ,
+                    #{item.externalCode} ,
+                    #{item.projectId} ,
+                    #{item.projectName} ,
+                    #{item.platformProjectId} ,
+                    #{item.platformProjectName} ,
+                    #{item.originalAmount} ,
+                    #{item.rmbAmount} ,
+                    #{item.settlementRate} ,
+                    #{item.parentBrandName} ,
+                    #{item.parentBrandId} ,
+                    #{item.parentBrandCode},
+                    #{item.num},
+                    #{item.billType},
+                    #{item.dataSource},
+                    #{item.orderCode},
+                    #{item.remark}
+                </trim>
+            </foreach>
+        </insert>
+
+        <select id="deductionTotalById" resultType="map" parameterType="java.lang.Long" >
+            SELECT
+                project_id, project_name,bill_type, SUM(num) totalNum, SUM(original_amount) totalPrice,SUM(rmb_amount) totalRmbPrice
+            FROM
+                t_toc_settlement_receive_bill_cost_item
+            WHERE
+                bill_id = #{id}
+            GROUP BY project_id, project_name, bill_type
+        </select>
+
+        <select id="listReceiveCostItemByPage" resultType="TocSettlementReceiveBillCostItemDTO" parameterType="TocSettlementReceiveBillCostItemDTO" >
+            select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_cost_item
+            <include refid='sql_where' />
+            order by id desc
+        </select>
+
+        <delete id="delCostItems" >
+            delete from t_toc_settlement_receive_bill_cost_item where bill_id = #{billId}
+            <if test='dataSource!=null and !"".equals(dataSource)' >
+            and data_source = #{dataSource}
+            </if>
+        </delete>
+
+        <select id="getTotalReceivePrice" parameterType="java.lang.Long" resultType="java.math.BigDecimal" >
+            select
+                sum(if(bill_type='0', rmb_amount, -rmb_amount)) rmbAmount
+            from t_toc_settlement_receive_bill_cost_item
+            where bill_id = #{id}
+        </select>
+
+        <select id="getTotalSettlementPrice" parameterType="java.lang.Long" resultType="java.math.BigDecimal" >
+            select
+                sum(if(bill_type='0', original_amount, -original_amount)) originalAmount
+            from t_toc_settlement_receive_bill_cost_item
+            where bill_id = #{id}
+        </select>
+
+        <select id="statisticsByBill" resultMap='TocSettlementReceiveBillCostItemModelMap' >
+            select
+            <include refid='sql_columns' />
+            from t_toc_settlement_receive_bill_cost_item
+            where order_code = #{orderCode}
+            and goods_id = #{goodsId}
+            and bill_id in
+            <foreach collection='billIds' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </select>
+
+        <select id="listByProject" resultMap="TocSettlementReceiveBillCostItemModelMap" >
+            SELECT
+                bill_id,project_id,parent_brand_id,
+                sum(if(bill_type='0', original_amount, -original_amount)) original_amount,
+                sum(if(bill_type='0', rmb_amount, -rmb_amount)) rmb_amount,
+                sum(num) num
+            from t_toc_settlement_receive_bill_cost_item
+            where bill_id in
+            <foreach collection='billIds' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            GROUP BY project_id,parent_brand_id,bill_id
+        </select>
+
+        <select id="listForExportItem" resultType="TocSettlementReceiveBillCostItemDTO" >
+            select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_cost_item
+            where bill_id = #{billId}
+            order by id desc
+            limit ${begin},${pageSize}
+        </select>
+
+        <select id="countByBillId" resultType="java.lang.Integer">
+            select
+                <if test='"0".equals(type)' >
+                    count(distinct order_code)
+                </if>
+                <if test='"1".equals(type)' >
+                    count(distinct external_code)
+                </if>
+            from t_toc_settlement_receive_bill_cost_item
+            where bill_id = #{billId}
+                <if test='"0".equals(type)' >
+                    and order_code is not null
+                </if>
+                <if test='"1".equals(type)' >
+                    and external_code is not null
+                </if>
+        </select>
+    
+        <select id="getItemListPage" parameterType="TocSettlementReceiveBillCostItemModel" resultMap="TocSettlementReceiveBillCostItemModelMap" >
+            select <include refid='sql_columns' />
+            from t_toc_settlement_receive_bill_cost_item
+            <include refid='sql_where' />
+            order by id desc
+            limit ${begin},${pageSize}
+        </select>
+
+        <select id="statisticsByOrderCodesAndBillIds" resultType="map" >
+            SELECT
+                <if test='"0".equals(type)' >
+                    order_code orderCode,
+                </if>
+                <if test='"1".equals(type)' >
+                    external_code externalCode,
+                </if>
+                platform_project_id platformProjectId,
+                bill_type billType,
+                sum(IF(bill_type = '1',original_amount,-original_amount)) originalAmount,
+                sum(IF(bill_type = '1',rmb_amount,-rmb_amount)) rmbAmount,
+                GROUP_CONCAT(DISTINCT bill_id separator ',') billIds
+            FROM
+                t_toc_settlement_receive_bill_cost_item
+            WHERE
+                <if test='"0".equals(type)' >
+                    order_code IN
+                </if>
+                <if test='"1".equals(type)' >
+                    external_code IN
+                </if>
+                <foreach collection="orderCodes" item="orderCode" separator="," open="(" close=")">
+                    #{orderCode}
+                </foreach>
+            AND bill_id IN
+                <foreach collection="billIds" item="id" separator="," open="(" close=")">
+                    #{id}
+                </foreach>
+            GROUP BY
+                <if test='"0".equals(type)' >
+                    order_code,
+                </if>
+                <if test='"1".equals(type)' >
+                    external_code,
+                </if>
+                platform_project_id, bill_type
+        </select>
+
+        <select id="getOrderCodeList" resultType="java.lang.String" >
+            select
+                <if test='"0".equals(type)' >
+                    distinct order_code
+                </if>
+                <if test='"1".equals(type)' >
+                    distinct external_code
+                </if>
+            from t_toc_settlement_receive_bill_cost_item
+            where bill_id = #{billId}
+            <if test='"0".equals(type)' >
+                and order_code is not null
+            </if>
+            <if test='"1".equals(type)' >
+                and external_code is not null
+            </if>
+            order by id
+            limit ${begin},${pageSize}
+        </select>
+
+        <select id="countAllByBillId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+            select count(id) from t_toc_settlement_receive_bill_cost_item
+            where bill_id = #{billId}
+        </select>
+
+        <select id="statisticsByBillIds" resultType="map">
+            SELECT
+                SUM(IF(bill_type = '0', IFNULL(rmb_amount, 0), -IFNULL(rmb_amount,0))) as rmbAmount,
+                sum(num) num
+            FROM t_toc_settlement_receive_bill_cost_item
+            WHERE
+            bill_id IN
+            <foreach collection='billIds' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </select>
+        
+        
+         <!-- 项目额度获取toc费用金额 -->
+        <select id="getProjectWarnList" parameterType="map" resultType="map">
+           SELECT 
+           		 tt.`code`,
+				MAX(tt.settlement_currency) as settlement_currency,
+				MAX(tt.merchant_id) as merchant_id,
+				MAX(tt.merchant_name) as merchant_name,
+				MAX(tt.customer_id) as customer_id,
+				MAX(tt.customer_name) as customer_name,
+				MAX(tt.create_date) as create_date,
+				MAX(tt.bill_status) as bill_status,
+	            SUM(IFNULL(tt.rmb_amount, 0)) as rmb_amount           
+           from (
+	            SELECT
+	            t1.`code`,
+				MAX(t1.settlement_currency) as settlement_currency,
+				MAX(t1.merchant_id) as merchant_id,
+				MAX(t1.merchant_name) as merchant_name,
+				MAX(t1.customer_id) as customer_id,
+				MAX(t1.customer_name) as customer_name,
+				MAX(t1.create_date) as create_date,
+				MAX(t1.bill_status) as bill_status,
+	            SUM(IF(t2.bill_type = '0', IFNULL(t2.rmb_amount, 0), -IFNULL(t2.rmb_amount,0))) as rmb_amount
+	            FROM
+	            t_toc_settlement_receive_bill t1
+	            LEFT JOIN t_toc_settlement_receive_bill_cost_item t2 ON t1.id = t2.bill_id            
+				where bu_id = #{buId}
+				AND t1.bill_status = '04'
+				AND t2.parent_brand_id = #{parentBrandId}
+				AND t2.bill_type is not null
+				<if test='effectiveDate!=null' >AND t1.create_date &gt;= #{effectiveDate} </if>
+	            GROUP BY t1.code,t2.bill_type
+            )tt GROUP BY tt.code
+        </select>
+
+        <select id="listByPlatformProject" resultMap="TocSettlementReceiveBillCostItemModelMap" >
+            SELECT
+                bill_id,external_code,bill_type,project_id,platform_project_id, project_name, platform_project_name ,parent_brand_id,
+                sum(if(bill_type='0', original_amount, -original_amount)) original_amount,
+                sum(if(bill_type='0', rmb_amount, -rmb_amount)) rmb_amount,
+                sum(num) num
+            from t_toc_settlement_receive_bill_cost_item
+            where bill_id in
+            <foreach collection='billIds' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            GROUP BY bill_id,external_code,bill_type,project_id,platform_project_id,parent_brand_id
+        </select>
+
+    <update id='batchUpdateTempCostBillId' parameterType='map' keyProperty="id" useGeneratedKeys="true">
+        update t_toc_settlement_receive_bill_cost_item tt0,
+        (
+            select bill_id,settlement_item_id
+            from t_toc_temporary_receive_bill_cost_item
+            <where>
+                <trim suffixOverrides='and'>
+                    merchant_id = #{merchantId} and
+                    <if test='billId!=null' >
+                        bill_id = #{billId} and
+                    </if>
+                    <if test="buId!=null">
+                        bu_id = #{buId} and
+                    </if>
+                    store_platform_code = #{storePlatformCode} and
+                    external_code in
+                    <foreach collection='orderCodeList' item='orderCode' separator=',' open='(' close=')'>
+                        #{orderCode}
+                    </foreach> and
+                    settlement_code is not null and
+                    settlement_item_id is not null and
+                </trim>
+            </where>
+        ) tt1
+        set tt0.temp_cost_bill_id = tt1.bill_id,
+        modify_date = now()
+        where
+            tt0.id = tt1.settlement_item_id and
+            tt0.temp_cost_bill_id is null
+<!--            FIND_IN_SET (tt0.id , tt1.settlement_item_id)-->
+    </update>
+
+    <update id='batchCleanTempCostBillId' parameterType='map' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  t_toc_settlement_receive_bill_cost_item SET
+        temp_cost_bill_id= null
+        <where>
+            temp_cost_bill_id in
+            <foreach collection='tempCostBillIdList' item='tempCostBillId' separator=',' open='(' close=')'>
+                #{tempCostBillId}
+            </foreach>
+        </where>
+    </update>
+
+    <select id="getExtistTempByMap" resultType="TocSettlementReceiveBillCostItemDTO" parameterType="map">
+        SELECT
+        count(1),
+        t1.external_code, t1.bill_type, t1.platform_project_id, t2.code as settlementCode
+        from t_toc_settlement_receive_bill_cost_item t1
+        left join t_toc_settlement_receive_bill t2 on t1.bill_id = t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                t2.merchant_id = #{merchantId} and
+                <if test="buId!=null">
+                    t2.bu_id = #{buId} and
+                </if>
+                t2.store_platform_code = #{storePlatformCode} and
+                t2.bill_status in ('02', '03', '04', '05') and
+                t1.external_code in
+                <foreach collection='orderCodeList' item='orderCode' separator=',' open='(' close=')'>
+                    #{orderCode}
+                </foreach>
+            </trim>
+            GROUP BY t1.external_code, t1.bill_type, t1.platform_project_id, code
+            having count(1) > 0
+        </where>
+    </select>
+
+    <select id="countByDTO" resultType="java.lang.Integer" parameterType="TocSettlementReceiveBillCostItemDTO" >
+        select count(0)
+        from t_toc_settlement_receive_bill_cost_item
+        <include refid='sql_dto_where' />
+    </select>
+
+    <select id="listForExportItemByDTO" resultType="map" >
+        select <include refid='sql_columns' /> from t_toc_settlement_receive_bill_cost_item
+        <include refid='sql_dto_where' />
+        order by bill_id desc, external_code
+        limit ${begin},${pageSize}
+    </select>
+
+</mapper>

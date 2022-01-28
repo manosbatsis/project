@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.OrderExternalCodeMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="OrderExternalCodeModelMap" type="OrderExternalCodeModel" >
+                <result property="id" column="id" />
+                <result property="externalCode" column="external_code" />
+                <result property="createDate" column="create_date" />
+                <result property="orderSource" column="order_source" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OrderExternalCodeModelMap' parameterType='OrderExternalCodeModel'>
+        select <include refid='sql_columns' /> from t_order_external_code  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OrderExternalCodeModelMap' parameterType='OrderExternalCodeModel'>
+        select <include refid='sql_columns' /> from t_order_external_code  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OrderExternalCodeModelMap' parameterType='OrderExternalCodeModel' >
+        select <include refid='sql_columns' /> from t_order_external_code  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='OrderExternalCodeModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_order_external_code
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='id!=null' > id , </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='orderSource!=null' > order_source , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='id!=null' > #{id} , </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='orderSource!=null' > #{orderSource} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='OrderExternalCodeModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_order_external_code SET
+        <trim  suffixOverrides=",">
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='orderSource!=null' > order_source= #{orderSource} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_order_external_code  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_order_external_code where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        id,
+        external_code,
+        create_date,
+        order_source
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='orderSource!=null' > order_source= #{orderSource} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+
+
+
+</mapper>

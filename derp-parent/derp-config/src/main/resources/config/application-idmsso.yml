@@ -1,0 +1,18 @@
+#cas client配置
+cas:
+  #cas认证中心地址
+  server-url-prefix: ${aplcas.server-url-prefix}
+#  客户端地址 开发本地调试用http://localhost:9010
+  client-host-url: ${aplcas.client-host-url}
+  #认证方式
+  validation-type: CAS
+
+#idm接口
+idmappuser: ${idm.appuser}
+idmappkey: ${idm.appkey}
+idmsimurl: ${idm.simurl}
+idmauthstr: ${idm.authstr}
+
+#系统名称
+system:
+  name: ${system.name}

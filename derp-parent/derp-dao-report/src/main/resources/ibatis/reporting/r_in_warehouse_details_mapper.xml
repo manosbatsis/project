@@ -1,0 +1,593 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.InWarehouseDetailsMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="InWarehouseDetailsModelMap" type="InWarehouseDetailsModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="month" column="month" />
+                <result property="goodsName" column="goods_name" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="barcode" column="barcode" />
+                <result property="typeId" column="type_id" />
+                <result property="typeName" column="type_name" />
+                <result property="inWarehouseDays" column="in_warehouse_days" />
+                <result property="inWarehouseNum" column="in_warehouse_num" />
+                <result property="inWarehouseAmount" column="in_warehouse_amount" />
+                <result property="warehouseNo" column="warehouse_no" />
+                <result property="warehouseDate" column="warehouse_date" />
+                <result property="warehouseNum" column="warehouse_num" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="status" column="status" />
+                <result property="inWarehouseRange" column="in_warehouse_range" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="currency" column="currency" />
+                <result property="statisticsDate" column="statistics_date" />
+                <result property="weightedPrice" column="weighted_price" />
+                <result property="weightedAmount" column="weighted_amount" />
+                <result property="inWarehousePrice" column="in_warehouse_price" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InWarehouseDetailsModelMap' parameterType='InWarehouseDetailsModel'>
+        select <include refid='sql_columns' /> from r_in_warehouse_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InWarehouseDetailsModelMap' parameterType='InWarehouseDetailsModel'>
+        select <include refid='sql_columns' /> from r_in_warehouse_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InWarehouseDetailsModelMap' parameterType='InWarehouseDetailsModel' >
+        select <include refid='sql_columns' /> from r_in_warehouse_details  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='InWarehouseDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_in_warehouse_details
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='typeId!=null' >type_id , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' > type_name , </if>
+                        <if test='inWarehouseDays!=null' >in_warehouse_days , </if>
+                        <if test='inWarehouseNum!=null' >in_warehouse_num , </if>
+                        <if test='inWarehouseAmount!=null' >in_warehouse_amount , </if>
+                        <if test='warehouseNo!=null and !"".equals(warehouseNo)' > warehouse_no , </if>
+                        <if test='warehouseDate!=null' >warehouse_date , </if>
+                        <if test='warehouseNum!=null' >warehouse_num , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='inWarehouseRange!=null and !"".equals(inWarehouseRange)' > in_warehouse_range , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='statisticsDate!=null' >statistics_date , </if>
+                        <if test='weightedPrice!=null' >weighted_price , </if>
+                        <if test='weightedAmount!=null' >weighted_amount , </if>
+                        <if test='inWarehousePrice!=null' >in_warehouse_price , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='typeId!=null' > #{typeId} , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' > #{typeName} , </if>
+                        <if test='inWarehouseDays!=null' > #{inWarehouseDays} , </if>
+                        <if test='inWarehouseNum!=null' > #{inWarehouseNum} , </if>
+                        <if test='inWarehouseAmount!=null' > #{inWarehouseAmount} , </if>
+                        <if test='warehouseNo!=null and !"".equals(warehouseNo)' > #{warehouseNo} , </if>
+                        <if test='warehouseDate!=null' > #{warehouseDate} , </if>
+                        <if test='warehouseNum!=null' > #{warehouseNum} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='inWarehouseRange!=null and !"".equals(inWarehouseRange)' > #{inWarehouseRange} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='statisticsDate!=null' > #{statisticsDate} , </if>
+                        <if test='weightedPrice!=null' > #{weightedPrice} , </if>
+                        <if test='weightedAmount!=null' > #{weightedAmount} , </if>
+                        <if test='inWarehousePrice!=null' > #{inWarehousePrice} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='InWarehouseDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_in_warehouse_details SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='typeId!=null' > type_id= #{typeId} , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} , </if>
+                        <if test='inWarehouseDays!=null' > in_warehouse_days= #{inWarehouseDays} , </if>
+                        <if test='inWarehouseNum!=null' > in_warehouse_num= #{inWarehouseNum} , </if>
+                        <if test='inWarehouseAmount!=null' > in_warehouse_amount= #{inWarehouseAmount} , </if>
+                        <if test='warehouseNo!=null and !"".equals(warehouseNo)' >warehouse_no= #{warehouseNo} , </if>
+                        <if test='warehouseDate!=null' > warehouse_date= #{warehouseDate} , </if>
+                        <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='inWarehouseRange!=null and !"".equals(inWarehouseRange)' >in_warehouse_range= #{inWarehouseRange} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='statisticsDate!=null' > statistics_date= #{statisticsDate} , </if>
+                        <if test='weightedPrice!=null' > weighted_price= #{weightedPrice} , </if>
+                        <if test='weightedAmount!=null' > weighted_amount= #{weightedAmount} , </if>
+                        <if test='inWarehousePrice!=null' > in_warehouse_price= #{inWarehousePrice} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_in_warehouse_details  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_in_warehouse_details where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            month,
+            goods_name,
+            brand_id,
+            brand_name,
+            commbarcode,
+            barcode,
+            type_id,
+            type_name,
+            in_warehouse_days,
+            in_warehouse_num,
+            in_warehouse_amount,
+            warehouse_no,
+            warehouse_date,
+            warehouse_num,
+            depot_id,
+            depot_name,
+            create_date,
+            modify_date,
+            status,
+            in_warehouse_range,
+            bu_id,
+            bu_name,
+            currency,
+            statistics_date,
+            weighted_price,
+            weighted_amount,
+            in_warehouse_price
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='typeId!=null' > type_id= #{typeId} and </if>
+                            <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} and </if>
+                            <if test='inWarehouseDays!=null' > in_warehouse_days= #{inWarehouseDays} and </if>
+                            <if test='inWarehouseNum!=null' > in_warehouse_num= #{inWarehouseNum} and </if>
+                            <if test='inWarehouseAmount!=null' > in_warehouse_amount= #{inWarehouseAmount} and </if>
+                            <if test='warehouseNo!=null and !"".equals(warehouseNo)' >warehouse_no= #{warehouseNo} and </if>
+                            <if test='warehouseDate!=null' > warehouse_date= #{warehouseDate} and </if>
+                            <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <!--<if test='startDay!=null and !"".equals(startDay)' >
+	                            <choose>
+					                <when test="0 == startDay">
+					                   in_warehouse_days &gt;= #{startDay} and 
+					                </when>
+					                <otherwise>
+					                   in_warehouse_days &gt; #{startDay} and
+					                </otherwise>
+					            </choose>
+                            </if>
+		                	<if test='endDay!=null and !"".equals(endDay)' > in_warehouse_days &lt;= #{endDay} and </if>-->
+		                	<if test='inWarehouseRange!=null and !"".equals(inWarehouseRange)' > in_warehouse_range= #{inWarehouseRange} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='statisticsDate!=null' > statistics_date= #{statisticsDate} and </if>
+                            <if test='weightedPrice!=null' > weighted_price= #{weightedPrice} and </if>
+                            <if test='weightedAmount!=null' > weighted_amount= #{weightedAmount} and </if>
+                            <if test='inWarehousePrice!=null' > in_warehouse_price= #{inWarehousePrice} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+		<!--清空事业部、仓库、本月的报表数据 -->
+		<delete id='delDepotMonthReport' parameterType='map'>
+			delete from r_in_warehouse_details
+			where `month`= #{month} and bu_id= #{buId}
+		</delete>
+
+		<!-- 列表查询在库天数 -->
+		<select id="listInWarehouseDays" parameterType='map' resultType='map'>
+			SELECT
+				bu_id AS buId,
+				bu_name AS buName,
+				currency AS currency,
+				SUM(in_warehouse_num) AS totalNum,
+				SUM(in_warehouse_amount) AS totalAmount,
+				month AS month,
+				MAX(create_date) AS createDate,
+				MAX(statistics_date) AS statisticsDate
+			FROM
+				r_in_warehouse_details 
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='typeId!=null' > type_id= #{typeId} and </if>
+                            <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} and </if>
+                            <if test='inWarehouseDays!=null' > in_warehouse_days= #{inWarehouseDays} and </if>
+                            <if test='inWarehouseNum!=null' > in_warehouse_num= #{inWarehouseNum} and </if>
+                            <if test='inWarehouseAmount!=null' > in_warehouse_amount= #{inWarehouseAmount} and </if>
+                            <if test='warehouseNo!=null and !"".equals(warehouseNo)' >warehouse_no= #{warehouseNo} and </if>
+                            <if test='warehouseDate!=null' > warehouse_date= #{warehouseDate} and </if>
+                            <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                           <!-- <if test='startDay!=null and !"".equals(startDay)' >
+	                            <choose>
+					                <when test="0 == startDay">
+					                   in_warehouse_days &gt;= #{startDay} and 
+					                </when>
+					                <otherwise>
+					                   in_warehouse_days &gt; #{startDay} and
+					                </otherwise>
+					            </choose>
+                            </if>
+		                	<if test='endDay!=null and !"".equals(endDay)' > in_warehouse_days &lt;= #{endDay} and </if>-->
+		                	<if test='inWarehouseRange!=null and !"".equals(inWarehouseRange)' > in_warehouse_range= #{inWarehouseRange} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buIds!=null' > bu_id in
+                            	
+                            	<foreach collection="buIds" item="buId" open="(" close=")" separator=",">
+                            		#{buId}
+                            	</foreach>
+                            	and
+                            </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='statisticsDate!=null' > statistics_date= #{statisticsDate} and </if>
+                </trim>
+            </where>
+			GROUP BY
+				bu_id,
+				bu_name,
+				month,
+				currency
+		</select>
+		
+		<!-- 按在库天数范围查询 -->
+		<select id="listInWarehouseDaysRange" parameterType='map' resultType='map'>
+			SELECT
+				bu_id AS buId,
+				bu_name AS buName,
+				in_warehouse_range AS inWarehouseRange,
+				currency AS currency,
+				SUM(in_warehouse_num) AS totalNum,
+				SUM(in_warehouse_amount) AS totalAmount,
+				SUM(weighted_amount) AS weightedAmount,
+				month AS month,
+				MAX(create_date) AS createDate,
+				MAX(statistics_date) AS statisticsDate
+			FROM
+				r_in_warehouse_details 
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='typeId!=null' > type_id= #{typeId} and </if>
+                            <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} and </if>
+                            <if test='inWarehouseDays!=null' > in_warehouse_days= #{inWarehouseDays} and </if>
+                            <if test='inWarehouseNum!=null' > in_warehouse_num= #{inWarehouseNum} and </if>
+                            <if test='inWarehouseAmount!=null' > in_warehouse_amount= #{inWarehouseAmount} and </if>
+                            <if test='warehouseNo!=null and !"".equals(warehouseNo)' >warehouse_no= #{warehouseNo} and </if>
+                            <if test='warehouseDate!=null' > warehouse_date= #{warehouseDate} and </if>
+                            <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <!--<if test='startDay!=null and !"".equals(startDay)' >
+	                            <choose>
+					                <when test="0 == startDay">
+					                   in_warehouse_days &gt;= #{startDay} and 
+					                </when>
+					                <otherwise>
+					                   in_warehouse_days &gt; #{startDay} and
+					                </otherwise>
+					            </choose>
+                            </if>
+		                	<if test='endDay!=null and !"".equals(endDay)' > in_warehouse_days &lt;= #{endDay} and </if>-->
+		                	<if test='inWarehouseRange!=null and !"".equals(inWarehouseRange)' > in_warehouse_range= #{inWarehouseRange} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buIds!=null' > bu_id in
+                            	
+                            	<foreach collection="buIds" item="buId" open="(" close=")" separator=",">
+                            		#{buId}
+                            	</foreach>
+                            	and
+                            </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='statisticsDate!=null' > statistics_date= #{statisticsDate} and </if>
+                </trim>
+            </where>
+			GROUP BY
+				bu_id,
+				bu_name,
+				month,
+				currency,
+				in_warehouse_range
+		</select>
+		
+		<!-- 查询统计时间 -->
+		<select id="getRangeDate" parameterType='map' resultType="map">
+			select create_date from r_in_warehouse_details where month = #{month} and merchant_id = #{merchantId} ORDER BY create_date desc limit 1 
+		</select>
+		
+		<!-- 根据月份，标准条码，按入库时间倒序查询 -->
+		<select id="getDetailsByMonthAndCommbarcode" parameterType="map" resultMap="InWarehouseDetailsModelMap">
+			select * from r_in_warehouse_details where month = #{month} and commbarcode = #{commbarcode} and bu_id = #{buId} order by warehouse_date desc 
+		</select>
+		
+		<delete id='deleteNullInWarehouseNumDetails'>
+			delete from r_in_warehouse_details where in_warehouse_num is null 
+		</delete>
+		
+		<!-- 根据按入库天数倒序查询 -->
+		<select id="listInWarehouseOrderByInWarehousedays" parameterType="InWarehouseDetailsDTO" resultType="InWarehouseDetailsDTO">
+			select w.*,t2.superior_parent_brand
+			from r_in_warehouse_details w
+            LEFT JOIN st_commbarcode t1 ON t1.commbarcode=w.commbarcode
+            LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			where w.month = #{month} and w.bu_id = #{buId}
+            <if test='buIds!=null and buIds.size()>0' >and w.bu_id in
+                <foreach collection='buIds' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>
+            </if>			
+			order by ISNULL(w.in_warehouse_days) , w.in_warehouse_days ASC
+		</select>
+
+    <select id="inWarehouseDaysRangeData" parameterType='map' resultType='map'>
+        SELECT
+            <if test='buId!=null' >
+                bu_id AS buId,
+                bu_name AS buName,
+            </if>
+            in_warehouse_range AS inWarehouseRange,
+            currency AS currency,
+            IFNULL(SUM(in_warehouse_num), 0) AS totalNum,
+            IFNULL(SUM(in_warehouse_amount), 0) AS totalAmount,
+            IFNULL(SUM(weighted_amount),0 ) AS weightedAmount,
+            month AS month,
+            MAX(create_date) AS createDate,
+            MAX(statistics_date) AS statisticsDate
+        FROM r_in_warehouse_details details
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" open="(" close=")" separator=",">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+        GROUP BY
+            <if test='buId!=null' >
+                bu_id,
+            </if>
+            month,
+            currency,
+            in_warehouse_range
+    </select>
+    <!-- 获取品牌在库天数TOP8 （销售洞察）-->
+    <select id="getBrandInWarehouse" parameterType='map' resultType='map'>
+        SELECT
+        <choose>
+            <when test='isParentBrand != null and !"".equals(isParentBrand) and isParentBrand == "1"' >
+                brand.id as brandId,
+                brand.name as brandName,
+            </when>
+            <otherwise>
+                brand.superior_parent_brand_id as brandId,
+                brand.superior_parent_brand as brandName,
+            </otherwise>
+        </choose>
+        ifnull(sum(in_warehouse_num),0) as wareHorseNum FROM r_in_warehouse_details wd
+        LEFT JOIN st_brand_parent brand ON wd.brand_id=brand.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                <if test='inWarehouseRange!=null and !"".equals(inWarehouseRange)' >in_warehouse_range= #{inWarehouseRange} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" open="(" close=")" separator=",">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <choose>
+                    <when test ='isParentBrand == "1" '>
+                        brand.id is not null and brand.name is not null
+                    </when>
+                    <otherwise>
+                        brand.superior_parent_brand_id is not null and brand.superior_parent_brand is not null and brand.superior_parent_brand_id !=0
+                    </otherwise>
+                </choose>
+            </trim>
+        </where>
+        <choose>
+            <when test='isParentBrand != null and !"".equals(isParentBrand) and isParentBrand == "1"' >
+                GROUP BY brand.id
+            </when>
+            <otherwise>
+                GROUP BY brand.superior_parent_brand_id
+            </otherwise>
+        </choose>
+        ORDER BY wareHorseNum desc LIMIT 8
+    </select>
+    <!-- 获取品牌在库天数 其他 （销售洞察）-->
+    <select id="getBrandInWarehouseOther" parameterType='map' resultType='map'>
+        SELECT
+        '其他'  as brandName,
+        ifnull(sum(in_warehouse_num),0) as wareHorseNum FROM r_in_warehouse_details wd
+        LEFT JOIN st_brand_parent brand ON wd.brand_id=brand.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                <if test='inWarehouseRange!=null and !"".equals(inWarehouseRange)' >in_warehouse_range= #{inWarehouseRange} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" open="(" close=")" separator=",">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandIds!=null' >
+                    <choose>
+                        <when test='isParentBrand != null and !"".equals(isParentBrand) and isParentBrand == "1"' >
+                             brand.id is not null and brand.name is not null and
+                             brand.id not in
+                            <foreach collection="brandIds" item="bId" separator="," open="(" close=")">
+                                #{bId}
+                            </foreach>
+                            and
+                        </when>
+                        <otherwise>
+                            brand.superior_parent_brand_id is not null and brand.superior_parent_brand is not null and brand.superior_parent_brand_id !=0
+                            and brand.superior_parent_brand_id not in
+                            <foreach collection="brandIds" item="bId" separator="," open="(" close=")">
+                                #{bId}
+                            </foreach>
+                            and
+                        </otherwise>
+                    </choose>
+                </if>
+            </trim>
+        </where>
+    </select>
+    <!-- 商品在库天数 导出（销售洞察） -->
+    <select id="getInWarehouseDaysExportList" parameterType='map' resultType='map'>
+        SELECT
+            bu_id AS buId,
+            bu_name AS buName,
+            barcode,
+            commbarcode,
+            goods_name as goodsName,
+            brand_id as brandId,
+            brand_name as brandName,
+            type_id as typeId,
+            type_name as typeName,
+            in_warehouse_range as inWarehouseRange,
+            in_warehouse_days  as totalWarehoseDays,
+            in_warehouse_num AS totalNum,
+            currency,
+            in_warehouse_amount AS totalAmount,
+            weighted_amount AS weightedAmount
+        FROM r_in_warehouse_details details
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" open="(" close=")" separator=",">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.BatchValidationInfoMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="BatchValidationInfoModelMap" type="BatchValidationInfoModel" >
+            <result property="depotName" column="depot_name" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="createUsername" column="create_username" />
+            <result property="effectiveTime" column="effective_time" />
+            <result property="depotId" column="depot_id" />
+            <result property="batchValidation" column="batch_validation" />
+            <result property="creater" column="creater" />
+            <result property="id" column="id" />
+            <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BatchValidationInfoModelMap' parameterType='BatchValidationInfoModel'>
+        select <include refid='sql_columns' /> from st_batch_validation_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BatchValidationInfoModelMap' parameterType='BatchValidationInfoModel'>
+        select <include refid='sql_columns' /> from st_batch_validation_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BatchValidationInfoModelMap' parameterType='BatchValidationInfoModel' >
+        select <include refid='sql_columns' /> from st_batch_validation_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='BatchValidationInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_batch_validation_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > create_username , </if>
+                <if test='effectiveTime!=null' > effective_time , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='batchValidation!=null and !"".equals(batchValidation)' > batch_validation , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > #{createUsername} , </if>
+                <if test='effectiveTime!=null' > #{effectiveTime} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='batchValidation!=null and !"".equals(batchValidation)' > #{batchValidation} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='BatchValidationInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_batch_validation_info SET
+        <trim  suffixOverrides=",">
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} , </if>
+                <if test='effectiveTime!=null' > effective_time= #{effectiveTime} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='batchValidation!=null and !"".equals(batchValidation)' >batch_validation= #{batchValidation} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_batch_validation_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_batch_validation_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        depot_name,
+        modify_date,
+        create_username,
+        effective_time,
+        depot_id,
+        batch_validation,
+        creater,
+        id,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} and </if>
+                <if test='effectiveTime!=null' > effective_time= #{effectiveTime} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='batchValidation!=null and !"".equals(batchValidation)' >batch_validation= #{batchValidation} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+    <resultMap id="BatchValidationInfoModelMap2" type="BatchValidationInfoModel" >
+            <result property="depotName" column="depot_name" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="createUsername" column="create_username" />
+            <result property="effectiveTime" column="effective_time" />
+            <result property="depotId" column="depot_id" />
+            <result property="batchValidation" column="batch_validation" />
+            <result property="creater" column="creater" />
+            <result property="id" column="id" />
+            <result property="createDate" column="create_date" />
+            <!-- 拓展字段 -->
+            <result property="depotCode" column="depot_code" />
+    </resultMap>
+	<!-- 9011弹框 -->
+	<select id="getListById" resultMap='BatchValidationInfoModelMap2' parameterType='BatchValidationInfoModel'>
+			SELECT
+				t1.id,
+				t1.depot_id,
+				case when (t1.batch_validation = '1') then '是'
+					    when (t1.batch_validation = '0') then '否'
+					    when (t1.batch_validation = '2') then '入库强校验/出库弱校验'
+			  else '' end as batch_validation,
+				t1.create_date,
+				t1.effective_time,
+				t1.depot_name,
+				t2.depot_code
+			FROM
+				st_batch_validation_info t1
+			LEFT JOIN st_depot_info t2 ON t1.depot_id = t2.id
+			where t1.depot_id = #{depotId}
+			ORDER BY t1.create_date desc
+	</select>
+
+
+
+</mapper>

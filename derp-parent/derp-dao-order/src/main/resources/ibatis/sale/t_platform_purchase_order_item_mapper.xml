@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.PlatformPurchaseOrderItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="PlatformPurchaseOrderItemModelMap" type="PlatformPurchaseOrderItemModel" >
+            <result property="id" column="id" />
+            <result property="orderId" column="order_id" />
+            <result property="platformGoodsName" column="platform_goods_name" />
+            <result property="platformBarcode" column="platform_barcode" />
+            <result property="num" column="num" />
+            <result property="price" column="price" />
+            <result property="amount" column="amount" />
+            <result property="receiptOkNum" column="receipt_ok_num" />
+            <result property="receiptBadNum" column="receipt_bad_num" />
+            <result property="createDate" column="create_date" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="platformGoodsNo" column="platform_goods_no" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="userCode" column="user_code" />
+            <result property="saleGoodsId" column="sale_goods_id" />
+            <result property="saleGoodsNo" column="sale_goods_no" />
+            <result property="saleGoodsName" column="sale_goods_name" />
+            <result property="saleNum" column="sale_num" />
+            <result property="saleBarcode" column="sale_barcode" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PlatformPurchaseOrderItemModelMap' parameterType='PlatformPurchaseOrderItemModel'>
+        select <include refid='sql_columns' /> from t_platform_purchase_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PlatformPurchaseOrderItemModelMap' parameterType='PlatformPurchaseOrderItemModel'>
+        select <include refid='sql_columns' /> from t_platform_purchase_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PlatformPurchaseOrderItemModelMap' parameterType='PlatformPurchaseOrderItemModel' >
+        select <include refid='sql_columns' /> from t_platform_purchase_order_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PlatformPurchaseOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_platform_purchase_order_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='orderId!=null' >order_id  , </if>
+                        <if test='platformGoodsName!=null and !"".equals(platformGoodsName)' > platform_goods_name , </if>
+                        <if test='platformBarcode!=null and !"".equals(platformBarcode)' > platform_barcode , </if>
+                        <if test='num!=null' >num  , </if>
+                        <if test='price!=null' >price  , </if>
+                        <if test='amount!=null' >amount  , </if>
+                        <if test='receiptOkNum!=null' >receipt_ok_num  , </if>
+                        <if test='receiptBadNum!=null' >receipt_bad_num  , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='modifyDate!=null' >modify_date  , </if>
+                        <if test='platformGoodsNo!=null and !"".equals(platformGoodsNo)' > platform_goods_no , </if>
+                        <if test='merchantId!=null' >merchant_id  , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > user_code , </if>
+                        <if test='saleGoodsId!=null' >sale_goods_id  , </if>
+                        <if test='saleGoodsNo!=null and !"".equals(saleGoodsNo)' > sale_goods_no , </if>
+                        <if test='saleGoodsName!=null and !"".equals(saleGoodsName)' > sale_goods_name , </if>
+                        <if test='saleNum!=null' >sale_num  , </if>
+                        <if test='saleBarcode!=null and !"".equals(saleBarcode)' > sale_barcode , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='platformGoodsName!=null and !"".equals(platformGoodsName)' > #{platformGoodsName} , </if>
+                        <if test='platformBarcode!=null and !"".equals(platformBarcode)' > #{platformBarcode} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='receiptOkNum!=null' > #{receiptOkNum} , </if>
+                        <if test='receiptBadNum!=null' > #{receiptBadNum} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='platformGoodsNo!=null and !"".equals(platformGoodsNo)' > #{platformGoodsNo} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > #{userCode} , </if>
+                        <if test='saleGoodsId!=null' > #{saleGoodsId} , </if>
+                        <if test='saleGoodsNo!=null and !"".equals(saleGoodsNo)' > #{saleGoodsNo} , </if>
+                        <if test='saleGoodsName!=null and !"".equals(saleGoodsName)' > #{saleGoodsName} , </if>
+                        <if test='saleNum!=null' > #{saleNum} , </if>
+                        <if test='saleBarcode!=null and !"".equals(saleBarcode)' > #{saleBarcode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PlatformPurchaseOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_platform_purchase_order_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='platformGoodsName!=null and !"".equals(platformGoodsName)' >platform_goods_name= #{platformGoodsName} , </if>
+                        <if test='platformBarcode!=null and !"".equals(platformBarcode)' >platform_barcode= #{platformBarcode} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='receiptOkNum!=null' > receipt_ok_num= #{receiptOkNum} , </if>
+                        <if test='receiptBadNum!=null' > receipt_bad_num= #{receiptBadNum} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='platformGoodsNo!=null and !"".equals(platformGoodsNo)' >platform_goods_no= #{platformGoodsNo} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} , </if>
+                        <if test='saleGoodsId!=null' > sale_goods_id= #{saleGoodsId} , </if>
+                        <if test='saleGoodsNo!=null and !"".equals(saleGoodsNo)' >sale_goods_no= #{saleGoodsNo} , </if>
+                        <if test='saleGoodsName!=null and !"".equals(saleGoodsName)' >sale_goods_name= #{saleGoodsName} , </if>
+                        <if test='saleNum!=null' > sale_num= #{saleNum} , </if>
+                        <if test='saleBarcode!=null and !"".equals(saleBarcode)' >sale_barcode= #{saleBarcode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_platform_purchase_order_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_platform_purchase_order_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            order_id,
+            platform_goods_name,
+            platform_barcode,
+            num,
+            price,
+            amount,
+            receipt_ok_num,
+            receipt_bad_num,
+            create_date,
+            modify_date,
+            platform_goods_no,
+            merchant_id,
+            user_code,
+            sale_goods_id,
+            sale_goods_no,
+            sale_goods_name,
+            sale_num,
+            sale_barcode
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='platformGoodsName!=null and !"".equals(platformGoodsName)' >platform_goods_name= #{platformGoodsName} and </if>
+                            <if test='platformBarcode!=null and !"".equals(platformBarcode)' >platform_barcode= #{platformBarcode} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='receiptOkNum!=null' > receipt_ok_num= #{receiptOkNum} and </if>
+                            <if test='receiptBadNum!=null' > receipt_bad_num= #{receiptBadNum} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='platformGoodsNo!=null and !"".equals(platformGoodsNo)' >platform_goods_no= #{platformGoodsNo} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} and </if>
+                            <if test='saleGoodsId!=null' > sale_goods_id= #{saleGoodsId} and </if>
+                            <if test='saleGoodsNo!=null and !"".equals(saleGoodsNo)' >sale_goods_no= #{saleGoodsNo} and </if>
+                            <if test='saleGoodsName!=null and !"".equals(saleGoodsName)' >sale_goods_name= #{saleGoodsName} and </if>
+                            <if test='saleNum!=null' > sale_num= #{saleNum} and </if>
+                            <if test='saleBarcode!=null and !"".equals(saleBarcode)' >sale_barcode= #{saleBarcode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+<!--自定义SQL-->
+    <!-- 查询所有信息 -->
+    <select id="listDTO" resultType='PlatformPurchaseOrderItemDTO' parameterType='PlatformPurchaseOrderItemDTO'>
+        select <include refid='sql_columns' /> from t_platform_purchase_order_item  <include refid='sql_where' />
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.topideal</groupId>
+        <artifactId>derp-parent</artifactId>
+        <version>4.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.topideal</groupId>
+    <artifactId>derp-mq-inventory</artifactId>
+    <version>4.0-SNAPSHOT</version>
+    <name>derp-mq-inventory</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.topideal</groupId>
+            <artifactId>derp-dao-inventory</artifactId>
+            <version>4.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.topideal</groupId>
+            <artifactId>derp-json-mq</artifactId>
+            <version>4.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.topideal</groupId>
+            <artifactId>derp-external-api</artifactId>
+            <version>4.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- springboot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        <!--全局排除排除Logback日志spring-boot-starter-logging内的所有依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- log4j -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!-- apollo配置中心 -->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao</groupId>
+            <artifactId>taobao-sdk-java-auto_1564649192179-20200511</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>derp-mq-inventory</finalName>
+        <plugins>
+            <!-- 配置manifest文件，以及服务jar的启动类 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <classesDirectory>target/classes/</classesDirectory>
+                    <archive>
+                        <manifest>
+                            <!--执行Jar文件的启动类,使用dubbo自带的启动类 -->
+                            <mainClass>com.topideal.MainApplication</mainClass>
+                            <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <addClasspath>true</addClasspath>
+                            <!--将服务依赖的jar文件，放到lib文件夹下 -->
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- 将运行服务的jar文件，依赖的其它jar文件放在lib文件夹下 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <type>jar</type>
+                            <includeTypes>jar</includeTypes>
+                            <!--<useUniqueVersions>false</useUniqueVersions>-->
+                            <outputDirectory>
+                                ${project.build.directory}/lib
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

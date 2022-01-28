@@ -1,0 +1,718 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuFinanceWarehouseDetailsMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuFinanceWarehouseDetailsModelMap" type="BuFinanceWarehouseDetailsModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="orderId" column="order_id" />
+                <result property="orderCode" column="order_code" />
+                <result property="orderCreateDate" column="order_create_date" />
+                <result property="warehouseId" column="warehouse_id" />
+                <result property="warehouseCode" column="warehouse_code" />
+                <result property="supplierId" column="supplier_id" />
+                <result property="supplierName" column="supplier_name" />
+                <result property="warehouseCreateDate" column="warehouse_create_date" />
+                <result property="poNo" column="po_no" />
+                <result property="drawInvoiceDate" column="draw_invoice_date" />
+                <result property="invoiceNo" column="invoice_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="barcode" column="barcode" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="orderCurrency" column="order_currency" />
+                <result property="orderAmount" column="order_amount" />
+                <result property="warehouseNum" column="warehouse_num" />
+                <result property="warehouseCurrency" column="warehouse_currency" />
+                <result property="warehousePrice" column="warehouse_price" />
+                <result property="warehouseAmount" column="warehouse_amount" />
+                <result property="month" column="month" />
+                <result property="relDate" column="rel_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="orderPrice" column="order_price" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="orderType" column="order_type" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="sdTgtAmount" column="sd_tgt_amount" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+                <result property="differencePrice" column="difference_price" />
+                <result property="differenceAmount" column="difference_amount" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuFinanceWarehouseDetailsModelMap' parameterType='BuFinanceWarehouseDetailsModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_warehouse_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuFinanceWarehouseDetailsModelMap' parameterType='BuFinanceWarehouseDetailsModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_warehouse_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuFinanceWarehouseDetailsModelMap' parameterType='BuFinanceWarehouseDetailsModel' >
+        select <include refid='sql_columns' /> from r_bu_finance_warehouse_details  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuFinanceWarehouseDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_finance_warehouse_details
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='inDepotId!=null' >in_depot_id , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > in_depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='orderCreateDate!=null' >order_create_date , </if>
+                        <if test='warehouseId!=null' >warehouse_id , </if>
+                        <if test='warehouseCode!=null and !"".equals(warehouseCode)' > warehouse_code , </if>
+                        <if test='supplierId!=null' >supplier_id , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+                        <if test='warehouseCreateDate!=null' >warehouse_create_date , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='drawInvoiceDate!=null' >draw_invoice_date , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > invoice_no , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='orderCurrency!=null and !"".equals(orderCurrency)' > order_currency , </if>
+                        <if test='orderAmount!=null' >order_amount , </if>
+                        <if test='warehouseNum!=null' >warehouse_num , </if>
+                        <if test='warehouseCurrency!=null and !"".equals(warehouseCurrency)' > warehouse_currency , </if>
+                        <if test='warehousePrice!=null' >warehouse_price , </if>
+                        <if test='warehouseAmount!=null' >warehouse_amount , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='relDate!=null' >rel_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='orderPrice!=null' >order_price , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                        <if test='sdTgtAmount!=null' > sd_tgt_amount , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+                        <if test='differencePrice!=null' >difference_price , </if>
+                        <if test='differenceAmount!=null' >difference_amount , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='inDepotId!=null' > #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > #{inDepotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='orderCreateDate!=null' > #{orderCreateDate} , </if>
+                        <if test='warehouseId!=null' > #{warehouseId} , </if>
+                        <if test='warehouseCode!=null and !"".equals(warehouseCode)' > #{warehouseCode} , </if>
+                        <if test='supplierId!=null' > #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+                        <if test='warehouseCreateDate!=null' > #{warehouseCreateDate} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='drawInvoiceDate!=null' > #{drawInvoiceDate} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > #{invoiceNo} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='orderCurrency!=null and !"".equals(orderCurrency)' > #{orderCurrency} , </if>
+                        <if test='orderAmount!=null' > #{orderAmount} , </if>
+                        <if test='warehouseNum!=null' > #{warehouseNum} , </if>
+                        <if test='warehouseCurrency!=null and !"".equals(warehouseCurrency)' > #{warehouseCurrency} , </if>
+                        <if test='warehousePrice!=null' > #{warehousePrice} , </if>
+                        <if test='warehouseAmount!=null' > #{warehouseAmount} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='relDate!=null' > #{relDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='orderPrice!=null' > #{orderPrice} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                        <if test='sdTgtAmount!=null' > #{sdTgtAmount} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+                        <if test='differencePrice!=null' > #{differencePrice} , </if>
+                        <if test='differenceAmount!=null' > #{differenceAmount} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuFinanceWarehouseDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_finance_warehouse_details SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='orderCreateDate!=null' > order_create_date= #{orderCreateDate} , </if>
+                        <if test='warehouseId!=null' > warehouse_id= #{warehouseId} , </if>
+                        <if test='warehouseCode!=null and !"".equals(warehouseCode)' >warehouse_code= #{warehouseCode} , </if>
+                        <if test='supplierId!=null' > supplier_id= #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+                        <if test='warehouseCreateDate!=null' > warehouse_create_date= #{warehouseCreateDate} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='drawInvoiceDate!=null' > draw_invoice_date= #{drawInvoiceDate} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='orderCurrency!=null and !"".equals(orderCurrency)' >order_currency= #{orderCurrency} , </if>
+                        <if test='orderAmount!=null' > order_amount= #{orderAmount} , </if>
+                        <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} , </if>
+                        <if test='warehouseCurrency!=null and !"".equals(warehouseCurrency)' >warehouse_currency= #{warehouseCurrency} , </if>
+                        <if test='warehousePrice!=null' > warehouse_price= #{warehousePrice} , </if>
+                        <if test='warehouseAmount!=null' > warehouse_amount= #{warehouseAmount} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='relDate!=null' > rel_date= #{relDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='orderPrice!=null' > order_price= #{orderPrice} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                        <if test='sdTgtAmount!=null' > sd_tgt_amount= #{sdTgtAmount} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+                        <if test='differencePrice!=null' > difference_price= #{differencePrice} , </if>
+                        <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_finance_warehouse_details  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_finance_warehouse_details where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            in_depot_id,
+            in_depot_name,
+            bu_id,
+            bu_name,
+            order_id,
+            order_code,
+            order_create_date,
+            warehouse_id,
+            warehouse_code,
+            supplier_id,
+            supplier_name,
+            warehouse_create_date,
+            po_no,
+            draw_invoice_date,
+            invoice_no,
+            goods_id,
+            goods_name,
+            goods_no,
+            barcode,
+            commbarcode,
+            tallying_unit,
+            order_currency,
+            order_amount,
+            warehouse_num,
+            warehouse_currency,
+            warehouse_price,
+            warehouse_amount,
+            month,
+            rel_date,
+            create_date,
+            modify_date,
+            order_price,
+            creater,
+            create_name,
+            order_type,
+            brand_id,
+            brand_name,
+            superior_parent_brand,
+            sd_tgt_amount,
+            stock_location_type_id,
+            stock_location_type_name,
+            difference_price,
+            difference_amount
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                            <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='orderCreateDate!=null' > order_create_date= #{orderCreateDate} and </if>
+                            <if test='warehouseId!=null' > warehouse_id= #{warehouseId} and </if>
+                            <if test='warehouseCode!=null and !"".equals(warehouseCode)' >warehouse_code= #{warehouseCode} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                            <if test='warehouseCreateDate!=null' > warehouse_create_date= #{warehouseCreateDate} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='drawInvoiceDate!=null' > draw_invoice_date= #{drawInvoiceDate} and </if>
+                            <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='orderCurrency!=null and !"".equals(orderCurrency)' >order_currency= #{orderCurrency} and </if>
+                            <if test='orderAmount!=null' > order_amount= #{orderAmount} and </if>
+                            <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} and </if>
+                            <if test='warehouseCurrency!=null and !"".equals(warehouseCurrency)' >warehouse_currency= #{warehouseCurrency} and </if>
+                            <if test='warehousePrice!=null' > warehouse_price= #{warehousePrice} and </if>
+                            <if test='warehouseAmount!=null' > warehouse_amount= #{warehouseAmount} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='relDate!=null' > rel_date= #{relDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='orderPrice!=null' > order_price= #{orderPrice} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                       	 	<if test='sdTgtAmount!=null' > sd_tgt_amount= #{sdTgtAmount} and</if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                            <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+                            <if test='differencePrice!=null' > difference_price= #{differencePrice} and </if>
+                            <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+		<!--清空商家商家、仓库、本月的报表数据 -->
+		<delete id='delBuDepotMonthFinanceWarehouseDetails' parameterType='map'>
+			delete from r_bu_finance_warehouse_details
+			where merchant_id=#{merchantId}
+			and bu_id= #{buId} 			 		
+			and month=#{month}  
+		</delete>
+
+	<!-- 总账导出 获取财务经销存本期入库 -->
+	<select id="getAllAccountFinPurWarehouse" resultType='map' parameterType='map'>
+		SELECT bu_id,order_currency,supplier_id,po_no,SUM(order_amount) as order_amount
+		from r_bu_finance_warehouse_details 
+		where merchant_id=#{merchantId}		
+			  and month=#{month} 
+			  <if test='buId!=null' > and bu_id= #{buId}  </if>
+			  <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+              </if>
+		GROUP BY bu_id,order_currency,supplier_id,po_no
+		
+	</select>
+	<!-- 总账导出 获取财务经销存本期入库差异 -->
+	<select id="getInCostDifferenceExport" resultType='map' parameterType='map'>
+	
+		SELECT  <include refid='sql_columns' />
+		from r_bu_finance_warehouse_details 
+		where merchant_id=#{merchantId}		
+			  and month=#{month} 
+			  and stock_location_type_id is not null
+			  <if test='buId!=null' > and bu_id= #{buId}  </if>
+			  <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+              </if>		
+	</select>
+	
+	
+	<!-- 本期采购入库导出 -->
+	<select id="getWarehouseDetailExport" resultMap='BuFinanceWarehouseDetailsModelMap' parameterType='map'>       
+ 		select 
+            t.merchant_name,t.in_depot_name, t.bu_name, t.order_code,t.order_create_date,
+            t.warehouse_code,t.supplier_name,t.warehouse_create_date,t.po_no,t.draw_invoice_date,
+            t.invoice_no,t.goods_name,t.goods_no,t.barcode,t.commbarcode,t.tallying_unit,t.order_currency,
+            t.order_amount,t.warehouse_num,t.warehouse_currency,t.warehouse_price,t.warehouse_amount,
+            t.month,t.rel_date,t.create_date,t.modify_date,t.order_price,t.creater,t.create_name,t.order_type,
+            t.sd_tgt_amount,
+            t2.`name` as brand_name,
+            t2.superior_parent_brand as superior_parent_brand
+ 		from 
+        r_bu_finance_warehouse_details t
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+				LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        where t.merchant_id=#{merchantId}	 and t.`month`=#{month} 
+         <if test='buId!=null' > and t.bu_id= #{buId}  </if>
+		<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+			 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+			       #{buId}
+			 </foreach>                   
+		</if>         
+    </select>
+
+
+  <!--累计采购汇总 分页数据 -->
+  <select id='getListAddWarehouse' resultType='BuFinanceWarehouseDetailsDTO' parameterType='BuFinanceWarehouseDetailsDTO'>			
+			SELECT CONCAT(#{monthStart},'~',#{monthEnd}) as `month`, 
+			tt.bu_id,
+			MAX(tt.bu_name) as bu_name,
+			MAX(tt.supplier_name) as supplier_name,			
+			tt.supplier_id,
+			tt.brand_name,
+			tt.superior_parent_brand,
+			tt.commbarcode,
+			MAX(tt.goods_name) as goods_name,
+			tt.order_currency,
+			SUM(tt.warehouse_num)as warehouse_num,
+			SUM(tt.warehouse_amount) as warehouse_amount,
+			SUM(tt.order_amount) as order_amount 
+			from  
+			(
+			
+			SELECT 
+			
+			t.bu_id,
+			MAX(t.bu_name) as bu_name,
+			MAX(t.supplier_name) as supplier_name,			
+			t.supplier_id,
+			t2.`name` as brand_name,
+			t2.superior_parent_brand as superior_parent_brand,
+			t3.commbarcode,
+			MAX(t.goods_name) as goods_name,
+			t.order_currency,
+			if(t.order_type='2',-SUM(warehouse_num),SUM(warehouse_num)) as warehouse_num,	
+			if(t.order_type='2',-SUM(warehouse_amount),SUM(warehouse_amount)) as warehouse_amount,	
+			if(t.order_type='2',-SUM(order_amount),SUM(order_amount)) as order_amount 
+			
+			from r_bu_finance_warehouse_details  t
+			LEFT JOIN st_merchandise_info t3 ON t.goods_id=t3.id
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t3.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			where t.merchant_id= #{merchantId} 
+			and t.month &gt;= #{monthStart} 
+			and t.month &lt;=#{monthEnd}	
+			<if test='buId!=null' >and t.bu_id= #{buId}  </if>	
+			<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                  <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                      #{buId}
+                  </foreach>
+            </if>			              
+			<if test='goodsName!=null and !"".equals(goodsName)' >and t3.name= #{goodsName}  </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)' >and t3.commbarcode= #{commbarcode}  </if>						  								
+			<if test='supplierId!=null' > and t.supplier_id= #{supplierId}  </if>
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   and t.brand_id in 
+				<foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				</foreach>    
+			</if> 
+			
+			GROUP BY t.bu_id,t.supplier_id,t3.commbarcode,t.order_currency,t.order_type
+			) tt
+
+		GROUP BY tt.bu_id,tt.supplier_id,tt.commbarcode,tt.order_currency
+		ORDER BY tt.bu_id,tt.supplier_id,tt.commbarcode,tt.order_currency DESC	
+		LIMIT #{begin},#{pageSize}
+	</select>
+	<!-- 获取最大创建时间 -->
+	  <select id='getMaxCreatDate' resultType='BuFinanceWarehouseDetailsDTO' parameterType='BuFinanceWarehouseDetailsDTO'>			
+				
+			SELECT 
+			MAX(t.create_date)as create_date
+			from r_bu_finance_warehouse_details  t
+			LEFT JOIN st_merchandise_info t3 ON t.goods_id=t3.id
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t3.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			where t.merchant_id= #{merchantId} 
+			and t.month &gt;= #{monthStart} 
+			and t.month &lt;=#{monthEnd}	
+			<if test='buId!=null' >and t.bu_id= #{buId}  </if>	
+	    	<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                  <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                      #{buId}
+                  </foreach>
+            </if>		              
+			<if test='goodsName!=null and !"".equals(goodsName)' >and t3.name= #{goodsName}  </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)' >and t3.commbarcode= #{commbarcode}  </if>						  								
+			<if test='supplierId!=null' > and t.supplier_id= #{supplierId}  </if>
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   and t.brand_id in 
+				<foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				</foreach>    
+			</if> 
+	</select>
+	
+	<!--累计采购汇总 分页数据总量-->
+  <select id='getListAddWarehouseCount' resultType="Integer" parameterType='BuFinanceWarehouseDetailsDTO'>			
+			SELECT COUNT(*) from  
+			(
+			
+			SELECT 
+			CONCAT(#{monthStart},'~',#{monthEnd}) as `month`,
+			t.bu_id,
+			MAX(t.bu_name) as bu_name,
+			MAX(t.supplier_name) as supplier_name,
+			MAX(t.create_date)as create_date,
+			t.supplier_id,
+			t2.`name` as brand_name,
+			t2.superior_parent_brand as superior_parent_brand,
+			t3.commbarcode,
+			MAX(t.goods_name) as goods_name,
+			t.order_currency,
+			if(t.order_type='2',-SUM(warehouse_num),SUM(warehouse_num)) as warehouse_num,	
+			if(t.order_type='2',-SUM(warehouse_amount),SUM(warehouse_amount)) as warehouse_amount,	
+			if(t.order_type='2',-SUM(order_amount),SUM(order_amount)) as order_amount 
+			
+			from r_bu_finance_warehouse_details  t
+			LEFT JOIN st_merchandise_info t3 ON t.goods_id=t3.id
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t3.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			where t.merchant_id= #{merchantId} 
+			and t.month &gt;= #{monthStart} 
+			and t.month &lt;=#{monthEnd}	
+			<if test='buId!=null' >and t.bu_id= #{buId}  </if>
+			<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                  <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                      #{buId}
+                  </foreach>
+            </if>				              
+			<if test='goodsName!=null and !"".equals(goodsName)' >and t3.name= #{goodsName}  </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)' >and t3.commbarcode= #{commbarcode}  </if>						  								
+			<if test='supplierId!=null' > and t.supplier_id= #{supplierId}  </if>
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   and t.brand_id in 
+				<foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				</foreach>    
+			</if> 
+			
+			GROUP BY t.bu_id,t.supplier_id,t3.commbarcode,t.order_currency,t.order_type
+			) tt
+
+
+	</select>
+<!--累计采购汇总 导出 -->
+  <select id='getListAddExport' resultType='BuFinanceWarehouseDetailsDTO' parameterType='BuFinanceWarehouseDetailsDTO'>			
+			SELECT #{monthStart} as monthStart,
+				#{monthEnd} as monthEnd,
+				tt.bu_id,
+				MAX(tt.bu_name) as bu_name,
+				MAX(tt.supplier_name) as supplier_name,
+				tt.supplier_id,
+				tt.brand_name,
+				tt.superior_parent_brand,
+				tt.commbarcode,
+				MAX(tt.goods_name) as goods_name,
+				tt.order_currency,
+				SUM(tt.warehouse_num)as warehouse_num,	
+				SUM(tt.warehouse_amount) as warehouse_amount,	
+				SUM(tt.order_amount) as order_amount,			
+				MAX(tt.merchant_name_temp)as merchant_name 
+			from  
+			(
+			
+			SELECT 
+			
+			t.bu_id,
+			MAX(t.bu_name) as bu_name,
+			MAX(t.supplier_name) as supplier_name,
+			MAX(t.merchant_name)as merchant_name_temp,
+			t.supplier_id,
+			t2.`name` as brand_name,
+			t2.superior_parent_brand as superior_parent_brand,
+			t3.commbarcode,
+			MAX(t.goods_name) as goods_name,
+			t.order_currency,
+			if(t.order_type='2',-SUM(warehouse_num),SUM(warehouse_num)) as warehouse_num,	
+			if(t.order_type='2',-SUM(warehouse_amount),SUM(warehouse_amount)) as warehouse_amount,	
+			if(t.order_type='2',-SUM(order_amount),SUM(order_amount)) as order_amount 
+			
+			from r_bu_finance_warehouse_details  t
+			LEFT JOIN st_merchandise_info t3 ON t.goods_id=t3.id
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t3.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			where t.merchant_id= #{merchantId} 
+			and t.month &gt;= #{monthStart} 
+			and t.month &lt;=#{monthEnd}	
+			<if test='buId!=null' >and t.bu_id= #{buId}  </if>
+			<if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                  <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                      #{buId}
+                  </foreach>
+            </if>				              
+			<if test='goodsName!=null and !"".equals(goodsName)' >and t3.name= #{goodsName}  </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)' >and t3.commbarcode= #{commbarcode}  </if>						  								
+			<if test='supplierId!=null' > and t.supplier_id= #{supplierId}  </if>
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   and t.brand_id in 
+				<foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				</foreach>    
+			</if> 
+			
+			GROUP BY t.bu_id,t.supplier_id,t3.commbarcode,t.order_currency,t.order_type
+			) tt
+
+		GROUP BY tt.bu_id,tt.supplier_id,tt.commbarcode,tt.order_currency
+		ORDER BY tt.bu_id,tt.supplier_id,tt.commbarcode,tt.order_currency DESC	
+	</select>
+
+   <!--  财务进销存入账汇总表 (采购)-->
+    <select id='getPurchaseSummaryExpotr' resultType="map" parameterType='map'>		  
+		SELECT 
+		(SELECT account_currency from st_merchant_info where id=ttt0.merchant_id) as account_currency,
+		ttt0.merchant_id,ttt0.bu_id,ttt0.order_currency,ttt0.`month`,
+		MAX(ttt0.merchant_name)as merchant_name,MAX(ttt0.bu_name)as bu_name,MAX(ttt0.supplier_name)as supplier_name,
+		SUM(ttt0.order_amount)as order_amount,
+		SUM(ttt0.warehouse_amount)as warehouse_amount,  
+		IFNULL(SUM(ttt0.zt_order_amount),0) as zt_order_amount,
+		IFNULL(SUM(ttt0.zt_warehouse_amount),0)  as zt_warehouse_amount,
+		IFNULL(SUM(ttt0.amount),0) as amount,
+		IFNULL(SUM(ttt0.agreement_amount),0)  as agreement_amount
+		from  
+		(				
+		SELECT * from (
+					SELECT tt.merchant_id,tt.bu_id,tt.supplier_id,tt.order_currency,tt.`month`,
+					MAX(tt.merchant_name)as merchant_name,MAX(tt.bu_name)as bu_name,MAX(tt.supplier_name)as supplier_name,
+					SUM(tt.order_amount)as order_amount,
+					SUM(tt.warehouse_amount)as warehouse_amount,
+					0 as zt_order_amount,
+					0 as zt_warehouse_amount,
+					0 as amount,
+					0  as agreement_amount
+					from  (
+					SELECT merchant_id,bu_id,supplier_id,order_currency,order_type,`month`,
+					if (order_type='1',IFNULL(SUM(order_amount),0),IFNULL(-SUM(order_amount),0)) as order_amount,
+					if (order_type='1',IFNULL(SUM(warehouse_amount),0),IFNULL(-SUM(warehouse_amount),0)) as warehouse_amount,
+					MAX(merchant_name)as merchant_name,MAX(bu_name)as bu_name,MAX(supplier_name)as supplier_name
+					from  r_bu_finance_warehouse_details 
+					where   order_type IN ('1','2')
+					AND merchant_id=#{merchantId} 
+					AND `month`=#{month} 
+					<if test='buId!=null' > and bu_id= #{buId}  </if>
+					<if test='buList!=null and !"".equals(buList)' >and bu_id in
+			           <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+			                        #{buId}
+			           </foreach>         
+		            </if>
+					GROUP BY merchant_id,bu_id,supplier_id,order_currency,order_type,`month`			 
+					)tt 				
+					GROUP BY tt.merchant_id,tt.bu_id,tt.supplier_id,tt.order_currency,tt.`month`
+		)tt1
+		UNION 
+		SELECT * from 
+		(
+					SELECT merchant_id,bu_id,supplier_id,order_currency,`month`,
+					MAX(merchant_name)as merchant_name,MAX(bu_name)as bu_name,MAX(supplier_name)as supplier_name,
+					0 as order_amount,
+					0 as warehouse_amount,
+					IFNULL(SUM(order_amount),0) as zt_order_amount,
+					IFNULL(SUM(warehouse_amount),0)  as zt_warehouse_amount,
+					0 as amount,
+					0  as agreement_amount
+					from  r_bu_finance_add_purchase_notshelf_details 
+					where  merchant_id=#{merchantId} 
+					and month=#{month}  
+					and DATE_FORMAT(draw_invoice_date, '%Y-%m')=#{month}
+					<if test='buId!=null' > and bu_id= #{buId}  </if>	
+					<if test='buList!=null and !"".equals(buList)' >and bu_id in
+			           <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+			                        #{buId}
+			           </foreach>         
+		            </if>			  
+					GROUP BY merchant_id,bu_id,supplier_id,order_currency,`month`
+		)tt2 
+		UNION
+		SELECT * from 
+		(
+					SELECT
+					merchant_id,bu_id,"/" as supplier_id,currency as order_currency,`month`,
+					MAX(merchant_name)as merchant_name,MAX(bu_name)as bu_name,"/" as supplier_name,
+					0 as order_amount,
+					0 as warehouse_amount,
+					0 as zt_order_amount,
+					0  as zt_warehouse_amount,
+					IFNULL(SUM(amount),0) as amount,
+					IFNULL(SUM(agreement_amount),0)  as agreement_amount
+					from  r_bu_finance_move_details 
+					where  merchant_id=#{merchantId} 
+					and month=#{month}  
+					<if test='buId!=null' > and bu_id= #{buId}  </if>
+					<if test='buList!=null and !"".equals(buList)' >and bu_id in
+			           <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+			                        #{buId}
+			           </foreach>         
+		            </if>
+					and order_type='1'
+					GROUP BY merchant_id,bu_id,currency,`month`  
+					
+		) tt3 
+
+		)ttt0 GROUP BY ttt0.merchant_id,ttt0.bu_id,ttt0.order_currency,ttt0.`month` ,ttt0.supplier_id  
+  
+
+    </select>
+
+
+</mapper>

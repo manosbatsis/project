@@ -1,0 +1,469 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.TobTemporaryReceiveBillRebateItemMapper'>
+
+    <!-- 关系映射 -->
+        <resultMap id="TobTemporaryReceiveBillRebateItemModelMap" type="TobTemporaryReceiveBillRebateItemModel" >
+                <result property="id" column="id" />
+                <result property="billId" column="bill_id" />
+                <result property="relSdCode" column="rel_sd_code" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="price" column="price" />
+                <result property="shelfNum" column="shelf_num" />
+                <result property="sdTypeId" column="sd_type_id" />
+                <result property="sdTypeName" column="sd_type_name" />
+                <result property="rebateAmount" column="rebate_amount" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="projectId" column="project_id" />
+                <result property="projectName" column="project_name" />
+                <result property="parentBrandName" column="parent_brand_name" />
+	            <result property="parentBrandId" column="parent_brand_id" />
+	            <result property="parentBrandCode" column="parent_brand_code" />
+	            <result property="sdRatio" column="sd_ratio" />
+	            <result property="brandId" column="brand_id" />
+            	<result property="brandName" column="brand_name" />
+            	<result property="isWriteOff" column="is_write_off" />
+            	<result property="originalSaleSdOrderCode" column="original_sale_sd_order_code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TobTemporaryReceiveBillRebateItemModelMap' parameterType='TobTemporaryReceiveBillRebateItemModel'>
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_rebate_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TobTemporaryReceiveBillRebateItemModelMap' parameterType='TobTemporaryReceiveBillRebateItemModel'>
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_rebate_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TobTemporaryReceiveBillRebateItemModelMap' parameterType='TobTemporaryReceiveBillRebateItemModel' >
+        select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_rebate_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='TobTemporaryReceiveBillRebateItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_tob_temporary_receive_bill_rebate_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='billId!=null' >bill_id  , </if>
+                        <if test='relSdCode!=null and !"".equals(relSdCode)' > rel_sd_code , </if>
+                        <if test='goodsId!=null' >goods_id  , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='price!=null' >price  , </if>
+                        <if test='shelfNum!=null' >shelf_num  , </if>
+                        <if test='sdTypeId!=null' >sd_type_id  , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > sd_type_name , </if>
+                        <if test='rebateAmount!=null' >rebate_amount  , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='modifyDate!=null' >modify_date  , </if>
+                        <if test='projectId!=null' >project_id  , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > project_name , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name , </if>
+                        <if test='parentBrandId!=null' >parent_brand_id  , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > parent_brand_code , </if>
+                        <if test='sdRatio!=null' > sd_ratio , </if>
+                        <if test='brandId!=null' >brand_id  , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)' > is_write_off , </if>
+                        <if test='originalSaleSdOrderCode!=null and !"".equals(originalSaleSdOrderCode)' > original_sale_sd_order_code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billId!=null' > #{billId} , </if>
+                        <if test='relSdCode!=null and !"".equals(relSdCode)' > #{relSdCode} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='shelfNum!=null' > #{shelfNum} , </if>
+                        <if test='sdTypeId!=null' > #{sdTypeId} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > #{sdTypeName} , </if>
+                        <if test='rebateAmount!=null' > #{rebateAmount} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='projectId!=null' > #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > #{projectName} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' > #{parentBrandCode} , </if>
+                        <if test='sdRatio!=null' > #{sdRatio} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)' > #{isWriteOff} , </if>
+                        <if test='originalSaleSdOrderCode!=null and !"".equals(originalSaleSdOrderCode)' > #{originalSaleSdOrderCode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='TobTemporaryReceiveBillRebateItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_tob_temporary_receive_bill_rebate_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billId!=null' > bill_id= #{billId} , </if>
+                        <if test='relSdCode!=null and !"".equals(relSdCode)' >rel_sd_code= #{relSdCode} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='shelfNum!=null' > shelf_num= #{shelfNum} , </if>
+                        <if test='sdTypeId!=null' > sd_type_id= #{sdTypeId} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} , </if>
+                        <if test='rebateAmount!=null' > rebate_amount= #{rebateAmount} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='projectId!=null' > project_id= #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} , </if>
+                        <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} , </if>
+                        <if test='sdRatio!=null' >sd_ratio= #{sdRatio} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)' >is_write_off= #{isWriteOff} , </if>
+                        <if test='originalSaleSdOrderCode!=null and !"".equals(originalSaleSdOrderCode)' >original_sale_sd_order_code= #{originalSaleSdOrderCode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_tob_temporary_receive_bill_rebate_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_tob_temporary_receive_bill_rebate_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_id,
+            rel_sd_code,
+            goods_id,
+            goods_name,
+            goods_no,
+            price,
+            shelf_num,
+            sd_type_id,
+            sd_type_name,
+            rebate_amount,
+            create_date,
+            modify_date,
+            project_id,
+            project_name,
+            parent_brand_name,
+            parent_brand_id,
+            parent_brand_code,
+            sd_ratio,
+            brand_id,
+            brand_name,
+            is_write_off,
+            original_sale_sd_order_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='relSdCode!=null and !"".equals(relSdCode)' >rel_sd_code= #{relSdCode} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='shelfNum!=null' > shelf_num= #{shelfNum} and </if>
+                            <if test='sdTypeId!=null' > sd_type_id= #{sdTypeId} and </if>
+                            <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} and </if>
+                            <if test='rebateAmount!=null' > rebate_amount= #{rebateAmount} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='projectId!=null' > project_id= #{projectId} and </if>
+                            <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                            <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name= #{parentBrandName} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} and </if>
+                            <if test='parentBrandCode!=null and !"".equals(parentBrandCode)' >parent_brand_code= #{parentBrandCode} and </if>
+                            <if test='sdRatio!=null' >sd_ratio= #{sdRatio} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='isWriteOff!=null and !"".equals(isWriteOff)' >is_write_off= #{isWriteOff} and </if>
+                            <if test='originalSaleSdOrderCode!=null and !"".equals(originalSaleSdOrderCode)' >original_sale_sd_order_code= #{originalSaleSdOrderCode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_tob_temporary_receive_bill_rebate_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                id,
+                bill_id,
+                rel_sd_code,
+                goods_id,
+                goods_name,
+                goods_no,
+                price,
+                shelf_num,
+                sd_type_id,
+                sd_type_name,
+                rebate_amount,
+                project_id,
+                project_name,
+                parent_brand_name,
+                parent_brand_id,
+                parent_brand_code,
+                sd_ratio,
+                brand_id,
+                brand_name,
+                is_write_off,
+                original_sale_sd_order_code
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+                <trim prefix="(" suffix=")" suffixOverrides="," >
+                    #{item.id} ,
+                    #{item.billId} ,
+                    #{item.relSdCode} ,
+                    #{item.goodsId} ,
+                    #{item.goodsName} ,
+                    #{item.goodsNo} ,
+                    #{item.price} ,
+                    #{item.shelfNum} ,
+                    #{item.sdTypeId} ,
+                    #{item.sdTypeName} ,
+                    #{item.rebateAmount},
+                    #{item.projectId},
+                    #{item.projectName},
+                    #{item.parentBrandName},
+                    #{item.parentBrandId},
+                    #{item.parentBrandCode},
+                    #{item.sdRatio},
+                    #{item.brandId},
+                    #{item.brandName},
+                    #{item.isWriteOff},
+                    #{item.originalSaleSdOrderCode}
+                </trim>
+            </foreach>
+        </insert>
+
+        <delete id="delItemsByBillIds" >
+            delete from t_tob_temporary_receive_bill_rebate_item
+            where bill_id in
+            <foreach collection='billIds' item='billId' separator=',' open='(' close=')'>
+                #{billId}
+            </foreach>
+        </delete>
+
+        <select id="listRebateItemPriceByIds" parameterType="TobTemporaryReceiveBillCostItemMonthlyDTO" resultType="java.math.BigDecimal">
+            select
+                ifnull(sum(rebate_amount), 0) rebateAmount
+            from t_tob_temporary_receive_bill_rebate_item
+            where id in  (
+                SELECT temp_item_id
+                FROM t_tob_temporary_receive_bill_cost_item_monthly
+                <where>
+                    <trim suffixOverrides='and'>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                        <if test='buId!=null' > bu_id= #{buId} and </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                    </trim>
+                </where>
+            )
+        </select>
+
+        <select id="listToBTempRebateItemByPage" resultType='TobTemporaryReceiveBillRebateItemDTO' parameterType='TobTemporaryReceiveBillRebateItemDTO'>
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_rebate_item
+            <where>
+                <trim suffixOverrides='and'>
+                    <choose>
+                        <when test='billIds!=null and !"".equals(billIds)'>
+                            bill_id in
+                            <foreach collection="billIds" open="(" close=")" separator="," item="id">
+                                #{id}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='relSdCode!=null and !"".equals(relSdCode)' >rel_sd_code= #{relSdCode} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='shelfNum!=null' > shelf_num= #{shelfNum} and </if>
+                            <if test='sdTypeId!=null' > sd_type_id= #{sdTypeId} and </if>
+                            <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} and </if>
+                            <if test='rebateAmount!=null' > rebate_amount= #{rebateAmount} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                        </otherwise>
+                    </choose>
+                </trim>
+            </where>
+        </select>
+
+        <select id="getRebateTempDetailsCount" parameterType="TobTemporaryReceiveBillDTO" resultType="Integer">
+            select count(id) from t_tob_temporary_receive_bill_rebate_item
+            where bill_id in (
+            select id from t_tob_temporary_receive_bill
+            <where>
+                <trim suffixOverrides='and'>
+                    <choose>
+                        <when test='ids!=null and !"".equals(ids)'>
+                            id in
+                            <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                                #{id}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='shelfCode!=null and !"".equals(shelfCode)' >shelf_code= #{shelfCode} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='shelfMonth!=null and !"".equals(shelfMonth)' >DATE_FORMAT(shelf_date, '%Y-%m')=#{shelfMonth} and </if>
+                        </otherwise>
+                    </choose>
+                </trim>
+            </where>
+            )
+        </select>
+
+        <select id="getVerifyRebateItems" parameterType="TobTemporaryReceiveBillDTO" resultType="TobTemporaryReceiveBillRebateItemDTO" >
+            SELECT
+                ri.id,
+                ri.bill_id,
+                ri.rel_sd_code,
+                ri.goods_id,
+                ri.goods_name,
+                ri.goods_no,
+                ri.price,
+                ri.shelf_num,
+                ri.sd_type_id,
+                ri.sd_type_name,
+                IfNULL(ri.rebate_amount,0) rebateAmount,
+                ri.create_date,
+                ri.modify_date,
+                ri.project_id,
+                ri.project_name,
+                r.po_no,
+                ri.parent_brand_name,
+                ri.parent_brand_id,
+                ri.parent_brand_code,
+                r.currency,
+                IfNULL(t.verifiy_amount,0) verifyAmount
+            FROM t_tob_temporary_receive_bill_rebate_item ri
+            left join t_tob_temporary_receive_bill r on r.id = ri.bill_id
+            LEFT JOIN ( SELECT tob_item_id, SUM( verifiy_amount ) verifiy_amount FROM t_tob_temp_verify_rel WHERE type = '1' GROUP BY tob_item_id ) t ON ri.id = t.tob_item_id
+            WHERE r.merchant_id = #{merchantId}
+              and r.customer_id = #{customerId}
+              and r.bu_id = #{buId}
+              and ri.is_write_off = '0'
+                <if test='"0".equals(billType)' >and r.sale_type = '3'  </if>
+                <if test='"1".equals(billType)' >and r.sale_type in ('1',  '2')  </if>
+                AND ri.id NOT IN (
+                    SELECT a.id FROM t_tob_temporary_receive_bill_rebate_item a
+                    LEFT JOIN ( SELECT tob_item_id, SUM( verifiy_amount ) verifiy_amount FROM t_tob_temp_verify_rel WHERE type = '1' GROUP BY tob_item_id ) b ON a.id = b.tob_item_id
+                    WHERE a.rebate_amount = b.verifiy_amount)
+            order by r.shelf_date asc, bill_id
+        </select>
+
+        <select id='listByBillIds' resultMap='TobTemporaryReceiveBillRebateItemModelMap' >
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_rebate_item
+            where bill_id in
+            <foreach collection='billIds' item='billId' separator=',' open='(' close=')'>
+                #{billId}
+            </foreach>
+        </select>
+
+        <select id="listNonVerifyByCloseAccount" resultMap="TobTemporaryReceiveBillRebateItemModelMap" >
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_rebate_item
+            where bill_id in (select id from t_tob_temporary_receive_bill where merchant_id = #{merchantId} and bu_id = #{buId} and rebate_status in ('1', '2')
+            and date_format(shelf_date, '%Y-%m') &lt;=#{month})
+        </select>
+
+        <select id="listAllVerifyByCloseAccount" resultMap="TobTemporaryReceiveBillRebateItemModelMap" >
+            select <include refid='sql_columns' /> from t_tob_temporary_receive_bill_rebate_item
+            where bill_id in (select id from t_tob_temporary_receive_bill where merchant_id = #{merchantId} and bu_id = #{buId} and rebate_status = '5'
+            and date_format(shelf_date, '%Y-%m') &lt;=#{month})
+            and id in (select DISTINCT tob_item_id from t_tob_temp_verify_rel where DATE_FORMAT(credit_date,'%Y-%m') &gt;= #{month} and type='1')
+        </select>
+
+        <select id="getWriteOffNonVerifyItems" resultMap="TobTemporaryReceiveBillRebateItemModelMap">
+            select
+                r.id,
+                r.bill_id,
+                r.rel_sd_code,
+                r.goods_id,
+                r.goods_name,
+                r.goods_no,
+                r.price,
+                r.shelf_num,
+                r.sd_type_id,
+                r.sd_type_name,
+                r.rebate_amount,
+                r.create_date,
+                r.modify_date,
+                r.project_id,
+                r.project_name,
+                r.parent_brand_name,
+                r.parent_brand_id,
+                r.parent_brand_code,
+                r.sd_ratio,
+                r.brand_id,
+                r.brand_name,
+                r.is_write_off,
+                r.original_sale_sd_order_code
+            from t_tob_temporary_receive_bill_rebate_item r
+            left join t_tob_temporary_receive_bill t on r.bill_id = t.id
+            <where>
+                <trim suffixOverrides='and'>
+                    r.id not in (SELECT tob_item_id FROM t_tob_temp_verify_rel WHERE type = '1' and tob_item_id is not null GROUP BY tob_item_id)
+                    <if test='merchantId!=null' >and t.merchant_id= #{merchantId}</if>
+                    <if test='isWriteOff!=null and !"".equals(isWriteOff)'>and r.is_write_off=#{isWriteOff}</if>
+                    <if test='sdCodes!=null and sdCodes.size > 0' >
+                        and r.rel_sd_code in
+                        <foreach collection='sdCodes' item='sdCode' separator=',' open='(' close=')'>
+                            #{sdCode}
+                        </foreach>
+                    </if>
+                </trim>
+            </where>
+        </select>
+
+        <select id="getVerifySdCodes" resultType="java.lang.String" >
+            select distinct rel_sd_code
+            from t_tob_temporary_receive_bill_rebate_item r
+            left join t_tob_temporary_receive_bill t on r.bill_id = t.id
+            <where>
+                <trim suffixOverrides='and'>
+                    r.id in (SELECT tob_item_id FROM t_tob_temp_verify_rel WHERE type = '1' and tob_item_id is not null GROUP BY tob_item_id)
+                    <if test='merchantId!=null' >and t.merchant_id= #{merchantId}</if>
+                </trim>
+            </where>
+        </select>
+</mapper>

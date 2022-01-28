@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.SaleShelfIdepotMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleShelfIdepotModelMap" type="SaleShelfIdepotModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="saleOrderCode" column="sale_order_code" />
+                <result property="saleOutCode" column="sale_out_code" />
+                <result property="saleShelfId" column="sale_shelf_id" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="inDepotCode" column="in_depot_code" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="outDepotCode" column="out_depot_code" />
+                <result property="poNo" column="po_no" />
+                <result property="state" column="state" />
+                <result property="shelfDate" column="shelf_date" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="operator" column="operator" />
+                <result property="operatorId" column="operator_id" />
+                <result property="operatorDate" column="operator_date" />
+                <result property="creater" column="creater" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="saleOrderId" column="sale_order_id" />
+                <result property="saleOutDepotId" column="sale_out_depot_id" />
+                <result property="verifyRelState" column="verify_rel_state" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="isWriteOff" column="is_write_off" />
+                <result property="originalShelfIdepotId" column="original_shelf_idepot_id" />
+                <result property="originalShelfIdepotCode" column="original_shelf_idepot_code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleShelfIdepotModelMap' parameterType='SaleShelfIdepotModel'>
+        select <include refid='sql_columns' /> from t_sale_shelf_idepot  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleShelfIdepotModelMap' parameterType='SaleShelfIdepotModel'>
+        select <include refid='sql_columns' /> from t_sale_shelf_idepot  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleShelfIdepotModelMap' parameterType='SaleShelfIdepotModel' >
+        select <include refid='sql_columns' /> from t_sale_shelf_idepot  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleShelfIdepotModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_shelf_idepot
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > sale_order_code , </if>
+                        <if test='saleOutCode!=null and !"".equals(saleOutCode)' > sale_out_code , </if>
+                        <if test='saleShelfId!=null' >sale_shelf_id , </if>
+                        <if test='inDepotId!=null' >in_depot_id , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > in_depot_name , </if>
+                        <if test='inDepotCode!=null and !"".equals(inDepotCode)' > in_depot_code , </if>
+                        <if test='outDepotId!=null' >out_depot_id , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                        <if test='outDepotCode!=null and !"".equals(outDepotCode)' > out_depot_code , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='state!=null and !"".equals(state)' > state , </if>
+                        <if test='shelfDate!=null' >shelf_date , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='operator!=null and !"".equals(operator)' > operator , </if>
+                        <if test='operatorId!=null' >operator_id , </if>
+                        <if test='operatorDate!=null' >operator_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='saleOrderId!=null' >sale_order_id , </if>
+                        <if test='saleOutDepotId!=null' >sale_out_depot_id , </if>
+                        <if test='verifyRelState!=null and !"".equals(verifyRelState)' > verify_rel_state , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)' > is_write_off , </if>
+                        <if test='originalShelfIdepotId!=null' >original_shelf_idepot_id , </if>
+                        <if test='originalShelfIdepotCode!=null and !"".equals(originalShelfIdepotCode)' > original_shelf_idepot_code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > #{saleOrderCode} , </if>
+                        <if test='saleOutCode!=null and !"".equals(saleOutCode)' > #{saleOutCode} , </if>
+                        <if test='saleShelfId!=null' > #{saleShelfId} , </if>
+                        <if test='inDepotId!=null' > #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > #{inDepotName} , </if>
+                        <if test='inDepotCode!=null and !"".equals(inDepotCode)' > #{inDepotCode} , </if>
+                        <if test='outDepotId!=null' > #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                        <if test='outDepotCode!=null and !"".equals(outDepotCode)' > #{outDepotCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='state!=null and !"".equals(state)' > #{state} , </if>
+                        <if test='shelfDate!=null' > #{shelfDate} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='operator!=null and !"".equals(operator)' > #{operator} , </if>
+                        <if test='operatorId!=null' > #{operatorId} , </if>
+                        <if test='operatorDate!=null' > #{operatorDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='saleOrderId!=null' > #{saleOrderId} , </if>
+                        <if test='saleOutDepotId!=null' > #{saleOutDepotId} , </if>
+                        <if test='verifyRelState!=null and !"".equals(verifyRelState)' > #{verifyRelState} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)' > #{isWriteOff} , </if>
+                        <if test='originalShelfIdepotId!=null' > #{originalShelfIdepotId} , </if>
+                        <if test='originalShelfIdepotCode!=null and !"".equals(originalShelfIdepotCode)' > #{originalShelfIdepotCode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleShelfIdepotModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_shelf_idepot SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} , </if>
+                        <if test='saleOutCode!=null and !"".equals(saleOutCode)' >sale_out_code= #{saleOutCode} , </if>
+                        <if test='saleShelfId!=null' > sale_shelf_id= #{saleShelfId} , </if>
+                        <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} , </if>
+                        <if test='inDepotCode!=null and !"".equals(inDepotCode)' >in_depot_code= #{inDepotCode} , </if>
+                        <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                        <if test='outDepotCode!=null and !"".equals(outDepotCode)' >out_depot_code= #{outDepotCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='state!=null and !"".equals(state)' >state= #{state} , </if>
+                        <if test='shelfDate!=null' > shelf_date= #{shelfDate} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='operator!=null and !"".equals(operator)' >operator= #{operator} , </if>
+                        <if test='operatorId!=null' > operator_id= #{operatorId} , </if>
+                        <if test='operatorDate!=null' > operator_date= #{operatorDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='saleOrderId!=null' > sale_order_id= #{saleOrderId} , </if>
+                        <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} , </if>
+                        <if test='verifyRelState!=null and !"".equals(verifyRelState)' >verify_rel_state= #{verifyRelState} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='isWriteOff!=null and !"".equals(isWriteOff)' >is_write_off= #{isWriteOff} , </if>
+                        <if test='originalShelfIdepotId!=null' > original_shelf_idepot_id= #{originalShelfIdepotId} , </if>
+                        <if test='originalShelfIdepotCode!=null and !"".equals(originalShelfIdepotCode)' >original_shelf_idepot_code= #{originalShelfIdepotCode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_shelf_idepot  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_shelf_idepot where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            sale_order_code,
+            sale_out_code,
+            sale_shelf_id,
+            in_depot_id,
+            in_depot_name,
+            in_depot_code,
+            out_depot_id,
+            out_depot_name,
+            out_depot_code,
+            po_no,
+            state,
+            shelf_date,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            operator,
+            operator_id,
+            operator_date,
+            creater,
+            create_date,
+            modify_date,
+            sale_order_id,
+            sale_out_depot_id,
+            verify_rel_state,
+            bu_name,
+            bu_id,
+            is_write_off,
+            original_shelf_idepot_id,
+            original_shelf_idepot_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} and </if>
+                            <if test='saleOutCode!=null and !"".equals(saleOutCode)' >sale_out_code= #{saleOutCode} and </if>
+                            <if test='saleShelfId!=null' > sale_shelf_id= #{saleShelfId} and </if>
+                            <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                            <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                            <if test='inDepotCode!=null and !"".equals(inDepotCode)' >in_depot_code= #{inDepotCode} and </if>
+                            <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                            <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                            <if test='outDepotCode!=null and !"".equals(outDepotCode)' >out_depot_code= #{outDepotCode} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='operator!=null and !"".equals(operator)' >operator= #{operator} and </if>
+                            <if test='operatorId!=null' > operator_id= #{operatorId} and </if>
+                            <if test='operatorDate!=null' > operator_date= #{operatorDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='saleOrderId!=null' > sale_order_id= #{saleOrderId} and </if>
+                            <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} and </if>
+                            <if test='verifyRelState!=null and !"".equals(verifyRelState)' >verify_rel_state= #{verifyRelState} and </if>
+                            <if test='buName!=null and !"".equals(buName)' > bu_name=#{buName} and  </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='isWriteOff!=null and !"".equals(isWriteOff)' > is_write_off=#{isWriteOff} and  </if>
+                            <if test='originalShelfIdepotId!=null' > original_shelf_idepot_id= #{originalShelfIdepotId} and </if>
+                            <if test='originalShelfIdepotCode!=null and !"".equals(originalShelfIdepotCode)' >original_shelf_idepot_code= #{originalShelfIdepotCode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+</mapper>

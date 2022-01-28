@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.OperateReportLogMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="OperateReportLogModelMap" type="OperateReportLogModel" >
+            <result property="id" column="id" />
+            <result property="module" column="module" />
+            <result property="relCode" column="rel_code" />
+            <result property="operateId" column="operate_id" />
+            <result property="operater" column="operater" />
+            <result property="operaterDepot" column="operater_depot" />
+            <result property="operateAction" column="operate_action" />
+            <result property="operateDate" column="operate_date" />
+            <result property="operateResult" column="operate_result" />
+            <result property="operateRemark" column="operate_remark" />
+            <result property="createDate" column="create_date" />
+            <result property="modifyDate" column="modify_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OperateReportLogModelMap' parameterType='OperateReportLogModel'>
+        select <include refid='sql_columns' /> from r_operate_report_log  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OperateReportLogModelMap' parameterType='OperateReportLogModel'>
+        select <include refid='sql_columns' /> from r_operate_report_log  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OperateReportLogModelMap' parameterType='OperateReportLogModel' >
+        select <include refid='sql_columns' /> from r_operate_report_log  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OperateReportLogModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_operate_report_log
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='module!=null and !"".equals(module)' > module , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' > rel_code , </if>
+                        <if test='operateId!=null' >operate_id  , </if>
+                        <if test='operater!=null and !"".equals(operater)' > operater , </if>
+                        <if test='operaterDepot!=null and !"".equals(operaterDepot)' > operater_depot , </if>
+                        <if test='operateAction!=null and !"".equals(operateAction)' > operate_action , </if>
+                        <if test='operateDate!=null' >operate_date  , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' > operate_result , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' > operate_remark , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='modifyDate!=null' >modify_date  , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='module!=null and !"".equals(module)' > #{module} , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' > #{relCode} , </if>
+                        <if test='operateId!=null' > #{operateId} , </if>
+                        <if test='operater!=null and !"".equals(operater)' > #{operater} , </if>
+                        <if test='operaterDepot!=null and !"".equals(operaterDepot)' > #{operaterDepot} , </if>
+                        <if test='operateAction!=null and !"".equals(operateAction)' > #{operateAction} , </if>
+                        <if test='operateDate!=null' > #{operateDate} , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' > #{operateResult} , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' > #{operateRemark} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OperateReportLogModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_operate_report_log SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='module!=null and !"".equals(module)' >module= #{module} , </if>
+                        <if test='relCode!=null and !"".equals(relCode)' >rel_code= #{relCode} , </if>
+                        <if test='operateId!=null' > operate_id= #{operateId} , </if>
+                        <if test='operater!=null and !"".equals(operater)' >operater= #{operater} , </if>
+                        <if test='operaterDepot!=null and !"".equals(operaterDepot)' >operater_depot= #{operaterDepot} , </if>
+                        <if test='operateAction!=null and !"".equals(operateAction)' >operate_action= #{operateAction} , </if>
+                        <if test='operateDate!=null' > operate_date= #{operateDate} , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' >operate_result= #{operateResult} , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' >operate_remark= #{operateRemark} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_operate_report_log  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_operate_report_log where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            module,
+            rel_code,
+            operate_id,
+            operater,
+            operater_depot,
+            operate_action,
+            operate_date,
+            operate_result,
+            operate_remark,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='module!=null and !"".equals(module)' >module= #{module} and </if>
+                            <if test='relCode!=null and !"".equals(relCode)' >rel_code= #{relCode} and </if>
+                            <if test='operateId!=null' > operate_id= #{operateId} and </if>
+                            <if test='operater!=null and !"".equals(operater)' >operater= #{operater} and </if>
+                            <if test='operaterDepot!=null and !"".equals(operaterDepot)' >operater_depot= #{operaterDepot} and </if>
+                            <if test='operateAction!=null and !"".equals(operateAction)' >operate_action= #{operateAction} and </if>
+                            <if test='operateDate!=null' > operate_date= #{operateDate} and </if>
+                            <if test='operateResult!=null and !"".equals(operateResult)' >operate_result= #{operateResult} and </if>
+                            <if test='operateRemark!=null and !"".equals(operateRemark)' >operate_remark= #{operateRemark} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+<!--自定义SQL-->
+
+
+
+
+</mapper>

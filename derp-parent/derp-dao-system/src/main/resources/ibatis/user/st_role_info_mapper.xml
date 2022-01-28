@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.user.RoleInfoMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="RoleInfoModelMap" type="RoleInfoModel" >
+                <result property="deteledDate" column="deteled_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="modifier" column="modifier" />
+                <result property="remark" column="remark" />
+                <result property="userName" column="user_name" />
+                <result property="userId" column="user_id" />
+                <result property="parentId" column="parent_id" />
+                <result property="deleted" column="deleted" />
+                <result property="name" column="name" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='RoleInfoModelMap' parameterType='RoleInfoModel'>
+        select <include refid='sql_columns' /> from st_role_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='RoleInfoModelMap' parameterType='RoleInfoModel'>
+        select <include refid='sql_columns' /> from st_role_info  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='RoleInfoModelMap' parameterType='RoleInfoModel' >
+        select <include refid='sql_columns' /> from st_role_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='RoleInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_role_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='deteledDate!=null' > `deteled_date` , </if>
+                <if test='modifyDate!=null' > `modify_date` , </if>
+                <if test='modifier!=null' > `modifier` , </if>
+                <if test='remark!=null and !"".equals(remark)' > `remark` , </if>
+                <if test='userName!=null and !"".equals(userName)' > `user_name` , </if>
+                <if test='userId!=null' > `user_id` , </if>
+                <if test='parentId!=null' > `parent_id` , </if>
+                <if test='deleted!=null and !"".equals(deleted)' > `deleted` , </if>
+                <if test='name!=null and !"".equals(name)' > `name` , </if>
+                <if test='creater!=null' > `creater` , </if>
+                <if test='id!=null' > `id` , </if>
+                <if test='createDate!=null' > `create_date` , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='deteledDate!=null' > #{deteledDate} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='modifier!=null' > #{modifier} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='userName!=null and !"".equals(userName)' > #{userName} , </if>
+                <if test='userId!=null' > #{userId} , </if>
+                <if test='parentId!=null' > #{parentId} , </if>
+                <if test='deleted!=null and !"".equals(deleted)' > #{deleted} , </if>
+                <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='RoleInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_role_info SET
+        <trim  suffixOverrides=",">
+                <if test='deteledDate!=null' > `deteled_date`= #{deteledDate} , </if>
+                <if test='modifyDate!=null' > `modify_date`= #{modifyDate} , </if>
+                <if test='modifier!=null' > `modifier`= #{modifier} , </if>
+                <if test='remark!=null and !"".equals(remark)' >`remark`= #{remark} , </if>
+                <if test='userName!=null and !"".equals(userName)' >`user_name`= #{userName} , </if>
+                <if test='userId!=null' > `user_id`= #{userId} , </if>
+                <if test='parentId!=null' > `parent_id`= #{parentId} , </if>
+                <if test='deleted!=null and !"".equals(deleted)' >`deleted`= #{deleted} , </if>
+                <if test='name!=null and !"".equals(name)' >`name`= #{name} , </if>
+                <if test='creater!=null' > `creater`= #{creater} , </if>
+                <if test='id!=null' > `id`= #{id} , </if>
+                <if test='createDate!=null' > `create_date`= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_role_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_role_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        `deteled_date`,
+        `modify_date`,
+        `modifier`,
+        `remark`,
+        `user_name`,
+        `user_id`,
+        `parent_id`,
+        `deleted`,
+        `name`,
+        `creater`,
+        `id`,
+        `create_date`
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='deteledDate!=null' > `deteled_date`= #{deteledDate} and </if>
+                <if test='modifyDate!=null' > `modify_date`= #{modifyDate} and </if>
+                <if test='modifier!=null' > `modifier`= #{modifier} and </if>
+                <if test='remark!=null and !"".equals(remark)' >`remark`= #{remark} and </if>
+                <if test='userName!=null and !"".equals(userName)' >`user_name`= #{userName} and </if>
+                <if test='userId!=null' > `user_id`= #{userId} and </if>
+                <if test='parentId!=null' > `parent_id`= #{parentId} and </if>
+                <if test='deleted!=null and !"".equals(deleted)' >`deleted`= #{deleted} and </if>
+                <if test='name!=null and !"".equals(name)' >`name`= #{name} and </if>
+                <if test='creater!=null' > `creater`= #{creater} and </if>
+                <if test='id!=null' > `id`= #{id} and </if>
+                <if test='createDate!=null' > `create_date`= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+<!--自定义SQL-->
+    <!-- 查询所有信息 分页 -->
+    <select id='searchDTOByPage' resultType='RoleInfoDTO' parameterType='RoleInfoDTO'>
+        select <include refid='sql_columns' /> from st_role_info
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='deteledDate!=null' > `deteled_date`= #{deteledDate} and </if>
+                <if test='modifyDate!=null' > `modify_date`= #{modifyDate} and </if>
+                <if test='modifier!=null' > `modifier`= #{modifier} and </if>
+                <if test='remark!=null and !"".equals(remark)' >`remark`= #{remark} and </if>
+                <if test='userName!=null and !"".equals(userName)' >`user_name`= #{userName} and </if>
+                <if test='userId!=null' > `user_id`= #{userId} and </if>
+                <if test='parentId!=null' > `parent_id`= #{parentId} and </if>
+                <if test='deleted!=null and !"".equals(deleted)' >`deleted`= #{deleted} and </if>
+                <if test='name!=null and !"".equals(name)' >`name`= #{name} and </if>
+                <if test='creater!=null' > `creater`= #{creater} and </if>
+                <if test='id!=null' > `id`= #{id} and </if>
+                <if test='createDate!=null' > `create_date`= #{createDate} and </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+
+
+
+
+</mapper>

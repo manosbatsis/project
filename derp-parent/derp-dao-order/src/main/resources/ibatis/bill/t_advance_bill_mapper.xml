@@ -1,0 +1,558 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.AdvanceBillMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="AdvanceBillModelMap" type="AdvanceBillModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="currency" column="currency" />
+                <result property="billDate" column="bill_date" />
+                <result property="billStatus" column="bill_status" />
+                <result property="createrId" column="creater_id" />
+                <result property="creater" column="creater" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="poNo" column="po_no" />
+                <result property="orderType" column="order_type" />
+                <result property="ncChannelCode" column="nc_channel_code" />
+                <result property="ncPlatformCode" column="nc_platform_code" />
+                <result property="ncStatus" column="nc_status" />
+                <result property="ncSynDate" column="nc_syn_date" />
+                <result property="ncCode" column="nc_code" />
+                <result property="voucherCode" column="voucher_code" />
+                <result property="voucherName" column="voucher_name" />
+                <result property="voucherIndex" column="voucher_index" />
+                <result property="voucherStatus" column="voucher_status" />
+                <result property="period" column="period" />
+                <result property="synchronizerId" column="synchronizer_id" />
+                <result property="synchronizer" column="synchronizer" />
+                <result property="invoiceStatus" column="invoice_status" />
+                <result property="invoiceId" column="invoice_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AdvanceBillModelMap' parameterType='AdvanceBillModel'>
+        select <include refid='sql_columns' /> from t_advance_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AdvanceBillModelMap' parameterType='AdvanceBillModel'>
+        select <include refid='sql_columns' /> from t_advance_bill  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AdvanceBillModelMap' parameterType='AdvanceBillModel' >
+        select <include refid='sql_columns' /> from t_advance_bill  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='AdvanceBillModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_advance_bill
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='billDate!=null' >bill_date , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' > bill_status , </if>
+                        <if test='createrId!=null' >creater_id , </if>
+                        <if test='creater!=null and !"".equals(creater)' > creater , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type,</if>
+                        <if test='ncChannelCode!=null and !"".equals(ncChannelCode)' > nc_channel_code , </if>
+                        <if test='ncPlatformCode!=null and !"".equals(ncPlatformCode)' > nc_platform_code , </if>
+                        <if test='ncStatus!=null and !"".equals(ncStatus)' > nc_status , </if>
+                        <if test='ncSynDate!=null' >nc_syn_date , </if>
+                        <if test='ncCode!=null and !"".equals(ncCode)' > nc_code , </if>
+                        <if test='voucherCode!=null and !"".equals(voucherCode)' > voucher_code , </if>
+                        <if test='voucherName!=null and !"".equals(voucherName)' > voucher_name , </if>
+                        <if test='voucherIndex!=null and !"".equals(voucherIndex)' > voucher_index , </if>
+                        <if test='voucherStatus!=null and !"".equals(voucherStatus)' > voucher_status , </if>
+                        <if test='period!=null and !"".equals(period)' > period , </if>
+                        <if test='synchronizerId!=null' >synchronizer_id , </if>
+                        <if test='synchronizer!=null and !"".equals(synchronizer)' > synchronizer , </if>
+                        <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' > invoice_status , </if>
+                        <if test='invoiceId!=null' >invoice_id  , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='billDate!=null' > #{billDate} , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' > #{billStatus} , </if>
+                        <if test='createrId!=null' > #{createrId} , </if>
+                        <if test='creater!=null and !"".equals(creater)' > #{creater} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >#{orderType}, </if>
+                        <if test='ncChannelCode!=null and !"".equals(ncChannelCode)' > #{ncChannelCode} , </if>
+                        <if test='ncPlatformCode!=null and !"".equals(ncPlatformCode)' > #{ncPlatformCode} , </if>
+                        <if test='ncStatus!=null and !"".equals(ncStatus)' > #{ncStatus} , </if>
+                        <if test='ncSynDate!=null' > #{ncSynDate} , </if>
+                        <if test='ncCode!=null and !"".equals(ncCode)' > #{ncCode} , </if>
+                        <if test='voucherCode!=null and !"".equals(voucherCode)' > #{voucherCode} , </if>
+                        <if test='voucherName!=null and !"".equals(voucherName)' > #{voucherName} , </if>
+                        <if test='voucherIndex!=null and !"".equals(voucherIndex)' > #{voucherIndex} , </if>
+                        <if test='voucherStatus!=null and !"".equals(voucherStatus)' > #{voucherStatus} , </if>
+                        <if test='period!=null and !"".equals(period)' > #{period} , </if>
+                        <if test='synchronizerId!=null' > #{synchronizerId} , </if>
+                        <if test='synchronizer!=null and !"".equals(synchronizer)' > #{synchronizer} , </if>
+                        <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' > #{invoiceStatus} , </if>
+                        <if test='invoiceId!=null' > #{invoiceId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='AdvanceBillModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_advance_bill SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='billDate!=null' > bill_date= #{billDate} , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} , </if>
+                        <if test='createrId!=null' > creater_id= #{createrId} , </if>
+                        <if test='creater!=null and !"".equals(creater)' >creater= #{creater} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                        <if test='ncChannelCode!=null and !"".equals(ncChannelCode)' >nc_channel_code= #{ncChannelCode} , </if>
+                        <if test='ncPlatformCode!=null and !"".equals(ncPlatformCode)' >nc_platform_code= #{ncPlatformCode} , </if>
+                        <if test='ncStatus!=null and !"".equals(ncStatus)' >nc_status= #{ncStatus} , </if>
+                        <if test='ncSynDate!=null' > nc_syn_date= #{ncSynDate} , </if>
+                        <if test='ncCode!=null and !"".equals(ncCode)' >nc_code= #{ncCode} , </if>
+                        <if test='voucherCode!=null and !"".equals(voucherCode)' >voucher_code= #{voucherCode} , </if>
+                        <if test='voucherName!=null and !"".equals(voucherName)' >voucher_name= #{voucherName} , </if>
+                        <if test='voucherIndex!=null and !"".equals(voucherIndex)' >voucher_index= #{voucherIndex} , </if>
+                        <if test='voucherStatus!=null and !"".equals(voucherStatus)' >voucher_status= #{voucherStatus} , </if>
+                        <if test='period!=null and !"".equals(period)' >period= #{period} , </if>
+                        <if test='synchronizerId!=null' > synchronizer_id= #{synchronizerId} , </if>
+                        <if test='synchronizer!=null and !"".equals(synchronizer)' >synchronizer= #{synchronizer} , </if>
+                        <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' >invoice_status= #{invoiceStatus} , </if>
+                        <if test='invoiceId!=null' > invoice_id= #{invoiceId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_advance_bill  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_advance_bill where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            bu_id,
+            bu_name,
+            currency,
+            bill_date,
+            bill_status,
+            creater_id,
+            creater,
+            create_date,
+            modify_date,
+            po_no,
+            order_type,
+            nc_channel_code,
+            nc_platform_code,
+            nc_status,
+            nc_syn_date,
+            nc_code,
+            voucher_code,
+            voucher_name,
+            voucher_index,
+            voucher_status,
+            period,
+            synchronizer_id,
+            synchronizer,
+            invoice_status,
+            invoice_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='billDate!=null' > bill_date= #{billDate} and </if>
+                            <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} and </if>
+                            <if test='createrId!=null' > creater_id= #{createrId} and </if>
+                            <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='ncChannelCode!=null and !"".equals(ncChannelCode)' >nc_channel_code= #{ncChannelCode} and </if>
+                            <if test='ncPlatformCode!=null and !"".equals(ncPlatformCode)' >nc_platform_code= #{ncPlatformCode} and </if>
+                            <if test='ncStatus!=null and !"".equals(ncStatus)' >nc_status= #{ncStatus} and </if>
+                            <if test='ncSynDate!=null' > nc_syn_date= #{ncSynDate} and </if>
+                            <if test='ncCode!=null and !"".equals(ncCode)' >nc_code= #{ncCode} and </if>
+                            <if test='voucherCode!=null and !"".equals(voucherCode)' >voucher_code= #{voucherCode} and </if>
+                            <if test='voucherName!=null and !"".equals(voucherName)' >voucher_name= #{voucherName} and </if>
+                            <if test='voucherIndex!=null and !"".equals(voucherIndex)' >voucher_index= #{voucherIndex} and </if>
+                            <if test='voucherStatus!=null and !"".equals(voucherStatus)' >voucher_status= #{voucherStatus} and </if>
+                            <if test='period!=null and !"".equals(period)' >period= #{period} and </if>
+                            <if test='synchronizerId!=null' > synchronizer_id= #{synchronizerId} and </if>
+                            <if test='synchronizer!=null and !"".equals(synchronizer)' >synchronizer= #{synchronizer} and </if>
+                            <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' >invoice_status= #{invoiceStatus} and </if>
+                            <if test='invoiceId!=null' > invoice_id= #{invoiceId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <resultMap id="AddOrderMap" type="AdvanceBillDataDTO" >
+        <result property="relCode" column="rel_code" />
+        <result property="customerName" column="customer_name" />
+        <result property="customerId" column="customer_id" />
+        <result property="buName" column="bu_name" />
+        <result property="buId" column="bu_id" />
+        <result property="poNo" column="po_no" />
+        <result property="orderType" column="order_type" />
+        <result property="currency" column="currency" />
+        <result property="amount" column="amount" />
+    </resultMap>
+    
+    
+    	<!-- 开票获取预收头数据 -->
+       <select id="listBillByRelIds"  resultType="AdvanceBillDTO" >
+        select <include refid='sql_columns' /> from t_advance_bill
+        where id IN
+        <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </select>
+	<!-- 分页 -->
+    <select id="listAdvanceBill" parameterType="AdvanceBillDTO" resultType="AdvanceBillDTO">        
+      
+          SELECT tt.*,
+          (tt.advanceVerifyPrice- ifnull(tt.receivePrice , 0))as receiveVerifyPrice
+          from  (  
+		        select t1.*,
+		        DATE_FORMAT( t1.bill_date,"%Y-%m") as billMonth,
+				(SELECT ifnull(SUM( amount ), 0) sumAmount from t_advance_bill_item where advance_id=t1.id GROUP BY advance_id ) as sumAmount,
+				(SELECT GROUP_CONCAT( DISTINCT po_no SEPARATOR '&amp;' ) poNo from t_advance_bill_item where advance_id=t1.id GROUP BY advance_id ) as poNo,
+				(SELECT GROUP_CONCAT( DISTINCT rel_code SEPARATOR '&amp;' ) relCode from t_advance_bill_item where advance_id=t1.id GROUP BY advance_id ) as relCode,
+				(SELECT ifnull(SUM( price ), 0) advance_verify_price  from t_advance_bill_verify_item where advance_id=t1.id GROUP BY advance_id ) as advanceVerifyPrice,
+				(SELECT ifnull(SUM( price ), 0) receive_price  from t_receive_bill_verify_item where advance_id=t1.id and type='1' GROUP BY advance_id ) as receivePrice,
+				(SELECT invoice_no from t_receive_bill_invoice where id=t1.invoice_id) as invoice_no,
+				(SELECT invoice_path from t_receive_bill_invoice where id=t1.invoice_id) as invoice_path,
+				(SELECT invoice_date from t_receive_bill_invoice where id=t1.invoice_id) as invoice_date
+				from t_advance_bill t1         
+		         <where>
+		            <trim suffixOverrides='and'>
+		                <if test='buList!=null and !"".equals(buList)' >t1.bu_id in
+		                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+		                        #{buId}
+		                    </foreach>
+		                    and
+		                </if>
+		                <if test='code!=null and !"".equals(code)' >t1.code= #{code} and </if>
+		                <if test='merchantId!=null' >t1.merchant_id= #{merchantId} and </if>
+		                <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>	
+		                <if test='buId!=null' > t1.bu_id= #{buId} and </if>
+		                <if test='billMonth!=null and !"".equals(billMonth)' >date_format(t1.bill_date, '%Y-%m')= #{billMonth} and </if>
+		                <if test='billStatus!=null and !"".equals(billStatus)' >t1.bill_status=#{billStatus} and</if>
+		                <if test='ncStatus!=null and !"".equals(ncStatus)' >t1.nc_status= #{ncStatus} and </if>
+		                <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' >t1.invoice_status= #{invoiceStatus} and </if>
+		            </trim>
+		        </where>
+		        order by FIELD(t1.bill_status,'06'), t1.id desc
+       			 LIMIT #{begin},#{pageSize}
+       		)tt	 
+       			 
+    </select>
+   <!--  分页总量 -->
+        <select id="listAdvanceBillCount"  parameterType="AdvanceBillDTO" resultType='Integer' >        
+        select count(*)
+      		from t_advance_bill t1         
+         <where>
+            <trim suffixOverrides='and'>
+                <if test='buList!=null and !"".equals(buList)' >t1.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='code!=null and !"".equals(code)' >t1.code= #{code} and </if>
+                <if test='merchantId!=null' >t1.merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>
+                <if test='buId!=null' > t1.bu_id= #{buId} and </if>
+                <if test='billMonth!=null and !"".equals(billMonth)' >date_format(t1.bill_date, '%Y-%m')= #{billMonth} and </if>
+                <if test='billStatus!=null and !"".equals(billStatus)' >t1.bill_status=#{billStatus} and</if>
+                <if test='ncStatus!=null and !"".equals(ncStatus)' >t1.nc_status= #{ncStatus} and </if>
+                <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' >t1.invoice_status= #{invoiceStatus} and </if>
+            </trim>
+        </where>
+
+    </select>
+    
+    <!-- 导出 -->
+    <select id="exportAdvanceBillMap" parameterType="AdvanceBillDTO"  resultType='Map' >        
+       SELECT tt.*,
+          (tt.advanceVerifyPrice- ifnull(tt.receivePrice , 0))as receiveVerifyPrice
+          from  (  
+				        select 
+				        t1.merchant_name,t1.bu_name,t1.customer_name,t1.`code`,t1.currency,t1.bill_status,t1.create_date,t1.invoice_status,
+				        DATE_FORMAT( t1.bill_date,"%Y-%m") as billMonth,
+						(SELECT ifnull(SUM( amount ), 0) sumAmount from t_advance_bill_item where advance_id=t1.id GROUP BY advance_id ) as sumAmount,
+						(SELECT GROUP_CONCAT( DISTINCT po_no SEPARATOR "&amp;") poNo from t_advance_bill_item where advance_id=t1.id GROUP BY advance_id ) as poNo,
+						(SELECT GROUP_CONCAT( DISTINCT rel_code SEPARATOR "&amp;" ) relCode from t_advance_bill_item where advance_id=t1.id GROUP BY advance_id ) as relCode,
+						(SELECT ifnull(SUM( price ), 0) advance_verify_price  from t_advance_bill_verify_item where advance_id=t1.id GROUP BY advance_id ) as advanceVerifyPrice,
+						(SELECT ifnull(SUM( price ), 0) receive_price  from t_receive_bill_verify_item where advance_id=t1.id and type='1' GROUP BY advance_id ) as receivePrice 
+						
+						from t_advance_bill t1         
+				         <where>
+				            <trim suffixOverrides='and'>
+				            	<if test='ids!=null and !"".equals(ids)' >
+            						t1.id in
+				            		<foreach collection='ids.split(",")' item='id' separator=',' open='(' close=')'>
+							            #{id}
+							        </foreach>
+		            				and 
+            					</if>
+				                <if test='buList!=null and !"".equals(buList)' >t1.bu_id in
+				                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+				                        #{buId}
+				                    </foreach>
+				                    and
+				                </if>
+				                <if test='code!=null and !"".equals(code)' >t1.code= #{code} and </if>
+				                <if test='merchantId!=null' >t1.merchant_id= #{merchantId} and </if>
+				                <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>
+				                <if test='buId!=null' > t1.bu_id= #{buId} and </if>
+				                <if test='billMonth!=null and !"".equals(billMonth)' >date_format(t1.bill_date, '%Y-%m')= #{billMonth} and </if>
+				                <if test='billStatus!=null and !"".equals(billStatus)' >t1.bill_status=#{billStatus} and</if>
+				                <if test='ncStatus!=null and !"".equals(ncStatus)' >t1.nc_status= #{ncStatus} and </if>
+				                <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' >t1.invoice_status= #{invoiceStatus} and </if>
+				            </trim>
+				        </where>
+				        order by FIELD(t1.bill_status,'06'), t1.id desc    
+				)tt           
+    </select>
+    
+    <!-- 导出表体 -->
+    <select id="exportAdvanceBillItemMap" parameterType="AdvanceBillDTO"  resultType='Map' >        
+        select 
+       t1.`code`,t2.project_name,t2.rel_code,t2.po_no,t2.amount,t1.currency    
+       from t_advance_bill t1    
+		LEFT JOIN    t_advance_bill_item t2 ON t1.id=t2.advance_id 
+         <where>
+            <trim suffixOverrides='and'>
+	           	<if test='ids!=null and !"".equals(ids)' >
+	       						t1.id in
+	           		<foreach collection='ids.split(",")' item='id' separator=',' open='(' close=')'>
+			            #{id}
+			        </foreach>
+	         		and 
+	       		</if>            	
+                <if test='buList!=null and !"".equals(buList)' >t1.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='code!=null and !"".equals(code)' >t1.code= #{code} and </if>
+                <if test='merchantId!=null' >t1.merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>
+                <if test='buId!=null' > t1.bu_id= #{buId} and </if>
+                <if test='billMonth!=null and !"".equals(billMonth)' >date_format(t1.bill_date, '%Y-%m')= #{billMonth} and </if>
+                <if test='billStatus!=null and !"".equals(billStatus)' >t1.bill_status=#{billStatus} and</if>
+                <if test='ncStatus!=null and !"".equals(ncStatus)' >t1.nc_status= #{ncStatus} and </if>
+            </trim>
+        </where>
+        order by FIELD(t1.bill_status,'06'),t1.id desc       
+    </select>
+
+
+    <select id="listAddSaleOrderByPage" parameterType="AdvanceBillDTO" resultMap="AddOrderMap" >
+        SELECT
+        t.rel_code, t.customer_name, t.customer_id, t.bu_name, t.po_no, t.order_type, t.bu_id,t.currency, t.num, t.amount
+        FROM
+        (
+        SELECT s. CODE rel_code, s.customer_id, s.customer_name, s.po_no, s.bu_id,
+        s.bu_name, s.create_date, '4' AS order_type, s.currency, sum(si.num) num, sum(si.amount) amount
+        FROM
+        t_sale_order s
+        LEFT JOIN t_sale_order_item si ON s.id = si.order_id
+        WHERE <!-- s.state not IN ('008','006') -->
+         s.state  IN ('003','018','027')
+        <if test='merchantId!=null' >and s.merchant_id = #{merchantId} </if>
+        <if test='customerId!=null' >and s.customer_id= #{customerId}  </if>
+        <if test='currency!=null' >and s.currency= #{currency}  </if>
+        <if test='buList!=null and !"".equals(buList)' >and s.bu_id in
+            <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                #{buId}
+            </foreach>
+        </if>
+        <if test='poNos!=null and !"".equals(poNos)' > and
+            <trim prefix="(" suffix=")" suffixOverrides="or" >
+                <foreach collection='poNos' item='poNo' >
+                    s.po_no like CONCAT('%',#{poNo},'%') or
+                </foreach>
+            </trim>
+        </if>
+        <if test='relCodes!=null and !"".equals(relCodes)' >and s.`code` in
+            <foreach collection='relCodes' item='relCode' separator=',' open='(' close=')'>
+                #{relCode}
+            </foreach>
+        </if>
+        <if test='checkRelCodes!=null and !"".equals(checkRelCodes)' >and s.`code` not in
+            <foreach collection='checkRelCodes' item='relCode' separator=',' open='(' close=')'>
+                #{relCode}
+            </foreach>
+        </if>
+        GROUP BY s. CODE, s.customer_id,  s.customer_name, s.po_no, s.bu_id, s.bu_name, s.create_date, s.currency
+        ) t
+        ORDER BY t.create_date desc
+    </select>
+
+    <select id="listVerifyAdvanceByPage" parameterType="ReceiveBillVerifyAdvanceDTO" resultType="ReceiveBillVerifyAdvanceDTO">
+        SELECT
+            a.id advanceId,
+            a. CODE,
+            a.merchant_id,
+            a.customer_id,
+            a.bu_id,
+            a.currency,
+            a.bill_status,
+            ai.po_no,
+            ai.rel_code orderCode,
+            ai.amount
+        FROM t_advance_bill a
+        LEFT JOIN ( SELECT advance_id, sum(amount) amount, GROUP_CONCAT(po_no, '&amp;') po_no,
+                           GROUP_CONCAT(rel_code, '&amp;') rel_code
+                    FROM t_advance_bill_item WHERE id NOT IN (
+                        SELECT v.advance_id FROM t_receive_bill_verify_item v
+                        WHERE v.type = '1'
+                        <if test='receiveBillId!=null' >
+                            and v.bill_id != #{receiveBillId}
+                        </if>
+                        <if test='ids!=null and !"".equals(ids)' >
+                            and v.id NOT IN
+                            <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                                #{id}
+                            </foreach>
+                        </if>
+                    ) GROUP BY advance_id ) ai ON a.id = ai.advance_id
+        where a.merchant_id= #{merchantId}
+        and a.customer_id= #{customerId}
+        and a.bu_id= #{buId}
+        and a.currency= #{currency}
+        and a.bill_status = '02'
+        <if test='code!=null and !"".equals(code)' >
+            and a.code = #{code}
+        </if>
+        order by a.id desc
+    </select>
+
+    <select id="listByIds"  resultType="AdvanceBillModel">
+        select
+        <include refid='sql_columns' />
+        from t_advance_bill
+        where id in
+        <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="getAdvanceById" resultType="AdvanceBillDTO">
+        SELECT tt.*,(tt.advanceVerifyPrice- ifnull(tt.receivePrice , 0))as receiveVerifyPrice FROM (
+			select t1.*,
+			(SELECT ifnull(SUM( amount ), 0) sumAmount from t_advance_bill_item where advance_id=t1.id GROUP BY advance_id ) as sumAmount,
+			(SELECT ifnull(SUM( price ), 0) advance_verify_price  from t_advance_bill_verify_item where advance_id=t1.id GROUP BY advance_id ) as advanceVerifyPrice,
+			(SELECT ifnull(SUM( price ), 0) receive_price  from t_receive_bill_verify_item where advance_id=t1.id and type='1' GROUP BY advance_id ) as receivePrice 						
+			from t_advance_bill t1		
+			where t1.id=#{id}
+		)tt
+    </select>
+
+    <select id="getNcBackfillList" resultType="AdvanceBillModel">
+        select <include refid='sql_columns' /> from t_advance_bill
+        where nc_status in ('11', '1', '2', '3', '4', '5', '6', '7')
+        and bill_status = '06'
+        UNION
+        select <include refid='sql_columns' /> from t_advance_bill
+        where nc_status in ('11', '1', '2', '3', '4')
+        and bill_status != '06'
+    </select>
+
+    <select id="getNcVoucherFillBackList" resultType="AdvanceBillModel">
+        select
+        <include refid='sql_columns' /> from t_advance_bill
+        where (bill_status != '06' and nc_status in ('4', '5') and voucher_code is null )
+        or (bill_status = '06' and nc_status in ('4', '5', '8', '9'))
+    </select>
+
+    <update id="batchUpdateByIds" >
+        update t_advance_bill set bill_status = #{billStatus} , modify_date=now()
+        where id in
+        <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </update>
+    
+    <update id="batchUpdateInvoiceStatus">
+        UPDATE  t_advance_bill SET invoice_status= #{invoiceStatus}, modify_date=now()
+        where id IN
+        <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </update>
+
+
+</mapper>

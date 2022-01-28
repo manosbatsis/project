@@ -1,0 +1,479 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.OrderReturnIdepotItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="OrderReturnIdepotItemModelMap" type="OrderReturnIdepotItemModel" >
+                <result property="id" column="id" />
+                <result property="oreturnIdepotId" column="oreturn_idepot_id" />
+                <result property="inGoodsId" column="in_goods_id" />
+                <result property="inGoodsCode" column="in_goods_code" />
+                <result property="inGoodsNo" column="in_goods_no" />
+                <result property="inGoodsName" column="in_goods_name" />
+                <result property="price" column="price" />
+                <result property="decTotal" column="dec_total" />
+                <result property="returnNum" column="return_num" />
+                <result property="badGoodsNum" column="bad_goods_num" />
+                <result property="barcode" column="barcode" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="refundAmount" column="refund_amount" />
+                <result property="tradeRefundAmount" column="trade_refund_amount" />
+                <result property="tradeRefundTax" column="trade_refund_tax" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OrderReturnIdepotItemModelMap' parameterType='OrderReturnIdepotItemModel'>
+        select <include refid='sql_columns' /> from t_order_return_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OrderReturnIdepotItemModelMap' parameterType='OrderReturnIdepotItemModel'>
+        select <include refid='sql_columns' /> from t_order_return_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OrderReturnIdepotItemModelMap' parameterType='OrderReturnIdepotItemModel' >
+        select <include refid='sql_columns' /> from t_order_return_idepot_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OrderReturnIdepotItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_order_return_idepot_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='oreturnIdepotId!=null' >oreturn_idepot_id , </if>
+                        <if test='inGoodsId!=null' >in_goods_id , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > in_goods_code , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > in_goods_no , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' > in_goods_name , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='decTotal!=null' >dec_total , </if>
+                        <if test='returnNum!=null' >return_num , </if>
+                        <if test='badGoodsNum!=null' >bad_goods_num , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='refundAmount!=null' >refund_amount , </if>
+                        <if test='tradeRefundAmount!=null' >trade_refund_amount , </if>
+                        <if test='tradeRefundTax!=null' >trade_refund_tax , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='oreturnIdepotId!=null' > #{oreturnIdepotId} , </if>
+                        <if test='inGoodsId!=null' > #{inGoodsId} , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > #{inGoodsCode} , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > #{inGoodsNo} , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' > #{inGoodsName} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='decTotal!=null' > #{decTotal} , </if>
+                        <if test='returnNum!=null' > #{returnNum} , </if>
+                        <if test='badGoodsNum!=null' > #{badGoodsNum} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='refundAmount!=null' > #{refundAmount} , </if>
+                        <if test='tradeRefundAmount!=null' > #{tradeRefundAmount} , </if>
+                        <if test='tradeRefundTax!=null' > #{tradeRefundTax} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OrderReturnIdepotItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_order_return_idepot_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='oreturnIdepotId!=null' > oreturn_idepot_id= #{oreturnIdepotId} , </if>
+                        <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='decTotal!=null' > dec_total= #{decTotal} , </if>
+                        <if test='returnNum!=null' > return_num= #{returnNum} , </if>
+                        <if test='badGoodsNum!=null' > bad_goods_num= #{badGoodsNum} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='refundAmount!=null' > refund_amount= #{refundAmount} , </if>
+                        <if test='tradeRefundAmount!=null' > trade_refund_amount= #{tradeRefundAmount} , </if>
+                        <if test='tradeRefundTax!=null' > trade_refund_tax= #{tradeRefundTax} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_order_return_idepot_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_order_return_idepot_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            oreturn_idepot_id,
+            in_goods_id,
+            in_goods_code,
+            in_goods_no,
+            in_goods_name,
+            price,
+            dec_total,
+            return_num,
+            bad_goods_num,
+            barcode,
+            commbarcode,
+            bu_id,
+            bu_name,
+            create_date,
+            modify_date,
+            refund_amount,
+            trade_refund_amount,
+            trade_refund_tax,
+            stock_location_type_id,
+            stock_location_type_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='oreturnIdepotId!=null' > oreturn_idepot_id= #{oreturnIdepotId} and </if>
+                            <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} and </if>
+                            <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} and </if>
+                            <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} and </if>
+                            <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='decTotal!=null' > dec_total= #{decTotal} and </if>
+                            <if test='returnNum!=null' > return_num= #{returnNum} and </if>
+                            <if test='badGoodsNum!=null' > bad_goods_num= #{badGoodsNum} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='refundAmount!=null' > refund_amount= #{refundAmount} and </if>
+                            <if test='tradeRefundAmount!=null' > trade_refund_amount= #{tradeRefundAmount} and </if>
+                            <if test='tradeRefundTax!=null' > trade_refund_tax= #{tradeRefundTax} and </if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                            <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+	<select id='getReturnNumByExternalCode' resultType='int' parameterType='map'>
+		SELECT
+			SUM( return_num + bad_goods_num ) as returnNum
+		FROM
+			t_order_return_idepot t1
+			LEFT JOIN t_order_return_idepot_item t2 ON t1.id = t2.oreturn_idepot_id
+		WHERE
+			t1.external_code = #{externalCode}
+			AND t1.merchant_id = #{merchantId}
+			AND t2.in_goods_no = #{inGoodsNo}
+			AND t1.`status` != '006'
+    </select>
+
+
+        <!-- 查询所有信息 -->
+    <select id="listOrderReturnIdepotItemDTO" resultType='OrderReturnIdepotItemDTO' parameterType='OrderReturnIdepotItemDTO'>
+        select <include refid='sql_columns' /> from t_order_return_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <select id="listByOrderIds" resultType='OrderReturnIdepotItemDTO' parameterType='list'>
+        select <include refid='sql_columns' /> from t_order_return_idepot_item
+        where oreturn_idepot_id in
+        <foreach collection="returnIdepotIds"  item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="listBuByOrder" parameterType="OrderReturnIdepotDTO" resultType="java.lang.Long">
+        select
+        bu_id
+        from t_order_return_idepot_item
+        where oreturn_idepot_id in (
+        select t.id from t_order_return_idepot t
+        <where>
+            <trim suffixOverrides='and'>
+                t.return_order_type = '0' and
+                t.status= '013' and
+                <if test='month!=null and !"".equals(month)' >
+                    date_format(t.refund_end_date,'%Y-%m') =  #{month} and
+                </if>
+                <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null'>t.customer_id= #{customerId} and</if>
+                <if test='shopCode!=null and !"".equals(shopCode)'>t.shop_code= #{shopCode} and</if>
+                <if test='shopTypeCode!=null and !"".equals(shopTypeCode)'>t.shop_type_code= #{shopTypeCode} and</if>
+                <if test='storePlatformCode!=null and !"".equals(storePlatformCode)'>t.store_platform_code=
+                    #{storePlatformCode} and
+                </if>
+            </trim>
+        </where>
+        )
+        group by bu_id
+    </select>
+
+    <select id="getMaxPriceByOrderId" resultMap="OrderReturnIdepotItemModelMap">
+        SELECT
+        a.oreturn_idepot_id,
+        a.in_goods_id,
+        a.bu_id,
+        a.bu_name
+        FROM
+        (
+        SELECT oreturn_idepot_id, in_goods_id, bu_id, bu_name
+        FROM t_order_return_idepot_item
+        WHERE oreturn_idepot_id IN
+        <foreach collection='orderIds' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+        ORDER BY refund_amount
+        ) a
+
+        <if test='buIdFlag!=null and buIdFlag == true ' >
+            GROUP BY a.oreturn_idepot_id, a.bu_id
+        </if>
+        <if test='buIdFlag == null or buIdFlag == false '>
+            GROUP BY a.oreturn_idepot_id
+        </if>
+    </select>
+	<!-- 批量插入数据 -->
+    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_order_return_idepot_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            id,
+            oreturn_idepot_id,
+            in_goods_id,
+            in_goods_code,
+            in_goods_no,
+            in_goods_name,
+            price,
+            dec_total,
+            return_num,
+            bad_goods_num,
+            barcode,
+            commbarcode,
+            bu_id,
+            bu_name,
+            create_date,
+            modify_date,
+            refund_amount,
+            trade_refund_amount,
+            trade_refund_tax,
+            stock_location_type_id,
+            stock_location_type_name
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                #{item.id},
+                #{item.oreturnIdepotId},
+                #{item.inGoodsId},
+                #{item.inGoodsCode},
+                #{item.inGoodsNo},
+                #{item.inGoodsName},
+                #{item.price},
+                #{item.decTotal},
+                #{item.returnNum},
+                #{item.badGoodsNum},
+                #{item.barcode},
+                #{item.commbarcode},
+                #{item.buId},
+                #{item.buName},
+                #{item.createDate},
+                #{item.modifyDate},
+                #{item.refundAmount},
+                #{item.tradeRefundAmount},
+                #{item.tradeRefundTax},
+                #{item.stockLocationTypeId} ,
+                #{item.stockLocationTypeName}
+            </trim>
+        </foreach>
+    </insert>
+    <!-- 批量更新数据 -->
+    <update id='batchUpdate' parameterType="java.util.List">
+        update t_order_return_idepot_item
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="oreturn_idepot_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.oreturnIdepotId!=null' >
+                        when id=#{i.id} then #{i.oreturnIdepotId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="in_goods_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.inGoodsId!=null' >
+                        when id=#{i.id} then #{i.inGoodsId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="in_goods_code =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.inGoodsCode!=null and !"".equals(i.inGoodsCode)' >
+                        when id=#{i.id} then #{i.inGoodsCode}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="in_goods_no =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.inGoodsNo!=null and !"".equals(i.inGoodsNo)' >
+                        when id=#{i.id} then #{i.inGoodsNo}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="in_goods_name =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.inGoodsName!=null and !"".equals(i.inGoodsName)' >
+                        when id=#{i.id} then #{i.inGoodsName}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="price =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.price!=null' >
+                        when id=#{i.id} then #{i.price}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="dec_total =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.decTotal!=null' >
+                        when id=#{i.id} then #{i.decTotal}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="return_num =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.returnNum!=null' >
+                        when id=#{i.id} then #{i.returnNum}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bad_goods_num =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.badGoodsNum!=null' >
+                        when id=#{i.id} then #{i.badGoodsNum}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="barcode =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.barcode!=null and !"".equals(i.barcode)' >
+                        when id=#{i.id} then #{i.barcode}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="commbarcode =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.commbarcode!=null and !"".equals(i.commbarcode)' >
+                        when id=#{i.id} then #{i.commbarcode}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bu_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.buId!=null' >
+                        when id=#{i.id} then #{i.buId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bu_name =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.buName!=null and !"".equals(i.buName)' >
+                        when id=#{i.id} then #{i.buName}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_date =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.createDate!=null' >
+                        when id=#{i.id} then #{i.createDate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="modify_date =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.modifyDate!=null' >
+                        when id=#{i.id} then #{i.modifyDate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="refund_amount =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.refundAmount!=null' >
+                        when id=#{i.id} then #{i.refundAmount}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="trade_refund_amount =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.tradeRefundAmount!=null' >
+                        when id=#{i.id} then #{i.tradeRefundAmount}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="trade_refund_tax =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.tradeRefundTax!=null' >
+                        when id=#{i.id} then #{i.tradeRefundTax}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="stock_location_type_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.stockLocationTypeId!=null'>
+                        when id=#{i.id} then #{i.stockLocationTypeId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="stock_location_type_name =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.stockLocationTypeName!=null and !"".equals(i.stockLocationTypeName)'>
+                        when id=#{i.id} then #{i.stockLocationTypeName}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where
+        id in
+        <foreach collection="list" separator="," item="i" open='(' close=')'>
+            #{i.id}
+        </foreach>
+    </update>
+</mapper>

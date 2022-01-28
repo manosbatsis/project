@@ -1,0 +1,511 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleShelfMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleShelfModelMap" type="SaleShelfModel" >
+                <result property="id" column="id" />
+                <result property="orderId" column="order_id" />
+                <result property="orderType" column="order_type" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="num" column="num" />
+                <result property="totalShelfNum" column="total_shelf_num" />
+                <result property="totalDamagedNum" column="total_damaged_num" />
+                <result property="stayShelfNum" column="stay_shelf_num" />
+                <result property="shelfNum" column="shelf_num" />
+                <result property="damagedNum" column="damaged_num" />
+                <result property="poNo" column="po_no" />
+                <result property="remark" column="remark" />
+                <result property="shelfDate" column="shelf_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="lackNum" column="lack_num" />
+                <result property="totalLackNum" column="total_lack_num" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="verifyRelState" column="verify_rel_state" />
+                <result property="operator" column="operator" />
+                <result property="operatorId" column="operator_id" />
+                <result property="saleShelfIdepotId" column="sale_shelf_idepot_id" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="shelfId" column="shelf_id" />
+                <result property="saleOutDepotId" column="sale_out_depot_id" />
+                <result property="saleItemId" column="sale_item_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleShelfModelMap' parameterType='SaleShelfModel'>
+        select <include refid='sql_columns' /> from t_sale_shelf  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleShelfModelMap' parameterType='SaleShelfModel'>
+        select <include refid='sql_columns' /> from t_sale_shelf  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleShelfModelMap' parameterType='SaleShelfModel' >
+        select <include refid='sql_columns' /> from t_sale_shelf  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleShelfModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_shelf
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='orderId!=null ' > order_id , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='totalShelfNum!=null' >total_shelf_num, </if>
+                        <if test='totalDamagedNum!=null' >total_damaged_num , </if>
+                        <if test='stayShelfNum!=null' >stay_shelf_num , </if>
+                        <if test='shelfNum!=null' >shelf_num, </if>
+                        <if test='damagedNum!=null' >damaged_num , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='shelfDate!=null' >shelf_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' > modify_date , </if>
+                        <if test='lackNum!=null' > lack_num , </if>
+                        <if test='totalLackNum!=null' > total_lack_num , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='verifyRelState!=null and !"".equals(verifyRelState)' > verify_rel_state , </if>
+                        <if test='operator!=null and !"".equals(operator)' > operator , </if>
+                        <if test='operatorId!=null' > operator_id , </if>
+                        <if test='saleShelfIdepotId!=null' > sale_shelf_idepot_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='shelfId!=null' >shelf_id , </if>
+                        <if test='saleOutDepotId!=null' >sale_out_depot_id , </if>
+                        <if test='saleItemId!=null' >sale_item_id , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='totalShelfNum!=null' > #{totalShelfNum} , </if>
+                        <if test='totalDamagedNum!=null' > #{totalDamagedNum} , </if>
+                        <if test='stayShelfNum!=null' > #{stayShelfNum} , </if>
+                        <if test='shelfNum!=null' > #{shelfNum} , </if>
+                        <if test='damagedNum!=null' > #{damagedNum} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='shelfDate!=null' > #{shelfDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='lackNum!=null' > #{lackNum} , </if>
+                        <if test='totalLackNum!=null' > #{totalLackNum} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='verifyRelState!=null and !"".equals(verifyRelState)' > #{verifyRelState} , </if>
+                        <if test='operator!=null and !"".equals(operator)' > #{operator} , </if>
+                        <if test='operatorId!=null' > #{operatorId} , </if>
+                        <if test='saleShelfIdepotId!=null' > #{saleShelfIdepotId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='shelfId!=null' > #{shelfId} , </if>
+                        <if test='saleOutDepotId!=null' > #{saleOutDepotId} , </if>
+                        <if test='saleItemId!=null' > #{saleItemId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleShelfModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_shelf SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='orderId!=null ' >order_id= #{orderId} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='totalShelfNum!=null' > total_shelf_num= #{totalShelfNum} , </if>
+                        <if test='totalDamagedNum!=null' > total_damaged_num= #{totalDamagedNum} , </if>
+                        <if test='stayShelfNum!=null' > stay_shelf_num= #{stayShelfNum} , </if>
+                        <if test='shelfNum!=null' > shelf_num= #{shelfNum} , </if>
+                        <if test='damagedNum!=null' > damaged_num= #{damagedNum} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='shelfDate!=null' > shelf_date= #{shelfDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='lackNum!=null' > lack_num= #{lackNum} , </if>
+                        <if test='totalLackNum!=null' > total_lack_num= #{totalLackNum} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='verifyRelState!=null and !"".equals(verifyRelState)' >verify_rel_state= #{verifyRelState} , </if>
+                        <if test='operator!=null and !"".equals(operator)' >operator= #{operator} , </if>
+                        <if test='operatorId!=null' > operator_id= #{operatorId} , </if>
+                        <if test='saleShelfIdepotId!=null' > sale_shelf_idepot_id= #{saleShelfIdepotId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='shelfId!=null' > shelf_id= #{shelfId} , </if>
+                        <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} , </if>
+                        <if test='saleItemId!=null' > sale_item_id= #{saleItemId} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_shelf  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_shelf where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            order_id,
+            order_type,
+            goods_id,
+            goods_no,
+            goods_name,
+            barcode,
+            tallying_unit,
+            num,
+            total_shelf_num,
+            total_damaged_num,
+            stay_shelf_num,
+            shelf_num,
+            damaged_num,
+            po_no,
+            remark,
+            shelf_date,
+            create_date,
+            modify_date,
+            lack_num,
+            total_lack_num,
+            commbarcode,
+            verify_rel_state,
+            operator,
+            operator_id,
+            sale_shelf_idepot_id,
+            bu_name,
+            bu_id,
+            shelf_id,
+            sale_out_depot_id,
+            sale_item_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' >order_id= #{orderId} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='totalShelfNum!=null' > total_shelf_num= #{totalShelfNum} and </if>
+                            <if test='totalDamagedNum!=null' > total_damaged_num= #{totalDamagedNum} and </if>
+                            <if test='stayShelfNum!=null' > stay_shelf_num= #{stayShelfNum} and </if>
+                            <if test='shelfNum!=null' > shelf_num= #{shelfNum} and </if>
+                            <if test='damagedNum!=null' > damaged_num= #{damagedNum} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='lackNum!=null' > lack_num= #{lackNum} and </if>
+                            <if test='totalLackNum!=null' > total_lack_num= #{totalLackNum} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='verifyRelState!=null and !"".equals(verifyRelState)' >verify_rel_state= #{verifyRelState} and </if>
+                            <if test='operator!=null and !"".equals(operator)' >operator= #{operator} and </if>
+                            <if test='operatorId!=null' > operator_id= #{operatorId} and </if>
+                            <if test='saleShelfIdepotId!=null' > sale_shelf_idepot_id= #{saleShelfIdepotId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='shelfId!=null' > shelf_id= #{shelfId} and </if>
+                            <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} and </if>
+                            <if test='saleItemId!=null' > sale_item_id= #{saleItemId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <sql id='sql_where_page'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' >order_id= #{orderId} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='totalShelfNum!=null' > total_shelf_num= #{totalShelfNum} and </if>
+                            <if test='totalDamagedNum!=null' > total_damaged_num= #{totalDamagedNum} and </if>
+                            <if test='stayShelfNum!=null' > stay_shelf_num= #{stayShelfNum} and </if>
+                            <if test='shelfNum!=null' > shelf_num= #{shelfNum} and </if>
+                            <if test='damagedNum!=null' > damaged_num= #{damagedNum} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='lackNum!=null' > lack_num= #{lackNum} and </if>
+                            <if test='totalLackNum!=null' > total_lack_num= #{totalLackNum} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='verifyRelState!=null and !"".equals(verifyRelState)' >verify_rel_state= #{verifyRelState} and </if>
+                            <if test='operator!=null and !"".equals(operator)' >operator= #{operator} and </if>
+                            <if test='operatorId!=null' > operator_id= #{operatorId} and </if>
+                            <if test='saleShelfIdepotId!=null' > sale_shelf_idepot_id= #{saleShelfIdepotId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='shelfId!=null' > shelf_id= #{shelfId} and </if>
+                            <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} and </if>
+                            <if test='orderIds!=null and orderIds.size > 0' > order_id in
+			                	<foreach collection='orderIds' item='orderId' separator=',' open='(' close=')'>
+			                        #{orderId}
+			                    </foreach>
+			                    and
+			                </if>
+			                <if test='saleOutOrderIds!=null and saleOutOrderIds.size > 0' > sale_out_depot_id in
+			                	<foreach collection='saleOutOrderIds' item='saleOutOrderId' separator=',' open='(' close=')'>
+			                        #{saleOutOrderId}
+			                    </foreach>
+			                    and
+			                </if>
+                </trim>
+            </where>
+        </sql>
+		 <!-- 查询出每条销售订单的最大上架时间 -->
+		 <select id='getMaxShelfDate' resultType="java.sql.Timestamp">
+		 		SELECT MAX(shelf_date) FROM  t_sale_shelf  WHERE order_id=#{orderId}
+                 AND po_no IN
+                 <foreach collection='poNos' item='poNo' separator=',' open='(' close=')'>
+                     #{poNo}
+                 </foreach>
+         </select>
+		  <!-- 根据PO单号+商品货号+订单类型查询最后一条上架记录 -->
+		 <select id='getShelfRecord'   resultMap="SaleShelfModelMap"   parameterType="SaleShelfModel" >
+		 		SELECT <include refid='sql_columns' />  FROM  t_sale_shelf
+		 		WHERE po_no= #{poNo} and goods_no= #{goodsNo} and order_type= #{orderType}
+		 		ORDER BY  shelf_date  DESC LIMIT 1
+		 </select>
+	<!-- 有关新版唯品-按商家id、仓库id、多个货号统计上架总量 -->
+    <select id='getShelfInfo' resultType='map' parameterType='map' >
+		        SELECT  t.id,t.code,SUM(shelf_num) AS shelf_totalnum,SUM(damaged_num) AS damaged_num FROM t_sale_shelf s
+				LEFT JOIN t_sale_order t ON s.order_id=t.id
+				WHERE t.merchant_id=#{merchantId}
+				 AND t.out_depot_id=#{depotId}
+				 AND s.po_no=#{poNo}
+				 AND s.order_type='1'
+				 AND s.goods_no IN
+	  				<foreach collection='goodsNoList' item='goodsNo' separator=',' open='(' close=')'>
+			         #{goodsNo}
+			         </foreach>
+			         GROUP BY t.id,t.code
+	    </select>
+	    <!-- 订单号+相同条形码在该销售订单上架表内总的待上架总数量 -->
+	    <select id="getStayShelNum" resultType="java.lang.Integer" parameterType="SaleShelfModel" >
+	   		SELECT (stay_shelf_num-IFNULL(shelf_num,0)-IFNULL(lack_num,0)-IFNULL(damaged_num,0)) AS stay_shelf_num
+			FROM t_sale_shelf
+			WHERE order_id =#{orderId} AND goods_no=#{goodsNo}
+			ORDER BY id DESC LIMIT 1
+	   	</select>
+     <!-- 查询本商家、仓库、po号、指定货号中最新上架的货号 -->
+	    <select id="getNewShelfGoods" resultMap="SaleShelfModelMap" parameterType="map" >
+	   		select s.* from t_sale_shelf s
+			left join t_sale_order t on s.order_id=t.id and s.order_type='1'
+			where t.merchant_id=#{merchantId}  and t.out_depot_id=#{depotId}  and s.po_no=#{poNo}
+			      and s.goods_no in
+			        <foreach collection='goodsNoList' item='goodsNo' separator=',' open='(' close=')'>
+			         #{goodsNo}
+			        </foreach>
+			order by shelf_date desc
+			limit 1
+	   	</select>
+
+        <select id="listByPoNoAndOrderId" resultType="map" parameterType="long" >
+            select s.po_no, s.goods_no, st.price, SUM(s.shelf_num)total_shelf_num
+            from t_sale_shelf s
+            left join t_sale_order_item st on st.order_id = s.order_id and st.goods_no = s.goods_no
+            where s.order_id = #{orderId}
+            GROUP BY s.po_no, s.goods_no
+            having SUM(s.shelf_num) > 0
+        </select>
+
+        <select id="listShelfByPoNos" resultMap="SaleShelfModelMap"  >
+            select <include refid='sql_columns' /> from t_sale_shelf
+            WHERE order_id=#{orderId}
+            AND po_no IN
+            <foreach collection='poNos' item='poNo' separator=',' open='(' close=')'>
+                #{poNo}
+            </foreach>
+        </select>
+    <select id="getSaleShelfModelById" resultType="SaleShelfDTO">
+        select t1.*,t2.price
+        from t_sale_shelf t1  LEFT JOIN t_sale_order_item t2 on t1.sale_item_id=t2.id
+        where shelf_id = #{id}
+    </select>
+
+    <select id="getShelfDTOByCodeAndBarcode" resultType="com.topideal.entity.vo.sale.SaleShelfModel">
+        select * from t_sale_order t1 join t_sale_shelf t2 on t1.id = t2.order_id
+        WHERE  t1.code = #{saleOrderCode} and t2.barcode = #{barcode} and t2.order_type = '1' order by t2.modify_date desc
+    </select>
+
+    <select id="getSaleShelfModelByGoodsId" resultType="com.topideal.entity.vo.sale.SaleShelfModel">
+        select * from t_sale_shelf where goods_id = #{goodsId}
+    </select>
+    <select id="getTotalShelf" resultType="com.topideal.entity.dto.sale.SaleShelfDTO" parameterType="SaleShelfDTO"  >
+        select  sum(IFNULL(s.shelf_num,0)) as shelfNum, sum(IFNULL(s.damaged_num,0)) as damagedNum, sum(IFNULL(s.lack_num,0)) as lackNum
+        from t_sale_shelf s
+        left join t_sale_out_depot t on s.sale_out_depot_id=t.id
+        where t.code=#{code} and s.sale_item_id=#{saleItemId}
+    </select>
+    <select id="searchDetailByOrderId" resultType="com.topideal.entity.dto.sale.SaleShelfDTO">
+        select t1.* from t_sale_shelf t1 left join t_shelf t2 on t1.shelf_id = t2.id left join t_sale_order t3 on t2.sale_order_id = t3.id
+        where t3.id = #{orderId}
+    </select>
+
+ <!-- 根据上架日期排序 查询所有信息 -->
+    <select id="listOrderByDate" resultMap='SaleShelfModelMap' parameterType='SaleShelfModel'>
+        select <include refid='sql_columns' /> from t_sale_shelf  <include refid='sql_where' /> order by shelf_date desc
+    </select>
+
+        <select id="getShelfInfoByCode" resultMap='SaleShelfModelMap' >
+            select
+                ss.id,
+                ss.order_id,
+                ss.order_type,
+                ss.goods_id,
+                ss.goods_no,
+                ss.goods_name,
+                ss.barcode,
+                ss.tallying_unit,
+                ss.num,
+                ss.total_shelf_num,
+                ss.total_damaged_num,
+                ss.stay_shelf_num,
+                ss.shelf_num,
+                ss.damaged_num,
+                ss.po_no,
+                ss.remark,
+                ss.shelf_date,
+                ss.create_date,
+                ss.modify_date,
+                ss.lack_num,
+                ss.total_lack_num,
+                ss.commbarcode,
+                ss.verify_rel_state,
+                ss.operator,
+                ss.operator_id,
+                ss.sale_shelf_idepot_id,
+                ss.bu_name,
+                ss.bu_id,
+                ss.shelf_id,
+                ss.sale_out_depot_id
+            FROM  t_shelf s
+            left join t_sale_shelf ss on s.id = ss.shelf_id
+            WHERE s.po_no= #{poNo} and ss.goods_no= #{goodsNo} and s.code= #{code}
+        </select>
+    <!-- 根据po和orderId 获取 上架商品数据 -->
+    <select id="getItemByPoNoAndOrderId" resultType="map" parameterType="map" >
+        SELECT
+            s.po_no as poNo,
+            s.barcode as barcode,
+            s.goods_name as inGoodsName,
+            sum(s.shelf_num + s.damaged_num +s.lack_num) as returnNum,
+            st.price as price,
+            st.tax_price as taxPrice,
+            st.tax_rate as taxRate,
+            sum((s.shelf_num + s.damaged_num +s.lack_num) * st.price) as amount,
+            sum(st.tax) as tax,
+            sum((s.shelf_num + s.damaged_num +s.lack_num) * st.tax_price) as taxAmount
+        FROM
+            t_sale_shelf s
+            LEFT JOIN t_sale_order_item st ON st.id = s.sale_item_id
+        WHERE
+            s.order_id = #{orderId}
+            <if test="poNoList != null and poNoList.size() > 0">
+	            AND s.po_no IN
+	            <foreach collection='poNoList' item='poNo' separator=',' open='(' close=')'>
+	                #{poNo}
+	            </foreach>
+            </if>
+        GROUP BY
+            s.barcode,
+            s.po_no
+    </select>
+    <!-- 根据po 货号 条码 获取上架商品数据、单价、币种、客户信息 -->
+    <select id="getSaleShelfByPoNoAndGoodsNoAndBarcode" resultType="map" parameterType="map" >
+       SELECT
+			t1.goods_no as goodsNo,
+			t1.po_no as poNo,
+			t2.barcode ,
+			t2.price,
+			t3.currency,
+			t3.customer_id as customerId,
+			t3.customer_name as customerName,
+			t3.code as saleOrderCode,
+			t3.merchant_id as merchantId,
+			t3.merchant_name as merchantName,
+			t3.bu_id as buId,
+			t3.bu_name as buName,
+			sum( t1.shelf_num ) as totalShelfNum
+		FROM
+			t_sale_shelf t1
+			LEFT JOIN t_sale_order_item t2 ON t1.order_id = t2.order_id AND t1.goods_no = t2.goods_no
+			LEFT JOIN t_sale_order t3 ON t1.order_id = t3.id and t3.state in('019','031','026')
+		where t1.po_no= #{poNo} and t3.merchant_id = #{merchantId}
+		 <if test='barcode != null and !"".equals(barcode)'>
+	            AND t2.barcode = #{barcode}
+         </if>
+		 <if test='goodsNo != null and !"".equals(goodsNo)'>
+	            AND t1.goods_no = #{goodsNo}
+         </if>
+    </select>
+    <select id="listDTO" resultType='SaleShelfDTO' parameterType='SaleShelfDTO'>
+        select <include refid='sql_columns' /> from t_sale_shelf  <include refid='sql_where_page' /> order by id desc
+    </select>
+    <select id="listDTOByPage" resultType='SaleShelfDTO' parameterType='SaleShelfDTO'>
+        select
+        (select price from t_sale_order_item t2 where t1.order_id = t2.order_id AND t1.sale_item_id = t2.id) as price,
+        <include refid='sql_columns' />
+        from t_sale_shelf t1
+        <include refid='sql_where_page' /> order by id desc
+    </select>
+
+    <delete id="delItemsByShelfIds" parameterType='java.util.ArrayList'>
+        delete from t_sale_shelf
+        where shelf_id in
+        <foreach collection='shelfIdList' item='shelfId' separator=',' open='(' close=')'>
+           #{shelfId}
+        </foreach>
+    </delete>
+</mapper>

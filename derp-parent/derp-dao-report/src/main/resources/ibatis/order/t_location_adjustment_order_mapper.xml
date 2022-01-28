@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.LocationAdjustmentOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="LocationAdjustmentOrderModelMap" type="LocationAdjustmentOrderModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="orderType" column="order_type" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="platformCode" column="platform_code" />
+                <result property="platformName" column="platform_name" />
+                <result property="orderCode" column="order_code" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsName" column="goods_name" />
+                <result property="adjustNum" column="adjust_num" />
+                <result property="inventoryType" column="inventory_type" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="inStockLocationTypeId" column="in_stock_location_type_id" />
+                <result property="inStockLocationTypeName" column="in_stock_location_type_name" />
+                <result property="outStockLocationTypeId" column="out_stock_location_type_id" />
+                <result property="outStockLocationTypeName" column="out_stock_location_type_name" />
+                <result property="month" column="month" />
+                <result property="status" column="status" />
+                <result property="reason" column="reason" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='LocationAdjustmentOrderModelMap' parameterType='LocationAdjustmentOrderModel'>
+        select <include refid='sql_columns' /> from t_location_adjustment_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='LocationAdjustmentOrderModelMap' parameterType='LocationAdjustmentOrderModel'>
+        select <include refid='sql_columns' /> from t_location_adjustment_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='LocationAdjustmentOrderModelMap' parameterType='LocationAdjustmentOrderModel' >
+        select <include refid='sql_columns' /> from t_location_adjustment_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='LocationAdjustmentOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_location_adjustment_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='platformCode!=null and !"".equals(platformCode)' > platform_code , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' > platform_name , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='adjustNum!=null' >adjust_num , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' > inventory_type , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='inStockLocationTypeId!=null' >in_stock_location_type_id , </if>
+                        <if test='inStockLocationTypeName!=null and !"".equals(inStockLocationTypeName)' > in_stock_location_type_name , </if>
+                        <if test='outStockLocationTypeId!=null' >out_stock_location_type_id , </if>
+                        <if test='outStockLocationTypeName!=null and !"".equals(outStockLocationTypeName)' > out_stock_location_type_name , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='reason!=null and !"".equals(reason)' > reason , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='platformCode!=null and !"".equals(platformCode)' > #{platformCode} , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' > #{platformName} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='adjustNum!=null' > #{adjustNum} , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' > #{inventoryType} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='inStockLocationTypeId!=null' > #{inStockLocationTypeId} , </if>
+                        <if test='inStockLocationTypeName!=null and !"".equals(inStockLocationTypeName)' > #{inStockLocationTypeName} , </if>
+                        <if test='outStockLocationTypeId!=null' > #{outStockLocationTypeId} , </if>
+                        <if test='outStockLocationTypeName!=null and !"".equals(outStockLocationTypeName)' > #{outStockLocationTypeName} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='reason!=null and !"".equals(reason)' > #{reason} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='LocationAdjustmentOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_location_adjustment_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='platformCode!=null and !"".equals(platformCode)' >platform_code= #{platformCode} , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' >platform_name= #{platformName} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='adjustNum!=null' > adjust_num= #{adjustNum} , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' >inventory_type= #{inventoryType} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='inStockLocationTypeId!=null' > in_stock_location_type_id= #{inStockLocationTypeId} , </if>
+                        <if test='inStockLocationTypeName!=null and !"".equals(inStockLocationTypeName)' >in_stock_location_type_name= #{inStockLocationTypeName} , </if>
+                        <if test='outStockLocationTypeId!=null' > out_stock_location_type_id= #{outStockLocationTypeId} , </if>
+                        <if test='outStockLocationTypeName!=null and !"".equals(outStockLocationTypeName)' >out_stock_location_type_name= #{outStockLocationTypeName} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='reason!=null and !"".equals(reason)' >reason= #{reason} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_location_adjustment_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_location_adjustment_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            order_type,
+            merchant_id,
+            merchant_name,
+            bu_id,
+            bu_name,
+            depot_id,
+            depot_name,
+            customer_id,
+            customer_name,
+            platform_code,
+            platform_name,
+            order_code,
+            barcode,
+            goods_name,
+            adjust_num,
+            inventory_type,
+            tallying_unit,
+            in_stock_location_type_id,
+            in_stock_location_type_name,
+            out_stock_location_type_id,
+            out_stock_location_type_name,
+            month,
+            status,
+            reason,
+            creater,
+            create_name,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='platformCode!=null and !"".equals(platformCode)' >platform_code= #{platformCode} and </if>
+                            <if test='platformName!=null and !"".equals(platformName)' >platform_name= #{platformName} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='adjustNum!=null' > adjust_num= #{adjustNum} and </if>
+                            <if test='inventoryType!=null and !"".equals(inventoryType)' >inventory_type= #{inventoryType} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='inStockLocationTypeId!=null' > in_stock_location_type_id= #{inStockLocationTypeId} and </if>
+                            <if test='inStockLocationTypeName!=null and !"".equals(inStockLocationTypeName)' >in_stock_location_type_name= #{inStockLocationTypeName} and </if>
+                            <if test='outStockLocationTypeId!=null' > out_stock_location_type_id= #{outStockLocationTypeId} and </if>
+                            <if test='outStockLocationTypeName!=null and !"".equals(outStockLocationTypeName)' >out_stock_location_type_name= #{outStockLocationTypeName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='reason!=null and !"".equals(reason)' >reason= #{reason} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+	<!-- 库位类型调整明细表   -->
+    <select id='getLocationAdjustmentOrder' resultType='map' parameterType='map' >
+    		SELECT tt.*,
+			tt1.comm_brand_parent_id,
+			tt1.comm_brand_parent_name,
+			tt2.superior_parent_brand			
+			from (			
+			select  t1.* ,
+			(SELECT t2.commbarcode from st_merchandise_info t2
+			where t2.barcode=t1.barcode and t2.commbarcode is not null LIMIT 1 ) as commbarcode			
+			from t_location_adjustment_order t1
+			where t1.merchant_id =#{merchantId} 
+				<if test='depotId!=null'> and t1.depot_id=#{depotId} </if><!-- 业务经销存 用仓库 财务只查保税，海外，中转仓 -->
+				<if test='tag!=null and "1".equals(tag)' > and t1.depot_id in (
+					SELECT id from  st_depot_info where type IN ('a','c','d')
+					)
+				</if><!-- tag韦1 查询财务经销存 -->
+				and  t1.bu_id =#{buId}  
+				and t1.month=#{month} 
+				and t1.status= '002' 
+			)tt
+			LEFT JOIN st_commbarcode tt1 ON tt1.commbarcode=tt.commbarcode
+			LEFT JOIN st_brand_parent tt2 on tt2.id=tt1.comm_brand_parent_id       
+    </select>
+
+
+
+</mapper>

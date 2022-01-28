@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.SaleShelfIdepotItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleShelfIdepotItemModelMap" type="SaleShelfIdepotItemModel" >
+                <result property="id" column="id" />
+                <result property="sshelfIdepotId" column="sshelf_idepot_id" />
+                <result property="inGoodsId" column="in_goods_id" />
+                <result property="inGoodsCode" column="in_goods_code" />
+                <result property="inGoodsNo" column="in_goods_no" />
+                <result property="inGoodsName" column="in_goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="normalNum" column="normal_num" />
+                <result property="damagedNum" column="damaged_num" />
+                <result property="batchNo" column="batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="creater" column="creater" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="saleOutDepotItemId" column="sale_out_depot_item_id" />
+                <result property="saleItemId" column="sale_item_id" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleShelfIdepotItemModelMap' parameterType='SaleShelfIdepotItemModel'>
+        select <include refid='sql_columns' /> from t_sale_shelf_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleShelfIdepotItemModelMap' parameterType='SaleShelfIdepotItemModel'>
+        select <include refid='sql_columns' /> from t_sale_shelf_idepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleShelfIdepotItemModelMap' parameterType='SaleShelfIdepotItemModel' >
+        select <include refid='sql_columns' /> from t_sale_shelf_idepot_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleShelfIdepotItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_shelf_idepot_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='sshelfIdepotId!=null' >sshelf_idepot_id , </if>
+                        <if test='inGoodsId!=null' >in_goods_id , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > in_goods_code , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > in_goods_no , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' > in_goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='normalNum!=null' >normal_num , </if>
+                        <if test='damagedNum!=null' >damaged_num , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                        <if test='productionDate!=null' >production_date , </if>
+                        <if test='overdueDate!=null' >overdue_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='saleOutDepotItemId!=null' >sale_out_depot_item_id , </if>
+                        <if test='saleItemId!=null' >sale_item_id , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='sshelfIdepotId!=null' > #{sshelfIdepotId} , </if>
+                        <if test='inGoodsId!=null' > #{inGoodsId} , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > #{inGoodsCode} , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > #{inGoodsNo} , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' > #{inGoodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='normalNum!=null' > #{normalNum} , </if>
+                        <if test='damagedNum!=null' > #{damagedNum} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                        <if test='productionDate!=null' > #{productionDate} , </if>
+                        <if test='overdueDate!=null' > #{overdueDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='saleOutDepotItemId!=null' > #{saleOutDepotItemId} , </if>
+                        <if test='saleItemId!=null' > #{saleItemId} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleShelfIdepotItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_shelf_idepot_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='sshelfIdepotId!=null' > sshelf_idepot_id= #{sshelfIdepotId} , </if>
+                        <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='normalNum!=null' > normal_num= #{normalNum} , </if>
+                        <if test='damagedNum!=null' > damaged_num= #{damagedNum} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                        <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                        <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='saleOutDepotItemId!=null' > sale_out_depot_item_id= #{saleOutDepotItemId} , </if>
+                        <if test='saleItemId!=null' > sale_item_id= #{saleItemId} and </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_shelf_idepot_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_shelf_idepot_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            sshelf_idepot_id,
+            in_goods_id,
+            in_goods_code,
+            in_goods_no,
+            in_goods_name,
+            barcode,
+            commbarcode,
+            normal_num,
+            damaged_num,
+            batch_no,
+            production_date,
+            overdue_date,
+            creater,
+            create_date,
+            modify_date,
+            sale_out_depot_item_id,
+            sale_item_id
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='sshelfIdepotId!=null' > sshelf_idepot_id= #{sshelfIdepotId} and </if>
+                            <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} and </if>
+                            <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} and </if>
+                            <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} and </if>
+                            <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='normalNum!=null' > normal_num= #{normalNum} and </if>
+                            <if test='damagedNum!=null' > damaged_num= #{damagedNum} and </if>
+                            <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                            <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='saleOutDepotItemId!=null' > sale_out_depot_item_id= #{saleOutDepotItemId} and </if>
+                            <if test='saleItemId!=null' > sale_item_id= #{saleItemId} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

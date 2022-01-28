@@ -1,0 +1,31 @@
+ 
+spring:        
+    datasource:
+        platform: mysql
+        driver-class-name: com.mysql.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: ${derpdb.log.url}
+        username: ${derpdb.log.username}
+        password: ${derpdb.log.password}
+        initialSize: 20 #初始化连接数量
+        minIdle: 20 #连接池最小空闲链接数量
+        maxActive: 500 #连接池最大连接数量
+        maxWait: 60000 #获取连接等待超时的时间
+        testWhileIdle: true #是否被空闲连接回收器进行检验.检测失败则连接将被从池中去除
+        timeBetweenEvictionRunsMillis: 60000 #间隔多久进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+        minEvictableIdleTimeMillis: 300000 #连接在池中空闲最小生存的时间，单位是毫秒
+        testOnBorrow: false #是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个
+        testOnReturn: false #是否在归还到池中前进行检验
+        validationQuery: SELECT 1 FROM DUAL
+        filters: stat,wall,log4j #拦截器 监控统计用的filter:stat 日志用的filter:log4j 防御SQL注入的filter:wall
+
+            
+   
+            
+            
+            
+            
+
+        
+            
+            

@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.base.BrandMapper'>
+
+  <!-- 关系映射 -->
+    <resultMap id="BrandModelMap" type="BrandModel" >
+                <result property="image" column="image" />
+                <result property="operationDate" column="operation_date" />
+                <result property="parentName" column="parent_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="name" column="name" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="isMatching" column="is_matching" />
+                <result property="parentId" column="parent_id" />                
+                <result property="operator" column="operator" />
+                <result property="createDate" column="create_date" />
+                <result property="englishBrandName" column="english_brand_name" />
+                <result property="chinaBrandName" column="china_brand_name" />
+                <result property="operatorName" column="operator_name" />
+                <result property="createrName" column="creater_name" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BrandModelMap' parameterType='BrandModel'>
+        select <include refid='sql_columns' /> from st_brand  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BrandModelMap' parameterType='BrandModel'>
+        select <include refid='sql_columns' /> from st_brand  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BrandModelMap' parameterType='BrandModel' >
+        select <include refid='sql_columns' /> from st_brand  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='BrandModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_brand
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='image!=null and !"".equals(image)' > image , </if>
+                <if test='operationDate!=null' > operation_date , </if>
+                <if test='parentName!=null and !"".equals(parentName)' > parent_name , </if>          
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='name!=null and !"".equals(name)' > name , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='isMatching!=null and !"".equals(isMatching)' > is_matching , </if>
+                <if test='parentId!=null' > parent_id , </if>
+                <if test='operator!=null' > operator , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='englishBrandName!=null and !"".equals(englishBrandName)' > english_brand_name , </if>
+                <if test='chinaBrandName!=null and !"".equals(chinaBrandName)' > china_brand_name , </if>
+                <if test='operatorName!=null and !"".equals(operatorName)' > operator_name , </if>
+                <if test='createrName!=null and !"".equals(createrName)' > creater_name , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='image!=null and !"".equals(image)' > #{image} , </if>
+                <if test='operationDate!=null' > #{operationDate} , </if>
+                <if test='parentName!=null and !"".equals(parentName)' > #{parentName} , </if>                
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='isMatching!=null and !"".equals(isMatching)' > #{isMatching} , </if>
+                <if test='parentId!=null' > #{parentId} , </if>
+                <if test='operator!=null' > #{operator} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='englishBrandName!=null and !"".equals(englishBrandName)' > #{englishBrandName} , </if>
+                <if test='chinaBrandName!=null and !"".equals(chinaBrandName)' > #{chinaBrandName} , </if>
+                <if test='operatorName!=null and !"".equals(operatorName)' > #{operatorName} , </if>
+                <if test='createrName!=null and !"".equals(createrName)' > #{createrName} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='BrandModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_brand SET
+        <trim  suffixOverrides=",">
+                <if test='image!=null and !"".equals(image)' >image= #{image} , </if>
+                <if test='operationDate!=null' > operation_date= #{operationDate} , </if>
+                <if test='parentName!=null and !"".equals(parentName)' >parent_name= #{parentName} , </if>                
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='isMatching!=null and !"".equals(isMatching)' >is_matching= #{isMatching} , </if>
+                <if test='parentId!=null' > parent_id= #{parentId} , </if>
+                <if test='operator!=null' > operator= #{operator} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='englishBrandName!=null and !"".equals(englishBrandName)' >english_brand_name= #{englishBrandName} , </if>
+                <if test='chinaBrandName!=null and !"".equals(chinaBrandName)' >china_brand_name= #{chinaBrandName} , </if>
+                <if test='operatorName!=null and !"".equals(operatorName)' >operator_name= #{operatorName} , </if>
+                <if test='createrName!=null and !"".equals(createrName)' >creater_name= #{createrName} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_brand  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_brand where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        image,
+        operation_date,
+        parent_name,
+        modify_date,
+        name,
+        creater,
+        id,
+        is_matching,
+        parent_id,
+        operator,
+        create_date,
+        english_brand_name,
+        china_brand_name,
+        operator_name,
+        creater_name
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='image!=null and !"".equals(image)' >image= #{image} and </if>
+                <if test='operationDate!=null' > operation_date= #{operationDate} and </if>
+                <if test='parentName!=null and !"".equals(parentName)' >parent_name= #{parentName} and </if>                
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='isMatching!=null and !"".equals(isMatching)' >is_matching= #{isMatching} and </if>
+                <if test='parentId!=null' > parent_id= #{parentId} and </if>
+                <if test='operator!=null' > operator= #{operator} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='englishBrandName!=null and !"".equals(englishBrandName)' >english_brand_name= #{englishBrandName} and </if>
+                <if test='chinaBrandName!=null and !"".equals(chinaBrandName)' >china_brand_name= #{chinaBrandName} and </if>
+                <if test='operatorName!=null and !"".equals(operatorName)' >operator_name= #{operatorName} and </if>
+                <if test='createrName!=null and !"".equals(createrName)' >creater_name= #{createrName} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+    <sql id='sql_like_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='name!=null and !"".equals(name)' >name like CONCAT('%',#{name},'%') and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!-- 下拉列表关系映射 -->
+    <resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+                <result property="value" column="id" />
+                <result property="label" column="name" />
+    </resultMap>
+    
+     <!-- 查询下拉列表 -->
+    <select id='getSelectBean' resultMap='SelectBeans'>
+        select id,name from st_brand
+    </select>
+    
+    <!-- 查询下拉列表 -->
+    <select id='getSelectBeanByMerchant' parameterType="map" resultMap='SelectBeans'>
+        select b.id,b.name from st_brand b,st_merchant_brand_rel m
+		where b.id=m.brand_id 
+		and m.merchant_id in
+		<foreach collection='merchantIds' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </select>
+
+    <!-- 根据父类id获取品牌集合 -->
+    <!-- <select id='getListByParentId' parameterType="java.lang.Long" resultMap='BrandModelMap'>
+        select id,name from st_brand where parent_id = #{parentId}
+    </select> -->
+    
+    <!-- 查询下拉列表，去除已经匹配的 -->
+    <!-- <select id='getSelectBeanByNoMatching' resultMap='SelectBeans'>
+        select id,name from st_brand where is_matching = '0'
+    </select> -->
+    
+    <resultMap id="BrandModelMap2" type="BrandModel" >
+                <result property="image" column="image" />
+                <result property="operationDate" column="operation_date" />
+                <result property="name" column="name" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="operator" column="operator" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />               
+                <result property="operatorName" column="username" />
+    </resultMap>
+    
+    <!-- 分页 -->
+    <select id='getListByPage' resultType='BrandDTO' parameterType='BrandDTO'>
+        select 
+ 			t1.*,t2.username
+ 		from st_brand t1
+ 		left join st_user_info t2 on t2.id = t1.operator
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='image!=null and !"".equals(image)' >t1.image= #{image} and </if>
+                <if test='operationDate!=null' > t1.operation_date= #{operationDate} and </if>
+                <if test='modifyDate!=null' > t1.modify_date= #{modifyDate} and </if>
+                <if test='name!=null and !"".equals(name)' >t1.name like '%${name}%' and </if>
+                <if test='creater!=null' > t1.creater= #{creater} and </if>
+                <if test='operator!=null' > t1.operator= #{operator} and </if>
+                <if test='createDate!=null' > t1.create_date= #{createDate} and </if>
+            </trim>
+        </where>
+        order by t1.id desc
+    </select>
+    
+    <!-- 弹窗选择 分页 去除已经匹配的，和选择过的 -->
+    <!-- <select id='getBrandByPage' resultMap='BrandModelMap' parameterType='BrandModel'>
+        select 
+ 			id,name,is_matching,operation_date
+ 		from st_brand
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='image!=null and !"".equals(image)' >image= #{image} and </if>
+                <if test='operationDate!=null' > operation_date= #{operationDate} and </if>
+                <if test='parentName!=null and !"".equals(parentName)' >parent_name= #{parentName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='name!=null and !"".equals(name)' >name like '%${name}%' and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='isMatching!=null and !"".equals(isMatching)' >is_matching= #{isMatching} and </if>
+                <if test='parentId!=null' > parent_id= #{parentId} and </if>
+                <if test='operator!=null' > operator= #{operator} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test="ids!=null">
+        			id not in
+        			<foreach collection='ids' item='id' separator=',' open='(' close=')'>
+			            #{id}
+			        </foreach>
+			        and
+        		</if>
+            </trim>
+        </where>
+    </select> -->
+    
+    <!-- 根据ids获取信息 -->
+    <select id='getListByIds' resultMap='BrandModelMap' parameterType='java.util.List'>
+        select id,name from st_brand where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </select>
+    
+    <!-- 解绑 -->
+    <!-- <update id='updateUnMatching' parameterType='BrandModel' keyProperty="id" useGeneratedKeys="true">
+		UPDATE st_brand
+		  SET 
+			 operation_date = NULL,
+			 parent_name = NULL,
+			 is_matching = '0',
+			 parent_id = NULL,
+			 operator = NULL,
+			 modify_date = #{modifyDate}
+        <where>
+            id=#{id}
+        </where>
+    </update> -->
+
+    <select id='count' resultType='int' parameterType='BrandModel'>
+        select
+        count(id)
+        from st_brand
+        <include refid='sql_where' />
+    </select>
+
+    <select id="listByLike" resultMap='BrandModelMap' parameterType='BrandModel'>
+        select <include refid='sql_columns' /> from st_brand  <include refid='sql_like_where' />
+    </select>
+
+</mapper>

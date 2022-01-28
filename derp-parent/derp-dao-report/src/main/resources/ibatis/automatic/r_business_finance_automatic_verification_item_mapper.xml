@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.automatic.BusinessFinanceAutomaticVerificationItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="BusinessFinanceAutomaticVerificationItemModelMap" type="BusinessFinanceAutomaticVerificationItemModel" >
+        <result property="id" column="id" />
+        <result property="businessFinanceId" column="business_finance_id" />
+        <result property="merchantId" column="merchant_id" />
+        <result property="merchantName" column="merchant_name" />
+        <result property="buId" column="bu_id" />
+        <result property="buName" column="bu_name" />
+        <result property="month" column="month" />
+        <result property="commbarcode" column="commbarcode" />
+        <result property="goodsName" column="goods_name" />
+        <result property="buInventorySummaryEndNum" column="bu_inventory_summary_end_num" />
+        <result property="buFinanceSummaryEndNum" column="bu_finance_summary_end_num" />
+        <result property="buFinanceSummaryNum" column="bu_finance_summary_num" />
+        <result property="addSaleNoshelfNum" column="add_sale_noshelf_num" />
+        <result property="addTransferNoshelfNum" column="add_transfer_noshelf_num" />
+        <result property="createDate" column="create_date" />
+        <result property="modifyDate" column="modify_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BusinessFinanceAutomaticVerificationItemModelMap' parameterType='BusinessFinanceAutomaticVerificationItemModel'>
+        select <include refid='sql_columns' /> from r_business_finance_automatic_verification_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BusinessFinanceAutomaticVerificationItemModelMap' parameterType='BusinessFinanceAutomaticVerificationItemModel'>
+        select <include refid='sql_columns' /> from r_business_finance_automatic_verification_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BusinessFinanceAutomaticVerificationItemModelMap' parameterType='BusinessFinanceAutomaticVerificationItemModel' >
+        select <include refid='sql_columns' /> from r_business_finance_automatic_verification_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='BusinessFinanceAutomaticVerificationItemModel' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO r_business_finance_automatic_verification_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test='id!=null' >id , </if>
+            <if test='businessFinanceId!=null' >business_finance_id , </if>
+            <if test='merchantId!=null' >merchant_id , </if>
+            <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+            <if test='buId!=null' >bu_id , </if>
+            <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+            <if test='month!=null and !"".equals(month)' > month , </if>
+            <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+            <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+            <if test='buInventorySummaryEndNum!=null' >bu_inventory_summary_end_num , </if>
+            <if test='buFinanceSummaryEndNum!=null' >bu_finance_summary_end_num , </if>
+            <if test='buFinanceSummaryNum!=null' >bu_finance_summary_num , </if>
+            <if test='addSaleNoshelfNum!=null' >add_sale_noshelf_num , </if>
+            <if test='addTransferNoshelfNum!=null' >add_transfer_noshelf_num , </if>
+            <if test='createDate!=null' >create_date , </if>
+            <if test='modifyDate!=null' >modify_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test='id!=null' > #{id} , </if>
+            <if test='businessFinanceId!=null' > #{businessFinanceId} , </if>
+            <if test='merchantId!=null' > #{merchantId} , </if>
+            <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+            <if test='buId!=null' > #{buId} , </if>
+            <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+            <if test='month!=null and !"".equals(month)' > #{month} , </if>
+            <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+            <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+            <if test='buInventorySummaryEndNum!=null' > #{buInventorySummaryEndNum} , </if>
+            <if test='buFinanceSummaryEndNum!=null' > #{buFinanceSummaryEndNum} , </if>
+            <if test='buFinanceSummaryNum!=null' > #{buFinanceSummaryNum} , </if>
+            <if test='addSaleNoshelfNum!=null' > #{addSaleNoshelfNum} , </if>
+            <if test='addTransferNoshelfNum!=null' > #{addTransferNoshelfNum} , </if>
+            <if test='createDate!=null' > #{createDate} , </if>
+            <if test='modifyDate!=null' > #{modifyDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='BusinessFinanceAutomaticVerificationItemModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  r_business_finance_automatic_verification_item SET
+        <trim  suffixOverrides=",">
+            <if test='id!=null' > id= #{id} , </if>
+            <if test='businessFinanceId!=null' > business_finance_id= #{businessFinanceId} , </if>
+            <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+            <if test='buId!=null' > bu_id= #{buId} , </if>
+            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+            <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+            <if test='buInventorySummaryEndNum!=null' > bu_inventory_summary_end_num= #{buInventorySummaryEndNum} , </if>
+            <if test='buFinanceSummaryEndNum!=null' > bu_finance_summary_end_num= #{buFinanceSummaryEndNum} , </if>
+            <if test='buFinanceSummaryNum!=null' > bu_finance_summary_num= #{buFinanceSummaryNum} , </if>
+            <if test='addSaleNoshelfNum!=null' > add_sale_noshelf_num= #{addSaleNoshelfNum} , </if>
+            <if test='addTransferNoshelfNum!=null' > add_transfer_noshelf_num= #{addTransferNoshelfNum} , </if>
+            <if test='createDate!=null' > create_date= #{createDate} , </if>
+            <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_business_finance_automatic_verification_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from r_business_finance_automatic_verification_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        id,
+        business_finance_id,
+        merchant_id,
+        merchant_name,
+        bu_id,
+        bu_name,
+        month,
+        commbarcode,
+        goods_name,
+        bu_inventory_summary_end_num,
+        bu_finance_summary_end_num,
+        bu_finance_summary_num,
+        add_sale_noshelf_num,
+        add_transfer_noshelf_num,
+        create_date,
+        modify_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='businessFinanceId!=null' > business_finance_id= #{businessFinanceId} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='buInventorySummaryEndNum!=null' > bu_inventory_summary_end_num= #{buInventorySummaryEndNum} and </if>
+                <if test='buFinanceSummaryEndNum!=null' > bu_finance_summary_end_num= #{buFinanceSummaryEndNum} and </if>
+                <if test='buFinanceSummaryNum!=null' > bu_finance_summary_num= #{buFinanceSummaryNum} and </if>
+                <if test='addSaleNoshelfNum!=null' > add_sale_noshelf_num= #{addSaleNoshelfNum} and </if>
+                <if test='addTransferNoshelfNum!=null' > add_transfer_noshelf_num= #{addTransferNoshelfNum} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+    <!--自定义SQL-->
+        <delete id="deleteByMap" parameterType="map" >
+            DELETE FROM r_business_finance_automatic_verification_item
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='buId!=null' > bu_id= #{buId} and </if>
+                    <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                </trim>
+            </where>
+        </delete>
+
+        <select id="listForExport" parameterType='BusinessFinanceAutomaticVerificationItemModel' resultMap="BusinessFinanceAutomaticVerificationItemModelMap" >
+            select <include refid='sql_columns' /> from r_business_finance_automatic_verification_item
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                </trim>
+            </where>
+            order by id desc
+        </select>
+
+
+</mapper>

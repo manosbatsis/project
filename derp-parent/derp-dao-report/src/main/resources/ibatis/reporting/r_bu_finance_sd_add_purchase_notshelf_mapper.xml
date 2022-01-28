@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuFinanceSdAddPurchaseNotshelfMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuFinanceSdAddPurchaseNotshelfModelMap" type="BuFinanceSdAddPurchaseNotshelfModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="orderId" column="order_id" />
+                <result property="orderCode" column="order_code" />
+                <result property="warehouseCreateDate" column="warehouse_create_date" />
+                <result property="poNo" column="po_no" />
+                <result property="supplierId" column="supplier_id" />
+                <result property="supplierName" column="supplier_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="warehouseNum" column="warehouse_num" />
+                <result property="amount" column="amount" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="sdSimpleName" column="sd_simple_name" />
+                <result property="month" column="month" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="sdTypeName" column="sd_type_name" />
+                <result property="sdOrderId" column="sd_order_id" />
+                <result property="sdOrderCode" column="sd_order_code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuFinanceSdAddPurchaseNotshelfModelMap' parameterType='BuFinanceSdAddPurchaseNotshelfModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_sd_add_purchase_notshelf  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuFinanceSdAddPurchaseNotshelfModelMap' parameterType='BuFinanceSdAddPurchaseNotshelfModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_sd_add_purchase_notshelf  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuFinanceSdAddPurchaseNotshelfModelMap' parameterType='BuFinanceSdAddPurchaseNotshelfModel' >
+        select <include refid='sql_columns' /> from r_bu_finance_sd_add_purchase_notshelf  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuFinanceSdAddPurchaseNotshelfModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_finance_sd_add_purchase_notshelf
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='inDepotId!=null' >in_depot_id , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > in_depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='warehouseCreateDate!=null' >warehouse_create_date , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='supplierId!=null' >supplier_id , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='warehouseNum!=null' >warehouse_num , </if>
+                        <if test='amount!=null' >amount , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > sd_simple_name , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > sd_type_name , </if>
+                        <if test='sdOrderId!=null and !"".equals(sdOrderId)' > sd_order_id , </if>
+                        <if test='sdOrderCode!=null and !"".equals(sdOrderCode)' > sd_order_code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='inDepotId!=null' > #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > #{inDepotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='warehouseCreateDate!=null' > #{warehouseCreateDate} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='supplierId!=null' > #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='warehouseNum!=null' > #{warehouseNum} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > #{sdSimpleName} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > #{sdTypeName} , </if>
+                        <if test='sdOrderId!=null and !"".equals(sdOrderId)' > #{sdOrderId} , </if>
+                        <if test='sdOrderCode!=null and !"".equals(sdOrderCode)' > #{sdOrderCode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuFinanceSdAddPurchaseNotshelfModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_finance_sd_add_purchase_notshelf SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='warehouseCreateDate!=null' > warehouse_create_date= #{warehouseCreateDate} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='supplierId!=null' > supplier_id= #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' >sd_simple_name= #{sdSimpleName} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} , </if>
+                        <if test='sdOrderId!=null and !"".equals(sdOrderId)' > sd_order_id=#{sdOrderId} , </if>
+                        <if test='sdOrderCode!=null and !"".equals(sdOrderCode)' > sd_order_code= #{sdOrderCode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_finance_sd_add_purchase_notshelf  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_finance_sd_add_purchase_notshelf where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            in_depot_id,
+            in_depot_name,
+            bu_id,
+            bu_name,
+            order_id,
+            order_code,
+            warehouse_create_date,
+            po_no,
+            supplier_id,
+            supplier_name,
+            goods_id,
+            goods_name,
+            goods_no,
+            warehouse_num,
+            amount,
+            superior_parent_brand,
+            brand_id,
+            brand_name,
+            sd_simple_name,
+            month,
+            create_date,
+            modify_date,
+            sd_type_name,
+            sd_order_id,
+            sd_order_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                            <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='warehouseCreateDate!=null' > warehouse_create_date= #{warehouseCreateDate} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' >sd_simple_name= #{sdSimpleName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} and </if>
+                            <if test='sdOrderId!=null and !"".equals(sdOrderId)' > sd_order_id=#{sdOrderId} and </if>
+                            <if test='sdOrderCode!=null and !"".equals(sdOrderCode)' > sd_order_code= #{sdOrderCode} and </if>
+                          
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+	<!--清除商家 仓库 月份 (财务经销存)累计采购在途明细表 -->
+	<delete id='delBuFinanceSdAddPurchaseNotshelf' parameterType='map'>
+		delete from r_bu_finance_sd_add_purchase_notshelf
+		where merchant_id=#{merchantId} 
+		and bu_id= #{buId} 
+		and month=#{month} 
+	</delete>
+
+	<!-- 获取(事业部财务经销存)采购在途SD明细 (利息经销存只取INT)导出数据 -->
+	<select id='getBuFinanceSdAddPurchaseNotshelf' resultType="map" parameterType='map'>	
+		 	SELECT merchant_id,order_id,goods_id,sd_order_code,'采购SD' as order_type,
+		 	SUM(amount) as amount,
+		 	MAX(sd_type_name) as sd_type_name,
+		 	MAX(supplier_name) as supplier_name,
+			MAX(bu_name) as bu_name,
+			MAX(brand_name)as brand_name,
+			MAX(superior_parent_brand)as superior_parent_brand,
+			MAX(order_code)as order_code,
+			MAX(warehouse_create_date)as warehouse_create_date,
+			MAX(po_no)as po_no,
+			MAX(goods_no)as goods_no,
+			MAX(goods_name)as goods_name,
+			SUM(warehouse_num)as warehouse_num,
+			(SELECT commbarcode from st_merchandise_info where id=goods_id) as commbarcode
+			from r_bu_finance_sd_add_purchase_notshelf 
+			where merchant_id=#{merchantId}
+			 AND `month`=#{month} 
+			<!-- and DATE_FORMAT(warehouse_create_date, '%Y-%m')=#{month} -->
+					<if test='buId!=null' > and bu_id= #{buId}  </if>
+					<if test='buList!=null and !"".equals(buList)' >and bu_id in
+					 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+					       #{buId}
+					 </foreach>                   
+					</if> 
+					<if test='sdTypeName!=null and !"".equals(sdTypeName)' >and sd_type_name= #{sdTypeName}  </if>
+					<if test='sdTypeName==null or "".equals(sdTypeName)' >and sd_type_name != 'INT'  </if>
+			GROUP BY merchant_id,order_id,goods_id,sd_order_code		 
+	</select>	
+	<!-- 获取导出表头的后面各个类型-->
+	<select id='getBuOrderGoodsAmontName' resultType="map" parameterType='map'>
+			select sd_type_name
+	    	from r_bu_finance_sd_add_purchase_notshelf
+			where merchant_id=#{merchantId} AND `month`=#{month}
+			and DATE_FORMAT(warehouse_create_date, '%Y-%m')=#{month}
+			group by sd_type_name
+			
+	</select>   
+	    
+	<!-- 导出-获取导出表头的后面各个每个商品类型金额 -->
+	<select id='getBuOrderGoodsAmont' resultType="map" parameterType='map'>
+			select CONCAT(order_id,'_',goods_id,'_',sd_type_name) AS orderId_goodsId_sdTypeName,
+			SUM(amount) AS amount,sd_simple_name 
+	    	from r_bu_finance_sd_add_purchase_notshelf
+			where merchant_id=#{merchantId} AND `month`=#{month}
+			and DATE_FORMAT(warehouse_create_date, '%Y-%m')=#{month}
+			group by merchant_id,order_id,goods_id,sd_type_name			
+	</select>    
+
+</mapper>

@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.AdvanceBillOperateItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="AdvanceBillOperateItemModelMap" type="AdvanceBillOperateItemModel" >
+                <result property="id" column="id" />
+                <result property="advanceId" column="advance_id" />
+                <result property="operateId" column="operate_id" />
+                <result property="operater" column="operater" />
+                <result property="operateDate" column="operate_date" />
+                <result property="operateResult" column="operate_result" />
+                <result property="operateRemark" column="operate_remark" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="operateType" column="operate_type" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AdvanceBillOperateItemModelMap' parameterType='AdvanceBillOperateItemModel'>
+        select <include refid='sql_columns' /> from t_advance_bill_operate_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AdvanceBillOperateItemModelMap' parameterType='AdvanceBillOperateItemModel'>
+        select <include refid='sql_columns' /> from t_advance_bill_operate_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AdvanceBillOperateItemModelMap' parameterType='AdvanceBillOperateItemModel' >
+        select <include refid='sql_columns' /> from t_advance_bill_operate_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='AdvanceBillOperateItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_advance_bill_operate_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='advanceId!=null' >advance_id , </if>
+                        <if test='operateId!=null' >operate_id , </if>
+                        <if test='operater!=null and !"".equals(operater)' > operater , </if>
+                        <if test='operateDate!=null' >operate_date , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' > operate_result , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' > operate_remark , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' > operate_type , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='advanceId!=null' > #{advanceId} , </if>
+                        <if test='operateId!=null' > #{operateId} , </if>
+                        <if test='operater!=null and !"".equals(operater)' > #{operater} , </if>
+                        <if test='operateDate!=null' > #{operateDate} , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' > #{operateResult} , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' > #{operateRemark} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' > #{operateType} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='AdvanceBillOperateItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_advance_bill_operate_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='advanceId!=null' > advance_id= #{advanceId} , </if>
+                        <if test='operateId!=null' > operate_id= #{operateId} , </if>
+                        <if test='operater!=null and !"".equals(operater)' >operater= #{operater} , </if>
+                        <if test='operateDate!=null' > operate_date= #{operateDate} , </if>
+                        <if test='operateResult!=null and !"".equals(operateResult)' >operate_result= #{operateResult} , </if>
+                        <if test='operateRemark!=null and !"".equals(operateRemark)' >operate_remark= #{operateRemark} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_advance_bill_operate_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_advance_bill_operate_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            advance_id,
+            operate_id,
+            operater,
+            operate_date,
+            operate_result,
+            operate_remark,
+            create_date,
+            modify_date,
+            operate_type
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='advanceId!=null' > advance_id= #{advanceId} and </if>
+                            <if test='operateId!=null' > operate_id= #{operateId} and </if>
+                            <if test='operater!=null and !"".equals(operater)' >operater= #{operater} and </if>
+                            <if test='operateDate!=null' > operate_date= #{operateDate} and </if>
+                            <if test='operateResult!=null and !"".equals(operateResult)' >operate_result= #{operateResult} and </if>
+                            <if test='operateRemark!=null and !"".equals(operateRemark)' >operate_remark= #{operateRemark} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <resultMap id="AdvanceBillOperateItemDTOMap" type="AdvanceBillOperateItemDTO" >
+        <result property="id" column="id" />
+        <result property="advanceId" column="advance_id" />
+        <result property="operateId" column="operate_id" />
+        <result property="operater" column="operater" />
+        <result property="operateDate" column="operate_date" />
+        <result property="operateResult" column="operate_result" />
+        <result property="operateRemark" column="operate_remark" />
+        <result property="createDate" column="create_date" />
+        <result property="modifyDate" column="modify_date" />
+        <result property="operateType" column="operate_type" />
+    </resultMap>
+
+    <select id="getAdvanceById" parameterType="long" resultMap="AdvanceBillOperateItemDTOMap">
+        select <include refid='sql_columns' /> from t_advance_bill_operate_item  where advance_id=#{advanceId}
+    </select>
+
+    <delete id="delItems" parameterType="long">
+        delete from t_advance_bill_operate_item where advance_id=#{advanceId}
+    </delete>
+
+    <select id="getMaxAuditDate" resultType="map">
+        select advance_id advanceId, max(operate_date) operateDate  from t_advance_bill_operate_item
+        where
+            operate_type = '1'
+        and advance_id in
+            <foreach collection='advanceIds' item='advanceId' separator=',' open='(' close=')'>
+                #{advanceId}
+            </foreach>
+        group by advance_id
+    </select>
+
+    <select id="getLatestAuditModelByAdvanceIds" resultMap="AdvanceBillOperateItemModelMap" >
+        select advance_id,operate_id,operate_date, operater from
+            (select advance_id,operate_id,operate_date, operater
+            from t_advance_bill_operate_item
+            where
+            operate_type = '1'
+            and operate_result = '0'
+            and advance_id in
+            <foreach collection='advanceIds' item='advanceId' separator=',' open='(' close=')'>
+                #{advanceId}
+            </foreach>
+            order by operate_date desc) a
+        group by a.advance_id
+    </select>
+
+</mapper>

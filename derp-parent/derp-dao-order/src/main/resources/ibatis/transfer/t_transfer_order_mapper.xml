@@ -1,0 +1,954 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.transfer.TransferOrderMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="TransferOrderModelMap" type="TransferOrderModel" >
+                <result property="shipper" column="shipper" />
+                <result property="country" column="country" />
+                <result property="code" column="code" />
+                <result property="lbxNo" column="lbx_no" />
+                <result property="submitUsername" column="submit_username" />
+                <result property="contractNo" column="contract_no" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="modifier" column="modifier" />
+                <result property="receivingAddress" column="receiving_address" />
+                <result property="consigneeUsername" column="consignee_username" />
+                <result property="packType" column="pack_type" />
+                <result property="destination" column="destination" />
+                <result property="remark" column="remark" />
+                <result property="portLoading" column="port_loading" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="createUsername" column="create_username" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="firstLadingBillNo" column="first_lading_bill_no" />
+                <result property="model" column="model" />
+                <result property="id" column="id" />
+                <result property="payRules" column="pay_rules" />
+                <result property="billWeight" column="bill_weight" />
+                <result property="invoiceNo" column="invoice_no" />
+                <result property="createDate" column="create_date" />
+                <result property="cartons" column="cartons" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="modifierUsername" column="modifier_username" />
+                <result property="submitOne" column="submit_one" />
+                <result property="inCustomerId" column="in_customer_id" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="submitTime" column="submit_time" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="creater" column="creater" />
+                <result property="inCustomerName" column="in_customer_name" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="serveTypes" column="serve_types" />
+                <result property="mark" column="mark" />
+                <result property="status" column="status" />
+                <result property="depotScheduleAddress" column="depot_schedule_address" />
+                <result property="depotScheduleId" column="depot_schedule_id" />
+                <result property="isSameArea" column="is_same_area" />
+                <result property="poNo" column="po_no" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="trainNumber" column="train_number" />
+                <result property="standardCaseTeu" column="standard_case_teu" />
+                <result property="torrNum" column="torr_num" />
+                <result property="carrier" column="carrier" />
+                <result property="outdepotAddr" column="outDepot_addr" />
+                <result property="transport" column="transport" />
+                <result property="palletMaterial" column="pallet_material" />
+                <result property="unloadPort" column="unload_port" />
+                <result property="inCustomsId" column="in_customs_id" />
+                <result property="inCustomsCode" column="in_customs_code" />
+                <result property="inPlatformCustoms" column="in_platform_customs" />
+                <result property="outCustomsId" column="out_customs_id" />
+                <result property="outCustomsCode" column="out_customs_code" />
+                <result property="outPlatformCustoms" column="out_platform_customs" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TransferOrderModelMap' parameterType='TransferOrderModel'>
+        select <include refid='sql_columns' /> from t_transfer_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TransferOrderModelMap' parameterType='TransferOrderModel'>
+        select <include refid='sql_columns' /> from t_transfer_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TransferOrderModelMap' parameterType='TransferOrderModel' >
+        select <include refid='sql_columns' /> from t_transfer_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TransferOrderModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_transfer_order
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='shipper!=null and !"".equals(shipper)' > shipper , </if>
+                <if test='country!=null and !"".equals(country)' > country , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' > lbx_no , </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' > submit_username , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                <if test='outDepotId!=null' > out_depot_id , </if>
+                <if test='modifier!=null' > modifier , </if>
+                <if test='receivingAddress!=null and !"".equals(receivingAddress)' > receiving_address , </if>
+                <if test='consigneeUsername!=null and !"".equals(consigneeUsername)' > consignee_username , </if>
+                <if test='packType!=null and !"".equals(packType)' > pack_type , </if>
+                <if test='destination!=null and !"".equals(destination)' > destination , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' > port_loading , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > create_username , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='firstLadingBillNo!=null and !"".equals(firstLadingBillNo)' > first_lading_bill_no , </if>
+                <if test='model!=null and !"".equals(model)' > model , </if>
+                <if test='id!=null' > id , </if>
+                <if test='payRules!=null and !"".equals(payRules)' > pay_rules , </if>
+                <if test='billWeight!=null' > bill_weight , </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' > invoice_no , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='cartons!=null and !"".equals(cartons)' > cartons , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='modifierUsername!=null and !"".equals(modifierUsername)' > modifier_username , </if>
+                <if test='submitOne!=null' > submit_one , </if>
+                <if test='inCustomerId!=null' > in_customer_id , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' > in_depot_name , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                <if test='submitTime!=null' > submit_time , </if>
+                <if test='inDepotId!=null' > in_depot_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' > in_customer_name , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' > serve_types , </if>
+                <if test='mark!=null and !"".equals(mark)' > mark , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='isSameArea!=null and !"".equals(isSameArea)' > is_same_area , </if>
+                <if test='depotScheduleAddress!=null and !"".equals(depotScheduleAddress)' > depot_schedule_address , </if>
+        		<if test='depotScheduleId!=null' > depot_schedule_id , </if>
+        		<if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='trainNumber!=null and !"".equals(trainNumber)' > train_number , </if>
+                <if test='standardCaseTeu!=null and !"".equals(standardCaseTeu)' > standard_case_teu , </if>
+                <if test='torrNum!=null' >torr_num , </if>
+                <if test='carrier!=null and !"".equals(carrier)' > carrier , </if>
+                <if test='outdepotAddr!=null and !"".equals(outdepotAddr)' > outDepot_addr , </if>
+                <if test='transport!=null and !"".equals(transport)' > transport , </if>
+                <if test='palletMaterial!=null and !"".equals(palletMaterial)' > pallet_material , </if>
+                <if test='unloadPort!=null and !"".equals(unloadPort)' > unload_port , </if>
+                <if test='inCustomsId!=null' >in_customs_id , </if>
+                <if test='inCustomsCode!=null and !"".equals(inCustomsCode)' > in_customs_code , </if>
+                <if test='inPlatformCustoms!=null and !"".equals(inPlatformCustoms)' > in_platform_customs , </if>
+                <if test='outCustomsId!=null' >out_customs_id , </if>
+                <if test='outCustomsCode!=null and !"".equals(outCustomsCode)' > out_customs_code , </if>
+                <if test='outPlatformCustoms!=null and !"".equals(outPlatformCustoms)' > out_platform_customs , </if>
+                <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='shipper!=null and !"".equals(shipper)' > TRIM(#{shipper}) , </if>
+                <if test='country!=null and !"".equals(country)' > TRIM(#{country}) , </if>
+                <if test='code!=null and !"".equals(code)' > TRIM(#{code}) , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' > TRIM(#{lbxNo}) , </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' > TRIM(#{submitUsername}) , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > TRIM(#{contractNo}) , </if>
+                <if test='outDepotId!=null' > #{outDepotId} , </if>
+                <if test='modifier!=null' > #{modifier} , </if>
+                <if test='receivingAddress!=null and !"".equals(receivingAddress)' > TRIM(#{receivingAddress}) , </if>
+                <if test='consigneeUsername!=null and !"".equals(consigneeUsername)' > TRIM(#{consigneeUsername}) , </if>
+                <if test='packType!=null and !"".equals(packType)' > TRIM(#{packType}) , </if>
+                <if test='destination!=null and !"".equals(destination)' > TRIM(#{destination}) , </if>
+                <if test='remark!=null and !"".equals(remark)' > TRIM(#{remark}) , </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' > TRIM(#{portLoading}) , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > TRIM(#{merchantName}) , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > TRIM(#{topidealCode}) , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > TRIM(#{createUsername}) , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='firstLadingBillNo!=null and !"".equals(firstLadingBillNo)' > TRIM(#{firstLadingBillNo}) , </if>
+                <if test='model!=null and !"".equals(model)' > #{model} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='payRules!=null and !"".equals(payRules)' > TRIM(#{payRules}) , </if>
+                <if test='billWeight!=null' > TRIM(#{billWeight}) , </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' > TRIM(#{invoiceNo}) , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='cartons!=null and !"".equals(cartons)' > TRIM(#{cartons}) , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='modifierUsername!=null and !"".equals(modifierUsername)' > TRIM(#{modifierUsername}) , </if>
+                <if test='submitOne!=null' > #{submitOne} , </if>
+                <if test='inCustomerId!=null' > #{inCustomerId} , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' > TRIM(#{inDepotName}) , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' > TRIM(#{outDepotName}) , </if>
+                <if test='submitTime!=null' > #{submitTime} , </if>
+                <if test='inDepotId!=null' > #{inDepotId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' > TRIM(#{inCustomerName}) , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > TRIM(#{tallyingUnit}) , </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' > TRIM(#{serveTypes}) , </if>
+                <if test='mark!=null and !"".equals(mark)' > TRIM(#{mark}) , </if>
+                <if test='status!=null and !"".equals(status)' > TRIM(#{status}) , </if>
+                <if test='isSameArea!=null and !"".equals(isSameArea)' > TRIM(#{isSameArea}) , </if>
+                <if test='depotScheduleAddress!=null and !"".equals(depotScheduleAddress)' > TRIM(#{depotScheduleAddress}) , </if>
+        		<if test='depotScheduleId!=null' > #{depotScheduleId} , </if>
+        		<if test='poNo!=null and !"".equals(poNo)' > TRIM(#{poNo}) , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='trainNumber!=null and !"".equals(trainNumber)' > #{trainNumber} , </if>
+                <if test='standardCaseTeu!=null and !"".equals(standardCaseTeu)' > #{standardCaseTeu} , </if>
+                <if test='torrNum!=null' > #{torrNum} , </if>
+                <if test='carrier!=null and !"".equals(carrier)' > #{carrier} , </if>
+                <if test='outdepotAddr!=null and !"".equals(outdepotAddr)' > #{outdepotAddr} , </if>
+                <if test='transport!=null and !"".equals(transport)' > #{transport} , </if>
+                <if test='palletMaterial!=null and !"".equals(palletMaterial)' > #{palletMaterial} , </if>
+                <if test='unloadPort!=null and !"".equals(unloadPort)' > #{unloadPort} , </if>
+                <if test='inCustomsId!=null' > #{inCustomsId} , </if>
+                <if test='inCustomsCode!=null and !"".equals(inCustomsCode)' > #{inCustomsCode} , </if>
+                <if test='inPlatformCustoms!=null and !"".equals(inPlatformCustoms)' > #{inPlatformCustoms} , </if>
+                <if test='outCustomsId!=null' > #{outCustomsId} , </if>
+                <if test='outCustomsCode!=null and !"".equals(outCustomsCode)' > #{outCustomsCode} , </if>
+                <if test='outPlatformCustoms!=null and !"".equals(outPlatformCustoms)' > #{outPlatformCustoms} , </if>
+                <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TransferOrderModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_transfer_order SET
+        <trim  suffixOverrides=",">
+                <if test='shipper!=null and !"".equals(shipper)' >shipper= TRIM(#{shipper}) , </if>
+                <if test='country!=null and !"".equals(country)' >country= TRIM(#{country}) , </if>
+                <if test='code!=null and !"".equals(code)' >code= TRIM(#{code}) , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= TRIM(#{lbxNo}) , </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' >submit_username= TRIM(#{submitUsername}) , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= TRIM(#{contractNo}) , </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                <if test='modifier!=null' > modifier= #{modifier} , </if>
+                <if test='receivingAddress!=null and !"".equals(receivingAddress)' >receiving_address= TRIM(#{receivingAddress}) , </if>
+                <if test='consigneeUsername!=null and !"".equals(consigneeUsername)' >consignee_username= TRIM(#{consigneeUsername}) , </if>
+                <if test='packType!=null and !"".equals(packType)' >pack_type= TRIM(#{packType}) , </if>
+                <if test='destination!=null and !"".equals(destination)' >destination= TRIM(#{destination}) , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= TRIM(#{remark}) , </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' >port_loading= TRIM(#{portLoading}) , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= TRIM(#{merchantName}) , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= TRIM(#{topidealCode}) , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= TRIM(#{createUsername}) , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='firstLadingBillNo!=null and !"".equals(firstLadingBillNo)' >first_lading_bill_no= TRIM(#{firstLadingBillNo}) , </if>
+                <if test='model!=null and !"".equals(model)' >model= TRIM(#{model}) , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='payRules!=null and !"".equals(payRules)' >pay_rules= TRIM(#{payRules}) , </if>
+                <if test='billWeight!=null' >bill_weight= TRIM(#{billWeight}) , </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= TRIM(#{invoiceNo}) , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='cartons!=null and !"".equals(cartons)' >cartons= TRIM(#{cartons}) , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= TRIM(#{modifierUsername}) , </if>
+                <if test='submitOne!=null' > submit_one= #{submitOne} , </if>
+                <if test='inCustomerId!=null' > in_customer_id= #{inCustomerId} , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= TRIM(#{inDepotName}) , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= TRIM(#{outDepotName}) , </if>
+                <if test='submitTime!=null' > submit_time= #{submitTime} , </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' >in_customer_name= TRIM(#{inCustomerName}) , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= TRIM(#{tallyingUnit}) , </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' >serve_types= TRIM(#{serveTypes}) , </if>
+                <if test='mark!=null and !"".equals(mark)' >mark= TRIM(#{mark}) , </if>
+                <if test='status!=null and !"".equals(status)' >status= TRIM(#{status}) , </if>
+                <if test='isSameArea!=null and !"".equals(isSameArea)' >is_same_area= TRIM(#{isSameArea}) , </if>
+                <if test='depotScheduleAddress!=null and !"".equals(depotScheduleAddress)' >depot_schedule_address= TRIM(#{depotScheduleAddress}) , </if>
+        		<if test='depotScheduleId!=null' > depot_schedule_id= #{depotScheduleId} , </if>
+        		<if test='poNo!=null and !"".equals(poNo)' >po_no= TRIM(#{poNo}) , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='trainNumber!=null and !"".equals(trainNumber)' >train_number= #{trainNumber} , </if>
+                <if test='standardCaseTeu!=null and !"".equals(standardCaseTeu)' >standard_case_teu= #{standardCaseTeu} , </if>
+                <if test='torrNum!=null' > torr_num= #{torrNum} , </if>
+                <if test='carrier!=null and !"".equals(carrier)' >carrier= #{carrier} , </if>
+                <if test='outdepotAddr!=null and !"".equals(outdepotAddr)' >outDepot_addr= #{outdepotAddr} , </if>
+                <if test='transport!=null and !"".equals(transport)' >transport= #{transport} , </if>
+                <if test='palletMaterial!=null and !"".equals(palletMaterial)' >pallet_material= #{palletMaterial} , </if>
+                <if test='unloadPort!=null and !"".equals(unloadPort)' >unload_port= #{unloadPort} , </if>
+                <if test='inCustomsId!=null' > in_customs_id= #{inCustomsId} , </if>
+                <if test='inCustomsCode!=null and !"".equals(inCustomsCode)' >in_customs_code= #{inCustomsCode} , </if>
+                <if test='inPlatformCustoms!=null and !"".equals(inPlatformCustoms)' >in_platform_customs= #{inPlatformCustoms} , </if>
+                <if test='outCustomsId!=null' > out_customs_id= #{outCustomsId} , </if>
+                <if test='outCustomsCode!=null and !"".equals(outCustomsCode)' >out_customs_code= #{outCustomsCode} , </if>
+                <if test='outPlatformCustoms!=null and !"".equals(outPlatformCustoms)' >out_platform_customs= #{outPlatformCustoms} , </if>
+                <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_transfer_order  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_transfer_order where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        shipper,
+        country,
+        code,
+        lbx_no,
+        submit_username,
+        contract_no,
+        out_depot_id,
+        modifier,
+        receiving_address,
+        consignee_username,
+        pack_type,
+        destination,
+        remark,
+        port_loading,
+        merchant_name,
+        topideal_code,
+        create_username,
+        merchant_id,
+        first_lading_bill_no,
+        model,
+        id,
+        pay_rules,
+        bill_weight,
+        invoice_no,
+        create_date,
+        cartons,
+        modify_date,
+        modifier_username,
+        submit_one,
+        in_customer_id,
+        in_depot_name,
+        out_depot_name,
+        submit_time,
+        in_depot_id,
+        creater,
+        in_customer_name,
+        tallying_unit,
+        serve_types,
+        mark,
+        status,
+        is_same_area,
+        depot_schedule_address,
+        depot_schedule_id,
+        po_no,
+        bu_name,
+        bu_id,
+        train_number,
+        standard_case_teu,
+        torr_num,
+        carrier,
+        outDepot_addr,
+        transport,
+        pallet_material,
+        unload_port,
+        in_customs_id,
+        in_customs_code,
+        in_platform_customs,
+        out_customs_id,
+        out_customs_code,
+        out_platform_customs,
+        stock_location_type_id,
+        stock_location_type_name
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='shipper!=null and !"".equals(shipper)' >shipper= #{shipper} and </if>
+                <if test='country!=null and !"".equals(country)' >country= #{country} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' >submit_username= #{submitUsername} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='receivingAddress!=null and !"".equals(receivingAddress)' >receiving_address= #{receivingAddress} and </if>
+                <if test='consigneeUsername!=null and !"".equals(consigneeUsername)' >consignee_username= #{consigneeUsername} and </if>
+                <if test='packType!=null and !"".equals(packType)' >pack_type= #{packType} and </if>
+                <if test='destination!=null and !"".equals(destination)' >destination= #{destination} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' >port_loading= #{portLoading} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='firstLadingBillNo!=null and !"".equals(firstLadingBillNo)' >first_lading_bill_no= #{firstLadingBillNo} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='payRules!=null and !"".equals(payRules)' >pay_rules= #{payRules} and </if>
+                <if test='billWeight!=null' >bill_weight= #{billWeight} and </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='cartons!=null and !"".equals(cartons)' >cartons= #{cartons} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} and </if>
+                <if test='submitOne!=null' > submit_one= #{submitOne} and </if>
+                <if test='inCustomerId!=null' > in_customer_id= #{inCustomerId} and </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                <if test='submitTime!=null' > submit_time= #{submitTime} and </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' >in_customer_name= #{inCustomerName} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' >serve_types= #{serveTypes} and </if>
+                <if test='mark!=null and !"".equals(mark)' >mark= #{mark} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='status==null or "".equals(status)' >status!= '006' and </if>
+                <if test='isSameArea!=null and !"".equals(isSameArea)' >is_same_area= #{isSameArea} and </if>
+                <if test='depotScheduleAddress!=null and !"".equals(depotScheduleAddress)' >depot_schedule_address= #{depotScheduleAddress} and </if>
+            	<if test='depotScheduleId!=null' > depot_schedule_id= #{depotScheduleId} and </if>
+            	<if test='poNo!=null and !"".equals(poNo)' > po_no=#{poNo} and  </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name=#{buName} and  </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='trainNumber!=null and !"".equals(trainNumber)' >train_number= #{trainNumber} and </if>
+                <if test='standardCaseTeu!=null and !"".equals(standardCaseTeu)' >standard_case_teu= #{standardCaseTeu} and </if>
+                <if test='torrNum!=null' > torr_num= #{torrNum} and </if>
+                <if test='carrier!=null and !"".equals(carrier)' >carrier= #{carrier} and </if>
+                <if test='outdepotAddr!=null and !"".equals(outdepotAddr)' >outDepot_addr= #{outdepotAddr} and </if>
+                <if test='transport!=null and !"".equals(transport)' >transport= #{transport} and </if>
+                <if test='palletMaterial!=null and !"".equals(palletMaterial)' >pallet_material= #{palletMaterial} and </if>
+                <if test='unloadPort!=null and !"".equals(unloadPort)' >unload_port= #{unloadPort} and </if>
+                <if test='inCustomsId!=null' > in_customs_id= #{inCustomsId} and </if>
+                <if test='inCustomsCode!=null and !"".equals(inCustomsCode)' >in_customs_code= #{inCustomsCode} and </if>
+                <if test='inPlatformCustoms!=null and !"".equals(inPlatformCustoms)' >in_platform_customs= #{inPlatformCustoms} and </if>
+                <if test='outCustomsId!=null' > out_customs_id= #{outCustomsId} and </if>
+                <if test='outCustomsCode!=null and !"".equals(outCustomsCode)' >out_customs_code= #{outCustomsCode} and </if>
+                <if test='outPlatformCustoms!=null and !"".equals(outPlatformCustoms)' >out_platform_customs= #{outPlatformCustoms} and </if>
+                <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+            </trim>
+        </where>
+    </sql>
+<!--自定义SQL-->
+    <sql id="export_sql_where" >
+        <where>
+            <trim suffixOverrides='and'>
+                <choose>
+                    <when test='ids!=null and !"".equals(ids)'>
+                        t.id in
+                        <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                            #{id}
+                        </foreach>
+                    </when>
+                <otherwise>
+                    <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                    <if test='buId!=null' > t.bu_id= #{buId} and </if>
+                    <if test='code!=null and !"".equals(code)' >t.code= #{code} and </if>
+                    <if test='inDepotId!=null' > t.in_depot_id= #{inDepotId} and </if>
+                    <if test='outDepotId!=null' > t.out_depot_id= #{outDepotId} and </if>
+                    <if test='contractNo!=null and !"".equals(contractNo)' >t.contract_no= #{contractNo} and </if>
+                    <if test='lbxNo!=null and !"".equals(lbxNo)' >t.lbx_no= #{lbxNo} and </if>
+                    <if test='status!=null and !"".equals(status)' >t.status= #{status} and </if>
+                    <if test='status==null or "".equals(status)' >t.status!= '006' and </if>
+                    <if test='createDateStart!=null and !"".equals(createDateStart)' >
+                        date_format(t.create_date,'%Y-%m-%d %H:%i:%S') &gt;= #{createDateStart} and
+                    </if>
+                    <if test='createDateEnd!=null and !"".equals(createDateEnd)' >
+                        date_format(t.create_date,'%Y-%m-%d %H:%i:%S') &lt;= #{createDateEnd} and
+                    </if>
+                    <if test="userBuList != null" >
+                        t.bu_id in
+                        <foreach collection='userBuList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                </otherwise>
+                </choose>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id="sql_where2" >
+        <where>
+            <trim suffixOverrides='and'>
+                <choose>
+                    <when test='ids!=null and !"".equals(ids)'>
+                        t.id in
+                        <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                            #{id}
+                        </foreach>
+                    </when>
+                    <when test='idSet!=null and idSet.size() > 0'>
+                        t.id in
+                        <foreach collection="idSet" open="(" close=")" separator="," item="id">
+                            #{id}
+                        </foreach>
+                    </when>
+                    <otherwise>
+                        <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                        <if test='buId!=null' > t.bu_id= #{buId} and </if>
+                        <if test='code!=null and !"".equals(code)' >t.code= #{code} and </if>
+                        <if test='inDepotId!=null' > t.in_depot_id= #{inDepotId} and </if>
+                        <if test='outDepotId!=null' > t.out_depot_id= #{outDepotId} and </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' >t.contract_no= #{contractNo} and </if>
+                        <if test='lbxNo!=null and !"".equals(lbxNo)' >t.lbx_no= #{lbxNo} and </if>
+                        <if test='status!=null and !"".equals(status)' >t.status= #{status} and </if>
+                        <if test='status==null or "".equals(status)' >t.status!= '006' and </if>
+                        <if test='createDateStart!=null and !"".equals(createDateStart)' >
+                            date_format(t.create_date,'%Y-%m-%d %H:%i:%S') &gt;= #{createDateStart} and
+                        </if>
+                        <if test='createDateEnd!=null and !"".equals(createDateEnd)' >
+                            date_format(t.create_date,'%Y-%m-%d %H:%i:%S') &lt;= #{createDateEnd} and
+                        </if>
+                        <if test="userBuList != null" >
+                            t.bu_id in
+                            <foreach collection='userBuList' item='buId' separator=',' open='(' close=')'>
+                                #{buId}
+                            </foreach>
+                            and
+                        </if>
+                    </otherwise>
+                </choose>
+            </trim>
+        </where>
+    </sql>
+
+	<!-- 查询所有信息 分页 -->
+    <select id='getListByPage' resultMap='TransferOrderModelMap' parameterType='TransferOrderModel'>
+        select <include refid='sql_columns' /> from t_transfer_order  <include refid='sql_where' /> 
+        order by id desc
+    </select>
+    
+	<select id="getById" resultType='TransferOrderDTO' parameterType='Long' >
+		SELECT * FROM t_transfer_order WHERE id=#{id};
+	</select>
+	
+	<!-- 表头关系映射 -->
+    <resultMap id="TransferOrderModelMap2" type="TransferOrderModel" >
+                <result property="code" column="code" />
+                <result property="lbxNo" column="lbx_no" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="contractNo" column="contract_no" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="modifier" column="modifier" />
+                <result property="remark" column="remark" />
+                <result property="delete" column="delete" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="creater" column="creater" />
+                <result property="model" column="model" />
+                <result property="id" column="id" />
+                <result property="serveTypes" column="serve_types" />
+                <result property="createDate" column="create_date" />
+                <result property="status" column="status" />
+                <result property="destination" column="destination" />
+                <result property="consigneeUsername" column="consignee_username" />
+                <result property="country" column="country" />
+                <result property="poNo" column="po_no" />
+                
+                <association property="itemList" column="id" select="getItem" />
+    </resultMap>
+    <!-- 表体关系映射 -->
+     <resultMap id="TransferOrderItemModelMap" type="TransferOrderItemModel" >
+                <result property="outGoodsCode" column="out_goods_code" />
+                <result property="transferOrderId" column="transfer_order_id" />
+                <result property="outGoodsName" column="out_goods_name" />
+                <result property="outGoodsId" column="out_goods_id" />
+                <result property="id" column="id" />
+                <result property="outGoodsNo" column="out_goods_no" />
+                 <result property="brandName" column="brand_name" />
+                <result property="inGoodsCode" column="in_goods_code" />
+                <result property="inGoodsName" column="in_goods_name" />
+                <result property="inGoodsId" column="in_goods_id" />
+                <result property="inGoodsNo" column="in_goods_no" />
+                <result property="inTransferNum" column="in_transfer_num" />
+                <result property="transferNum" column="transfer_num" />
+                <result property="contNo" column="cont_no" />
+	            <result property="bargainno" column="bargainno" />
+                <!-- 拓展字段 -->
+                <result property="outFactoryNo" column="out_factory_no" />
+                <result property="outBarcode" column="out_barcode" />
+    </resultMap>
+	<select id='getDetails' resultMap='TransferOrderModelMap2' parameterType='TransferOrderModel' >
+        select <include refid='sql_columns' /> from t_transfer_order  <include refid='sql_where' />
+    </select>
+    <select id="getItem" resultMap="TransferOrderItemModelMap" parameterType="java.lang.Long">
+		select t1.id,t1.transfer_order_id,t1.out_goods_id,t1.out_goods_name,
+		t1.out_goods_no,t1.out_goods_code,t1.in_goods_code,t1.in_goods_name,
+		t1.in_goods_id,t1.in_goods_no,t1.transfer_num,t1.brand_name,t1.cont_no,1.bargainno,t1.in_transfer_num
+		from t_transfer_order_item t1
+		where t1.transfer_order_id = #{id}
+	</select>
+	
+	<!-- vo关系映射 -->
+    <!-- <resultMap id="TransferOrderVoMap" type="TransferOrderVo" >
+    	<result property="order_id" column="code" />
+    	<result property="customs_code" column="customs_no" />
+    	<result property="ciqb_code" column="inspect_no" />
+    	<result property="busi_scene" column="model" />
+    	<result property="serve_types" column="serve_types" />
+    	<result property="contract_no" column="contract_no" />
+    	<result property="trust_code" column="merchant_id" />
+    	<result property="odate" column="odate" />
+    	<result property="from_store_code" column="out_depot_code" />
+    	<result property="to_store_code" column="in_depot_code" />
+    		<collection property="good_list"  ofType="TransferOrderItemVo" javaType="list">
+		           <result property="from_good_Id" column="out_goods_no" /> 
+		           <result property="to_good_Id" column="in_goods_no" /> 
+		           <result property="amount" column="transfer_num" />  
+	          </collection>
+    </resultMap>
+	<select id='getVo' resultMap='TransferOrderVoMap' parameterType='TransferOrderModel' >
+        select transferOrder.code,transferOrder.model,transferOrder.serve_types,
+        transferOrder.contract_no,item.transfer_num,
+        outMerchandise.goods_no,inMerchandise.goods_no,
+        outDepot.inspect_no,outDepot.customs_no,inDepot.code as in_depot_code,
+        outDepot.code as out_depot_code,
+        NOW() as odate,#{merchantId} as merchant_id
+        from t_transfer_order transferOrder
+        left join t_transfer_order_item item on item.transfer_order_id = transferOrder.id
+		left join st_merchandise_info outMerchandise on outMerchandise.id = item.out_goods_id
+		left join st_merchandise_info inMerchandise on inMerchandise.id = item.in_goods_id
+		left join st_depot_info outDepot on outDepot.id = transferOrder.out_depot_id
+		left join st_depot_info inDepot on inDepot.id = transferOrder.in_depot_id
+		where transferOrder.id = #{id}
+    </select> -->
+
+    <!-- vo关系映射 -->
+    <resultMap id="TransferOutInBeanMap" type="TransferOutInBean" >
+    	<result property="id" column="id" />
+    	<result property="code" column="code" />
+    	<result property="outDepotName" column="out_depot_name" />
+    	<result property="inDepotName" column="in_depot_name" />
+    	<result property="tallyingUnit" column="tallying_unit" />
+    	<result property="buId" column="bu_id" />
+    	<result property="buName" column="bu_name" />
+    </resultMap>
+    <select id='listTransferOutInByPage' resultMap='TransferOutInBeanMap' parameterType='TransferOutInBean' >
+        SELECT tt.id,tt.code,tt.out_depot_name,tt.in_depot_name,tt.bu_id, tt.bu_name from
+        (SELECT distinct t.id,t.code,t.out_depot_name,t.in_depot_name,t.bu_id, t.bu_name FROM t_transfer_order t
+        LEFT JOIN t_transfer_order_item ti ON t.id=ti.transfer_order_id
+        <include refid='outin_sql_where' />) tt
+		order by tt.id desc
+    </select>
+	  <!-- 查询条件 -->
+    <sql id='outin_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                 t.merchant_id=#{merchantId} and t.status not in('006','013') and 
+                <if test='code!=null and !"".equals(code)' >t.code= #{code} and </if>
+                <if test='buId!=null' >t.bu_id= #{buId} and </if>
+                <if test='outDepotId!=null and outDepotId!=0' >t.out_depot_id= #{outDepotId} and </if>
+                <if test='inDepotId!=null and inDepotId!=0' >t.in_depot_id= #{inDepotId} and </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >ti.out_goods_no= #{outGoodsNo} and </if>
+                <if test='createDateStart!=null and !"".equals(createDateStart)' >
+                    DATE_FORMAT(t.create_date,'%Y-%m-%d %H:%i:%S') &gt;= #{createDateStart} and
+                </if>
+                <if test='createDateEnd!=null and !"".equals(createDateEnd)' >
+                    DATE_FORMAT(t.create_date,'%Y-%m-%d %H:%i:%S') &lt;= #{createDateEnd} and
+                </if>
+                <if test="userBuList != null" >
+                    t.bu_id in
+                    <foreach collection='userBuList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <!-- 查询调拨单商品明细 -->
+    <select id='getItemSumByIds' resultType='map' parameterType='java.util.ArrayList' >
+        select t.id,t.code,t.out_depot_id,t.tallying_unit,i.out_goods_id,i.out_goods_no,i.transfer_num
+		from t_transfer_order t,t_transfer_order_item i
+		where t.id=i.transfer_order_id and t.status='013'
+		   and t.id in
+		 <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+         </foreach>
+    </select> 
+    
+        <!-- 销售新增代销获取分页数据 -->
+        <sql id='sql_where_by_page'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='shipper!=null and !"".equals(shipper)' >shipper= #{shipper} and </if>
+                <if test='country!=null and !"".equals(country)' >country= #{country} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' >submit_username= #{submitUsername} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='receivingAddress!=null and !"".equals(receivingAddress)' >receiving_address= #{receivingAddress} and </if>
+                <if test='consigneeUsername!=null and !"".equals(consigneeUsername)' >consignee_username= #{consigneeUsername} and </if>
+                <if test='packType!=null and !"".equals(packType)' >pack_type= #{packType} and </if>
+                <if test='destination!=null and !"".equals(destination)' >destination= #{destination} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' >port_loading= #{portLoading} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='firstLadingBillNo!=null and !"".equals(firstLadingBillNo)' >first_lading_bill_no= #{firstLadingBillNo} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='payRules!=null and !"".equals(payRules)' >pay_rules= #{payRules} and </if>
+                <if test='billWeight!=null' >bill_weight= #{billWeight} and </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='cartons!=null and !"".equals(cartons)' >cartons= #{cartons} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} and </if>
+                <if test='submitOne!=null' > submit_one= #{submitOne} and </if>
+                <if test='inCustomerId!=null' > in_customer_id= #{inCustomerId} and </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                <if test='submitTime!=null' > submit_time= #{submitTime} and </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' >in_customer_name= #{inCustomerName} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' >serve_types= #{serveTypes} and </if>
+                <if test='mark!=null and !"".equals(mark)' >mark= #{mark} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='status==null or "".equals(status)' >status!= '006' and </if>
+                <if test='isSameArea!=null and !"".equals(isSameArea)' >is_same_area= #{isSameArea} and </if>
+                <if test='depotScheduleAddress!=null and !"".equals(depotScheduleAddress)' >depot_schedule_address= #{depotScheduleAddress} and </if>
+            	<if test='depotScheduleId!=null' > depot_schedule_id= #{depotScheduleId} and </if>
+            	<if test='poNo!=null and !"".equals(poNo)' > po_no=#{poNo} and  </if>
+            	<if test='codeList!=null and !"".equals(codeList)' > code in 
+            	<foreach collection='codeList' item='code' separator=',' open='(' close=')'>
+            		#{code}
+        		</foreach>
+        		and  </if>
+            </trim>
+        </where>
+    </sql>
+    
+    <select id="getDtoListByPage" resultType="TransferOrderDTO" parameterType="TransferOrderDTO" >
+        select <include refid='sql_columns' /> from t_transfer_order
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='shipper!=null and !"".equals(shipper)' >shipper= #{shipper} and </if>
+                <if test='country!=null and !"".equals(country)' >country= #{country} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                <if test='submitUsername!=null and !"".equals(submitUsername)' >submit_username= #{submitUsername} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='receivingAddress!=null and !"".equals(receivingAddress)' >receiving_address= #{receivingAddress} and </if>
+                <if test='consigneeUsername!=null and !"".equals(consigneeUsername)' >consignee_username= #{consigneeUsername} and </if>
+                <if test='packType!=null and !"".equals(packType)' >pack_type= #{packType} and </if>
+                <if test='destination!=null and !"".equals(destination)' >destination= #{destination} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' >port_loading= #{portLoading} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='firstLadingBillNo!=null and !"".equals(firstLadingBillNo)' >first_lading_bill_no= #{firstLadingBillNo} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='payRules!=null and !"".equals(payRules)' >pay_rules= #{payRules} and </if>
+                <if test='billWeight!=null' >bill_weight= #{billWeight} and </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='cartons!=null and !"".equals(cartons)' >cartons= #{cartons} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} and </if>
+                <if test='submitOne!=null' > submit_one= #{submitOne} and </if>
+                <if test='inCustomerId!=null' > in_customer_id= #{inCustomerId} and </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                <if test='submitTime!=null' > submit_time= #{submitTime} and </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' >in_customer_name= #{inCustomerName} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' >serve_types= #{serveTypes} and </if>
+                <if test='mark!=null and !"".equals(mark)' >mark= #{mark} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='status==null or "".equals(status)' >status!= '006' and </if>
+                <if test='isSameArea!=null and !"".equals(isSameArea)' >is_same_area= #{isSameArea} and </if>
+                <if test='depotScheduleAddress!=null and !"".equals(depotScheduleAddress)' >depot_schedule_address= #{depotScheduleAddress} and </if>
+                <if test='depotScheduleId!=null' > depot_schedule_id= #{depotScheduleId} and </if>
+                <if test='poNo!=null and !"".equals(poNo)' > po_no=#{poNo} and  </if>
+                <if test='createDateStart!=null and !"".equals(createDateStart)' >
+                    date_format(create_date,'%Y-%m-%d %H:%i:%S') &gt;= #{createDateStart} and
+                </if>
+                <if test='createDateEnd!=null and !"".equals(createDateEnd)' >
+                    date_format(create_date,'%Y-%m-%d %H:%i:%S') &lt;= #{createDateEnd} and
+                </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test="userBuList != null" >
+                    bu_id in
+                    <foreach collection='userBuList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+    <!--唯品4.0-可核销量-调入数量 -->
+    <select id="getTransferInNumByMap" resultType="java.lang.Integer" parameterType="map">
+        select SUM(
+              IFNULL(ii.transfer_num,0)+IFNULL(ii.worn_num,0)+IFNULL(ii.expire_num,0)
+              ) as inNum
+		from t_transfer_in_depot_item ii
+		left join t_transfer_in_depot ti on ii.transfer_depot_id=ti.id
+		where ti.transfer_order_id in(
+		      select id from t_transfer_order t
+		      where t.merchant_id=#{merchantId}
+		            and t.out_depot_id = #{outDepotId}
+		            and t.in_depot_id = #{inDepotId}
+		            and t.po_no = #{poNo}
+		     )
+		     and ti.status = '012'
+		     and ii.in_goods_no IN
+ 			 <foreach collection='goodsNoList' item='goodsNo' separator=',' open='(' close=')'>
+	         #{goodsNo}
+	         </foreach>  
+    </select>
+    <!--唯品4.0-可核销量-调出数量 -->
+    <select id="getTransferOutNumByMap" resultType="java.lang.Integer" parameterType="map">
+        select sum(
+                   IFNULL(di.transfer_num,0)+IFNULL(di.worn_num,0)+IFNULL(di.expire_num,0)
+                     ) AS outNum
+		from t_transfer_out_depot_item di
+		left join t_transfer_out_depot td ON di.transfer_depot_id=td.id
+		where td.transfer_order_id IN(
+		      select id FROM t_transfer_order t
+		      where t.merchant_id=#{merchantId}
+		            and t.out_depot_id = #{outDepotId}
+		            and t.in_depot_id = #{inDepotId}
+		            and t.po_no = #{poNo}
+		     )
+	        and td.status = '016'
+	        and di.out_goods_no IN
+	       		<foreach collection='goodsNoList' item='goodsNo' separator=',' open='(' close=')'>
+		         	#{goodsNo}
+		         </foreach>  
+    </select>
+
+    <select id="countForExport" parameterType="TransferOrderDTO" resultType="java.lang.Long" >
+        select count(0)
+        from t_transfer_order t
+        <include refid='export_sql_where' />
+    </select>
+
+    <select id="listForExport" parameterType="TransferOrderDTO" resultType='map' >
+        SELECT
+        t.id, t.code, t.contract_no, t.out_depot_name, t.in_depot_name, t.status,
+        t.lbx_no, t.creater, t.create_username, t.create_date, t.invoice_no, t.pack_type, t.cartons,
+        t.first_lading_bill_no, t.tallying_unit, t.bu_name, t.transport,t.outDepot_addr,
+        t.carrier, t.torr_num,t.standard_case_teu, t.train_number,t.receiving_address, t.stock_location_type_name
+        FROM  t_transfer_order t
+        <include refid='export_sql_where' />
+        order by id desc
+    </select>
+
+    <select id="listForExportItem" parameterType="TransferOrderDTO" resultType='map' >
+        SELECT
+        t.code, ti.out_goods_code, ti.out_goods_no, ti.out_goods_name, ti.out_unit, ti.transfer_num,
+        ti.in_goods_code,ti.in_goods_no, ti.in_goods_name, ti.in_unit, ti.in_transfer_num, ti.brand_name, ti.price,
+        ti.gross_weight, ti.net_weight, ti.cont_no, ti.bargainno,ti.remark
+        FROM  t_transfer_order t
+        LEFT JOIN t_transfer_order_item ti ON t.id = ti.transfer_order_id
+        <include refid='export_sql_where' />
+        order by t.id desc
+    </select>
+
+    <select id="listDTObyMap" parameterType="map" resultType='TransferOrderDTO' >
+        select <include refid='sql_columns' /> from t_transfer_order
+        <include refid='sql_where2' />
+        order by t.id desc
+    </select>
+
+    <update id='modifyWithNull' parameterType='TransferOrderModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  t_transfer_order SET
+        <trim  suffixOverrides=",">
+            <if test='id!=null' > id= #{id} , </if>
+            <if test='code!=null and !"".equals(code)' >code= TRIM(#{code}) , </if>
+            <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= TRIM(#{merchantName}) , </if>
+            <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= TRIM(#{topidealCode}) , </if>
+            <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+            <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= TRIM(#{inDepotName}) , </if>
+            <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= TRIM(#{outDepotName}) , </if>
+            <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+            <if test='buId!=null' > bu_id= #{buId} , </if>
+            shipper= TRIM(#{shipper}) ,
+            country= TRIM(#{country}) ,
+            lbx_no= TRIM(#{lbxNo}) ,
+            submit_username= TRIM(#{submitUsername}) ,
+            contract_no= TRIM(#{contractNo}) ,
+            modifier= #{modifier} ,
+            receiving_address= TRIM(#{receivingAddress}) ,
+            consignee_username= TRIM(#{consigneeUsername}) ,
+            pack_type= TRIM(#{packType}) ,
+            destination= TRIM(#{destination}) ,
+            port_loading= TRIM(#{portLoading}) ,
+            create_username= TRIM(#{createUsername}) ,
+            first_lading_bill_no= TRIM(#{firstLadingBillNo}) ,
+            model= TRIM(#{model}) ,
+            pay_rules= TRIM(#{payRules}) ,
+            bill_weight= TRIM(#{billWeight}) ,
+            invoice_no= TRIM(#{invoiceNo}) ,
+            create_date= #{createDate} ,
+            cartons= TRIM(#{cartons}) ,
+            modify_date= #{modifyDate} ,
+            modifier_username= TRIM(#{modifierUsername}) ,
+            submit_one= #{submitOne} ,
+            in_customer_id= #{inCustomerId} ,
+            submit_time= #{submitTime} ,
+            creater= #{creater} ,
+            in_customer_name= TRIM(#{inCustomerName}) ,
+            tallying_unit= TRIM(#{tallyingUnit}) ,
+            serve_types= TRIM(#{serveTypes}) ,
+            mark= TRIM(#{mark}) ,
+            status= TRIM(#{status}) ,
+            is_same_area= TRIM(#{isSameArea}) ,
+            depot_schedule_address= TRIM(#{depotScheduleAddress}) ,
+            depot_schedule_id= #{depotScheduleId} ,
+            po_no= TRIM(#{poNo}) ,
+            train_number= #{trainNumber} ,
+            standard_case_teu= #{standardCaseTeu} ,
+            torr_num= #{torrNum} ,
+            carrier= #{carrier} ,
+            outDepot_addr= #{outdepotAddr} ,
+            transport= #{transport} ,
+            pallet_material= #{palletMaterial} ,
+            unload_port= #{unloadPort} ,
+            in_customs_id= #{inCustomsId} ,
+            in_customs_code= #{inCustomsCode} ,
+            in_platform_customs= #{inPlatformCustoms} ,
+            out_customs_id= #{outCustomsId} ,
+            out_customs_code= #{outCustomsCode} ,
+            out_platform_customs= #{outPlatformCustoms} ,
+            remark= TRIM(#{remark}) ,
+            stock_location_type_id= #{stockLocationTypeId},
+            stock_location_type_name= #{stockLocationTypeName}
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+</mapper>

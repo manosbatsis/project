@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.ReceiveBillAuditItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ReceiveBillAuditItemModelMap" type="ReceiveBillAuditItemModel" >
+                <result property="id" column="id" />
+                <result property="billId" column="bill_id" />
+                <result property="submitId" column="submit_id" />
+                <result property="submitter" column="submitter" />
+                <result property="submitDate" column="submit_date" />
+                <result property="auditId" column="audit_id" />
+                <result property="auditor" column="auditor" />
+                <result property="auditDate" column="audit_date" />
+                <result property="auditResult" column="audit_result" />
+                <result property="auditRemark" column="audit_remark" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="submitRemark" column="submit_remark" />
+                <result property="auditType" column="audit_type" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ReceiveBillAuditItemModelMap' parameterType='ReceiveBillAuditItemModel'>
+        select <include refid='sql_columns' /> from t_receive_bill_audit_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ReceiveBillAuditItemModelMap' parameterType='ReceiveBillAuditItemModel'>
+        select <include refid='sql_columns' /> from t_receive_bill_audit_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ReceiveBillAuditItemModelMap' parameterType='ReceiveBillAuditItemModel' >
+        select <include refid='sql_columns' /> from t_receive_bill_audit_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ReceiveBillAuditItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_receive_bill_audit_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='billId!=null' >bill_id , </if>
+                        <if test='submitId!=null' >submit_id , </if>
+                        <if test='submitter!=null and !"".equals(submitter)' > submitter , </if>
+                        <if test='submitDate!=null' >submit_date , </if>
+                        <if test='auditId!=null' >audit_id , </if>
+                        <if test='auditor!=null and !"".equals(auditor)' > auditor , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+                        <if test='auditResult!=null and !"".equals(auditResult)' > audit_result , </if>
+                        <if test='auditRemark!=null and !"".equals(auditRemark)' > audit_remark , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='submitRemark!=null and !"".equals(submitRemark)' > submit_remark , </if>
+                        <if test='auditType!=null and !"".equals(auditType)' > audit_type , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billId!=null' > #{billId} , </if>
+                        <if test='submitId!=null' > #{submitId} , </if>
+                        <if test='submitter!=null and !"".equals(submitter)' > #{submitter} , </if>
+                        <if test='submitDate!=null' > #{submitDate} , </if>
+                        <if test='auditId!=null' > #{auditId} , </if>
+                        <if test='auditor!=null and !"".equals(auditor)' > #{auditor} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+                        <if test='auditResult!=null and !"".equals(auditResult)' > #{auditResult} , </if>
+                        <if test='auditRemark!=null and !"".equals(auditRemark)' > #{auditRemark} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='submitRemark!=null and !"".equals(submitRemark)' > #{submitRemark} , </if>
+                        <if test='auditType!=null and !"".equals(auditType)' > #{auditType} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ReceiveBillAuditItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_receive_bill_audit_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billId!=null' > bill_id= #{billId} , </if>
+                        <if test='submitId!=null' > submit_id= #{submitId} , </if>
+                        <if test='submitter!=null and !"".equals(submitter)' >submitter= #{submitter} , </if>
+                        <if test='submitDate!=null' > submit_date= #{submitDate} , </if>
+                        <if test='auditId!=null' > audit_id= #{auditId} , </if>
+                        <if test='auditor!=null and !"".equals(auditor)' >auditor= #{auditor} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+                        <if test='auditResult!=null and !"".equals(auditResult)' >audit_result= #{auditResult} , </if>
+                        <if test='auditRemark!=null and !"".equals(auditRemark)' >audit_remark= #{auditRemark} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='submitRemark!=null and !"".equals(submitRemark)' >submit_remark= #{submitRemark} , </if>
+                        <if test='auditType!=null and !"".equals(auditType)' >audit_type= #{auditType} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_receive_bill_audit_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_receive_bill_audit_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_id,
+            submit_id,
+            submitter,
+            submit_date,
+            audit_id,
+            auditor,
+            audit_date,
+            audit_result,
+            audit_remark,
+            create_date,
+            modify_date,
+            submit_remark,
+            audit_type
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billId!=null' > bill_id= #{billId} and </if>
+                            <if test='submitId!=null' > submit_id= #{submitId} and </if>
+                            <if test='submitter!=null and !"".equals(submitter)' >submitter= #{submitter} and </if>
+                            <if test='submitDate!=null' > submit_date= #{submitDate} and </if>
+                            <if test='auditId!=null' > audit_id= #{auditId} and </if>
+                            <if test='auditor!=null and !"".equals(auditor)' >auditor= #{auditor} and </if>
+                            <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                            <if test='auditResult!=null and !"".equals(auditResult)' >audit_result= #{auditResult} and </if>
+                            <if test='auditRemark!=null and !"".equals(auditRemark)' >audit_remark= #{auditRemark} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='submitRemark!=null and !"".equals(submitRemark)' >submit_remark= #{submitRemark} and </if>
+                            <if test='auditType!=null and !"".equals(auditType)' >audit_type= #{auditType} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <update id="updateAuditItem" parameterType='ReceiveBillAuditItemModel'>
+            UPDATE  t_receive_bill_audit_item SET
+            <trim  suffixOverrides=",">
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='billId!=null' > bill_id= #{billId} , </if>
+                <if test='submitId!=null' > submit_id= #{submitId} , </if>
+                <if test='submitter!=null and !"".equals(submitter)' >submitter= #{submitter} , </if>
+                <if test='submitDate!=null' > submit_date= #{submitDate} , </if>
+                <if test='auditId!=null' > audit_id= #{auditId} , </if>
+                <if test='auditor!=null and !"".equals(auditor)' >auditor= #{auditor} , </if>
+                <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+                <if test='auditResult!=null and !"".equals(auditResult)' >audit_result= #{auditResult} , </if>
+                <if test='auditRemark!=null and !"".equals(auditRemark)' >audit_remark= #{auditRemark} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                bill_id=#{billId} and audit_result is null
+            </where>
+        </update>
+
+        <select id="getMaxAuditDate" resultType="java.sql.Timestamp">
+            select max(audit_date) from t_receive_bill_audit_item
+            where bill_id in
+            <foreach collection='billIds' item='billId' separator=',' open='(' close=')'>
+                #{billId}
+            </foreach>
+        </select>
+
+        <select id="getLastAuditRecord" parameterType="java.lang.Long" resultMap='ReceiveBillAuditItemModelMap' >
+            select <include refid='sql_columns' />
+            from t_receive_bill_audit_item
+            <where>
+                bill_id=#{billId} and audit_result is null
+            </where>
+        </select>
+</mapper>

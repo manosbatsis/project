@@ -1,0 +1,15 @@
+#--------------mongodb日志----------
+spring: 
+    data: 
+        mongodb: 
+            host: ${mongolog.host}
+            port: ${mongolog.port}
+            database: ${mongolog.database} 
+            username: ${mongolog.username}
+            password: ${mongolog.password}
+
+apiurl: ${derpapiurl}
+
+
+
+

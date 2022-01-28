@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.PurchaseReturnItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PurchaseReturnItemModelMap" type="PurchaseReturnItemModel" >
+                <result property="id" column="id" />
+                <result property="orderId" column="order_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="barcode" column="barcode" />
+                <result property="returnNum" column="return_num" />
+                <result property="returnPrice" column="return_price" />
+                <result property="returnAmount" column="return_amount" />
+                <result property="boxNo" column="box_no" />
+                <result property="contractNo" column="contract_no" />
+                <result property="brandName" column="brand_name" />
+                <result property="remark" column="remark" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="tgtReturnPrice" column="tgt_return_price" />
+                <result property="tgtReturnAmount" column="tgt_return_amount" />
+                <result property="declarePrice" column="declare_price" />
+                <result property="taxReturnPrice" column="tax_return_price" />
+                <result property="taxReturnAmount" column="tax_return_amount" />
+                <result property="tax" column="tax" />
+                <result property="taxRate" column="tax_rate" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseReturnItemModelMap' parameterType='PurchaseReturnItemModel'>
+        select <include refid='sql_columns' /> from t_purchase_return_item  <include refid='sql_where' />
+        order by id
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseReturnItemModelMap' parameterType='PurchaseReturnItemModel'>
+        select <include refid='sql_columns' /> from t_purchase_return_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseReturnItemModelMap' parameterType='PurchaseReturnItemModel' >
+        select <include refid='sql_columns' /> from t_purchase_return_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PurchaseReturnItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_purchase_return_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='returnNum!=null' >return_num , </if>
+                        <if test='returnPrice!=null' >return_price , </if>
+                        <if test='returnAmount!=null' >return_amount , </if>
+                        <if test='boxNo!=null and !"".equals(boxNo)' > box_no , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='tgtReturnPrice!=null' >tgt_return_price , </if>
+                        <if test='tgtReturnAmount!=null' >tgt_return_amount , </if>
+                        <if test='declarePrice!=null' >declare_price , </if>
+                        <if test='taxReturnPrice!=null' >tax_return_price , </if>
+                        <if test='taxReturnAmount!=null' >tax_return_amount , </if>
+                        <if test='tax!=null' >tax , </if>
+                        <if test='taxRate!=null' >tax_rate , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='returnNum!=null' > #{returnNum} , </if>
+                        <if test='returnPrice!=null' > #{returnPrice} , </if>
+                        <if test='returnAmount!=null' > #{returnAmount} , </if>
+                        <if test='boxNo!=null and !"".equals(boxNo)' > #{boxNo} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='tgtReturnPrice!=null' > #{tgtReturnPrice} , </if>
+                        <if test='tgtReturnAmount!=null' > #{tgtReturnAmount} , </if>
+                        <if test='declarePrice!=null' > #{declarePrice} , </if>
+                        <if test='taxReturnPrice!=null' > #{taxReturnPrice} , </if>
+                        <if test='taxReturnAmount!=null' > #{taxReturnAmount} , </if>
+                        <if test='tax!=null' > #{tax} , </if>
+                        <if test='taxRate!=null' > #{taxRate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PurchaseReturnItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_purchase_return_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='returnNum!=null' > return_num= #{returnNum} , </if>
+                        <if test='returnPrice!=null' > return_price= #{returnPrice} , </if>
+                        <if test='returnAmount!=null' > return_amount= #{returnAmount} , </if>
+                        <if test='boxNo!=null and !"".equals(boxNo)' >box_no= #{boxNo} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='tgtReturnPrice!=null' > tgt_return_price= #{tgtReturnPrice} , </if>
+                        <if test='tgtReturnAmount!=null' > tgt_return_amount= #{tgtReturnAmount} , </if>
+                        <if test='declarePrice!=null' > declare_price= #{declarePrice} , </if>
+                        <if test='taxReturnPrice!=null' > tax_return_price= #{taxReturnPrice} , </if>
+                        <if test='taxReturnAmount!=null' > tax_return_amount= #{taxReturnAmount} , </if>
+                        <if test='tax!=null' > tax= #{tax} , </if>
+                        <if test='taxRate!=null' > tax_rate= #{taxRate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_return_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_purchase_return_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            order_id,
+            goods_id,
+            goods_name,
+            goods_no,
+            barcode,
+            return_num,
+            return_price,
+            return_amount,
+            box_no,
+            contract_no,
+            brand_name,
+            remark,
+            create_date,
+            modify_date,
+            tgt_return_price,
+            tgt_return_amount,
+            declare_price,
+            tax_return_price,
+            tax_return_amount,
+            tax,
+            tax_rate
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='returnNum!=null' > return_num= #{returnNum} and </if>
+                            <if test='returnPrice!=null' > return_price= #{returnPrice} and </if>
+                            <if test='returnAmount!=null' > return_amount= #{returnAmount} and </if>
+                            <if test='boxNo!=null and !"".equals(boxNo)' >box_no= #{boxNo} and </if>
+                            <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='tgtReturnPrice!=null' > tgt_return_price= #{tgtReturnPrice} and </if>
+                            <if test='tgtReturnAmount!=null' > tgt_return_amount= #{tgtReturnAmount} and </if>
+                            <if test='declarePrice!=null' > declare_price= #{declarePrice} and </if>
+                            <if test='taxReturnPrice!=null' > tax_return_price= #{taxReturnPrice} and </if>
+                            <if test='taxReturnAmount!=null' > tax_return_amount= #{taxReturnAmount} and </if>
+                            <if test='tax!=null' > tax= #{tax} and </if>
+                            <if test='taxRate!=null' > tax_rate= #{taxRate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <delete id='delByMap' parameterType='map'>
+	        delete from t_purchase_return_item <include refid='sql_where' />
+	    </delete>
+    <!-- 获取采购商品弹窗-->
+    <select id="getPurchaseItemPopupByPage" resultType="PurchaseReturnItemDTO" parameterType="PurchaseReturnItemDTO">
+        SELECT
+        goods_id as goodsId,
+        goods_no as goodsNo,
+        goods_code as goodsCode,
+        goods_name as goodsName,
+        price as returnPrice,
+        amount as returnAmount,
+        barcode,
+        tax,
+        tax_rate as taxRate,
+        tax_price as taxReturnPrice,
+        tax_amount as taxReturnAmount
+        FROM  t_purchase_order_item t1
+        LEFT JOIN  t_purchase_order t2 on t1.purchase_order_id = t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='purchaseOrderCodes !=null and !"".equals(purchaseOrderCodes)' >
+                    t2.code in
+                    <foreach collection="purchaseOrderCodes.split(';')" open="(" close=")" separator="," item="code">
+                        #{code}
+                    </foreach>
+                    and
+                </if>
+                <if test='unNeedIds!=null and !"".equals(unNeedIds)' > t1.barcode not in
+                    <foreach collection="unNeedIds.split(',')" open="(" close=")" separator="," item="barcode">
+                        #{barcode}
+                    </foreach>	and
+                </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >t1.goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >t1.barcode= #{barcode} and </if>
+            </trim>
+        </where>
+        GROUP BY t1.barcode
+    </select>
+</mapper>

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Start content -->
+<style>
+.mll{margin-left:20px;}
+.col-form-label{text-align: right;}
+.margin{margin:20px 20px 0px 20px;}
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px}
+.mt20{margin-top:20px;}
+.mt80{margin-top:80px;}
+.mt60{margin-top:60px;}
+.ml10{margin-left: -10px;}
+.ml15{margin-left: 15px;}
+.ml30{margin-left: 30px;}
+.ml100{margin-left: 30px;}
+.mr13{margin-right: 13px}
+.mr20{margin-right: 20px}
+.table-striped tbody tr:nth-of-type(odd){background: #f8fbff;}
+.btn-hidden{display:none}
+.popupbg{width: 100%;height: 100%;background: rgba(0,0,0,0.5);position: fixed;top: 0;left: 0;z-index: 9;display: flex;justify-content: center;align-items: center;}
+.popup_box{width: 200px;padding:20px 0;border-radius: 5px;background: #fff;position: relative;text-align: center;}
+.popup_box p{text-align: center;margin-bottom: 0;}
+</style>
+<!-- Start content -->
+<div class="content">
+    <div class="container-fluid mt80">
+        <!-- Start row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <!--  title   start  -->
+                    <div class="col-12">
+                        <div>
+                            <div class="col-12 row">
+                                <div>
+                                    <ol class="breadcrumb">
+                                        <li><i class="dripicons-location"></i> 当前位置：</li>
+                                        <li class="breadcrumb-item"><a href="#">日志监控</a></li>
+                                        <li class="breadcrumb-item "><a href="#">mq消费监控</a></li>
+                                        <li class="breadcrumb-item "><a href="#">导入从推</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                           
+                            <!--  title   end  -->
+                            <!--  title   基本信息   start -->
+                            <div class="page_title">&nbsp;</div>
+									<div class="form-group  col-12 row">
+			                            <div class="col-4">
+			                                <div class="form-row row col-12">
+			                                    <label  class="col-4 col-form-label"  style="white-space:nowrap;">上传文件<span>：</span></label>
+			                                    <div class="col-7 mll">
+			                                    	<button type="button" class="btn btn-gradient btn-file" id="btn-file">选择文件</button>
+			                                    	<form enctype="multipart/form-data" id="form-upload">
+			                                    		<input type="file" name="file" id="file" class="btn-hidden">
+			                                    	</form>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                           <div class="col-4" style="margin-top:10px;" id="downloadTemplate">
+												<a href="#">模板下载</a>
+			                           </div>
+			                        </div>
+ 					<!--  ================================上传文件部分  end===============================================   -->
+                    <!--  ================================导入信息显示部分  start ===============================================   -->
+			                    <div class="col-9 mt10 p-20 ml30"  id="border">
+			                       <div class="col-12 row mt10">
+			                           <h5 class="black">导入详情:</h5>
+			                       </div>
+			                        <div class="col-12 row mt10">
+			                              <div class="col-1"  style="white-space:nowrap;">成功数据<span>：</span></div>
+			                              <div class="col-2 ml15"><span id="success">0</span>条</div>
+			                        </div>
+			                        <div class="col-12 row mt10">
+			                              <div class="col-1"  style="white-space:nowrap;">错误数据<span>：</span></div>
+			                              <div class="col-2 ml15"><span class="red" id="failure">0</span>条</div>
+			                        </div>
+			                        <div class="col-12 row mt10">
+			                        	<table id="message-table" class="table table-striped">
+			                                <th style="width:100px;text-align:center;">错误行</th>
+			                        		<th style="width:300px;text-align:center;">错误信息</th>
+			                        	</table>
+			                        </div>
+			                   </div>			                        
+								<div class="popupbg" style="display: none">
+								    <div class="popup_box">
+								        <img src="/resources/assets/images/uploading.gif" alt="">
+								        <p>正在上传中...</p>
+								    </div>
+								</div>	                            
+	                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container -->
+        </div>
+
+    </div> <!-- content -->
+</div>
+<!--======================Modal框===========================  -->
+<div th:include="common/common"></div>
+<style>
+	.input_msg{color: #495057;}
+    .fail{background: #f00;color: #fff;padding: 4px 6px;border-radius: 3px;}
+    .success{background: #6ea9f3;color: #fff;padding: 4px 6px;border-radius: 3px;}
+</style>
+<script type="text/javascript">
+
+$("#downloadTemplate").click(function(){
+	var url = $module.fn.getModuleUrl(moduleCode,'/excelTemplateLog/download.asyn?ids=102');
+	window.open(url);
+})
+
+$(function(){
+	debugger;
+	//点击上传文件
+	$("#btn-file").click(function(){
+		var input = '<input type="file" name="file" id="file" class="btn-hidden file-import">';
+		$("#form-upload").empty();
+		$("#form-upload").append(input);
+		$("#file").click();
+	});
+	
+	//上传文件到后端
+	$("#form-upload").on("change",'.file-import',function(){
+		debugger;
+		//判断是否为excel格式
+		var data = $(this).val().split(".");
+		var suffix = data[data.length-1];
+		if(suffix=="xlsx" || suffix=="xls"){
+			$(".popupbg").show();
+			var formData = new FormData($("#form-upload")[0]); 
+			var url = $module.fn.getModuleUrl(moduleCode,'/consumeMonitor/importData.asyn?r='+Math.random());
+			ajaxUpload(url, formData, function(result){
+				$(".popupbg").hide();
+				if(result.state == '200'){
+					$custom.alert.success("导入完成！");
+				}else{
+					$custom.alert.error("导入失败！");
+				}
+				$("#success").text(result.data["success"]);//成功条数
+				$("#failure").text(result.data["failure"]);//错误条数
+				//错误信息
+				$("#message-table tr:gt(0)").remove();
+				$.each(result.data["message"],function(i,d){
+					var tr = "";
+					tr+="<tr><td style='text-align:center;'>"+d.rows+"</td><td style='text-align:center;'>"+d.message+"</td></tr>";
+					$("#message-table").append(tr);
+				});
+			});
+		}else{
+			$custom.alert.error("请上传正确的excel格式文件");
+		}
+	});
+	
+});
+
+function ajaxUpload(url,dataJson,successFun){
+    var b=$load.invalidLogin();
+    if(b){
+        $custom.alert.prompt("登陆失效,请重新登陆",function(){
+            location.reload();
+        });
+    }
+	//正则添加token 校验
+	var reg= /^.*\.asyn\?.*$/;
+	if(reg.test(url)){
+		url+='&token='+token;
+	}else{
+		url+='?token='+token;
+	}
+	//ajax 发送请求
+	$.ajax({
+		type:'post',
+		url:url,
+		dataType: "json",
+		data:dataJson,
+		xhrFields: {
+			withCredentials: true
+		},
+		contentType: false,
+		processData: false,
+		success:successFun,
+
+	});
+}
+
+</script>

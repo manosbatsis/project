@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventoryOnwayDetailsMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="InventoryOnwayDetailsModelMap" type="InventoryOnwayDetailsModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="depotName" column="depot_name" />
+                <result property="orderNo" column="order_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="depotId" column="depot_id" />
+                <result property="operateType" column="operate_type" />
+                <result property="source" column="source" />
+                <result property="type" column="type" />
+                <result property="depotType" column="depot_type" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="sourceDate" column="source_date" />
+                <result property="unit" column="unit" />
+                <result property="productionDate" column="production_date" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="isTopBooks" column="is_top_books" />
+                <result property="statusName" column="status_name" />
+                <result property="onwayNum" column="onway_num" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="divergenceDate" column="divergence_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryOnwayDetailsModelMap' parameterType='InventoryOnwayDetailsModel'>
+        select <include refid='sql_columns' /> from i_inventory_onway_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryOnwayDetailsModelMap' parameterType='InventoryOnwayDetailsModel'>
+        select <include refid='sql_columns' /> from i_inventory_onway_details  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryOnwayDetailsModelMap' parameterType='InventoryOnwayDetailsModel' >
+        select <include refid='sql_columns' /> from i_inventory_onway_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventoryOnwayDetailsModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_onway_details
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null' > goods_no , </if>
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > order_no , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='operateType!=null and !"".equals(operateType)' > operate_type , </if>
+                <if test='source!=null and !"".equals(source)' > source , </if>
+                <if test='type!=null and !"".equals(type)' > type , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > depot_type , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='sourceDate!=null' > source_date , </if>
+                <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > is_top_books , </if>
+                <if test='statusName!=null and !"".equals(statusName)' > status_name , </if>
+                <if test='onwayNum!=null' > onway_num , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='divergenceDate!=null' > divergence_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null' > #{goodsNo} , </if>
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > #{orderNo} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='operateType!=null and !"".equals(operateType)' > #{operateType} , </if>
+                <if test='source!=null and !"".equals(source)' > #{source} , </if>
+                <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='sourceDate!=null' > #{sourceDate} , </if>
+                <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > #{isTopBooks} , </if>
+                <if test='statusName!=null and !"".equals(statusName)' > #{statusName} , </if>
+                <if test='onwayNum!=null' > #{onwayNum} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='divergenceDate!=null' > #{divergenceDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventoryOnwayDetailsModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_onway_details SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null' > goods_no= #{goodsNo} , </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} , </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} , </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='sourceDate!=null' > source_date= #{sourceDate} , </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} , </if>
+                <if test='statusName!=null and !"".equals(statusName)' >status_name= #{statusName} , </if>
+                <if test='onwayNum!=null' > onway_num= #{onwayNum} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_onway_details  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_onway_details where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        overdue_date,
+        depot_name,
+        order_no,
+        goods_id,
+        depot_id,
+        operate_type,
+        source,
+        type,
+        depot_type,
+        merchant_name,
+        source_date,
+        unit,
+        production_date,
+        merchant_id,
+        is_top_books,
+        status_name,
+        onway_num,
+        id,
+        goods_name,
+        status,
+        create_date,
+        divergence_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null' > goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='sourceDate!=null' > source_date= #{sourceDate} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='statusName!=null and !"".equals(statusName)' >status_name= #{statusName} and </if>
+                <if test='onwayNum!=null' > onway_num= #{onwayNum} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+<!--自定义SQL-->
+
+
+
+
+</mapper>

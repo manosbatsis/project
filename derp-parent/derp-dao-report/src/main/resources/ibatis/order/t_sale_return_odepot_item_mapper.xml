@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.SaleReturnOdepotItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="SaleReturnOdepotItemModelMap" type="SaleReturnOdepotItemModel" >
+                <result property="overdueDate" column="overdue_date" />
+                <result property="returnBatchNo" column="return_batch_no" />
+                <result property="outGoodsCode" column="out_goods_code" />
+                <result property="sreturnOdepotId" column="sreturn_odepot_id" />
+                <result property="expireNum" column="expire_num" />
+                <result property="outGoodsName" column="out_goods_name" />
+                <result property="productionDate" column="production_date" />
+                <result property="outGoodsId" column="out_goods_id" />
+                <result property="returnNum" column="return_num" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="wornNum" column="worn_num" />
+                <result property="barcode" column="barcode" />
+                <result property="outGoodsNo" column="out_goods_no" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="poNo" column="po_no" />
+                <result property="commbarcode" column="commbarcode" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleReturnOdepotItemModelMap' parameterType='SaleReturnOdepotItemModel'>
+        select <include refid='sql_columns' /> from t_sale_return_odepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleReturnOdepotItemModelMap' parameterType='SaleReturnOdepotItemModel'>
+        select <include refid='sql_columns' /> from t_sale_return_odepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleReturnOdepotItemModelMap' parameterType='SaleReturnOdepotItemModel' >
+        select <include refid='sql_columns' /> from t_sale_return_odepot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='SaleReturnOdepotItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_sale_return_odepot_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='returnBatchNo!=null and !"".equals(returnBatchNo)' > return_batch_no , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' > out_goods_code , </if>
+                <if test='sreturnOdepotId!=null' > sreturn_odepot_id , </if>
+                <if test='expireNum!=null' > expire_num , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' > out_goods_name , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='outGoodsId!=null' > out_goods_id , </if>
+                <if test='returnNum!=null' > return_num , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='wornNum!=null' > worn_num , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' > out_goods_no , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='returnBatchNo!=null and !"".equals(returnBatchNo)' > #{returnBatchNo} , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' > #{outGoodsCode} , </if>
+                <if test='sreturnOdepotId!=null' > #{sreturnOdepotId} , </if>
+                <if test='expireNum!=null' > #{expireNum} , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' > #{outGoodsName} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='outGoodsId!=null' > #{outGoodsId} , </if>
+                <if test='returnNum!=null' > #{returnNum} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='wornNum!=null' > #{wornNum} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' > #{outGoodsNo} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='SaleReturnOdepotItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_sale_return_odepot_item SET
+        <trim  suffixOverrides=",">
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='returnBatchNo!=null and !"".equals(returnBatchNo)' >return_batch_no= #{returnBatchNo} , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' >out_goods_code= #{outGoodsCode} , </if>
+                <if test='sreturnOdepotId!=null' > sreturn_odepot_id= #{sreturnOdepotId} , </if>
+                <if test='expireNum!=null' > expire_num= #{expireNum} , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' >out_goods_name= #{outGoodsName} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='outGoodsId!=null' > out_goods_id= #{outGoodsId} , </if>
+                <if test='returnNum!=null' > return_num= #{returnNum} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >out_goods_no= #{outGoodsNo} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_return_odepot_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_sale_return_odepot_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        overdue_date,
+        return_batch_no,
+        out_goods_code,
+        sreturn_odepot_id,
+        expire_num,
+        out_goods_name,
+        production_date,
+        out_goods_id,
+        return_num,
+        creater,
+        id,
+        worn_num,
+        barcode,
+        out_goods_no,
+        create_date,
+        modify_date,
+        po_no,
+        commbarcode
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='returnBatchNo!=null and !"".equals(returnBatchNo)' >return_batch_no= #{returnBatchNo} and </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' >out_goods_code= #{outGoodsCode} and </if>
+                <if test='sreturnOdepotId!=null' > sreturn_odepot_id= #{sreturnOdepotId} and </if>
+                <if test='expireNum!=null' > expire_num= #{expireNum} and </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' >out_goods_name= #{outGoodsName} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='outGoodsId!=null' > out_goods_id= #{outGoodsId} and </if>
+                <if test='returnNum!=null' > return_num= #{returnNum} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >out_goods_no= #{outGoodsNo} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+
+
+</mapper>

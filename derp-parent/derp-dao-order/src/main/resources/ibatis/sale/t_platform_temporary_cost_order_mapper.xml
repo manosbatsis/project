@@ -1,0 +1,564 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.PlatformTemporaryCostOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PlatformTemporaryCostOrderModelMap" type="PlatformTemporaryCostOrderModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="externalCode" column="external_code" />
+                <result property="orderCode" column="order_code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="storePlatformCode" column="store_platform_code" />
+                <result property="currency" column="currency" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifyName" column="modify_name" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="shopTypeCode" column="shop_type_code" />
+                <result property="orderType" column="order_type" />
+                <result property="returnOrderCode" column="return_order_code"/>
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PlatformTemporaryCostOrderModelMap' parameterType='PlatformTemporaryCostOrderModel'>
+        select <include refid='sql_columns' /> from t_platform_temporary_cost_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PlatformTemporaryCostOrderModelMap' parameterType='PlatformTemporaryCostOrderModel'>
+        select <include refid='sql_columns' /> from t_platform_temporary_cost_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PlatformTemporaryCostOrderModelMap' parameterType='PlatformTemporaryCostOrderModel' >
+        select <include refid='sql_columns' /> from t_platform_temporary_cost_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PlatformTemporaryCostOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_platform_temporary_cost_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' > modify_name , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' > bu_id , </if>
+                        <if test='customerId!=null' > customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > shop_type_code , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                <if test='returnOrderCode!=null and !"".equals(returnOrderCode)'>return_order_code ,</if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' > #{modifyName} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > #{shopTypeCode} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                <if test='returnOrderCode!=null and !"".equals(returnOrderCode)'>#{returnOrderCode} ,</if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PlatformTemporaryCostOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_platform_temporary_cost_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' >modify_name= #{modifyName} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id=#{buId} , </if>
+                        <if test='customerId!=null' > customer_id=#{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name=#{customerName} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > shop_type_code=#{shopTypeCode} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                <if test='returnOrderCode!=null and !"".equals(returnOrderCode)'>return_order_code= #{returnOrderCode}
+                    ,
+                </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_platform_temporary_cost_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_platform_temporary_cost_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            external_code,
+            order_code,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            shop_code,
+            shop_name,
+            store_platform_code,
+            currency,
+            deliver_date,
+            create_date,
+            modify_date,
+            modifier,
+            modify_name,
+            bu_name,
+            bu_id,
+            customer_id,
+            customer_name,
+            shop_type_code,
+            order_type,
+            return_order_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                    <if test='createDate!=null'>create_date= #{createDate} and</if>
+                    <if test='modifyDate!=null'>modify_date= #{modifyDate} and</if>
+                    <if test='modifier!=null'>modifier= #{modifier} and</if>
+                    <if test='modifyName!=null and !"".equals(modifyName)'>modify_name= #{modifyName} and</if>
+                    <if test='buName!=null and !"".equals(buName)'>bu_name= #{buName} and</if>
+                    <if test='buId!=null'>bu_id=#{buId} and</if>
+                    <if test='customerId!=null'>customer_id=#{customerId} and</if>
+                    <if test='customerName!=null and !"".equals(customerName)'>customer_name=#{customerName} and</if>
+                    <if test='shopTypeCode!=null and !"".equals(shopTypeCode)'>shop_type_code=#{shopTypeCode} and</if>
+                    <if test='orderType!=null and !"".equals(orderType)'>order_type= #{orderType} and</if>
+                    <if test='returnOrderCode!=null and !"".equals(returnOrderCode)'>return_order_code=
+                        #{returnOrderCode} and
+                    </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <resultMap id="dtoMap" type="PlatformTemporaryCostOrderDTO" extends="PlatformTemporaryCostOrderModelMap">
+        <result column="sumAmount" property="sumAmount" ></result>
+    </resultMap>
+
+<!--    <select id="listDTOByPage" resultMap="dtoMap" parameterType="PlatformTemporaryCostOrderDTO">-->
+<!--        SELECT-->
+<!--            o1.*,o2.sumAmount-->
+<!--        FROM t_platform_temporary_cost_order o1,-->
+<!--            (-->
+<!--            SELECT sum( settlement_amount ) sumAmount, t2.platform_cost_id-->
+<!--            FROM-->
+<!--                t_platform_temporary_cost_order t1,-->
+<!--                t_platform_temporary_cost_order_item t2-->
+<!--            <where>-->
+<!--                <trim suffixOverrides='and'>-->
+<!--                    t1.id = t2.platform_cost_id and-->
+<!--                    <if test='platformSettlementId!=null' > t2.platform_cost_id= #{platformCostId} </if>-->
+<!--                </trim>-->
+<!--            </where>-->
+<!--            GROUP BY  t2.platform_cost_id) o2-->
+<!--        <where>-->
+<!--            <trim suffixOverrides='and'>-->
+<!--                o1.id = o2.platform_cost_id and-->
+<!--                <if test='code!=null and !"".equals(code)' >o1.code= #{code} and </if>-->
+<!--                <if test='externalCode!=null and !"".equals(externalCode)' >o1.external_code= #{externalCode} and </if>-->
+<!--                <if test='orderCode!=null and !"".equals(orderCode)' >o1.order_code= #{orderCode} and </if>-->
+<!--                <if test='merchantId!=null' > o1.merchant_id= #{merchantId} and </if>-->
+<!--                <if test='merchantName!=null and !"".equals(merchantName)' >o1.merchant_name= #{merchantName} and </if>-->
+<!--                <if test='depotId!=null' > o1.depot_id= #{depotId} and </if>-->
+<!--                <if test='depotName!=null and !"".equals(depotName)' >o1.depot_name= #{depotName} and </if>-->
+<!--                <if test='shopCode!=null and !"".equals(shopCode)' >o1.shop_code= #{shopCode} and </if>-->
+<!--                <if test='shopName!=null and !"".equals(shopName)' >o1.shop_name= #{shopName} and </if>-->
+<!--                <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >o1.store_platform_code= #{storePlatformCode} and </if>-->
+<!--                <if test='currency!=null and !"".equals(currency)' >o1.currency= #{currency} and </if>-->
+<!--                <if test='deliverDate!=null' > o1.deliver_date= #{deliverDate} and </if>-->
+<!--                <if test='createDate!=null' > o1.create_date= #{createDate} and </if>-->
+<!--                <if test='modifyDate!=null' > o1.modify_date= #{modifyDate} and </if>-->
+<!--                <if test='modifier!=null' > o1.modifier= #{modifier} and </if>-->
+<!--                <if test='modifyName!=null and !"".equals(modifyName)' >o1.modify_name= #{modifyName} and </if>-->
+<!--                <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >-->
+<!--                    date_format(o1.deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and-->
+<!--                </if>-->
+<!--                <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >-->
+<!--                    date_format(o1.deliver_date,'%Y-%m-%d %H:%i:%S') &lt;=  #{deliverEndDate} and-->
+<!--                </if>-->
+<!--            </trim>-->
+<!--        </where>-->
+<!--        order by create_date desc-->
+<!--    </select>-->
+
+    <select id="listDTOByPage" resultMap="dtoMap" parameterType="PlatformTemporaryCostOrderDTO">
+        SELECT
+        o1.*
+        FROM t_platform_temporary_cost_order o1
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >o1.code= #{code} and </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' >o1.external_code= #{externalCode} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >o1.order_code= #{orderCode} and </if>
+                <if test='merchantId!=null' > o1.merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >o1.merchant_name= #{merchantName} and </if>
+                <if test='depotId!=null' > o1.depot_id= #{depotId} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >o1.depot_name= #{depotName} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >o1.shop_code= #{shopCode} and </if>
+                <if test='shopName!=null and !"".equals(shopName)' >o1.shop_name= #{shopName} and </if>
+                <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >o1.store_platform_code= #{storePlatformCode} and </if>
+                <if test='currency!=null and !"".equals(currency)' >o1.currency= #{currency} and </if>
+                <if test='deliverDate!=null' > o1.deliver_date= #{deliverDate} and </if>
+                <if test='createDate!=null' > o1.create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > o1.modify_date= #{modifyDate} and </if>
+                <if test='modifier!=null' > o1.modifier= #{modifier} and </if>
+                <if test='modifyName!=null and !"".equals(modifyName)' >o1.modify_name= #{modifyName} and </if>
+                <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+                    date_format(o1.deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+                </if>
+                <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+                    date_format(o1.deliver_date,'%Y-%m-%d %H:%i:%S') &lt;=  #{deliverEndDate} and
+                </if>
+            </trim>
+        </where>
+        order by create_date desc
+    </select>
+
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_platform_temporary_cost_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                id,
+                code,
+                external_code,
+                order_code,
+                merchant_id,
+                merchant_name,
+                depot_id,
+                depot_name,
+                shop_code,
+                shop_name,
+                store_platform_code,
+                currency,
+                deliver_date,
+                create_date,
+                bu_name,
+                bu_id,
+                customer_id,
+                customer_name,
+                shop_type_code,
+                order_type,
+                return_order_code
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+                <trim prefix="(" suffix=")" suffixOverrides="," >
+                    #{item.id} ,
+                    #{item.code} ,
+                    #{item.externalCode} ,
+                    #{item.orderCode} ,
+                    #{item.merchantId} ,
+                    #{item.merchantName} ,
+                    #{item.depotId} ,
+                    #{item.depotName} ,
+                    #{item.shopCode} ,
+                    #{item.shopName} ,
+                    #{item.storePlatformCode} ,
+                    #{item.currency} ,
+                    #{item.deliverDate} ,
+                    #{item.createDate},
+                    #{item.buName},
+                    #{item.buId},
+                    #{item.customerId},
+                    #{item.customerName},
+                    #{item.shopTypeCode},
+                    #{item.orderType},
+                    #{item.returnOrderCode}
+                </trim>
+            </foreach>
+        </insert>
+
+    <select id="searchByDTOId" resultType="PlatformTemporaryCostOrderDTO">
+        select <include refid='sql_columns' /> from t_platform_temporary_cost_order where id=#{id}
+    </select>
+
+    <select id="listForMapItem" resultType="map" parameterType='PlatformTemporaryCostOrderDTO'>
+        select  t1.id,t1.code,t1.external_code,t1.order_code,t1.merchant_id,t1.merchant_name,t1.depot_id,t1.depot_name,t1.shop_code,
+        t1.shop_name,t1.store_platform_code,DATE_FORMAT(t1.deliver_date,'%Y-%m-%d') deliver_date,t2.bu_name,t2.platform_settlement_name,
+        t2.amount,t2.ratio,t2.settlement_amount
+        from t_platform_temporary_cost_order t1 ,t_platform_temporary_cost_order_item t2
+        <where>
+            <trim suffixOverrides='and'>
+                t1.id=t2.platform_cost_id and
+                <choose>
+                    <when test='ids!=null and !"".equals(ids)'>
+                        t1.id in
+                        <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                            #{id}
+                        </foreach>
+                    </when>
+                    <otherwise>
+                        <if test='platformSettlementId!=null' >t2.platform_settlement_id= #{platformSettlementId} and </if>
+                        <if test='code!=null and !"".equals(code)' >t1.code= #{code} and </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >t1.external_code= #{externalCode} and </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >t1.order_code= #{orderCode} and </if>
+                        <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >t1.merchant_name= #{merchantName} and </if>
+                        <if test='depotId!=null' > t1.depot_id= #{depotId} and </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >t1.depot_name= #{depotName} and </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >t1.shop_code= #{shopCode} and </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >t1.shop_name= #{shopName} and </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >t1.store_platform_code= #{storePlatformCode} and </if>
+                        <if test='currency!=null and !"".equals(currency)' >t1.currency= #{currency} and </if>
+                        <if test='deliverDate!=null' > t1.deliver_date= #{deliverDate} and </if>
+                        <if test='createDate!=null' > t1.create_date= #{createDate} and </if>
+                        <if test='modifyDate!=null' > t1.modify_date= #{modifyDate} and </if>
+                        <if test='modifier!=null' > t1.modifier= #{modifier} and </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' >t1.modify_name= #{modifyName} and </if>
+                        <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+                            date_format(t1.deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+                        </if>
+                        <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+                            date_format(t1.deliver_date,'%Y-%m-%d %H:%i:%S') &lt;=  #{deliverEndDate} and
+                        </if>
+                    </otherwise>
+                </choose>
+            </trim>
+        </where>
+        ORDER BY t1.id DESC
+        limit #{begin},#{pageSize}
+    </select>
+
+    <select id="getPlatFormTemporaryCount" resultType="Integer" parameterType='PlatformTemporaryCostOrderDTO'>
+        select  count(1)
+        from t_platform_temporary_cost_order t1 ,t_platform_temporary_cost_order_item t2
+        <where>
+            <trim suffixOverrides='and'>
+                t1.id=t2.platform_cost_id and
+                <choose>
+                    <when test='ids!=null and !"".equals(ids)'>
+                        t1.id in
+                        <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                            #{id}
+                        </foreach>
+                    </when>
+                    <otherwise>
+                        <if test='platformSettlementId!=null' >t2.platform_settlement_id= #{platformSettlementId} and </if>
+                        <if test='code!=null and !"".equals(code)' >t1.code= #{code} and </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >t1.external_code= #{externalCode} and </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >t1.order_code= #{orderCode} and </if>
+                        <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >t1.merchant_name= #{merchantName} and </if>
+                        <if test='depotId!=null' > t1.depot_id= #{depotId} and </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >t1.depot_name= #{depotName} and </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >t1.shop_code= #{shopCode} and </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >t1.shop_name= #{shopName} and </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >t1.store_platform_code= #{storePlatformCode} and </if>
+                        <if test='currency!=null and !"".equals(currency)' >t1.currency= #{currency} and </if>
+                        <if test='deliverDate!=null' > t1.deliver_date= #{deliverDate} and </if>
+                        <if test='createDate!=null' > t1.create_date= #{createDate} and </if>
+                        <if test='modifyDate!=null' > t1.modify_date= #{modifyDate} and </if>
+                        <if test='modifier!=null' > t1.modifier= #{modifier} and </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' >t1.modify_name= #{modifyName} and </if>
+                        <if test='deliverStartDate!=null and !"".equals(deliverStartDate)' >
+                            date_format(t1.deliver_date,'%Y-%m-%d %H:%i:%S') &gt;= #{deliverStartDate} and
+                        </if>
+                        <if test='deliverEndDate!=null and !"".equals(deliverEndDate)' >
+                            date_format(t1.deliver_date,'%Y-%m-%d %H:%i:%S') &lt;=  #{deliverEndDate} and
+                        </if>
+                    </otherwise>
+                </choose>
+            </trim>
+        </where>
+        ORDER BY t1.id DESC
+    </select>
+
+    <select id="listByExternalCodes" resultMap="PlatformTemporaryCostOrderModelMap">
+        select <include refid='sql_columns' /> from t_platform_temporary_cost_order where merchant_id = #{merchantId}
+        and  external_code in
+        <foreach collection="externalCodes" open="(" close=")" separator="," item="externalCode">
+            #{externalCode}
+        </foreach>
+    </select>
+
+    <select id="countOrderByDTO" resultType="map" parameterType="PlatformTemporaryCostOrderDTO" >
+        select
+        t.merchant_id merchantId,
+        t.shop_code shopCode,
+        t.customer_id customerId,
+        t.bu_id buId,
+        t.shop_type_code shopTypeCode,
+        t.store_platform_code storePlatformCode,
+        count(0) itemNum
+        from t_platform_temporary_cost_order t
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='month!=null and !"".equals(month)' >
+                    date_format(t.deliver_date,'%Y-%m') =  #{month} and
+                </if>
+                <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                <if test='buId!=null' > t.bu_id= #{buId} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >t.shop_code= #{shopCode} and </if>
+                <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >t.shop_type_code= #{shopTypeCode} and </if>
+                <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >t.store_platform_code= #{storePlatformCode} and </if>
+                <if test='externalCode!=null and !"".equals(externalCode)' >t.external_code= #{externalCode} and </if>
+                <if test='orderType!=null and !"".equals(orderType)' >t.order_type= #{orderType} and </if>
+            </trim>
+        </where>
+        GROUP BY t.merchant_id, t.shop_code, t.shop_type_code, t.store_platform_code,t.customer_id,t.bu_id
+    </select>
+
+    <select id="listTempOrderDTO" resultType="PlatformTemporaryCostOrderDTO" parameterType="PlatformTemporaryCostOrderDTO">
+        select <include refid='sql_columns' /> from t_platform_temporary_cost_order
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='month!=null and !"".equals(month)' >
+                    date_format(deliver_date,'%Y-%m') =  #{month} and
+                </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                <if test='orderCodeList!=null and orderCodeList.size() > 0 ' >
+                    order_code in
+                    <foreach collection="orderCodeList" open="(" close=")" separator="," item="orderCode">
+                        #{orderCode}
+                    </foreach> and
+                </if>
+                <if test='externalCodeList!=null and externalCodeList.size() > 0 ' >
+                    external_code in
+                    <foreach collection="externalCodeList" open="(" close=")" separator="," item="externalCode">
+                        #{externalCode}
+                    </foreach> and
+                </if>
+            </trim>
+        </where>
+        order by id
+<!--        limit #{begin},#{pageSize}-->
+    </select>
+
+    <select id="listDistinctOrderByDTO" resultType="PlatformTemporaryCostOrderDTO" parameterType="PlatformTemporaryCostOrderDTO">
+        select distinct(external_code) as externalCode from t_platform_temporary_cost_order
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='month!=null and !"".equals(month)' >
+                    date_format(deliver_date,'%Y-%m') =  #{month} and
+                </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                external_code is not null and
+            </trim>
+        </where>
+        order by externalCode
+        limit #{begin},#{pageSize}
+    </select>
+
+    <select id="statisticsDistinctByDTO" resultType="long" parameterType="PlatformTemporaryCostOrderDTO">
+        select count(distinct(external_code)) from t_platform_temporary_cost_order
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='month!=null and !"".equals(month)' >
+                    date_format(deliver_date,'%Y-%m') =  #{month} and
+                </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                external_code is not null and
+            </trim>
+        </where>
+        order by external_code
+    </select>
+
+        <!-- 批量删除数据 -->
+        <delete id='deleteByOrderCode' parameterType='java.util.ArrayList'>
+            delete from t_platform_temporary_cost_order where order_code in
+            <foreach collection='list' item='orderCode' separator=',' open='(' close=')'>
+            #{orderCode}
+            </foreach>
+        </delete>
+
+</mapper>

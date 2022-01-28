@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.user.UserMerchantRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="UserMerchantRelModelMap" type="UserMerchantRelModel" >
+                <result property="id" column="id" />
+                <result property="userId" column="user_id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='UserMerchantRelModelMap' parameterType='UserMerchantRelModel'>
+        select <include refid='sql_columns' /> from st_user_merchant_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='UserMerchantRelModelMap' parameterType='UserMerchantRelModel'>
+        select <include refid='sql_columns' /> from st_user_merchant_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='UserMerchantRelModelMap' parameterType='UserMerchantRelModel' >
+        select <include refid='sql_columns' /> from st_user_merchant_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='UserMerchantRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_user_merchant_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='userId!=null' >user_id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='userId!=null' > #{userId} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='UserMerchantRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_user_merchant_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='userId!=null' > user_id= #{userId} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_user_merchant_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_user_merchant_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            user_id,
+            merchant_id,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='userId!=null' > user_id= #{userId} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+            <result property="value" column="id" />
+            <result property="label" column="name" />
+        </resultMap>
+
+        <!-- 查询下拉列表 -->
+        <select id='getUserSelectBean' resultMap='SelectBeans' parameterType="UserMerchantRelModel">
+            select m.id, m.`name`
+            from st_user_merchant_rel r
+            LEFT JOIN st_merchant_info m
+            on r.merchant_id = m.id
+            where r.user_id = #{userId} and m.status='1'
+        </select>
+
+        <select id="getUserMerchantList" resultType="MerchantInfoModel" parameterType="UserMerchantRelModel" >
+            select m.id, m.`name`,m.code
+            from st_merchant_info m
+            LEFT JOIN  st_user_merchant_rel r
+            on r.merchant_id = m.id
+            where r.user_id = #{userId} and m.status='1'
+        </select>
+
+        <delete id="delAllByUserId" parameterType="java.lang.Long" >
+            DELETE from st_user_merchant_rel WHERE user_id = #{userId}
+        </delete>
+</mapper>

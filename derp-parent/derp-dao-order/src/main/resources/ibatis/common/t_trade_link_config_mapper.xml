@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.TradeLinkConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="TradeLinkConfigModelMap" type="TradeLinkConfigModel" >
+                <result property="id" column="id" />
+                <result property="linkName" column="link_name" />
+                <result property="startPointMerchantId" column="start_point_merchant_id" />
+                <result property="startPointMerchantName" column="start_point_merchant_name" />
+                <result property="startPointBuId" column="start_point_bu_id" />
+                <result property="startPointBuName" column="start_point_bu_name" />
+                <result property="startPointPremiumRate" column="start_point_premium_rate" />
+                <result property="oneCustomerId" column="one_customer_id" />
+                <result property="oneCustomerName" column="one_customer_name" />
+                <result property="oneBuId" column="one_bu_id" />
+                <result property="oneBuName" column="one_bu_name" />
+                <result property="onePremiumRate" column="one_premium_rate" />
+                <result property="twoCustomerId" column="two_customer_id" />
+                <result property="twoCustomerName" column="two_customer_name" />
+                <result property="twoBuId" column="two_bu_id" />
+                <result property="twoBuName" column="two_bu_name" />
+                <result property="twoPremiumRate" column="two_premium_rate" />
+                <result property="threeCustomerId" column="three_customer_id" />
+                <result property="threeCustomerName" column="three_customer_name" />
+                <result property="threeBuId" column="three_bu_id" />
+                <result property="threeBuName" column="three_bu_name" />
+                <result property="threePremiumRate" column="three_premium_rate" />
+                <result property="fourCustomerId" column="four_customer_id" />
+                <result property="fourCustomerName" column="four_customer_name" />
+                <result property="fourBuId" column="four_bu_id" />
+                <result property="fourBuName" column="four_bu_name" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierName" column="modifier_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="oneType" column="one_type" />
+                <result property="twoType" column="two_type" />
+                <result property="threeType" column="three_type" />
+                <result property="fourType" column="four_type" />
+                <result property="oneIdvaluetype" column="one_idValueType" />
+                <result property="twoIdvaluetype" column="two_idValueType" />
+                <result property="threeIdvaluetype" column="three_idValueType" />
+                <result property="fourIdvaluetype" column="four_idValueType" />
+                <result property="startSupplierId" column="start_supplier_id" />
+                <result property="startSupplierName" column="start_supplier_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TradeLinkConfigModelMap' parameterType='TradeLinkConfigModel'>
+        select <include refid='sql_columns' /> from t_trade_link_config  <include refid='sql_where' />
+        order by create_date desc
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TradeLinkConfigModelMap' parameterType='TradeLinkConfigModel'>
+        select <include refid='sql_columns' /> from t_trade_link_config  <include refid='sql_where' /> order by create_date desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TradeLinkConfigModelMap' parameterType='TradeLinkConfigModel' >
+        select <include refid='sql_columns' /> from t_trade_link_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='TradeLinkConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_trade_link_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='linkName!=null and !"".equals(linkName)' > link_name , </if>
+                        <if test='startPointMerchantId!=null' >start_point_merchant_id , </if>
+                        <if test='startPointMerchantName!=null and !"".equals(startPointMerchantName)' > start_point_merchant_name , </if>
+                        <if test='startPointBuId!=null' >start_point_bu_id , </if>
+                        <if test='startPointBuName!=null and !"".equals(startPointBuName)' > start_point_bu_name , </if>
+                        <if test='startPointPremiumRate!=null' >start_point_premium_rate , </if>
+                        <if test='oneCustomerId!=null' >one_customer_id , </if>
+                        <if test='oneCustomerName!=null and !"".equals(oneCustomerName)' > one_customer_name , </if>
+                        <if test='oneBuId!=null' >one_bu_id , </if>
+                        <if test='oneBuName!=null and !"".equals(oneBuName)' > one_bu_name , </if>
+                        <if test='onePremiumRate!=null' >one_premium_rate , </if>
+                        <if test='twoCustomerId!=null' >two_customer_id , </if>
+                        <if test='twoCustomerName!=null and !"".equals(twoCustomerName)' > two_customer_name , </if>
+                        <if test='twoBuId!=null' >two_bu_id , </if>
+                        <if test='twoBuName!=null and !"".equals(twoBuName)' > two_bu_name , </if>
+                        <if test='twoPremiumRate!=null' >two_premium_rate , </if>
+                        <if test='threeCustomerId!=null' >three_customer_id , </if>
+                        <if test='threeCustomerName!=null and !"".equals(threeCustomerName)' > three_customer_name , </if>
+                        <if test='threeBuId!=null' >three_bu_id , </if>
+                        <if test='threeBuName!=null and !"".equals(threeBuName)' > three_bu_name , </if>
+                        <if test='threePremiumRate!=null' >three_premium_rate , </if>
+                        <if test='fourCustomerId!=null' >four_customer_id , </if>
+                        <if test='fourCustomerName!=null and !"".equals(fourCustomerName)' > four_customer_name , </if>
+                        <if test='fourBuId!=null' >four_bu_id , </if>
+                        <if test='fourBuName!=null and !"".equals(fourBuName)' > four_bu_name , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > modifier_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='oneType!=null and !"".equals(oneType)' > one_type , </if>
+                        <if test='twoType!=null and !"".equals(twoType)' > two_type , </if>
+                        <if test='threeType!=null and !"".equals(threeType)' > three_type , </if>
+                        <if test='fourType!=null and !"".equals(fourType)' > four_type , </if>
+                        <if test='oneIdvaluetype!=null and !"".equals(oneIdvaluetype)' > one_idValueType , </if>
+                        <if test='twoIdvaluetype!=null and !"".equals(twoIdvaluetype)' > two_idValueType , </if>
+                        <if test='threeIdvaluetype!=null and !"".equals(threeIdvaluetype)' > three_idValueType , </if>
+                        <if test='fourIdvaluetype!=null and !"".equals(fourIdvaluetype)' > four_idValueType , </if>
+                        <if test='startSupplierId!=null' >start_supplier_id , </if>
+                        <if test='startSupplierName!=null and !"".equals(startSupplierName)' > start_supplier_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='linkName!=null and !"".equals(linkName)' > #{linkName} , </if>
+                        <if test='startPointMerchantId!=null' > #{startPointMerchantId} , </if>
+                        <if test='startPointMerchantName!=null and !"".equals(startPointMerchantName)' > #{startPointMerchantName} , </if>
+                        <if test='startPointBuId!=null' > #{startPointBuId} , </if>
+                        <if test='startPointBuName!=null and !"".equals(startPointBuName)' > #{startPointBuName} , </if>
+                        <if test='startPointPremiumRate!=null' > #{startPointPremiumRate} , </if>
+                        <if test='oneCustomerId!=null' > #{oneCustomerId} , </if>
+                        <if test='oneCustomerName!=null and !"".equals(oneCustomerName)' > #{oneCustomerName} , </if>
+                        <if test='oneBuId!=null' > #{oneBuId} , </if>
+                        <if test='oneBuName!=null and !"".equals(oneBuName)' > #{oneBuName} , </if>
+                        <if test='onePremiumRate!=null' > #{onePremiumRate} , </if>
+                        <if test='twoCustomerId!=null' > #{twoCustomerId} , </if>
+                        <if test='twoCustomerName!=null and !"".equals(twoCustomerName)' > #{twoCustomerName} , </if>
+                        <if test='twoBuId!=null' > #{twoBuId} , </if>
+                        <if test='twoBuName!=null and !"".equals(twoBuName)' > #{twoBuName} , </if>
+                        <if test='twoPremiumRate!=null' > #{twoPremiumRate} , </if>
+                        <if test='threeCustomerId!=null' > #{threeCustomerId} , </if>
+                        <if test='threeCustomerName!=null and !"".equals(threeCustomerName)' > #{threeCustomerName} , </if>
+                        <if test='threeBuId!=null' > #{threeBuId} , </if>
+                        <if test='threeBuName!=null and !"".equals(threeBuName)' > #{threeBuName} , </if>
+                        <if test='threePremiumRate!=null' > #{threePremiumRate} , </if>
+                        <if test='fourCustomerId!=null' > #{fourCustomerId} , </if>
+                        <if test='fourCustomerName!=null and !"".equals(fourCustomerName)' > #{fourCustomerName} , </if>
+                        <if test='fourBuId!=null' > #{fourBuId} , </if>
+                        <if test='fourBuName!=null and !"".equals(fourBuName)' > #{fourBuName} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > #{modifierName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='oneType!=null and !"".equals(oneType)' > #{oneType} , </if>
+                        <if test='twoType!=null and !"".equals(twoType)' > #{twoType} , </if>
+                        <if test='threeType!=null and !"".equals(threeType)' > #{threeType} , </if>
+                        <if test='fourType!=null and !"".equals(fourType)' > #{fourType} , </if>
+                        <if test='oneIdvaluetype!=null and !"".equals(oneIdvaluetype)' > #{oneIdvaluetype} , </if>
+                        <if test='twoIdvaluetype!=null and !"".equals(twoIdvaluetype)' > #{twoIdvaluetype} , </if>
+                        <if test='threeIdvaluetype!=null and !"".equals(threeIdvaluetype)' > #{threeIdvaluetype} , </if>
+                        <if test='fourIdvaluetype!=null and !"".equals(fourIdvaluetype)' > #{fourIdvaluetype} , </if>
+                        <if test='startSupplierId!=null' > #{startSupplierId} , </if>
+                        <if test='startSupplierName!=null and !"".equals(startSupplierName)' > #{startSupplierName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='TradeLinkConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_trade_link_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='linkName!=null and !"".equals(linkName)' >link_name= #{linkName} , </if>
+                        <if test='startPointMerchantId!=null' > start_point_merchant_id= #{startPointMerchantId} , </if>
+                        <if test='startPointMerchantName!=null and !"".equals(startPointMerchantName)' >start_point_merchant_name= #{startPointMerchantName} , </if>
+                        <if test='startPointBuId!=null' > start_point_bu_id= #{startPointBuId} , </if>
+                        <if test='startPointBuName!=null and !"".equals(startPointBuName)' >start_point_bu_name= #{startPointBuName} , </if>
+                        <if test='startPointPremiumRate!=null' > start_point_premium_rate= #{startPointPremiumRate} , </if>
+                        <if test='oneCustomerId!=null' > one_customer_id= #{oneCustomerId} , </if>
+                        <if test='oneCustomerName!=null and !"".equals(oneCustomerName)' >one_customer_name= #{oneCustomerName} , </if>
+                        <if test='oneBuId!=null' > one_bu_id= #{oneBuId} , </if>
+                        <if test='oneBuName!=null and !"".equals(oneBuName)' >one_bu_name= #{oneBuName} , </if>
+                        <if test='onePremiumRate!=null' > one_premium_rate= #{onePremiumRate} , </if>
+                        <if test='twoCustomerId!=null' > two_customer_id= #{twoCustomerId} , </if>
+                        <if test='twoCustomerName!=null and !"".equals(twoCustomerName)' >two_customer_name= #{twoCustomerName} , </if>
+                        <if test='twoBuId!=null' > two_bu_id= #{twoBuId} , </if>
+                        <if test='twoBuName!=null and !"".equals(twoBuName)' >two_bu_name= #{twoBuName} , </if>
+                        <if test='twoPremiumRate!=null' > two_premium_rate= #{twoPremiumRate} , </if>
+                        <if test='threeCustomerId!=null' > three_customer_id= #{threeCustomerId} , </if>
+                        <if test='threeCustomerName!=null and !"".equals(threeCustomerName)' >three_customer_name= #{threeCustomerName} , </if>
+                        <if test='threeBuId!=null' > three_bu_id= #{threeBuId} , </if>
+                        <if test='threeBuName!=null and !"".equals(threeBuName)' >three_bu_name= #{threeBuName} , </if>
+                        <if test='threePremiumRate!=null' > three_premium_rate= #{threePremiumRate} , </if>
+                        <if test='fourCustomerId!=null' > four_customer_id= #{fourCustomerId} , </if>
+                        <if test='fourCustomerName!=null and !"".equals(fourCustomerName)' >four_customer_name= #{fourCustomerName} , </if>
+                        <if test='fourBuId!=null' > four_bu_id= #{fourBuId} , </if>
+                        <if test='fourBuName!=null and !"".equals(fourBuName)' >four_bu_name= #{fourBuName} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='oneType!=null and !"".equals(oneType)' >one_type= #{oneType} , </if>
+                        <if test='twoType!=null and !"".equals(twoType)' >two_type= #{twoType} , </if>
+                        <if test='threeType!=null and !"".equals(threeType)' >three_type= #{threeType} , </if>
+                        <if test='fourType!=null and !"".equals(fourType)' >four_type= #{fourType} , </if>
+                        <if test='oneIdvaluetype!=null and !"".equals(oneIdvaluetype)' >one_idValueType= #{oneIdvaluetype} , </if>
+                        <if test='twoIdvaluetype!=null and !"".equals(twoIdvaluetype)' >two_idValueType= #{twoIdvaluetype} , </if>
+                        <if test='threeIdvaluetype!=null and !"".equals(threeIdvaluetype)' >three_idValueType= #{threeIdvaluetype} , </if>
+                        <if test='fourIdvaluetype!=null and !"".equals(fourIdvaluetype)' >four_idValueType= #{fourIdvaluetype} , </if>
+                        <if test='startSupplierId!=null' > start_supplier_id= #{startSupplierId} , </if>
+                        <if test='startSupplierName!=null and !"".equals(startSupplierName)' >start_supplier_name= #{startSupplierName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_trade_link_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_trade_link_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            link_name,
+            start_point_merchant_id,
+            start_point_merchant_name,
+            start_point_bu_id,
+            start_point_bu_name,
+            start_point_premium_rate,
+            one_customer_id,
+            one_customer_name,
+            one_bu_id,
+            one_bu_name,
+            one_premium_rate,
+            two_customer_id,
+            two_customer_name,
+            two_bu_id,
+            two_bu_name,
+            two_premium_rate,
+            three_customer_id,
+            three_customer_name,
+            three_bu_id,
+            three_bu_name,
+            three_premium_rate,
+            four_customer_id,
+            four_customer_name,
+            four_bu_id,
+            four_bu_name,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_name,
+            modify_date,
+            one_type,
+            two_type,
+            three_type,
+            four_type,
+            one_idValueType,
+            two_idValueType,
+            three_idValueType,
+            four_idValueType,
+            start_supplier_id,
+            start_supplier_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='linkName!=null and !"".equals(linkName)' >link_name= #{linkName} and </if>
+                            <if test='startPointMerchantId!=null' > start_point_merchant_id= #{startPointMerchantId} and </if>
+                            <if test='startPointMerchantName!=null and !"".equals(startPointMerchantName)' >start_point_merchant_name= #{startPointMerchantName} and </if>
+                            <if test='startPointBuId!=null' > start_point_bu_id= #{startPointBuId} and </if>
+                            <if test='startPointBuName!=null and !"".equals(startPointBuName)' >start_point_bu_name= #{startPointBuName} and </if>
+                            <if test='startPointPremiumRate!=null' > start_point_premium_rate= #{startPointPremiumRate} and </if>
+                            <if test='oneCustomerId!=null' > one_customer_id= #{oneCustomerId} and </if>
+                            <if test='oneCustomerName!=null and !"".equals(oneCustomerName)' >one_customer_name= #{oneCustomerName} and </if>
+                            <if test='oneBuId!=null' > one_bu_id= #{oneBuId} and </if>
+                            <if test='oneBuName!=null and !"".equals(oneBuName)' >one_bu_name= #{oneBuName} and </if>
+                            <if test='onePremiumRate!=null' > one_premium_rate= #{onePremiumRate} and </if>
+                            <if test='twoCustomerId!=null' > two_customer_id= #{twoCustomerId} and </if>
+                            <if test='twoCustomerName!=null and !"".equals(twoCustomerName)' >two_customer_name= #{twoCustomerName} and </if>
+                            <if test='twoBuId!=null' > two_bu_id= #{twoBuId} and </if>
+                            <if test='twoBuName!=null and !"".equals(twoBuName)' >two_bu_name= #{twoBuName} and </if>
+                            <if test='twoPremiumRate!=null' > two_premium_rate= #{twoPremiumRate} and </if>
+                            <if test='threeCustomerId!=null' > three_customer_id= #{threeCustomerId} and </if>
+                            <if test='threeCustomerName!=null and !"".equals(threeCustomerName)' >three_customer_name= #{threeCustomerName} and </if>
+                            <if test='threeBuId!=null' > three_bu_id= #{threeBuId} and </if>
+                            <if test='threeBuName!=null and !"".equals(threeBuName)' >three_bu_name= #{threeBuName} and </if>
+                            <if test='threePremiumRate!=null' > three_premium_rate= #{threePremiumRate} and </if>
+                            <if test='fourCustomerId!=null' > four_customer_id= #{fourCustomerId} and </if>
+                            <if test='fourCustomerName!=null and !"".equals(fourCustomerName)' >four_customer_name= #{fourCustomerName} and </if>
+                            <if test='fourBuId!=null' > four_bu_id= #{fourBuId} and </if>
+                            <if test='fourBuName!=null and !"".equals(fourBuName)' >four_bu_name= #{fourBuName} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='oneType!=null and !"".equals(oneType)' >one_type= #{oneType} and </if>
+                            <if test='twoType!=null and !"".equals(twoType)' >two_type= #{twoType} and </if>
+                            <if test='threeType!=null and !"".equals(threeType)' >three_type= #{threeType} and </if>
+                            <if test='fourType!=null and !"".equals(fourType)' >four_type= #{fourType} and </if>
+                            <if test='oneIdvaluetype!=null and !"".equals(oneIdvaluetype)' >one_idValueType= #{oneIdvaluetype} and </if>
+                            <if test='twoIdvaluetype!=null and !"".equals(twoIdvaluetype)' >two_idValueType= #{twoIdvaluetype} and </if>
+                            <if test='threeIdvaluetype!=null and !"".equals(threeIdvaluetype)' >three_idValueType= #{threeIdvaluetype} and </if>
+                            <if test='fourIdvaluetype!=null and !"".equals(fourIdvaluetype)' >four_idValueType= #{fourIdvaluetype} and </if>
+                            <if test='startSupplierId!=null' > start_supplier_id= #{startSupplierId} and </if>
+                            <if test='startSupplierName!=null and !"".equals(startSupplierName)' >start_supplier_name= #{startSupplierName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <!--  分页查询 -->
+    <select id="getTradeLinkConfigListByPage" resultType='TradeLinkConfigDTO' parameterType='TradeLinkConfigDTO'>
+        select <include refid='sql_columns' /> from t_trade_link_config  <include refid='sql_where' /> order by create_date desc
+    </select>
+    <select id="isExistsSameTradeLink" resultType='TradeLinkConfigDTO' parameterType='TradeLinkConfigDTO'>
+        select <include refid='sql_columns' /> from t_trade_link_config
+        <where>
+            <trim suffixOverrides='and'>
+                <choose>
+                    <when test='startPointMerchantId!=null'> start_point_merchant_id= #{startPointMerchantId} and </when>
+                    <otherwise> start_point_merchant_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='startPointBuId!=null'>start_point_bu_id= #{startPointBuId} and </when>
+                    <otherwise> start_point_bu_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='oneCustomerId!=null'> one_customer_id= #{oneCustomerId} and </when>
+                    <otherwise> one_customer_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='oneBuId!=null'> one_bu_id= #{oneBuId} and </when>
+                    <otherwise> one_bu_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='twoCustomerId!=null'> two_customer_id= #{twoCustomerId} and </when>
+                    <otherwise> two_customer_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='twoBuId!=null'> two_bu_id= #{twoBuId} and </when>
+                    <otherwise> two_bu_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='threeCustomerId!=null'> three_customer_id= #{threeCustomerId} and </when>
+                    <otherwise> three_customer_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='threeBuId!=null'> three_bu_id= #{threeBuId} and </when>
+                    <otherwise> three_bu_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='fourCustomerId!=null'> four_customer_id= #{fourCustomerId} and </when>
+                    <otherwise> four_customer_id IS NULL and </otherwise>
+                </choose>
+                <choose>
+                    <when test='fourBuId!=null'> four_bu_id= #{fourBuId} and </when>
+                    <otherwise> four_bu_id IS NULL and </otherwise>
+                </choose>
+            </trim>
+        </where>
+    </select>
+</mapper>

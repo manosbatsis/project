@@ -1,0 +1,15 @@
+#--------------mongodb业务----------
+spring: 
+    data: 
+        mongodb: 
+            host: ${mongo.host}
+            port: ${mongo.port}
+            database: ${mongo.database} 
+            username: ${mongo.username}
+            password: ${mongo.password}
+
+
+
+
+
+

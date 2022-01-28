@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.PlatformStatementItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PlatformStatementItemModelMap" type="PlatformStatementItemModel" >
+                <result property="id" column="id" />
+                <result property="platformStatementOrderId" column="platform_statement_order_id" />
+                <result property="type" column="type" />
+                <result property="poNo" column="po_no" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsName" column="goods_name" />
+                <result property="brandParent" column="brand_parent" />
+                <result property="settlementNum" column="settlement_num" />
+                <result property="settlementAmount" column="settlement_amount" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="settlementConfigId" column="settlement_config_id" />
+                <result property="settlementConfigName" column="settlement_config_name" />
+                <result property="tmRemarks" column="tm_remarks" />
+                <result property="settlementAmountRmb" column="settlement_amount_rmb" />
+                <result property="rate" column="rate" />
+                <result property="platformSettlementConfigId" column="platform_settlement_config_id" />
+            	<result property="platformSettlementConfigName" column="platform_settlement_config_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PlatformStatementItemModelMap' parameterType='PlatformStatementItemModel'>
+        select <include refid='sql_columns' /> from t_platform_statement_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PlatformStatementItemModelMap' parameterType='PlatformStatementItemModel'>
+        select <include refid='sql_columns' /> from t_platform_statement_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PlatformStatementItemModelMap' parameterType='PlatformStatementItemModel' >
+        select <include refid='sql_columns' /> from t_platform_statement_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='PlatformStatementItemModel' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_platform_statement_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test='id!=null' >id , </if>
+                    <if test='platformStatementOrderId!=null' >platform_statement_order_id , </if>
+                    <if test='type!=null and !"".equals(type)' > type , </if>
+                    <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                    <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                    <if test='brandParent!=null and !"".equals(brandParent)' > brand_parent , </if>
+                    <if test='settlementNum!=null' >settlement_num , </if>
+                    <if test='settlementAmount!=null' >settlement_amount , </if>
+                    <if test='createDate!=null' >create_date , </if>
+                    <if test='modifyDate!=null' >modify_date , </if>
+                    <if test='settlementConfigId!=null' >settlement_config_id , </if>
+                    <if test='settlementConfigName!=null and !"".equals(settlementConfigName)' > settlement_config_name , </if>
+                    <if test='tmRemarks!=null and !"".equals(tmRemarks)' > tm_remarks , </if>
+                    <if test='settlementAmountRmb!=null' >settlement_amount_rmb , </if>
+                    <if test='rate!=null' >rate , </if>
+                    <if test='platformSettlementConfigId!=null' >platform_settlement_config_id  , </if>
+                    <if test='platformSettlementConfigName!=null and !"".equals(platformSettlementConfigName)' > platform_settlement_config_name , </if>
+                     
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test='id!=null' > #{id} , </if>
+                    <if test='platformStatementOrderId!=null' > #{platformStatementOrderId} , </if>
+                    <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                    <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                    <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                    <if test='brandParent!=null and !"".equals(brandParent)' > #{brandParent} , </if>
+                    <if test='settlementNum!=null' > #{settlementNum} , </if>
+                    <if test='settlementAmount!=null' > #{settlementAmount} , </if>
+                    <if test='createDate!=null' > #{createDate} , </if>
+                    <if test='modifyDate!=null' > #{modifyDate} , </if>
+                    <if test='settlementConfigId!=null' >#{settlementConfigId} , </if>
+                    <if test='settlementConfigName!=null and !"".equals(settlementConfigName)' > #{settlementConfigName} , </if>
+                    <if test='tmRemarks!=null and !"".equals(tmRemarks)' > #{tmRemarks} , </if>
+                    <if test='settlementAmountRmb!=null' >#{settlementAmountRmb} , </if>
+                    <if test='rate!=null' >#{rate} , </if> 
+                    <if test='platformSettlementConfigId!=null' > #{platformSettlementConfigId} , </if>
+                    <if test='platformSettlementConfigName!=null and !"".equals(platformSettlementConfigName)' > #{platformSettlementConfigName} , </if>     
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='PlatformStatementItemModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  t_platform_statement_item SET
+        <trim  suffixOverrides=",">
+                    <if test='id!=null' > id= #{id} , </if>
+                    <if test='platformStatementOrderId!=null' > platform_statement_order_id= #{platformStatementOrderId} , </if>
+                    <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                    <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                    <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} , </if>
+                    <if test='settlementNum!=null' > settlement_num= #{settlementNum} , </if>
+                    <if test='settlementAmount!=null' > settlement_amount= #{settlementAmount} , </if>
+                    <if test='createDate!=null' > create_date= #{createDate} , </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                    <if test='settlementConfigId!=null' >settlement_config_id= #{settlementConfigId} , </if>
+                    <if test='settlementConfigName!=null and !"".equals(settlementConfigName)' >settlement_config_name=  #{settlementConfigName} , </if>
+                    <if test='tmRemarks!=null and !"".equals(tmRemarks)' >tm_remarks=  #{tmRemarks} , </if>
+                    <if test='settlementAmountRmb!=null' >settlement_amount_rmb= #{settlementAmountRmb} , </if>
+                    <if test='rate!=null' >rate= #{rate} , </if>
+                    <if test='platformSettlementConfigId!=null' > platform_settlement_config_id= #{platformSettlementConfigId} , </if>
+                    <if test='platformSettlementConfigName!=null and !"".equals(platformSettlementConfigName)' >platform_settlement_config_name= #{platformSettlementConfigName} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_platform_statement_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_platform_statement_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            platform_statement_order_id,
+            type,
+            po_no,
+            barcode,
+            goods_name,
+            brand_parent,
+            settlement_num,
+            settlement_amount,
+            create_date,
+            modify_date,
+            settlement_config_id,
+            settlement_config_name,
+            tm_remarks,
+            settlement_amount_rmb,
+            rate,
+            platform_settlement_config_id,
+            platform_settlement_config_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='platformStatementOrderId!=null' > platform_statement_order_id= #{platformStatementOrderId} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='brandParent!=null and !"".equals(brandParent)' >brand_parent= #{brandParent} and </if>
+                            <if test='settlementNum!=null' > settlement_num= #{settlementNum} and </if>
+                            <if test='settlementAmount!=null' > settlement_amount= #{settlementAmount} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='settlementConfigId!=null' >settlement_config_id= #{settlementConfigId} and </if>
+		                    <if test='settlementConfigName!=null and !"".equals(settlementConfigName)' >settlement_config_name=  #{settlementConfigName} and </if>
+		                    <if test='tmRemarks!=null and !"".equals(tmRemarks)' >tm_remarks=  #{tmRemarks} and </if>
+		                    <if test='settlementAmountRmb!=null' >settlement_amount_rmb= #{settlementAmountRmb} and </if>
+                    		<if test='rate!=null' >rate= #{rate} and </if>
+                    		<if test='platformSettlementConfigId!=null' > platform_settlement_config_id= #{platformSettlementConfigId} and </if>
+                            <if test='platformSettlementConfigName!=null and !"".equals(platformSettlementConfigName)' >platform_settlement_config_name= #{platformSettlementConfigName} and </if>
+                     
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<delete id='deleteByOrderId' parameterType='java.lang.Long'>
+            delete from t_platform_statement_item where platform_statement_order_id = #{orderId}
+        </delete>
+
+        <select id="listInvoiceItem" resultType="map" >
+            SELECT
+                barcode goodsNo, goods_name goodsName, brand_parent brandParent, SUM(settlement_num) totalNum, SUM(settlement_amount) totalPrice
+            FROM
+                t_platform_statement_item
+            WHERE
+             platform_statement_order_id IN
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            <if test='source!=null and !"".equals(source)' >
+                and type in ('1', '2', '4', '6')
+            </if>
+            GROUP BY
+                barcode,  goods_name,  brand_parent
+            ORDER BY
+                brand_parent
+        </select>
+
+        <select id="listInvoiceItemByType" resultType="map" >
+            SELECT
+                barcode goodsNo, goods_name goodsName, brand_parent brandParent, type, SUM(settlement_amount) totalPrice
+            FROM
+            t_platform_statement_item
+            WHERE
+                type in ('7', '8', '9') and
+                platform_statement_order_id IN
+                <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                    #{id}
+                </foreach>
+            GROUP BY barcode, goods_name, brand_parent, type
+        </select>
+
+		<select id='getListByPage' resultType='PlatformStatementItemDTO' parameterType='PlatformStatementItemDTO'>
+	        select <include refid='sql_columns' /> from t_platform_statement_item  <include refid='sql_where' />
+	    </select>
+
+        <select id="statisticsByPlatformIdList" resultType="map" >
+            select count(id) num, platform_statement_order_id orderId,
+                   sum(settlement_amount) settlementAmount,
+                   sum(settlement_amount_rmb) settlementAmountRmb
+            from t_platform_statement_item
+            where platform_statement_order_id = #{billId}
+        </select>
+
+</mapper>

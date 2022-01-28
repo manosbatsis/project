@@ -1,0 +1,1167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.SaleOutDepotItemMapper'>
+
+	<!-- 关系映射 -->
+	<resultMap id="SaleOutDepotItemModelMap" type="SaleOutDepotItemModel">
+		<result property="goodsNo" column="goods_no" />
+		<result property="overdueDate" column="overdue_date" />
+		<result property="saleOutDepotId" column="sale_out_depot_id" />
+		<result property="modifyDate" column="modify_date" />
+		<result property="goodsId" column="goods_id" />
+		<result property="saleNum" column="sale_num" />
+		<result property="transferBatchNo" column="transfer_batch_no" />
+		<result property="productionDate" column="production_date" />
+		<result property="transferNum" column="transfer_num" />
+		<result property="wornNum" column="worn_num" />
+		<result property="creater" column="creater" />
+		<result property="id" column="id" />
+		<result property="goodsCode" column="goods_code" />
+		<result property="tallyingUnit" column="tallying_unit" />
+		<result property="goodsName" column="goods_name" />
+		<result property="barcode" column="barcode" />
+		<result property="crawlerBillId" column="crawler_bill_id" />
+		<result property="createDate" column="create_date" />
+		<result property="billType" column="bill_type" />
+		<result property="commbarcode" column="commbarcode" />
+		<result property="price" column="price" />
+		<result property="saleItemId" column="sale_item_id" />
+	</resultMap>
+
+	<!-- 查询所有信息 -->
+	<select id="list" resultMap='SaleOutDepotItemModelMap'
+		parameterType='SaleOutDepotItemModel'>
+		select
+		<include refid='sql_columns' />
+		from t_sale_out_depot_item
+		<include refid='sql_where' />
+	</select>
+
+	<!-- 查询所有信息 分页 -->
+	<select id='listByPage' resultMap='SaleOutDepotItemModelMap'
+		parameterType='SaleOutDepotItemModel'>
+		select
+		<include refid='sql_columns' />
+		from t_sale_out_depot_item
+		<include refid='sql_where' />
+	</select>
+
+	<!-- 条件查询 -->
+	<select id='get' resultMap='SaleOutDepotItemModelMap'
+		parameterType='SaleOutDepotItemModel'>
+		select
+		<include refid='sql_columns' />
+		from t_sale_out_depot_item
+		<include refid='sql_where' />
+	</select>
+
+	<!-- 新增数据 -->
+	<insert id='insert' parameterType='SaleOutDepotItemModel'
+		keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO t_sale_out_depot_item
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test='goodsNo!=null and !"".equals(goodsNo)'> goods_no , </if>
+			<if test='overdueDate!=null'> overdue_date , </if>
+			<if test='saleOutDepotId!=null'> sale_out_depot_id , </if>
+			<if test='modifyDate!=null'> modify_date , </if>
+			<if test='goodsId!=null'> goods_id , </if>
+			<if test='saleNum!=null'> sale_num , </if>
+			<if test='transferBatchNo!=null and !"".equals(transferBatchNo)'>
+				transfer_batch_no , </if>
+			<if test='productionDate!=null'> production_date , </if>
+			<if test='transferNum!=null'> transfer_num , </if>
+			<if test='wornNum!=null'> worn_num , </if>
+			<if test='creater!=null'> creater , </if>
+			<if test='id!=null'> id , </if>
+			<if test='goodsCode!=null and !"".equals(goodsCode)'> goods_code ,
+			</if>
+			<if test='tallyingUnit!=null and !"".equals(tallyingUnit)'>
+				tallying_unit , </if>
+			<if test='goodsName!=null and !"".equals(goodsName)'> goods_name ,
+			</if>
+			<if test='barcode!=null and !"".equals(barcode)'> barcode , </if>
+			<if test='crawlerBillId!=null'> crawler_bill_id , </if>
+			<if test='createDate!=null'> create_date , </if>
+			<if test='billType!=null and !"".equals(billType)'> bill_type , </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)'> commbarcode , </if>
+			<if test='price!=null'> price , </if>
+			<if test='saleItemId!=null' >sale_item_id , </if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test='goodsNo!=null and !"".equals(goodsNo)'> #{goodsNo} ,
+			</if>
+			<if test='overdueDate!=null'> #{overdueDate} , </if>
+			<if test='saleOutDepotId!=null'> #{saleOutDepotId} , </if>
+			<if test='modifyDate!=null'> #{modifyDate} , </if>
+			<if test='goodsId!=null'> #{goodsId} , </if>
+			<if test='saleNum!=null'> #{saleNum} , </if>
+			<if test='transferBatchNo!=null and !"".equals(transferBatchNo)'>
+				#{transferBatchNo} , </if>
+			<if test='productionDate!=null'> #{productionDate} , </if>
+			<if test='transferNum!=null'> #{transferNum} , </if>
+			<if test='wornNum!=null'> #{wornNum} , </if>
+			<if test='creater!=null'> #{creater} , </if>
+			<if test='id!=null'> #{id} , </if>
+			<if test='goodsCode!=null and !"".equals(goodsCode)'> #{goodsCode}
+				, </if>
+			<if test='tallyingUnit!=null and !"".equals(tallyingUnit)'>
+				#{tallyingUnit} , </if>
+			<if test='goodsName!=null and !"".equals(goodsName)'> #{goodsName}
+				, </if>
+			<if test='barcode!=null and !"".equals(barcode)'> #{barcode} ,</if>
+			<if test='crawlerBillId!=null'> #{crawlerBillId} , </if>
+			<if test='createDate!=null'> #{createDate} , </if>
+			<if test='billType!=null and !"".equals(billType)'> #{billType} ,</if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)'> #{commbarcode} ,</if>
+			<if test='price!=null'> #{price} ,</if>
+			<if test='saleItemId!=null' > #{saleItemId} , </if>
+		</trim>
+	</insert>
+
+	<!-- 修改数据 -->
+	<update id='update' parameterType='SaleOutDepotItemModel'
+		keyProperty="id" useGeneratedKeys="true">
+		UPDATE t_sale_out_depot_item SET
+		<trim suffixOverrides=",">
+			<if test='goodsNo!=null and !"".equals(goodsNo)'>goods_no=
+				#{goodsNo} , </if>
+			<if test='overdueDate!=null'> overdue_date= #{overdueDate} , </if>
+			<if test='saleOutDepotId!=null'> sale_out_depot_id=
+				#{saleOutDepotId} , </if>
+			<if test='modifyDate!=null'> modify_date= #{modifyDate} , </if>
+			<if test='goodsId!=null'> goods_id= #{goodsId} , </if>
+			<if test='saleNum!=null'> sale_num= #{saleNum} , </if>
+			<if test='transferBatchNo!=null and !"".equals(transferBatchNo)'>transfer_batch_no=
+				#{transferBatchNo} , </if>
+			<if test='productionDate!=null'> production_date=
+				#{productionDate} , </if>
+			<if test='transferNum!=null'> transfer_num= #{transferNum} , </if>
+			<if test='wornNum!=null'> worn_num= #{wornNum} , </if>
+			<if test='creater!=null'> creater= #{creater} , </if>
+			<if test='id!=null'> id= #{id} , </if>
+			<if test='goodsCode!=null and !"".equals(goodsCode)'>goods_code=
+				#{goodsCode} , </if>
+			<if test='tallyingUnit!=null and !"".equals(tallyingUnit)'>tallying_unit=
+				#{tallyingUnit} , </if>
+			<if test='goodsName!=null and !"".equals(goodsName)'>goods_name=
+				#{goodsName} , </if>
+			<if test='barcode!=null and !"".equals(barcode)'>barcode= #{barcode} , </if>
+			<if test='crawlerBillId!=null'> crawler_bill_id= #{crawlerBillId}
+				, </if>
+			<if test='createDate!=null'> create_date= #{createDate} , </if>
+			<if test='billType!=null and !"".equals(billType)'>bill_type= #{billType} , </if>
+			<if test='commbarcode!=null and !"".equals(commbarcode)'>commbarcode= #{commbarcode} , </if>
+			<if test='price!=null'>price= #{price} , </if>
+			<if test='saleItemId!=null' > sale_item_id= #{saleItemId} , </if>
+		</trim>
+		<where>
+			id=#{id}
+		</where>
+	</update>
+
+	<!-- 删除数据 -->
+	<delete id='del' parameterType='java.lang.Long'>
+		delete from t_sale_out_depot_item where id=#{id}
+	</delete>
+
+	<!-- 批量删除数据 -->
+	<delete id='batchDel' parameterType='java.util.ArrayList'>
+		delete from t_sale_out_depot_item where id in
+		<foreach collection='list' item='id' separator=',' open='('
+			close=')'>
+			#{id}
+		</foreach>
+	</delete>
+
+	<!-- 表字段 -->
+	<sql id='sql_columns'>
+		goods_no,
+		overdue_date,
+		sale_out_depot_id,
+		modify_date,
+		goods_id,
+		sale_num,
+		transfer_batch_no,
+		production_date,
+		transfer_num,
+		worn_num,
+		creater,
+		id,
+		goods_code,
+		tallying_unit,
+		goods_name,
+		barcode,
+		crawler_bill_id,
+		create_date,
+		bill_type,
+		commbarcode,
+		price,
+        sale_item_id
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id='sql_where'>
+		<where>
+			<trim suffixOverrides='and'>
+				<if test='goodsNo!=null and !"".equals(goodsNo)'>goods_no=
+					#{goodsNo} and </if>
+				<if test='overdueDate!=null'> overdue_date= #{overdueDate} and
+				</if>
+				<if test='saleOutDepotId!=null'> sale_out_depot_id=
+					#{saleOutDepotId} and </if>
+				<if test='modifyDate!=null'> modify_date= #{modifyDate} and </if>
+				<if test='goodsId!=null'> goods_id= #{goodsId} and </if>
+				<if test='saleNum!=null'> sale_num= #{saleNum} and </if>
+				<if test='transferBatchNo!=null and !"".equals(transferBatchNo)'>
+					transfer_batch_no= #{transferBatchNo} and </if>
+				<if test='productionDate!=null'> production_date=
+					#{productionDate} and </if>
+				<if test='transferNum!=null'> transfer_num= #{transferNum} and
+				</if>
+				<if test='wornNum!=null'> worn_num= #{wornNum} and
+				</if>
+				<if test='creater!=null'> creater= #{creater} and </if>
+				<if test='id!=null'> id= #{id} and </if>
+				<if test='goodsCode!=null and !"".equals(goodsCode)'>goods_code=
+					#{goodsCode} and </if>
+				<if test='tallyingUnit!=null and !"".equals(tallyingUnit)'>tallying_unit=
+					#{tallyingUnit} and </if>
+				<if test='goodsName!=null and !"".equals(goodsName)'>goods_name=
+					#{goodsName} and </if>
+				<if test='barcode!=null and !"".equals(barcode)'>barcode=
+					#{barcode} and </if>
+				<if test='crawlerBillId!=null'> crawler_bill_id= #{crawlerBillId}
+					and </if>
+				<if test='createDate!=null'> create_date= #{createDate} and </if>
+				<if test='billType!=null and !"".equals(billType)'>bill_type=
+					#{billType} and </if>
+				<if test='commbarcode!=null and !"".equals(commbarcode)'>commbarcode= #{commbarcode} and </if>
+				<if test='price!=null'>price= #{price} and </if>
+				<if test='saleItemId!=null' > sale_item_id= #{saleItemId} and </if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--自定义SQL -->
+	<!-- 业务报表查询商家、仓库、条码在本月的销售未上架的出库单、货号、未上架量 购销-->
+<!-- 	<select id='getSaleNotshelfGXList' resultType='map' parameterType='map' >
+		select c.id,c.goods_no,IF(c.num-IFNULL(j.shelf_damaged_num,0)&lt;0,0,c.num-IFNULL(j.shelf_damaged_num,0)) AS num
+		from (
+			select t2.id,t1.goods_no,SUM(t1.transfer_num) AS num
+			from t_sale_out_depot_item t1
+			left join t_sale_out_depot t2 ON t2.id = t1.sale_out_depot_id
+			where t2.merchant_id=#{merchantId}
+			      and t2.out_depot_id=#{depotId}
+			      and DATE_FORMAT(t2.deliver_date, '%Y-%m')=#{month}
+			      and t1.barcode=#{barcode}
+			      and t2.sale_type='1'
+			      and t2.status IN('018','025','026','031')
+		    <if test='"02".equals(unit)'> and (t1.tallying_unit='02' or t1.tallying_unit is null or t1.tallying_unit='')</if>
+	        <if test='!"02".equals(unit)'> and t1.tallying_unit=#{unit}</if>
+			group by t2.id,t1.goods_no
+		) c
+		left join (
+			select t2.id,s.goods_no,SUM(IFNULL(s.shelf_num,0)+IFNULL(s.damaged_num,0)+IFNULL(s.lack_num,0)) AS shelf_damaged_num
+			from t_sale_shelf s
+			left join t_sale_out_depot t2 ON t2.id = s.order_id
+			where t2.merchant_id =#{merchantId}
+			      and t2.out_depot_id =#{depotId}
+			      and DATE_FORMAT(t2.deliver_date, '%Y-%m') =#{month}
+			      and t2.sale_type='1'
+			      and t2.status IN('018','025','026','031')
+			      and DATE_FORMAT(s.shelf_date, '%Y-%m')=#{month}
+			      and s.order_type ='2'
+			      and s.barcode =#{barcode}
+			<if test='"02".equals(unit)'> and (s.tallying_unit='02' or s.tallying_unit is null or s.tallying_unit='')</if>
+	        <if test='!"02".equals(unit)'> and s.tallying_unit=#{unit}</if>
+			group by t2.id,s.goods_no
+		) j ON c.id=j.id AND c.goods_no=j.goods_no
+	</select> -->
+
+
+
+		<!-- 业务报表-查询事业部商家、仓库、条码在本月的销售未上架的销售单id、货号、未上架量 代销-->
+	<select id='getBuSaleNotshelfDXList' resultType='map' parameterType='map' >
+		select c.id,c.goods_no,IF(c.num-IFNULL(j.shelf_damaged_num,0)&lt;0,0,c.num-IFNULL(j.shelf_damaged_num,0)) AS num
+		from (
+			select t2.id,i.goods_no,SUM(i.num) AS num
+			from t_sale_order_item i
+			left join t_sale_order t2 ON t2.id = i.order_id
+			LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+			where t2.merchant_id=#{merchantId}
+			      and t2.out_depot_id=#{depotId}
+			      and t2.bu_id=#{buId}
+			      and t2.state IN ('003','018','007','025', '026','031')
+			      and t2.order_source='1'
+			      and i.barcode=#{barcode}
+			      and t3.`status`='018'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')=#{month}
+			<if test='"02".equals(unit)'> and (t2.tallying_unit='02' OR t2.tallying_unit IS NULL OR t2.tallying_unit='')</if>
+			<if test='!"02".equals(unit)'> and t2.tallying_unit=#{unit}</if>
+			group by t2.id,i.goods_no
+		) c
+		left join (
+			select t2.id,s.goods_no,SUM(IFNULL(s.shelf_num,0)+IFNULL(s.damaged_num,0)+IFNULL(s.lack_num,0)) AS shelf_damaged_num
+			from t_sale_shelf s
+			left join t_sale_order t2 ON t2.id = s.order_id
+			LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+			where t2.merchant_id =#{merchantId}
+			      and t2.out_depot_id =#{depotId}
+			      and t2.bu_id =#{buId}
+			      and t2.state IN ('003','018','007','025', '026','031')
+			      and t2.order_source='1'
+			      and DATE_FORMAT(s.shelf_date, '%Y-%m')=#{month}
+			      and s.barcode =#{barcode}
+			      and t3.`status`='018'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')=#{month}
+			<if test='"02".equals(unit)'> and (s.tallying_unit='02' OR s.tallying_unit IS NULL OR s.tallying_unit='')</if>
+			<if test='!"02".equals(unit)'> and s.tallying_unit=#{unit}</if>
+			group by t2.id,s.goods_no
+		) j on c.id=j.id and c.goods_no=j.goods_no
+	</select>
+
+	<!-- 业务报表查询销售未上架明细 购销-->
+	<select id='getSaleNotshelfGXItem' resultType='map' parameterType='map' >
+	    select t.code,t.sale_order_code,t.merchant_id,t.merchant_name,t.out_depot_id,t.out_depot_name,t.po_no,t.deliver_date,
+		       i.goods_id,i.goods_name,i.barcode,i.tallying_unit,s.shelf_date,m.commbarcode
+		from t_sale_out_depot_item i
+		left join t_sale_out_depot t ON t.id = i.sale_out_depot_id
+		left join  t_sale_shelf s ON s.order_id=t.id AND i.goods_id=s.goods_id
+		LEFT JOIN st_merchandise_info  m ON m.id=i.goods_id
+		where t.id=#{orderId} AND i.goods_no=#{goodsNo}
+		<if test='"02".equals(unit)'> and (i.tallying_unit='02' or i.tallying_unit is null or i.tallying_unit='')</if>
+	    <if test='!"02".equals(unit)'> and i.tallying_unit=#{unit}</if>
+		order by s.shelf_date desc
+		limit 1
+	</select>
+	<!-- 业务报表查询销售未上架明细 代销-->
+	<select id='getSaleNotshelfDXItem' resultType='map' parameterType='map' >
+	    select t2.code AS sale_order_code,t2.merchant_id,t2.merchant_name,t2.business_model,
+	           t2.out_depot_id,t2.out_depot_name,t2.po_no,t2.audit_date as deliver_date,
+	           t3.`code`,
+			   i.goods_id,i.goods_name,i.barcode,i.tallying_unit,s.shelf_date,m.commbarcode
+		from t_sale_order_item i
+		left join t_sale_order t2 ON t2.id = i.order_id
+		LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+		left join t_sale_shelf s ON s.order_id=t2.id AND i.goods_id=s.goods_id
+		LEFT JOIN st_merchandise_info  m ON m.id=i.goods_id
+		where t2.id=#{orderId} AND i.goods_no=#{goodsNo}
+		AND t3.`status`='018'
+		<if test='"02".equals(unit)'> and (t2.tallying_unit='02' or t2.tallying_unit is null or t2.tallying_unit='')</if>
+	    <if test='!"02".equals(unit)'> and t2.tallying_unit=#{unit}</if>
+		order by s.shelf_date desc
+		limit 1
+	</select>
+		<!-- 业务报表查询事业部销售未上架明细 代销-->
+	<select id='getBuSaleNotshelfDXItem' resultType='map' parameterType='map' >
+	    select t2.code AS sale_order_code,t2.merchant_id,t2.merchant_name,t2.business_model,
+	           t2.out_depot_id,t2.out_depot_name,t2.po_no,t2.audit_date as deliver_date,
+	           t3.`code`,
+			   i.goods_id,i.goods_name,i.barcode,i.tallying_unit,s.shelf_date,m.commbarcode
+		from t_sale_order_item i
+		left join t_sale_order t2 ON t2.id = i.order_id
+		LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+		left join t_sale_shelf s ON s.order_id=t2.id AND i.goods_id=s.goods_id
+		LEFT JOIN st_merchandise_info  m ON m.id=i.goods_id
+		where t2.id=#{orderId} AND i.goods_no=#{goodsNo}
+		AND t3.`status`='018'
+		<if test='"02".equals(unit)'> and (t2.tallying_unit='02' or t2.tallying_unit is null or t2.tallying_unit='')</if>
+	    <if test='!"02".equals(unit)'> and t2.tallying_unit=#{unit}</if>
+		order by s.shelf_date desc
+		limit 1
+	</select>
+
+	<!-- 本期销售出库数量 -->
+	<select id='getOutDepotNum' resultType='map' parameterType='map' >
+		SELECT
+			sum(tt.num) AS num
+		FROM
+			(
+				SELECT
+					sum(t1.transfer_num) AS num
+				FROM
+					t_sale_out_depot_item t1
+				LEFT JOIN t_sale_out_depot t2 ON t2.id = t1.sale_out_depot_id
+				WHERE
+					t1.goods_no = #{goodsNo }
+				AND t2.merchant_id = #{merchantId }
+				AND t2.out_depot_id = #{depotId }
+				AND DATE_FORMAT(t2.deliver_date, '%Y-%m') = #{month }
+				AND t2.status in('018')
+				UNION ALL
+					SELECT
+						sum(t1.num) AS num
+					FROM
+						t_order_item t1
+					LEFT JOIN t_order t2 ON t2.id = t1.order_id
+					WHERE
+						t1.goods_no = #{goodsNo }
+					AND t2.merchant_id = #{merchantId }
+					AND t2.depot_id = #{depotId }
+					AND DATE_FORMAT(t2.deliver_date, '%Y-%m') = #{month }
+					AND `status` = '4'
+			) tt
+	</select>
+
+	<!-- 本期销售未确认数量 -->
+	<select id='getUnconfirmedNum' resultType='map' parameterType='map' >
+	    select t1.goods_no,sum(t1.transfer_num) as num
+		from t_sale_out_depot_item t1
+		left join t_sale_out_depot t2 ON t1.sale_out_depot_id = t2.id
+		where t2.merchant_id = #{merchantId} and t2.out_depot_id=#{depotId} and t1.goods_no=#{goodsNo}
+		      and date_format(t2.deliver_date, '%Y-%m')=#{month} and t2.sale_type = '1'
+			  and t2.status in('018')
+			  and (date_format(t2.shelf_date, '%Y-%m')&gt;#{month} or t2.shelf_date is null)
+		group by t1.goods_no
+	</select>
+
+
+
+		<!--事业部财务报表本期 销售已上架-->
+	<select id='getBuSaleShelf' resultType='map' parameterType='map'>
+	     select tt.tallying_unit,SUM(tt.num) AS num
+	     from(
+				select s.tallying_unit,SUM(shelf_num) AS num
+				from t_sale_shelf s
+				left join t_sale_order t2 ON t2.id = s.order_id
+				LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+				where t2.merchant_id =#{merchantId}
+				      and t2.out_depot_id =#{depotId}
+				      and t2.state IN('003','018','007','025','026','031')
+				      and t2.bu_id=#{buId}
+				      and DATE_FORMAT(s.shelf_date, '%Y-%m')=#{month}
+				      and s.goods_no =#{goodsNo}
+				      and s.order_type='1'
+				      and t2.order_source='1'
+				      and t3.`status`!='006'
+				group by s.tallying_unit
+				union all
+				select ot.tallying_unit,SUM(ot.num) AS num
+                from(
+					select NULL AS tallying_unit,t1.num
+					from t_order_item t1
+					left join t_order t2 ON t2.id = t1.order_id
+					where t2.merchant_id =#{merchantId}
+					      and t2.depot_id = #{depotId}
+					      and t1.bu_id=#{buId}
+					      and DATE_FORMAT(t2.deliver_date,'%Y-%m')=#{month}
+					      and t1.goods_no =#{goodsNo}
+					      and t2.status = '4'
+				  ) ot
+			    group by ot.tallying_unit
+			    union all
+			    SELECT NULL as tallying_unit,-SUM(IFNULL(t1.return_num,0)+IFNULL(t1.bad_goods_num,0)) as num
+				from t_order_return_idepot_item t1
+				LEFT JOIN t_order_return_idepot t2 ON t1.oreturn_idepot_id=t2.id
+				where t2.merchant_id=#{merchantId}
+					AND t2.return_in_depot_id=#{depotId}
+					AND t1.bu_id=#{buId}
+					AND DATE_FORMAT(t2.return_in_date,'%Y-%m')=#{month}
+					AND t1.in_goods_no=#{goodsNo}
+					AND t2.`status`='012'
+				group by tallying_unit
+				union all
+				SELECT t3.tallying_unit,-SUM(IFNULL(t1.return_num,0)+IFNULL(t1.worn_num,0)+IFNULL(t1.expire_num,0)) as num
+				from t_sale_return_idepot_item t1
+				LEFT JOIN t_sale_return_idepot t2 ON t1.sreturn_idepot_id=t2.id
+				LEFT JOIN t_sale_return_order t3 ON t2.order_id=t3.id
+				where t3.return_type='3'
+				AND t2.status='012'
+				AND t1.in_goods_no=#{goodsNo}
+				AND t2.merchant_id=#{merchantId}
+				AND t2.in_depot_id=#{depotId}
+				AND t2.bu_id=#{buId}
+				AND DATE_FORMAT(t2.return_in_date,'%Y-%m')=#{month}
+				GROUP BY t3.tallying_unit
+				union all
+				SELECT null as tallying_unit,SUM(IFNULL(t2.num,0))as num
+				from t_bill_outin_depot t1
+				LEFT JOIN t_bill_outin_depot_item t2 ON t1.id=t2.outin_depot_id
+				where t1.merchant_id=#{merchantId}
+				AND t1.depot_id=#{depotId}
+				AND t1.state IN ('02')
+				AND t1.bu_id=#{buId}
+				AND t1.operate_type='0'
+				AND DATE_FORMAT(t1.deliver_date,'%Y-%m')=#{month}
+				AND t2.goods_no=#{goodsNo}
+				GROUP BY tallying_unit
+				union all
+				SELECT null as tallying_unit,-SUM(IFNULL(t2.num,0))as num
+				from t_bill_outin_depot t1
+				LEFT JOIN t_bill_outin_depot_item t2 ON t1.id=t2.outin_depot_id
+				where t1.merchant_id=#{merchantId}
+				AND t1.depot_id=#{depotId}
+				AND t1.bu_id=#{buId}
+				AND t1.state IN ('03')
+				AND t1.operate_type='1'
+				AND DATE_FORMAT(t1.deliver_date,'%Y-%m')=#{month}
+				AND t2.goods_no=#{goodsNo}
+				GROUP BY tallying_unit
+		) tt
+		group by tt.tallying_unit
+	</select>
+
+
+
+		<!--事业部财务报表业务报表本期 销售未上架代销-->
+	<select id='getBuSaleNoShelfDX' resultType='map' parameterType='map'>
+	    select c.tallying_unit,SUM(IF(c.num-IFNULL(j.shelf_damaged_num,0)&lt;0,0,c.num-IFNULL(j.shelf_damaged_num,0))) AS num
+		from (
+			select t2.id,i.goods_no,t2.tallying_unit,SUM(num) AS num
+			from t_sale_order_item i
+			left join t_sale_order t2 ON t2.id = i.order_id
+			LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+			where t2.merchant_id =#{merchantId}
+			      and t2.out_depot_id =#{depotId}
+			      and t2.bu_id =#{buId}
+			      and t2.state IN('003','018','007','025','026','031')
+			      and t2.order_source='1'
+			      <if test='goodsNo!=null and !"".equals(goodsNo)'>
+			      and i.goods_no =#{goodsNo}</if>
+			      <if test='barcode!=null and !"".equals(barcode)'>
+			       and i.barcode =#{barcode}</if>
+			      and t3.`status`='018'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')=#{month}
+			group by t2.id,i.goods_no,i.tallying_unit
+		) c
+		left join (
+			select t2.id,s.goods_no,s.tallying_unit,SUM(IFNULL(s.shelf_num,0)+IFNULL(s.damaged_num,0)+IFNULL(s.lack_num,0)) AS shelf_damaged_num
+			from t_sale_shelf s
+			left join t_sale_order t2 ON t2.id = s.order_id
+			LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+			where t2.merchant_id =#{merchantId}
+			      and t2.out_depot_id =#{depotId}
+			      and t2.bu_id =#{buId}
+			      and t2.state IN('003','018','007','025','026','031')
+			      and t2.order_source='1'
+			      and DATE_FORMAT(s.shelf_date, '%Y-%m')=#{month}
+			      and s.order_type='1'
+			      <if test='goodsNo!=null and !"".equals(goodsNo)'>
+			      and s.goods_no =#{goodsNo}</if>
+			      <if test='barcode!=null and !"".equals(barcode)'>
+			       and s.barcode =#{barcode}</if>
+			       and t3.`status`='018'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')=#{month}
+			group by t2.id,s.goods_no,s.tallying_unit
+		) j on c.id=j.id AND c.goods_no=j.goods_no
+		       and (
+		            c.tallying_unit=j.tallying_unit OR ((c.tallying_unit='' OR c.tallying_unit='02' OR c.tallying_unit IS NULL) AND (j.tallying_unit='' OR j.tallying_unit='02' OR j.tallying_unit IS NULL))
+		           )
+		where 1=1
+		group by c.tallying_unit
+	</select>
+
+
+
+	<!--事业部业务报表-本期 出库残残次-->
+	<select id='getBuMonthOutBadNum' resultType='map' parameterType='map'>
+		select tt.tallying_unit,SUM(tt.num) AS num from (
+			SELECT t2.tallying_unit as tallying_unit,SUM(t2.worn_num) as num
+			from t_sale_out_depot t1
+			LEFT JOIN t_sale_out_depot_item t2 ON t1.id=t2.sale_out_depot_id
+			where t1.merchant_id=#{merchantId}
+			and t1.out_depot_id=#{depotId}
+			and t1.bu_id=#{buId}
+			and DATE_FORMAT(t1.deliver_date, '%Y-%m') = #{month}
+			and t2.barcode=#{barcode}
+			and t1.status IN ('018')
+			GROUP BY t2.tallying_unit
+			union all
+			SELECT t2.tallying_unit as tallying_unit ,SUM(worn_num) as num  from t_transfer_out_depot t1
+			LEFT JOIN t_transfer_out_depot_item t2 ON t1.id=t2.transfer_depot_id
+			WHERE
+			t1.merchant_id=#{merchantId}
+			and out_depot_id=#{depotId}
+			and t1.bu_id=#{buId}
+			and DATE_FORMAT(t1.transfer_date, '%Y-%m') = #{month}
+			and t2.barcode=#{barcode}
+			and t1.`status`='016'
+			GROUP BY t2.tallying_unit
+			 union all
+			SELECT t3.tallying_unit as tallying_unit ,SUM(worn_num) as num
+			from t_sale_return_odepot t1
+			LEFT JOIN t_sale_return_order t3 ON t1.order_id=t3.id
+			LEFT JOIN t_sale_return_odepot_item t2 on t1.id=t2.sreturn_odepot_id
+			WHERE
+			t1.merchant_id=#{merchantId}
+			and t1.out_depot_id=#{depotId}
+			and t1.bu_id=#{buId}
+			and DATE_FORMAT(t1.return_out_date, '%Y-%m') = #{month}
+			and t1.`status`='016'
+			and t2.barcode=#{barcode}
+			GROUP BY t3.tallying_unit
+			 <!-- union all
+			SELECT t1.tallying_unit as tallying_unit,SUM(t2.num) as num
+			 from t_purchase_return_odepot t1
+			LEFT JOIN t_purchase_return_odepot_item t2 ON t1.id=t2.odepot_order_id
+			where
+			t1.merchant_id=#{merchantId}
+			and t1.out_depot_id=#{depotId}
+			and t1.bu_id=#{buId}
+			and DATE_FORMAT(t1.return_out_date, '%Y-%m') = #{month}
+			and t1.`status` in ('016','007')
+			and t2.barcode=#{barcode}
+			GROUP BY t1.tallying_unit -->
+		)tt
+		group by tt.tallying_unit
+
+	</select>
+	<!--事业部业务报表-本期出库残次 销售出库  -->
+	<select id='getBuSaleOutBad' resultType='map' parameterType='map'>
+			SELECT t1.`code` as out_order_code,t1.id as out_order_id,t1.sale_order_id as order_id,
+			t1.sale_order_code as order_code,t1.deliver_date,
+			t2.tallying_unit,t2.goods_id,t2.worn_num as num
+			from t_sale_out_depot t1
+			LEFT JOIN t_sale_out_depot_item t2 ON t1.id=t2.sale_out_depot_id
+			where t1.merchant_id=#{merchantId}
+			and t1.out_depot_id=#{depotId}
+			and t1.bu_id=#{buId}
+			and DATE_FORMAT(t1.deliver_date, '%Y-%m') = #{month}
+			and t1.status IN ('018')
+			and t2.worn_num>0
+
+	</select>
+
+	<!--事业部业务报表-本期出库残次 调拨出库 -->
+	<select id='getBuTransferOutBad' resultType='map' parameterType='map'>
+			SELECT  t1.id as out_order_id, t1.`code` as out_order_code,t1.transfer_order_id as order_id,
+		 			t1.transfer_order_code as order_code,t1.transfer_date as deliver_date,
+					t2.tallying_unit,t2.worn_num as num,t2.out_goods_id as goods_id
+			from t_transfer_out_depot t1
+			LEFT JOIN t_transfer_out_depot_item t2 ON t1.id=t2.transfer_depot_id
+			WHERE
+			t1.merchant_id=#{merchantId}
+			and out_depot_id=#{depotId}
+			and t1.bu_id=#{buId}
+			and DATE_FORMAT(t1.transfer_date, '%Y-%m') = #{month}
+			and t1.`status`='016'
+			and t2.worn_num>0
+	</select>
+
+	<!--事业部业务报表-本期出库残次 销售退货出库 -->
+	<select id='getBuSaleReturnOutBad' resultType='map' parameterType='map'>
+			SELECT t1.id as out_order_id, t1.`code` as out_order_code,t1.order_id,t1.order_code,
+			t1.return_out_date as deliver_date,
+			t2.worn_num as num,t2.out_goods_id as goods_id,
+			t3.tallying_unit
+			from t_sale_return_odepot t1
+			LEFT JOIN t_sale_return_order t3 ON t1.order_id=t3.id
+			LEFT JOIN t_sale_return_odepot_item t2 on t1.id=t2.sreturn_odepot_id
+			WHERE
+			t1.merchant_id=#{merchantId}
+			and t1.out_depot_id=#{depotId}
+			and t1.bu_id=#{buId}
+			and DATE_FORMAT(t1.return_out_date, '%Y-%m') = #{month}
+			and t1.`status`='016'
+			and t2.worn_num>0
+
+
+	</select>
+
+	<!--事业部业务报表-本期出库残次 采购退货出库 -->
+	<select id='getBuPurchaseReturnOutBad' resultType='map' parameterType='map'>
+			SELECT
+			t1.id as out_order_id,t1.`code` as out_order_code,t1.purchase_return_id as order_id,
+			t1.purchase_return_code as order_code,
+			t1.tallying_unit,t1.return_out_date as deliver_date,
+			t2.goods_id,t2.num
+			from t_purchase_return_odepot t1
+			LEFT JOIN t_purchase_return_odepot_item t2 ON t1.id=t2.odepot_order_id
+			where
+			t1.merchant_id=#{merchantId}
+			and t1.out_depot_id=#{depotId}
+			and t1.bu_id=#{buId}
+			and DATE_FORMAT(t1.return_out_date, '%Y-%m') = #{month}
+			and t1.`status` in ('016','007')
+			and t2.num>0
+
+
+	</select>
+
+
+
+
+	<!--事业部财务报表-业务报表-本期 出库残损-->
+	<select id='getBuOutDamaged' resultType='map' parameterType='map'>
+	     select tt.tallying_unit,SUM(tt.num) AS num
+	     from(
+				select s.tallying_unit,SUM(IFNULL(s.damaged_num,0)+IFNULL(s.lack_num,0)) AS num
+				from t_sale_shelf s
+				left join t_sale_order t2 ON t2.id = s.order_id
+				LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+				where t2.merchant_id =#{merchantId}
+				      and t2.out_depot_id =#{depotId}
+				      and t2.bu_id =#{buId}
+				      and t2.state IN('003','018','007','025','026','031')
+				      and DATE_FORMAT(s.shelf_date, '%Y-%m')=#{month}
+				      and t2.order_source='1'
+				      and s.order_type='1'
+				      <if test='goodsNo!=null and !"".equals(goodsNo)'>
+				      and s.goods_no =#{goodsNo}
+				      </if>
+				      <if test='barcode!=null and !"".equals(barcode)'>
+				      and s.barcode =#{barcode}
+				      </if>
+				      and t3.`status`='018'
+				group by s.tallying_unit
+		) tt
+		group by tt.tallying_unit
+	</select>
+
+
+
+		<!-- 1(事业部财务经销存)获取销售订单代销已上架的 的量 -->
+	 <select id='getBuFinanceSaleOrderShelf' resultType='map' parameterType='map'>
+		SELECT
+			s.po_no,s.shelf_date,s.goods_id,s.goods_no,s.goods_name,s.barcode,s.tallying_unit,s.shelf_num,s.operator,s.operator_id,
+			t3.`code` as out_order_code,t3.id as out_order_id,t3.deliver_date,t3.out_depot_id as depot_id,s.sale_item_id,t4.price,
+			t2.stock_location_type_id,t2.stock_location_type_name
+		FROM
+		t_sale_shelf s
+		LEFT JOIN t_sale_out_depot t3 ON t3.id=s.sale_out_depot_id
+		LEFT JOIN t_sale_order_item t4 ON t4.id=s.sale_item_id
+		LEFT JOIN t_sale_order t2 ON t2.id=t4.order_id
+		WHERE
+			t3.merchant_id = #{merchantId}
+		AND t3.out_depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		AND t3.bu_id =#{buId}
+		AND DATE_FORMAT(s.shelf_date, '%Y-%m') = #{month}
+		AND DATE_FORMAT(t3.deliver_date, '%Y-%m') &lt;= #{month}
+		AND s.order_type = '1'
+		AND t3.`status`!='006'
+		AND t4.id is not null
+	</select>
+
+
+
+
+    	<!-- 3(事业部财务经销存)销售已上架 获取电商出库的总数数量 -->
+	<select id='getBuFinanceDSOrderShelfCount' resultType="java.lang.Integer" >
+    	SELECT count(1)
+		FROM
+			t_order_item t1
+		LEFT JOIN t_order t2 ON t2.id = t1.order_id
+		WHERE t2.merchant_id = #{merchantId}
+		 AND t2.depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		 AND t1.bu_id =#{buId}
+		 AND DATE_FORMAT(t2.deliver_date, '%Y-%m') = #{month}
+		 AND t2. STATUS = '4'
+    </select>
+
+
+		<!-- 3(财务经销存)销售已上架 获取电商出库的量信息 -->
+	<select id='getBuFinanceDSOrderShelf' resultType='map' parameterType='map'>
+		SELECT t2.tallying_unit,
+		t2.customer_id,t2.customer_name,t2.create_date,t2.id,t2.`code`,t2.depot_id,t2.depot_name,t2.deliver_date,t2.store_platform_name,t2.external_code,
+		t2.shop_code,t2.shop_name,t2.taxes,t2.way_frt_fee,t2.discount,t2.payment,t2.sale_com,t2.currency,t2.ex_order_id,t2.shop_type_code,
+		t1.goods_id,t1.goods_no,t1.goods_name,t1.barcode,t1.num,t1.price,t1.dec_total,t1.tax as item_tax,t1.way_frt_fee as item_way_frt_fee,
+		t1.stock_location_type_id,t1.stock_location_type_name
+		FROM
+			t_order_item t1
+		LEFT JOIN t_order t2 ON t2.id = t1.order_id
+		WHERE t2.merchant_id = #{merchantId}
+		 AND t2.depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		 AND t1.bu_id =#{buId}
+		 AND DATE_FORMAT(t2.deliver_date, '%Y-%m') = #{month}
+		 AND t2. STATUS = '4'
+		 ORDER BY t2.`code`,t1.goods_id ASC
+		limit #{startIndex},#{pageSize}
+
+	</select>
+
+
+		<!-- 5 (事业部财务经销存)销售已上架销售出库 电商订单退货 (退货单)-->
+	<select id='getBuOrderReturnIdepot' resultType='map' parameterType='map'>
+		SELECT t1.id,t1.code,t1.external_code,t1.merchant_id,t1.merchant_name,t1.return_in_depot_id,t1.return_in_depot_name,t1.shop_code,t1.shop_name,
+			 t1.return_in_create_date,t1.return_in_date,t1.amount,t1.currency,t1.store_platform_code,t1.customer_id,t1.customer_name,
+			 t2.in_goods_id,t2.price,t2.return_num,t2.bad_goods_num,t2.dec_total,
+			 t1.shop_type_code,
+			 t2.stock_location_type_id,t2.stock_location_type_name
+ 		from   t_order_return_idepot t1
+		LEFT JOIN t_order_return_idepot_item t2 ON t1.id=t2.oreturn_idepot_id
+		WHERE t1.merchant_id=#{merchantId}
+		and t2.bu_id =#{buId}
+		AND t1.return_in_depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		AND t1.`status`='012'
+		AND DATE_FORMAT(t1.return_in_date, '%Y-%m')=#{month}
+		And t1.return_order_type='1'
+	</select>
+	<!-- 5.1 (事业部财务经销存)销售已上架销售出库 电商订单退货 (退款单)-->
+	<select id='getBuOrderReturnIdepotAmount' resultType='map' parameterType='map'>
+		SELECT t1.id,t1.code,t1.external_code,t1.merchant_id,t1.merchant_name,t1.return_in_depot_id,t1.return_in_depot_name,t1.shop_code,t1.shop_name,
+			 t1.return_in_create_date,t1.return_in_date,t1.amount,t1.currency,t1.store_platform_code,t1.customer_id,t1.customer_name,
+			 t2.in_goods_id,t2.price,t2.return_num,t2.bad_goods_num,t2.dec_total,t2.refund_amount,
+			 t1.shop_type_code,t1.refund_end_date,t1.total_refund_amount,
+			 t2.stock_location_type_id,t2.stock_location_type_name
+ 		from   t_order_return_idepot t1
+		LEFT JOIN t_order_return_idepot_item t2 ON t1.id=t2.oreturn_idepot_id
+		WHERE t1.merchant_id=#{merchantId}
+		and t2.bu_id =#{buId}
+		AND t1.return_in_depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		AND t1.`status`='013'
+		AND DATE_FORMAT(t1.refund_end_date, '%Y-%m')=#{month}
+		And t1.return_order_type='0'
+	</select>
+
+
+		<!-- 6 (事业部财务经销存) 销售退货单据中类型为购销退货的入库量 -->
+	<select id='getBuFinanceSaleReturnIdepotGX' resultType='map' parameterType='map'>
+		SELECT t1.return_num as return_num,t1.worn_num as worn_num,t1.expire_num as expire_num,t1.in_goods_id,
+		t2.return_in_date,t2.in_depot_id,t2.id as in_order_id ,t2.`code` as in_order_code,t2.customer_id,t2.customer_name,
+		t3.id as order_id ,t3.`code` as order_code,t3.tallying_unit,t3.create_date as order_create_date,
+		t3.currency,
+		t3.stock_location_type_id,t3.stock_location_type_name
+		from t_sale_return_idepot_item t1
+		LEFT JOIN t_sale_return_idepot t2 ON t1.sreturn_idepot_id=t2.id
+		LEFT JOIN t_sale_return_order t3 ON t2.order_id=t3.id
+		where t3.return_type='3'
+		AND t2.status='012'
+		AND t2.merchant_id=#{merchantId}
+		AND t2.in_depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		AND t2.bu_id =#{buId}
+		AND DATE_FORMAT(t2.return_in_date,'%Y-%m')=#{month}
+	</select>
+
+		<!-- (事业部财务经销存) 账单出库数量（库存调整类型为调减的量） -->
+	<select id='getBuFinanceBillOutInDepotSubMapList' resultType='map' parameterType='map'>
+		SELECT
+		t1.id as order_id,t1.`code` as order_code,t1.customer_id,t1.customer_name,t1.create_date,t1.deliver_date,t1.currency,
+		t2.goods_id,t2.goods_no,SUM(num) as num,SUM(amount) as amount, SUM(amount)/SUM(num) as price,t1.depot_id,
+		max(t1.stock_location_type_id) as stock_location_type_id , max(t1.stock_location_type_name) as stock_location_type_name
+		 from t_bill_outin_depot t1
+		LEFT JOIN t_bill_outin_depot_item t2 on t1.id=t2.outin_depot_id
+		where t1.merchant_id=#{merchantId}
+			and t1.bu_id =#{buId}
+			AND t1.depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+			AND t1.state IN ('02')
+			AND t1.operate_type='0'
+			AND DATE_FORMAT(t1.deliver_date,'%Y-%m')=#{month}
+		GROUP BY t1.id,t1.`code`,t1.customer_id,t1.customer_name,t1.create_date,t1.deliver_date,t1.currency,
+		t2.goods_id,t2.goods_no
+
+	</select>
+
+			<!-- (财务经销存) 账单出库数量（库存调整类型为调增的量） -->
+	<select id='getBuFinanceBillOutInDepotAddMapList' resultType='map' parameterType='map'>
+		SELECT
+		t1.id as order_id,t1.`code` as order_code,t1.customer_id,t1.customer_name,t1.create_date,t1.deliver_date,t1.currency,
+		t2.goods_id,t2.goods_no,SUM(num) as num,SUM(amount) as amount, SUM(amount)/SUM(num) as price, t1.depot_id,
+		max(t1.stock_location_type_id) as stock_location_type_id , max(t1.stock_location_type_name) as stock_location_type_name
+		 from t_bill_outin_depot t1
+		LEFT JOIN t_bill_outin_depot_item t2 on t1.id=t2.outin_depot_id
+		where t1.merchant_id=#{merchantId}
+			AND t1.depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+			and t1.bu_id =#{buId}
+			AND t1.state IN ('03')
+			AND t1.operate_type='1'
+			AND DATE_FORMAT(t1.deliver_date,'%Y-%m')=#{month}
+		GROUP BY t1.id,t1.`code`,t1.customer_id,t1.customer_name,t1.create_date,t1.deliver_date,t1.currency,
+		t2.goods_id,t2.goods_no
+
+	</select>
+
+
+		<!-- 1(事业部财务经分销) 销售未上架代销 -->
+	<select id='getBuFinanceSaleNotshelfDX' resultType='map' parameterType='map'>
+		   select c.id,c.goods_id,c.tallying_unit,SUM(IF(c.num-IFNULL(j.shelf_damaged_num,0)&lt;0,0,c.num-IFNULL(j.shelf_damaged_num,0))) AS num
+		from (
+			select t2.id,i.goods_id,t2.tallying_unit,SUM(num) AS num
+			from t_sale_order_item i
+			left join t_sale_order t2 ON t2.id = i.order_id
+			LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+			where t2.merchant_id =#{merchantId}
+				  and t2.out_depot_id =#{depotId}
+				  and t2.bu_id =#{buId}
+			      and t2.state IN('003','018','007','025', '026','031')
+			      and t2.order_source='1'
+			      and t3.`status`='018'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')=#{month}
+			group by t2.id,i.goods_id,i.tallying_unit
+		) c
+		left join (
+			select t2.id,s.goods_id,s.tallying_unit,SUM(IFNULL(s.shelf_num,0)+IFNULL(s.damaged_num,0)+IFNULL(s.lack_num,0)) AS shelf_damaged_num
+			from t_sale_shelf s
+			left join t_sale_order t2 ON t2.id = s.order_id
+			LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+			where t2.merchant_id =#{merchantId}
+				  and t2.out_depot_id =#{depotId}
+				  and t2.bu_id =#{buId}
+				  and DATE_FORMAT(s.shelf_date, '%Y-%m')=#{month}
+			      and t2.state IN('003','018','007','025', '026','031')
+			      and t2.order_source='1'
+			      and s.order_type='1'
+			      and t3.`status`='018'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')=#{month}
+			group by t2.id,s.goods_id,s.tallying_unit
+		) j on c.id=j.id AND c.goods_id=j.goods_id
+		       and (
+		            c.tallying_unit=j.tallying_unit OR ((c.tallying_unit='' OR c.tallying_unit='02' OR c.tallying_unit IS NULL) AND (j.tallying_unit='' OR j.tallying_unit='02' OR j.tallying_unit IS NULL))
+		           )
+
+		where 1=1
+		group by c.tallying_unit,c.id,c.goods_id
+		HAVING num>0
+	</select>
+
+
+		<!-- 2(事业部财务经分销) 销售残损代销 -->
+	<select id='getBuFinanceSaleDamagedDX' resultType='map' parameterType='map'>
+		SELECT
+			t3.sale_order_code,t3.sale_order_id,t3.id as out_order_id,t3.code as out_order_code,t3.deliver_date,t3.out_depot_id as depot_id,
+			s.shelf_date,s.goods_id,s.goods_name,s.tallying_unit,s.damaged_num,s.lack_num,s.po_no,s.operator,s.operator_id,
+			IFNULL(s.damaged_num,0)+IFNULL(s.lack_num,0) as damaged_lack_num,s.sale_item_id,t4.price,
+			t.stock_location_type_id,stock_location_type_name
+		FROM
+			t_sale_shelf s
+		LEFT JOIN t_sale_out_depot t3 ON s.sale_out_depot_id=t3.id
+		LEFT JOIN t_sale_order_item t4 ON t4.id=s.sale_item_id
+		left join t_sale_order t on t3.sale_order_id=t.id
+		WHERE t3.merchant_id =#{merchantId}
+		AND t3.out_depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		AND t3.bu_id =#{buId}
+		AND DATE_FORMAT(s.shelf_date, '%Y-%m')=#{month}
+		AND DATE_FORMAT(t3.deliver_date, '%Y-%m') &lt;= #{month}
+		AND s.order_type = '1'
+		AND t3.`status`  in  ('018','026','031')
+		AND t4.id is not null
+		HAVING damaged_lack_num !=0
+	</select>
+
+
+
+
+		<!--事业部财务报表-本期 累计销售未上架代销-->
+	<select id='getBuAddSaleNoShelfDX' resultType='map' parameterType='map'>
+	    select c.tallying_unit,SUM(IF(c.num-IFNULL(j.shelf_damaged_num,0)&lt;0,0,c.num-IFNULL(j.shelf_damaged_num,0))) AS num
+		from (
+			select t2.id,i.goods_no,t2.tallying_unit,SUM(num) AS num
+			from t_sale_order_item i
+			left join t_sale_order t2 ON t2.id = i.order_id
+			LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+			where t2.merchant_id =#{merchantId}
+			      and t2.out_depot_id =#{depotId}
+			      and t2.bu_id =#{buId}
+			      and t2.business_model in ('1','4')
+			      and t2.state IN('003','018','007','025','026','031')
+			      and t2.order_source='1'
+			      and i.goods_no =#{goodsNo}
+			      and t3.`status`='018'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')&gt;='2020-01'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')&lt;=#{month}
+			group by t2.id,i.goods_no,i.tallying_unit
+		) c
+		left join (
+			select t2.id,s.goods_no,s.tallying_unit,SUM(IFNULL(s.shelf_num,0)+IFNULL(s.damaged_num,0)+IFNULL(s.lack_num,0)) AS shelf_damaged_num
+			from t_sale_shelf s
+			left join t_sale_order t2 ON t2.id = s.order_id
+			LEFT JOIN t_sale_out_depot t3 ON t2.id=t3.sale_order_id
+			where t2.merchant_id =#{merchantId}
+			      and t2.out_depot_id =#{depotId}
+			      and t2.bu_id =#{buId}
+			      and t2.business_model in ('1','4')
+			      and t2.state IN('003','018','007','025','026','031')
+			      and t2.order_source='1'
+			      and t3.`status`='018'
+			      and DATE_FORMAT(s.shelf_date, '%Y-%m')&lt;=#{month}
+			      and s.order_type='1'
+			      and s.goods_no =#{goodsNo}
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')&gt;='2020-01'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')&lt;=#{month}
+			group by t2.id,s.goods_no,s.tallying_unit
+		) j on c.id=j.id AND c.goods_no=j.goods_no
+		       and (
+		            c.tallying_unit=j.tallying_unit OR ((c.tallying_unit='' OR c.tallying_unit='02' OR c.tallying_unit IS NULL) AND (j.tallying_unit='' OR j.tallying_unit='02' OR j.tallying_unit IS NULL))
+		           )
+		where 1=1
+		group by c.tallying_unit
+	</select>
+
+
+
+
+			<!--(事业部财务经分销)(事业部业务经销存)共用累计销售在途明细表代销-->
+	<select id='getBuFinanceAddSaleNoshelfDetailsDX' resultType='map' parameterType='map'>
+	    select c.id,c.sale_item_id,c.goods_id,c.tallying_unit,SUM(IF(c.num-IFNULL(j.shelf_damaged_num,0)=0,0,c.num-IFNULL(j.shelf_damaged_num,0))) AS num,c.price,c.depot_id
+		from (
+
+			select t3.id,i.sale_item_id,i.goods_id,i.tallying_unit,SUM(IFNULL(i.transfer_num,0)+IFNULL(i.worn_num,0)) AS num,t4.price,t3.out_depot_id as depot_id
+			from t_sale_out_depot_item i
+			left join t_sale_out_depot t3 ON t3.id=i.sale_out_depot_id
+			left join t_sale_order t on t3.sale_order_id=t.id
+			LEFT JOIN t_sale_order_item t4 ON t4.id=i.sale_item_id
+			where t3.merchant_id =#{merchantId}
+				 <if test='depotId!=null'> and t3.out_depot_id =#{depotId} </if><!-- 业务经销存和存货跌价 用仓库 财务只查保税，海外，中转仓 -->
+				  <if test='tag!=null and "1".equals(tag)' > and t3.out_depot_id in (
+					SELECT id from  st_depot_info where type IN ('a','c','d')
+					)
+				 </if><!-- tag韦1 查询财务经销存 -->
+			      and t3.bu_id =#{buId}
+			      and t3.`status` in  ('018','026','031')
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')&gt;='2020-01'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')&lt;=#{month}
+			      and (t.write_off_date is null or DATE_FORMAT(t.write_off_date, '%Y-%m')&gt;=#{month})
+			      and t.business_model in('1','3','4')
+			      and t4.id is not null
+			group by t3.id,i.sale_item_id,i.goods_id,i.tallying_unit,t4.price,t3.out_depot_id
+		) c
+		left join (
+			select t3.id,s.sale_item_id,s.goods_id,s.tallying_unit,SUM(IFNULL(s.shelf_num,0)+IFNULL(s.damaged_num,0)+IFNULL(s.lack_num,0)) AS shelf_damaged_num
+			from t_sale_shelf s
+			LEFT JOIN t_sale_out_depot t3 ON t3.id=s.sale_out_depot_id
+			LEFT JOIN t_sale_order t on t3.sale_order_id=t.id
+			where t3.merchant_id =#{merchantId}
+			      <if test='depotId!=null'> and t3.out_depot_id =#{depotId} </if>
+			      <if test='tag!=null and "1".equals(tag)' > and t3.out_depot_id in (
+					SELECT id from  st_depot_info where type IN ('a','c','d')
+					)
+				  </if>
+			      and t3.bu_id =#{buId}
+			      and DATE_FORMAT(s.shelf_date, '%Y-%m')&lt;=#{month}
+			      and s.order_type='1'
+			      and t3.`status` in  ('018','026','031')
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')&gt;='2020-01'
+			      and DATE_FORMAT(t3.deliver_date, '%Y-%m')&lt;=#{month}
+			      and (t.write_off_date is null or DATE_FORMAT(t.write_off_date, '%Y-%m')&gt;=#{month})
+			group by t3.id,s.sale_item_id,s.goods_id,s.tallying_unit
+		) j on c.id=j.id AND c.sale_item_id=j.sale_item_id AND c.goods_id=j.goods_id
+		       and (
+		            c.tallying_unit=j.tallying_unit OR ((c.tallying_unit='' OR c.tallying_unit='02' OR c.tallying_unit IS NULL) AND (j.tallying_unit='' OR j.tallying_unit='02' OR j.tallying_unit IS NULL))
+		           )
+		where 1=1
+		group by c.id,c.sale_item_id,c.goods_id,c.tallying_unit,c.price,c.depot_id
+		HAVING num!=0
+	</select>
+
+	<!-- 商家、仓库、po号、标准条码、销售类型是代销的出库数量汇总 -->
+	<select id="getVipSalesOutNum" parameterType="map" resultType="int">
+		SELECT
+				sum(t1.transfer_num) AS num
+			FROM
+				t_sale_out_depot_item t1
+			LEFT JOIN t_sale_out_depot t2 ON t2.id = t1.sale_out_depot_id
+			WHERE
+				t1.commbarcode = #{commbarcode }
+			AND t2.po_no = #{poNo}
+			AND t2.merchant_id = #{merchantId }
+			AND t2.out_depot_id = #{depotId }
+			AND t2.status in('018', '026')
+			AND t2.sale_type = '2'
+	</select>
+
+	<!-- 商家、仓库、po号、系统货号、销售类型是代销的出库数量汇总 -->
+    <select id="getVipAutoVeriSystemNum" parameterType="map" resultType="int">
+        SELECT
+                sum(IFNULL(t1.transfer_num, 0)) AS num
+            FROM
+                t_sale_out_depot_item t1
+            LEFT JOIN t_sale_out_depot t2 ON t2.id = t1.sale_out_depot_id
+            WHERE
+                t1.goods_no in
+                <foreach collection="goodsNos.split(',')" item="goodsNo" index="index" separator="," open='(' close=')'>
+                    #{goodsNo}
+                </foreach>
+            AND t2.po_no = #{poNo}
+            AND t2.vips_bill_no = #{vipsBillNo}
+            AND t2.merchant_id = #{merchantId }
+            AND t2.out_depot_id = #{depotId }
+            AND t2.status in('018')
+            AND t2.sale_type = '2'
+    </select>
+
+	<select id="getVipSalesOutDetails" resultType="map" parameterType="map">
+		SELECT
+			t2.merchant_id, t2.merchant_name, t2.out_depot_id , t2.out_depot_name, t2.code as sale_out_code ,
+			t2.vips_bill_no,t3.code as sale_order_code , t1.goods_id , t2.po_no , t1.commbarcode , t1.goods_no , t1.goods_name,
+			t1.transfer_num , t1.tallying_unit , t2.deliver_date , t1.create_date , t1.modify_date , t2.po_date
+		FROM
+			t_sale_out_depot_item t1
+		LEFT JOIN t_sale_out_depot t2 ON t2.id = t1.sale_out_depot_id
+		LEFT JOIN t_sale_order t3 ON t2.sale_order_id = t3.id
+		WHERE
+			t1.commbarcode = #{commbarcode }
+		AND t2.po_no = #{poNo}
+		AND t2.merchant_id = #{merchantId }
+		AND t2.out_depot_id = #{depotId }
+		AND t2.status in('018')
+		AND t2.sale_type = '2'
+	</select>
+
+
+	<!-- 新财务报表(事业部业务经销存)共用本期减少销售在途量代销(本期减少销售在途表) -->
+	<select id='getBuFinanceDecreaseSaleNoshelfDX' resultType='map' parameterType='map'>
+			SELECT t3.id,t2.goods_id,t2.tallying_unit,SUM(IFNULL(t2.shelf_num,0)+IFNULL(t2.damaged_num,0)+IFNULL(t2.lack_num,0)) as num,t2.shelf_date,
+			SUM(IFNULL(t2.shelf_num,0))as shelf_num,SUM(IFNULL(t2.damaged_num,0))as damaged_num,SUM(IFNULL(t2.lack_num,0)) as lack_num,
+			SUM(IFNULL(t2.shelf_num,0)+IFNULL(t2.damaged_num,0)+IFNULL(t2.lack_num,0)) as total_num,t2.po_no,t2.operator,t2.operator_id,
+ 			t4.price,t2.sale_item_id,t3.out_depot_id as depot_id
+				from t_sale_shelf t2
+				LEFT JOIN t_sale_out_depot t3 ON t3.id=t2.sale_out_depot_id
+				LEFT JOIN t_sale_order_item t4 ON t4.id=t2.sale_item_id
+				LEFT JOIN t_sale_order t on t3.sale_order_id=t.id
+				WHERE t3.merchant_id=#{merchantId}
+				<if test='depotId!=null' > AND t3.out_depot_id=#{depotId} </if>
+				<if test='tag!=null and "1".equals(tag)' > and t3.out_depot_id in (
+					SELECT id from  st_depot_info where type IN ('a','c','d')
+					)
+				 </if><!-- tag为1 查询财务经销存 -->
+				and t3.bu_id =#{buId}
+				and DATE_FORMAT(t2.shelf_date, '%Y-%m')=#{month}
+				and t2.order_type='1'
+				and t3.`status` in  ('018','026','031')
+			    and DATE_FORMAT(t3.deliver_date, '%Y-%m')&gt;='2020-01'
+			    and DATE_FORMAT(t3.deliver_date, '%Y-%m')&lt;#{month}
+			    and t4.id is not null
+				GROUP BY t3.id,t2.goods_id,t2.tallying_unit,t2.shelf_date,t2.po_no,t2.operator,t2.operator_id ,t2.sale_item_id,t3.out_depot_id
+				HAVING total_num !=0
+	</select>
+
+
+	<select id="getPrice" resultType="double" >
+		select si.price
+		from t_sale_order s
+		left join t_sale_order_item si on si.order_id = s.id
+		where s.code = #{orderCode}
+		and si.goods_no = #{goodsNo}
+		limit 1
+	</select>
+
+	<!-- 商家、仓库、系统货号、销售类型是代销的云集出库数量汇总 -->
+    <select id="getYJVeriSaleOutDepotAccount" parameterType="map" resultType="int">
+        SELECT
+                sum(IFNULL(t1.transfer_num, 0)) AS num
+            FROM
+                t_sale_out_depot_item t1
+            LEFT JOIN t_sale_out_depot t2 ON t2.id = t1.sale_out_depot_id
+            WHERE
+                t1.goods_no in
+                <foreach collection="goodsNos.split(',')" item="goodsNo" index="index" separator="," open='(' close=')'>
+                    #{goodsNo}
+                </foreach>
+            AND t2.vips_bill_no = #{vipsBillNo}
+            AND t2.merchant_id = #{merchantId }
+            AND t2.out_depot_id = #{depotId }
+            AND t2.status in('018')
+            AND t2.sale_type = '2'
+    </select>
+
+</mapper>

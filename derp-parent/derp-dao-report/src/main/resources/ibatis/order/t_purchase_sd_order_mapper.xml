@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.PurchaseSdOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PurchaseSdOrderModelMap" type="PurchaseSdOrderModel" >
+                <result property="id" column="id" />
+                <result property="purchaseCode" column="purchase_code" />
+                <result property="sdPurchaseConfigId" column="sd_purchase_config_id" />
+                <result property="poNo" column="po_no" />
+                <result property="supplierId" column="supplier_id" />
+                <result property="supplierName" column="supplier_name" />
+                <result property="inboundDate" column="inbound_date" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="rate" column="rate" />
+                <result property="currency" column="currency" />
+                <result property="tgtCurrency" column="tgt_currency" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="isSyn" column="is_syn" />
+                <result property="code" column="code" />
+                <result property="type" column="type" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="sdAmount" column="sd_amount" />
+                <result property="sdTypeName" column="sd_type_name" />
+                <result property="sdSimpleName" column="sd_simple_name" />
+                <result property="remarks" column="remarks" />
+                <result property="status" column="status" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseSdOrderModelMap' parameterType='PurchaseSdOrderModel'>
+        select <include refid='sql_columns' /> from t_purchase_sd_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseSdOrderModelMap' parameterType='PurchaseSdOrderModel'>
+        select <include refid='sql_columns' /> from t_purchase_sd_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseSdOrderModelMap' parameterType='PurchaseSdOrderModel' >
+        select <include refid='sql_columns' /> from t_purchase_sd_order  <include refid='sql_where' />
+    </select>
+
+     <!-- 新增数据 -->
+        <insert id='insert' parameterType='PurchaseSdOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_purchase_sd_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='purchaseCode!=null and !"".equals(purchaseCode)' > purchase_code , </if>
+                        <if test='sdPurchaseConfigId!=null' >sd_purchase_config_id , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='supplierId!=null' >supplier_id , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+                        <if test='inboundDate!=null' >inbound_date , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='rate!=null' >rate , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='tgtCurrency!=null and !"".equals(tgtCurrency)' > tgt_currency , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='isSyn!=null and !"".equals(isSyn)' > is_syn , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='sdAmount!=null' >sd_amount , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > sd_type_name , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > sd_simple_name , </if>
+                        <if test='remarks!=null and !"".equals(remarks)' > remarks , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='purchaseCode!=null and !"".equals(purchaseCode)' > #{purchaseCode} , </if>
+                        <if test='sdPurchaseConfigId!=null' > #{sdPurchaseConfigId} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='supplierId!=null' > #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+                        <if test='inboundDate!=null' > #{inboundDate} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='rate!=null' > #{rate} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='tgtCurrency!=null and !"".equals(tgtCurrency)' > #{tgtCurrency} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='isSyn!=null and !"".equals(isSyn)' > #{isSyn} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='sdAmount!=null' > #{sdAmount} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > #{sdTypeName} , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' > #{sdSimpleName} , </if>
+                        <if test='remarks!=null and !"".equals(remarks)' > #{remarks} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PurchaseSdOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_purchase_sd_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='purchaseCode!=null and !"".equals(purchaseCode)' >purchase_code= #{purchaseCode} , </if>
+                        <if test='sdPurchaseConfigId!=null' > sd_purchase_config_id= #{sdPurchaseConfigId} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='supplierId!=null' > supplier_id= #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+                        <if test='inboundDate!=null' > inbound_date= #{inboundDate} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='rate!=null' > rate= #{rate} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='tgtCurrency!=null and !"".equals(tgtCurrency)' >tgt_currency= #{tgtCurrency} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='isSyn!=null and !"".equals(isSyn)' >is_syn= #{isSyn} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='sdAmount!=null' > sd_amount= #{sdAmount} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} , </if>
+                        <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' >sd_simple_name= #{sdSimpleName} , </if>
+                        <if test='remarks!=null and !"".equals(remarks)' >remarks= #{remarks} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_sd_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_purchase_sd_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            purchase_code,
+            sd_purchase_config_id,
+            po_no,
+            supplier_id,
+            supplier_name,
+            inbound_date,
+            merchant_id,
+            merchant_name,
+            rate,
+            currency,
+            tgt_currency,
+            bu_name,
+            bu_id,
+            creater,
+            create_name,
+            create_date,
+            modify_date,
+            is_syn,
+            code,
+            type,
+            depot_id,
+            depot_name,
+            sd_amount,
+            sd_type_name,
+            sd_simple_name,
+            remarks,
+            status
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='purchaseCode!=null and !"".equals(purchaseCode)' >purchase_code= #{purchaseCode} and </if>
+                            <if test='sdPurchaseConfigId!=null' > sd_purchase_config_id= #{sdPurchaseConfigId} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                            <if test='inboundDate!=null' > inbound_date= #{inboundDate} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='rate!=null' > rate= #{rate} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='tgtCurrency!=null and !"".equals(tgtCurrency)' >tgt_currency= #{tgtCurrency} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='isSyn!=null and !"".equals(isSyn)' >is_syn= #{isSyn} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='sdAmount!=null' > sd_amount= #{sdAmount} and </if>
+                            <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} and </if>
+                            <if test='sdSimpleName!=null and !"".equals(sdSimpleName)' >sd_simple_name= #{sdSimpleName} and </if>
+                            <if test='remarks!=null and !"".equals(remarks)' >remarks= #{remarks} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+		<!-- 获取采购调整sd单 -->
+		<select id="getTzPurchaseSdOrde" resultType='map' parameterType='map'>
+				SELECT 
+				t1.id,t1.code,t1.purchase_code,t1.po_no,t1.inbound_date,supplier_id,supplier_name,t1.depot_id,t1.depot_name,
+				t1.bu_id,t1.bu_name,t1.creater,t1.create_name,t1.tgt_currency,t1.currency,
+				t2.price,t2.goods_id,t2.num,t2.sd_tgt_price,t2.sd_tgt_amount,t2.sd_type_name,t2.sd_simple_name
+					from  t_purchase_sd_order t1
+					LEFT JOIN t_purchase_sd_order_sditem t2 ON t1.id=t2.order_id
+					where t1.merchant_id =#{merchantId}
+					and t1.bu_id =#{buId} 
+					and t1.depot_id in (
+						SELECT id from  st_depot_info where type IN ('a','c','d')
+					) 
+					and t1.type='3'
+					and t1.bu_id is not null
+					and DATE_FORMAT(t1.inbound_date, '%Y-%m') =#{month}
+					and t1.status!='006'
+					
+	    </select>
+
+
+		<!-- 获取sd数据-->
+		<select id="getSdOrderItemList" resultType='map'  parameterType='map'>
+				SELECT 
+				t1.id,t1.code,t1.purchase_code,t1.po_no,t1.inbound_date,supplier_id,supplier_name,t1.depot_id,t1.depot_name,
+				t1.bu_id,t1.bu_name,t1.tgt_currency,t1.currency,
+				t2.sd_price,t2.goods_id,t2.sd_tgt_price,t2.sd_type_name,t2.sd_simple_name
+					from  t_purchase_sd_order t1
+					LEFT JOIN t_purchase_sd_order_sditem t2 ON t1.id=t2.order_id
+					where t1.purchase_code =#{purchaseCode}
+					and t1.type=#{type}							
+					<if test='goodsId!=null' > and t2.goods_id=#{goodsId}   </if>
+					<if test='purchaseItemId!=null' > and t2.purchase_item_id=#{purchaseItemId}   </if>
+					and t1.status!='006'			
+	    </select>
+
+
+</mapper>

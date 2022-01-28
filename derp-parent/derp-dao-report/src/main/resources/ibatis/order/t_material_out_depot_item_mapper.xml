@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.MaterialOutDepotItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="MaterialOutDepotItemModelMap" type="MaterialOutDepotItemModel" >
+                <result property="id" column="id" />
+                <result property="materialOutDepotId" column="material_out_depot_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="transferNum" column="transfer_num" />
+                <result property="wornNum" column="worn_num" />
+                <result property="transferBatchNo" column="transfer_batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="createDate" column="create_date" />
+                <result property="creater" column="creater" />
+                <result property="barcode" column="barcode" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="materialNum" column="material_num" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="commbarcode" column="commbarcode" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MaterialOutDepotItemModelMap' parameterType='MaterialOutDepotItemModel'>
+        select <include refid='sql_columns' /> from t_material_out_depot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MaterialOutDepotItemModelMap' parameterType='MaterialOutDepotItemModel'>
+        select <include refid='sql_columns' /> from t_material_out_depot_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MaterialOutDepotItemModelMap' parameterType='MaterialOutDepotItemModel' >
+        select <include refid='sql_columns' /> from t_material_out_depot_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='MaterialOutDepotItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_material_out_depot_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='materialOutDepotId!=null' >material_out_depot_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='transferNum!=null' >transfer_num , </if>
+                        <if test='wornNum!=null' >worn_num , </if>
+                        <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' > transfer_batch_no , </if>
+                        <if test='productionDate!=null' >production_date , </if>
+                        <if test='overdueDate!=null' >overdue_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='materialNum!=null' >material_num , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='materialOutDepotId!=null' > #{materialOutDepotId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='transferNum!=null' > #{transferNum} , </if>
+                        <if test='wornNum!=null' > #{wornNum} , </if>
+                        <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' > #{transferBatchNo} , </if>
+                        <if test='productionDate!=null' > #{productionDate} , </if>
+                        <if test='overdueDate!=null' > #{overdueDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='materialNum!=null' > #{materialNum} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MaterialOutDepotItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_material_out_depot_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='materialOutDepotId!=null' > material_out_depot_id= #{materialOutDepotId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='transferNum!=null' > transfer_num= #{transferNum} , </if>
+                        <if test='wornNum!=null' > worn_num= #{wornNum} , </if>
+                        <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' >transfer_batch_no= #{transferBatchNo} , </if>
+                        <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                        <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='materialNum!=null' > material_num= #{materialNum} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_material_out_depot_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_material_out_depot_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            material_out_depot_id,
+            goods_id,
+            goods_code,
+            goods_name,
+            goods_no,
+            transfer_num,
+            worn_num,
+            transfer_batch_no,
+            production_date,
+            overdue_date,
+            create_date,
+            creater,
+            barcode,
+            tallying_unit,
+            material_num,
+            modify_date,
+            commbarcode
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='materialOutDepotId!=null' > material_out_depot_id= #{materialOutDepotId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='transferNum!=null' > transfer_num= #{transferNum} and </if>
+                            <if test='wornNum!=null' > worn_num= #{wornNum} and </if>
+                            <if test='transferBatchNo!=null and !"".equals(transferBatchNo)' >transfer_batch_no= #{transferBatchNo} and </if>
+                            <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='materialNum!=null' > material_num= #{materialNum} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

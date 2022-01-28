@@ -1,0 +1,20 @@
+
+mybatis:
+    configLocation: classpath:mybatis-config.xml
+    type-aliases-package: com.topideal.entity
+    mapper-locations: classpath:ibatis/**/*.xml
+    
+spring:
+    profiles:
+        include:
+            - apollo #apollo配置文件
+            - dbsystem #主服务库
+            - rocketmq #mq配置文件
+            - mongo #mongo配置文件
+            - externalapi #外部接口配置文件
+            - idmsso #idm
+    jackson: 
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        serialization: 
+           write-dates-as-timestamps: false

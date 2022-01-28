@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.MiningMarketingPriceMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="MiningMarketingPriceModelMap" type="MiningMarketingPriceModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="brandName" column="brand_name" />
+                <result property="effectDate" column="effect_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="remark" column="remark" />
+                <result property="invalidDate" column="invalid_date" />
+                <result property="customerName" column="customer_name" />
+                <result property="goodsSpec" column="goods_spec" />
+                <result property="createrName" column="creater_name" />
+                <result property="price" column="price" />
+                <result property="customerId" column="customer_id" />
+                <result property="currency" column="currency" />
+                <result property="id" column="id" />
+                <result property="modifierName" column="modifier_name" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MiningMarketingPriceModelMap' parameterType='MiningMarketingPriceModel'>
+        select <include refid='sql_columns' /> from st_mining_marketing_price  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MiningMarketingPriceModelMap' parameterType='MiningMarketingPriceModel'>
+        select <include refid='sql_columns' /> from st_mining_marketing_price  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MiningMarketingPriceModelMap' parameterType='MiningMarketingPriceModel' >
+        select <include refid='sql_columns' /> from st_mining_marketing_price  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='MiningMarketingPriceModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_mining_marketing_price
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                <if test='effectDate!=null' > effect_date , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='invalidDate!=null' > invalid_date , </if>
+                <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' > goods_spec , </if>
+                <if test='createrName!=null and !"".equals(createrName)' > creater_name , </if>
+                <if test='price!=null' > price , </if>
+                <if test='customerId!=null' > customer_id , </if>
+                <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                <if test='id!=null' > id , </if>
+                <if test='modifierName!=null and !"".equals(modifierName)' > modifier_name , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                <if test='effectDate!=null' > #{effectDate} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='invalidDate!=null' > #{invalidDate} , </if>
+                <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' > #{goodsSpec} , </if>
+                <if test='createrName!=null and !"".equals(createrName)' > #{createrName} , </if>
+                <if test='price!=null' > #{price} , </if>
+                <if test='customerId!=null' > #{customerId} , </if>
+                <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='modifierName!=null and !"".equals(modifierName)' > #{modifierName} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='MiningMarketingPriceModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_mining_marketing_price SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                <if test='effectDate!=null' > effect_date= #{effectDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='invalidDate!=null' > invalid_date= #{invalidDate} , </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' >goods_spec= #{goodsSpec} , </if>
+                <if test='createrName!=null and !"".equals(createrName)' >creater_name= #{createrName} , </if>
+                <if test='price!=null' > price= #{price} , </if>
+                <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_mining_marketing_price  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_mining_marketing_price where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        brand_name,
+        effect_date,
+        modify_date,
+        goods_id,
+        remark,
+        invalid_date,
+        customer_name,
+        goods_spec,
+        creater_name,
+        price,
+        customer_id,
+        currency,
+        id,
+        modifier_name,
+        goods_name,
+        barcode,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='effectDate!=null' > effect_date= #{effectDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='invalidDate!=null' > invalid_date= #{invalidDate} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='goodsSpec!=null and !"".equals(goodsSpec)' >goods_spec= #{goodsSpec} and </if>
+                <if test='createrName!=null and !"".equals(createrName)' >creater_name= #{createrName} and </if>
+                <if test='price!=null' > price= #{price} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+    <select id='getListByPage' resultType='MiningMarketingPriceDTO' parameterType='MiningMarketingPriceDTO'>
+        select <include refid='sql_columns' /> from st_mining_marketing_price  <include refid='sql_where' /> order by id desc
+    </select>
+
+
+
+
+</mapper>

@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuFinanceSaleNotshelfMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuFinanceSaleNotshelfModelMap" type="BuFinanceSaleNotshelfModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="orderId" column="order_id" />
+                <result property="orderCode" column="order_code" />
+                <result property="orderType" column="order_type" />
+                <result property="orderCreateDate" column="order_create_date" />
+                <result property="shelfDate" column="shelf_date" />
+                <result property="outOrderCode" column="out_order_code" />
+                <result property="outOrderId" column="out_order_id" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="num" column="num" />
+                <result property="salePrice" column="sale_price" />
+                <result property="saleAmount" column="sale_amount" />
+                <result property="outDepotCurrency" column="out_depot_currency" />
+                <result property="outDepotPrice" column="out_depot_price" />
+                <result property="outDepotAmount" column="out_depot_amount" />
+                <result property="month" column="month" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="saleCurrency" column="sale_currency" />
+                <result property="poNo" column="po_no" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="sdOrderAmount" column="sd_order_amount" />
+                <result property="sdOrderPrice" column="sd_order_price" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuFinanceSaleNotshelfModelMap' parameterType='BuFinanceSaleNotshelfModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_sale_notshelf  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuFinanceSaleNotshelfModelMap' parameterType='BuFinanceSaleNotshelfModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_sale_notshelf  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuFinanceSaleNotshelfModelMap' parameterType='BuFinanceSaleNotshelfModel' >
+        select <include refid='sql_columns' /> from r_bu_finance_sale_notshelf  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuFinanceSaleNotshelfModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_finance_sale_notshelf
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='orderCreateDate!=null' >order_create_date , </if>
+                        <if test='shelfDate!=null' >shelf_date , </if>
+                        <if test='outOrderCode!=null and !"".equals(outOrderCode)' > out_order_code , </if>
+                        <if test='outOrderId!=null' >out_order_id , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='salePrice!=null' >sale_price , </if>
+                        <if test='saleAmount!=null' >sale_amount , </if>
+                        <if test='outDepotCurrency!=null and !"".equals(outDepotCurrency)' > out_depot_currency , </if>
+                        <if test='outDepotPrice!=null' >out_depot_price , </if>
+                        <if test='outDepotAmount!=null' >out_depot_amount , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' > sale_currency , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='sdOrderAmount!=null' >sd_order_amount , </if>
+                        <if test='sdOrderPrice!=null' >sd_order_price , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='orderCreateDate!=null' > #{orderCreateDate} , </if>
+                        <if test='shelfDate!=null' > #{shelfDate} , </if>
+                        <if test='outOrderCode!=null and !"".equals(outOrderCode)' > #{outOrderCode} , </if>
+                        <if test='outOrderId!=null' > #{outOrderId} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='salePrice!=null' > #{salePrice} , </if>
+                        <if test='saleAmount!=null' > #{saleAmount} , </if>
+                        <if test='outDepotCurrency!=null and !"".equals(outDepotCurrency)' > #{outDepotCurrency} , </if>
+                        <if test='outDepotPrice!=null' > #{outDepotPrice} , </if>
+                        <if test='outDepotAmount!=null' > #{outDepotAmount} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' > #{saleCurrency} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='sdOrderAmount!=null' > #{sdOrderAmount} , </if>
+                        <if test='sdOrderPrice!=null' > #{sdOrderPrice} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuFinanceSaleNotshelfModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_finance_sale_notshelf SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='orderCreateDate!=null' > order_create_date= #{orderCreateDate} , </if>
+                        <if test='shelfDate!=null' > shelf_date= #{shelfDate} , </if>
+                        <if test='outOrderCode!=null and !"".equals(outOrderCode)' >out_order_code= #{outOrderCode} , </if>
+                        <if test='outOrderId!=null' > out_order_id= #{outOrderId} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='salePrice!=null' > sale_price= #{salePrice} , </if>
+                        <if test='saleAmount!=null' > sale_amount= #{saleAmount} , </if>
+                        <if test='outDepotCurrency!=null and !"".equals(outDepotCurrency)' >out_depot_currency= #{outDepotCurrency} , </if>
+                        <if test='outDepotPrice!=null' > out_depot_price= #{outDepotPrice} , </if>
+                        <if test='outDepotAmount!=null' > out_depot_amount= #{outDepotAmount} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='saleCurrency!=null and !"".equals(saleCurrency)' >sale_currency= #{saleCurrency} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='sdOrderAmount!=null' > sd_order_amount= #{sdOrderAmount} , </if>
+                        <if test='sdOrderPrice!=null' > sd_order_price= #{sdOrderPrice} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_finance_sale_notshelf  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_finance_sale_notshelf where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            bu_id,
+            bu_name,
+            customer_name,
+            customer_id,
+            order_id,
+            order_code,
+            order_type,
+            order_create_date,
+            shelf_date,
+            out_order_code,
+            out_order_id,
+            deliver_date,
+            goods_id,
+            goods_no,
+            goods_name,
+            barcode,
+            commbarcode,
+            tallying_unit,
+            num,
+            sale_price,
+            sale_amount,
+            out_depot_currency,
+            out_depot_price,
+            out_depot_amount,
+            month,
+            create_date,
+            modify_date,
+            sale_currency,
+            po_no,
+            creater,
+            create_name,
+            sd_order_amount,
+            sd_order_price
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='orderCreateDate!=null' > order_create_date= #{orderCreateDate} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='outOrderCode!=null and !"".equals(outOrderCode)' >out_order_code= #{outOrderCode} and </if>
+                            <if test='outOrderId!=null' > out_order_id= #{outOrderId} and </if>
+                            <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='salePrice!=null' > sale_price= #{salePrice} and </if>
+                            <if test='saleAmount!=null' > sale_amount= #{saleAmount} and </if>
+                            <if test='outDepotCurrency!=null and !"".equals(outDepotCurrency)' >out_depot_currency= #{outDepotCurrency} and </if>
+                            <if test='outDepotPrice!=null' > out_depot_price= #{outDepotPrice} and </if>
+                            <if test='outDepotAmount!=null' > out_depot_amount= #{outDepotAmount} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='saleCurrency!=null and !"".equals(saleCurrency)' >sale_currency= #{saleCurrency} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='sdOrderAmount!=null' > sd_order_amount= #{sdOrderAmount} and </if>
+                            <if test='sdOrderPrice!=null' > sd_order_price= #{sdOrderPrice} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 清除商家 仓库 月份 (事业部财务经销存)销售未上架明细表  -->
+		<delete id='delBuFinanceSaleNotshelf' parameterType='map'>
+			delete from r_bu_finance_sale_notshelf
+			where merchant_id=#{merchantId} and depot_id=#{depotId} and bu_id= #{buId} and month=#{month} 
+		</delete>
+
+
+
+</mapper>

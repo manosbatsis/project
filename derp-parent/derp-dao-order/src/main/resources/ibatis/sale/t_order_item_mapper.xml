@@ -1,0 +1,685 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.OrderItemMapper'>
+
+    <!-- 关系映射 -->
+        <resultMap id="OrderItemModelMap" type="OrderItemModel" >
+                <result property="id" column="id" />
+                <result property="orderId" column="order_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="price" column="price" />
+                <result property="num" column="num" />
+                <result property="decTotal" column="dec_total" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="deliveryPrice" column="delivery_price" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="createDate" column="create_date" />
+                <result property="goodsDiscount" column="goods_discount" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="saleCom" column="sale_com" />
+                <result property="originalPrice" column="original_price" />
+                <result property="originalDecTotal" column="original_dec_total" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="tax" column="tax" />
+                <result property="skuId" column="sku_id" />
+                <result property="wayFrtFee" column="way_frt_fee" />
+                <result property="orderBatchNo" column="order_batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="tradeDecTotal" column="trade_dec_total" />
+                <result property="tradeDecTax" column="trade_dec_tax" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OrderItemModelMap' parameterType='OrderItemModel'>
+        select <include refid='sql_columns' /> from t_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OrderItemModelMap' parameterType='OrderItemModel'>
+        select <include refid='sql_columns' /> from t_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OrderItemModelMap' parameterType='OrderItemModel' >
+        select <include refid='sql_columns' /> from t_order_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_order_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='decTotal!=null' >dec_total , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='deliveryPrice!=null' >delivery_price , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='goodsDiscount!=null' >goods_discount , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='saleCom!=null' >sale_com , </if>
+                        <if test='originalPrice!=null' >original_price , </if>
+                        <if test='originalDecTotal!=null' >original_dec_total , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='tax!=null' >tax , </if>
+                        <if test='skuId!=null and !"".equals(skuId)' > sku_id , </if>
+                        <if test='wayFrtFee!=null' >way_frt_fee , </if>
+                        <if test='orderBatchNo!=null and !"".equals(orderBatchNo)' > order_batch_no , </if>
+                        <if test='productionDate!=null' >production_date , </if>
+                        <if test='overdueDate!=null' >overdue_date , </if>
+                        <if test='tradeDecTotal!=null' >trade_dec_total , </if>
+                        <if test='tradeDecTax!=null' >trade_dec_tax , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='decTotal!=null' > #{decTotal} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='deliveryPrice!=null' > #{deliveryPrice} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='goodsDiscount!=null' > #{goodsDiscount} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='saleCom!=null' > #{saleCom} , </if>
+                        <if test='originalPrice!=null' > #{originalPrice} , </if>
+                        <if test='originalDecTotal!=null' > #{originalDecTotal} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='tax!=null' > #{tax} , </if>
+                        <if test='skuId!=null and !"".equals(skuId)' > #{skuId} , </if>
+                        <if test='wayFrtFee!=null' > #{wayFrtFee} , </if>
+                        <if test='orderBatchNo!=null and !"".equals(orderBatchNo)' > #{orderBatchNo} , </if>
+                        <if test='productionDate!=null' > #{productionDate} , </if>
+                        <if test='overdueDate!=null' > #{overdueDate} , </if>
+                        <if test='tradeDecTotal!=null' > #{tradeDecTotal} , </if>
+                        <if test='tradeDecTax!=null' > #{tradeDecTax} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_order_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='decTotal!=null' > dec_total= #{decTotal} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='deliveryPrice!=null' > delivery_price= #{deliveryPrice} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='goodsDiscount!=null' > goods_discount= #{goodsDiscount} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='saleCom!=null' > sale_com= #{saleCom} , </if>
+                        <if test='originalPrice!=null' > original_price= #{originalPrice} , </if>
+                        <if test='originalDecTotal!=null' > original_dec_total= #{originalDecTotal} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='tax!=null' > tax= #{tax} , </if>
+                        <if test='skuId!=null and !"".equals(skuId)' >sku_id= #{skuId} , </if>
+                        <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} , </if>
+                        <if test='orderBatchNo!=null and !"".equals(orderBatchNo)' >order_batch_no= #{orderBatchNo} , </if>
+                        <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                        <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                        <if test='tradeDecTotal!=null' > trade_dec_total= #{tradeDecTotal} , </if>
+                        <if test='tradeDecTax!=null' > trade_dec_tax= #{tradeDecTax} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_order_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_order_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            order_id,
+            goods_name,
+            goods_id,
+            price,
+            num,
+            dec_total,
+            goods_code,
+            barcode,
+            goods_no,
+            delivery_price,
+            modify_date,
+            create_date,
+            goods_discount,
+            commbarcode,
+            sale_com,
+            original_price,
+            original_dec_total,
+            bu_id,
+            bu_name,
+            tax,
+            sku_id,
+            way_frt_fee,
+            order_batch_no,
+            production_date,
+            overdue_date,
+            trade_dec_total,
+            trade_dec_tax,
+            stock_location_type_id,
+            stock_location_type_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='decTotal!=null' > dec_total= #{decTotal} and </if>
+                            <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='deliveryPrice!=null' > delivery_price= #{deliveryPrice} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='goodsDiscount!=null' > goods_discount= #{goodsDiscount} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='saleCom!=null' > sale_com= #{saleCom} and </if>
+                            <if test='originalPrice!=null' > original_price= #{originalPrice} and </if>
+                            <if test='originalDecTotal!=null' > original_dec_total= #{originalDecTotal} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='tax!=null' > tax= #{tax} and </if>
+                            <if test='skuId!=null and !"".equals(skuId)' >sku_id= #{skuId} and </if>
+                            <if test='wayFrtFee!=null' > way_frt_fee= #{wayFrtFee} and </if>
+                            <if test='orderBatchNo!=null and !"".equals(orderBatchNo)' >order_batch_no= #{orderBatchNo} and </if>
+                            <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                            <if test='tradeDecTotal!=null' > trade_dec_total= #{tradeDecTotal} and </if>
+                            <if test='tradeDecTax!=null' > trade_dec_tax= #{tradeDecTax} and </if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                            <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+	<!--自定义SQL-->
+	    <sql id='sql_columns2'>
+        goods_no,
+        modify_date,
+        order_id,
+        goods_id,
+        num,
+        delivery_price,
+        dec_total,
+        goods_discount,
+        price,
+        id,
+        goods_code,
+        goods_name,
+        barcode,
+        create_date,
+        commbarcode,
+        sale_com,
+        original_price,
+        original_dec_total,
+        bu_name
+    </sql>
+	<select id="listItemByOrderId" resultMap='OrderItemModelMap' parameterType='OrderItemModel'>
+		select t1.* from t_order_item t1 where t1.order_id=#{id}
+	</select>
+
+	<!-- 检查商品是否使用 -->
+    <select id='checkGoodsIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select
+        	count(*)
+        from t_order_item t1
+        left join t_order t2 on t1.order_id = t2.id
+        where t2.status in ('1','2','3','4') and t1.goods_id = #{id}
+    </select>
+    <!-- 查询所有信息 -->
+    <select id="listItemDTO" resultType='OrderItemDTO' parameterType='OrderItemDTO'>
+        select <include refid='sql_columns2'/> from t_order_item  <include refid='sql_where' />
+    </select>
+    <!-- 迁移数据到历史表 -->
+    <insert id='synsMoveToHistory' parameterType='map'>
+        insert into t_order_item_history select i.* from t_order_item i,t_order t
+        where i.order_id=t.id
+        and t.deliver_date &lt; #{divergenceDate}
+    </insert>
+    <!-- 删除已迁移到历史表的数据 -->
+    <delete id='delMoveToHistory' parameterType='map'>
+        delete i from t_order_item i,t_order t
+        where i.order_id=t.id
+        and t.deliver_date &lt; #{divergenceDate}
+    </delete>
+
+    <select id="listItemByOrderDTO" resultType='OrderItemDTO' parameterType='list'>
+        select
+            ti.id,
+            ti.order_id,
+            ti.goods_no,
+            ti.goods_id,
+            ti.num,
+            ti.dec_total,
+            ti.goods_name,
+            ti.bu_id,
+            ti.bu_name,
+            ti.way_frt_fee,
+            ti.tax
+        from t_order_item ti
+        <where>
+            ti.order_id in
+            <foreach collection='orderIds' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </where>
+        order by ti.id
+    </select>
+
+    <select id="listItemByOrderIdsAndBuId" resultType='OrderItemDTO' >
+        select
+        ti.id,
+        ti.order_id,
+        ti.goods_no,
+        ti.goods_id,
+        ti.num,
+        ti.dec_total,
+        ti.goods_name,
+        ti.bu_id,
+        ti.bu_name
+        from t_order_item ti
+        <where>
+            ti.order_id in
+            <foreach collection='orderIds' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+            and ti.bu_id = #{buId}
+        </where>
+        order by ti.id
+    </select>
+
+    <select id="getMaxPriceByOrderId" resultMap="OrderItemModelMap">
+        SELECT
+            a.order_id,
+            a.goods_id,
+            a.bu_id,
+            a.bu_name,
+            sum(a.num) num
+        FROM
+            (
+                SELECT * FROM t_order_item
+                WHERE order_id IN
+                <foreach collection='orderIds' item='id' separator=',' open='(' close=')'>
+                    #{id}
+                </foreach>
+                ORDER BY dec_total
+            ) a
+        <if test='buIdFlag!=null and buIdFlag == true ' >
+            GROUP BY a.order_id, a.bu_id
+        </if>
+        <if test='buIdFlag == null or buIdFlag == false '>
+            GROUP BY a.order_id
+        </if>
+    </select>
+
+    <select id="listBuByOrder" parameterType="OrderDTO" resultType="java.lang.Long">
+        select
+            bu_id
+        from t_order_item
+        where order_id in (
+            select t.id from t_order t
+            <where>
+                <trim suffixOverrides='and'>
+                    t.status= '4' and
+                    <if test='month!=null and !"".equals(month)' >
+                        date_format(t.deliver_date,'%Y-%m') =  #{month} and
+                    </if>
+                    <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                    <if test='customerId!=null' > t.customer_id= #{customerId} and </if>
+                    <if test='shopCode!=null and !"".equals(shopCode)' >t.shop_code= #{shopCode} and </if>
+                    <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >t.shop_type_code= #{shopTypeCode} and </if>
+                    <if test='storePlatformName!=null and !"".equals(storePlatformName)' >t.store_platform_name= #{storePlatformName} and </if>
+                </trim>
+            </where>
+        )
+        group by bu_id
+    </select>
+    <!-- 批量插入数据 -->
+    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_order_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            id ,
+            order_id ,
+            goods_name ,
+            goods_id ,
+            price ,
+            num ,
+            dec_total ,
+            goods_code ,
+            barcode ,
+            goods_no ,
+            delivery_price ,
+            modify_date ,
+            create_date ,
+            goods_discount ,
+            commbarcode ,
+            sale_com ,
+            original_price ,
+            original_dec_total ,
+            bu_id ,
+            bu_name ,
+            tax ,
+            sku_id ,
+            way_frt_fee ,
+            order_batch_no ,
+            production_date ,
+            overdue_date ,
+            trade_dec_total ,
+            trade_dec_tax,
+            stock_location_type_id,
+            stock_location_type_name
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                #{item.id} ,
+                #{item.orderId} ,
+                #{item.goodsName} ,
+                #{item.goodsId} ,
+                #{item.price} ,
+                #{item.num} ,
+                #{item.decTotal} ,
+                #{item.goodsCode} ,
+                #{item.barcode} ,
+                #{item.goodsNo} ,
+                #{item.deliveryPrice} ,
+                #{item.modifyDate} ,
+                #{item.createDate} ,
+                #{item.goodsDiscount} ,
+                #{item.commbarcode} ,
+                #{item.saleCom} ,
+                #{item.originalPrice} ,
+                #{item.originalDecTotal} ,
+                #{item.buId} ,
+                #{item.buName} ,
+                #{item.tax} ,
+                #{item.skuId} ,
+                #{item.wayFrtFee} ,
+                #{item.orderBatchNo} ,
+                #{item.productionDate} ,
+                #{item.overdueDate} ,
+                #{item.tradeDecTotal} ,
+                #{item.tradeDecTax},
+                #{item.stockLocationTypeId} ,
+                #{item.stockLocationTypeName}
+            </trim>
+        </foreach>
+    </insert>
+    <!-- 批量更新数据 -->
+    <update id='batchUpdate' parameterType="java.util.List">
+        update t_order_item
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="order_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.orderId!=null'>
+                        when id=#{i.id} then #{i.orderId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_name =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.goodsName!=null and !"".equals(i.goodsName)'>
+                        when id=#{i.id} then #{i.goodsName}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.goodsId!=null'>
+                        when id=#{i.id} then #{i.goodsId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="price =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.price!=null'>
+                        when id=#{i.id} then #{i.price}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="num =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.num!=null '>
+                        when id=#{i.id} then #{i.num}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="dec_total =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.decTotal!=null'>
+                        when id=#{i.id} then #{i.decTotal}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_code =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.goodsCode!=null and !"".equals(i.goodsCode)'>
+                        when id=#{i.id} then #{i.goodsCode}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="barcode =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.barcode!=null and !"".equals(i.barcode)'>
+                        when id=#{i.id} then #{i.barcode}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_no =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.goodsNo!=null and !"".equals(i.goodsNo)'>
+                        when id=#{i.id} then #{i.goodsNo}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="delivery_price =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.deliveryPrice!=null'>
+                        when id=#{i.id} then #{i.deliveryPrice}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="modify_date =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.modifyDate!=null '>
+                        when id=#{i.id} then #{i.modifyDate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_date =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.createDate!=null'>
+                        when id=#{i.id} then #{i.createDate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_discount =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.goodsDiscount!=null and !"".equals(i.goodsDiscount)'>
+                        when id=#{i.id} then #{i.goodsDiscount}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="commbarcode =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.commbarcode!=null and !"".equals(i.commbarcode)'>
+                        when id=#{i.id} then #{i.commbarcode}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sale_com =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.saleCom!=null and !"".equals(i.saleCom)'>
+                        when id=#{i.id} then #{i.saleCom}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="original_price =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.originalPrice!=null'>
+                        when id=#{i.id} then #{i.originalPrice}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="modify_date =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.modifyDate!=null'>
+                        when id=#{i.id} then #{i.modifyDate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="original_dec_total =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.originalDecTotal!=null'>
+                        when id=#{i.id} then #{i.originalDecTotal}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bu_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.buId!=null'>
+                        when id=#{i.id} then #{i.buId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bu_name =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.buName!=null and !"".equals(i.buName)'>
+                        when id=#{i.id} then #{i.buName}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="tax =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.tax!=null'>
+                        when id=#{i.id} then #{i.tax}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sku_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.skuId!=null and !"".equals(i.skuId)'>
+                        when id=#{i.id} then #{i.skuId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="way_frt_fee =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.wayFrtFee!=null'>
+                        when id=#{i.id} then #{i.wayFrtFee}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="order_batch_no =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.orderBatchNo!=null and !"".equals(i.orderBatchNo)'>
+                        when id=#{i.id} then #{i.orderBatchNo}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="production_date =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.productionDate!=null'>
+                        when id=#{i.id} then #{i.productionDate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="overdue_date =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.overdueDate!=null'>
+                        when id=#{i.id} then #{i.overdueDate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="trade_dec_total =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.tradeDecTotal!=null'>
+                        when id=#{i.id} then #{i.tradeDecTotal}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="trade_dec_tax =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.tradeDecTax!=null'>
+                        when id=#{i.id} then #{i.tradeDecTax}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="stock_location_type_id =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.stockLocationTypeId!=null'>
+                        when id=#{i.id} then #{i.stockLocationTypeId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="stock_location_type_name =case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test='i.stockLocationTypeName!=null and !"".equals(i.stockLocationTypeName)'>
+                        when id=#{i.id} then #{i.stockLocationTypeName}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where
+        id in
+        <foreach collection="list" separator="," item="i" open='(' close=')'>
+            #{i.id}
+        </foreach>
+    </update>
+</mapper>

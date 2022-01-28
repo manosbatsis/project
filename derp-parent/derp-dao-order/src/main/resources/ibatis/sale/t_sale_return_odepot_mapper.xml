@@ -1,0 +1,370 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleReturnOdepotMapper'>
+
+     <!-- 关系映射 -->
+    <resultMap id="SaleReturnOdepotModelMap" type="SaleReturnOdepotModel" >
+                <result property="outExternalCode" column="out_external_code" />
+                <result property="code" column="code" />
+                <result property="lbxNo" column="lbx_no" />
+                <result property="orderId" column="order_id" />
+                <result property="contractNo" column="contract_no" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="remark" column="remark" />
+                <result property="customsNo" column="customs_no" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="customerId" column="customer_id" />
+                <result property="model" column="model" />
+                <result property="id" column="id" />
+                <result property="returnOutDate" column="return_out_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="returnOutNum" column="return_out_num" />
+                <result property="inspectNo" column="inspect_no" />
+                <result property="customerName" column="customer_name" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="merchantReturnNo" column="merchant_return_no" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="creater" column="creater" />
+                <result property="orderCode" column="order_code" />
+                <result property="serveTypes" column="serve_types" />
+                <result property="status" column="status" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="dataSource" column="data_source" />
+                <result property="returnDeclareOrderId" column="return_declare_order_id" />
+                <result property="returnDeclareOrderCode" column="return_declare_order_code" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleReturnOdepotModelMap' parameterType='SaleReturnOdepotModel'>
+        select <include refid='sql_columns' /> from t_sale_return_odepot  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleReturnOdepotModelMap' parameterType='SaleReturnOdepotModel'>
+        select <include refid='sql_columns' /> from t_sale_return_odepot  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleReturnOdepotModelMap' parameterType='SaleReturnOdepotModel' >
+        select <include refid='sql_columns' /> from t_sale_return_odepot  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='SaleReturnOdepotModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_sale_return_odepot
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' > out_external_code , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' > lbx_no , </if>
+                <if test='orderId!=null' > order_id , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                <if test='outDepotId!=null' > out_depot_id , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' > customs_no , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='customerId!=null' > customer_id , </if>
+                <if test='model!=null and !"".equals(model)' > model , </if>
+                <if test='id!=null' > id , </if>
+                <if test='returnOutDate!=null' > return_out_date , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='returnOutNum!=null' > return_out_num , </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' > inspect_no , </if>
+                <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' > in_depot_name , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                <if test='merchantReturnNo!=null and !"".equals(merchantReturnNo)' > merchant_return_no , </if>
+                <if test='inDepotId!=null' > in_depot_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' > serve_types , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' > data_source , </if>
+                <if test='returnDeclareOrderId!=null' >return_declare_order_id , </if>
+                <if test='returnDeclareOrderCode!=null and !"".equals(returnDeclareOrderCode)' > return_declare_order_code , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' > #{outExternalCode} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' > #{lbxNo} , </if>
+                <if test='orderId!=null' > #{orderId} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                <if test='outDepotId!=null' > #{outDepotId} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' > #{customsNo} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='customerId!=null' > #{customerId} , </if>
+                <if test='model!=null and !"".equals(model)' > #{model} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='returnOutDate!=null' > #{returnOutDate} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='returnOutNum!=null' > #{returnOutNum} , </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' > #{inspectNo} , </if>
+                <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' > #{inDepotName} , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                <if test='merchantReturnNo!=null and !"".equals(merchantReturnNo)' > #{merchantReturnNo} , </if>
+                <if test='inDepotId!=null' > #{inDepotId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' > #{serveTypes} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' > #{dataSource} , </if>
+                <if test='returnDeclareOrderId!=null' > #{returnDeclareOrderId} , </if>
+                <if test='returnDeclareOrderCode!=null and !"".equals(returnDeclareOrderCode)' > #{returnDeclareOrderCode} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='SaleReturnOdepotModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_sale_return_odepot SET
+        <trim  suffixOverrides=",">
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} , </if>
+                <if test='orderId!=null' > order_id= #{orderId} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='returnOutDate!=null' > return_out_date= #{returnOutDate} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='returnOutNum!=null' > return_out_num= #{returnOutNum} , </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} , </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                <if test='merchantReturnNo!=null and !"".equals(merchantReturnNo)' >merchant_return_no= #{merchantReturnNo} , </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' >serve_types= #{serveTypes} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} , </if>
+                <if test='returnDeclareOrderId!=null' > return_declare_order_id = #{returnDeclareOrderId} , </if>
+                <if test='returnDeclareOrderCode!=null and !"".equals(returnDeclareOrderCode)' > return_declare_order_code =#{returnDeclareOrderCode} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_return_odepot  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_sale_return_odepot where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        out_external_code,
+        code,
+        lbx_no,
+        order_id,
+        contract_no,
+        out_depot_id,
+        remark,
+        customs_no,
+        merchant_name,
+        merchant_id,
+        customer_id,
+        model,
+        id,
+        return_out_date,
+        create_date,
+        modify_date,
+        return_out_num,
+        inspect_no,
+        customer_name,
+        in_depot_name,
+        out_depot_name,
+        merchant_return_no,
+        in_depot_id,
+        creater,
+        order_code,
+        serve_types,
+        status,
+        bu_name,
+        bu_id,
+        data_source,
+        return_declare_order_id,
+        return_declare_order_code
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                <if test='orderId!=null' > order_id= #{orderId} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='returnOutDate!=null' > return_out_date= #{returnOutDate} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='returnOutNum!=null' > return_out_num= #{returnOutNum} and </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                <if test='merchantReturnNo!=null and !"".equals(merchantReturnNo)' >merchant_return_no= #{merchantReturnNo} and </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' >serve_types= #{serveTypes} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} and </if>
+                <if test='returnDeclareOrderId!=null' > return_declare_order_id= #{returnDeclareOrderId} and </if>
+                <if test='returnDeclareOrderCode!=null and !"".equals(returnDeclareOrderCode)' >return_declare_order_code= #{returnDeclareOrderCode} and </if>
+            	 status != "006"  and 
+            </trim>
+        </where>
+    </sql>
+<!--自定义SQL-->
+<sql id='sql_where2'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                <if test='orderId!=null' > order_id= #{orderId} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='returnOutDate!=null' > return_out_date= #{returnOutDate} and </if>
+                <if test='returnOutStartDate!=null and !"".equals(returnOutStartDate)' >
+                    date_format(return_out_date,'%Y-%m-%d %H:%i:%S') &gt;= #{returnOutStartDate} and
+                </if>
+                <if test='returnOutEndDate!=null and !"".equals(returnOutEndDate)' >
+                    date_format(return_out_date,'%Y-%m-%d %H:%i:%S') &lt;= #{returnOutEndDate} and
+                </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='returnOutNum!=null' > return_out_num= #{returnOutNum} and </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                <if test='merchantReturnNo!=null and !"".equals(merchantReturnNo)' >merchant_return_no= #{merchantReturnNo} and </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' >serve_types= #{serveTypes} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buList!=null and !"".equals(buList)' >bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='ids!=null and !"".equals(ids)' >id in
+                    <foreach collection="ids.split(',')"  item='id' separator=',' open='(' close=')'>
+                        #{id}
+                    </foreach>
+                    and
+                </if>
+            	 status != "006"  and 
+            </trim>
+        </where>
+    </sql>    
+    <!-- 修改数据 -->
+    <update id='modifyWithNULL' parameterType='SaleReturnOdepotModel' keyProperty="id" useGeneratedKeys="true">
+     UPDATE  t_sale_return_odepot SET
+        <trim  suffixOverrides=",">
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} , </if>
+                <if test='orderId!=null' > order_id= #{orderId} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} , </if>
+                <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} , </if>
+                <if test='returnOutDate!=null' > return_out_date= #{returnOutDate} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='returnOutNum!=null' > return_out_num= #{returnOutNum} , </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} , </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                <if test='merchantReturnNo!=null and !"".equals(merchantReturnNo)' >merchant_return_no= #{merchantReturnNo} , </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                <if test='serveTypes!=null and !"".equals(serveTypes)' >serve_types= #{serveTypes} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} , </if>
+                return_declare_order_id= #{returnDeclareOrderId} ,
+                return_declare_order_code= #{returnDeclareOrderCode} ,
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+    
+    
+    <!-- 查询所有信息 分页 -->
+    <select id='listDTOByPage' resultType='SaleReturnOdepotDTO' parameterType='SaleReturnOdepotDTO'>
+        select <include refid='sql_columns' /> from t_sale_return_odepot  <include refid='sql_where2' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='getSaleReturnOdepotById' resultType='SaleReturnOdepotDTO' parameterType='SaleReturnOdepotDTO' >
+        select <include refid='sql_columns' /> from t_sale_return_odepot  <include refid='sql_where2' />
+    </select>
+    
+       <!-- 查询所有信息 -->
+    <select id="listSaleReturnOdepotDTO" resultType='SaleReturnOdepotDTO' parameterType='SaleReturnOdepotDTO'>
+        select <include refid='sql_columns' /> from t_sale_return_odepot  <include refid='sql_where2' />
+    </select>
+</mapper>

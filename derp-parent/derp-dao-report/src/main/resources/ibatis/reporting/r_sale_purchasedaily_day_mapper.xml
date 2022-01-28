@@ -1,0 +1,412 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.SalePurchasedailyDayMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SalePurchasedailyDayModelMap" type="SalePurchasedailyDayModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="productTypeId" column="product_type_id" />
+                <result property="productTypeName" column="product_type_name" />
+                <result property="daySaleAmount" column="day_sale_amount" />
+                <result property="reportDate" column="report_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="daySaleCount" column="day_sale_count" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SalePurchasedailyDayModelMap' parameterType='SalePurchasedailyDayModel'>
+        select <include refid='sql_columns' /> from r_sale_purchasedaily_day  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SalePurchasedailyDayModelMap' parameterType='SalePurchasedailyDayModel'>
+        select <include refid='sql_columns' /> from r_sale_purchasedaily_day  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SalePurchasedailyDayModelMap' parameterType='SalePurchasedailyDayModel' >
+        select <include refid='sql_columns' /> from r_sale_purchasedaily_day  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SalePurchasedailyDayModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_sale_purchasedaily_day
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='productTypeId!=null' >product_type_id , </if>
+                        <if test='productTypeName!=null and !"".equals(productTypeName)' > product_type_name , </if>
+                        <if test='daySaleAmount!=null' >day_sale_amount , </if>
+                        <if test='reportDate!=null and !"".equals(reportDate)' > report_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='daySaleCount!=null' >day_sale_count , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='productTypeId!=null' > #{productTypeId} , </if>
+                        <if test='productTypeName!=null and !"".equals(productTypeName)' > #{productTypeName} , </if>
+                        <if test='daySaleAmount!=null' > #{daySaleAmount} , </if>
+                        <if test='reportDate!=null and !"".equals(reportDate)' > #{reportDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='daySaleCount!=null' > #{daySaleCount} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SalePurchasedailyDayModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_sale_purchasedaily_day SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='productTypeId!=null' > product_type_id= #{productTypeId} , </if>
+                        <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} , </if>
+                        <if test='daySaleAmount!=null' > day_sale_amount= #{daySaleAmount} , </if>
+                        <if test='reportDate!=null and !"".equals(reportDate)' >report_date= #{reportDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='daySaleCount!=null' > day_sale_count= #{daySaleCount} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_sale_purchasedaily_day  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_sale_purchasedaily_day where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            brand_id,
+            brand_name,
+            product_type_id,
+            product_type_name,
+            day_sale_amount,
+            report_date,
+            create_date,
+            modify_date,
+            day_sale_count
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+                            <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} and </if>
+                            <if test='daySaleAmount!=null' > day_sale_amount= #{daySaleAmount} and </if>
+                            <if test='reportDate!=null and !"".equals(reportDate)' >report_date= #{reportDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='daySaleCount!=null' > day_sale_count= #{daySaleCount} and </if>
+                </trim>
+            </where>
+        </sql>
+
+    <!--自定义SQL-->
+    
+    <!-- 自定义结果集 -->
+    <resultMap id="SalePurchasedailyDayModelMap1" type="SalePurchasedailyDayModel" >
+            <result property="id" column="id" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="customerId" column="customer_id" />
+            <result property="customerName" column="customer_name" />
+            <result property="brandId" column="brand_id" />
+            <result property="brandName" column="brand_name" />
+            <result property="productTypeId" column="product_type_id" />
+            <result property="productTypeName" column="product_type_name" />
+            <result property="daySaleAmount" column="day_sale_amount" />
+            <result property="reportDate" column="report_date" />
+            <result property="createDate" column="create_date" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="daySaleCount" column="day_sale_count" />
+            <!-- 扩展字段 -->
+            <result property="monSaleCount" column="mon_sale_count" />
+            <result property="monSaleAmount" column="mon_sale_amount" />
+            <result property="yearSaleCount" column="year_sale_count" />
+            <result property="yearSaleAmount" column="year_sale_amount" />
+    </resultMap>    
+        
+	<!-- 根据条件统计购销采销日报数据 -->
+	<select id="countSalePurchasedailyDayByParam" resultMap='SalePurchasedailyDayModelMap' parameterType='SalePurchasedailyDayModel'>
+        select 
+			tt.merchant_id,
+			tt.merchant_name,
+			tt.customer_id,
+			SUM(tt.day_sale_count) as day_sale_count,
+			SUM(tt.day_sale_amount) as day_sale_amount,
+			t1.product_type_id,
+			t1.product_type_name,
+			IF(t3.parent_id is null or t3.parent_id = 0,t3.id,t3.parent_id) as brand_id,
+			IFNULL(t3.parent_name,t3.`name`) as brand_name,
+			t4.`name` as customer_name 
+		from (
+			select t.merchant_id,t.merchant_name,t.customer_id,t1.goods_id,SUM(transfer_num) as day_sale_count,
+			SUM((transfer_num*(select price from t_sale_order_item where order_id = t.sale_order_id and t1.goods_id=goods_id limit 1))) as day_sale_amount 
+			from t_sale_out_depot t
+			left join t_sale_out_depot_item t1 on t.id = t1.sale_out_depot_id
+			where sale_type ='1' and status in('018') 
+			and deliver_date >=#{startDate} and deliver_date &lt;#{endDate}
+			<if test="merchantId!=null"> and merchant_id = #{merchantId} </if>
+			GROUP BY t.merchant_id,t.merchant_name,t.customer_id,t1.goods_id
+		) tt 
+		left join st_merchandise_info t1 on t1.id = tt.goods_id
+		left join st_brand t3 on t3.id = t1.brand_id 
+		left join st_customer_info t4 on t4.id = tt.customer_id
+		GROUP BY 
+			tt.merchant_id,
+			tt.merchant_name,
+			tt.customer_id,
+			brand_id,
+			brand_name,
+			customer_name,
+			product_type_id,
+			product_type_name
+    </select>
+	<!-- 分页查询 -->
+	<select id="listSalePurchaseDailyByPage" resultMap='SalePurchasedailyDayModelMap1' parameterType='SalePurchasedailyDayModel'>
+		select t.*,
+		ifnull(t1.mon_sale_count,0) as mon_sale_count,ifnull(t1.mon_sale_amount,0) as mon_sale_amount,
+		ifnull(t2.day_sale_count,0) as day_sale_count,ifnull(t2.day_sale_amount ,0) as day_sale_amount 
+		from (
+			<!-- 年度销售量、年度销售额 -->
+			select merchant_id,merchant_name,customer_id,customer_name,
+			product_type_id,product_type_name,brand_id,brand_name,
+			SUM(day_sale_count) as year_sale_count,
+			SUM(day_sale_amount) as year_sale_amount 
+			from r_sale_purchasedaily_day 
+			<where>
+				<trim suffixOverrides='and'>
+					<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+					<if test="customerId !=null">  customer_id = #{customerId} and </if>
+					<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+					<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+					 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y')
+				</trim>
+			</where>
+			GROUP BY merchant_id,merchant_name,customer_id,customer_name,
+			product_type_id,product_type_name,brand_id,brand_name
+		) t
+		LEFT JOIN (
+			<!-- 当月销售量、当月销售额 -->
+			select merchant_id,customer_id,product_type_id,brand_id,SUM(day_sale_count) as mon_sale_count,
+			SUM(day_sale_amount) as mon_sale_amount 
+			from r_sale_purchasedaily_day 
+			<where>
+				<trim suffixOverrides='and'>
+					<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+					<if test="customerId !=null">  customer_id = #{customerId} and </if>
+					<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+					<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+					 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y%m') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y%m')
+				</trim>
+			</where>
+			GROUP BY merchant_id,customer_id,product_type_id,brand_id
+		) t1 on t.merchant_id = t1.merchant_id and t.customer_id = t1.customer_id 
+		and (t.product_type_id = t1.product_type_id OR (t.product_type_id IS NULL AND t1.product_type_id IS NULL)) 
+		and (t.brand_id = t1.brand_id OR (t.brand_id IS NULL AND t1.brand_id IS NULL))
+		LEFT JOIN (
+			<!-- 当日销售量、当日销售额 -->
+			select merchant_id,customer_id,product_type_id,brand_id,SUM(day_sale_count) as day_sale_count,
+			SUM(day_sale_amount) as day_sale_amount 
+			from r_sale_purchasedaily_day 
+			<where>
+				<trim suffixOverrides='and'>
+					<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+					<if test="customerId !=null">  customer_id = #{customerId} and </if>
+					<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+					<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+					 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y%m%d') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y%m%d')
+				</trim>
+			</where>
+			GROUP BY merchant_id,customer_id,product_type_id,brand_id
+		) t2 on t.merchant_id = t2.merchant_id and t.customer_id = t2.customer_id 
+		and (t.product_type_id = t2.product_type_id OR (t.product_type_id IS NULL AND t2.product_type_id IS NULL)) 
+		and (t.brand_id = t2.brand_id OR (t.brand_id IS NULL AND t2.brand_id IS NULL))
+		order by merchant_id,customer_id,product_type_id,brand_id
+	</select>
+	<!-- 导出 -->
+	<select id="exportSalePurchaseDailyDetails" resultMap='SalePurchasedailyDayModelMap1' parameterType='SalePurchasedailyDayModel'>
+		select t.*,
+		ifnull(t1.mon_sale_count,0) as mon_sale_count,ifnull(t1.mon_sale_amount,0) as mon_sale_amount,
+		ifnull(t2.day_sale_count,0) as day_sale_count,ifnull(t2.day_sale_amount ,0) as day_sale_amount 
+		from (
+			<!-- 年度销售量、年度销售额 -->
+			select merchant_id,merchant_name,customer_id,customer_name,
+			product_type_id,product_type_name,brand_id,brand_name,
+			SUM(day_sale_count) as year_sale_count,
+			SUM(day_sale_amount) as year_sale_amount 
+			from r_sale_purchasedaily_day 
+			<where>
+				<trim suffixOverrides='and'>
+					<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+					<if test="customerId !=null">  customer_id = #{customerId} and </if>
+					<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+					<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+					 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y')
+				</trim>
+			</where>
+			GROUP BY merchant_id,merchant_name,customer_id,customer_name,
+			product_type_id,product_type_name,brand_id,brand_name
+		) t
+		LEFT JOIN (
+			<!-- 当月销售量、当月销售额 -->
+			select merchant_id,customer_id,product_type_id,brand_id,SUM(day_sale_count) as mon_sale_count,
+			SUM(day_sale_amount) as mon_sale_amount 
+			from r_sale_purchasedaily_day 
+			<where>
+				<trim suffixOverrides='and'>
+					<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+					<if test="customerId !=null">  customer_id = #{customerId} and </if>
+					<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+					<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+					 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y%m') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y%m')
+				</trim>
+			</where>
+			GROUP BY merchant_id,customer_id,product_type_id,brand_id
+		) t1 on t.merchant_id = t1.merchant_id and t.customer_id = t1.customer_id 
+		and (t.product_type_id = t1.product_type_id OR (t.product_type_id IS NULL AND t1.product_type_id IS NULL)) 
+		and (t.brand_id = t1.brand_id OR (t.brand_id IS NULL AND t1.brand_id IS NULL))
+		LEFT JOIN (
+			<!-- 当日销售量、当日销售额 -->
+			select merchant_id,customer_id,product_type_id,brand_id,SUM(day_sale_count) as day_sale_count,
+			SUM(day_sale_amount) as day_sale_amount 
+			from r_sale_purchasedaily_day 
+			<where>
+				<trim suffixOverrides='and'>
+					<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+					<if test="customerId !=null">  customer_id = #{customerId} and </if>
+					<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+					<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+					 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y%m%d') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y%m%d')
+				</trim>
+			</where>
+			GROUP BY merchant_id,customer_id,product_type_id,brand_id
+		) t2 on t.merchant_id = t2.merchant_id and t.customer_id = t2.customer_id 
+		and (t.product_type_id = t2.product_type_id OR (t.product_type_id IS NULL AND t2.product_type_id IS NULL)) 
+		and (t.brand_id = t2.brand_id OR (t.brand_id IS NULL AND t2.brand_id IS NULL))
+		order by merchant_id,customer_id,product_type_id,brand_id
+	</select>
+	<!-- 获取导出的总条数 -->
+	 <select id='getExportTotalCount' resultType='java.lang.Long' parameterType='SalePurchasedailyDayModel'>
+	 	select count(*) from (
+	 		select t.*,
+			ifnull(t1.mon_sale_count,0) as mon_sale_count,ifnull(t1.mon_sale_amount,0) as mon_sale_amount,
+			ifnull(t2.day_sale_count,0) as day_sale_count,ifnull(t2.day_sale_amount ,0) as day_sale_amount 
+			from (
+				<!-- 年度销售量、年度销售额 -->
+				select merchant_id,merchant_name,customer_id,customer_name,
+				product_type_id,product_type_name,brand_id,brand_name,
+				SUM(day_sale_count) as year_sale_count,
+				SUM(day_sale_amount) as year_sale_amount 
+				from r_sale_purchasedaily_day 
+				<where>
+					<trim suffixOverrides='and'>
+						<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+						<if test="customerId !=null">  customer_id = #{customerId} and </if>
+						<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+						<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+						 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y')
+					</trim>
+				</where>
+				GROUP BY merchant_id,merchant_name,customer_id,customer_name,
+				product_type_id,product_type_name,brand_id,brand_name
+			) t
+			LEFT JOIN (
+				<!-- 当月销售量、当月销售额 -->
+				select merchant_id,customer_id,product_type_id,brand_id,SUM(day_sale_count) as mon_sale_count,
+				SUM(day_sale_amount) as mon_sale_amount 
+				from r_sale_purchasedaily_day 
+				<where>
+					<trim suffixOverrides='and'>
+						<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+						<if test="customerId !=null">  customer_id = #{customerId} and </if>
+						<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+						<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+						 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y%m') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y%m')
+					</trim>
+				</where>
+				GROUP BY merchant_id,customer_id,product_type_id,brand_id
+			) t1 on t.merchant_id = t1.merchant_id and t.customer_id = t1.customer_id 
+			and (t.product_type_id = t1.product_type_id OR (t.product_type_id IS NULL AND t1.product_type_id IS NULL)) 
+			and (t.brand_id = t1.brand_id OR (t.brand_id IS NULL AND t1.brand_id IS NULL))
+			LEFT JOIN (
+				<!-- 当日销售量、当日销售额 -->
+				select merchant_id,customer_id,product_type_id,brand_id,SUM(day_sale_count) as day_sale_count,
+				SUM(day_sale_amount) as day_sale_amount 
+				from r_sale_purchasedaily_day 
+				<where>
+					<trim suffixOverrides='and'>
+						<if test="productTypeId !=null">  product_type_id = #{productTypeId} and </if>
+						<if test="customerId !=null">  customer_id = #{customerId} and </if>
+						<if test="brandId !=null and brandId !=''">  brand_id = #{brandId} and </if> 
+						<if test="merchantId != null and merchantId != ''">  merchant_id = #{merchantId} and </if>
+						 DATE_FORMAT(str_to_date(report_date, '%Y-%m-%d'),'%Y%m%d') = DATE_FORMAT(str_to_date( #{reportDate}, '%Y-%m-%d'),'%Y%m%d')
+					</trim>
+				</where>
+				GROUP BY merchant_id,customer_id,product_type_id,brand_id
+			) t2 on t.merchant_id = t2.merchant_id and t.customer_id = t2.customer_id 
+			and (t.product_type_id = t2.product_type_id OR (t.product_type_id IS NULL AND t2.product_type_id IS NULL)) 
+			and (t.brand_id = t2.brand_id OR (t.brand_id IS NULL AND t2.brand_id IS NULL))
+			order by merchant_id,customer_id,product_type_id,brand_id
+	 	) ttt
+	 </select>
+	 <select id="getMaxReportDate" resultMap='SalePurchasedailyDayModelMap' parameterType='SalePurchasedailyDayModel'>
+	 	select 
+	 		merchant_id,
+            max(report_date) as report_date 
+		from r_sale_purchasedaily_day 
+		where merchant_id = #{merchantId}
+		GROUP BY  merchant_id
+	 </select>
+</mapper>

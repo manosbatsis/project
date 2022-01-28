@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.VipOutDepotDetailsMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="VipOutDepotDetailsModelMap" type="VipOutDepotDetailsModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="poNo" column="po_no" />
+                <result property="vipBillCode" column="vip_bill_code" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="saleOrder" column="sale_order" />
+                <result property="saleOutOrder" column="sale_out_order" />
+                <result property="outDepotNum" column="out_depot_num" />
+                <result property="outDepotDate" column="out_depot_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="poDate" column="po_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='VipOutDepotDetailsModelMap' parameterType='VipOutDepotDetailsModel'>
+        select <include refid='sql_columns' /> from r_vip_out_depot_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='VipOutDepotDetailsModelMap' parameterType='VipOutDepotDetailsModel'>
+        select <include refid='sql_columns' /> from r_vip_out_depot_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='VipOutDepotDetailsModelMap' parameterType='VipOutDepotDetailsModel' >
+        select <include refid='sql_columns' /> from r_vip_out_depot_details  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='VipOutDepotDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_vip_out_depot_details
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='vipBillCode!=null and !"".equals(vipBillCode)' > vip_bill_code , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='saleOrder!=null and !"".equals(saleOrder)' > sale_order , </if>
+                        <if test='saleOutOrder!=null and !"".equals(saleOutOrder)' > sale_out_order , </if>
+                        <if test='outDepotNum!=null' >out_depot_num , </if>
+                        <if test='outDepotDate!=null' >out_depot_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='poDate!=null' >po_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='vipBillCode!=null and !"".equals(vipBillCode)' > #{vipBillCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='saleOrder!=null and !"".equals(saleOrder)' > #{saleOrder} , </if>
+                        <if test='saleOutOrder!=null and !"".equals(saleOutOrder)' > #{saleOutOrder} , </if>
+                        <if test='outDepotNum!=null' > #{outDepotNum} , </if>
+                        <if test='outDepotDate!=null' > #{outDepotDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='poDate!=null' > #{poDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='VipOutDepotDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_vip_out_depot_details SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='vipBillCode!=null and !"".equals(vipBillCode)' >vip_bill_code= #{vipBillCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='saleOrder!=null and !"".equals(saleOrder)' >sale_order= #{saleOrder} , </if>
+                        <if test='saleOutOrder!=null and !"".equals(saleOutOrder)' >sale_out_order= #{saleOutOrder} , </if>
+                        <if test='outDepotNum!=null' > out_depot_num= #{outDepotNum} , </if>
+                        <if test='outDepotDate!=null' > out_depot_date= #{outDepotDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='poDate!=null' > po_date= #{poDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_vip_out_depot_details  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_vip_out_depot_details where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            po_no,
+            vip_bill_code,
+            goods_name,
+            goods_no,
+            goods_id,
+            commbarcode,
+            sale_order,
+            sale_out_order,
+            out_depot_num,
+            out_depot_date,
+            create_date,
+            modify_date,
+            po_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='vipBillCode!=null and !"".equals(vipBillCode)' >vip_bill_code= #{vipBillCode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='saleOrder!=null and !"".equals(saleOrder)' >sale_order= #{saleOrder} and </if>
+                            <if test='saleOutOrder!=null and !"".equals(saleOutOrder)' >sale_out_order= #{saleOutOrder} and </if>
+                            <if test='outDepotNum!=null' > out_depot_num= #{outDepotNum} and </if>
+                            <if test='outDepotDate!=null' > out_depot_date= #{outDepotDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='poDate!=null' > po_date= #{poDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<delete id='deleteByModel' parameterType='VipOutDepotDetailsModel'>
+        	delete from r_vip_out_depot_details  where merchant_id = #{merchantId} and 
+        		po_no = #{poNo} and commbarcode = #{commbarcode}
+    	</delete>
+
+		<insert id='batchInsert' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_vip_out_depot_details
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+			            merchant_id,
+			            merchant_name,
+			            depot_id,
+			            depot_name,
+			            po_no,
+			            vip_bill_code,
+			            goods_name,
+			            goods_no,
+			            goods_id,
+			            commbarcode,
+			            sale_order,
+			            sale_out_order,
+			            out_depot_num,
+			            out_depot_date,
+			            create_date,
+			            modify_date,
+			            po_date
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+	            <trim prefix="(" suffix=")" suffixOverrides="," >
+	                        #{item.merchantId} ,
+	                        #{item.merchantName} ,
+	                        #{item.depotId} ,
+	                        #{item.depotName} ,
+	                        #{item.poNo} ,
+	                        #{item.vipBillCode} ,
+	                        #{item.goodsName} , 
+	                        #{item.goodsNo} ,
+	                        #{item.goodsId} ,
+	                        #{item.commbarcode} ,
+	                        #{item.saleOrder} , 
+	                        #{item.saleOutOrder} , 
+	                        #{item.outDepotNum} ,
+	                        #{item.outDepotDate} ,
+	                        #{item.createDate} , 
+	                        #{item.modifyDate} , 
+	                        #{item.poDate} 
+	            </trim>
+            </foreach>
+        </insert>
+
+        <!-- 查询所有信息 -->
+        <select id="listDTO" resultType="com.topideal.entity.dto.VipOutDepotDetailsDTO" parameterType='com.topideal.entity.dto.VipOutDepotDetailsDTO'>
+            select d.* from r_vip_out_depot_details d
+            left join r_vip_po_bill_verification p on d.merchant_id=p.merchant_id and d.po_no=p.PO and d.commbarcode=p.commbarcode
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > d.merchant_id= #{merchantId} and </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >d.po_no= #{poNo} and </if>
+                    <if test='commbarcode!=null and !"".equals(commbarcode)' > d.commbarcode= #{commbarcode} and </if>
+                    <if test='customerId!=null' > p.customer_id= #{customerId} and </if>
+                    <if test='buId!=null' > p.bu_id= #{buId} and </if>
+                    <if test='buList!=null and !"".equals(buList)' >p.bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                </trim>
+            </where>
+        </select>
+
+</mapper>

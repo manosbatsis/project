@@ -1,0 +1,483 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.SaleOutDepotMapper'>
+
+	<!-- 关系映射 -->
+	<resultMap id="SaleOutDepotModelMap" type="SaleOutDepotModel" >
+		<result property="id" column="id" />
+		<result property="saleOrderId" column="sale_order_id" />
+		<result property="merchantId" column="merchant_id" />
+		<result property="poNo" column="po_no" />
+		<result property="outDepotId" column="out_depot_id" />
+		<result property="outDepotName" column="out_depot_name" />
+		<result property="customerId" column="customer_id" />
+		<result property="customerName" column="customer_name" />
+		<result property="saleType" column="sale_type" />
+		<result property="deliverDate" column="deliver_date" />
+		<result property="status" column="status" />
+		<result property="createDate" column="create_date" />
+		<result property="creater" column="creater" />
+		<result property="code" column="code" />
+		<result property="merchantName" column="merchant_name" />
+		<result property="saleOrderCode" column="sale_order_code" />
+		<result property="logisticsName" column="logistics_name" />
+		<result property="vipsBillNo" column="vips_bill_no" />
+		<result property="lbxNo" column="lbx_no" />
+		<result property="blNo" column="bl_no" />
+		<result property="wayBillNo" column="way_bill_no" />
+		<result property="importMode" column="import_mode" />
+		<result property="returnStatus" column="return_status" />
+		<result property="modifyDate" column="modify_date" />
+		<result property="receiveDate" column="receive_date" />
+		<result property="shelfDate" column="shelf_date" />
+		<result property="receiveName" column="receive_name" />
+		<result property="shelfName" column="shelf_name" />
+		<result property="receiver" column="receiver" />
+		<result property="shelf" column="shelf" />
+		<result property="remark" column="remark" />
+		<result property="outExternalCode" column="out_external_code" />
+		<result property="poDate" column="po_date" />
+		<result property="currency" column="currency" />
+		<result property="orderSource" column="order_source" />
+		<result property="auditor" column="auditor" />
+		<result property="auditDate" column="audit_date" />
+		<result property="auditName" column="audit_name" />
+		<result property="buName" column="bu_name" />
+		<result property="buId" column="bu_id" />
+		<result property="saleDeclareOrderId" column="sale_declare_order_id" />
+		<result property="saleDeclareOrderCode" column="sale_declare_order_code" />
+		<result property="isWriteOff" column="is_write_off" />
+		<result property="originalSaleOutOrderId" column="original_sale_out_order_id" />
+		<result property="originalSaleOutOrderCode" column="original_sale_out_order_code" />
+	</resultMap>
+
+	<!-- 查询所有信息 -->
+	<select id="list" resultMap='SaleOutDepotModelMap' parameterType='SaleOutDepotModel'>
+		select <include refid='sql_columns' /> from t_sale_out_depot  <include refid='sql_where' />
+	</select>
+
+	<!-- 查询所有信息 分页 -->
+	<select id='listByPage' resultMap='SaleOutDepotModelMap' parameterType='SaleOutDepotModel'>
+		select <include refid='sql_columns' /> from t_sale_out_depot  <include refid='sql_where' />
+	</select>
+
+	<!-- 条件查询 -->
+	<select id='get' resultMap='SaleOutDepotModelMap' parameterType='SaleOutDepotModel' >
+		select <include refid='sql_columns' /> from t_sale_out_depot  <include refid='sql_where' />
+	</select>
+
+	<!-- 新增数据 -->
+	<insert id='insert' parameterType='SaleOutDepotModel' keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO t_sale_out_depot
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test='id!=null' >id , </if>
+			<if test='saleOrderId!=null' >sale_order_id , </if>
+			<if test='merchantId!=null' >merchant_id , </if>
+			<if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+			<if test='outDepotId!=null' >out_depot_id , </if>
+			<if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+			<if test='customerId!=null' >customer_id , </if>
+			<if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+			<if test='saleType!=null and !"".equals(saleType)' > sale_type , </if>
+			<if test='deliverDate!=null' >deliver_date , </if>
+			<if test='status!=null and !"".equals(status)' > status , </if>
+			<if test='createDate!=null' >create_date , </if>
+			<if test='creater!=null' >creater , </if>
+			<if test='code!=null and !"".equals(code)' > code , </if>
+			<if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+			<if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > sale_order_code , </if>
+			<if test='logisticsName!=null and !"".equals(logisticsName)' > logistics_name , </if>
+			<if test='vipsBillNo!=null and !"".equals(vipsBillNo)' > vips_bill_no , </if>
+			<if test='lbxNo!=null and !"".equals(lbxNo)' > lbx_no , </if>
+			<if test='blNo!=null and !"".equals(blNo)' > bl_no , </if>
+			<if test='wayBillNo!=null and !"".equals(wayBillNo)' > way_bill_no , </if>
+			<if test='importMode!=null and !"".equals(importMode)' > import_mode , </if>
+			<if test='returnStatus!=null and !"".equals(returnStatus)' > return_status , </if>
+			<if test='modifyDate!=null' >modify_date , </if>
+			<if test='receiveDate!=null' >receive_date , </if>
+			<if test='shelfDate!=null' >shelf_date , </if>
+			<if test='receiveName!=null and !"".equals(receiveName)' > receive_name , </if>
+			<if test='shelfName!=null and !"".equals(shelfName)' > shelf_name , </if>
+			<if test='receiver!=null' >receiver , </if>
+			<if test='shelf!=null' >shelf , </if>
+			<if test='remark!=null and !"".equals(remark)' > remark , </if>
+			<if test='outExternalCode!=null and !"".equals(outExternalCode)' > out_external_code , </if>
+			<if test='poDate!=null' >po_date , </if>
+			<if test='currency!=null and !"".equals(currency)' > currency , </if>
+			<if test='orderSource!=null and !"".equals(orderSource)' > order_source , </if>
+			<if test='auditor!=null' >auditor , </if>
+			<if test='auditDate!=null' >audit_date , </if>
+			<if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+			<if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+			<if test='buId!=null' >bu_id , </if>
+			<if test='saleDeclareOrderId!=null' >sale_declare_order_id , </if>
+			<if test='saleDeclareOrderCode!=null and !"".equals(saleDeclareOrderCode)' > sale_declare_order_code , </if>
+			<if test='isWriteOff!=null and !"".equals(isWriteOff)' > is_write_off , </if>
+			<if test='originalSaleOutOrderId!=null' >original_sale_out_order_id , </if>
+			<if test='originalSaleOutOrderCode!=null and !"".equals(originalSaleOutOrderCode)' > original_sale_out_order_code , </if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test='id!=null' > #{id} , </if>
+			<if test='saleOrderId!=null' > #{saleOrderId} , </if>
+			<if test='merchantId!=null' > #{merchantId} , </if>
+			<if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+			<if test='outDepotId!=null' > #{outDepotId} , </if>
+			<if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+			<if test='customerId!=null' > #{customerId} , </if>
+			<if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+			<if test='saleType!=null and !"".equals(saleType)' > #{saleType} , </if>
+			<if test='deliverDate!=null' > #{deliverDate} , </if>
+			<if test='status!=null and !"".equals(status)' > #{status} , </if>
+			<if test='createDate!=null' > #{createDate} , </if>
+			<if test='creater!=null' > #{creater} , </if>
+			<if test='code!=null and !"".equals(code)' > #{code} , </if>
+			<if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+			<if test='saleOrderCode!=null and !"".equals(saleOrderCode)' > #{saleOrderCode} , </if>
+			<if test='logisticsName!=null and !"".equals(logisticsName)' > #{logisticsName} , </if>
+			<if test='vipsBillNo!=null and !"".equals(vipsBillNo)' > #{vipsBillNo} , </if>
+			<if test='lbxNo!=null and !"".equals(lbxNo)' > #{lbxNo} , </if>
+			<if test='blNo!=null and !"".equals(blNo)' > #{blNo} , </if>
+			<if test='wayBillNo!=null and !"".equals(wayBillNo)' > #{wayBillNo} , </if>
+			<if test='importMode!=null and !"".equals(importMode)' > #{importMode} , </if>
+			<if test='returnStatus!=null and !"".equals(returnStatus)' > #{returnStatus} , </if>
+			<if test='modifyDate!=null' > #{modifyDate} , </if>
+			<if test='receiveDate!=null' > #{receiveDate} , </if>
+			<if test='shelfDate!=null' > #{shelfDate} , </if>
+			<if test='receiveName!=null and !"".equals(receiveName)' > #{receiveName} , </if>
+			<if test='shelfName!=null and !"".equals(shelfName)' > #{shelfName} , </if>
+			<if test='receiver!=null' > #{receiver} , </if>
+			<if test='shelf!=null' > #{shelf} , </if>
+			<if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+			<if test='outExternalCode!=null and !"".equals(outExternalCode)' > #{outExternalCode} , </if>
+			<if test='poDate!=null' > #{poDate} , </if>
+			<if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+			<if test='orderSource!=null and !"".equals(orderSource)' > #{orderSource} , </if>
+			<if test='auditor!=null' > #{auditor} , </if>
+			<if test='auditDate!=null' > #{auditDate} , </if>
+			<if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+			<if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+			<if test='buId!=null' > #{buId} , </if>
+			<if test='saleDeclareOrderId!=null' > #{saleDeclareOrderId} , </if>
+			<if test='saleDeclareOrderCode!=null and !"".equals(saleDeclareOrderCode)' > #{saleDeclareOrderCode} , </if>
+			<if test='isWriteOff!=null and !"".equals(isWriteOff)' > #{isWriteOff} , </if>
+			<if test='originalSaleOutOrderId!=null' > #{originalSaleOutOrderId} , </if>
+			<if test='originalSaleOutOrderCode!=null and !"".equals(originalSaleOutOrderCode)' > #{originalSaleOutOrderCode} , </if>
+		</trim>
+	</insert>
+
+	<!-- 修改数据 -->
+	<update id='update' parameterType='SaleOutDepotModel' keyProperty="id" useGeneratedKeys="true">
+		UPDATE  t_sale_out_depot SET
+		<trim  suffixOverrides=",">
+			<if test='id!=null' > id= #{id} , </if>
+			<if test='saleOrderId!=null' > sale_order_id= #{saleOrderId} , </if>
+			<if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+			<if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+			<if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+			<if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+			<if test='customerId!=null' > customer_id= #{customerId} , </if>
+			<if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+			<if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} , </if>
+			<if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+			<if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+			<if test='createDate!=null' > create_date= #{createDate} , </if>
+			<if test='creater!=null' > creater= #{creater} , </if>
+			<if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+			<if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+			<if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} , </if>
+			<if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} , </if>
+			<if test='vipsBillNo!=null and !"".equals(vipsBillNo)' >vips_bill_no= #{vipsBillNo} , </if>
+			<if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} , </if>
+			<if test='blNo!=null and !"".equals(blNo)' >bl_no= #{blNo} , </if>
+			<if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} , </if>
+			<if test='importMode!=null and !"".equals(importMode)' >import_mode= #{importMode} , </if>
+			<if test='returnStatus!=null and !"".equals(returnStatus)' >return_status= #{returnStatus} , </if>
+			<if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+			<if test='receiveDate!=null' > receive_date= #{receiveDate} , </if>
+			<if test='shelfDate!=null' > shelf_date= #{shelfDate} , </if>
+			<if test='receiveName!=null and !"".equals(receiveName)' >receive_name= #{receiveName} , </if>
+			<if test='shelfName!=null and !"".equals(shelfName)' >shelf_name= #{shelfName} , </if>
+			<if test='receiver!=null' > receiver= #{receiver} , </if>
+			<if test='shelf!=null' > shelf= #{shelf} , </if>
+			<if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+			<if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} , </if>
+			<if test='poDate!=null' > po_date= #{poDate} , </if>
+			<if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+			<if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} , </if>
+			<if test='auditor!=null' > auditor= #{auditor} , </if>
+			<if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+			<if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+			<if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+			<if test='buId!=null' > bu_id= #{buId} , </if>
+			<if test='saleDeclareOrderId!=null' > sale_declare_order_id= #{saleDeclareOrderId} , </if>
+			<if test='saleDeclareOrderCode!=null and !"".equals(saleDeclareOrderCode)' >sale_declare_order_code= #{saleDeclareOrderCode} , </if>
+			<if test='isWriteOff!=null and !"".equals(isWriteOff)' >is_write_off= #{isWriteOff} , </if>
+			<if test='originalSaleOutOrderId!=null' > original_sale_out_order_id= #{originalSaleOutOrderId} , </if>
+			<if test='originalSaleOutOrderCode!=null and !"".equals(originalSaleOutOrderCode)' >original_sale_out_order_code= #{originalSaleOutOrderCode} , </if>
+		</trim>
+		<where>
+			id=#{id}
+		</where>
+	</update>
+
+	<!-- 删除数据 -->
+	<delete id='del' parameterType='java.lang.Long'>
+		delete from t_sale_out_depot  where id=#{id}
+	</delete>
+
+	<!-- 批量删除数据 -->
+	<delete id='batchDel' parameterType='java.util.ArrayList'>
+		delete from t_sale_out_depot where id in
+		<foreach collection='list' item='id' separator=',' open='(' close=')'>
+			#{id}
+		</foreach>
+	</delete>
+
+	<!-- 表字段 -->
+	<sql id='sql_columns'>
+		id,
+		sale_order_id,
+		merchant_id,
+		po_no,
+		out_depot_id,
+		out_depot_name,
+		customer_id,
+		customer_name,
+		sale_type,
+		deliver_date,
+		status,
+		create_date,
+		creater,
+		code,
+		merchant_name,
+		sale_order_code,
+		logistics_name,
+		vips_bill_no,
+		lbx_no,
+		bl_no,
+		way_bill_no,
+		import_mode,
+		return_status,
+		modify_date,
+		receive_date,
+		shelf_date,
+		receive_name,
+		shelf_name,
+		receiver,
+		shelf,
+		remark,
+		out_external_code,
+		po_date,
+		currency,
+		order_source,
+		auditor,
+		audit_date,
+		audit_name,
+		bu_name,
+		bu_id,
+		sale_declare_order_id,
+		sale_declare_order_code,
+		is_write_off,
+		original_sale_out_order_id,
+		original_sale_out_order_code
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id='sql_where'>
+		<where>
+			<trim suffixOverrides='and'>
+				<if test='id!=null' > id= #{id} and </if>
+				<if test='saleOrderId!=null' > sale_order_id= #{saleOrderId} and </if>
+				<if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+				<if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+				<if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+				<if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+				<if test='customerId!=null' > customer_id= #{customerId} and </if>
+				<if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+				<if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} and </if>
+				<if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+				<if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+				<if test='createDate!=null' > create_date= #{createDate} and </if>
+				<if test='creater!=null' > creater= #{creater} and </if>
+				<if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+				<if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+				<if test='saleOrderCode!=null and !"".equals(saleOrderCode)' >sale_order_code= #{saleOrderCode} and </if>
+				<if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} and </if>
+				<if test='vipsBillNo!=null and !"".equals(vipsBillNo)' >vips_bill_no= #{vipsBillNo} and </if>
+				<if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+				<if test='blNo!=null and !"".equals(blNo)' >bl_no= #{blNo} and </if>
+				<if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} and </if>
+				<if test='importMode!=null and !"".equals(importMode)' >import_mode= #{importMode} and </if>
+				<if test='returnStatus!=null and !"".equals(returnStatus)' >return_status= #{returnStatus} and </if>
+				<if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+				<if test='receiveDate!=null' > receive_date= #{receiveDate} and </if>
+				<if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+				<if test='receiveName!=null and !"".equals(receiveName)' >receive_name= #{receiveName} and </if>
+				<if test='shelfName!=null and !"".equals(shelfName)' >shelf_name= #{shelfName} and </if>
+				<if test='receiver!=null' > receiver= #{receiver} and </if>
+				<if test='shelf!=null' > shelf= #{shelf} and </if>
+				<if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+				<if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} and </if>
+				<if test='poDate!=null' > po_date= #{poDate} and </if>
+				<if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+				<if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} and </if>
+				<if test='auditor!=null' > auditor= #{auditor} and </if>
+				<if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+				<if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+				<if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+				<if test='buId!=null' > bu_id= #{buId} and </if>
+				<if test='saleDeclareOrderId!=null' > sale_declare_order_id= #{saleDeclareOrderId} and </if>
+				<if test='saleDeclareOrderCode!=null and !"".equals(saleDeclareOrderCode)' >sale_declare_order_code= #{saleDeclareOrderCode} and </if>
+				<if test='isWriteOff!=null and !"".equals(isWriteOff)' >is_write_off= #{isWriteOff} and </if>
+				<if test='originalSaleOutOrderId!=null' > original_sale_out_order_id= #{originalSaleOutOrderId} and </if>
+				<if test='originalSaleOutOrderCode!=null and !"".equals(originalSaleOutOrderCode)' >original_sale_out_order_code= #{originalSaleOutOrderCode} and </if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--自定义SQL -->
+	<!-- 根据创建修改时间查询出库单 -->
+	<select id='getOutDepotOrderByTime' resultType='map' parameterType='map'>
+		select t.id,t.code,t.sale_order_code,t.out_depot_id,date_format(t.deliver_date,'%Y-%m-%d %H:%i:%S') as deliver_date,t.po_no,'' as customer_name,t.status,
+               o.contract_no,o.currency,m.topideal_code,d.type,d.code as dcode,d.depot_code,d.name,'' AS customer_code
+		from t_sale_out_depot t
+		left join t_sale_out_depot_item i ON t.id=i.sale_out_depot_id
+		left join t_sale_order o ON t.sale_order_id=o.id
+		left join st_merchant_info m ON t.merchant_id=m.id
+		left join st_customer_info c ON t.customer_id=c.id
+		left join st_depot_info d ON t.out_depot_id=d.id
+		where t.merchant_id=#{merchantId} and t.status not in('017','027')
+			and t.bu_id in (
+						SELECT id from st_business_unit WHERE `code` IN (
+						'E071100',
+						'I020300',
+						'I020200'
+						)
+					)
+		 	  and (t.create_date&gt;=#{startTime} OR t.modify_date&gt;=#{startTime} OR i.create_date&gt;=#{startTime} OR i.modify_date&gt;=#{startTime})
+			  and (t.create_date&lt;=#{endTime} OR t.modify_date&lt;=#{endTime} OR i.create_date&lt;=#{endTime} OR i.modify_date&lt;=#{endTime})
+		group by t.id,t.code,t.sale_order_code,t.out_depot_id,t.deliver_date,t.po_no,t.customer_name,t.status,
+		       o.contract_no,m.topideal_code,d.type,d.code,d.depot_code,d.name,c.code
+		order by t.id
+		limit #{startIndex},#{pageSize}
+	</select>
+	<!-- 根据创建修改时间查询出库单统计数量 -->
+	<select id='getOutDepotOrderByTimeCount' resultType='java.lang.Integer' parameterType='map'>
+		select count(*) total_count from (
+			select t.id,t.code,t.sale_order_code,date_format(t.deliver_date,'%Y-%m-%d %H:%i:%S') as deliver_date,t.po_no,t.customer_name,t.status,
+	               o.contract_no,m.topideal_code,d.type,d.code as dcode,d.depot_code,d.name,c.code AS customer_code
+			from t_sale_out_depot t
+			left join t_sale_out_depot_item i ON t.id=i.sale_out_depot_id
+			left join t_sale_order o ON t.sale_order_id=o.id
+			left join st_merchant_info m ON t.merchant_id=m.id
+			left join st_customer_info c ON t.customer_id=c.id
+			left join st_depot_info d ON t.out_depot_id=d.id
+			where t.merchant_id=#{merchantId} and t.status not in('017','027')
+					and t.bu_id in (
+						SELECT id from st_business_unit WHERE `code` IN (
+						'E071100',
+						'I020300',
+						'I020200'
+						)
+					)
+			      and (t.create_date&gt;=#{startTime} OR t.modify_date&gt;=#{startTime} OR i.create_date&gt;=#{startTime} OR i.modify_date&gt;=#{startTime})
+				  and (t.create_date&lt;=#{endTime} OR t.modify_date&lt;=#{endTime} OR i.create_date&lt;=#{endTime} OR i.modify_date&lt;=#{endTime})
+			group by t.id,t.code,t.sale_order_code,t.deliver_date,t.po_no,t.customer_name,t.status,
+			       o.contract_no,m.topideal_code,d.type,d.code,d.depot_code,d.name,c.code
+		) c
+	</select>
+	<!-- 按 出库单查询出库商品-->
+    <select id='getOutDepotItemByCodes' resultType='map' parameterType="java.util.List">
+        select t.code,i.goods_no,i.goods_name,i.tallying_unit,
+			 b.name AS brank_name,m.commbarcode,todi.price,todi.remark,SUM(IFNULL(i.transfer_num, 0)) AS total_num
+		from t_sale_out_depot_item i
+		left join t_sale_out_depot t ON t.id=i.sale_out_depot_id
+		left join st_merchandise_info m ON i.goods_id=m.id
+		left join st_brand b ON m.brand_id=b.id
+		left join t_sale_order tod ON t.sale_order_id=tod.id
+		left join t_sale_order_item todi ON tod.id=todi.order_id and i.goods_id=todi.goods_id
+		where  t.code in
+           <foreach collection='list' item='code' separator=',' open='(' close=')'>
+            #{code}
+           </foreach>
+		group by t.code,i.goods_no,i.goods_name,i.tallying_unit,
+			 b.name,m.commbarcode,todi.price,todi.remark
+    </select>
+    <!-- 查询出库单批次数据-->
+    <select id='getItemBatchByCode' resultType='map' parameterType='map'>
+	    select i.transfer_batch_no,date_format(i.production_date,'%Y-%m-%d') as production_date,
+	       	date_format(i.overdue_date,'%Y-%m-%d') as overdue_date,sum(i.transfer_num) transfer_num
+		from t_sale_out_depot t,t_sale_out_depot_item i
+		where t.id=i.sale_out_depot_id and t.code=#{code} and i.goods_no=#{goodsNo}
+		<if test='unit==null or "".equals(unit)'> and (i.tallying_unit is null or i.tallying_unit='')</if>
+	    <if test='unit!=null and !"".equals(unit)'> and i.tallying_unit=#{unit}</if>
+		group by i.transfer_batch_no,i.production_date,i.overdue_date
+    </select>
+
+	<select id="countSaleOutOrderByMerchantIdAndSaleType" resultType="map" >
+		SELECT
+			name, saleNum
+		FROM (
+			SELECT
+				s.customer_name as name,
+				sum(si.transfer_num) AS saleNum
+			FROM
+				t_sale_out_depot s
+			LEFT JOIN t_sale_out_depot_item si ON s.id = si.sale_out_depot_id
+			WHERE s.sale_type in
+				<foreach collection='saleTypes' item='saleType' separator=',' open='(' close=')'>
+					#{saleType}
+				</foreach>
+				<if test="merchantId != null" >
+					AND s.merchant_id = #{merchantId}
+				</if>
+			AND DATE_FORMAT(s.deliver_date, '%Y-%m') = #{deliverDate}
+			and ( s.`status` = '018' or  s.`status` = '025' or  s.`status` = '026')
+			<if test='buList!=null and buList.size() > 0' > and s.bu_id in
+				<foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+					#{buId}
+				</foreach>
+			</if>
+			GROUP BY
+				s.customer_id,
+				s.customer_name
+		) t order by t.saleNum DESC limit 0,10
+	</select>
+
+	<select id="getSaleOutOrderTop10ByBrand" resultType="map" >
+		SELECT
+			name, saleNum
+		FROM (
+			SELECT
+				c.comm_brand_parent_name AS name,
+				SUM(si.transfer_num) AS saleNum
+			FROM
+				t_sale_out_depot s
+			LEFT JOIN t_sale_out_depot_item si ON s.id = si.sale_out_depot_id
+			LEFT JOIN st_commbarcode c ON si.commbarcode = c.commbarcode
+			WHERE
+				( s.`status` = '018' OR s.`status` = '025' OR s.`status` = '026')
+				<if test="merchantId != null" >
+					AND s.merchant_id = #{merchantId}
+				</if>
+			AND DATE_FORMAT(s.deliver_date, '%Y-%m') = #{deliverDate}
+			and s.sale_type in
+			<foreach collection='saleTypes' item='saleType' separator=',' open='(' close=')'>
+				#{saleType}
+			</foreach>
+			<if test='buList!=null and buList.size() > 0' >and s.bu_id in
+				<foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+					#{buId}
+				</foreach>
+			</if>
+			AND c.maintain_status = '1'
+			GROUP BY
+				c.comm_brand_parent_id,
+				c.comm_brand_parent_name
+		) t order by t.saleNum DESC limit 0,10
+
+	</select>
+</mapper>

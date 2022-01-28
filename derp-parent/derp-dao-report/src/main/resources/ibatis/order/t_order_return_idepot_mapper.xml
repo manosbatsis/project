@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.OrderReturnIdepotMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="OrderReturnIdepotModelMap" type="OrderReturnIdepotModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="externalCode" column="external_code" />
+                <result property="returnCode" column="return_code" />
+                <result property="inDepotCode" column="in_depot_code" />
+                <result property="originalDeliveryCode" column="original_delivery_code" />
+                <result property="returnType" column="return_type" />
+                <result property="returnInDepotId" column="return_in_depot_id" />
+                <result property="returnInDepotName" column="return_in_depot_name" />
+                <result property="returnInDepotCode" column="return_in_depot_code" />
+                <result property="returnInCreateDate" column="return_in_create_date" />
+                <result property="returnInDate" column="return_in_date" />
+                <result property="amount" column="amount" />
+                <result property="currency" column="currency" />
+                <result property="storePlatformCode" column="store_platform_code" />
+                <result property="buyerName" column="buyer_name" />
+                <result property="buyerPhone" column="buyer_phone" />
+                <result property="returnAddr" column="return_addr" />
+                <result property="postcode" column="postcode" />
+                <result property="logisticsName" column="logistics_name" />
+                <result property="logisticsWayBillNo" column="logistics_way_bill_no" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="orderReturnSource" column="order_return_source" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="status" column="status" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierName" column="modifier_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="auditor" column="auditor" />
+                <result property="auditName" column="audit_name" />
+                <result property="auditDate" column="audit_date" />
+                <result property="shopTypeCode" column="shop_type_code" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="refundEndDate" column="refund_end_date" />
+                <result property="afterSaleType" column="after_sale_type" />
+                <result property="totalRefundAmount" column="total_refund_amount" />
+                <result property="returnOrderType" column="return_order_type" />
+                <result property="tradeRefundAmount" column="trade_refund_amount" />
+                <result property="tradeRefundTax" column="trade_refund_tax" />
+                <result property="orderId" column="order_id" />
+                <result property="orderCode" column="order_code" />
+                <result property="refundRemark" column="refund_remark" />
+                <result property="isGenerate" column="is_generate" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OrderReturnIdepotModelMap' parameterType='OrderReturnIdepotModel'>
+        select <include refid='sql_columns' /> from t_order_return_idepot  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OrderReturnIdepotModelMap' parameterType='OrderReturnIdepotModel'>
+        select <include refid='sql_columns' /> from t_order_return_idepot  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OrderReturnIdepotModelMap' parameterType='OrderReturnIdepotModel' >
+        select <include refid='sql_columns' /> from t_order_return_idepot  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OrderReturnIdepotModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_order_return_idepot
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                        <if test='returnCode!=null and !"".equals(returnCode)' > return_code , </if>
+                        <if test='inDepotCode!=null and !"".equals(inDepotCode)' > in_depot_code , </if>
+                        <if test='originalDeliveryCode!=null and !"".equals(originalDeliveryCode)' > original_delivery_code , </if>
+                        <if test='returnType!=null and !"".equals(returnType)' > return_type , </if>
+                        <if test='returnInDepotId!=null' >return_in_depot_id , </if>
+                        <if test='returnInDepotName!=null and !"".equals(returnInDepotName)' > return_in_depot_name , </if>
+                        <if test='returnInDepotCode!=null and !"".equals(returnInDepotCode)' > return_in_depot_code , </if>
+                        <if test='returnInCreateDate!=null' >return_in_create_date , </if>
+                        <if test='returnInDate!=null' >return_in_date , </if>
+                        <if test='amount!=null' >amount , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='buyerName!=null and !"".equals(buyerName)' > buyer_name , </if>
+                        <if test='buyerPhone!=null and !"".equals(buyerPhone)' > buyer_phone , </if>
+                        <if test='returnAddr!=null and !"".equals(returnAddr)' > return_addr , </if>
+                        <if test='postcode!=null and !"".equals(postcode)' > postcode , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' > logistics_name , </if>
+                        <if test='logisticsWayBillNo!=null and !"".equals(logisticsWayBillNo)' > logistics_way_bill_no , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='orderReturnSource!=null' >order_return_source , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > modifier_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='auditor!=null' >auditor , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > shop_type_code , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='refundEndDate!=null' >refund_end_date , </if>
+                        <if test='afterSaleType!=null and !"".equals(afterSaleType)' > after_sale_type , </if>
+                        <if test='totalRefundAmount!=null' >total_refund_amount , </if>
+                        <if test='returnOrderType!=null and !"".equals(returnOrderType)' > return_order_type , </if>
+                        <if test='tradeRefundAmount!=null' >trade_refund_amount , </if>
+                        <if test='tradeRefundTax!=null' >trade_refund_tax , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code , </if>
+                        <if test='refundRemark!=null and !"".equals(refundRemark)' >refund_remark , </if>
+                        <if test='isGenerate!=null and !"".equals(isGenerate)' > is_generate , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                        <if test='returnCode!=null and !"".equals(returnCode)' > #{returnCode} , </if>
+                        <if test='inDepotCode!=null and !"".equals(inDepotCode)' > #{inDepotCode} , </if>
+                        <if test='originalDeliveryCode!=null and !"".equals(originalDeliveryCode)' > #{originalDeliveryCode} , </if>
+                        <if test='returnType!=null and !"".equals(returnType)' > #{returnType} , </if>
+                        <if test='returnInDepotId!=null' > #{returnInDepotId} , </if>
+                        <if test='returnInDepotName!=null and !"".equals(returnInDepotName)' > #{returnInDepotName} , </if>
+                        <if test='returnInDepotCode!=null and !"".equals(returnInDepotCode)' > #{returnInDepotCode} , </if>
+                        <if test='returnInCreateDate!=null' > #{returnInCreateDate} , </if>
+                        <if test='returnInDate!=null' > #{returnInDate} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='buyerName!=null and !"".equals(buyerName)' > #{buyerName} , </if>
+                        <if test='buyerPhone!=null and !"".equals(buyerPhone)' > #{buyerPhone} , </if>
+                        <if test='returnAddr!=null and !"".equals(returnAddr)' > #{returnAddr} , </if>
+                        <if test='postcode!=null and !"".equals(postcode)' > #{postcode} , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' > #{logisticsName} , </if>
+                        <if test='logisticsWayBillNo!=null and !"".equals(logisticsWayBillNo)' > #{logisticsWayBillNo} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='orderReturnSource!=null' > #{orderReturnSource} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > #{modifierName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='auditor!=null' > #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' > #{shopTypeCode} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='refundEndDate!=null' > #{refundEndDate} , </if>
+                        <if test='afterSaleType!=null and !"".equals(afterSaleType)' > #{afterSaleType} , </if>
+                        <if test='totalRefundAmount!=null' > #{totalRefundAmount} , </if>
+                        <if test='returnOrderType!=null and !"".equals(returnOrderType)' > #{returnOrderType} , </if>
+                        <if test='tradeRefundAmount!=null' > #{tradeRefundAmount} , </if>
+                        <if test='tradeRefundTax!=null' > #{tradeRefundTax} , </if>
+                        <if test='orderId!=null' > #{orderId}, </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='refundRemark!=null and !"".equals(refundRemark)' >#{refundRemark} , </if>
+                        <if test='isGenerate!=null and !"".equals(isGenerate)' > #{isGenerate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OrderReturnIdepotModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_order_return_idepot SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                        <if test='returnCode!=null and !"".equals(returnCode)' >return_code= #{returnCode} , </if>
+                        <if test='inDepotCode!=null and !"".equals(inDepotCode)' >in_depot_code= #{inDepotCode} , </if>
+                        <if test='originalDeliveryCode!=null and !"".equals(originalDeliveryCode)' >original_delivery_code= #{originalDeliveryCode} , </if>
+                        <if test='returnType!=null and !"".equals(returnType)' >return_type= #{returnType} , </if>
+                        <if test='returnInDepotId!=null' > return_in_depot_id= #{returnInDepotId} , </if>
+                        <if test='returnInDepotName!=null and !"".equals(returnInDepotName)' >return_in_depot_name= #{returnInDepotName} , </if>
+                        <if test='returnInDepotCode!=null and !"".equals(returnInDepotCode)' >return_in_depot_code= #{returnInDepotCode} , </if>
+                        <if test='returnInCreateDate!=null' > return_in_create_date= #{returnInCreateDate} , </if>
+                        <if test='returnInDate!=null' > return_in_date= #{returnInDate} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='buyerName!=null and !"".equals(buyerName)' >buyer_name= #{buyerName} , </if>
+                        <if test='buyerPhone!=null and !"".equals(buyerPhone)' >buyer_phone= #{buyerPhone} , </if>
+                        <if test='returnAddr!=null and !"".equals(returnAddr)' >return_addr= #{returnAddr} , </if>
+                        <if test='postcode!=null and !"".equals(postcode)' >postcode= #{postcode} , </if>
+                        <if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} , </if>
+                        <if test='logisticsWayBillNo!=null and !"".equals(logisticsWayBillNo)' >logistics_way_bill_no= #{logisticsWayBillNo} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='orderReturnSource!=null' > order_return_source= #{orderReturnSource} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='auditor!=null' > auditor= #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+                        <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='refundEndDate!=null' > refund_end_date= #{refundEndDate} , </if>
+                        <if test='afterSaleType!=null and !"".equals(afterSaleType)' >after_sale_type= #{afterSaleType} , </if>
+                        <if test='totalRefundAmount!=null' > total_refund_amount= #{totalRefundAmount} , </if>
+                        <if test='returnOrderType!=null and !"".equals(returnOrderType)' >return_order_type= #{returnOrderType} , </if>
+                        <if test='tradeRefundAmount!=null' > trade_refund_amount= #{tradeRefundAmount} , </if>
+                        <if test='tradeRefundTax!=null' > trade_refund_tax= #{tradeRefundTax} , </if>
+                        <if test='orderId!=null' > order_id=#{orderId}, </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code=#{orderCode} , </if>
+                        <if test='refundRemark!=null and !"".equals(refundRemark)' >refund_remark=#{refundRemark} , </if>
+                        <if test='isGenerate!=null and !"".equals(isGenerate)' >is_generate= #{isGenerate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_order_return_idepot  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_order_return_idepot where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            external_code,
+            return_code,
+            in_depot_code,
+            original_delivery_code,
+            return_type,
+            return_in_depot_id,
+            return_in_depot_name,
+            return_in_depot_code,
+            return_in_create_date,
+            return_in_date,
+            amount,
+            currency,
+            store_platform_code,
+            buyer_name,
+            buyer_phone,
+            return_addr,
+            postcode,
+            logistics_name,
+            logistics_way_bill_no,
+            shop_code,
+            shop_name,
+            order_return_source,
+            merchant_name,
+            merchant_id,
+            status,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_name,
+            modify_date,
+            auditor,
+            audit_name,
+            audit_date,
+            shop_type_code,
+            customer_id,
+            customer_name,
+            refund_end_date,
+            after_sale_type,
+            total_refund_amount,
+            return_order_type,
+            trade_refund_amount,
+            trade_refund_tax,
+            order_id,
+            order_code,
+            refund_remark,
+            is_generate
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='returnCode!=null and !"".equals(returnCode)' >return_code= #{returnCode} and </if>
+                            <if test='inDepotCode!=null and !"".equals(inDepotCode)' >in_depot_code= #{inDepotCode} and </if>
+                            <if test='originalDeliveryCode!=null and !"".equals(originalDeliveryCode)' >original_delivery_code= #{originalDeliveryCode} and </if>
+                            <if test='returnType!=null and !"".equals(returnType)' >return_type= #{returnType} and </if>
+                            <if test='returnInDepotId!=null' > return_in_depot_id= #{returnInDepotId} and </if>
+                            <if test='returnInDepotName!=null and !"".equals(returnInDepotName)' >return_in_depot_name= #{returnInDepotName} and </if>
+                            <if test='returnInDepotCode!=null and !"".equals(returnInDepotCode)' >return_in_depot_code= #{returnInDepotCode} and </if>
+                            <if test='returnInCreateDate!=null' > return_in_create_date= #{returnInCreateDate} and </if>
+                            <if test='returnInDate!=null' > return_in_date= #{returnInDate} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='buyerName!=null and !"".equals(buyerName)' >buyer_name= #{buyerName} and </if>
+                            <if test='buyerPhone!=null and !"".equals(buyerPhone)' >buyer_phone= #{buyerPhone} and </if>
+                            <if test='returnAddr!=null and !"".equals(returnAddr)' >return_addr= #{returnAddr} and </if>
+                            <if test='postcode!=null and !"".equals(postcode)' >postcode= #{postcode} and </if>
+                            <if test='logisticsName!=null and !"".equals(logisticsName)' >logistics_name= #{logisticsName} and </if>
+                            <if test='logisticsWayBillNo!=null and !"".equals(logisticsWayBillNo)' >logistics_way_bill_no= #{logisticsWayBillNo} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='orderReturnSource!=null' > order_return_source= #{orderReturnSource} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='auditor!=null' > auditor= #{auditor} and </if>
+                            <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                            <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                            <if test='shopTypeCode!=null and !"".equals(shopTypeCode)' >shop_type_code= #{shopTypeCode} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='refundEndDate!=null' > refund_end_date= #{refundEndDate} and </if>
+                            <if test='afterSaleType!=null and !"".equals(afterSaleType)' >after_sale_type= #{afterSaleType} and </if>
+                            <if test='totalRefundAmount!=null' > total_refund_amount= #{totalRefundAmount} and </if>
+                            <if test='returnOrderType!=null and !"".equals(returnOrderType)' >return_order_type= #{returnOrderType} and </if>
+                            <if test='tradeRefundAmount!=null' > trade_refund_amount= #{tradeRefundAmount} and </if>
+                            <if test='tradeRefundTax!=null' > trade_refund_tax= #{tradeRefundTax} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' > order_code= #{orderCode} and </if>
+                            <if test='refundRemark!=null and !"".equals(refundRemark)' >refund_remark=#{refundRemark} and </if>
+                            <if test='isGenerate!=null and !"".equals(isGenerate)' >is_generate= #{isGenerate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id="getVeriNotDelList" resultMap='OrderReturnIdepotModelMap' parameterType='OrderReturnIdepotModel'>
+            select <include refid='sql_columns' /> from t_order_return_idepot  
+            <where>
+                <trim suffixOverrides='and'>
+                     <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                     <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                     <if test='inDepotCode!=null and !"".equals(inDepotCode)' >in_depot_code= #{inDepotCode} and </if>
+                     status != '006'
+                </trim>
+            </where>
+        </select>
+
+
+
+</mapper>

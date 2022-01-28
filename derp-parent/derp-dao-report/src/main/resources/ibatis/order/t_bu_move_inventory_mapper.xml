@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.BuMoveInventoryMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuMoveInventoryModelMap" type="BuMoveInventoryModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="businessNo" column="business_no" />
+                <result property="orderSource" column="order_source" />
+                <result property="status" column="status" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="inBuId" column="in_bu_id" />
+                <result property="inBuName" column="in_bu_name" />
+                <result property="outBuId" column="out_bu_id" />
+                <result property="outBuName" column="out_bu_name" />
+            <result property="moveDate" column="move_date"/>
+            <result property="merchantId" column="merchant_id"/>
+            <result property="merchantName" column="merchant_name"/>
+            <result property="creater" column="creater"/>
+            <result property="createName" column="create_name"/>
+            <result property="createDate" column="create_date"/>
+            <result property="modifyDate" column="modify_date"/>
+            <result property="orderType" column="order_type"/>
+            <result property="currency" column="currency"/>
+            <result property="agreementCurrency" column="agreement_currency"/>
+            <result property="tallyingUnit" column="tallying_unit"/>
+            <result property="auditor" column="auditor"/>
+            <result property="auditName" column="audit_name"/>
+            <result property="auditDate" column="audit_date"/>
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuMoveInventoryModelMap' parameterType='BuMoveInventoryModel'>
+        select <include refid='sql_columns' /> from t_bu_move_inventory  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuMoveInventoryModelMap' parameterType='BuMoveInventoryModel'>
+        select <include refid='sql_columns' /> from t_bu_move_inventory  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuMoveInventoryModelMap' parameterType='BuMoveInventoryModel' >
+        select <include refid='sql_columns' /> from t_bu_move_inventory  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuMoveInventoryModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_bu_move_inventory
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='businessNo!=null and !"".equals(businessNo)' > business_no , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' > order_source , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='inBuId!=null' >in_bu_id , </if>
+                        <if test='inBuName!=null and !"".equals(inBuName)' > in_bu_name , </if>
+                        <if test='outBuId!=null' >out_bu_id , </if>
+                        <if test='outBuName!=null and !"".equals(outBuName)' > out_bu_name , </if>
+                <if test='moveDate!=null'>move_date ,</if>
+                <if test='merchantId!=null'>merchant_id ,</if>
+                <if test='merchantName!=null and !"".equals(merchantName)'>merchant_name ,</if>
+                <if test='creater!=null'>creater ,</if>
+                <if test='createName!=null and !"".equals(createName)'>create_name ,</if>
+                <if test='createDate!=null'>create_date ,</if>
+                <if test='modifyDate!=null'>modify_date ,</if>
+                <if test='orderType!=null and !"".equals(orderType)'>order_type ,</if>
+                <if test='currency!=null and !"".equals(currency)'>currency ,</if>
+                <if test='agreementCurrency!=null and !"".equals(agreementCurrency)'>agreement_currency ,</if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)'>tallying_unit ,</if>
+                <if test='auditor!=null'>auditor ,</if>
+                <if test='auditName!=null and !"".equals(auditName)'>audit_name ,</if>
+                <if test='auditDate!=null'>audit_date ,</if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='businessNo!=null and !"".equals(businessNo)' > #{businessNo} , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' > #{orderSource} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='inBuId!=null' > #{inBuId} , </if>
+                        <if test='inBuName!=null and !"".equals(inBuName)' > #{inBuName} , </if>
+                        <if test='outBuId!=null' > #{outBuId} , </if>
+                        <if test='outBuName!=null and !"".equals(outBuName)' > #{outBuName} , </if>
+                <if test='moveDate!=null'>#{moveDate} ,</if>
+                <if test='merchantId!=null'>#{merchantId} ,</if>
+                <if test='merchantName!=null and !"".equals(merchantName)'>#{merchantName} ,</if>
+                <if test='creater!=null'>#{creater} ,</if>
+                <if test='createName!=null and !"".equals(createName)'>#{createName} ,</if>
+                <if test='createDate!=null'>#{createDate} ,</if>
+                <if test='modifyDate!=null'>#{modifyDate} ,</if>
+                <if test='orderType!=null and !"".equals(orderType)'>#{orderType} ,</if>
+                <if test='currency!=null and !"".equals(currency)'>#{currency} ,</if>
+                <if test='agreementCurrency!=null and !"".equals(agreementCurrency)'>#{agreementCurrency} ,</if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)'>#{tallyingUnit} ,</if>
+                <if test='auditor!=null'>#{auditor} ,</if>
+                <if test='auditName!=null and !"".equals(auditName)'>#{auditName} ,</if>
+                <if test='auditDate!=null'>#{auditDate} ,</if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuMoveInventoryModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_bu_move_inventory SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} , </if>
+                        <if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='inBuId!=null' > in_bu_id= #{inBuId} , </if>
+                        <if test='inBuName!=null and !"".equals(inBuName)' >in_bu_name= #{inBuName} , </if>
+                        <if test='outBuId!=null' > out_bu_id= #{outBuId} , </if>
+                        <if test='outBuName!=null and !"".equals(outBuName)' >out_bu_name= #{outBuName} , </if>
+                <if test='moveDate!=null'>move_date= #{moveDate} ,</if>
+                <if test='merchantId!=null'>merchant_id= #{merchantId} ,</if>
+                <if test='merchantName!=null and !"".equals(merchantName)'>merchant_name= #{merchantName} ,</if>
+                <if test='creater!=null'>creater= #{creater} ,</if>
+                <if test='createName!=null and !"".equals(createName)'>create_name= #{createName} ,</if>
+                <if test='createDate!=null'>create_date= #{createDate} ,</if>
+                <if test='modifyDate!=null'>modify_date= #{modifyDate} ,</if>
+                <if test='orderType!=null and !"".equals(orderType)'>order_type= #{orderType} ,</if>
+                <if test='currency!=null and !"".equals(currency)'>currency= #{currency} ,</if>
+                <if test='agreementCurrency!=null and !"".equals(agreementCurrency)'>agreement_currency=
+                    #{agreementCurrency} ,
+                </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)'>tallying_unit= #{tallyingUnit} ,</if>
+                <if test='auditor!=null'>auditor= #{auditor} ,</if>
+                <if test='auditName!=null and !"".equals(auditName)'>audit_name= #{auditName} ,</if>
+                <if test='auditDate!=null'>audit_date= #{auditDate} ,</if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_bu_move_inventory  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_bu_move_inventory where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            business_no,
+            order_source,
+            status,
+            depot_id,
+            depot_name,
+            in_bu_id,
+            in_bu_name,
+            out_bu_id,
+            out_bu_name,
+            move_date,
+            merchant_id,
+            merchant_name,
+            creater,
+            create_name,
+            create_date,
+            modify_date,
+            order_type,
+            currency,
+            agreement_currency,
+            tallying_unit,
+            auditor,
+            audit_name,
+            audit_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} and </if>
+                            <if test='orderSource!=null and !"".equals(orderSource)' >order_source= #{orderSource} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='inBuId!=null' > in_bu_id= #{inBuId} and </if>
+                            <if test='inBuName!=null and !"".equals(inBuName)' >in_bu_name= #{inBuName} and </if>
+                            <if test='outBuId!=null' > out_bu_id= #{outBuId} and </if>
+                            <if test='outBuName!=null and !"".equals(outBuName)' >out_bu_name= #{outBuName} and </if>
+                    <if test='moveDate!=null'>move_date= #{moveDate} and</if>
+                    <if test='merchantId!=null'>merchant_id= #{merchantId} and</if>
+                    <if test='merchantName!=null and !"".equals(merchantName)'>merchant_name= #{merchantName} and</if>
+                    <if test='creater!=null'>creater= #{creater} and</if>
+                    <if test='createName!=null and !"".equals(createName)'>create_name= #{createName} and</if>
+                    <if test='createDate!=null'>create_date= #{createDate} and</if>
+                    <if test='modifyDate!=null'>modify_date= #{modifyDate} and</if>
+                    <if test='orderType!=null and !"".equals(orderType)'>order_type= #{orderType} and</if>
+                    <if test='currency!=null and !"".equals(currency)'>currency= #{currency} and</if>
+                    <if test='agreementCurrency!=null and !"".equals(agreementCurrency)'>
+                        agreement_currency=#{agreementCurrency} and
+                    </if>
+                    <if test='tallyingUnit!=null and !"".equals(tallyingUnit)'>tallying_unit= #{tallyingUnit} and</if>
+                    <if test='auditor!=null'>auditor= #{auditor} and</if>
+                    <if test='auditName!=null and !"".equals(auditName)'>audit_name= #{auditName} and</if>
+                    <if test='auditDate!=null'>audit_date= #{auditDate} and</if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+    	<!-- (事业部财务经销存)本期事业部移库明细总数数量(入)  -->
+	<select id='getBuFinanceMoveInDetailsCount' resultType="java.lang.Integer" >
+		SELECT COUNT(1) 
+		From  t_bu_move_inventory_item t1
+		LEFT JOIN t_bu_move_inventory t2 ON t1.move_id=t2.id
+		where t2.merchant_id=#{merchantId}
+		and t2.depot_id=#{depotId}
+		and t2.in_bu_id= #{buId}
+		and  DATE_FORMAT(t2.move_date, '%Y-%m') = #{month}
+		and  t2.`status`='018'
+    </select>
+    <select id='getBuFinanceMoveInDetailsCountWeighted' resultType="java.lang.Integer" >
+		SELECT COUNT(1) 
+		From  t_bu_move_inventory_item t1
+		LEFT JOIN t_bu_move_inventory t2 ON t1.move_id=t2.id
+		where t2.merchant_id=#{merchantId}
+		and t2.in_bu_id=#{buId}
+		and t2.depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		and t2.in_bu_id is not null
+		and  DATE_FORMAT(t2.move_date, '%Y-%m') = #{month}
+		and  t2.`status`='018'
+    </select>
+    
+	<!-- (事业部财务经销存)本期事业部移库明细总数数量(出)  -->
+	<select id='getBuFinanceMoveOutDetailsCount' resultType="java.lang.Integer" >
+		SELECT COUNT(1) 
+		From  t_bu_move_inventory_item t1
+		LEFT JOIN t_bu_move_inventory t2 ON t1.move_id=t2.id
+		where t2.merchant_id=#{merchantId}
+		and t2.depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+		and t2.out_bu_id= #{buId}
+		and  DATE_FORMAT(t2.move_date, '%Y-%m') = #{month}
+		and  t2.`status`='018'
+    </select>
+    <!-- 获取(事业部财务经销存) 本期事业部移库明细 -->
+    <select id='getBuFinanceMoveDetails' resultType='map' parameterType='map'>
+    
+		SELECT t2.id,t2.`code`,t2.business_no,t2.move_date,t2.create_date,t2.tallying_unit,
+			t1.goods_id,t1.num,t1.price,t1.agreement_price,t2.currency ,t2.agreement_currency,t2.depot_id
+			from  t_bu_move_inventory_item t1
+			LEFT JOIN t_bu_move_inventory t2 ON t1.move_id=t2.id
+			where t2.merchant_id=#{merchantId} 
+			and t2.depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+			<if test='"1".equals(tag)' >and t2.in_bu_id=#{buId} </if>
+			<if test='"2".equals(tag)' >and t2.out_bu_id=#{buId} </if>
+			and  DATE_FORMAT(t2.move_date, '%Y-%m') = #{month}
+			and  t2.`status`='018'
+		limit #{startIndex},#{pageSize}						
+	</select>
+	
+	    <!-- 获取(事业部财务经销存) 本期事业部移库明细 -->
+    <select id='getBuFinanceMoveDetailsWeighted' resultType='map' parameterType='map'>
+    
+		SELECT t2.depot_id,t2.in_bu_id as bu_id,t2.id,t2.`code`,t2.business_no,t2.move_date,t2.create_date,
+			t1.goods_id,t1.num,t1.price,t1.amount,t1.agreement_price,t2.currency,t2.tallying_unit,t2.agreement_currency  
+			from  t_bu_move_inventory_item t1
+			LEFT JOIN t_bu_move_inventory t2 ON t1.move_id=t2.id
+			where t2.merchant_id=#{merchantId} 
+			and t2.in_bu_id =#{buId}
+			and t2.depot_id in (
+				SELECT id from  st_depot_info where type IN ('a','c','d')
+			)
+			and t2.in_bu_id is not null
+			and  DATE_FORMAT(t2.move_date, '%Y-%m') = #{month}
+			and  t2.`status`='018'
+		limit #{startIndex},#{pageSize}						
+	</select>
+	
+	
+	
+	    	<!-- (事业部财务经销存)本期事业部移库数量(入)  -->
+	<select id='getBuFinanceMoveDetailsInNum' resultType='map' parameterType='map' >
+		SELECT SUM(t1.num) as num
+		From  t_bu_move_inventory_item t1
+		LEFT JOIN t_bu_move_inventory t2 ON t1.move_id=t2.id
+		where t2.merchant_id=#{merchantId}
+		and t2.depot_id=#{depotId}
+		and t2.in_bu_id= #{buId}
+		and  DATE_FORMAT(t2.move_date, '%Y-%m') = #{month}
+		and  t2.`status`='018'
+		AND t1.goods_no=#{goodsNo}
+		GROUP BY t1.goods_no 
+    </select>
+	<!-- (事业部财务经销存)本期事业部移库数量(出)  -->
+	<select id='getBuFinanceMoveDetailsOutNum' resultType='map' parameterType='map' >
+		SELECT SUM(t1.num) as num 
+		From  t_bu_move_inventory_item t1
+		LEFT JOIN t_bu_move_inventory t2 ON t1.move_id=t2.id
+		where t2.merchant_id=#{merchantId}
+		and t2.depot_id=#{depotId}
+		and t2.out_bu_id= #{buId}
+		and  DATE_FORMAT(t2.move_date, '%Y-%m') = #{month}
+		and  t2.`status`='018'
+		AND t1.goods_no=#{goodsNo}
+		GROUP BY t1.goods_no 
+    </select>
+
+    
+
+</mapper>

@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.VipAdjustmentInventoryDetailsMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="VipAdjustmentInventoryDetailsModelMap" type="VipAdjustmentInventoryDetailsModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="adjustmentInventoryOrder" column="adjustment_inventory_order" />
+                <result property="adjustmentInventoryNum" column="adjustment_inventory_num" />
+                <result property="adjustmentInventoryType" column="adjustment_inventory_type" />
+                <result property="adjustmentInventoryMonths" column="adjustment_inventory_months" />
+                <result property="adjustmentInventoryDate" column="adjustment_inventory_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="model" column="model" />
+                <result property="sourceCode" column="source_code" />
+                <result property="poNo" column="po_no" />
+                <result property="poDate" column="po_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='VipAdjustmentInventoryDetailsModelMap' parameterType='VipAdjustmentInventoryDetailsModel'>
+        select <include refid='sql_columns' /> from r_vip_adjustment_inventory_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='VipAdjustmentInventoryDetailsModelMap' parameterType='VipAdjustmentInventoryDetailsModel'>
+        select <include refid='sql_columns' /> from r_vip_adjustment_inventory_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='VipAdjustmentInventoryDetailsModelMap' parameterType='VipAdjustmentInventoryDetailsModel' >
+        select <include refid='sql_columns' /> from r_vip_adjustment_inventory_details  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='VipAdjustmentInventoryDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_vip_adjustment_inventory_details
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='adjustmentInventoryOrder!=null and !"".equals(adjustmentInventoryOrder)' > adjustment_inventory_order , </if>
+                        <if test='adjustmentInventoryNum!=null' >adjustment_inventory_num , </if>
+                        <if test='adjustmentInventoryType!=null and !"".equals(adjustmentInventoryType)' > adjustment_inventory_type , </if>
+                        <if test='adjustmentInventoryMonths!=null and !"".equals(adjustmentInventoryMonths)' > adjustment_inventory_months , </if>
+                        <if test='adjustmentInventoryDate!=null' >adjustment_inventory_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='model!=null and !"".equals(model)' > model , </if>
+                        <if test='sourceCode!=null and !"".equals(sourceCode)' > source_code , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='poDate!=null and !"".equals(poDate)' > po_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='adjustmentInventoryOrder!=null and !"".equals(adjustmentInventoryOrder)' > #{adjustmentInventoryOrder} , </if>
+                        <if test='adjustmentInventoryNum!=null' > #{adjustmentInventoryNum} , </if>
+                        <if test='adjustmentInventoryType!=null and !"".equals(adjustmentInventoryType)' > #{adjustmentInventoryType} , </if>
+                        <if test='adjustmentInventoryMonths!=null and !"".equals(adjustmentInventoryMonths)' > #{adjustmentInventoryMonths} , </if>
+                        <if test='adjustmentInventoryDate!=null' > #{adjustmentInventoryDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='model!=null and !"".equals(model)' > #{model} , </if>
+                        <if test='sourceCode!=null and !"".equals(sourceCode)' > #{sourceCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='poDate!=null and !"".equals(poDate)' > #{poDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='VipAdjustmentInventoryDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_vip_adjustment_inventory_details SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='adjustmentInventoryOrder!=null and !"".equals(adjustmentInventoryOrder)' >adjustment_inventory_order= #{adjustmentInventoryOrder} , </if>
+                        <if test='adjustmentInventoryNum!=null' > adjustment_inventory_num= #{adjustmentInventoryNum} , </if>
+                        <if test='adjustmentInventoryType!=null and !"".equals(adjustmentInventoryType)' >adjustment_inventory_type= #{adjustmentInventoryType} , </if>
+                        <if test='adjustmentInventoryMonths!=null and !"".equals(adjustmentInventoryMonths)' >adjustment_inventory_months= #{adjustmentInventoryMonths} , </if>
+                        <if test='adjustmentInventoryDate!=null' > adjustment_inventory_date= #{adjustmentInventoryDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='model!=null and !"".equals(model)' >model= #{model} , </if>
+                        <if test='sourceCode!=null and !"".equals(sourceCode)' >source_code= #{sourceCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='poDate!=null and !"".equals(poDate)' >po_date= #{poDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_vip_adjustment_inventory_details  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_vip_adjustment_inventory_details where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            goods_name,
+            goods_no,
+            goods_id,
+            commbarcode,
+            adjustment_inventory_order,
+            adjustment_inventory_num,
+            adjustment_inventory_type,
+            adjustment_inventory_months,
+            adjustment_inventory_date,
+            create_date,
+            modify_date,
+            model,
+            source_code,
+            po_no,
+            po_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='adjustmentInventoryOrder!=null and !"".equals(adjustmentInventoryOrder)' >adjustment_inventory_order= #{adjustmentInventoryOrder} and </if>
+                            <if test='adjustmentInventoryNum!=null' > adjustment_inventory_num= #{adjustmentInventoryNum} and </if>
+                            <if test='adjustmentInventoryType!=null and !"".equals(adjustmentInventoryType)' >adjustment_inventory_type= #{adjustmentInventoryType} and </if>
+                            <if test='adjustmentInventoryMonths!=null and !"".equals(adjustmentInventoryMonths)' >adjustment_inventory_months= #{adjustmentInventoryMonths} and </if>
+                            <if test='adjustmentInventoryDate!=null' > adjustment_inventory_date= #{adjustmentInventoryDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                            <if test='sourceCode!=null and !"".equals(sourceCode)' >source_code= #{sourceCode} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='poDate!=null and !"".equals(poDate)' >po_date= #{poDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<delete id='deleteByModel' parameterType='VipAdjustmentInventoryDetailsModel'>
+        	delete from r_vip_adjustment_inventory_details  where merchant_id = #{merchantId} and 
+        		po_no = #{poNo} and commbarcode = #{commbarcode}
+    	</delete>
+    	
+    	<insert id='batchInsert' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_vip_adjustment_inventory_details
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+			            merchant_id,
+			            merchant_name,
+			            depot_id,
+			            depot_name,
+			            goods_name,
+			            goods_no,
+			            goods_id,
+			            commbarcode,
+			            adjustment_inventory_order,
+			            adjustment_inventory_num,
+			            adjustment_inventory_type,
+			            adjustment_inventory_months,
+			            adjustment_inventory_date,
+			            create_date,
+			            modify_date,
+			            model,
+			            source_code,
+			            po_no,
+			            po_date
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+	            <trim prefix="(" suffix=")" suffixOverrides="," >
+	                        #{item.merchantId} ,
+	                        #{item.merchantName} , 
+	                        #{item.depotId} ,
+	                        #{item.depotName} ,
+	                        #{item.goodsName} ,
+	                        #{item.goodsNo} ,
+	                        #{item.goodsId} , 
+	                        #{item.commbarcode} ,
+	                        #{item.adjustmentInventoryOrder} ,
+	                        #{item.adjustmentInventoryNum} ,
+	                        #{item.adjustmentInventoryType} , 
+	                        #{item.adjustmentInventoryMonths} ,
+	                        #{item.adjustmentInventoryDate} ,
+	                        #{item.createDate} ,
+	                        #{item.modifyDate} ,
+	                        #{item.model} ,
+	                        #{item.sourceCode} ,
+	                        #{item.poNo} ,
+	                        #{item.poDate} 
+	            </trim>
+            </foreach>
+        </insert>
+        <!-- 查询所有信息 -->
+        <select id="listDTO" resultType="com.topideal.entity.dto.VipAdjustmentInventoryDetailsDTO" parameterType='com.topideal.entity.dto.VipAdjustmentInventoryDetailsDTO'>
+            select d.* from r_vip_adjustment_inventory_details d
+            left join r_vip_po_bill_verification p on d.merchant_id=p.merchant_id and d.po_no=p.PO and d.commbarcode=p.commbarcode
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='merchantId!=null' > d.merchant_id= #{merchantId} and </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >d.po_no= #{poNo} and </if>
+                    <if test='commbarcode!=null and !"".equals(commbarcode)' > d.commbarcode= #{commbarcode} and </if>
+                    <if test='model!=null and !"".equals(model)' >d.model= #{model} and </if>
+                    <if test='customerId!=null' > p.customer_id= #{customerId} and </if>
+                    <if test='buId!=null' > p.bu_id= #{buId} and </if>
+                    <if test='buList!=null and !"".equals(buList)' >p.bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                </trim>
+            </where>
+        </select>
+</mapper>

@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.ReceiveBillVerificationMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ReceiveBillVerificationModelMap" type="ReceiveBillVerificationModel" >
+                <result property="id" column="id" />
+                <result property="receiveCode" column="receive_code" />
+                <result property="receiveId" column="receive_id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="receivePrice" column="receive_price" />
+                <result property="uncollectedPrice" column="uncollected_price" />
+                <result property="currency" column="currency" />
+                <result property="billDate" column="bill_date" />
+                <result property="invoiceDate" column="invoice_date" />
+                <result property="accountPeriod" column="account_period" />
+                <result property="accountOverdueDays" column="account_overdue_days" />
+                <result property="overdueStatus" column="overdue_status" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="invoiceNo" column="invoice_no" />
+                <result property="invoiceStatus" column="invoice_status" />
+                <result property="billStatus" column="bill_status" />
+                <result property="billType" column="bill_type" />
+                <result property="creditMonth" column="credit_month" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ReceiveBillVerificationModelMap' parameterType='ReceiveBillVerificationModel'>
+        select <include refid='sql_columns' /> from t_receive_bill_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ReceiveBillVerificationModelMap' parameterType='ReceiveBillVerificationModel'>
+        select <include refid='sql_columns' /> from t_receive_bill_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ReceiveBillVerificationModelMap' parameterType='ReceiveBillVerificationModel' >
+        select <include refid='sql_columns' /> from t_receive_bill_verification  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ReceiveBillVerificationModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_receive_bill_verification
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > receive_code , </if>
+                        <if test='receiveId!=null' >receive_id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='receivePrice!=null' >receive_price , </if>
+                        <if test='uncollectedPrice!=null' >uncollected_price , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='billDate!=null' >bill_date , </if>
+                        <if test='invoiceDate!=null' >invoice_date , </if>
+                        <if test='accountPeriod!=null and !"".equals(accountPeriod)' > account_period , </if>
+                        <if test='accountOverdueDays!=null' >account_overdue_days , </if>
+                        <if test='overdueStatus!=null and !"".equals(overdueStatus)' > overdue_status , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > invoice_no , </if>
+                        <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' > invoice_status , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' > bill_status , </if>
+                        <if test='billType!=null and !"".equals(billType)' > bill_type , </if>
+                        <if test='creditMonth!=null and !"".equals(creditMonth)' > credit_month , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > #{receiveCode} , </if>
+                        <if test='receiveId!=null' > #{receiveId} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='receivePrice!=null' > #{receivePrice} , </if>
+                        <if test='uncollectedPrice!=null' > #{uncollectedPrice} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='billDate!=null' > #{billDate} , </if>
+                        <if test='invoiceDate!=null' > #{invoiceDate} , </if>
+                        <if test='accountPeriod!=null and !"".equals(accountPeriod)' > #{accountPeriod} , </if>
+                        <if test='accountOverdueDays!=null' > #{accountOverdueDays} , </if>
+                        <if test='overdueStatus!=null and !"".equals(overdueStatus)' > #{overdueStatus} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > #{invoiceNo} , </if>
+                        <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' > #{invoiceStatus} , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' > #{billStatus} , </if>
+                        <if test='billType!=null and !"".equals(billType)' > #{billType} , </if>
+                        <if test='creditMonth!=null and !"".equals(creditMonth)' > #{creditMonth} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ReceiveBillVerificationModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_receive_bill_verification SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' >receive_code= #{receiveCode} , </if>
+                        <if test='receiveId!=null' > receive_id= #{receiveId} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='receivePrice!=null' > receive_price= #{receivePrice} , </if>
+                        <if test='uncollectedPrice!=null' > uncollected_price= #{uncollectedPrice} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='billDate!=null' > bill_date= #{billDate} , </if>
+                        <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} , </if>
+                        <if test='accountPeriod!=null and !"".equals(accountPeriod)' >account_period= #{accountPeriod} , </if>
+                        <if test='accountOverdueDays!=null' > account_overdue_days= #{accountOverdueDays} , </if>
+                        <if test='overdueStatus!=null and !"".equals(overdueStatus)' >overdue_status= #{overdueStatus} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} , </if>
+                        <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' >invoice_status= #{invoiceStatus} , </if>
+                        <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} , </if>
+                        <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} , </if>
+                        <if test='creditMonth!=null and !"".equals(creditMonth)' >credit_month= #{creditMonth} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_receive_bill_verification  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_receive_bill_verification where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            receive_code,
+            receive_id,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            receive_price,
+            uncollected_price,
+            currency,
+            bill_date,
+            invoice_date,
+            account_period,
+            account_overdue_days,
+            overdue_status,
+            bu_id,
+            bu_name,
+            invoice_no,
+            invoice_status,
+            bill_status,
+            bill_type,
+            credit_month,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='receiveCode!=null and !"".equals(receiveCode)' >receive_code= #{receiveCode} and </if>
+                            <if test='receiveId!=null' > receive_id= #{receiveId} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='receivePrice!=null' > receive_price= #{receivePrice} and </if>
+                            <if test='uncollectedPrice!=null' > uncollected_price= #{uncollectedPrice} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='billDate!=null' > bill_date= #{billDate} and </if>
+                            <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} and </if>
+                            <if test='accountPeriod!=null and !"".equals(accountPeriod)' >account_period= #{accountPeriod} and </if>
+                            <if test='accountOverdueDays!=null' > account_overdue_days= #{accountOverdueDays} and </if>
+                            <if test='overdueStatus!=null and !"".equals(overdueStatus)' >overdue_status= #{overdueStatus} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                            <if test='invoiceStatus!=null and !"".equals(invoiceStatus)' >invoice_status= #{invoiceStatus} and </if>
+                            <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} and </if>
+                            <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} and </if>
+                            <if test='creditMonth!=null and !"".equals(creditMonth)' >credit_month= #{creditMonth} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listReceiveBillVerificationByPage' resultType='ReceiveBillVerificationDTO' parameterType='ReceiveBillVerificationDTO'>
+        select <include refid='sql_columns' /> from t_receive_bill_verification 
+         <include refid='sql_where_query' />   
+         ORDER BY id DESC      
+    </select>
+ <!--    导出 -->
+    <select id='exportBillVerification' resultType='map' parameterType='ReceiveBillVerificationDTO'>
+        select <include refid='sql_columns' /> from t_receive_bill_verification 
+         <include refid='sql_where_query' />
+         ORDER BY id DESC
+    </select>
+    
+    	<sql id='sql_where_query'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='receiveCode!=null and !"".equals(receiveCode)' >receive_code= #{receiveCode} and </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='buId!=null' > bu_id= #{buId} and </if>
+                    <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                    <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                    <if test='billDate!=null' > bill_date= #{billDate} and </if>
+                    <if test='billMonth!=null and !"".equals(billMonth)' > DATE_FORMAT(bill_date, '%Y-%m')= #{billMonth} and </if>
+                    <if test='overdueStatus!=null and !"".equals(overdueStatus)' >overdue_status= #{overdueStatus} and </if>
+                    <if test='billStatus!=null and !"".equals(billStatus)' >bill_status= #{billStatus} and </if>
+                    <if test='billType!=null and !"".equals(billType)' >bill_type= #{billType} and </if>
+                    <if test='buList!=null and !"".equals(buList)' >bu_id in
+                        <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                            #{buId}
+                        </foreach>
+                        and
+                    </if>
+                </trim>
+            </where>
+        </sql>
+
+     <!--    根据应收账单ids删除 -->
+        <delete id='deleteByReceiveId' >
+            delete from t_receive_bill_verification
+            where
+                bill_type = #{billType}
+            <if test='receiveIdList!=null and !"".equals(receiveIdList) and receiveIdList.size>0' >
+                and receive_id in
+                <foreach collection='receiveIdList' item='receiveId' separator=',' open='(' close=')'>
+                    #{receiveId}
+                </foreach>
+            </if>
+        </delete>
+
+    <select id="getSummary" resultType="map" parameterType="map">
+        select merchant_id merchantId,merchant_name merchantName,customer_id customerId,customer_name customerName,bu_id buId,bu_name buName,currency  from t_receive_bill_verification where receive_id in
+        (select id from t_receive_bill where id in(select receive_id from t_receive_bill_verification)
+        and (bill_status='02' or bill_status='03' ) )
+        <trim suffixOverrides='and'>
+            <if test='merchantId!=null' >and merchant_id= #{merchantId}  </if>
+            <if test='customerId!=null' >and customer_id= #{customerId} </if>
+            <if test='buId!=null' >and bu_id= #{buId} </if>
+            <if test='currency!=null and !"".equals(currency)' >and currency= #{currency} </if>
+        </trim>
+        group by merchant_id,customer_id,bu_id,currency
+    </select>
+
+    <select id="getItemBySearch" parameterType="map" resultType="Map">
+        select a.uncollected_price amount,a.receive_code code,date_format(a.bill_date,'%Y-%m') month from
+        t_receive_bill_verification a,
+        (select id from t_receive_bill_verification where receive_id in(select id from t_receive_bill where (bill_status = '02' OR bill_status = '03')))b
+        where
+            a.id=b.id
+            and a.bu_id = #{buId}
+            AND a.merchant_id = #{merchantId}
+            AND a.customer_id = #{customerId}
+            and a.currency=#{currency}
+    </select>
+
+    <!--核销跟踪汇总-->
+    <select id="getByUncollectedAmount" parameterType="map" resultType="map">
+         SELECT
+            t1.thirty_amount as thirtyAmount,
+            t2.sixty_amount as sixtyAmount,
+            t3.ninety_amount as ninetyAmount,
+            t4.onetwenty_amount as onetwentyAmount,
+            t5.twenty_above_amount as twentyAboveAmount,
+            t6.day_amount as dayAmount
+         FROM
+         (
+             select  IFNULL(sum(uncollected_price),0) thirty_amount FROM t_receive_bill_verification
+             WHERE receive_id IN (SELECT id FROM t_receive_bill WHERE id IN
+             (SELECT receive_id FROM t_receive_bill_verification WHERE bill_type = '0' and datediff( now(), bill_date ) <![CDATA[<=]]>  30 and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency} )
+             AND (bill_status = '02' OR bill_status = '03'))
+		 )t1,
+		(
+            select  IFNULL(sum(uncollected_price),0)sixty_amount FROM t_receive_bill_verification
+            WHERE receive_id IN (SELECT id FROM t_receive_bill WHERE id IN
+            (SELECT receive_id FROM t_receive_bill_verification WHERE bill_type = '0' and datediff( now(), bill_date ) > 30 and datediff( now(), bill_date ) <![CDATA[<=]]> 60 and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency} )
+            AND (bill_status = '02' OR bill_status = '03'))
+        )t2,
+        (
+	        select  IFNULL(sum(uncollected_price),0)ninety_amount FROM t_receive_bill_verification
+	        WHERE receive_id IN (SELECT id  FROM t_receive_bill WHERE id IN
+	        (SELECT receive_id FROM t_receive_bill_verification WHERE bill_type = '0' and datediff( now(), bill_date ) > 60 and datediff( now(), bill_date ) <![CDATA[<=]]>  90 and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency} )
+		    AND (bill_status = '02' OR bill_status = '03'))
+		)t3,
+		(
+            select  IFNULL(sum(uncollected_price),0) onetwenty_amount FROM t_receive_bill_verification
+            WHERE receive_id IN (SELECT id  FROM t_receive_bill WHERE id IN
+            (SELECT receive_id FROM t_receive_bill_verification WHERE bill_type = '0' and datediff( now(), bill_date ) > 90 and datediff( now(), bill_date ) <![CDATA[<=]]>  120 and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency} )
+            AND (bill_status = '02' OR bill_status = '03'))
+		)t4,
+		(
+            select  IFNULL(sum(uncollected_price),0) twenty_above_amount FROM t_receive_bill_verification
+            WHERE receive_id IN (SELECT id  FROM t_receive_bill WHERE id IN
+            (SELECT receive_id FROM t_receive_bill_verification WHERE bill_type = '0' and datediff( now(), bill_date ) > 120 and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency} )
+            AND (bill_status = '02' OR bill_status = '03'))
+		)t5,
+		(
+            select  IFNULL(sum(uncollected_price),0) day_amount FROM t_receive_bill_verification
+            WHERE receive_id IN (SELECT id  FROM t_receive_bill WHERE id IN
+            (SELECT receive_id FROM t_receive_bill_verification WHERE bill_type = '0' and datediff( now(), bill_date ) <![CDATA[<=]]>  #{day} and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency} )
+            AND (bill_status = '02' OR bill_status = '03'))
+		)t6
+    </select>
+
+</mapper>

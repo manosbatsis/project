@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.DepartmentInfoMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="DepartmentInfoModelMap" type="DepartmentInfoModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="name" column="name" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifiyName" column="modifiy_name" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='DepartmentInfoModelMap' parameterType='DepartmentInfoModel'>
+        select <include refid='sql_columns' /> from st_department_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='DepartmentInfoModelMap' parameterType='DepartmentInfoModel'>
+        select <include refid='sql_columns' /> from st_department_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='DepartmentInfoModelMap' parameterType='DepartmentInfoModel' >
+        select <include refid='sql_columns' /> from st_department_info  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='DepartmentInfoModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_department_info
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' >code , </if>
+                        <if test='name!=null and !"".equals(name)' > name , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifiyName!=null and !"".equals(modifiyName)' > modifiy_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifiyName!=null and !"".equals(modifiyName)' > #{modifiyName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='DepartmentInfoModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_department_info SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > code= #{code} , </if>
+                        <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifiyName!=null and !"".equals(modifiyName)' >modifiy_name= #{modifiyName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_department_info  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_department_info where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            name,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifiy_name,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' > code= #{code} and </if>
+                            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifiyName!=null and !"".equals(modifiyName)' >modifiy_name= #{modifiyName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <select id="getListByPage" parameterType="DepartmentInfoDTO" resultType="DepartmentInfoDTO">
+        select <include refid='sql_columns' /> from st_department_info
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' > code LIKE CONCAT(CONCAT('%', #{code}), '%') and </if>
+                <if test='name!=null and !"".equals(name)' >name LIKE CONCAT(CONCAT('%', #{name}), '%')and </if>
+            </trim>
+        </where>
+        order by create_date DESC
+    </select>
+
+    <select id="detailById" parameterType="DepartmentInfoDTO" resultType="DepartmentInfoDTO">
+        select <include refid='sql_columns' /> from st_department_info where id=#{id}
+    </select>
+
+
+    <resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+        <result property="value" column="id" />
+        <result property="label" column="name" />
+    </resultMap>
+
+    <select id="getSelectBean" resultMap='SelectBeans'>
+        select id,name from st_department_info
+    </select>
+
+    <select id="searchByNameCode" resultMap='DepartmentInfoModelMap'>
+        select <include refid='sql_columns' /> from st_department_info
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' > code=#{code} and </if>
+                <if test='name!=null and !"".equals(name)' > name=#{name} and </if>
+            </trim>
+        </where>
+    </select>
+
+
+
+
+</mapper>

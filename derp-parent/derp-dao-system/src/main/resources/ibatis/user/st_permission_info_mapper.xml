@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.user.PermissionInfoMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="PermissionInfoModelMap" type="PermissionInfoModel" >
+                <result property="authorityName" column="authority_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="modifier" column="modifier" />
+                <result property="icon" column="icon" />
+                <result property="permission" column="permission" />
+                <result property="remark" column="remark" />
+                <result property="spathid" column="spathid" />
+                <result property="type" column="type" />
+                <result property="url" column="url" />
+                <result property="parentId" column="parent_id" />
+                <result property="serverAddr" column="server_addr" />
+                <result property="isEnabled" column="is_enabled" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="seq" column="seq" />
+                <result property="createDate" column="create_date" />
+                <result property="module" column="module" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PermissionInfoModelMap' parameterType='PermissionInfoModel'>
+        select <include refid='sql_columns' /> from st_permission_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PermissionInfoModelMap' parameterType='PermissionInfoModel'>
+        select <include refid='sql_columns' /> from st_permission_info  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PermissionInfoModelMap' parameterType='PermissionInfoModel' >
+        select <include refid='sql_columns' /> from st_permission_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='PermissionInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_permission_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='authorityName!=null and !"".equals(authorityName)' > authority_name , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='modifier!=null' > modifier , </if>
+                <if test='icon!=null and !"".equals(icon)' > icon , </if>
+                <if test='permission!=null and !"".equals(permission)' > permission , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='spathid!=null and !"".equals(spathid)' > spathid , </if>
+                <if test='type!=null' > type , </if>
+                <if test='url!=null and !"".equals(url)' > url , </if>
+                <if test='parentId!=null' > parent_id , </if>
+                <if test='serverAddr!=null and !"".equals(serverAddr)' > server_addr , </if>
+                <if test='isEnabled!=null' > is_enabled , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='seq!=null' > seq , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='module!=null and !"".equals(module)' > module , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='authorityName!=null and !"".equals(authorityName)' > #{authorityName} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='modifier!=null' > #{modifier} , </if>
+                <if test='icon!=null and !"".equals(icon)' > #{icon} , </if>
+                <if test='permission!=null and !"".equals(permission)' > #{permission} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='spathid!=null and !"".equals(spathid)' > #{spathid} , </if>
+                <if test='type!=null' > #{type} , </if>
+                <if test='url!=null and !"".equals(url)' > #{url} , </if>
+                <if test='parentId!=null' > #{parentId} , </if>
+                <if test='serverAddr!=null and !"".equals(serverAddr)' > #{serverAddr} , </if>
+                <if test='isEnabled!=null' > #{isEnabled} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='seq!=null' > #{seq} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='module!=null and !"".equals(module)' > #{module} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='PermissionInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_permission_info SET
+        <trim  suffixOverrides=",">
+                <if test='authorityName!=null and !"".equals(authorityName)' >authority_name= #{authorityName} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='modifier!=null' > modifier= #{modifier} , </if>
+                <if test='icon!=null and !"".equals(icon)' >icon= #{icon} , </if>
+                <if test='permission!=null and !"".equals(permission)' >permission= #{permission} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='spathid!=null and !"".equals(spathid)' >spathid= #{spathid} , </if>
+                <if test='type!=null' > type= #{type} , </if>
+                <if test='url!=null and !"".equals(url)' >url= #{url} , </if>
+                <if test='parentId!=null' > parent_id= #{parentId} , </if>
+                <if test='serverAddr!=null and !"".equals(serverAddr)' >server_addr= #{serverAddr} , </if>
+                <if test='isEnabled!=null' > is_enabled= #{isEnabled} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='seq!=null' > seq= #{seq} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='module!=null and !"".equals(module)' >module= #{module} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_permission_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_permission_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        authority_name,
+        modify_date,
+        modifier,
+        icon,
+        permission,
+        remark,
+        spathid,
+        type,
+        url,
+        parent_id,
+        server_addr,
+        is_enabled,
+        creater,
+        id,
+        seq,
+        create_date,
+        module
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='authorityName!=null and !"".equals(authorityName)' >authority_name= #{authorityName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='icon!=null and !"".equals(icon)' >icon= #{icon} and </if>
+                <if test='permission!=null and !"".equals(permission)' >permission= #{permission} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='spathid!=null and !"".equals(spathid)' >spathid= #{spathid} and </if>
+                <if test='type!=null' > type= #{type} and </if>
+                <if test='url!=null and !"".equals(url)' >url= #{url} and </if>
+                <if test='parentId!=null' > parent_id= #{parentId} and </if>
+                <if test='serverAddr!=null and !"".equals(serverAddr)' >server_addr= #{serverAddr} and </if>
+                <if test='isEnabled!=null' > is_enabled= #{isEnabled} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='seq!=null' > seq= #{seq} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='module!=null and !"".equals(module)' >module= #{module} and </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!--自定义SQL-->
+    <!-- 关系映射 -->
+    <resultMap id="TreeMap" type="com.topideal.common.system.bean.TreeBean" >
+        <result property="id" column="p_id" />
+        <result property="name" column="p_name" />
+        <result property="icon" column="p_icon" />
+        <result property="url" column="p_url" />
+        <result property="seq" column="p_seq" />
+        <collection property="children" javaType="list" ofType="com.topideal.common.system.bean.TreeBean" column="s_id">
+            <result property="id" column="s_id" />
+            <result property="pId" column="p_id" />
+            <result property="name" column="s_name" />
+            <result property="url" column="s_url" />
+            <result property="serverAddr" column="s_server_addr" />
+            <result property="module" column="module" />
+            <result property="seq" column="s_seq" />
+            <collection property="children" javaType="list" ofType="com.topideal.common.system.bean.TreeBean" column="s1_id">
+                <result property="id" column="s1_id" />
+                <result property="name" column="s1_name" />
+                <result property="permission" column="s1_permission" />
+            </collection>
+        </collection>
+    </resultMap>
+
+
+   <select id="treeList" resultMap="TreeMap" >
+         SELECT
+              p.id as p_id,p.authority_name as p_name ,s.id as s_id,s.authority_name as s_name
+         FROM
+              st_permission_info p
+         LEFT JOIN
+              st_permission_info s
+         ON
+              p.id=s.parent_id
+         WHERE p.parent_id IS NULL
+          ORDER BY p.seq ,s.seq
+    </select>
+
+    <select id="treeListAll" resultMap="TreeMap" >
+         SELECT
+              p.id as p_id,p.authority_name as p_name ,s.id as s_id,s.authority_name as s_name,s1.id as s1_id,s1.authority_name as s1_name,s1.permission as s1_permission
+         FROM
+              st_permission_info p
+         LEFT JOIN
+              st_permission_info s
+         ON
+              p.id=s.parent_id
+         LEFT JOIN
+              st_permission_info s1
+             ON
+              s.id=s1.parent_id
+         WHERE p.parent_id IS NULL
+         <if test="ids!=null">
+             and  p.id  IN <foreach collection="ids" separator="," open="(" close=")" item="id">${id}</foreach>
+             and (s.id  IN <foreach collection="ids" separator="," open="(" close=")" item="id">${id}</foreach> or s.id is null)
+             and (s1.id IN <foreach collection="ids" separator="," open="(" close=")" item="id">${id}</foreach> or s1.id is null)
+         </if>
+        ORDER BY p.seq ,s.seq
+
+    </select>
+
+    <select id="getIdByUserId" resultType="long" >
+          SELECT
+              permission_id
+          FROM
+              st_role_permission_rel
+          WHERE
+              role_id in (select role_id from st_user_role_rel where user_id=${userId})
+    </select>
+
+
+    <select id="treeMenuList" resultMap="TreeMap" >
+                 SELECT
+                      p.id as p_id,p.authority_name as p_name ,p.icon as p_icon,p.url AS p_url,p.seq as p_seq,
+                      s.id as s_id,s.authority_name as s_name,s.url as s_url,s.server_addr as s_server_addr
+                      ,s.module,s.seq as  s_seq
+                 FROM st_permission_info p
+                 LEFT JOIN st_permission_info s ON p.id=s.parent_id
+                 WHERE p.parent_id IS NULL
+                 AND
+                      p.id in (select permission_id from st_role_permission_rel  where role_id in (select role_id from st_user_role_rel where user_id=${userId}))
+                 AND
+                     (s.id in (select permission_id from st_role_permission_rel  where role_id in (select role_id from st_user_role_rel where user_id=${userId}) )
+                     or s.id is null ) and p.type = '1'
+                 ORDER BY p.seq ,s.seq
+    </select>
+
+
+    <select id='searchDTOByPage' resultType='PermissionInfoDTO' parameterType='PermissionInfoDTO'>
+        select <include refid='sql_columns' /> from st_permission_info  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 修改数据 -->
+    <update id='modifyWithNull' parameterType='PermissionInfoModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  st_permission_info SET
+        <trim  suffixOverrides=",">
+            authority_name= #{authorityName} ,
+            modify_date= #{modifyDate} ,
+            modifier= #{modifier} ,
+            icon= #{icon} ,
+            permission= #{permission} ,
+            remark= #{remark} ,
+            spathid= #{spathid} ,
+            type= #{type} ,
+            url= #{url} ,
+            parent_id= #{parentId} ,
+            server_addr= #{serverAddr} ,
+            is_enabled= #{isEnabled} ,
+            seq= #{seq} ,
+            module= #{module} ,
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+</mapper>

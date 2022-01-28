@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.system.DepotMerchantRelMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="DepotMerchantRelModelMap" type="DepotMerchantRelModel" >
+                <result property="depotId" column="depot_id" />
+                <result property="id" column="id" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="createDate" column="create_date" />
+                <result property="isInOutInstruction" column="is_in_out_instruction" />
+                <result property="isInvertoryFallingPrice" column="is_invertory_falling_price" />
+                <result property="productRestriction" column="product_restriction" />
+                <result property="isInDependOut" column="is_in_depend_out" />
+                <result property="isOutDependIn" column="is_out_depend_in" />
+                <result property="contractCode" column="contract_code" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='DepotMerchantRelModelMap' parameterType='DepotMerchantRelModel'>
+        select <include refid='sql_columns' /> from st_depot_merchant_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='DepotMerchantRelModelMap' parameterType='DepotMerchantRelModel'>
+        select <include refid='sql_columns' /> from st_depot_merchant_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='DepotMerchantRelModelMap' parameterType='DepotMerchantRelModel' >
+        select <include refid='sql_columns' /> from st_depot_merchant_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='DepotMerchantRelModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_depot_merchant_rel
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='id!=null' > id , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='isInOutInstruction!=null and !"".equals(isInOutInstruction)' > is_in_out_instruction , </if>
+                <if test='isInvertoryFallingPrice!=null and !"".equals(isInvertoryFallingPrice)' > is_invertory_falling_price , </if>
+                <if test='productRestriction!=null and !"".equals(productRestriction)' > product_restriction , </if>
+                <if test='isInDependOut!=null and !"".equals(isInDependOut)' > is_in_depend_out , </if>
+                <if test='isOutDependIn!=null and !"".equals(isOutDependIn)' > is_out_depend_in , </if>
+                <if test='contractCode!=null and !"".equals(contractCode)' > contract_code , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='isInOutInstruction!=null and !"".equals(isInOutInstruction)' > #{isInOutInstruction} , </if>
+                <if test='isInvertoryFallingPrice!=null and !"".equals(isInvertoryFallingPrice)' > #{isInvertoryFallingPrice} , </if>
+                <if test='productRestriction!=null and !"".equals(productRestriction)' > #{productRestriction} , </if>
+                <if test='isInDependOut!=null and !"".equals(isInDependOut)' > #{isInDependOut} , </if>
+                <if test='isOutDependIn!=null and !"".equals(isOutDependIn)' > #{isOutDependIn} , </if>
+                <if test='contractCode!=null and !"".equals(contractCode)' > #{contractCode} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='DepotMerchantRelModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_depot_merchant_rel SET
+        <trim  suffixOverrides=",">
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='isInOutInstruction!=null and !"".equals(isInOutInstruction)' >is_in_out_instruction= #{isInOutInstruction} , </if>
+                <if test='isInvertoryFallingPrice!=null and !"".equals(isInvertoryFallingPrice)' >is_invertory_falling_price= #{isInvertoryFallingPrice} , </if>
+                <if test='productRestriction!=null and !"".equals(productRestriction)' >product_restriction= #{productRestriction} , </if>
+                <if test='isInDependOut!=null and !"".equals(isInDependOut)' >is_in_depend_out= #{isInDependOut} , </if>
+                <if test='isOutDependIn!=null and !"".equals(isOutDependIn)' >is_out_depend_in= #{isOutDependIn} , </if>
+                <if test='contractCode!=null and !"".equals(contractCode)' >contract_code= #{contractCode} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_depot_merchant_rel  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_depot_merchant_rel where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        depot_id,
+        id,
+        modify_date,
+        merchant_id,
+        create_date,
+        is_in_out_instruction,
+        is_invertory_falling_price,
+        product_restriction,
+        is_in_depend_out,
+        is_out_depend_in,
+        contract_code
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='isInOutInstruction!=null and !"".equals(isInOutInstruction)' >is_in_out_instruction= #{isInOutInstruction} and </if>
+                <if test='isInvertoryFallingPrice!=null and !"".equals(isInvertoryFallingPrice)' >is_invertory_falling_price= #{isInvertoryFallingPrice} and </if>
+                <if test='productRestriction!=null and !"".equals(productRestriction)' >product_restriction= #{productRestriction} and </if>
+                <if test='isInDependOut!=null and !"".equals(isInDependOut)' >is_in_depend_out= #{isInDependOut} and </if>
+                <if test='isOutDependIn!=null and !"".equals(isOutDependIn)' >is_out_depend_in= #{isOutDependIn} and </if>
+                <if test='contractCode!=null and !"".equals(contractCode)' >contract_code= #{contractCode} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	     <resultMap id="depotInfoModelMap" type="DepotInfoModel" >
+                <result property="depotCode" column="depotCode" />
+                <result property="name" column="name" />
+                <result property="id" column="id" />
+   		 </resultMap>
+	<!-- 根据商家id查询仓库信息 -->
+   <select id="getDepotByMerchantId"  resultMap='depotInfoModelMap' parameterType='java.lang.Long'>
+			SELECT distinct d.`name` AS name,d.id AS id ,d.`code` AS depotCode FROM  st_depot_info d
+			INNER JOIN st_depot_merchant_rel dm
+		    <where>
+		  		d.id=dm.depot_id   
+	    		<trim prefix='and'>
+                <if test='merchantId!=null' >  dm.merchant_id= #{merchantId}</if>
+               </trim>
+             </where>
+	</select>
+	
+	<delete id='deleteByMap' parameterType='map'>
+        delete from st_depot_merchant_rel
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='isInOutInstruction!=null and !"".equals(isInOutInstruction)' >is_in_out_instruction= #{isInOutInstruction} and </if>
+                <if test='isInvertoryFallingPrice!=null and !"".equals(isInvertoryFallingPrice)' >is_invertory_falling_price= #{isInvertoryFallingPrice} and </if>
+                <if test='productRestriction!=null and !"".equals(productRestriction)' >product_restriction= #{productRestriction} and </if>
+                <if test='isInDependOut!=null and !"".equals(isInDependOut)' >is_in_depend_out= #{isInDependOut} and </if>
+                <if test='isOutDependIn!=null and !"".equals(isOutDependIn)' >is_out_depend_in= #{isOutDependIn} and </if>
+            </trim>
+        </where>
+    </delete>
+    
+</mapper>

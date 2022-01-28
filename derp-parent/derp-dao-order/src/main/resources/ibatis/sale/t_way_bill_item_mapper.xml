@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.WayBillItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="WayBillItemModelMap" type="WayBillItemModel" >
+            <result property="goodsNo" column="goods_no" />
+            <result property="overdueDate" column="overdue_date" />
+            <result property="batchNo" column="batch_no" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="goodsId" column="goods_id" />
+            <result property="num" column="num" />
+            <result property="productionDate" column="production_date" />
+            <result property="cphTaxRate" column="cph_tax_rate" />
+            <result property="price" column="price" />
+            <result property="billId" column="bill_id" />
+            <result property="id" column="id" />
+            <result property="goodsCode" column="goods_code" />
+            <result property="goodsName" column="goods_name" />
+            <result property="barcode" column="barcode" />
+            <result property="cphTaxFee" column="cph_tax_fee" />
+            <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='WayBillItemModelMap' parameterType='WayBillItemModel'>
+        select <include refid='sql_columns' /> from t_way_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='WayBillItemModelMap' parameterType='WayBillItemModel'>
+        select <include refid='sql_columns' /> from t_way_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='WayBillItemModelMap' parameterType='WayBillItemModel' >
+        select <include refid='sql_columns' /> from t_way_bill_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='WayBillItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_way_bill_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='num!=null' > num , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='cphTaxRate!=null' > cph_tax_rate , </if>
+                <if test='price!=null' > price , </if>
+                <if test='billId!=null' > bill_id , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='cphTaxFee!=null' > cph_tax_fee , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='num!=null' > #{num} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='cphTaxRate!=null' > #{cphTaxRate} , </if>
+                <if test='price!=null' > #{price} , </if>
+                <if test='billId!=null' > #{billId} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='cphTaxFee!=null' > #{cphTaxFee} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='WayBillItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_way_bill_item SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='num!=null' > num= #{num} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='cphTaxRate!=null' > cph_tax_rate= #{cphTaxRate} , </if>
+                <if test='price!=null' > price= #{price} , </if>
+                <if test='billId!=null' > bill_id= #{billId} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='cphTaxFee!=null' > cph_tax_fee= #{cphTaxFee} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_way_bill_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_way_bill_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        overdue_date,
+        batch_no,
+        modify_date,
+        goods_id,
+        num,
+        production_date,
+        cph_tax_rate,
+        price,
+        bill_id,
+        id,
+        goods_code,
+        goods_name,
+        barcode,
+        cph_tax_fee,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='num!=null' > num= #{num} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='cphTaxRate!=null' > cph_tax_rate= #{cphTaxRate} and </if>
+                <if test='price!=null' > price= #{price} and </if>
+                <if test='billId!=null' > bill_id= #{billId} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='cphTaxFee!=null' > cph_tax_fee= #{cphTaxFee} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+	<select id="listWayBillItemByOrderId" resultType='WayBillItemDTO' parameterType='WayBillItemDTO'>
+		select t1.* from t_way_bill t
+		left join t_way_bill_item t1 on t.id =t1.bill_id
+		where t.order_id =#{id}
+	</select>
+    <!-- 迁移数据到历史表 -->
+    <insert id='synsMoveToHistory' parameterType='map'>
+        insert into t_way_bill_item_history select wi.* from t_way_bill_item wi,t_way_bill w,t_order t
+        where wi.bill_id=w.id and w.order_id=t.id
+              and t.deliver_date &lt; #{divergenceDate}
+    </insert>
+    <!-- 删除已迁移到历史表的数据 -->
+    <delete id='delMoveToHistory' parameterType='map'>
+        delete wi from t_way_bill_item wi,t_way_bill w,t_order t
+        where wi.bill_id=w.id and w.order_id=t.id
+              and t.deliver_date &lt; #{divergenceDate}
+    </delete>
+
+
+</mapper>

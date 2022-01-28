@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.InventoryLocationAdjustmentOrderItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="InventoryLocationAdjustmentOrderItemModelMap" type="InventoryLocationAdjustmentOrderItemModel" >
+                <result property="id" column="id" />
+                <result property="inventoryLocationId" column="inventory_location_id" />
+                <result property="externalCode" column="external_code" />
+                <result property="orderCode" column="order_code" />
+                <result property="increaseGoodsId" column="increase_goods_id" />
+                <result property="increaseGoodsNo" column="increase_goods_no" />
+                <result property="increaseGoodsCode" column="increase_goods_code" />
+                <result property="increaseGoodsName" column="increase_goods_name" />
+                <result property="reduceGoodsId" column="reduce_goods_id" />
+                <result property="reduceGoodsNo" column="reduce_goods_no" />
+                <result property="reduceGoodsCode" column="reduce_goods_code" />
+                <result property="reduceGoodsName" column="reduce_goods_name" />
+                <result property="adjustNum" column="adjust_num" />
+                <result property="inventoryType" column="inventory_type" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="platformCode" column="platform_code" />
+                <result property="platformName" column="platform_name" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="tallyingUnit" column="tallying_unit" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryLocationAdjustmentOrderItemModelMap' parameterType='InventoryLocationAdjustmentOrderItemModel'>
+        select <include refid='sql_columns' /> from t_inventory_location_adjustment_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryLocationAdjustmentOrderItemModelMap' parameterType='InventoryLocationAdjustmentOrderItemModel'>
+        select <include refid='sql_columns' /> from t_inventory_location_adjustment_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryLocationAdjustmentOrderItemModelMap' parameterType='InventoryLocationAdjustmentOrderItemModel' >
+        select <include refid='sql_columns' /> from t_inventory_location_adjustment_order_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='InventoryLocationAdjustmentOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_inventory_location_adjustment_order_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='inventoryLocationId!=null' >inventory_location_id , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > external_code , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='increaseGoodsId!=null' >increase_goods_id , </if>
+                        <if test='increaseGoodsNo!=null and !"".equals(increaseGoodsNo)' > increase_goods_no , </if>
+                        <if test='increaseGoodsCode!=null and !"".equals(increaseGoodsCode)' > increase_goods_code , </if>
+                        <if test='increaseGoodsName!=null and !"".equals(increaseGoodsName)' > increase_goods_name , </if>
+                        <if test='reduceGoodsId!=null' >reduce_goods_id , </if>
+                        <if test='reduceGoodsNo!=null and !"".equals(reduceGoodsNo)' > reduce_goods_no , </if>
+                        <if test='reduceGoodsCode!=null and !"".equals(reduceGoodsCode)' > reduce_goods_code , </if>
+                        <if test='reduceGoodsName!=null and !"".equals(reduceGoodsName)' > reduce_goods_name , </if>
+                        <if test='adjustNum!=null' >adjust_num , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' > inventory_type , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='platformCode!=null and !"".equals(platformCode)' > platform_code , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' > platform_name , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='inventoryLocationId!=null' > #{inventoryLocationId} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' > #{externalCode} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='increaseGoodsId!=null' > #{increaseGoodsId} , </if>
+                        <if test='increaseGoodsNo!=null and !"".equals(increaseGoodsNo)' > #{increaseGoodsNo} , </if>
+                        <if test='increaseGoodsCode!=null and !"".equals(increaseGoodsCode)' > #{increaseGoodsCode} , </if>
+                        <if test='increaseGoodsName!=null and !"".equals(increaseGoodsName)' > #{increaseGoodsName} , </if>
+                        <if test='reduceGoodsId!=null' > #{reduceGoodsId} , </if>
+                        <if test='reduceGoodsNo!=null and !"".equals(reduceGoodsNo)' > #{reduceGoodsNo} , </if>
+                        <if test='reduceGoodsCode!=null and !"".equals(reduceGoodsCode)' > #{reduceGoodsCode} , </if>
+                        <if test='reduceGoodsName!=null and !"".equals(reduceGoodsName)' > #{reduceGoodsName} , </if>
+                        <if test='adjustNum!=null' > #{adjustNum} , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' > #{inventoryType} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='platformCode!=null and !"".equals(platformCode)' > #{platformCode} , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' > #{platformName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='InventoryLocationAdjustmentOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_inventory_location_adjustment_order_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='inventoryLocationId!=null' > inventory_location_id= #{inventoryLocationId} , </if>
+                        <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='increaseGoodsId!=null' > increase_goods_id= #{increaseGoodsId} , </if>
+                        <if test='increaseGoodsNo!=null and !"".equals(increaseGoodsNo)' >increase_goods_no= #{increaseGoodsNo} , </if>
+                        <if test='increaseGoodsCode!=null and !"".equals(increaseGoodsCode)' >increase_goods_code= #{increaseGoodsCode} , </if>
+                        <if test='increaseGoodsName!=null and !"".equals(increaseGoodsName)' >increase_goods_name= #{increaseGoodsName} , </if>
+                        <if test='reduceGoodsId!=null' > reduce_goods_id= #{reduceGoodsId} , </if>
+                        <if test='reduceGoodsNo!=null and !"".equals(reduceGoodsNo)' >reduce_goods_no= #{reduceGoodsNo} , </if>
+                        <if test='reduceGoodsCode!=null and !"".equals(reduceGoodsCode)' >reduce_goods_code= #{reduceGoodsCode} , </if>
+                        <if test='reduceGoodsName!=null and !"".equals(reduceGoodsName)' >reduce_goods_name= #{reduceGoodsName} , </if>
+                        <if test='adjustNum!=null' > adjust_num= #{adjustNum} , </if>
+                        <if test='inventoryType!=null and !"".equals(inventoryType)' >inventory_type= #{inventoryType} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='platformCode!=null and !"".equals(platformCode)' >platform_code= #{platformCode} , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' >platform_name= #{platformName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_inventory_location_adjustment_order_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_inventory_location_adjustment_order_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            inventory_location_id,
+            external_code,
+            order_code,
+            increase_goods_id,
+            increase_goods_no,
+            increase_goods_code,
+            increase_goods_name,
+            reduce_goods_id,
+            reduce_goods_no,
+            reduce_goods_code,
+            reduce_goods_name,
+            adjust_num,
+            inventory_type,
+            create_date,
+            modify_date,
+            platform_code,
+            platform_name,
+            shop_code,
+            shop_name,
+            tallying_unit
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='inventoryLocationId!=null' > inventory_location_id= #{inventoryLocationId} and </if>
+                            <if test='externalCode!=null and !"".equals(externalCode)' >external_code= #{externalCode} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='increaseGoodsId!=null' > increase_goods_id= #{increaseGoodsId} and </if>
+                            <if test='increaseGoodsNo!=null and !"".equals(increaseGoodsNo)' >increase_goods_no= #{increaseGoodsNo} and </if>
+                            <if test='increaseGoodsCode!=null and !"".equals(increaseGoodsCode)' >increase_goods_code= #{increaseGoodsCode} and </if>
+                            <if test='increaseGoodsName!=null and !"".equals(increaseGoodsName)' >increase_goods_name= #{increaseGoodsName} and </if>
+                            <if test='reduceGoodsId!=null' > reduce_goods_id= #{reduceGoodsId} and </if>
+                            <if test='reduceGoodsNo!=null and !"".equals(reduceGoodsNo)' >reduce_goods_no= #{reduceGoodsNo} and </if>
+                            <if test='reduceGoodsCode!=null and !"".equals(reduceGoodsCode)' >reduce_goods_code= #{reduceGoodsCode} and </if>
+                            <if test='reduceGoodsName!=null and !"".equals(reduceGoodsName)' >reduce_goods_name= #{reduceGoodsName} and </if>
+                            <if test='adjustNum!=null' > adjust_num= #{adjustNum} and </if>
+                            <if test='inventoryType!=null and !"".equals(inventoryType)' >inventory_type= #{inventoryType} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='platformCode!=null and !"".equals(platformCode)' >platform_code= #{platformCode} and </if>
+                            <if test='platformName!=null and !"".equals(platformName)' >platform_name= #{platformName} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <!-- 查询所有信息 -->
+    <select id="listInventoryLocationAdjustItemDTO" resultType='InventoryLocationAdjustmentOrderItemDTO' parameterType='InventoryLocationAdjustmentOrderItemDTO'>
+        select <include refid='sql_columns' /> from t_inventory_location_adjustment_order_item  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 根据表头id删除表体数据 -->
+    <delete id='delByIdBatch' parameterType='java.util.ArrayList'>
+        DELETE FROM t_inventory_location_adjustment_order_item WHERE inventory_location_id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

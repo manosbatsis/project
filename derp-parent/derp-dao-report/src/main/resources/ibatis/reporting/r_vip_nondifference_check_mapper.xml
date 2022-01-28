@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.VipNondifferenceCheckMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="VipNondifferenceCheckModelMap" type="VipNondifferenceCheckModel" >
+                <result property="id" column="id" />
+                <result property="month" column="month" />
+                <result property="platform" column="platform" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="poNo" column="po_no" />
+                <result property="crawlerNo" column="crawler_no" />
+                <result property="crawlerType" column="crawler_type" />
+                <result property="crawlerGoodsNo" column="crawler_goods_no" />
+                <result property="orderCode" column="order_code" />
+                <result property="orderType" column="order_type" />
+                <result property="orderId" column="order_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="account" column="account" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='VipNondifferenceCheckModelMap' parameterType='VipNondifferenceCheckModel'>
+        select <include refid='sql_columns' /> from r_vip_nondifference_check  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='VipNondifferenceCheckModelMap' parameterType='VipNondifferenceCheckModel'>
+        select <include refid='sql_columns' /> from r_vip_nondifference_check  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='VipNondifferenceCheckModelMap' parameterType='VipNondifferenceCheckModel' >
+        select <include refid='sql_columns' /> from r_vip_nondifference_check  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='VipNondifferenceCheckModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_vip_nondifference_check
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='platform!=null and !"".equals(platform)' > platform , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='crawlerNo!=null and !"".equals(crawlerNo)' > crawler_no , </if>
+                        <if test='crawlerType!=null and !"".equals(crawlerType)' > crawler_type , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > crawler_goods_no , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='account!=null' >account , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='platform!=null and !"".equals(platform)' > #{platform} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='crawlerNo!=null and !"".equals(crawlerNo)' > #{crawlerNo} , </if>
+                        <if test='crawlerType!=null and !"".equals(crawlerType)' > #{crawlerType} , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > #{crawlerGoodsNo} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='account!=null' > #{account} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='VipNondifferenceCheckModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_vip_nondifference_check SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='platform!=null and !"".equals(platform)' >platform= #{platform} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='crawlerNo!=null and !"".equals(crawlerNo)' >crawler_no= #{crawlerNo} , </if>
+                        <if test='crawlerType!=null and !"".equals(crawlerType)' >crawler_type= #{crawlerType} , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >crawler_goods_no= #{crawlerGoodsNo} , </if>
+                        <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='account!=null' > account= #{account} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_vip_nondifference_check  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_vip_nondifference_check where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            month,
+            platform,
+            merchant_id,
+            merchant_name,
+            po_no,
+            crawler_no,
+            crawler_type,
+            crawler_goods_no,
+            order_code,
+            order_type,
+            order_id,
+            goods_id,
+            goods_no,
+            account,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='platform!=null and !"".equals(platform)' >platform= #{platform} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='crawlerNo!=null and !"".equals(crawlerNo)' >crawler_no= #{crawlerNo} and </if>
+                            <if test='crawlerType!=null and !"".equals(crawlerType)' >crawler_type= #{crawlerType} and </if>
+                            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >crawler_goods_no= #{crawlerGoodsNo} and </if>
+                            <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='account!=null' > account= #{account} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <delete id='delByMap' parameterType='map'>
+            delete from r_vip_nondifference_check  
+            <where>
+               <trim suffixOverrides='and'>
+                   <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                   <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                   <if test='crawlerNo!=null and !"".equals(crawlerNo)' >crawler_no= #{crawlerNo} and </if>
+               </trim>
+            </where>
+        </delete>
+
+        <select id="getNoDifferenceExportList" resultType='VipNondifferenceCheckDTO' parameterType='VipNondifferenceCheckDTO'>
+	        select <include refid='sql_columns' /> from r_vip_nondifference_check  <include refid='sql_where' />
+	    </select>
+
+</mapper>

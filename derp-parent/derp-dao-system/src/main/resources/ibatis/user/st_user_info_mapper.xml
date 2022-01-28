@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.user.UserInfoMapper'>
+
+<!-- 关系映射 -->
+    <resultMap id="UserInfoModelMap" type="UserInfoModel" >
+                <result property="code" column="code" />
+                <result property="deteled" column="deteled" />
+                <result property="modifier" column="modifier" />
+                <result property="remark" column="remark" />
+                <result property="lastLoginDate" column="last_login_date" />
+                <result property="lastLoginIp" column="last_login_ip" />
+                <result property="password" column="password" />
+                <result property="disableDate" column="disable_date" />
+                <result property="tel" column="tel" />
+                <result property="id" column="id" />
+                <result property="email" column="email" />
+                <result property="createDate" column="create_date" />
+                <result property="deteledDate" column="deteled_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="sex" column="sex" />
+                <result property="resetPwdId" column="reset_pwd_id" />
+                <result property="birthDate" column="birth_date" />
+                <result property="modifyPwdDate" column="modify_pwd_date" />
+                <result property="parentId" column="parent_id" />
+                <result property="logoImg" column="logo_img" />
+                <result property="disable" column="disable" />
+                <result property="name" column="name" />
+                <result property="creater" column="creater" />
+                <result property="userType" column="user_type" />
+                <result property="resetPwdDate" column="reset_pwd_date" />
+                <result property="username" column="username" />
+                <result property="accountType" column="account_type" />
+
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='UserInfoModelMap' parameterType='UserInfoModel'>
+        select <include refid='sql_columns' /> from st_user_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='UserInfoModelMap' parameterType='UserInfoModel'>
+        select <include refid='sql_columns' /> from st_user_info  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='UserInfoModelMap' parameterType='UserInfoModel' >
+        select <include refid='sql_columns' /> from st_user_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='UserInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_user_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='deteled!=null and !"".equals(deteled)' > deteled , </if>
+                <if test='modifier!=null' > modifier , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='lastLoginDate!=null' > last_login_date , </if>
+                <if test='lastLoginIp!=null and !"".equals(lastLoginIp)' > last_login_ip , </if>
+                <if test='password!=null and !"".equals(password)' > password , </if>
+                <if test='disableDate!=null' > disable_date , </if>
+                <if test='tel!=null and !"".equals(tel)' > tel , </if>
+                <if test='id!=null' > id , </if>
+                <if test='email!=null and !"".equals(email)' > email , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='deteledDate!=null' > deteled_date , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='sex!=null and !"".equals(sex)' > sex , </if>
+                <if test='resetPwdId!=null' > reset_pwd_id , </if>
+                <if test='birthDate!=null' > birth_date , </if>
+                <if test='modifyPwdDate!=null' > modify_pwd_date , </if>
+                <if test='parentId!=null' > parent_id , </if>
+                <if test='logoImg!=null and !"".equals(logoImg)' > logo_img , </if>
+                <if test='disable!=null and !"".equals(disable)' > disable , </if>
+                <if test='name!=null and !"".equals(name)' > name , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='userType!=null and !"".equals(userType)' > user_type , </if>
+                <if test='resetPwdDate!=null' > reset_pwd_date , </if>
+                <if test='username!=null and !"".equals(username)' > username , </if>
+                <if test='accountType!=null and !"".equals(accountType)' > account_type , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='deteled!=null and !"".equals(deteled)' > #{deteled} , </if>
+                <if test='modifier!=null' > #{modifier} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='lastLoginDate!=null' > #{lastLoginDate} , </if>
+                <if test='lastLoginIp!=null and !"".equals(lastLoginIp)' > #{lastLoginIp} , </if>
+                <if test='password!=null and !"".equals(password)' > #{password} , </if>
+                <if test='disableDate!=null' > #{disableDate} , </if>
+                <if test='tel!=null and !"".equals(tel)' > #{tel} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='email!=null and !"".equals(email)' > #{email} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='deteledDate!=null' > #{deteledDate} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='sex!=null and !"".equals(sex)' > #{sex} , </if>
+                <if test='resetPwdId!=null' > #{resetPwdId} , </if>
+                <if test='birthDate!=null' > #{birthDate} , </if>
+                <if test='modifyPwdDate!=null' > #{modifyPwdDate} , </if>
+                <if test='parentId!=null' > #{parentId} , </if>
+                <if test='logoImg!=null and !"".equals(logoImg)' > #{logoImg} , </if>
+                <if test='disable!=null and !"".equals(disable)' > #{disable} , </if>
+                <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='userType!=null and !"".equals(userType)' > #{userType} , </if>
+                <if test='resetPwdDate!=null' > #{resetPwdDate} , </if>
+                <if test='username!=null and !"".equals(username)' > #{username} , </if>
+                <if test='accountType!=null and !"".equals(accountType)' > #{accountType} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='UserInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_user_info SET
+        <trim  suffixOverrides=",">
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='deteled!=null and !"".equals(deteled)' >deteled= #{deteled} , </if>
+                <if test='modifier!=null' > modifier= #{modifier} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='lastLoginDate!=null' > last_login_date= #{lastLoginDate} , </if>
+                <if test='lastLoginIp!=null and !"".equals(lastLoginIp)' >last_login_ip= #{lastLoginIp} , </if>
+                <if test='password!=null and !"".equals(password)' >password= #{password} , </if>
+                <if test='disableDate!=null' > disable_date= #{disableDate} , </if>
+                <if test='tel!=null and !"".equals(tel)' >tel= #{tel} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='email!=null and !"".equals(email)' >email= #{email} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='deteledDate!=null' > deteled_date= #{deteledDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='sex!=null and !"".equals(sex)' >sex= #{sex} , </if>
+                <if test='resetPwdId!=null' > reset_pwd_id= #{resetPwdId} , </if>
+                <if test='birthDate!=null' > birth_date= #{birthDate} , </if>
+                <if test='modifyPwdDate!=null' > modify_pwd_date= #{modifyPwdDate} , </if>
+                <if test='parentId!=null' > parent_id= #{parentId} , </if>
+                <if test='logoImg!=null and !"".equals(logoImg)' >logo_img= #{logoImg} , </if>
+                <if test='disable!=null and !"".equals(disable)' >disable= #{disable} , </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='userType!=null and !"".equals(userType)' >user_type= #{userType} , </if>
+                <if test='resetPwdDate!=null' > reset_pwd_date= #{resetPwdDate} , </if>
+                <if test='username!=null and !"".equals(username)' >username= #{username} , </if>
+                <if test='accountType!=null and !"".equals(accountType)' >account_type= #{accountType} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_user_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_user_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        code,
+        deteled,
+        modifier,
+        remark,
+        last_login_date,
+        last_login_ip,
+        password,
+        disable_date,
+        tel,
+        id,
+        email,
+        create_date,
+        deteled_date,
+        modify_date,
+        sex,
+        reset_pwd_id,
+        birth_date,
+        modify_pwd_date,
+        parent_id,
+        logo_img,
+        disable,
+        name,
+        creater,
+        user_type,
+        reset_pwd_date,
+        username,
+        account_type
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='deteled!=null and !"".equals(deteled)' >deteled= #{deteled} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='lastLoginDate!=null' > last_login_date= #{lastLoginDate} and </if>
+                <if test='lastLoginIp!=null and !"".equals(lastLoginIp)' >last_login_ip= #{lastLoginIp} and </if>
+                <if test='password!=null and !"".equals(password)' >password= #{password} and </if>
+                <if test='disableDate!=null' > disable_date= #{disableDate} and </if>
+                <if test='tel!=null and !"".equals(tel)' >tel= #{tel} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='email!=null and !"".equals(email)' >email= #{email} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='deteledDate!=null' > deteled_date= #{deteledDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='sex!=null and !"".equals(sex)' >sex= #{sex} and </if>
+                <if test='resetPwdId!=null' > reset_pwd_id= #{resetPwdId} and </if>
+                <if test='birthDate!=null' > birth_date= #{birthDate} and </if>
+                <if test='modifyPwdDate!=null' > modify_pwd_date= #{modifyPwdDate} and </if>
+                <if test='parentId!=null' > parent_id= #{parentId} and </if>
+                <if test='logoImg!=null and !"".equals(logoImg)' >logo_img= #{logoImg} and </if>
+                <if test='disable!=null and !"".equals(disable)' >disable= #{disable} and </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='userType!=null and !"".equals(userType)' >user_type= #{userType} and </if>
+                <if test='resetPwdDate!=null' > reset_pwd_date= #{resetPwdDate} and </if>
+                <if test='username!=null and !"".equals(username)' >username like concat('%',#{username}, '%') and </if>
+                <if test='accountType!=null and !"".equals(accountType)' >account_type= #{accountType} and </if>
+            </trim>
+        </where>
+    </sql>
+<!--自定义SQL-->
+    <resultMap id="extendMap" type="UserInfoModel" >
+        <result property="code" column="code" />
+        <result property="deteled" column="deteled" />
+        <result property="modifier" column="modifier" />
+        <result property="remark" column="remark" />
+        <result property="lastLoginDate" column="last_login_date" />
+        <result property="lastLoginIp" column="last_login_ip" />
+        <result property="password" column="password" />
+        <result property="disableDate" column="disable_date" />
+        <result property="tel" column="tel" />
+        <result property="id" column="id" />
+        <result property="email" column="email" />
+        <result property="createDate" column="create_date" />
+        <result property="deteledDate" column="deteled_date" />
+        <result property="modifyDate" column="modify_date" />
+        <result property="sex" column="sex" />
+        <result property="resetPwdId" column="reset_pwd_id" />
+        <result property="birthDate" column="birth_date" />
+        <result property="modifyPwdDate" column="modify_pwd_date" />
+        <result property="parentId" column="parent_id" />
+        <result property="logoImg" column="logo_img" />
+        <result property="disable" column="disable" />
+        <result property="name" column="name" />
+        <result property="creater" column="creater" />
+        <result property="userType" column="user_type" />
+        <result property="resetPwdDate" column="reset_pwd_date" />
+        <result property="username" column="username" />
+    </resultMap>
+
+    <select id="getBtnPersonInfo" resultType="java.lang.String">
+        SELECT permission FROM st_permission_info t 
+		WHERE  t.id IN (
+		    SELECT t1.permission_id  FROM st_role_permission_rel t1 
+		    LEFT JOIN st_user_role_rel t2 ON t1.role_id=t2.role_id
+		    WHERE t2.user_id=#{id}
+		    ) AND permission IS NOT NULL
+    </select>
+
+    <select id="searchUserByUsername" resultType="UserInfoDTO">
+        select code, deteled, password, account_type,tel, id, sex, reset_pwd_id,
+               parent_id, logo_img, disable, name, user_type,username
+        from st_user_info
+        where username= #{username} and disable='0'
+    </select>
+    
+
+	<select id='getDetails' resultType='UserInfoDTO' parameterType='java.lang.Long'>
+		select id, code,name,tel,email,username,sex,account_type from st_user_info where id = #{id}
+	</select>
+	
+	<select id='searchDTOByPage' resultType='UserInfoDTO' parameterType='UserInfoDTO'>
+        select <include refid='sql_columns' /> from st_user_info  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <sql id='sql_where_list'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='deteled!=null and !"".equals(deteled)' >deteled= #{deteled} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='lastLoginDate!=null' > last_login_date= #{lastLoginDate} and </if>
+                <if test='lastLoginIp!=null and !"".equals(lastLoginIp)' >last_login_ip= #{lastLoginIp} and </if>
+                <if test='password!=null and !"".equals(password)' >password= #{password} and </if>
+                <if test='disableDate!=null' > disable_date= #{disableDate} and </if>
+                <if test='tel!=null and !"".equals(tel)' >tel= #{tel} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='email!=null and !"".equals(email)' >email= #{email} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='deteledDate!=null' > deteled_date= #{deteledDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='sex!=null and !"".equals(sex)' >sex= #{sex} and </if>
+                <if test='resetPwdId!=null' > reset_pwd_id= #{resetPwdId} and </if>
+                <if test='birthDate!=null' > birth_date= #{birthDate} and </if>
+                <if test='modifyPwdDate!=null' > modify_pwd_date= #{modifyPwdDate} and </if>
+                <if test='parentId!=null' > parent_id= #{parentId} and </if>
+                <if test='logoImg!=null and !"".equals(logoImg)' >logo_img= #{logoImg} and </if>
+                <if test='disable!=null and !"".equals(disable)' >disable= #{disable} and </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='userType!=null and !"".equals(userType)' >user_type= #{userType} and </if>
+                <if test='resetPwdDate!=null' > reset_pwd_date= #{resetPwdDate} and </if>
+                <if test='username!=null and !"".equals(username)' >username like concat('%',#{username}, '%') and </if>
+                <if test='accountType!=null and !"".equals(accountType)' >account_type= #{accountType} and </if>
+                <if test='ids!=null and !"".equals(ids)' >
+                    id in
+                    <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                        #{id}
+                    </foreach>
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+
+    <select id='listByIds' resultMap="UserInfoModelMap" parameterType='UserInfoDTO'>
+        select <include refid='sql_columns' /> from st_user_info  <include refid='sql_where_list' />
+
+    </select>
+
+</mapper>
+

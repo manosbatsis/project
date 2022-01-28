@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuInventorySummaryMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuInventorySummaryModelMap" type="BuInventorySummaryModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotCode" column="depot_code" />
+                <result property="depotName" column="depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="buCode" column="bu_code" />
+                <result property="ownMonth" column="own_month" />
+                <result property="productName" column="product_name" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="barcode" column="barcode" />
+                <result property="factoryNo" column="factory_no" />
+                <result property="unit" column="unit" />
+                <result property="supplyMinPrice" column="supply_min_price" />
+                <result property="monthBeginNum" column="month_begin_num" />
+                <result property="monthBeginNormalNum" column="month_begin_normal_num" />
+                <result property="monthInstorageNum" column="month_instorage_num" />
+                <result property="monthOutstorageNum" column="month_outstorage_num" />
+                <result property="inDamagedNum" column="in_damaged_num" />
+                <result property="outDamagedNum" column="out_damaged_num" />
+                <result property="monthProfitlossNum" column="month_profitloss_num" />
+                <result property="monthEndNum" column="month_end_num" />
+                <result property="monthEndNormalNum" column="month_end_normal_num" />
+                <result property="availableNum" column="available_num" />
+                <result property="monthSaleUnconfirmedNum" column="month_sale_unconfirmed_num" />
+                <result property="monthPurchaseNotshelfNum" column="month_purchase_notshelf_num" />
+                <result property="monthEndAmount" column="month_end_amount" />
+                <result property="monthBeginDamagedNum" column="month_begin_damaged_num" />
+                <result property="monthEndDamagedNum" column="month_end_damaged_num" />
+                <result property="profitlossGoodNum" column="profitloss_good_num" />
+                <result property="profitlossDamagedNum" column="profitloss_damaged_num" />
+                <result property="monthNormalExpireNum" column="month_normal_expire_num" />
+                <result property="monthTransferNotshelfNum" column="month_transfer_notshelf_num" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="createDate" column="create_date" />
+                <result property="monthInBadNum" column="month_in_bad_num" />
+                <result property="monthOutBadNum" column="month_out_bad_num" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuInventorySummaryModelMap' parameterType='BuInventorySummaryModel'>
+        select <include refid='sql_columns' /> from r_bu_inventory_summary  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuInventorySummaryModelMap' parameterType='BuInventorySummaryModel'>
+        select <include refid='sql_columns' /> from r_bu_inventory_summary  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuInventorySummaryModelMap' parameterType='BuInventorySummaryModel' >
+        select <include refid='sql_columns' /> from r_bu_inventory_summary  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuInventorySummaryModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_inventory_summary
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' > depot_code , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buCode!=null and !"".equals(buCode)' > bu_code , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' > own_month , </if>
+                        <if test='productName!=null and !"".equals(productName)' > product_name , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='factoryNo!=null and !"".equals(factoryNo)' > factory_no , </if>
+                        <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                        <if test='supplyMinPrice!=null' >supply_min_price , </if>
+                        <if test='monthBeginNum!=null' >month_begin_num , </if>
+                        <if test='monthBeginNormalNum!=null' >month_begin_normal_num , </if>
+                        <if test='monthInstorageNum!=null' >month_instorage_num , </if>
+                        <if test='monthOutstorageNum!=null' >month_outstorage_num , </if>
+                        <if test='inDamagedNum!=null' >in_damaged_num , </if>
+                        <if test='outDamagedNum!=null' >out_damaged_num , </if>
+                        <if test='monthProfitlossNum!=null' >month_profitloss_num , </if>
+                        <if test='monthEndNum!=null' >month_end_num , </if>
+                        <if test='monthEndNormalNum!=null' >month_end_normal_num , </if>
+                        <if test='availableNum!=null' >available_num , </if>
+                        <if test='monthSaleUnconfirmedNum!=null' >month_sale_unconfirmed_num , </if>
+                        <if test='monthPurchaseNotshelfNum!=null' >month_purchase_notshelf_num , </if>
+                        <if test='monthEndAmount!=null' >month_end_amount , </if>
+                        <if test='monthBeginDamagedNum!=null' >month_begin_damaged_num , </if>
+                        <if test='monthEndDamagedNum!=null' >month_end_damaged_num , </if>
+                        <if test='profitlossGoodNum!=null' >profitloss_good_num , </if>
+                        <if test='profitlossDamagedNum!=null' >profitloss_damaged_num , </if>
+                        <if test='monthNormalExpireNum!=null' >month_normal_expire_num , </if>
+                        <if test='monthTransferNotshelfNum!=null' >month_transfer_notshelf_num , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='monthInBadNum!=null' >month_in_bad_num , </if>
+                        <if test='monthOutBadNum!=null' >month_out_bad_num , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' > #{depotCode} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buCode!=null and !"".equals(buCode)' > #{buCode} , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' > #{ownMonth} , </if>
+                        <if test='productName!=null and !"".equals(productName)' > #{productName} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='factoryNo!=null and !"".equals(factoryNo)' > #{factoryNo} , </if>
+                        <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                        <if test='supplyMinPrice!=null' > #{supplyMinPrice} , </if>
+                        <if test='monthBeginNum!=null' > #{monthBeginNum} , </if>
+                        <if test='monthBeginNormalNum!=null' > #{monthBeginNormalNum} , </if>
+                        <if test='monthInstorageNum!=null' > #{monthInstorageNum} , </if>
+                        <if test='monthOutstorageNum!=null' > #{monthOutstorageNum} , </if>
+                        <if test='inDamagedNum!=null' > #{inDamagedNum} , </if>
+                        <if test='outDamagedNum!=null' > #{outDamagedNum} , </if>
+                        <if test='monthProfitlossNum!=null' > #{monthProfitlossNum} , </if>
+                        <if test='monthEndNum!=null' > #{monthEndNum} , </if>
+                        <if test='monthEndNormalNum!=null' > #{monthEndNormalNum} , </if>
+                        <if test='availableNum!=null' > #{availableNum} , </if>
+                        <if test='monthSaleUnconfirmedNum!=null' > #{monthSaleUnconfirmedNum} , </if>
+                        <if test='monthPurchaseNotshelfNum!=null' > #{monthPurchaseNotshelfNum} , </if>
+                        <if test='monthEndAmount!=null' > #{monthEndAmount} , </if>
+                        <if test='monthBeginDamagedNum!=null' > #{monthBeginDamagedNum} , </if>
+                        <if test='monthEndDamagedNum!=null' > #{monthEndDamagedNum} , </if>
+                        <if test='profitlossGoodNum!=null' > #{profitlossGoodNum} , </if>
+                        <if test='profitlossDamagedNum!=null' > #{profitlossDamagedNum} , </if>
+                        <if test='monthNormalExpireNum!=null' > #{monthNormalExpireNum} , </if>
+                        <if test='monthTransferNotshelfNum!=null' > #{monthTransferNotshelfNum} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='monthInBadNum!=null' > #{monthInBadNum} , </if>
+                        <if test='monthOutBadNum!=null' > #{monthOutBadNum} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuInventorySummaryModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_inventory_summary SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buCode!=null and !"".equals(buCode)' >bu_code= #{buCode} , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} , </if>
+                        <if test='productName!=null and !"".equals(productName)' >product_name= #{productName} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} , </if>
+                        <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                        <if test='supplyMinPrice!=null' > supply_min_price= #{supplyMinPrice} , </if>
+                        <if test='monthBeginNum!=null' > month_begin_num= #{monthBeginNum} , </if>
+                        <if test='monthBeginNormalNum!=null' > month_begin_normal_num= #{monthBeginNormalNum} , </if>
+                        <if test='monthInstorageNum!=null' > month_instorage_num= #{monthInstorageNum} , </if>
+                        <if test='monthOutstorageNum!=null' > month_outstorage_num= #{monthOutstorageNum} , </if>
+                        <if test='inDamagedNum!=null' > in_damaged_num= #{inDamagedNum} , </if>
+                        <if test='outDamagedNum!=null' > out_damaged_num= #{outDamagedNum} , </if>
+                        <if test='monthProfitlossNum!=null' > month_profitloss_num= #{monthProfitlossNum} , </if>
+                        <if test='monthEndNum!=null' > month_end_num= #{monthEndNum} , </if>
+                        <if test='monthEndNormalNum!=null' > month_end_normal_num= #{monthEndNormalNum} , </if>
+                        <if test='availableNum!=null' > available_num= #{availableNum} , </if>
+                        <if test='monthSaleUnconfirmedNum!=null' > month_sale_unconfirmed_num= #{monthSaleUnconfirmedNum} , </if>
+                        <if test='monthPurchaseNotshelfNum!=null' > month_purchase_notshelf_num= #{monthPurchaseNotshelfNum} , </if>
+                        <if test='monthEndAmount!=null' > month_end_amount= #{monthEndAmount} , </if>
+                        <if test='monthBeginDamagedNum!=null' > month_begin_damaged_num= #{monthBeginDamagedNum} , </if>
+                        <if test='monthEndDamagedNum!=null' > month_end_damaged_num= #{monthEndDamagedNum} , </if>
+                        <if test='profitlossGoodNum!=null' > profitloss_good_num= #{profitlossGoodNum} , </if>
+                        <if test='profitlossDamagedNum!=null' > profitloss_damaged_num= #{profitlossDamagedNum} , </if>
+                        <if test='monthNormalExpireNum!=null' > month_normal_expire_num= #{monthNormalExpireNum} , </if>
+                        <if test='monthTransferNotshelfNum!=null' > month_transfer_notshelf_num= #{monthTransferNotshelfNum} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='monthInBadNum!=null' > month_in_bad_num= #{monthInBadNum} , </if>
+                        <if test='monthOutBadNum!=null' > month_out_bad_num= #{monthOutBadNum} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_inventory_summary  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_inventory_summary where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            topideal_code,
+            depot_id,
+            depot_code,
+            depot_name,
+            bu_id,
+            bu_name,
+            bu_code,
+            own_month,
+            product_name,
+            brand_id,
+            brand_name,
+            barcode,
+            factory_no,
+            unit,
+            supply_min_price,
+            month_begin_num,
+            month_begin_normal_num,
+            month_instorage_num,
+            month_outstorage_num,
+            in_damaged_num,
+            out_damaged_num,
+            month_profitloss_num,
+            month_end_num,
+            month_end_normal_num,
+            available_num,
+            month_sale_unconfirmed_num,
+            month_purchase_notshelf_num,
+            month_end_amount,
+            month_begin_damaged_num,
+            month_end_damaged_num,
+            profitloss_good_num,
+            profitloss_damaged_num,
+            month_normal_expire_num,
+            month_transfer_notshelf_num,
+            modify_date,
+            create_date,
+            month_in_bad_num,
+            month_out_bad_num,
+            commbarcode,
+            goods_id,
+            goods_no,
+            goods_name,
+            superior_parent_brand
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='buCode!=null and !"".equals(buCode)' >bu_code= #{buCode} and </if>
+                            <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                            <if test='productName!=null and !"".equals(productName)' >product_name= #{productName} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} and </if>
+                            <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                            <if test='supplyMinPrice!=null' > supply_min_price= #{supplyMinPrice} and </if>
+                            <if test='monthBeginNum!=null' > month_begin_num= #{monthBeginNum} and </if>
+                            <if test='monthBeginNormalNum!=null' > month_begin_normal_num= #{monthBeginNormalNum} and </if>
+                            <if test='monthInstorageNum!=null' > month_instorage_num= #{monthInstorageNum} and </if>
+                            <if test='monthOutstorageNum!=null' > month_outstorage_num= #{monthOutstorageNum} and </if>
+                            <if test='inDamagedNum!=null' > in_damaged_num= #{inDamagedNum} and </if>
+                            <if test='outDamagedNum!=null' > out_damaged_num= #{outDamagedNum} and </if>
+                            <if test='monthProfitlossNum!=null' > month_profitloss_num= #{monthProfitlossNum} and </if>
+                            <if test='monthEndNum!=null' > month_end_num= #{monthEndNum} and </if>
+                            <if test='monthEndNormalNum!=null' > month_end_normal_num= #{monthEndNormalNum} and </if>
+                            <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                            <if test='monthSaleUnconfirmedNum!=null' > month_sale_unconfirmed_num= #{monthSaleUnconfirmedNum} and </if>
+                            <if test='monthPurchaseNotshelfNum!=null' > month_purchase_notshelf_num= #{monthPurchaseNotshelfNum} and </if>
+                            <if test='monthEndAmount!=null' > month_end_amount= #{monthEndAmount} and </if>
+                            <if test='monthBeginDamagedNum!=null' > month_begin_damaged_num= #{monthBeginDamagedNum} and </if>
+                            <if test='monthEndDamagedNum!=null' > month_end_damaged_num= #{monthEndDamagedNum} and </if>
+                            <if test='profitlossGoodNum!=null' > profitloss_good_num= #{profitlossGoodNum} and </if>
+                            <if test='profitlossDamagedNum!=null' > profitloss_damaged_num= #{profitlossDamagedNum} and </if>
+                            <if test='monthNormalExpireNum!=null' > month_normal_expire_num= #{monthNormalExpireNum} and </if>
+                            <if test='monthTransferNotshelfNum!=null' > month_transfer_notshelf_num= #{monthTransferNotshelfNum} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='monthInBadNum!=null' > month_in_bad_num= #{monthInBadNum} and </if>
+                            <if test='monthOutBadNum!=null' > month_out_bad_num= #{monthOutBadNum} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+	<!--清空事业部商家、仓库、本月的报表数据 -->
+	<delete id='delBuDepotMonthReport' parameterType='map'>
+		delete from
+		r_bu_inventory_summary
+		where merchant_id=#{merchantId} and
+				depot_id=#{depotId} and
+				own_month=#{month} and
+				bu_id= #{buId}
+	</delete>
+	<!-- 查询所有信息 分页 -->
+	<select id='getListByPage' resultType='BuInventorySummaryDTO' parameterType='BuInventorySummaryDTO'>
+		select t.id,t.merchant_id,t.merchant_name,t.topideal_code,t.depot_id,t.depot_code,
+            t.depot_name,t.bu_id,t.bu_name,t.bu_code,t.own_month,t.product_name,t.barcode,
+            t.factory_no,t.unit,t.supply_min_price,t.month_begin_num,t.month_begin_normal_num,
+            t.month_instorage_num,t.month_outstorage_num,t.in_damaged_num,t.out_damaged_num,
+            t.month_profitloss_num,t.month_end_num,t.month_end_normal_num,t.available_num,
+            t.month_sale_unconfirmed_num,t.month_purchase_notshelf_num,t.month_end_amount,
+            t.month_begin_damaged_num,t.month_end_damaged_num,t.profitloss_good_num,
+            t.profitloss_damaged_num,t.month_normal_expire_num,t.month_transfer_notshelf_num,
+            t.modify_date,t.create_date,t.month_in_bad_num,t.month_out_bad_num,t.commbarcode,
+            t.goods_id,t.goods_no,t.goods_name,
+            t2.id as brand_id,
+            t2.`name` as brand_name,
+            t2.superior_parent_brand as superior_parent_brand
+		from r_bu_inventory_summary t
+    	LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+		<where>
+			<trim suffixOverrides='and'>
+			    <if test='merchantId!=null'> t.merchant_id= #{merchantId} and </if>
+				<if test='ownMonth!=null and !"".equals(ownMonth)'>t.own_month=#{ownMonth} and </if>
+				<if test='barcode!=null and !"".equals(barcode)'>t.barcode=#{barcode} and </if>
+				<if test='brandName!=null and !"".equals(brandName)'>t.brand_name like '%${brandName}%' and </if>
+				<if test='productName!=null and !"".equals(productName)'>t.product_name like '%${productName}%' and </if>
+				<if test='factoryNo!=null and !"".equals(factoryNo)'>t.factory_no=#{factoryNo} and </if>
+				 <if test='buId!=null' > t.bu_id= #{buId} and </if>
+                <if test='buList!=null and !"".equals(buList)' > t.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>				 
+				<if test='id!=null'> t.id= #{id} and </if>
+				 <if test='goodsId!=null' > t.goods_id= #{goodsId} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t.goods_no= #{goodsNo} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >t.goods_name= #{goodsName} and </if>
+				<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+				    t2.id in 
+					   <foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+				        #{brandId}
+				        </foreach> 
+				    and 
+			    </if>  
+			    <if test='depotListIds!=null and depotListIds.size()>0' > 
+				    t.depot_id in 
+					   <foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+				        #{depotId}
+				        </foreach> 
+				    and 
+			    </if>
+			</trim>
+		</where>
+		order by t.depot_id,t.barcode,t.unit desc
+	</select>
+	
+		<!-- 查询仓库月汇总报表 -->
+	<select id='listBuDepotMonth' resultType='map' parameterType='map'>
+		select
+		t.id, t.merchant_id,t.merchant_name,t.topideal_code,t.depot_id,t.depot_code,
+            t.depot_name,t.bu_id,t.bu_name,t.bu_code,t.own_month,t.product_name,
+            t.barcode,t.factory_no,t.unit,t.supply_min_price,t.month_begin_num,
+            t.month_begin_normal_num,t.month_instorage_num,t.month_outstorage_num,t.in_damaged_num,
+            t.out_damaged_num,t.month_profitloss_num,t.month_end_num,t.month_end_normal_num,
+            t.available_num,t.month_sale_unconfirmed_num,t.month_purchase_notshelf_num,
+            t.month_end_amount,t.month_begin_damaged_num,t.month_end_damaged_num,
+            t.profitloss_good_num,t.profitloss_damaged_num,t.month_normal_expire_num,
+			t.month_transfer_notshelf_num,t.modify_date,t.create_date,t.month_in_bad_num,
+            t.month_out_bad_num,t.commbarcode,t.goods_id,t.goods_no,t.goods_name,
+			t2.superior_parent_brand as superior_parent_brand,
+			t2.`name` as brand_name
+		from r_bu_inventory_summary t
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+		where
+			t.merchant_id=#{merchantId} and				
+			t.own_month=#{ownMonth} 
+			<if test='depotListIds!=null and depotListIds.size()>0' > 
+				 and t.depot_id in 
+				<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+				 #{depotId}			
+				</foreach> 				    			 
+			</if>
+			<if test='buId!=null' > and t.bu_id= #{buId} </if>	
+            <if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>      
+            </if>				
+		order by t.depot_id,t.barcode,t.unit
+	</select>
+
+    <select id="commbarcodeListByMonth" resultType="java.lang.String" parameterType="map" >
+        (select DISTINCT commbarcode
+            from r_inventory_summary
+            where merchant_id = #{merchantId}
+            and own_month = #{month}
+            and depot_id in (SELECT id from st_depot_info where type in ('a','c','e')))
+        UNION
+            (select DISTINCT commbarcode
+            from r_bu_inventory_summary
+            where merchant_id = #{merchantId}
+            and own_month = #{month}
+            and depot_id in (SELECT id from st_depot_info where type in ('a','c','e')))
+        UNION
+            (select DISTINCT commbarcode
+            from r_finance_inventory_summary
+            where merchant_id = #{merchantId}
+            and month = #{month})
+        UNION
+            (select DISTINCT commbarcode
+            from r_bu_finance_inventory_summary
+            where merchant_id = #{merchantId}
+            and `month` = #{month})
+    </select>
+
+    <select id="listCommbarcodeMonth" resultType="map" parameterType="map">
+        SELECT merchant_id, depot_id, bu_id, commbarcode, SUM(month_end_num) month_end_num,unit
+        from r_bu_inventory_summary
+        where merchant_id = #{merchantId}
+          and own_month = #{month}
+          and depot_id in (SELECT id from st_depot_info where type in ('a','c','d'))
+            <if test='buId!=null' > and bu_id= #{buId} </if>
+        GROUP BY merchant_id, depot_id, bu_id, commbarcode,unit
+    </select>
+    
+    <select id="getMonthlyAutoVeriListGroupByBarcode" resultType="map" parameterType="map">
+        SELECT
+			merchant_id,
+			depot_id,
+			barcode,
+			goods_no,
+			MAX(product_name) AS product_name,
+			SUM(IFNULL(month_end_num, 0)) AS month_end_num,
+			SUM(IFNULL(month_end_normal_num, 0)) AS month_end_normal_num,
+			SUM(IFNULL(month_end_damaged_num, 0)) AS month_end_damaged_num
+		FROM
+			r_bu_inventory_summary
+		WHERE
+			merchant_id = #{merchantId}
+		AND own_month = #{month}
+		<choose>
+        	<when test="depotId!=null">
+        		and depot_id = #{depotId}
+        	</when>
+        	<otherwise>
+        		and depot_id in (SELECT id from st_depot_info where type in ('a', 'b', 'c', 'd', 'g'))
+        	</otherwise>
+        </choose>
+		GROUP BY
+			merchant_id,
+			depot_id,
+			barcode,
+			goods_no
+    </select>
+    
+    <!-- 在库天数统计汇总商品在公司（过滤元森泰）主体下保税仓和海外仓的期末正常品库存量 -->
+    <select id="getInWarehouseSumAccount" resultType="map" parameterType="map">
+        SELECT bu_id,bu_name,commbarcode,unit,SUM(IFNULL(month_end_normal_num, 0)) AS month_end_normal_num
+		FROM r_bu_inventory_summary
+		WHERE own_month = #{month}
+			AND bu_id = #{buId}
+			AND topideal_code not in ( '1000004669', '1000000594', '1000000544', '1000000726', '1000005406','toipidealtest')
+			AND depot_id in (SELECT id from st_depot_info where type in ('a', 'c'))
+		GROUP BY bu_id,bu_name,commbarcode,unit
+    </select>
+    
+    <!-- 在库天数统计汇总商品在公司（过滤元森泰）库存统计导出 -->
+    <select id="getInWarehouseExport" resultType="map" parameterType="map">
+        SELECT b.*,t2.superior_parent_brand as superiorParentBrand FROM (
+            SELECT
+                bu_id as buId,
+                bu_name as buName,
+                depot_name as depotName,
+                commbarcode ,
+                max(brand_name) as brandName,
+                max(goods_name) as goodsName,
+                unit,
+                SUM(IFNULL(month_end_normal_num, 0)) AS inWarehouseNum,
+                merchant_id as merchantId,
+                merchant_name as merchantName
+            FROM r_bu_inventory_summary
+            WHERE
+                own_month = #{month}
+                AND bu_id = #{buId}
+                <if test='buIds!=null and buIds.size()>0' >and bu_id in
+                    <foreach collection='buIds' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    
+                </if>                
+                AND topideal_code != '1000004669'
+                AND depot_id in (SELECT id from st_depot_info where type in ('a', 'c'))
+            GROUP BY bu_id,bu_name,depot_name,depot_id,commbarcode,unit,merchant_id,merchant_name
+		) b
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=b.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+    </select>
+    
+    <!-- 查询上月是否有 事业部业务经销存 -->
+     <select id="getLastMonthSummaryCount" resultType="java.lang.Integer" parameterType="map">
+       SELECT COUNT(*) from  r_bu_inventory_summary 
+       where merchant_id= #{merchantId} and depot_id= #{depotId} and own_month= #{ownMonth}  
+
+    </select>
+    <!-- 查询之前月是否有业务经销存 -->
+     <select id="getBeforLastMonthSummaryCount" resultType="java.lang.Integer" parameterType='BuInventorySummaryModel'>
+        SELECT COUNT(*) from  r_bu_inventory_summary 
+       where merchant_id= #{merchantId} and depot_id= #{depotId} and own_month &lt; #{ownMonth}  
+    </select>
+</mapper>

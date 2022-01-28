@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.PurchaseWarehouseItemMapper'>
+
+<!-- 关系映射 -->
+    <resultMap id="PurchaseWarehouseItemModelMap" type="PurchaseWarehouseItemModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="lackNum" column="lack_num" />
+                <result property="goodsId" column="goods_id" />
+                <result property="normalNum" column="normal_num" />
+                <result property="length" column="length" />
+                <result property="volume" column="volume" />
+                <result property="grossWeight" column="gross_weight" />
+                <result property="netWeight" column="net_weight" />
+                <result property="warehouseId" column="warehouse_id" />
+                <result property="multiNum" column="multi_num" />
+                <result property="creater" column="creater" />
+                <result property="width" column="width" />
+                <result property="id" column="id" />
+                <result property="purchaseNum" column="purchase_num" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="createName" column="create_name" />
+                <result property="tallyingNum" column="tallying_num" />
+                <result property="createDate" column="create_date" />
+                <result property="height" column="height" />
+                <result property="purchaseItemId" column="purchase_item_id" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseWarehouseItemModelMap' parameterType='PurchaseWarehouseItemModel'>
+        select <include refid='sql_columns' /> from t_purchase_warehouse_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseWarehouseItemModelMap' parameterType='PurchaseWarehouseItemModel'>
+        select <include refid='sql_columns' /> from t_purchase_warehouse_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseWarehouseItemModelMap' parameterType='PurchaseWarehouseItemModel' >
+        select <include refid='sql_columns' /> from t_purchase_warehouse_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='PurchaseWarehouseItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_purchase_warehouse_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='lackNum!=null' > lack_num , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='normalNum!=null' > normal_num , </if>
+                <if test='length!=null' > length , </if>
+                <if test='volume!=null' > volume , </if>
+                <if test='grossWeight!=null' > gross_weight , </if>
+                <if test='netWeight!=null' > net_weight , </if>
+                <if test='warehouseId!=null' > warehouse_id , </if>
+                <if test='multiNum!=null' > multi_num , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='width!=null' > width , </if>
+                <if test='id!=null' > id , </if>
+                <if test='purchaseNum!=null' > purchase_num , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                <if test='tallyingNum!=null' > tallying_num , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='height!=null' > height , </if>
+                <if test='purchaseItemId!=null' >purchase_item_id , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > TRIM(#{goodsNo}) , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='lackNum!=null' > #{lackNum} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='normalNum!=null' > #{normalNum} , </if>
+                <if test='length!=null' > #{length} , </if>
+                <if test='volume!=null' > #{volume} , </if>
+                <if test='grossWeight!=null' > #{grossWeight} , </if>
+                <if test='netWeight!=null' > #{netWeight} , </if>
+                <if test='warehouseId!=null' > #{warehouseId} , </if>
+                <if test='multiNum!=null' > #{multiNum} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='width!=null' > #{width} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='purchaseNum!=null' > #{purchaseNum} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > TRIM(#{tallyingUnit}) , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > TRIM(#{goodsName}) , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > TRIM(#{barcode}) , </if>
+                <if test='createName!=null and !"".equals(createName)' > TRIM(#{createName}) , </if>
+                <if test='tallyingNum!=null' > #{tallyingNum} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='height!=null' > #{height} , </if>
+                <if test='purchaseItemId!=null' > #{purchaseItemId} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='PurchaseWarehouseItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_purchase_warehouse_item SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= TRIM(#{goodsNo}) , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='lackNum!=null' > lack_num= #{lackNum} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='normalNum!=null' > normal_num= #{normalNum} , </if>
+                <if test='length!=null' > length= #{length} , </if>
+                <if test='volume!=null' > volume= #{volume} , </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} , </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} , </if>
+                <if test='warehouseId!=null' > warehouse_id= #{warehouseId} , </if>
+                <if test='multiNum!=null' > multi_num= #{multiNum} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='width!=null' > width= #{width} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='purchaseNum!=null' > purchase_num= #{purchaseNum} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= TRIM(#{tallyingUnit}) , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= TRIM(#{goodsName}) , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= TRIM(#{barcode}) , </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= TRIM(#{createName}) , </if>
+                <if test='tallyingNum!=null' > tallying_num= #{tallyingNum} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='height!=null' > height= #{height} , </if>
+                <if test='purchaseItemId!=null' > purchase_item_id= #{purchaseItemId} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_warehouse_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_purchase_warehouse_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        modify_date,
+        lack_num,
+        goods_id,
+        normal_num,
+        length,
+        volume,
+        gross_weight,
+        net_weight,
+        warehouse_id,
+        multi_num,
+        creater,
+        width,
+        id,
+        purchase_num,
+        tallying_unit,
+        goods_name,
+        barcode,
+        create_name,
+        tallying_num,
+        create_date,
+        height,
+        purchase_item_id
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='lackNum!=null' > lack_num= #{lackNum} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='normalNum!=null' > normal_num= #{normalNum} and </if>
+                <if test='length!=null' > length= #{length} and </if>
+                <if test='volume!=null' > volume= #{volume} and </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} and </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} and </if>
+                <if test='warehouseId!=null' > warehouse_id= #{warehouseId} and </if>
+                <if test='multiNum!=null' > multi_num= #{multiNum} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='width!=null' > width= #{width} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='purchaseNum!=null' > purchase_num= #{purchaseNum} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                <if test='tallyingNum!=null' > tallying_num= #{tallyingNum} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='height!=null' > height= #{height} and </if>
+                <if test='purchaseItemId!=null' > purchase_item_id= #{purchaseItemId} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+	<!--自定义SQL-->
+	<!-- 关系映射 -->
+    <resultMap id="PurchaseWarehouseItemModelMap2" type="PurchaseWarehouseItemModel" >
+                <result property="goodsId" column="goods_id" />
+                <result property="purchaseNum" column="purchase_num" />
+
+                <result property="warehouseCode" column="warehouse_code" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+    </resultMap>
+
+	<!-- 根据勾选的入库单id查询入库勾稽明细 -->
+    <select id="getDetails" resultMap='PurchaseWarehouseItemModelMap' parameterType='PurchaseWarehouseItemModel'>
+        select
+			t2.`code` as warehouse_code,t1.goods_id,t1.purchase_num,t1.goods_no,t1.barcode,t1.goods_name
+		FROM
+		t_purchase_warehouse_item t1
+		left join t_purchase_warehouse t2 on t1.warehouse_id = t2.id
+		<where>
+			<trim suffixOverrides='and'>
+        			t2.id in
+        			<foreach collection='list' item='id' separator=',' open='(' close=')'>
+			            #{id}
+			        </foreach>
+			        and
+			</trim>
+		</where>
+		order by t1.id desc
+    </select>
+
+	<!-- 检查商品是否使用 -->
+    <select id='checkGoodsIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select
+        	count(*)
+        from t_purchase_warehouse_item t1
+        left join t_purchase_warehouse t2 on t1.warehouse_id = t2.id
+        where t2.state in ('011','012') and t1.goods_id = #{id}
+    </select>
+    <select id='getWarehouseItem' resultType="map" parameterType="map">
+        select i.purchase_item_id,SUM(IFNULL(b.normal_num,0) + IFNULL(b.expire_num,0) + IFNULL(b.worn_num,0)) AS num
+        from t_purchase_warehouse_item i
+        left join t_purchase_warehouse_batch b ON i.id = b.item_id
+        LEFT JOIN t_purchase_warehouse t3 on i.warehouse_id = t3.id
+        LEFT JOIN t_warehouse_order_rel t4 on t3.id = t4.warehouse_id
+        LEFT JOIN t_declare_purchase_rel t5 on t4.purchase_order_id=t5.purchase_order_id and t3.declare_order_id=t5.declare_order_id
+        left join t_purchase_order_item t6 on t6.id = i.purchase_item_id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='warehouseId!=null' > i.warehouse_id=#{warehouseId} and  </if>
+                <if test='purchaseOrderId !=null' > t4.purchase_order_id=#{purchaseOrderId} and  </if>
+                <if test='state!=null and !"".equals(state)' > t3.state= #{state} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > i.goods_no=#{goodsNo} and  </if>
+                <if test='goodsId!=null and !"".equals(goodsId)' > i.goods_id=#{goodsId} and  </if>
+                <if test='purchaseItemId !=null' > i.purchase_item_id=#{purchaseItemId} and  </if>
+                <if test='declareOrderId !=null' > t5.declare_order_id=#{declareOrderId} and  </if>
+                <if test='purchasePrice !=null' > t6.price=#{purchasePrice} and  </if>
+                <if test='barcode !=null and !"".equals(barcode)' > t6.barcode=#{barcode} and  </if>
+                <if test='purchaseOrderIds !=null and !"".equals(purchaseOrderIds)' >
+                    t4.purchase_order_id in
+                    <foreach collection="purchaseOrderIds.split(',')" open="(" close=")" separator="," item="purchaseOrderId">
+                        #{purchaseOrderId}
+                    </foreach>
+                </if>
+            </trim>
+        </where>
+		group by i.purchase_item_id
+    </select>
+
+    <select id="getDetailsByIds" resultType="PurchaseWriteOffItemDTO">
+        select
+            t1.warehouse_id, t1.goods_id, t1.goods_no, t1.tallying_unit, t2.batch_no,
+            t2.production_date, t2.overdue_date, sum(t2.worn_num) worn_num, sum(t2.expire_num) expire_num, sum(t2.normal_num) normal_num
+        FROM
+            t_purchase_warehouse_item t1
+        left join t_purchase_warehouse_batch t2
+        on t1.id = t2.item_id
+        <where>
+            <trim suffixOverrides='and'>
+                warehouse_id in
+                <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                    #{id}
+                </foreach>
+                and
+            </trim>
+        </where>
+        group by t1.warehouse_id, t1.goods_id, t1.goods_no, t1.tallying_unit, t2.batch_no, t2.production_date, t2.overdue_date
+    </select>
+
+</mapper>

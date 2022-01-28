@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.SupplierMerchandiseMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SupplierMerchandiseModelMap" type="SupplierMerchandiseModel" >
+                <result property="id" column="id" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="name" column="name" />
+                <result property="brandName" column="brand_name" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsType" column="goods_Type" />
+                <result property="salePrice" column="sale_price" />
+                <result property="supplierGoodsNo" column="supplier_goods_no" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="source" column="source" />
+                <result property="brandCode" column="brand_code" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SupplierMerchandiseModelMap' parameterType='SupplierMerchandiseModel'>
+        select <include refid='sql_columns' /> from st_supplier_merchandise  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SupplierMerchandiseModelMap' parameterType='SupplierMerchandiseModel'>
+        select <include refid='sql_columns' /> from st_supplier_merchandise  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SupplierMerchandiseModelMap' parameterType='SupplierMerchandiseModel' >
+        select <include refid='sql_columns' /> from st_supplier_merchandise  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SupplierMerchandiseModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_supplier_merchandise
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                        <if test='name!=null and !"".equals(name)' > name , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='goodsType!=null and !"".equals(goodsType)' > goods_Type , </if>
+                        <if test='salePrice!=null' >sale_price , </if>
+                        <if test='supplierGoodsNo!=null and !"".equals(supplierGoodsNo)' > supplier_goods_no , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='source!=null and !"".equals(source)' > source , </if>
+                        <if test='brandCode!=null and !"".equals(brandCode)' > brand_code , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                        <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='goodsType!=null and !"".equals(goodsType)' > #{goodsType} , </if>
+                        <if test='salePrice!=null' > #{salePrice} , </if>
+                        <if test='supplierGoodsNo!=null and !"".equals(supplierGoodsNo)' > #{supplierGoodsNo} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='source!=null and !"".equals(source)' > #{source} , </if>
+                        <if test='brandCode!=null and !"".equals(brandCode)' > #{brandCode} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SupplierMerchandiseModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_supplier_merchandise SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                        <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='goodsType!=null and !"".equals(goodsType)' >goods_Type= #{goodsType} , </if>
+                        <if test='salePrice!=null' > sale_price= #{salePrice} , </if>
+                        <if test='supplierGoodsNo!=null and !"".equals(supplierGoodsNo)' >supplier_goods_no= #{supplierGoodsNo} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='source!=null and !"".equals(source)' >source= #{source} , </if>
+                        <if test='brandCode!=null and !"".equals(brandCode)' >brand_code= #{brandCode} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_supplier_merchandise  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_supplier_merchandise where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            goods_code,
+            name,
+            brand_name,
+            barcode,
+            goods_Type,
+            sale_price,
+            supplier_goods_no,
+            bu_id,
+            bu_name,
+            source,
+            brand_code,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='goodsType!=null and !"".equals(goodsType)' >goods_Type= #{goodsType} and </if>
+                            <if test='salePrice!=null' > sale_price= #{salePrice} and </if>
+                            <if test='supplierGoodsNo!=null and !"".equals(supplierGoodsNo)' >supplier_goods_no= #{supplierGoodsNo} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                            <if test='brandCode!=null and !"".equals(brandCode)' >brand_code= #{brandCode} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+   <!-- 查询所有信息 分页 -->
+    <select id='searchDTOByPage' resultType='SupplierMerchandiseDTO' parameterType='SupplierMerchandiseDTO'>
+        select <include refid='sql_columns' /> from st_supplier_merchandise  <include refid='sql_where' />
+        order by id DESC
+    </select>
+	<!-- 导出 -->
+ 	<select id='exportList' resultType='SupplierMerchandiseDTO' parameterType='SupplierMerchandiseDTO'>
+        select <include refid='sql_columns' /> from st_supplier_merchandise  <include refid='sql_where' />
+        order by id DESC
+    </select>
+
+</mapper>

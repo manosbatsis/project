@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.automatic.VipAutomaticVerificationMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="VipAutomaticVerificationModelMap" type="VipAutomaticVerificationModel" >
+                <result property="id" column="id" />
+                <result property="month" column="month" />
+                <result property="platform" column="platform" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="poNo" column="po_no" />
+                <result property="crawlerNo" column="crawler_no" />
+                <result property="crawlerGoodsNo" column="crawler_goods_no" />
+                <result property="billSalesAccount" column="bill_sales_account" />
+                <result property="systemSalesOutAccount" column="system_sales_out_account" />
+                <result property="salesOutDifference" column="sales_out_difference" />
+                <result property="billHcAccount" column="bill_hc_account" />
+                <result property="systemHcAccount" column="system_hc_account" />
+                <result property="hcDifference" column="hc_difference" />
+                <result property="billAdjustmentIncreaseAccount" column="bill_adjustment_increase_account" />
+                <result property="systemAdjustmentIncreaseAccount" column="system_adjustment_increase_account" />
+                <result property="adjustmentIncreaseDifferent" column="adjustment_increase_different" />
+                <result property="billAdjustmentDecreaseAccount" column="bill_adjustment_decrease_account" />
+                <result property="systemAdjustmentDecreaseAccount" column="system_adjustment_decrease_account" />
+                <result property="adjustmentDecreaseDifferent" column="adjustment_decrease_different" />
+                <result property="verificationResult" column="verification_result" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='VipAutomaticVerificationModelMap' parameterType='VipAutomaticVerificationModel'>
+        select <include refid='sql_columns' /> from r_vip_automatic_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='VipAutomaticVerificationModelMap' parameterType='VipAutomaticVerificationModel'>
+        select <include refid='sql_columns' /> from r_vip_automatic_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='VipAutomaticVerificationModelMap' parameterType='VipAutomaticVerificationModel' >
+        select <include refid='sql_columns' /> from r_vip_automatic_verification  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='VipAutomaticVerificationModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_vip_automatic_verification
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='platform!=null and !"".equals(platform)' > platform , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='crawlerNo!=null and !"".equals(crawlerNo)' > crawler_no , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > crawler_goods_no , </if>
+                        <if test='billSalesAccount!=null' >bill_sales_account , </if>
+                        <if test='systemSalesOutAccount!=null' >system_sales_out_account , </if>
+                        <if test='salesOutDifference!=null' >sales_out_difference , </if>
+                        <if test='billHcAccount!=null' >bill_hc_account , </if>
+                        <if test='systemHcAccount!=null' >system_hc_account , </if>
+                        <if test='hcDifference!=null' >hc_difference , </if>
+                        <if test='billAdjustmentIncreaseAccount!=null' >bill_adjustment_increase_account , </if>
+                        <if test='systemAdjustmentIncreaseAccount!=null' >system_adjustment_increase_account , </if>
+                        <if test='adjustmentIncreaseDifferent!=null' >adjustment_increase_different , </if>
+                        <if test='billAdjustmentDecreaseAccount!=null' >bill_adjustment_decrease_account , </if>
+                        <if test='systemAdjustmentDecreaseAccount!=null' >system_adjustment_decrease_account , </if>
+                        <if test='adjustmentDecreaseDifferent!=null' >adjustment_decrease_different , </if>
+                        <if test='verificationResult!=null and !"".equals(verificationResult)' > verification_result , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='platform!=null and !"".equals(platform)' > #{platform} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='crawlerNo!=null and !"".equals(crawlerNo)' > #{crawlerNo} , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > #{crawlerGoodsNo} , </if>
+                        <if test='billSalesAccount!=null' > #{billSalesAccount} , </if>
+                        <if test='systemSalesOutAccount!=null' > #{systemSalesOutAccount} , </if>
+                        <if test='salesOutDifference!=null' > #{salesOutDifference} , </if>
+                        <if test='billHcAccount!=null' > #{billHcAccount} , </if>
+                        <if test='systemHcAccount!=null' > #{systemHcAccount} , </if>
+                        <if test='hcDifference!=null' > #{hcDifference} , </if>
+                        <if test='billAdjustmentIncreaseAccount!=null' > #{billAdjustmentIncreaseAccount} , </if>
+                        <if test='systemAdjustmentIncreaseAccount!=null' > #{systemAdjustmentIncreaseAccount} , </if>
+                        <if test='adjustmentIncreaseDifferent!=null' > #{adjustmentIncreaseDifferent} , </if>
+                        <if test='billAdjustmentDecreaseAccount!=null' > #{billAdjustmentDecreaseAccount} , </if>
+                        <if test='systemAdjustmentDecreaseAccount!=null' > #{systemAdjustmentDecreaseAccount} , </if>
+                        <if test='adjustmentDecreaseDifferent!=null' > #{adjustmentDecreaseDifferent} , </if>
+                        <if test='verificationResult!=null and !"".equals(verificationResult)' > #{verificationResult} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='VipAutomaticVerificationModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_vip_automatic_verification SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='platform!=null and !"".equals(platform)' >platform= #{platform} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='crawlerNo!=null and !"".equals(crawlerNo)' >crawler_no= #{crawlerNo} , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >crawler_goods_no= #{crawlerGoodsNo} , </if>
+                        <if test='billSalesAccount!=null' > bill_sales_account= #{billSalesAccount} , </if>
+                        <if test='systemSalesOutAccount!=null' > system_sales_out_account= #{systemSalesOutAccount} , </if>
+                        <if test='salesOutDifference!=null' > sales_out_difference= #{salesOutDifference} , </if>
+                        <if test='billHcAccount!=null' > bill_hc_account= #{billHcAccount} , </if>
+                        <if test='systemHcAccount!=null' > system_hc_account= #{systemHcAccount} , </if>
+                        <if test='hcDifference!=null' > hc_difference= #{hcDifference} , </if>
+                        <if test='billAdjustmentIncreaseAccount!=null' > bill_adjustment_increase_account= #{billAdjustmentIncreaseAccount} , </if>
+                        <if test='systemAdjustmentIncreaseAccount!=null' > system_adjustment_increase_account= #{systemAdjustmentIncreaseAccount} , </if>
+                        <if test='adjustmentIncreaseDifferent!=null' > adjustment_increase_different= #{adjustmentIncreaseDifferent} , </if>
+                        <if test='billAdjustmentDecreaseAccount!=null' > bill_adjustment_decrease_account= #{billAdjustmentDecreaseAccount} , </if>
+                        <if test='systemAdjustmentDecreaseAccount!=null' > system_adjustment_decrease_account= #{systemAdjustmentDecreaseAccount} , </if>
+                        <if test='adjustmentDecreaseDifferent!=null' > adjustment_decrease_different= #{adjustmentDecreaseDifferent} , </if>
+                        <if test='verificationResult!=null and !"".equals(verificationResult)' >verification_result= #{verificationResult} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_vip_automatic_verification  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_vip_automatic_verification where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            month,
+            platform,
+            merchant_id,
+            merchant_name,
+            po_no,
+            crawler_no,
+            crawler_goods_no,
+            bill_sales_account,
+            system_sales_out_account,
+            sales_out_difference,
+            bill_hc_account,
+            system_hc_account,
+            hc_difference,
+            bill_adjustment_increase_account,
+            system_adjustment_increase_account,
+            adjustment_increase_different,
+            bill_adjustment_decrease_account,
+            system_adjustment_decrease_account,
+            adjustment_decrease_different,
+            verification_result,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='platform!=null and !"".equals(platform)' >platform= #{platform} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='crawlerNo!=null and !"".equals(crawlerNo)' >crawler_no= #{crawlerNo} and </if>
+                            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >crawler_goods_no= #{crawlerGoodsNo} and </if>
+                            <if test='billSalesAccount!=null' > bill_sales_account= #{billSalesAccount} and </if>
+                            <if test='systemSalesOutAccount!=null' > system_sales_out_account= #{systemSalesOutAccount} and </if>
+                            <if test='salesOutDifference!=null' > sales_out_difference= #{salesOutDifference} and </if>
+                            <if test='billHcAccount!=null' > bill_hc_account= #{billHcAccount} and </if>
+                            <if test='systemHcAccount!=null' > system_hc_account= #{systemHcAccount} and </if>
+                            <if test='hcDifference!=null' > hc_difference= #{hcDifference} and </if>
+                            <if test='billAdjustmentIncreaseAccount!=null' > bill_adjustment_increase_account= #{billAdjustmentIncreaseAccount} and </if>
+                            <if test='systemAdjustmentIncreaseAccount!=null' > system_adjustment_increase_account= #{systemAdjustmentIncreaseAccount} and </if>
+                            <if test='adjustmentIncreaseDifferent!=null' > adjustment_increase_different= #{adjustmentIncreaseDifferent} and </if>
+                            <if test='billAdjustmentDecreaseAccount!=null' > bill_adjustment_decrease_account= #{billAdjustmentDecreaseAccount} and </if>
+                            <if test='systemAdjustmentDecreaseAccount!=null' > system_adjustment_decrease_account= #{systemAdjustmentDecreaseAccount} and </if>
+                            <if test='adjustmentDecreaseDifferent!=null' > adjustment_decrease_different= #{adjustmentDecreaseDifferent} and </if>
+                            <if test='verificationResult!=null and !"".equals(verificationResult)' >verification_result= #{verificationResult} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id="getPageList" resultType='VipAutomaticVerificationDTO' parameterType='VipAutomaticVerificationDTO'>
+	        select 
+	            month,
+	            merchant_id,
+	            merchant_name,
+	            po_no,
+	            crawler_no,
+	            verification_result,
+	            SUM(bill_sales_account) AS bill_sales_account,
+	            SUM(system_sales_out_account) AS system_sales_out_account,
+	            SUM(bill_hc_account) AS bill_hc_account,
+	            SUM(system_hc_account) AS system_hc_account,
+	            SUM(bill_adjustment_increase_account) AS bill_adjustment_increase_account,
+	            SUM(system_adjustment_increase_account) AS system_adjustment_increase_account,
+	            SUM(bill_adjustment_decrease_account) AS bill_adjustment_decrease_account,
+	            SUM(system_adjustment_decrease_account) AS system_adjustment_decrease_account,
+                MAX(create_date) AS create_date
+	         from r_vip_automatic_verification  
+	         <where>
+                <trim suffixOverrides='and'>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='crawlerNo!=null and !"".equals(crawlerNo)' >crawler_no= #{crawlerNo} and </if>
+                            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >crawler_goods_no= #{crawlerGoodsNo} and </if>
+                            <if test='verificationResult!=null and !"".equals(verificationResult)' >verification_result= #{verificationResult} and </if>
+                </trim>
+            </where>
+            group by month,
+                merchant_id,
+                merchant_name,
+                po_no,
+                crawler_no,
+                verification_result
+            ORDER BY create_date DESC
+            LIMIT #{begin}, #{pageSize}
+	    </select>
+	    
+	    <select id="getTotalCount" resultType='int' parameterType='VipAutomaticVerificationDTO'>
+            select count(1) from (
+	            select 
+	                GROUP_CONCAT(id)
+	             from r_vip_automatic_verification  
+	             <where>
+	                <trim suffixOverrides='and'>
+	                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+	                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+	                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+	                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+	                            <if test='crawlerNo!=null and !"".equals(crawlerNo)' >crawler_no= #{crawlerNo} and </if>
+	                            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >crawler_goods_no= #{crawlerGoodsNo} and </if>
+	                            <if test='verificationResult!=null and !"".equals(verificationResult)' >verification_result= #{verificationResult} and </if>
+	                </trim>
+	            </where>
+	            group by month,
+	                merchant_id,
+	                merchant_name,
+	                po_no,
+	                crawler_no,
+	                verification_result
+                ) t
+        </select>
+	    
+	    <select id="getExportList" resultType='VipAutomaticVerificationDTO' parameterType='VipAutomaticVerificationDTO'>
+	        select <include refid='sql_columns' /> from r_vip_automatic_verification  <include refid='sql_where' />
+	    </select>
+
+
+
+</mapper>

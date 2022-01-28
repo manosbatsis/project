@@ -1,0 +1,424 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventoryFreezeDetailsMapper'>
+
+  <!-- 关系映射 -->
+    <resultMap id="InventoryFreezeDetailsModelMap" type="InventoryFreezeDetailsModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="depotName" column="depot_name" />
+                <result property="batchNo" column="batch_no" />
+                <result property="orderNo" column="order_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="num" column="num" />
+                <result property="depotId" column="depot_id" />
+                <result property="operateType" column="operate_type" />
+                <result property="source" column="source" />
+                <result property="type" column="type" />
+                <result property="depotType" column="depot_type" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="sourceDate" column="source_date" />
+                <result property="unit" column="unit" />
+                <result property="businessNo" column="business_no" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="isTopBooks" column="is_top_books" />
+                <result property="statusName" column="status_name" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="divergenceDate" column="divergence_date" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="buCode" column="bu_code" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryFreezeDetailsModelMap' parameterType='InventoryFreezeDetailsModel'>
+        select <include refid='sql_columns' /> from i_inventory_freeze_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryFreezeDetailsModelMap' parameterType='InventoryFreezeDetailsModel'>
+        select <include refid='sql_columns' /> from i_inventory_freeze_details  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryFreezeDetailsModelMap' parameterType='InventoryFreezeDetailsModel' >
+        select <include refid='sql_columns' /> from i_inventory_freeze_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventoryFreezeDetailsModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_freeze_details
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > order_no , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='num!=null' > num , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='operateType!=null and !"".equals(operateType)' > operate_type , </if>
+                <if test='source!=null and !"".equals(source)' > source , </if>
+                <if test='type!=null and !"".equals(type)' > type , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > depot_type , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='sourceDate!=null' > source_date , </if>
+                <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' > business_no , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > is_top_books , </if>
+                <if test='statusName!=null and !"".equals(statusName)' > status_name , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='divergenceDate!=null' > divergence_date , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buCode!=null and !"".equals(buCode)' > bu_code , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' > #{orderNo} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='num!=null' > #{num} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='operateType!=null and !"".equals(operateType)' > #{operateType} , </if>
+                <if test='source!=null and !"".equals(source)' > #{source} , </if>
+                <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='sourceDate!=null' > #{sourceDate} , </if>
+                <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' > #{businessNo} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > #{isTopBooks} , </if>
+                <if test='statusName!=null and !"".equals(statusName)' > #{statusName} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='divergenceDate!=null' > #{divergenceDate} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buCode!=null and !"".equals(buCode)' > #{buCode} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventoryFreezeDetailsModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_freeze_details SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='num!=null' > num= #{num} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} , </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} , </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='sourceDate!=null' > source_date= #{sourceDate} , </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} , </if>
+                <if test='statusName!=null and !"".equals(statusName)' >status_name= #{statusName} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buCode!=null and !"".equals(buCode)' >bu_code= #{buCode} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_freeze_details  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_freeze_details where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        depot_name,
+        batch_no,
+        order_no,
+        goods_id,
+        num,
+        depot_id,
+        operate_type,
+        source,
+        type,
+        depot_type,
+        merchant_name,
+        source_date,
+        unit,
+        business_no,
+        merchant_id,
+        is_top_books,
+        status_name,
+        id,
+        goods_name,
+        status,
+        create_date,
+        divergence_date,
+        bu_id,
+        bu_name,
+        bu_code
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='num!=null' > num= #{num} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='sourceDate!=null' > source_date= #{sourceDate} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='statusName!=null and !"".equals(statusName)' >status_name= #{statusName} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='buCode!=null and !"".equals(buCode)' >bu_code= #{buCode} and </if>
+            </trim>
+        </where>
+    </sql>
+<!--自定义SQL-->
+
+<!--查询商家仓库下商品冻结量-->
+
+<select id="getInventoryFreezeNum"   resultMap='InventoryFreezeDetailsModelMap' parameterType='InventoryFreezeDetailsModel'>
+
+     select *  from  (
+SELECT
+				a.merchant_id,
+				a.depot_id,
+				a.goods_id,
+				sum(
+					IFNULL(a.freeze_num, 0) - IFNULL(b.unfreeze_num, 0)
+				) AS num
+			FROM
+				(
+					SELECT
+						merchant_id,
+						depot_id,
+						goods_id,
+						sum(num) AS freeze_num
+					FROM
+						i_inventory_freeze_details
+					WHERE
+					 merchant_id= #{merchantId}
+			 <if test='depotId!=null' > and depot_id= #{depotId}  </if>
+             <if test='goodsId!=null' >and  goods_id= #{goodsId}  </if>
+				   and operate_type = '0'
+					GROUP BY
+						merchant_id,
+						depot_id,
+						goods_id
+				) a
+			LEFT JOIN (
+				SELECT
+					merchant_id,
+					depot_id,
+					goods_id,
+					sum(num) AS unfreeze_num
+				FROM
+					i_inventory_freeze_details
+				WHERE
+				  merchant_id= #{merchantId}
+			<if test='depotId!=null' > and depot_id= #{depotId}  </if>
+             <if test='goodsId!=null' >and  goods_id= #{goodsId}  </if>
+				   and 	operate_type = '1'
+				GROUP BY
+					merchant_id,
+					depot_id,
+					goods_id
+			) b ON a.merchant_id = b.merchant_id
+			AND a.depot_id = b.depot_id
+			AND a.goods_id = b.goods_id
+			GROUP BY
+				a.merchant_id,
+				a.depot_id,
+				a.goods_id
+) a
+
+
+</select>
+
+<!--查询商家仓库下商品冻结量 查询条件-->
+    <sql id='getInventoryFreezeNum_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+             <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+             <if test='depotId!=null' > depot_id= #{depotId} and </if>
+             <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+            </trim>
+        </where>
+    </sql>
+
+
+<!--导出批次库存明细 -->
+    <select id="exportInventoryFreezeDetailsMap"  resultType='Map' parameterType='InventoryFreezeDetailsModel'>
+
+
+	 SELECT
+	          t.merchant_name,
+	          t.depot_name,
+	          t.goods_no,
+	          t.goods_name,
+	          t.divergence_date,
+	          t.num,
+	          t.order_no,
+	          t.business_no,
+	          case when(t.status='001') then '采购入库'
+	          when(t.status = '002') then '销售订单'
+	          when(t.status = '003') then '销售出库'
+	          when(t.status = '004') then '销售退货订单'
+	          when(t.status = '005') then '销售退货入库'
+	          when(t.status = '006') then '销售退货出库'
+	          when(t.status = '007') then '电商订单'
+	          when(t.status = '008') then '电商订单出库'
+	          when(t.status = '009') then '调拨订单'
+	          when(t.status = '0010') then '调拨入库'
+	          when(t.status = '0011') then '调拨出库'
+	          when(t.status = '0012') then '月结损益'
+	          when(t.status = '0013') then '销毁'
+	          when(t.status = '0014') then '其他出入'
+	          when(t.status = '0015') then '盘点结果单'
+	          when(t.status = '0016') then '好坏互转'
+	          when(t.status = '0017') then '货号变更'
+	          when(t.status = '0018') then '效期调整'
+	          ELSE '' END  as  status,
+	          case when(t.operate_type='0') then '冻结'
+	          when(t.operate_type = '1') then '解冻'
+	          ELSE '' END  as  operate_type
+	          FROM
+	          i_inventory_freeze_details  t
+
+          <include refid='exportInventoryFreezeDetailsMap_sql_where' />
+           order by  t.create_date  desc
+    </select>
+
+<!-- 查询条件 -->
+    <sql id='exportInventoryFreezeDetailsMap_sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsId!=null' > t.goods_id= #{goodsId} and </if>
+                <if test='depotId!=null' > t.depot_id= #{depotId} and </if>
+                <if test='source!=null and !"".equals(source)' >t.source= #{source} and </if>
+                 <if test='status!=null and !"".equals(status)' >t.status= #{status} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >t.merchant_name= #{merchantName} and </if>
+                <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >t.goods_name= #{goodsName} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t.goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >t.depot_name= #{depotName} and </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >t.order_no= #{orderNo} and </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' >t.business_no= #{businessNo} and </if>
+                <if test='operateType!=null and !"".equals(operateType)' >t.operate_type= #{operateType} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<select id="listFreezeDetails" resultMap='InventoryFreezeDetailsModelMap' parameterType='InventoryFreezeDetailsModel'>
+        select <include refid='sql_columns' /> from i_inventory_freeze_details
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='orderNo!=null and !"".equals(orderNo)' >order_no= #{orderNo} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='num!=null' > num= #{num} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='sourceDate!=null' > source_date= #{sourceDate} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='statusName!=null and !"".equals(statusName)' >status_name= #{statusName} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} and </if>
+           		<if test='unit==null  or  "".equals(unit)' >   unit is null  and </if>
+            </trim>
+        </where>
+    </select>
+
+	<!-- 查询冻结的单号，不重复 -->
+    <select id='getOrderNoByPage' resultMap='InventoryFreezeDetailsModelMap' parameterType='InventoryFreezeDetailsModel'>
+        select <include refid='sql_columns' /> from i_inventory_freeze_details where id in(
+			select MAX(id) from i_inventory_freeze_details where operate_type = '0' GROUP BY order_no
+		)
+    </select>
+
+    <!-- 根据移动类型删除数据 -->
+    <delete id='delByMoveLogType'>
+        DELETE
+		t1
+		FROM
+			i_inventory_freeze_details t1,i_inventory_freeze_details_move_log t2
+		WHERE
+			t1.business_no = t2.business_no and t2.`type` = '1'
+    </delete>
+    <!-- 批量根据id向冻结解冻历史表插入数据 -->
+    <insert id='insertBath' parameterType='java.util.ArrayList'>
+        INSERT INTO i_inventory_freeze_details (
+            SELECT
+                *
+            FROM
+            i_inventory_freeze_details_history t1
+            WHERE
+            t1.id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        )
+    </insert>
+</mapper>

@@ -1,0 +1,27 @@
+spring:
+    profiles:
+        include:
+          - apollo #子配置文件名必须为application-xxx.yml
+          - dblog #库存
+          - rocketmq #mq配置文件
+          - mongolog #mongo配置文件
+
+    jackson: 
+          date-format: yyyy-MM-dd HH:mm:ss
+          time-zone: GMT+8
+          serialization: 
+             write-dates-as-timestamps: false
+    servlet:
+      multipart:
+        enabled: true
+        max-file-size: 20MB
+        max-request-size: 20MB
+
+mybatis:
+  configLocation: classpath:mybatis-config.xml
+  type-aliases-package: com.topideal.entity
+  mapper-locations: classpath:ibatis/*.xml
+
+thymeleaf:
+  mode: LEGACYHTML5
+  cache: false

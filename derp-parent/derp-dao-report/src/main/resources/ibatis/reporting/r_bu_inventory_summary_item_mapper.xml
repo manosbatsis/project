@@ -1,0 +1,812 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuInventorySummaryItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuInventorySummaryItemModelMap" type="BuInventorySummaryItemModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="businessNo" column="business_no" />
+                <result property="contractNo" column="contract_no" />
+                <result property="poNo" column="po_no" />
+                <result property="sourceType" column="source_type" />
+                <result property="operateType" column="operate_type" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="divergenceDate" column="divergence_date" />
+                <result property="ownMonth" column="own_month" />
+                <result property="productName" column="product_name" />
+                <result property="barcode" column="barcode" />
+                <result property="factoryNo" column="factory_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="num" column="num" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="createDate" column="create_date" />
+                <result property="remark" column="remark" />
+                <result property="thingName" column="thing_name" />
+                <result property="unit" column="unit" />
+                <result property="detailType" column="detail_type" />
+                <result property="batchNo" column="batch_no" />
+                <result property="isWorn" column="is_worn" />
+                <result property="productionDate" column="production_date" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="storePlatformName" column="store_platform_name" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="storePlatformCode" column="store_platform_code" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="exOrderId" column="ex_order_id" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuInventorySummaryItemModelMap' parameterType='BuInventorySummaryItemModel'>
+        select <include refid='sql_columns' /> from r_bu_inventory_summary_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuInventorySummaryItemModelMap' parameterType='BuInventorySummaryItemModel'>
+        select <include refid='sql_columns' /> from r_bu_inventory_summary_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuInventorySummaryItemModelMap' parameterType='BuInventorySummaryItemModel' >
+        select <include refid='sql_columns' /> from r_bu_inventory_summary_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuInventorySummaryItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_inventory_summary_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='businessNo!=null and !"".equals(businessNo)' > business_no , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='sourceType!=null and !"".equals(sourceType)' > source_type , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' > operate_type , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='divergenceDate!=null' >divergence_date , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' > own_month , </if>
+                        <if test='productName!=null and !"".equals(productName)' > product_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='factoryNo!=null and !"".equals(factoryNo)' > factory_no , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='thingName!=null and !"".equals(thingName)' > thing_name , </if>
+                        <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                        <if test='detailType!=null and !"".equals(detailType)' > detail_type , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                        <if test='isWorn!=null and !"".equals(isWorn)' > is_worn , </if>
+                        <if test='productionDate!=null' >production_date , </if>
+                        <if test='overdueDate!=null' >overdue_date , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > store_platform_name , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > store_platform_code , </if>
+                        <if test='inDepotId!=null' >in_depot_id , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > in_depot_name , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' > ex_order_id , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                        <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='businessNo!=null and !"".equals(businessNo)' > #{businessNo} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='sourceType!=null and !"".equals(sourceType)' > #{sourceType} , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' > #{operateType} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='divergenceDate!=null' > #{divergenceDate} , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' > #{ownMonth} , </if>
+                        <if test='productName!=null and !"".equals(productName)' > #{productName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='factoryNo!=null and !"".equals(factoryNo)' > #{factoryNo} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='thingName!=null and !"".equals(thingName)' > #{thingName} , </if>
+                        <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                        <if test='detailType!=null and !"".equals(detailType)' > #{detailType} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                        <if test='isWorn!=null and !"".equals(isWorn)' > #{isWorn} , </if>
+                        <if test='productionDate!=null' > #{productionDate} , </if>
+                        <if test='overdueDate!=null' > #{overdueDate} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' > #{storePlatformName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' > #{storePlatformCode} , </if>
+                        <if test='inDepotId!=null' > #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > #{inDepotName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' > #{exOrderId} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                        <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuInventorySummaryItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_inventory_summary_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='sourceType!=null and !"".equals(sourceType)' >source_type= #{sourceType} , </if>
+                        <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} , </if>
+                        <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} , </if>
+                        <if test='productName!=null and !"".equals(productName)' >product_name= #{productName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='thingName!=null and !"".equals(thingName)' >thing_name= #{thingName} , </if>
+                        <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                        <if test='detailType!=null and !"".equals(detailType)' >detail_type= #{detailType} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                        <if test='isWorn!=null and !"".equals(isWorn)' >is_worn= #{isWorn} , </if>
+                        <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                        <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                        <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} , </if>
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>
+                        <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} , </if>
+                        <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                        <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                        <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_inventory_summary_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_inventory_summary_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            business_no,
+            contract_no,
+            po_no,
+            source_type,
+            operate_type,
+            customer_id,
+            customer_name,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            bu_id,
+            bu_name,
+            divergence_date,
+            own_month,
+            product_name,
+            barcode,
+            factory_no,
+            goods_id,
+            goods_no,
+            goods_name,
+            num,
+            modify_date,
+            create_date,
+            remark,
+            thing_name,
+            unit,
+            detail_type,
+            batch_no,
+            is_worn,
+            production_date,
+            overdue_date,
+            store_platform_name,
+            shop_code,
+            shop_name,
+            store_platform_code,
+            in_depot_id,
+            in_depot_name,
+            commbarcode,
+            ex_order_id,
+            superior_parent_brand,
+            stock_location_type_id,
+            stock_location_type_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} and </if>
+                            <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='sourceType!=null and !"".equals(sourceType)' >source_type= #{sourceType} and </if>
+                            <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} and </if>
+                            <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                            <if test='productName!=null and !"".equals(productName)' >product_name= #{productName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='thingName!=null and !"".equals(thingName)' >thing_name= #{thingName} and </if>
+                            <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                            <if test='detailType!=null and !"".equals(detailType)' >detail_type= #{detailType} and </if>
+                            <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                            <if test='isWorn!=null and !"".equals(isWorn)' >is_worn= #{isWorn} and </if>
+                            <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                            <if test='storePlatformName!=null and !"".equals(storePlatformName)' >store_platform_name= #{storePlatformName} and </if>
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>
+                            <if test='storePlatformCode!=null and !"".equals(storePlatformCode)' >store_platform_code= #{storePlatformCode} and </if>
+                            <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                            <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='exOrderId!=null and !"".equals(exOrderId)' >ex_order_id= #{exOrderId} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                            <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                            <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name= #{stockLocationTypeName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+	<!--清空商家、仓库、本月的报表数据 -->
+	<delete id='delBuDepotMonthReport' parameterType='map'>
+		delete from r_bu_inventory_summary_item
+		where merchant_id=#{merchantId} and depot_id=#{depotId}  and bu_id= #{buId} and own_month=#{month} 
+
+	</delete>
+	<!-- 批量插入 -->
+	<insert id='insertBuBatch' parameterType='java.util.List'>
+		INSERT INTO
+		r_bu_inventory_summary_item
+        (code,business_no,source_type,operate_type,merchant_id,merchant_name,
+		depot_id,depot_name,divergence_date,own_month,product_name,barcode,factory_no,goods_id,goods_no,goods_name,num,
+		modify_date,create_date,remark,thing_name,unit,detail_type,batch_no,is_worn,production_date,overdue_date,store_platform_name,
+		store_platform_code,shop_name,shop_code,commbarcode,bu_id,bu_name,superior_parent_brand,stock_location_type_id,stock_location_type_name
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.code},#{item.businessNo},#{item.sourceType},#{item.operateType},#{item.merchantId},#{item.merchantName},
+			#{item.depotId},#{item.depotName},#{item.divergenceDate},#{item.ownMonth},#{item.productName},#{item.barcode},#{item.factoryNo},#{item.goodsId},
+			#{item.goodsNo},#{item.goodsName},#{item.num},#{item.modifyDate},#{item.createDate},#{item.remark},#{item.thingName},
+            #{item.unit},#{item.detailType},#{item.batchNo},
+            #{item.isWorn}, #{item.productionDate}, #{item.overdueDate},#{item.storePlatformName},#{item.storePlatformCode},#{item.shopName},#{item.shopCode},
+            #{item.commbarcode},#{item.buId},#{item.buName},#{item.superiorParentBrand},#{item.stockLocationTypeId},#{item.stockLocationTypeName}
+            )
+		</foreach>
+	</insert>
+	<!-- 插入出入库明细 -->
+	<insert id='insertBuOutInStorageDetail' parameterType='map'>
+		INSERT INTO r_bu_inventory_summary_item (
+			is_worn,production_date,overdue_date,
+			merchant_id,merchant_name,
+			depot_id,depot_name,
+			bu_id,bu_name,
+			own_month,
+			divergence_date,
+			code,business_no,source_type,operate_type,thing_name,
+			unit,
+			store_platform_code,
+			store_platform_name,
+			detail_type,batch_no,num,
+			barcode,factory_no,goods_id,goods_no,goods_name,commbarcode,
+			shop_name,shop_code,
+			product_name,
+			stock_location_type_id,
+			stock_location_type_name
+		)SELECT 
+			tt.is_worn,tt.production_date,tt.overdue_date,
+			tt.merchant_id,tt.merchant_name,
+			tt.depot_id,tt.depot_name,
+			tt.bu_id,tt.bu_name,
+			tt.own_month,
+			tt.divergence_date,
+			tt.code,tt.business_no,tt.source_type,tt.operate_type,tt.thing_name,
+			tt.unit,
+			tt.store_platform_code,
+			tt.store_platform_name,
+			tt.detail_type,tt.batch_no,tt.num,
+			tt.barcode,tt.factory_no,tt.goods_id,goods_no,tt.goods_name,tt.commbarcode,
+			tt.shop_name,tt.shop_code,
+			tt.product_name,
+			tt.stock_location_type_id,
+			tt.stock_location_type_name
+		
+		 FROM (
+		SELECT 			
+			t1.type as is_worn,t1.production_date,t1.overdue_date,
+			#{merchantId} as merchant_id,#{merchantName} as merchant_name,
+			#{depotId} as depot_id,#{depotName} as depot_name,
+			#{buId} as bu_id,#{buName} as bu_name,
+			#{month} as own_month,
+			t1.divergence_date,
+			t1.order_no as code,t1.business_no,t1.source_type,t1.operate_type,t1.thing_name,
+			<if test='"c".equals(depotType)' >t1.unit as unit, </if>
+			<if test='!"c".equals(depotType)' >null as unit, </if>
+			t3.store_platform_code as store_platform_code,
+			t3.store_platform_name as store_platform_name,
+			#{detailType} as detail_type,t1.batch_no, t1.num,
+			t2.barcode,t2.factory_no as factory_no,t2.id as goods_id,t2.goods_no,t2.`name` as goods_name,t2.commbarcode,
+			t3.shop_name as shop_name,t3.shop_code,
+			t2.`name` as product_name,
+			t1.stock_location_type_id,
+			t1.stock_location_type_name
+			from i_inventory_details t1
+			LEFT JOIN st_merchandise_info t2 ON t1.goods_id=t2.id
+			LEFT JOIN st_merchant_shop_rel t3 ON t1.shop_code=t3.shop_code
+		where t1.merchant_id=#{merchantId} and t1.depot_id=#{depotId}  and t1.bu_id= #{buId} and t1.own_month=#{month} 
+			and t1.source_type in('001','0010','005','003','006','008','0011','0019','0021','0026','0027','0028','0029','0030','0031','0032','0033')
+		) tt
+	</insert>
+	
+	<update id='updateBuItemNoBySale' parameterType='BuInventorySummaryItemModel'>
+		update r_bu_inventory_summary_item i,t_sale_order s
+		set i.contract_no=s.contract_no,i.po_no=s.po_no,i.customer_id=s.customer_id,i.customer_name=s.customer_name
+		<where>
+			<trim suffixOverrides='and'>
+				i.business_no=s.code and 
+				i.merchant_id=s.merchant_id and 
+				i.merchant_id=#{merchantId} and
+				i.depot_id=#{depotId} and 
+				i.bu_id= #{buId} and
+				i.own_month=#{ownMonth} and
+				<if test='barcode!=null and !"".equals(barcode)'>i.barcode like '%${barcode}%' and </if>
+				<if test='productName!=null and !"".equals(productName)'>i.product_name like '%${productName}%' and </if>
+			</trim>
+		</where>
+	</update>
+	
+	<update id='updateBuItemNoBySaleReturn' parameterType='BuInventorySummaryItemModel'>
+		update
+		r_bu_inventory_summary_item i,t_sale_return_order s
+		set
+		i.contract_no=s.contract_no,i.customer_id=s.customer_id,i.customer_name=s.customer_name
+		<where>
+			<trim suffixOverrides='and'>
+				i.business_no=s.code and 
+				s.status!='006' and 
+				i.merchant_id=s.merchant_id and 
+				i.merchant_id=#{merchantId} and
+				i.depot_id=#{depotId} and 
+				i.bu_id= #{buId} and
+				i.own_month=#{ownMonth} and
+				<if test='barcode!=null and !"".equals(barcode)'>i.barcode like '%${barcode}%' and </if>
+				<if test='productName!=null and !"".equals(productName)'>i.product_name like '%${productName}%' and </if>
+			</trim>
+		</where>
+	</update>
+		<!-- 更新调拨出库单的合同号、客户/供应商 -->
+	<update id='updateBuItemNoByTransferOutDepot' parameterType='BuInventorySummaryItemModel'>
+		UPDATE r_bu_inventory_summary_item i,t_transfer_out_depot s,t_transfer_order tt
+		SET i.contract_no = tt.contract_no,
+		    i.po_no = tt.po_no,
+		    i.customer_id = null,
+		    i.customer_name = null,
+		    i.in_depot_id=tt.in_depot_id,
+		    i.in_depot_name=tt.in_depot_name
+		    
+		<where>
+			<trim suffixOverrides='and'>
+				i.code=s.code and 
+				s.transfer_order_id=tt.id and
+				s.status!='006' and 
+				i.business_no=tt.code and 
+				i.source_type = '0011' and
+				i.merchant_id=#{merchantId} and
+				i.depot_id=#{depotId} and 
+				i.bu_id= #{buId} and
+				i.own_month=#{ownMonth} and
+				<if test='barcode!=null and !"".equals(barcode)'>i.barcode like '%${barcode}%' and </if>
+				<if test='productName!=null and !"".equals(productName)'>i.product_name like '%${productName}%' and </if>
+			</trim>
+		</where>
+	</update>
+	
+		<!-- 更新调拨入库单的合同号、客户/供应商 -->
+	<update id='updateBuItemNoByTransferInDepot' parameterType='BuInventorySummaryItemModel'>
+		UPDATE r_bu_inventory_summary_item i,t_transfer_in_depot s ,t_transfer_order tt
+		SET i.contract_no = tt.contract_no,
+		    i.po_no = tt.po_no,
+		    i.customer_id = s.in_customer_id,
+		    i.customer_name = s.in_customer_name
+		<where>
+			<trim suffixOverrides='and'>
+				i.code=s.code and 
+				s.transfer_order_id=tt.id and
+				s.status!='006' and 
+				i.business_no=tt.code and 
+				i.source_type = '0010' and
+				i.merchant_id=#{merchantId} and
+				i.depot_id=#{depotId} and 
+				i.bu_id= #{buId} and
+				i.own_month=#{ownMonth} and
+				<if test='barcode!=null and !"".equals(barcode)'>i.barcode like '%${barcode}%' and </if>
+				<if test='productName!=null and !"".equals(productName)'>i.product_name like '%${productName}%' and </if>
+			</trim>
+		</where>
+	</update>
+		
+		<!-- 更新电商订单 平台单号 -->
+	<update id='updateBuItemNoByOrder' parameterType='BuInventorySummaryItemModel'>
+		UPDATE t_order t2,r_bu_inventory_summary_item t1
+		SET t1.ex_order_id =t2.ex_order_id
+		where t2.merchant_id=#{merchantId}
+			and t2.depot_id=#{depotId} 
+			AND t2.`status`='4'
+			and DATE_FORMAT(t2.deliver_date,'%Y-%m')=#{ownMonth}
+			and t2.ex_order_id is not null
+			and t1.merchant_id=#{merchantId} 
+			and t1.depot_id=#{depotId} 
+			and t1.bu_id= #{buId} 
+			and t1.own_month= #{ownMonth}
+			AND t1.`code`=t2.`code`
+	</update>
+	
+	<!-- 修改 上架入库单  客户 id 客户名称 po号 -->
+	<update id='updateBuItemNoBySaleShelfIdepot' parameterType='BuInventorySummaryItemModel'>
+		update r_bu_inventory_summary_item i,t_sale_shelf_idepot s
+		set i.po_no=s.po_no,i.customer_id=s.customer_id,i.customer_name=s.customer_name
+		<where>
+			<trim suffixOverrides='and'>
+				i.code=s.code and 
+				s.state!='006' and 
+				i.merchant_id=s.merchant_id and 
+				i.merchant_id=#{merchantId} and
+				i.depot_id=#{depotId} and 
+				i.bu_id= #{buId} and
+				i.own_month=#{ownMonth} and
+				<if test='barcode!=null and !"".equals(barcode)'>i.barcode like '%${barcode}%' and </if>
+				<if test='productName!=null and !"".equals(productName)'>i.product_name like '%${productName}%' and </if>
+			</trim>
+		</where>
+	</update>
+		<!-- 根据id修改po号，合同号，供应商名称 -->
+	<update id='updateBuItemNoById' parameterType='map'>
+		UPDATE r_bu_inventory_summary_item
+		SET contract_no = #{contract_no },po_no = #{po_no },customer_name = #{customer_name}
+		where id = #{id}
+	</update>
+	<!-- 修改母品牌-->
+	<update id='updateSuperiorParentBrand' parameterType='BuInventorySummaryItemModel'>
+		UPDATE r_bu_inventory_summary_item tt0,
+		(
+		SELECT t1.commbarcode,t2.superior_parent_brand 
+		from st_commbarcode t1
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+		where t2.superior_parent_brand is not null
+		GROUP BY t1.commbarcode,t2.superior_parent_brand
+		)tt1
+		SET tt0.superior_parent_brand=tt1.superior_parent_brand
+		where  tt0.commbarcode=tt1.commbarcode
+		and tt0.merchant_id=#{merchantId} 
+		and tt0.depot_id=#{depotId} 
+		and tt0.bu_id=#{buId} 
+		and tt0.own_month=#{ownMonth} 
+
+	</update>
+	
+
+	
+		<!-- 查询入库单ids -->
+	<select id="getBuWarehouseIds" resultType='map'
+		parameterType='BuInventorySummaryItemModel'>
+		SELECT
+			(
+				SELECT
+					t.id
+				FROM
+					t_purchase_warehouse t
+				WHERE
+					t.`code` = ts.`code` and t.state!='006'
+			) AS warehouse_id,ts.id
+		FROM
+			r_bu_inventory_summary_item ts
+		<where>
+			<trim suffixOverrides='and'>
+				ts.merchant_id = #{merchantId} and
+				ts.depot_id = #{depotId} and 
+		        ts.own_month = #{ownMonth} and
+		        ts.source_type = '001' and
+		        ts.bu_id= #{buId} and
+				<if test='barcode!=null and !"".equals(barcode)'>ts.barcode  like '%${barcode}%' and </if>
+				<if test='productName!=null and !"".equals(productName)'>ts.product_name like '%${productName}%' and </if>
+			</trim>
+		</where>
+	</select>
+
+	<!-- 获取事业部采购的po号，合同号，供应商名称 -->
+	<select id="getBuPurchaseInfos" resultType='map' parameterType='java.lang.Long'>
+		SELECT
+			t1.po_no,
+			t1.contract_no,
+			t1.supplier_name
+		FROM
+			t_purchase_order t1
+		WHERE
+			t1.id IN (
+				SELECT
+					tw.purchase_order_id
+				FROM
+					t_warehouse_order_rel tw
+				WHERE
+					tw.warehouse_id = #{id}
+			)
+	</select>
+	<select id="listBuOutListForMap" resultType='map' parameterType='map'>
+		select t.bu_name,
+		 t.code,t.business_no,t.depot_name,t.divergence_date,t.contract_no,t.po_no,t.customer_name,t.goods_no,
+		 t.unit,t.goods_name,t.num,t.remark,t.thing_name,t.store_platform_name,t.shop_name,t.barcode,t.commbarcode,t.in_depot_name,t.ex_order_id, 
+		 t2.superior_parent_brand as superior_parent_brand,t.stock_location_type_name
+		from r_bu_inventory_summary_item t
+		LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+		where t.merchant_id=#{merchantId} 			 
+		and t.own_month=#{ownMonth}
+		and t.source_type in('003','006','008','0011','0019','0021','0028','0030','0031','0032','0033') 
+		and t.operate_type='0'
+		and t.detail_type = '001'
+		<if test='depotListIds!=null and depotListIds.size()>0' > 
+			AND t.depot_id in 
+			<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+				#{depotId}			
+			</foreach>			    			 
+		</if>
+		<if test='buId!=null' > and t.bu_id= #{buId} </if>
+        <if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+            <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                #{buId}
+            </foreach>
+            
+        </if>		
+		order by t.depot_id,t.barcode
+		limit #{startIndex},#{pageSize}
+	</select>
+	
+	<select id="listBuInListForMap" resultType='map' parameterType='map'>
+		select t.bu_name,
+		   t.code,t.business_no,t.depot_name,t.divergence_date,t.contract_no,t.po_no,t.customer_name,t.goods_no,
+		   t.unit,t.goods_name,t.num,remark,t.thing_name,t.barcode,t.commbarcode,
+			t2.superior_parent_brand as superior_parent_brand,t.stock_location_type_name
+        from r_bu_inventory_summary_item t
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+		where
+		t.merchant_id=#{merchantId} and					
+		t.own_month=#{ownMonth} and		
+		t.source_type in('001','0010','005','0019','0026','0027','0029','0031','0032','0033') and
+		t.operate_type='1' and 
+		t.detail_type = '001'
+		<if test='depotListIds!=null and depotListIds.size()>0' > 
+			and t.depot_id in 
+			<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+				#{depotId}			
+			</foreach> 				    			 
+		</if>	
+		<if test='buId!=null' > and t.bu_id= #{buId} </if>
+        <if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+            <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                #{buId}
+            </foreach>           
+        </if>		
+		order by t.depot_id,t.barcode
+		limit #{startIndex},#{pageSize}
+	</select>
+	
+    <!-- 损益明细 -->
+    <select id="listBuProfitLossListForMap" resultType='map' parameterType='map'>
+        select t.bu_name,
+        t.code, t.thing_name , t.business_no, t.goods_no, t.goods_name, t.barcode, t.operate_type,
+        t.num, t.divergence_date, t.depot_name, t.batch_no, t.is_worn, t.production_date, t.overdue_date,t.commbarcode,
+		t2.superior_parent_brand as superior_parent_brand,t.stock_location_type_name 
+        from r_bu_inventory_summary_item t
+		LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        where
+        t.merchant_id=#{merchantId}                
+        and t.own_month=#{ownMonth}
+        and t.source_type in ('0015','0014','0012','0020','0013','0022','0016','0024','0025')
+        and t.detail_type = '002'
+        <if test='depotListIds!=null and depotListIds.size()>0' > 
+			and	t.depot_id in 			 
+			<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+				#{depotId}			
+			</foreach> 			    			 
+		 </if>
+		 <if test='buId!=null' > and t.bu_id= #{buId} </if>
+         <if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+             <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                 #{buId}
+             </foreach>
+             
+         </if>		 
+        order by t.depot_id,t.barcode
+    </select>
+    <!-- 入库数量 -->
+    <select id="listBuInListCount" resultType='Integer' parameterType='map'>
+		select count(*) from r_bu_inventory_summary_item
+		where   merchant_id=#{merchantId} 
+				and own_month=#{ownMonth}
+				and source_type in('001','0010','005','0019','0026','0027','0029','0032') 
+				and operate_type='1'
+				and detail_type = '001'
+		 <if test='depotListIds!=null and depotListIds.size()>0' > 
+			and depot_id in 			 
+			<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+				#{depotId}			
+			</foreach>				    			 
+		 </if>
+		 <if test='buId!=null' > and bu_id= #{buId} </if>
+	</select>
+	<!-- 出库数量 -->
+	<select id="listBuOutListCount" resultType='Integer' parameterType='map'>
+		select count(*) from r_bu_inventory_summary_item
+		where merchant_id=#{merchantId} 
+		and own_month=#{ownMonth}
+		and source_type in('003','006','008','0011','0019','0028','0030','0031') 
+		and operate_type='0'
+		 <if test='depotListIds!=null and depotListIds.size()>0' > 
+			and depot_id in 			 
+			<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+				#{depotId}			
+			</foreach>				    			 
+		 </if>
+		
+		and detail_type = '001'
+		<if test='buId!=null' > and bu_id= #{buId} </if>
+	</select>
+	<sql id='sql_where2'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='num!=null' > num= #{num} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='productName!=null and !"".equals(productName)' >product_name= #{productName} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='businessNo!=null and !"".equals(businessNo)' >business_no= #{businessNo} and </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='divergenceDate!=null' > divergence_date= #{divergenceDate} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                <if test='thingName!=null and !"".equals(thingName)' >thing_name= #{thingName} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='unit==null or "".equals(unit) or "null".equals(unit) or "2".equals(unit)' > (unit='2' or unit is null) and </if>
+                <if test='unit!=null and !"".equals(unit) and !"null".equals(unit) and !"2".equals(unit)' >unit= #{unit} and </if>
+                <if test='sourceType!=null and !"".equals(sourceType)' >source_type= #{sourceType} and </if>
+                <if test='detailType!=null and !"".equals(detailType)' >detail_type= #{detailType} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='isWorn!=null and !"".equals(isWorn)' >is_worn= #{isWorn} and </if>
+            </trim>
+        </where>
+    </sql>
+	<!-- 查询所有信息 -->
+    <select id="getBuList" resultType='BuInventorySummaryItemDTO' parameterType='BuInventorySummaryItemDTO'>
+        select <include refid='sql_columns' /> from r_bu_inventory_summary_item  
+        <include refid='sql_where2' />
+    </select>
+    
+    
+    <select id="getWarehouseExportlist" resultType='BuInventorySummaryItemModel' parameterType='BuInventorySummaryItemModel'>
+        select <include refid='sql_columns' /> from r_bu_inventory_summary_item  
+        <where>
+             <trim suffixOverrides='and'>
+                   <if test='operateType!=null and !"".equals(operateType)' >operate_type= #{operateType} and </if>
+                   <if test='buId!=null' > bu_id= #{buId} and </if>
+                   <if test='ownMonth!=null and !"".equals(ownMonth)' >own_month= #{ownMonth} and </if>
+                   <if test='detailType!=null and !"".equals(detailType)' >detail_type= #{detailType} and </if>
+                   merchant_id NOT IN (
+						SELECT
+							id 
+						FROM
+							st_merchant_info 
+						WHERE
+						topideal_code IN ( '1000004669', '1000000594', '1000000544' )) and
+             </trim>
+         </where>
+    </select>
+
+</mapper>

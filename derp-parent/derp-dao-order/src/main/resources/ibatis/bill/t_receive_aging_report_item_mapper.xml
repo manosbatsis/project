@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.ReceiveAgingReportItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="ReceiveAgingReportItemModelMap" type="ReceiveAgingReportItemModel" >
+            <result property="id" column="id" />
+            <result property="agingReportId" column="aging_report_id" />
+            <result property="orderType" column="order_type" />
+            <result property="poNo" column="po_no" />
+            <result property="code" column="code" />
+            <result property="month" column="month" />
+            <result property="writtenOffAmount" column="written_off_amount" />
+            <result property="createDate" column="create_date" />
+            <result property="modifyDate" column="modify_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ReceiveAgingReportItemModelMap' parameterType='ReceiveAgingReportItemModel'>
+        select <include refid='sql_columns' /> from t_receive_aging_report_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ReceiveAgingReportItemModelMap' parameterType='ReceiveAgingReportItemModel'>
+        select <include refid='sql_columns' /> from t_receive_aging_report_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ReceiveAgingReportItemModelMap' parameterType='ReceiveAgingReportItemModel' >
+        select <include refid='sql_columns' /> from t_receive_aging_report_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ReceiveAgingReportItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_receive_aging_report_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='agingReportId!=null' >aging_report_id  , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='writtenOffAmount!=null' >written_off_amount  , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='modifyDate!=null' >modify_date  , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='agingReportId!=null' > #{agingReportId} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='writtenOffAmount!=null' > #{writtenOffAmount} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ReceiveAgingReportItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_receive_aging_report_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='agingReportId!=null' > aging_report_id= #{agingReportId} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='writtenOffAmount!=null' > written_off_amount= #{writtenOffAmount} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_receive_aging_report_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_receive_aging_report_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            aging_report_id,
+            order_type,
+            po_no,
+            code,
+            month,
+            written_off_amount,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='agingReportId!=null' > aging_report_id= #{agingReportId} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='writtenOffAmount!=null' > written_off_amount= #{writtenOffAmount} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+<!--自定义SQL-->
+        <select id="getAgingReportId" resultType="ReceiveAgingReportItemDTO" parameterType="Long">
+            select <include refid='sql_columns' /> from t_receive_aging_report_item where  aging_report_id= #{id}
+        </select>
+
+    <delete id="deleteReceiveAgingReportItem" parameterType="java.util.ArrayList">
+        delete from t_receive_aging_report_item
+        where aging_report_id in
+        <foreach collection='idList' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="countTempBillNum" resultType="java.lang.Integer" parameterType='ReceiveAgingReportItemDTO'>
+        select count(0) from t_receive_aging_report_item  <include refid='sql_where' />
+    </select>
+
+    <select id="listForExportTempItemPage" resultType="ReceiveAgingReportItemDTO" parameterType='ReceiveAgingReportItemDTO'>
+        select t.merchant_name,t.customer_name,t.simple_name,t.bu_name,t.currency,t.channel_type,i.po_no,i.code,i.written_off_amount,i.month,i.order_type
+        from t_receive_aging_report t INNER join t_receive_aging_report_item i
+        on t.id=i.aging_report_id  where i.aging_report_id=#{agingReportId}  limit ${begin},${pageSize}
+    </select>
+
+</mapper>

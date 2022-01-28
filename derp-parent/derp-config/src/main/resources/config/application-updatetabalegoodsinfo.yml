@@ -1,0 +1,10 @@
+#刷新商品条码
+updateOrderAttribute: ${update.order.attribute}
+
+updateInventoryAttribute: ${update.inventory.attribute}
+
+updateStorageAttribute: ${update.storage.attribute}
+
+updateReportAttribute: ${update.report.attribute}
+
+

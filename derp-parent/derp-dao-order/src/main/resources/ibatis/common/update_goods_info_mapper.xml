@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<!-- 仅用于修改业务库的商品数据 -->
+<mapper namespace='com.topideal.mapper.common.UpdateGoodsInfoMapper'>
+ 	<!-- 修改数据 -->
+    <update id='updateGoodsInfo' parameterType="java.lang.String">
+    	${updateSql}
+    </update>
+
+</mapper>

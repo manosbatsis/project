@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Custom Modals -->
+
+       
+            <!-- Signup modal content -->
+		 <div id="codeDetailsDiv" class="modal fade" tabindex="2" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+            
+            	<div class="modal-dialog" style="max-width: 800px;">
+            	<div class="modal-content">
+            	
+            
+			<div class="panel-body" style="height: 600px; overflow:scroll">
+            <div style="border: 1px  #000000; width: 100%; margin: 0 auto;">
+
+            	<div class="modal-body">
+            	   <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a href="#inspect" data-toggle="tab" class="nav-link active">每日巡检</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#apiWeb" data-toggle="tab" class="nav-link">API模块</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#order" data-toggle="tab" class="nav-link">业务模块</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#inventory" data-toggle="tab" class="nav-link">库存模块</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#storage" data-toggle="tab" class="nav-link">仓储模块</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#report" data-toggle="tab" class="nav-link">报表模块</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#pushApi" data-toggle="tab" class="nav-link">外部api模块</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="inspect" class="tab-pane fade in active show">
+							<h4>每日巡检</h4>
+						    <table id="inspectTable"  class="nowrap table table-striped" cellspacing="0" width="100%" >					  
+						        <tr>
+						            <th>模块</th>
+                                    <th>日志编码</th>
+						            <th>接口名称</th>
+						        </tr>
+						    </table>
+						</div>
+						<div id="apiWeb" class="tab-pane fade">
+                              <h4>API模块</h4>
+                            <table id="apiWebTable"  class="nowrap table table-striped" cellspacing="0" width="100%" >
+                                <tr>
+                                    <th>模块</th>
+                                    <th>日志编码</th>
+                                    <th>接口名称</th>
+                                </tr>
+                            </table>
+                         </div>
+						<div id="order" class="tab-pane fade">
+						      <h4>业务模块</h4>
+                            <table id="orderTable"  class="nowrap table table-striped" cellspacing="0" width="100%" >                   
+                                <tr>
+                                    <th>模块</th>
+                                    <th>日志编码</th>
+                                    <th>接口名称</th>
+                                </tr>
+                            </table>
+						 </div>
+						 <div id="inventory" class="tab-pane fade">
+                              <h4>库存模块</h4>
+                            <table id="inventoryTable"  class="nowrap table table-striped" cellspacing="0" width="100%" >                   
+                                <tr>
+                                    <th>模块</th>
+                                    <th>日志编码</th>
+                                    <th>接口名称</th>
+                                </tr>
+                            </table>
+                         </div>
+						 <div id="storage" class="tab-pane fade">
+                              <h4>仓储模块</h4>
+                            <table id="storageTable"  class="nowrap table table-striped" cellspacing="0" width="100%" >                   
+                                <tr>
+                                    <th>模块</th>
+                                    <th>日志编码</th>
+                                    <th>接口名称</th>
+                                </tr>
+                            </table>
+                         </div>
+                         <div id="report" class="tab-pane fade">
+                              <h4>报表模块</h4>
+                            <table id="reportTable"  class="nowrap table table-striped" cellspacing="0" width="100%" >                   
+                                <tr>
+                                    <th>模块</th>
+                                    <th>日志编码</th>
+                                    <th>接口名称</th>
+                                </tr>
+                            </table>
+                         </div>
+                         <div id="pushApi" class="tab-pane fade">
+                              <h4>外部api模块</h4>
+                            <table id="pushApiTable"  class="nowrap table table-striped" cellspacing="0" width="100%" >
+                                <tr>
+                                    <th>模块</th>
+                                    <th>日志编码</th>
+                                    <th>接口名称</th>
+                                </tr>
+                            </table>
+                         </div>
+					  </div>
+	           		  </div><!-- /.modal-content -->
+	           		</div>
+        		 </div>
+	
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+<script type="text/javascript">
+
+    $(function(){
+        //modelCode:1：业务模块 2：推送外部API 3：仓储模块  4：库存模块  5：api模块 6：报表模块
+        //isInspected是否巡检: 0 -否， 1-是
+    	getLogInfo("" ,"1","inspectTable") ;//每日巡检
+    	getLogInfo("5","","apiWebTable") ;//api模块
+    	getLogInfo("1","","orderTable") ;//业务模块
+    	getLogInfo("4","","inventoryTable") ;//库存模块
+    	getLogInfo("3","","storageTable") ;//仓储模块
+    	getLogInfo("6","","reportTable") ;//报表模块
+    	getLogInfo("2","","pushApiTable") ;//外部api模块
+
+    });
+    
+    function getLogInfo(modelCode ,isInspected, table){
+        var json = {"modelCode" : modelCode,"isInspected":isInspected};
+
+        var url = $module.fn.getModuleUrl(moduleCode,'/logModelInfo/getLogInfos.asyn?r='+Math.random());
+        $custom.request.ajax(url,json,function(data){
+            if(data.state==200){
+                showTable(data.data,table) ;
+            }
+        });
+    }
+
+    function showTable(res,table){
+        var html = "" ;
+        var count=0;
+        $(res).each(function(i , m){
+            html += "<tr>" ;
+            html += "<td>" + getmodelLable(m.modelCode)+ "</td>" ;
+            html += "<td>" + m.point + "</td>" ;
+            html += "<td>" + m.label + "</td>" ;
+            html += "</tr>" ;
+            count+=1;
+        });
+        html += "<tr><td>"+count+" 条</td><td></td><td></td></tr>" ;
+        $("#" + table).append(html) ;
+    }
+
+    function getmodelLable(modelCode){
+        //1：业务模块 2：推送外部API 3：仓储模块  4：库存模块  5：api模块 6：报表模块
+        var modelLable = "";
+        if(modelCode=="1"){
+            modelLable = "业务模块";
+        }else if(modelCode=="2"){
+            modelLable = "推送外部API";
+        }else if(modelCode=="3"){
+            modelLable = "仓储模块";
+        }else if(modelCode=="4"){
+            modelLable = "库存模块";
+        }else if(modelCode=="5"){
+            modelLable = "api模块";
+        }else if(modelCode=="6"){
+            modelLable = "报表模块";
+        }
+        return modelLable;
+    }
+
+</script>

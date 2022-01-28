@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.OccupationRateConfigMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="OccupationRateConfigModelMap" type="OccupationRateConfigModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="occupationRate" column="occupation_rate" />
+                <result property="effectiveDate" column="effective_date" />
+                <result property="expirationDate" column="expiration_date" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifyName" column="modify_name" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='OccupationRateConfigModelMap' parameterType='OccupationRateConfigModel'>
+        select <include refid='sql_columns' /> from t_occupation_rate_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='OccupationRateConfigModelMap' parameterType='OccupationRateConfigModel'>
+        select <include refid='sql_columns' /> from t_occupation_rate_config  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='OccupationRateConfigModelMap' parameterType='OccupationRateConfigModel' >
+        select <include refid='sql_columns' /> from t_occupation_rate_config  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='OccupationRateConfigModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_occupation_rate_config
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='occupationRate!=null' >occupation_rate , </if>
+                        <if test='effectiveDate!=null' >effective_date , </if>
+                        <if test='expirationDate!=null' >expiration_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' > modify_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='occupationRate!=null' > #{occupationRate} , </if>
+                        <if test='effectiveDate!=null' > #{effectiveDate} , </if>
+                        <if test='expirationDate!=null' > #{expirationDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' > #{modifyName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='OccupationRateConfigModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_occupation_rate_config SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='occupationRate!=null' > occupation_rate= #{occupationRate} , </if>
+                        <if test='effectiveDate!=null' > effective_date= #{effectiveDate} , </if>
+                        <if test='expirationDate!=null' > expiration_date= #{expirationDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' >modify_name= #{modifyName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_occupation_rate_config  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_occupation_rate_config where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            bu_id,
+            bu_name,
+            occupation_rate,
+            effective_date,
+            expiration_date,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modify_name,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                    <if test='buId!=null' > bu_id= #{buId} and </if>
+                    <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                    <if test='occupationRate!=null' > occupation_rate= #{occupationRate} and </if>
+                    <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                    <if test='expirationDate!=null' > expiration_date= #{expirationDate} and </if>
+                    <if test='creater!=null' > creater= #{creater} and </if>
+                    <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifier!=null' > modifier= #{modifier} and </if>
+                    <if test='modifyName!=null and !"".equals(modifyName)' >modify_name= #{modifyName} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <!-- 查询所有信息 分页 -->
+    <!-- 查询条件 -->
+    <sql id='sql_where_page'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='occupationRate!=null' > occupation_rate= #{occupationRate} and </if>
+                <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                <if test='expirationDate!=null' > expiration_date= #{expirationDate} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='modifyName!=null and !"".equals(modifyName)' >modify_name= #{modifyName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='effectiveStartDate!=null and !"".equals(effectiveStartDate)' >
+                    date_format(effective_date,'%Y-%m-%d %H:%i:%S') &gt;= #{effectiveStartDate} and
+                </if>
+                <if test='effectiveEndDate!=null and !"".equals(effectiveEndDate)' >
+                    date_format(effective_date,'%Y-%m-%d %H:%i:%S') &lt;= #{effectiveEndDate} and
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <select id='listDTOByPage' resultType='OccupationRateConfigDTO' parameterType='OccupationRateConfigDTO'>
+        select <include refid='sql_columns' /> from t_occupation_rate_config  <include refid='sql_where_page' />
+    </select>
+
+    <select id='searchDTO' resultType='OccupationRateConfigDTO' parameterType='OccupationRateConfigDTO'>
+        select <include refid='sql_columns' />
+        from t_occupation_rate_config
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='occupationRate!=null' > occupation_rate= #{occupationRate} and </if>
+                <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                <if test='expirationDate!=null' > expiration_date= #{expirationDate} and </if>
+                <if test='effectiveStartDate!=null and !"".equals(effectiveStartDate)' >
+                    date_format(effective_date,'%Y-%m-%d %H:%i:%S') &lt;= #{effectiveStartDate} and
+                </if>
+                <if test='effectiveEndDate!=null and !"".equals(effectiveEndDate)' >
+                    date_format(effective_date,'%Y-%m-%d %H:%i:%S') &gt;= #{effectiveEndDate} and
+                </if>
+                <if test='orderDate!=null' >
+                    date_format(effective_date,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{orderDate},'%Y-%m-%d %H:%i:%S') and
+                    date_format(expiration_date,'%Y-%m-%d %H:%i:%S')  &gt;= date_format(#{orderDate},'%Y-%m-%d %H:%i:%S') and
+                </if>
+            </trim>
+        </where>
+    </select>
+
+
+</mapper>

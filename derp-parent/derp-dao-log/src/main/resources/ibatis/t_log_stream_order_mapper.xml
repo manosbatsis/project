@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.LogStreamOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="LogStreamOrderModelMap" type="LogStreamOrderModel" >
+                <result property="id" column="id" />
+                <result property="point" column="point" />
+                <result property="keyword" column="keyword" />
+                <result property="model" column="model" />
+                <result property="modelCode" column="model_code" />
+                <result property="consumeDate" column="consume_date" />
+                <result property="status" column="status" />
+                <result property="createTime" column="create_time" />
+                <result property="logId" column="log_id" />
+                <result property="type" column="type" />
+                <result property="errorType" column="error_type" />
+                <result property="differenceTime" column="difference_time" />
+                <result property="isClose" column="is_close" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='LogStreamOrderModelMap' parameterType='LogStreamOrderModel'>
+        select <include refid='sql_columns' /> from t_log_stream_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='LogStreamOrderModelMap' parameterType='LogStreamOrderModel'>
+        select <include refid='sql_columns' /> from t_log_stream_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='LogStreamOrderModelMap' parameterType='LogStreamOrderModel' >
+        select <include refid='sql_columns' /> from t_log_stream_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='LogStreamOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_log_stream_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='point!=null and !"".equals(point)' > point , </if>
+                        <if test='keyword!=null and !"".equals(keyword)' > keyword , </if>
+                        <if test='model!=null and !"".equals(model)' > model , </if>
+                        <if test='modelCode!=null and !"".equals(modelCode)' > model_code , </if>
+                        <if test='consumeDate!=null' >consume_date , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createTime!=null' >create_time , </if>
+                        <if test='logId!=null and !"".equals(logId)' > log_id , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='errorType!=null and !"".equals(errorType)' > error_type , </if>
+                        <if test='differenceTime!=null' >difference_time , </if>
+                        <if test='isClose!=null and !"".equals(isClose)' > is_close , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='point!=null and !"".equals(point)' > #{point} , </if>
+                        <if test='keyword!=null and !"".equals(keyword)' > #{keyword} , </if>
+                        <if test='model!=null and !"".equals(model)' > #{model} , </if>
+                        <if test='modelCode!=null and !"".equals(modelCode)' > #{modelCode} , </if>
+                        <if test='consumeDate!=null' > #{consumeDate} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createTime!=null' > #{createTime} , </if>
+                        <if test='logId!=null and !"".equals(logId)' > #{logId} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='errorType!=null and !"".equals(errorType)' > #{errorType} , </if>
+                        <if test='differenceTime!=null' > #{differenceTime} , </if>
+                        <if test='isClose!=null and !"".equals(isClose)' > #{isClose} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='LogStreamOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_log_stream_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='point!=null and !"".equals(point)' >point= #{point} , </if>
+                        <if test='keyword!=null and !"".equals(keyword)' >keyword= #{keyword} , </if>
+                        <if test='model!=null and !"".equals(model)' >model= #{model} , </if>
+                        <if test='modelCode!=null and !"".equals(modelCode)' >model_code= #{modelCode} , </if>
+                        <if test='consumeDate!=null' > consume_date= #{consumeDate} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createTime!=null' > create_time= #{createTime} , </if>
+                        <if test='logId!=null and !"".equals(logId)' >log_id= #{logId} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='errorType!=null and !"".equals(errorType)' >error_type= #{errorType} , </if>
+                        <if test='differenceTime!=null' > difference_time= #{differenceTime} , </if>
+                        <if test='isClose!=null and !"".equals(isClose)' >is_close= #{isClose} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_log_stream_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_log_stream_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            point,
+            keyword,
+            model,
+            model_code,
+            consume_date,
+            status,
+            create_time,
+            log_id,
+            type,
+            error_type,
+            difference_time,
+            is_close
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='point!=null and !"".equals(point)' >point= #{point} and </if>
+                            <if test='keyword!=null and !"".equals(keyword)' >keyword= #{keyword} and </if>
+                            <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                            <if test='modelCode!=null and !"".equals(modelCode)' >model_code= #{modelCode} and </if>
+                            <if test='consumeDate!=null' > consume_date= #{consumeDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='createTime!=null' > create_time= #{createTime} and </if>
+                            <if test='logId!=null and !"".equals(logId)' >log_id= #{logId} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='errorType!=null and !"".equals(errorType)' >error_type= #{errorType} and </if>
+                            <if test='differenceTime!=null' > difference_time= #{differenceTime} and </if>
+                            <if test='isClose!=null and !"".equals(isClose)' >is_close= #{isClose} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 统计前一天各接口每个时段的数量 -->
+		<select id='getNumGroupCount' resultType='Map' parameterType='LogStreamOrderModel'>
+			select * from (
+				SELECT m.point, m.model_code, m.model,
+				DATE_FORMAT(m.consume_date, '%H') AS gdate,
+				COUNT(m.id) AS num
+				FROM t_log_stream_order m
+				where m.consume_date >= #{startDate} and m.consume_date &lt;#{endDate}
+				and model_code in('1','2','3') 
+				GROUP BY m.point, m.model_code, m.model, gdate
+				union all
+				SELECT m.point, m.model_code, m.model,
+				DATE_FORMAT(m.consume_date, '%H') AS gdate,
+				COUNT(m.id) AS num
+				FROM t_log_stream_inventory m
+				where m.consume_date >= #{startDate} and m.consume_date &lt;#{endDate}
+				and model_code ='4'
+				GROUP BY m.point, m.model_code, m.model, gdate
+			) t
+			ORDER BY model_code asc,point asc,num DESC
+		</select>
+
+		<!-- 获取某接口某时段的最大耗时、最小耗时、平均耗时 -->
+		<select id='getConsumingByDate' resultType='Map' parameterType='LogStreamOrderModel'>
+			select 	MAX(difference_time) AS maxConsuming,
+					MIN(difference_time) AS minConsuming,
+					AVG(difference_time) AS avgConsuming 
+			from (
+				select difference_time from t_log_stream_order 
+				where consume_date >= #{startDate} and consume_date &lt;#{endDate}
+				and status = '1' and point = #{point}
+				union all
+				select difference_time from t_log_stream_inventory 
+				where consume_date >= #{startDate} and consume_date &lt;#{endDate}
+				and status = '1' and point = #{point}
+				union all
+				select difference_time from t_log_stream_api 
+				where consume_date >= #{startDate} and consume_date &lt;#{endDate}
+				and status = '1' and point = #{point}
+			) tt
+		</select>
+
+		<!-- 根据时间获取接口的总单量 -->
+		<select id='getTotalNumByDate' resultType='Map' parameterType='LogStreamOrderModel'>
+			select sum(totalNum) as totalNum from (
+			select count(id) as totalNum from t_log_stream_order 
+			where consume_date >= #{startDate} and consume_date &lt;#{endDate}
+			and point = #{point}
+			union all
+			select count(id) as totalNum from t_log_stream_inventory 
+			where consume_date >= #{startDate} and consume_date &lt;#{endDate}
+			and point = #{point}
+			union all
+			select count(id) as totalNum from t_log_stream_api 
+			where consume_date >= #{startDate} and consume_date &lt;#{endDate}
+			and point = #{point}
+			) t
+		</select>
+		
+		<!-- 根据月份，获取之前的数据 -->
+		<select id='getListByMonthByPage' resultMap='LogStreamOrderModelMap' parameterType='LogStreamOrderModel'>
+			select <include refid='sql_columns' /> from t_log_stream_order 
+			where create_time &lt; #{month}
+		</select>
+		
+		<!-- 整合web -->
+		<!-- 关系映射 -->
+			<resultMap id="LogStreamMqModelMap" type="LogStreamMqModel" >
+					<result property="isClose" column="is_close" />
+					<result property="consumeDate" column="consume_date" />
+					<result property="type" column="type" />
+					<result property="point" column="point" />
+					<result property="differenceTime" column="difference_time" />
+					<result property="createTime" column="create_time" />
+					<result property="modelCode" column="model_code" />
+					<result property="model" column="model" />
+					<result property="logId" column="log_id" />
+					<result property="id" column="id" />
+					<result property="keyword" column="keyword" />
+					<result property="status" column="status" />
+			</resultMap>
+
+		  <!-- 查询所有信息 分页 -->
+		  <select id='getListByPage' resultType='LogStreamMqDTO' parameterType='LogStreamMqDTO'>
+			select <include refid='sql_columns' /> from t_log_stream_order  
+			<where>
+				<trim suffixOverrides='and'>
+					<if test='modelCode!=null and !"".equals(modelCode)' >model_code= #{modelCode} and </if>
+					<if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+					<if test='logId!=null and !"".equals(logId)' >log_id= #{logId} and </if>
+					<if test='consumeStartDate!=null and !"".equals(consumeStartDate)' >
+						consume_date &gt;= #{consumeStartDate} and 
+					</if>
+					<if test='consumeEndDate!=null and !"".equals(consumeEndDate)' >
+						consume_date &lt; #{consumeEndDate} and 
+					</if>
+					<if test='keyword!=null and !"".equals(keyword)' >keyword= #{keyword} and </if>
+					<if test='point!=null and !"".equals(point)' >point= #{point} and </if>
+					<if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+					<if test='isLoadApi!=null and "1".equals(isLoadApi)' >model_code = '5' and </if>
+					<if test='isLoadApi!=null and "0".equals(isLoadApi)' >model_code != '5' and </if>
+					<if test='difference!=null and "1".equals(difference)' >
+						difference_time &lt; 0.5 and 
+					</if>
+					<if test='difference!=null and "2".equals(difference)' >
+						difference_time &gt;= 0.5 and
+						difference_time &lt; 1 and 
+					</if>
+					<if test='difference!=null and "3".equals(difference)' >
+						difference_time &gt; 1 and
+					</if>
+				</trim>
+			</where>
+			order by id desc
+		</select>
+
+
+
+</mapper>

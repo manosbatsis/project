@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.system.MerchantInfoMapper'>
+
+	<!-- 关系映射 -->
+    <resultMap id="MerchantInfoModelMap" type="MerchantInfoModel" >
+                <result property="inventoryResultEmail" column="inventory_result_email" />
+                <result property="code" column="code" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="isBindUser" column="is_bind_user" />
+                <result property="fullName" column="full_name" />
+                <result property="remark" column="remark" />
+                <result property="permission" column="permission" />
+                <result property="isProxy" column="is_proxy" />
+                <result property="financePayEmail" column="finance_pay_email" />
+                <result property="simpleMerchant" column="simple_merchant" />
+                <result property="registeredAddress" column="registered_address" />
+                <result property="topidealCode" column="topideal_code" />
+                <result property="name" column="name" />
+                <result property="creater" column="creater" />
+                <result property="tel" column="tel" />
+                <result property="id" column="id" />
+                <result property="email" column="email" />
+                <result property="createDate" column="create_date" />
+                <result property="englishName" column="english_name" />
+                <result property="articulationPercent" column="articulation_percent" />
+                <result property="accountCurrency" column="account_currency" />
+                <result property="accountPrice" column="account_price" />
+                <result property="depositBank" column="deposit_bank" />
+                <result property="bankAccount" column="bank_account" />
+                <result property="beneficiaryName" column="beneficiary_name" />
+                <result property="bankAddress" column="bank_address" />
+                <result property="swiftCode" column="swift_code" />
+                <result property="englishRegisteredAddress" column="english_registered_address" />
+                <result property="registeredType" column="registered_type" />
+                <result property="status" column="status" />
+                <result property="registrationCert" column="registration_cert" />
+
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MerchantInfoModelMap' parameterType='MerchantInfoModel'>
+        select <include refid='sql_columns' /> from st_merchant_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MerchantInfoModelMap' parameterType='MerchantInfoModel'>
+        select <include refid='sql_columns' /> from st_merchant_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MerchantInfoModelMap' parameterType='MerchantInfoModel' >
+        select <include refid='sql_columns' /> from st_merchant_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='MerchantInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_merchant_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='inventoryResultEmail!=null and !"".equals(inventoryResultEmail)' > inventory_result_email , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='isBindUser!=null and !"".equals(isBindUser)' > is_bind_user , </if>
+                <if test='fullName!=null and !"".equals(fullName)' > full_name , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='permission!=null and !"".equals(permission)' > permission , </if>
+                <if test='isProxy!=null and !"".equals(isProxy)' > is_proxy , </if>
+                <if test='financePayEmail!=null and !"".equals(financePayEmail)' > finance_pay_email , </if>
+                <if test='simpleMerchant!=null and !"".equals(simpleMerchant)' > simple_merchant , </if>
+                <if test='registeredAddress!=null and !"".equals(registeredAddress)' > registered_address , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > topideal_code , </if>
+                <if test='name!=null and !"".equals(name)' > name , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='tel!=null and !"".equals(tel)' > tel , </if>
+                <if test='id!=null' > id , </if>
+                <if test='email!=null and !"".equals(email)' > email , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='englishName!=null and !"".equals(englishName)' > english_name , </if>
+                <if test='articulationPercent!=null' >articulation_percent , </if>
+                <if test='accountCurrency!=null and !"".equals(accountCurrency)' > account_currency , </if>
+                <if test='accountPrice!=null and !"".equals(accountPrice)' > account_price , </if>
+                <if test='depositBank!=null and !"".equals(depositBank)' > deposit_bank , </if>
+                <if test='bankAccount!=null and !"".equals(bankAccount)' > bank_account , </if>
+                <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > beneficiary_name , </if>
+                <if test='bankAddress!=null and !"".equals(bankAddress)' > bank_address , </if>
+                <if test='swiftCode!=null and !"".equals(swiftCode)' > swift_code , </if>
+                <if test='englishRegisteredAddress!=null and !"".equals(englishRegisteredAddress)' > english_registered_address , </if>
+                <if test='registeredType!=null and !"".equals(registeredType)' > registered_type , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='registrationCert!=null and !"".equals(registrationCert)' > registration_cert , </if>
+
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='inventoryResultEmail!=null and !"".equals(inventoryResultEmail)' > #{inventoryResultEmail} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='isBindUser!=null and !"".equals(isBindUser)' > #{isBindUser} , </if>
+                <if test='fullName!=null and !"".equals(fullName)' > #{fullName} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='permission!=null and !"".equals(permission)' > #{permission} , </if>
+                <if test='isProxy!=null and !"".equals(isProxy)' > #{isProxy} , </if>
+                <if test='financePayEmail!=null and !"".equals(financePayEmail)' > #{financePayEmail} , </if>
+                <if test='simpleMerchant!=null and !"".equals(simpleMerchant)' > #{simpleMerchant} , </if>
+                <if test='registeredAddress!=null and !"".equals(registeredAddress)' > #{registeredAddress} , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' > #{topidealCode} , </if>
+                <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='tel!=null and !"".equals(tel)' > #{tel} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='email!=null and !"".equals(email)' > #{email} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='englishName!=null and !"".equals(englishName)' > #{englishName} , </if>
+                <if test='articulationPercent!=null' > #{articulationPercent} , </if>
+                <if test='accountCurrency!=null and !"".equals(accountCurrency)' > #{accountCurrency} , </if>
+                <if test='accountPrice!=null and !"".equals(accountPrice)' > #{accountPrice} , </if>
+                <if test='depositBank!=null and !"".equals(depositBank)' > #{depositBank} , </if>
+                <if test='bankAccount!=null and !"".equals(bankAccount)' > #{bankAccount} , </if>
+                <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > #{beneficiaryName} , </if>
+                <if test='bankAddress!=null and !"".equals(bankAddress)' > #{bankAddress} , </if>
+                <if test='swiftCode!=null and !"".equals(swiftCode)' > #{swiftCode} , </if>
+                <if test='englishRegisteredAddress!=null and !"".equals(englishRegisteredAddress)' >#{englishRegisteredAddress} ,  </if>
+                <if test='registeredType!=null and !"".equals(registeredType)' >#{registeredType} ,  </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='registrationCert!=null and !"".equals(registrationCert)' > #{registrationCert} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='MerchantInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_merchant_info SET
+        <trim  suffixOverrides=",">
+                <if test='inventoryResultEmail!=null and !"".equals(inventoryResultEmail)' >inventory_result_email= #{inventoryResultEmail} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='isBindUser!=null and !"".equals(isBindUser)' >is_bind_user= #{isBindUser} , </if>
+                <if test='fullName!=null and !"".equals(fullName)' >full_name= #{fullName} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='permission!=null and !"".equals(permission)' >permission= #{permission} , </if>
+                <if test='isProxy!=null and !"".equals(isProxy)' >is_proxy= #{isProxy} , </if>
+                <if test='financePayEmail!=null and !"".equals(financePayEmail)' >finance_pay_email= #{financePayEmail} , </if>
+                <if test='simpleMerchant!=null and !"".equals(simpleMerchant)' >simple_merchant= #{simpleMerchant} , </if>
+                <if test='registeredAddress!=null and !"".equals(registeredAddress)' >registered_address= #{registeredAddress} , </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} , </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='tel!=null and !"".equals(tel)' >tel= #{tel} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='email!=null and !"".equals(email)' >email= #{email} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='englishName!=null and !"".equals(englishName)' >english_name= #{englishName} , </if>
+                <if test='articulationPercent!=null' > articulation_percent= #{articulationPercent} , </if>
+                <if test='accountCurrency!=null and !"".equals(accountCurrency)' >account_currency= #{accountCurrency} , </if>
+                <if test='accountPrice!=null and !"".equals(accountPrice)' >account_price= #{accountPrice} , </if>
+                <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} , </if>
+                <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} , </if>
+                <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} , </if>
+                <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} , </if>
+                <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} , </if>
+                <if test='englishRegisteredAddress!=null and !"".equals(englishRegisteredAddress)' >english_registered_address= #{englishRegisteredAddress} , </if>
+                <if test='registeredType!=null and !"".equals(registeredType)' >registered_type= #{registeredType} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='registrationCert!=null and !"".equals(registrationCert)' >registration_cert= #{registrationCert} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_merchant_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_merchant_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        inventory_result_email,
+        code,
+        modify_date,
+        is_bind_user,
+        full_name,
+        remark,
+        permission,
+        is_proxy,
+        finance_pay_email,
+        simple_merchant,
+        registered_address,
+        topideal_code,
+        name,
+        creater,
+        tel,
+        id,
+        email,
+        create_date,
+        english_name,
+        articulation_percent,
+        account_currency,
+        account_price,
+        deposit_bank,
+        bank_account,
+        beneficiary_name,
+        bank_address,
+        swift_code,
+        english_registered_address,
+        registered_type,
+        status,
+        registration_cert
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='inventoryResultEmail!=null and !"".equals(inventoryResultEmail)' >inventory_result_email= #{inventoryResultEmail} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='isBindUser!=null and !"".equals(isBindUser)' >is_bind_user= #{isBindUser} and </if>
+                <if test='fullName!=null and !"".equals(fullName)' >full_name= #{fullName} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='permission!=null and !"".equals(permission)' >permission= #{permission} and </if>
+                <if test='isProxy!=null and !"".equals(isProxy)' >is_proxy= #{isProxy} and </if>
+                <if test='financePayEmail!=null and !"".equals(financePayEmail)' >finance_pay_email= #{financePayEmail} and </if>
+                <if test='simpleMerchant!=null and !"".equals(simpleMerchant)' >simple_merchant= #{simpleMerchant} and </if>
+                <if test='registeredAddress!=null and !"".equals(registeredAddress)' >registered_address= #{registeredAddress} and </if>
+                <if test='topidealCode!=null and !"".equals(topidealCode)' >topideal_code= #{topidealCode} and </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='tel!=null and !"".equals(tel)' >tel= #{tel} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='email!=null and !"".equals(email)' >email= #{email} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='englishName!=null and !"".equals(englishName)' >english_name= #{englishName} and </if>
+                <if test='articulationPercent!=null' > articulation_percent= #{articulationPercent} and </if>
+                <if test='accountCurrency!=null and !"".equals(accountCurrency)' >account_currency= #{accountCurrency} and </if>
+                <if test='accountPrice!=null and !"".equals(accountPrice)' >account_price= #{accountPrice} and </if>
+                <if test='depositBank!=null and !"".equals(depositBank)' >deposit_bank= #{depositBank} and </if>
+                <if test='bankAccount!=null and !"".equals(bankAccount)' >bank_account= #{bankAccount} and </if>
+                <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} and </if>
+                <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} and </if>
+                <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} and </if>
+                <if test='englishRegisteredAddress!=null and !"".equals(englishRegisteredAddress)' >english_registered_address= #{englishRegisteredAddress} and </if>
+                <if test='registeredType!=null and !"".equals(registeredType)' >registered_type= #{registeredType} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='registrationCert!=null and !"".equals(registrationCert)' >registration_cert= #{registrationCert} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL -->
+	<!-- 下拉列表关系映射 -->
+	<resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+                <result property="value" column="id" />
+                <result property="label" column="name" />
+    </resultMap>
+	<!-- 查询下拉列表 -->
+    <select id='getSelectBean' resultMap='SelectBeans' parameterType="MerchantInfoModel">
+        select id,name,topideal_code from st_merchant_info
+        <where>
+        	<trim suffixOverrides='and'>
+        		<if test='isProxy!=null and !"".equals(isProxy)' > is_proxy = #{isProxy} and</if>
+                <if test='id!=null' > id= #{id} and </if>
+        	</trim>
+        </where>
+    </select>
+    <!-- 查询所有信息 -->
+    <select id="listDstp" resultMap='MerchantInfoModelMap' parameterType='MerchantInfoModel'>
+        select <include refid='sql_columns' /> from st_merchant_info
+        where topideal_code in('0000138','1000000204','1000000626','0000134')
+              and status='1'
+        <if test='id!=null' > and id= #{id} </if>
+    </select>
+</mapper>

@@ -1,0 +1,42 @@
+spring:
+    profiles:
+        include:
+          - apollo #子配置文件名必须为application-xxx.yml
+          - dborder #业务库
+          - rocketmq #mq配置文件
+          - mongo #mongo配置文件
+          - redis #redis配置文件
+          - externalapi #外部接口配置文件
+          - crawler #爬虫配置文件
+    mvc:   
+        view: 
+            prefix: /WEB-INF/views/ #返回的前缀 
+            suffix: .jsp #返回的后缀
+    jackson: 
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        serialization: 
+           write-dates-as-timestamps: false  
+    servlet:
+        multipart:
+           enabled: true
+           max-file-size: 20MB
+           max-request-size: 20MB        
+    devtools:
+        restart:
+           enabled: true  #设置开启热部署
+           additional-paths: src/main/java #重启目录
+           exclude: WEB-INF/**
+
+server:
+  port: 9020
+  servlet:
+    context-path: /
+    multipart:
+      max-file-size: 20MB  #上传文件大小限制20MB
+      max-request-size: 20MB
+
+mybatis:
+  configLocation: classpath:mybatis-config.xml
+  type-aliases-package: com.topideal.entity
+  mapper-locations: classpath:ibatis/**/*.xml

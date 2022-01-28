@@ -1,0 +1,500 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.CustomerSalePriceMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CustomerSalePriceModelMap" type="CustomerSalePriceModel" >
+                <result property="id" column="id" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerCode" column="customer_code" />
+                <result property="goodsName" column="goods_name" />
+                <result property="spec" column="spec" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="salePrice" column="sale_price" />
+                <result property="expiryDate" column="expiry_date" />
+                <result property="effectiveDate" column="effective_date" />
+                <result property="currency" column="currency" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="auditDate" column="audit_date" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="auditor" column="auditor" />
+                <result property="auditName" column="audit_name" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierName" column="modifier_name" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="submitName" column="submit_name" />
+                <result property="submitId" column="submit_id" />
+                <result property="submitDate" column="submit_date" />
+                <result property="remark" column="remark" />
+                <result property="code" column="code" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomerSalePriceModelMap' parameterType='CustomerSalePriceModel'>
+        select <include refid='sql_columns' /> from st_customer_sale_price  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomerSalePriceModelMap' parameterType='CustomerSalePriceModel'>
+        select <include refid='sql_columns' /> from st_customer_sale_price  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomerSalePriceModelMap' parameterType='CustomerSalePriceModel' >
+        select <include refid='sql_columns' /> from st_customer_sale_price  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='CustomerSalePriceModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_customer_sale_price
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' > customer_code , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='spec!=null and !"".equals(spec)' > spec , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='salePrice!=null' >sale_price , </if>
+                        <if test='expiryDate!=null' >expiry_date , </if>
+                        <if test='effectiveDate!=null' >effective_date , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='auditor!=null' >auditor , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > modifier_name , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='submitName!=null and !"".equals(submitName)' > submit_name , </if>
+                        <if test='submitId!=null' >submit_id , </if>
+                        <if test='submitDate!=null' >submit_date , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' > #{customerCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='spec!=null and !"".equals(spec)' > #{spec} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='salePrice!=null' > #{salePrice} , </if>
+                        <if test='expiryDate!=null' > #{expiryDate} , </if>
+                        <if test='effectiveDate!=null' > #{effectiveDate} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='auditDate!=null' >#{auditDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='auditor!=null' > #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' > #{modifierName} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='submitName!=null and !"".equals(submitName)' > #{submitName} , </if>
+                        <if test='submitId!=null' > #{submitId} , </if>
+                        <if test='submitDate!=null' > #{submitDate} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CustomerSalePriceModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_customer_sale_price SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='spec!=null and !"".equals(spec)' >spec= #{spec} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='salePrice!=null' > sale_price= #{salePrice} , </if>
+                        <if test='expiryDate!=null' > expiry_date= #{expiryDate} , </if>
+                        <if test='effectiveDate!=null' > effective_date= #{effectiveDate} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='auditDate!=null' >audit_date= #{auditDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='auditor!=null' > auditor= #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='submitName!=null and !"".equals(submitName)' >submit_name= #{submitName} , </if>
+                        <if test='submitId!=null' > submit_id= #{submitId} , </if>
+                        <if test='submitDate!=null' > submit_date= #{submitDate} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_customer_sale_price  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_customer_sale_price where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            commbarcode,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            customer_code,
+            goods_name,
+            spec,
+            brand_id,
+            brand_name,
+            sale_price,
+            expiry_date,
+            effective_date,
+            currency,
+            status,
+            create_date,
+            modify_date,
+            audit_date,
+            creater,
+            create_name,
+            auditor,
+            audit_name,
+            modifier,
+            modifier_name,
+            bu_name,
+            bu_id,
+            submit_name,
+            submit_id,
+            submit_date,
+            remark,
+            code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='spec!=null and !"".equals(spec)' >spec= #{spec} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='salePrice!=null' > sale_price= #{salePrice} and </if>
+                            <if test='expiryDate!=null' > expiry_date= #{expiryDate} and </if>
+                            <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='auditDate!=null' >audit_date= #{auditDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='auditor!=null' > auditor= #{auditor} and </if>
+                            <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} and </if>
+                            <if test='buName!=null and !"".equals(buName)' > bu_name=#{buName} and  </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='submitName!=null and !"".equals(submitName)' > submit_name=#{submitName} and  </if>
+                            <if test='submitId!=null' > submit_id= #{submitId} and </if>
+                            <if test='submitDate!=null' > submit_date= #{submitDate} and </if>
+                            <if test='remark!=null and !"".equals(remark)' > remark=#{remark} and  </if>
+                            <if test='code!=null and !"".equals(code)' > code=#{code} and  </if>
+                             status!='006' and
+                </trim>
+            </where>
+        </sql>
+
+
+	<!--自定义SQL -->
+
+  <sql id='sql_where_page'>
+            <where>
+                <trim suffixOverrides='and'>
+                        <if test='id!=null' > id= #{id} and </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode LIKE CONCAT('%',#{commbarcode},'%') and </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                        <if test='customerCode!=null and !"".equals(customerCode)' >customer_code= #{customerCode} and </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                        <if test='spec!=null and !"".equals(spec)' >spec= #{spec} and </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                        <if test='salePrice!=null' > sale_price= #{salePrice} and </if>
+                        <if test='expiryDate!=null' > expiry_date= #{expiryDate} and </if>
+                        <if test='effectiveDate!=null' > effective_date= #{effectiveDate} and </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                        <if test='createDate!=null' > create_date= #{createDate} and </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                        <if test='auditDate!=null' >audit_date= #{auditDate} and </if>
+                        <if test='creater!=null' > creater= #{creater} and </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                        <if test='auditor!=null' > auditor= #{auditor} and </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                        <if test='modifier!=null' > modifier= #{modifier} and </if>
+                        <if test='modifierName!=null and !"".equals(modifierName)' >modifier_name= #{modifierName} and </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name=#{buName} and  </if>
+                        <if test='buId!=null' > bu_id= #{buId} and </if>
+                        <if test='buIdList!=null and !"".equals(buIdList)' >bu_id in
+                            <foreach collection='buIdList' item='buId' separator=',' open='(' close=')'>
+                                #{buId}
+                            </foreach>
+                            and
+                        </if>
+                        <if test='customerList!=null and customerList.size()>0' >
+                            customer_id in
+                            <foreach collection='customerList' item='customerId' separator=',' open='(' close=')'>
+                                #{customerId}
+                            </foreach>
+                            and
+                        </if>
+                        status!='006' and
+                </trim>
+            </where>
+        </sql>
+
+
+	<!-- 分页 -->
+	<select id='getListByPage' resultType='CustomerSalePriceDTO'
+		parameterType='CustomerSalePriceDTO'>
+		select <include refid='sql_columns' /> from st_customer_sale_price  
+		<include refid='sql_where_page' />
+		ORDER BY id DESC
+	</select>
+	<!-- 导出 -->
+	<select id='getExportList' resultType='CustomerSalePriceDTO'
+		parameterType='CustomerSalePriceDTO'>
+		select <include refid='sql_columns' /> from st_customer_sale_price  
+		<include refid='sql_where_page' /> 
+		ORDER BY id DESC
+	</select>
+
+
+
+	<select id="getDetails" resultMap='CustomerSalePriceModelMap'
+		parameterType='CustomerSalePriceModel'>
+		<!-- SELECT
+		id,
+		customer_id,
+		customer_name,
+		merchant_name,
+		effective_date,
+		expiry_date,
+		immediate_effect,
+		commbarcode,
+		brand_name,
+		create_date,
+		modify_date,
+		goods_name,
+		spec,
+		unit_name,
+		sale_price,
+		is_group,
+		customer_code,
+		main_id
+		FROM
+		st_customer_sale_price
+		<where>
+			<trim suffixOverrides='and'>
+				<if test='customerCode!=null and !"".equals(customerCode)'>customer_code=
+					#{customerCode} and
+				</if>
+				<if test='salePriceId!=null'> sale_price_id= #{salePriceId} and
+				</if>
+				<if test='spec!=null and !"".equals(spec)'>spec= #{spec} and </if>
+				<if test='merchantName!=null and !"".equals(merchantName)'>merchant_name=
+					#{merchantName} and
+				</if>
+				<if test='expiryDate!=null'> expiry_date= #{expiryDate} and </if>
+				<if test='goodsClassifyName!=null and !"".equals(goodsClassifyName)'>
+					goods_classify_name= #{goodsClassifyName} and
+				</if>
+				<if test='merchantId!=null'> merchant_id= #{merchantId} and </if>
+				<if test='customerId!=null'> customer_id= #{customerId} and </if>
+				<if test='unitId!=null'> unit_id= #{unitId} and </if>
+				<if test='id!=null'> id= #{id} and </if>
+				<if test='commbarcode!=null and !"".equals(commbarcode)'>commbarcode=
+					#{commbarcode} and
+				</if>
+				<if test='goodsName!=null and !"".equals(goodsName)'>goods_name=
+					#{goodsName} and
+				</if>
+				<if test='createDate!=null'> create_date= #{createDate} and </if>
+				<if test='brandName!=null and !"".equals(brandName)'>brand_name=
+					#{brandName} and
+				</if>
+				<if test='unitName!=null and !"".equals(unitName)'>unit_name=
+					#{unitName} and
+				</if>
+				<if test='modifyDate!=null'> modify_date= #{modifyDate} and </if>
+				<if test='salePrice!=null'> sale_price= #{salePrice} and </if>
+				<if test='productTypeId!=null'> product_type_id= #{productTypeId}
+					and
+				</if>
+				<if test='customerName!=null and !"".equals(customerName)'>customer_name=
+					#{customerName} and
+				</if>
+				<if test='brandId!=null'> brand_id= #{brandId} and </if>
+				<if test='immediateEffect!=null and !"".equals(immediateEffect)'>
+					immediate_effect= #{immediateEffect} and
+				</if>
+				<if test='isGroup!=null and !"".equals(isGroup)'>is_group=
+					#{isGroup} and
+				</if>
+				<if test='mainId!=null'> main_id= #{mainId} and </if>
+				<if test='effectiveDate!=null'> effective_date= #{effectiveDate}
+					and
+				</if>
+				IFNULL(`status`,'')!='006' and
+			</trim>
+		</where>
+		ORDER BY create_date DESC -->
+	</select>
+
+	<!-- 客户 关系映射 -->
+	<resultMap id="CustomerInfoModelMap" type="CustomerInfoModel">
+		<result property="code" column="code" />
+		<result property="id" column="id" />
+		<result property="mainId" column="main_id" />
+	</resultMap>
+
+	<!-- 根据客户ID回显code和mainId -->
+	<select id="getCodeById" resultMap='CustomerInfoModelMap'
+		parameterType='CustomerInfoModel'>
+		SELECT id,CODE,
+		case when (main_id = 'null') then '0'
+		when (main_id !='0') then main_id
+		else '' end as main_id
+		FROM st_customer_info
+		WHERE id =#{id}
+
+	</select>
+
+	<!-- 批量删除数据,根据表头ID删除表体 -->
+	<delete id='delBesidesIds' parameterType='java.util.ArrayList'>
+		<!-- delete from st_customer_sale_price where sale_price_id = #{salePriceId}
+		<if test="itemIds != null">
+			and id not in
+			<foreach collection='itemIds' item='id' separator=',' open='('
+				close=')'>
+				#{id}
+			</foreach>
+		</if> -->
+	</delete>
+
+	<!-- 根据 商家id和客户id和商品货号查询非本id下客户销售价格表信息 -->
+	<select id='findByIDAndGoodsNo' resultMap='CustomerSalePriceModelMap'
+		parameterType='CustomerSalePriceModel'>
+		select
+		<include refid='sql_columns' />
+		from st_customer_sale_price
+		where commbarcode= #{commbarcode}
+		and merchant_id=
+		#{merchantId}
+		and customer_id= #{customerId}
+		and id != #{id}
+		and IFNULL(`status`,'')!='006'
+
+
+	</select>
+
+    <!--根据不同的状态获取数量-->
+    <select id="getCountStatus" resultType="map">
+        SELECT
+            count( STATUS = '001' OR NULL ) AS beAudit,
+            count( STATUS = '002' OR NULL ) AS beSubmited,
+            count( STATUS = '003' OR NULL ) AS beAreadyAudit,
+            count( STATUS = '004' OR NULL ) AS beRejected,
+            count( STATUS != '006' OR NULL ) AS beAll,
+            count( STATUS = '005' OR NULL ) AS beInvalid,
+            count( STATUS = '007' OR NULL ) AS beAlreadyInvalid
+        FROM st_customer_sale_price
+            <where>
+            <trim suffixOverrides='and'>
+                <if test='buIdList!=null and !"".equals(buIdList)' >bu_id in
+                    <foreach collection='buIdList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode LIKE CONCAT('%',#{commbarcode},'%') and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>                
+                <if test='customerList!=null and customerList.size()>0' >
+                    customer_id in
+                    <foreach collection='customerList' item='customerId' separator=',' open='(' close=')'>
+                        #{customerId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+            </where>
+    </select>
+
+    <select id='searchByDTO' resultType='CustomerSalePriceDTO' parameterType='CustomerSalePriceDTO' >
+        select <include refid='sql_columns' /> from st_customer_sale_price  <include refid='sql_where' />
+    </select>
+</mapper>
+

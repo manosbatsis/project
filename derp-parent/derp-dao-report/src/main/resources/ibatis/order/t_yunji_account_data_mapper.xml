@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.YunjiAccountDataMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="YunjiAccountDataModelMap" type="YunjiAccountDataModel" >
+                <result property="id" column="id" />
+                <result property="settleId" column="settle_id" />
+                <result property="supplierCode" column="supplier_code" />
+                <result property="supplierName" column="supplier_name" />
+                <result property="goodsType" column="goods_type" />
+                <result property="businessStartDate" column="business_start_date" />
+                <result property="businessEndDate" column="business_end_date" />
+                <result property="currencyType" column="currency_type" />
+                <result property="departmentType" column="department_type" />
+                <result property="settlementPriceTotal" column="settlement_price_total" />
+                <result property="totalCostPrice" column="total_cost_price" />
+                <result property="finalPriceTotal" column="final_price_total" />
+                <result property="mechanismCode" column="mechanism_code" />
+                <result property="settleDate" column="settle_date" />
+                <result property="userCode" column="user_code" />
+                <result property="status" column="status" />
+                <result property="createTime" column="create_time" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="fileKey" column="file_key" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='YunjiAccountDataModelMap' parameterType='YunjiAccountDataModel'>
+        select <include refid='sql_columns' /> from t_yunji_account_data  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='YunjiAccountDataModelMap' parameterType='YunjiAccountDataModel'>
+        select <include refid='sql_columns' /> from t_yunji_account_data  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='YunjiAccountDataModelMap' parameterType='YunjiAccountDataModel' >
+        select <include refid='sql_columns' /> from t_yunji_account_data  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='YunjiAccountDataModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_yunji_account_data
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='settleId!=null and !"".equals(settleId)' > settle_id , </if>
+                        <if test='supplierCode!=null and !"".equals(supplierCode)' > supplier_code , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+                        <if test='goodsType!=null and !"".equals(goodsType)' > goods_type , </if>
+                        <if test='businessStartDate!=null' >business_start_date , </if>
+                        <if test='businessEndDate!=null' >business_end_date , </if>
+                        <if test='currencyType!=null and !"".equals(currencyType)' > currency_type , </if>
+                        <if test='departmentType!=null and !"".equals(departmentType)' > department_type , </if>
+                        <if test='settlementPriceTotal!=null' >settlement_price_total , </if>
+                        <if test='totalCostPrice!=null' >total_cost_price , </if>
+                        <if test='finalPriceTotal!=null' >final_price_total , </if>
+                        <if test='mechanismCode!=null and !"".equals(mechanismCode)' > mechanism_code , </if>
+                        <if test='settleDate!=null' >settle_date , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > user_code , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createTime!=null' >create_time , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='fileKey!=null and !"".equals(fileKey)' > file_key , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='settleId!=null and !"".equals(settleId)' > #{settleId} , </if>
+                        <if test='supplierCode!=null and !"".equals(supplierCode)' > #{supplierCode} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+                        <if test='goodsType!=null and !"".equals(goodsType)' > #{goodsType} , </if>
+                        <if test='businessStartDate!=null' > #{businessStartDate} , </if>
+                        <if test='businessEndDate!=null' > #{businessEndDate} , </if>
+                        <if test='currencyType!=null and !"".equals(currencyType)' > #{currencyType} , </if>
+                        <if test='departmentType!=null and !"".equals(departmentType)' > #{departmentType} , </if>
+                        <if test='settlementPriceTotal!=null' > #{settlementPriceTotal} , </if>
+                        <if test='totalCostPrice!=null' > #{totalCostPrice} , </if>
+                        <if test='finalPriceTotal!=null' > #{finalPriceTotal} , </if>
+                        <if test='mechanismCode!=null and !"".equals(mechanismCode)' > #{mechanismCode} , </if>
+                        <if test='settleDate!=null' > #{settleDate} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > #{userCode} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createTime!=null' > #{createTime} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='fileKey!=null and !"".equals(fileKey)' > #{fileKey} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='YunjiAccountDataModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_yunji_account_data SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='settleId!=null and !"".equals(settleId)' >settle_id= #{settleId} , </if>
+                        <if test='supplierCode!=null and !"".equals(supplierCode)' >supplier_code= #{supplierCode} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+                        <if test='goodsType!=null and !"".equals(goodsType)' >goods_type= #{goodsType} , </if>
+                        <if test='businessStartDate!=null' > business_start_date= #{businessStartDate} , </if>
+                        <if test='businessEndDate!=null' > business_end_date= #{businessEndDate} , </if>
+                        <if test='currencyType!=null and !"".equals(currencyType)' >currency_type= #{currencyType} , </if>
+                        <if test='departmentType!=null and !"".equals(departmentType)' >department_type= #{departmentType} , </if>
+                        <if test='settlementPriceTotal!=null' > settlement_price_total= #{settlementPriceTotal} , </if>
+                        <if test='totalCostPrice!=null' > total_cost_price= #{totalCostPrice} , </if>
+                        <if test='finalPriceTotal!=null' > final_price_total= #{finalPriceTotal} , </if>
+                        <if test='mechanismCode!=null and !"".equals(mechanismCode)' >mechanism_code= #{mechanismCode} , </if>
+                        <if test='settleDate!=null' > settle_date= #{settleDate} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createTime!=null' > create_time= #{createTime} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='fileKey!=null and !"".equals(fileKey)' >file_key= #{fileKey} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_yunji_account_data  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_yunji_account_data where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            settle_id,
+            supplier_code,
+            supplier_name,
+            goods_type,
+            business_start_date,
+            business_end_date,
+            currency_type,
+            department_type,
+            settlement_price_total,
+            total_cost_price,
+            final_price_total,
+            mechanism_code,
+            settle_date,
+            user_code,
+            status,
+            create_time,
+            merchant_id,
+            merchant_name,
+            create_date,
+            modify_date,
+            file_key
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='settleId!=null and !"".equals(settleId)' >settle_id= #{settleId} and </if>
+                            <if test='supplierCode!=null and !"".equals(supplierCode)' >supplier_code= #{supplierCode} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                            <if test='goodsType!=null and !"".equals(goodsType)' >goods_type= #{goodsType} and </if>
+                            <if test='businessStartDate!=null' > business_start_date= #{businessStartDate} and </if>
+                            <if test='businessEndDate!=null' > business_end_date= #{businessEndDate} and </if>
+                            <if test='currencyType!=null and !"".equals(currencyType)' >currency_type= #{currencyType} and </if>
+                            <if test='departmentType!=null and !"".equals(departmentType)' >department_type= #{departmentType} and </if>
+                            <if test='settlementPriceTotal!=null' > settlement_price_total= #{settlementPriceTotal} and </if>
+                            <if test='totalCostPrice!=null' > total_cost_price= #{totalCostPrice} and </if>
+                            <if test='finalPriceTotal!=null' > final_price_total= #{finalPriceTotal} and </if>
+                            <if test='mechanismCode!=null and !"".equals(mechanismCode)' >mechanism_code= #{mechanismCode} and </if>
+                            <if test='settleDate!=null' > settle_date= #{settleDate} and </if>
+                            <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='createTime!=null' > create_time= #{createTime} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='fileKey!=null and !"".equals(fileKey)' >file_key= #{fileKey} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

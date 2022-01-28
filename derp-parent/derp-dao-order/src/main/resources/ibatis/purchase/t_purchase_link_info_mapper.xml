@@ -1,0 +1,473 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.PurchaseLinkInfoMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PurchaseLinkInfoModelMap" type="PurchaseLinkInfoModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="tradeLinkId" column="trade_link_id" />
+                <result property="infoAuditDate" column="info_audit_date" />
+                <result property="infoCurrency" column="info_currency" />
+                <result property="infoBusinessModel" column="info_business_model" />
+                <result property="infoLoadPort" column="info_load_port" />
+                <result property="infoUnloadPort" column="info_unload_port" />
+                <result property="infoShipDate" column="info_ship_date" />
+                <result property="infoTransport" column="info_transport" />
+                <result property="infoCarrier" column="info_carrier" />
+                <result property="infoTrainNumber" column="info_train_number" />
+                <result property="infoStandardCaseTeu" column="info_standard_case_teu" />
+                <result property="infoTorrNum" column="info_torr_num" />
+                <result property="infoLbxNo" column="info_lbx_no" />
+                <result property="infoLadingBill" column="info_lading_bill" />
+                <result property="infoGrossWeight" column="info_gross_weight" />
+                <result property="conMeansOfTransportation" column="con_means_of_transportation" />
+                <result property="conLoadingCnPort" column="con_loading_cn_port" />
+                <result property="conLoadingEnPort" column="con_loading_en_port" />
+                <result property="conDestinationdCn" column="con_destinationd_cn" />
+                <result property="conDestinationdEn" column="con_destinationd_en" />
+                <result property="conDeliveryDate" column="con_delivery_date" />
+                <result property="conPaymentMethod" column="con_payment_method" />
+                <result property="conPaymentMethodText" column="con_payment_method_text" />
+                <result property="conPaymentMethodTextEn" column="con_payment_method_text_en" />
+                <result property="conSpecialAgreementEn" column="con_special_agreement_en" />
+                <result property="conSpecialAgreement" column="con_special_agreement" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierUsername" column="modifier_username" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="purchaseOrderId" column="purchase_order_id" />
+                <result property="purchaseOrderCode" column="purchase_order_code" />
+                <result property="startPointDepotName" column="start_point_depot_name" />
+                <result property="startPointDepotId" column="start_point_depot_id" />
+                <result property="startPointPoNo" column="start_point_po_no" />
+                <result property="oneDepotName" column="one_depot_name" />
+                <result property="oneDepotId" column="one_depot_id" />
+                <result property="onePoNo" column="one_po_no" />
+                <result property="twoDepotName" column="two_depot_name" />
+                <result property="twoDepotId" column="two_depot_id" />
+                <result property="twoPoNo" column="two_po_no" />
+                <result property="threeDepotName" column="three_depot_name" />
+                <result property="threeDepotId" column="three_depot_id" />
+                <result property="threePoNo" column="three_po_no" />
+                <result property="fourDepotName" column="four_depot_name" />
+                <result property="fourDepotId" column="four_depot_id" />
+                <result property="fourPoNo" column="four_po_no" />
+                <result property="goodsInfo" column="goods_info" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseLinkInfoModelMap' parameterType='PurchaseLinkInfoModel'>
+        select <include refid='sql_columns' /> from t_purchase_link_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseLinkInfoModelMap' parameterType='PurchaseLinkInfoModel'>
+        select <include refid='sql_columns' /> from t_purchase_link_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseLinkInfoModelMap' parameterType='PurchaseLinkInfoModel' >
+        select <include refid='sql_columns' /> from t_purchase_link_info  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PurchaseLinkInfoModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_purchase_link_info
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='tradeLinkId!=null' >trade_link_id , </if>
+                        <if test='infoAuditDate!=null' >info_audit_date , </if>
+                        <if test='infoCurrency!=null and !"".equals(infoCurrency)' > info_currency , </if>
+                        <if test='infoBusinessModel!=null and !"".equals(infoBusinessModel)' > info_business_model , </if>
+                        <if test='infoLoadPort!=null and !"".equals(infoLoadPort)' > info_load_port , </if>
+                        <if test='infoUnloadPort!=null and !"".equals(infoUnloadPort)' > info_unload_port , </if>
+                        <if test='infoShipDate!=null' >info_ship_date , </if>
+                        <if test='infoTransport!=null and !"".equals(infoTransport)' > info_transport , </if>
+                        <if test='infoCarrier!=null and !"".equals(infoCarrier)' > info_carrier , </if>
+                        <if test='infoTrainNumber!=null and !"".equals(infoTrainNumber)' > info_train_number , </if>
+                        <if test='infoStandardCaseTeu!=null and !"".equals(infoStandardCaseTeu)' > info_standard_case_teu , </if>
+                        <if test='infoTorrNum!=null' >info_torr_num , </if>
+                        <if test='infoLbxNo!=null and !"".equals(infoLbxNo)' > info_lbx_no , </if>
+                        <if test='infoLadingBill!=null and !"".equals(infoLadingBill)' > info_lading_bill , </if>
+                        <if test='infoGrossWeight!=null' >info_gross_weight , </if>
+                        <if test='conMeansOfTransportation!=null and !"".equals(conMeansOfTransportation)' > con_means_of_transportation , </if>
+                        <if test='conLoadingCnPort!=null and !"".equals(conLoadingCnPort)' > con_loading_cn_port , </if>
+                        <if test='conLoadingEnPort!=null and !"".equals(conLoadingEnPort)' > con_loading_en_port , </if>
+                        <if test='conDestinationdCn!=null and !"".equals(conDestinationdCn)' > con_destinationd_cn , </if>
+                        <if test='conDestinationdEn!=null and !"".equals(conDestinationdEn)' > con_destinationd_en , </if>
+                        <if test='conDeliveryDate!=null' >con_delivery_date , </if>
+                        <if test='conPaymentMethod!=null and !"".equals(conPaymentMethod)' > con_payment_method , </if>
+                        <if test='conPaymentMethodText!=null and !"".equals(conPaymentMethodText)' > con_payment_method_text , </if>
+                        <if test='conPaymentMethodTextEn!=null and !"".equals(conPaymentMethodTextEn)' > con_payment_method_text_en , </if>
+                        <if test='conSpecialAgreementEn!=null and !"".equals(conSpecialAgreementEn)' > con_special_agreement_en , </if>
+                        <if test='conSpecialAgreement!=null and !"".equals(conSpecialAgreement)' > con_special_agreement , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' > modifier_username , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='purchaseOrderId!=null' >purchase_order_id , </if>
+                        <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' > purchase_order_code , </if>
+                        <if test='startPointDepotName!=null and !"".equals(startPointDepotName)' > start_point_depot_name , </if>
+                        <if test='startPointDepotId!=null' >start_point_depot_id , </if>
+                        <if test='startPointPoNo!=null and !"".equals(startPointPoNo)' > start_point_po_no , </if>
+                        <if test='oneDepotName!=null and !"".equals(oneDepotName)' > one_depot_name , </if>
+                        <if test='oneDepotId!=null' >one_depot_id , </if>
+                        <if test='onePoNo!=null and !"".equals(onePoNo)' > one_po_no , </if>
+                        <if test='twoDepotName!=null and !"".equals(twoDepotName)' > two_depot_name , </if>
+                        <if test='twoDepotId!=null' >two_depot_id , </if>
+                        <if test='twoPoNo!=null and !"".equals(twoPoNo)' > two_po_no , </if>
+                        <if test='threeDepotName!=null and !"".equals(threeDepotName)' > three_depot_name , </if>
+                        <if test='threeDepotId!=null' >three_depot_id , </if>
+                        <if test='threePoNo!=null and !"".equals(threePoNo)' > three_po_no , </if>
+                        <if test='fourDepotName!=null and !"".equals(fourDepotName)' > four_depot_name , </if>
+                        <if test='fourDepotId!=null' >four_depot_id , </if>
+                        <if test='fourPoNo!=null and !"".equals(fourPoNo)' > four_po_no , </if>
+                        <if test='goodsInfo!=null and !"".equals(goodsInfo)' > goods_info , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='tradeLinkId!=null' > #{tradeLinkId} , </if>
+                        <if test='infoAuditDate!=null' > #{infoAuditDate} , </if>
+                        <if test='infoCurrency!=null and !"".equals(infoCurrency)' > #{infoCurrency} , </if>
+                        <if test='infoBusinessModel!=null and !"".equals(infoBusinessModel)' > #{infoBusinessModel} , </if>
+                        <if test='infoLoadPort!=null and !"".equals(infoLoadPort)' > #{infoLoadPort} , </if>
+                        <if test='infoUnloadPort!=null and !"".equals(infoUnloadPort)' > #{infoUnloadPort} , </if>
+                        <if test='infoShipDate!=null' > #{infoShipDate} , </if>
+                        <if test='infoTransport!=null and !"".equals(infoTransport)' > #{infoTransport} , </if>
+                        <if test='infoCarrier!=null and !"".equals(infoCarrier)' > #{infoCarrier} , </if>
+                        <if test='infoTrainNumber!=null and !"".equals(infoTrainNumber)' > #{infoTrainNumber} , </if>
+                        <if test='infoStandardCaseTeu!=null and !"".equals(infoStandardCaseTeu)' > #{infoStandardCaseTeu} , </if>
+                        <if test='infoTorrNum!=null' > #{infoTorrNum} , </if>
+                        <if test='infoLbxNo!=null and !"".equals(infoLbxNo)' > #{infoLbxNo} , </if>
+                        <if test='infoLadingBill!=null and !"".equals(infoLadingBill)' > #{infoLadingBill} , </if>
+                        <if test='infoGrossWeight!=null' > #{infoGrossWeight} , </if>
+                        <if test='conMeansOfTransportation!=null and !"".equals(conMeansOfTransportation)' > #{conMeansOfTransportation} , </if>
+                        <if test='conLoadingCnPort!=null and !"".equals(conLoadingCnPort)' > #{conLoadingCnPort} , </if>
+                        <if test='conLoadingEnPort!=null and !"".equals(conLoadingEnPort)' > #{conLoadingEnPort} , </if>
+                        <if test='conDestinationdCn!=null and !"".equals(conDestinationdCn)' > #{conDestinationdCn} , </if>
+                        <if test='conDestinationdEn!=null and !"".equals(conDestinationdEn)' > #{conDestinationdEn} , </if>
+                        <if test='conDeliveryDate!=null' > #{conDeliveryDate} , </if>
+                        <if test='conPaymentMethod!=null and !"".equals(conPaymentMethod)' > #{conPaymentMethod} , </if>
+                        <if test='conPaymentMethodText!=null and !"".equals(conPaymentMethodText)' > #{conPaymentMethodText} , </if>
+                        <if test='conPaymentMethodTextEn!=null and !"".equals(conPaymentMethodTextEn)' > #{conPaymentMethodTextEn} , </if>
+                        <if test='conSpecialAgreementEn!=null and !"".equals(conSpecialAgreementEn)' > #{conSpecialAgreementEn} , </if>
+                        <if test='conSpecialAgreement!=null and !"".equals(conSpecialAgreement)' > #{conSpecialAgreement} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' > #{modifierUsername} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='purchaseOrderId!=null' > #{purchaseOrderId} , </if>
+                        <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' > #{purchaseOrderCode} , </if>
+                        <if test='startPointDepotName!=null and !"".equals(startPointDepotName)' > #{startPointDepotName} , </if>
+                        <if test='startPointDepotId!=null' > #{startPointDepotId} , </if>
+                        <if test='startPointPoNo!=null and !"".equals(startPointPoNo)' > #{startPointPoNo} , </if>
+                        <if test='oneDepotName!=null and !"".equals(oneDepotName)' > #{oneDepotName} , </if>
+                        <if test='oneDepotId!=null' > #{oneDepotId} , </if>
+                        <if test='onePoNo!=null and !"".equals(onePoNo)' > #{onePoNo} , </if>
+                        <if test='twoDepotName!=null and !"".equals(twoDepotName)' > #{twoDepotName} , </if>
+                        <if test='twoDepotId!=null' > #{twoDepotId} , </if>
+                        <if test='twoPoNo!=null and !"".equals(twoPoNo)' > #{twoPoNo} , </if>
+                        <if test='threeDepotName!=null and !"".equals(threeDepotName)' > #{threeDepotName} , </if>
+                        <if test='threeDepotId!=null' > #{threeDepotId} , </if>
+                        <if test='threePoNo!=null and !"".equals(threePoNo)' > #{threePoNo} , </if>
+                        <if test='fourDepotName!=null and !"".equals(fourDepotName)' > #{fourDepotName} , </if>
+                        <if test='fourDepotId!=null' > #{fourDepotId} , </if>
+                        <if test='fourPoNo!=null and !"".equals(fourPoNo)' > #{fourPoNo} , </if>
+                        <if test='goodsInfo!=null and !"".equals(goodsInfo)' > #{goodsInfo} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PurchaseLinkInfoModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_purchase_link_info SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='tradeLinkId!=null' > trade_link_id= #{tradeLinkId} , </if>
+                        <if test='infoAuditDate!=null' > info_audit_date= #{infoAuditDate} , </if>
+                        <if test='infoCurrency!=null and !"".equals(infoCurrency)' >info_currency= #{infoCurrency} , </if>
+                        <if test='infoBusinessModel!=null and !"".equals(infoBusinessModel)' >info_business_model= #{infoBusinessModel} , </if>
+                        <if test='infoLoadPort!=null and !"".equals(infoLoadPort)' >info_load_port= #{infoLoadPort} , </if>
+                        <if test='infoUnloadPort!=null and !"".equals(infoUnloadPort)' >info_unload_port= #{infoUnloadPort} , </if>
+                        <if test='infoShipDate!=null' > info_ship_date= #{infoShipDate} , </if>
+                        <if test='infoTransport!=null and !"".equals(infoTransport)' >info_transport= #{infoTransport} , </if>
+                        <if test='infoCarrier!=null and !"".equals(infoCarrier)' >info_carrier= #{infoCarrier} , </if>
+                        <if test='infoTrainNumber!=null and !"".equals(infoTrainNumber)' >info_train_number= #{infoTrainNumber} , </if>
+                        <if test='infoStandardCaseTeu!=null and !"".equals(infoStandardCaseTeu)' >info_standard_case_teu= #{infoStandardCaseTeu} , </if>
+                        <if test='infoTorrNum!=null' > info_torr_num= #{infoTorrNum} , </if>
+                        <if test='infoLbxNo!=null and !"".equals(infoLbxNo)' >info_lbx_no= #{infoLbxNo} , </if>
+                        <if test='infoLadingBill!=null and !"".equals(infoLadingBill)' >info_lading_bill= #{infoLadingBill} , </if>
+                        <if test='infoGrossWeight!=null' > info_gross_weight= #{infoGrossWeight} , </if>
+                        <if test='conMeansOfTransportation!=null and !"".equals(conMeansOfTransportation)' >con_means_of_transportation= #{conMeansOfTransportation} , </if>
+                        <if test='conLoadingCnPort!=null and !"".equals(conLoadingCnPort)' >con_loading_cn_port= #{conLoadingCnPort} , </if>
+                        <if test='conLoadingEnPort!=null and !"".equals(conLoadingEnPort)' >con_loading_en_port= #{conLoadingEnPort} , </if>
+                        <if test='conDestinationdCn!=null and !"".equals(conDestinationdCn)' >con_destinationd_cn= #{conDestinationdCn} , </if>
+                        <if test='conDestinationdEn!=null and !"".equals(conDestinationdEn)' >con_destinationd_en= #{conDestinationdEn} , </if>
+                        <if test='conDeliveryDate!=null' > con_delivery_date= #{conDeliveryDate} , </if>
+                        <if test='conPaymentMethod!=null and !"".equals(conPaymentMethod)' >con_payment_method= #{conPaymentMethod} , </if>
+                        <if test='conPaymentMethodText!=null and !"".equals(conPaymentMethodText)' >con_payment_method_text= #{conPaymentMethodText} , </if>
+                        <if test='conPaymentMethodTextEn!=null and !"".equals(conPaymentMethodTextEn)' >con_payment_method_text_en= #{conPaymentMethodTextEn} , </if>
+                        <if test='conSpecialAgreementEn!=null and !"".equals(conSpecialAgreementEn)' >con_special_agreement_en= #{conSpecialAgreementEn} , </if>
+                        <if test='conSpecialAgreement!=null and !"".equals(conSpecialAgreement)' >con_special_agreement= #{conSpecialAgreement} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} , </if>
+                        <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' >purchase_order_code= #{purchaseOrderCode} , </if>
+                        <if test='startPointDepotName!=null and !"".equals(startPointDepotName)' >start_point_depot_name= #{startPointDepotName} , </if>
+                        <if test='startPointDepotId!=null' > start_point_depot_id= #{startPointDepotId} , </if>
+                        <if test='startPointPoNo!=null and !"".equals(startPointPoNo)' >start_point_po_no= #{startPointPoNo} , </if>
+                        <if test='oneDepotName!=null and !"".equals(oneDepotName)' >one_depot_name= #{oneDepotName} , </if>
+                        <if test='oneDepotId!=null' > one_depot_id= #{oneDepotId} , </if>
+                        <if test='onePoNo!=null and !"".equals(onePoNo)' >one_po_no= #{onePoNo} , </if>
+                        <if test='twoDepotName!=null and !"".equals(twoDepotName)' >two_depot_name= #{twoDepotName} , </if>
+                        <if test='twoDepotId!=null' > two_depot_id= #{twoDepotId} , </if>
+                        <if test='twoPoNo!=null and !"".equals(twoPoNo)' >two_po_no= #{twoPoNo} , </if>
+                        <if test='threeDepotName!=null and !"".equals(threeDepotName)' >three_depot_name= #{threeDepotName} , </if>
+                        <if test='threeDepotId!=null' > three_depot_id= #{threeDepotId} , </if>
+                        <if test='threePoNo!=null and !"".equals(threePoNo)' >three_po_no= #{threePoNo} , </if>
+                        <if test='fourDepotName!=null and !"".equals(fourDepotName)' >four_depot_name= #{fourDepotName} , </if>
+                        <if test='fourDepotId!=null' > four_depot_id= #{fourDepotId} , </if>
+                        <if test='fourPoNo!=null and !"".equals(fourPoNo)' >four_po_no= #{fourPoNo} , </if>
+                        <if test='goodsInfo!=null and !"".equals(goodsInfo)' >goods_info= #{goodsInfo} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_link_info  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_purchase_link_info where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            trade_link_id,
+            info_audit_date,
+            info_currency,
+            info_business_model,
+            info_load_port,
+            info_unload_port,
+            info_ship_date,
+            info_transport,
+            info_carrier,
+            info_train_number,
+            info_standard_case_teu,
+            info_torr_num,
+            info_lbx_no,
+            info_lading_bill,
+            info_gross_weight,
+            con_means_of_transportation,
+            con_loading_cn_port,
+            con_loading_en_port,
+            con_destinationd_cn,
+            con_destinationd_en,
+            con_delivery_date,
+            con_payment_method,
+            con_payment_method_text,
+            con_payment_method_text_en,
+            con_special_agreement_en,
+            con_special_agreement,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_username,
+            modify_date,
+            purchase_order_id,
+            purchase_order_code,
+            start_point_depot_name,
+            start_point_depot_id,
+            start_point_po_no,
+            one_depot_name,
+            one_depot_id,
+            one_po_no,
+            two_depot_name,
+            two_depot_id,
+            two_po_no,
+            three_depot_name,
+            three_depot_id,
+            three_po_no,
+            four_depot_name,
+            four_depot_id,
+            four_po_no,
+            goods_info
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='tradeLinkId!=null' > trade_link_id= #{tradeLinkId} and </if>
+                            <if test='infoAuditDate!=null' > info_audit_date= #{infoAuditDate} and </if>
+                            <if test='infoCurrency!=null and !"".equals(infoCurrency)' >info_currency= #{infoCurrency} and </if>
+                            <if test='infoBusinessModel!=null and !"".equals(infoBusinessModel)' >info_business_model= #{infoBusinessModel} and </if>
+                            <if test='infoLoadPort!=null and !"".equals(infoLoadPort)' >info_load_port= #{infoLoadPort} and </if>
+                            <if test='infoUnloadPort!=null and !"".equals(infoUnloadPort)' >info_unload_port= #{infoUnloadPort} and </if>
+                            <if test='infoShipDate!=null' > info_ship_date= #{infoShipDate} and </if>
+                            <if test='infoTransport!=null and !"".equals(infoTransport)' >info_transport= #{infoTransport} and </if>
+                            <if test='infoCarrier!=null and !"".equals(infoCarrier)' >info_carrier= #{infoCarrier} and </if>
+                            <if test='infoTrainNumber!=null and !"".equals(infoTrainNumber)' >info_train_number= #{infoTrainNumber} and </if>
+                            <if test='infoStandardCaseTeu!=null and !"".equals(infoStandardCaseTeu)' >info_standard_case_teu= #{infoStandardCaseTeu} and </if>
+                            <if test='infoTorrNum!=null' > info_torr_num= #{infoTorrNum} and </if>
+                            <if test='infoLbxNo!=null and !"".equals(infoLbxNo)' >info_lbx_no= #{infoLbxNo} and </if>
+                            <if test='infoLadingBill!=null and !"".equals(infoLadingBill)' >info_lading_bill= #{infoLadingBill} and </if>
+                            <if test='infoGrossWeight!=null' > info_gross_weight= #{infoGrossWeight} and </if>
+                            <if test='conMeansOfTransportation!=null and !"".equals(conMeansOfTransportation)' >con_means_of_transportation= #{conMeansOfTransportation} and </if>
+                            <if test='conLoadingCnPort!=null and !"".equals(conLoadingCnPort)' >con_loading_cn_port= #{conLoadingCnPort} and </if>
+                            <if test='conLoadingEnPort!=null and !"".equals(conLoadingEnPort)' >con_loading_en_port= #{conLoadingEnPort} and </if>
+                            <if test='conDestinationdCn!=null and !"".equals(conDestinationdCn)' >con_destinationd_cn= #{conDestinationdCn} and </if>
+                            <if test='conDestinationdEn!=null and !"".equals(conDestinationdEn)' >con_destinationd_en= #{conDestinationdEn} and </if>
+                            <if test='conDeliveryDate!=null' > con_delivery_date= #{conDeliveryDate} and </if>
+                            <if test='conPaymentMethod!=null and !"".equals(conPaymentMethod)' >con_payment_method= #{conPaymentMethod} and </if>
+                            <if test='conPaymentMethodText!=null and !"".equals(conPaymentMethodText)' >con_payment_method_text= #{conPaymentMethodText} and </if>
+                            <if test='conPaymentMethodTextEn!=null and !"".equals(conPaymentMethodTextEn)' >con_payment_method_text_en= #{conPaymentMethodTextEn} and </if>
+                            <if test='conSpecialAgreementEn!=null and !"".equals(conSpecialAgreementEn)' >con_special_agreement_en= #{conSpecialAgreementEn} and </if>
+                            <if test='conSpecialAgreement!=null and !"".equals(conSpecialAgreement)' >con_special_agreement= #{conSpecialAgreement} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} and </if>
+                            <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' >purchase_order_code= #{purchaseOrderCode} and </if>
+                            <if test='startPointDepotName!=null and !"".equals(startPointDepotName)' >start_point_depot_name= #{startPointDepotName} and </if>
+                            <if test='startPointDepotId!=null' > start_point_depot_id= #{startPointDepotId} and </if>
+                            <if test='startPointPoNo!=null and !"".equals(startPointPoNo)' >start_point_po_no= #{startPointPoNo} and </if>
+                            <if test='oneDepotName!=null and !"".equals(oneDepotName)' >one_depot_name= #{oneDepotName} and </if>
+                            <if test='oneDepotId!=null' > one_depot_id= #{oneDepotId} and </if>
+                            <if test='onePoNo!=null and !"".equals(onePoNo)' >one_po_no= #{onePoNo} and </if>
+                            <if test='twoDepotName!=null and !"".equals(twoDepotName)' >two_depot_name= #{twoDepotName} and </if>
+                            <if test='twoDepotId!=null' > two_depot_id= #{twoDepotId} and </if>
+                            <if test='twoPoNo!=null and !"".equals(twoPoNo)' >two_po_no= #{twoPoNo} and </if>
+                            <if test='threeDepotName!=null and !"".equals(threeDepotName)' >three_depot_name= #{threeDepotName} and </if>
+                            <if test='threeDepotId!=null' > three_depot_id= #{threeDepotId} and </if>
+                            <if test='threePoNo!=null and !"".equals(threePoNo)' >three_po_no= #{threePoNo} and </if>
+                            <if test='fourDepotName!=null and !"".equals(fourDepotName)' >four_depot_name= #{fourDepotName} and </if>
+                            <if test='fourDepotId!=null' > four_depot_id= #{fourDepotId} and </if>
+                            <if test='fourPoNo!=null and !"".equals(fourPoNo)' >four_po_no= #{fourPoNo} and </if>
+                            <if test='goodsInfo!=null and !"".equals(goodsInfo)' >goods_info= #{goodsInfo} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<select id="getPurchaseLinkDtoByPurchaseId" parameterType="java.lang.Long" resultType="PurchaseLinkInfoDTO">
+			SELECT
+				t1.*,
+				t2.four_bu_id,
+				t2.four_bu_name,
+				t2.four_customer_id,
+				t2.four_customer_name,
+				t2.three_bu_id,
+				t2.three_bu_name,
+				t2.three_customer_id,
+				t2.three_customer_name,
+				t2.three_premium_rate,
+				t2.two_bu_id,
+				t2.two_bu_name,
+				t2.two_customer_id,
+				t2.two_customer_name,
+				t2.two_premium_rate,
+				t2.one_bu_id,
+				t2.one_bu_name,
+				t2.one_customer_id,
+				t2.one_customer_name,
+				t2.one_premium_rate ,
+				t2.one_type,
+				t2.two_type,
+				t2.three_type,
+				t2.four_type,
+				t2.one_idValueType,
+				t2.two_idValueType,
+				t2.three_idValueType,
+				t2.four_idValueType,
+				t2.start_point_merchant_id,
+				t2.start_point_merchant_name,
+				t2.start_point_bu_id,
+				t2.start_point_bu_name,
+				t2.start_point_premium_rate
+			FROM
+				t_purchase_link_info t1
+				LEFT JOIN t_trade_link_config t2 ON t1.trade_link_id = t2.id
+				where t1.purchase_order_id = #{id}
+		</select>
+
+		<!--自定义SQL-->
+		<select id="getPurchaseLinkDtoById" parameterType="java.lang.Long" resultType="PurchaseLinkInfoDTO">
+			SELECT
+				t1.*,
+				t2.four_bu_id,
+				t2.four_bu_name,
+				t2.four_customer_id,
+				t2.four_customer_name,
+				t2.three_bu_id,
+				t2.three_bu_name,
+				t2.three_customer_id,
+				t2.three_customer_name,
+				t2.three_premium_rate,
+				t2.two_bu_id,
+				t2.two_bu_name,
+				t2.two_customer_id,
+				t2.two_customer_name,
+				t2.two_premium_rate,
+				t2.one_bu_id,
+				t2.one_bu_name,
+				t2.one_customer_id,
+				t2.one_customer_name,
+				t2.one_premium_rate ,
+				t2.one_type,
+				t2.two_type,
+				t2.three_type,
+				t2.four_type,
+				t2.one_idValueType,
+				t2.two_idValueType,
+				t2.three_idValueType,
+				t2.four_idValueType,
+				t2.start_point_merchant_id,
+				t2.start_point_merchant_name,
+				t2.start_point_bu_id,
+				t2.start_point_bu_name,
+				t2.start_point_premium_rate
+			FROM
+				t_purchase_link_info t1
+				LEFT JOIN t_trade_link_config t2 ON t1.trade_link_id = t2.id
+				where t1.id = #{id}
+		</select>
+
+</mapper>

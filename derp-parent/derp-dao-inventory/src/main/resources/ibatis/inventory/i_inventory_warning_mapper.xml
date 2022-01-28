@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.InventoryWarningMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="InventoryWarningModelMap" type="InventoryWarningModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="depotName" column="depot_name" />
+                <result property="batchNo" column="batch_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="surplusDays" column="surplus_days" />
+                <result property="depotId" column="depot_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="productionDate" column="production_date" />
+                <result property="totalDays" column="total_days" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="surplusDate" column="surplus_date" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryWarningModelMap' parameterType='InventoryWarningModel'>
+        select <include refid='sql_columns' /> from i_inventory_warning  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryWarningModelMap' parameterType='InventoryWarningModel'>
+        select <include refid='sql_columns' /> from i_inventory_warning  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryWarningModelMap' parameterType='InventoryWarningModel' >
+        select <include refid='sql_columns' /> from i_inventory_warning  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='InventoryWarningModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO i_inventory_warning
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='surplusDays!=null' > surplus_days , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='totalDays!=null' > total_days , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='surplusDate!=null' > surplus_date , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='surplusDays!=null' > #{surplusDays} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='totalDays!=null' > #{totalDays} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='surplusDate!=null' > #{surplusDate} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='InventoryWarningModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  i_inventory_warning SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='surplusDays!=null' > surplus_days= #{surplusDays} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='totalDays!=null' > total_days= #{totalDays} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='surplusDate!=null' > surplus_date= #{surplusDate} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_inventory_warning  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from i_inventory_warning where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        overdue_date,
+        depot_name,
+        batch_no,
+        goods_id,
+        surplus_days,
+        depot_id,
+        merchant_name,
+        production_date,
+        total_days,
+        merchant_id,
+        id,
+        goods_name,
+        surplus_date,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='surplusDays!=null' > surplus_days= #{surplusDays} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='totalDays!=null' > total_days= #{totalDays} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='surplusDate!=null' > surplus_date= #{surplusDate} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+<!--自定义SQL-->
+
+
+
+
+</mapper>

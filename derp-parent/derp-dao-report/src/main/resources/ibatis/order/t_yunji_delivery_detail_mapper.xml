@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.YunjiDeliveryDetailMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="YunjiDeliveryDetailModelMap" type="YunjiDeliveryDetailModel" >
+                <result property="id" column="id" />
+                <result property="settleId" column="settle_id" />
+                <result property="orderId" column="order_id" />
+                <result property="srcOrderId" column="src_order_id" />
+                <result property="skuNo" column="sku_no" />
+                <result property="itemName" column="item_name" />
+                <result property="normName" column="norm_name" />
+                <result property="payTime" column="pay_time" />
+                <result property="wmsdelivertime" column="wmsDeliverTime" />
+                <result property="qty" column="qty" />
+                <result property="settlementPrice" column="settlement_price" />
+                <result property="taxRate" column="tax_rate" />
+                <result property="settlementTotalPrice" column="settlement_total_price" />
+                <result property="settlementTaxPrice" column="settlement_tax_price" />
+                <result property="businessData" column="business_data" />
+                <result property="userCode" column="user_code" />
+                <result property="isUsed" column="is_used" />
+                <result property="createTime" column="create_time" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="oldId" column="old_id" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="reason" column="reason" />
+                <result property="billOutinCode" column="bill_outin_code" />
+        </resultMap>
+
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='YunjiDeliveryDetailModelMap' parameterType='YunjiDeliveryDetailModel'>
+        select <include refid='sql_columns' /> from t_yunji_delivery_detail  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='YunjiDeliveryDetailModelMap' parameterType='YunjiDeliveryDetailModel'>
+        select <include refid='sql_columns' /> from t_yunji_delivery_detail  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='YunjiDeliveryDetailModelMap' parameterType='YunjiDeliveryDetailModel' >
+        select <include refid='sql_columns' /> from t_yunji_delivery_detail  <include refid='sql_where' />
+    </select>
+
+         <!-- 新增数据 -->
+        <insert id='insert' parameterType='YunjiDeliveryDetailModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_yunji_delivery_detail
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='settleId!=null and !"".equals(settleId)' > settle_id , </if>
+                        <if test='orderId!=null and !"".equals(orderId)' > order_id , </if>
+                        <if test='srcOrderId!=null and !"".equals(srcOrderId)' > src_order_id , </if>
+                        <if test='skuNo!=null and !"".equals(skuNo)' > sku_no , </if>
+                        <if test='itemName!=null and !"".equals(itemName)' > item_name , </if>
+                        <if test='normName!=null and !"".equals(normName)' > norm_name , </if>
+                        <if test='payTime!=null' >pay_time , </if>
+                        <if test='wmsdelivertime!=null' >wmsDeliverTime , </if>
+                        <if test='qty!=null' >qty , </if>
+                        <if test='settlementPrice!=null' >settlement_price , </if>
+                        <if test='taxRate!=null' >tax_rate , </if>
+                        <if test='settlementTotalPrice!=null' >settlement_total_price , </if>
+                        <if test='settlementTaxPrice!=null' >settlement_tax_price , </if>
+                        <if test='businessData!=null' >business_data , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > user_code , </if>
+                        <if test='isUsed!=null and !"".equals(isUsed)' > is_used , </if>
+                        <if test='createTime!=null' >create_time , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='oldId!=null' >old_id , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='reason!=null and !"".equals(reason)' > reason , </if>
+                        <if test='billOutinCode!=null and !"".equals(billOutinCode)' > bill_outin_code , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='settleId!=null and !"".equals(settleId)' > #{settleId} , </if>
+                        <if test='orderId!=null and !"".equals(orderId)' > #{orderId} , </if>
+                        <if test='srcOrderId!=null and !"".equals(srcOrderId)' > #{srcOrderId} , </if>
+                        <if test='skuNo!=null and !"".equals(skuNo)' > #{skuNo} , </if>
+                        <if test='itemName!=null and !"".equals(itemName)' > #{itemName} , </if>
+                        <if test='normName!=null and !"".equals(normName)' > #{normName} , </if>
+                        <if test='payTime!=null' > #{payTime} , </if>
+                        <if test='wmsdelivertime!=null' > #{wmsdelivertime} , </if>
+                        <if test='qty!=null' > #{qty} , </if>
+                        <if test='settlementPrice!=null' > #{settlementPrice} , </if>
+                        <if test='taxRate!=null' > #{taxRate} , </if>
+                        <if test='settlementTotalPrice!=null' > #{settlementTotalPrice} , </if>
+                        <if test='settlementTaxPrice!=null' > #{settlementTaxPrice} , </if>
+                        <if test='businessData!=null' > #{businessData} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' > #{userCode} , </if>
+                        <if test='isUsed!=null and !"".equals(isUsed)' > #{isUsed} , </if>
+                        <if test='createTime!=null' > #{createTime} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='oldId!=null' > #{oldId} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='reason!=null and !"".equals(reason)' > #{reason} , </if>
+                        <if test='billOutinCode!=null and !"".equals(billOutinCode)' > #{billOutinCode} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='YunjiDeliveryDetailModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_yunji_delivery_detail SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='settleId!=null and !"".equals(settleId)' >settle_id= #{settleId} , </if>
+                        <if test='orderId!=null and !"".equals(orderId)' >order_id= #{orderId} , </if>
+                        <if test='srcOrderId!=null and !"".equals(srcOrderId)' >src_order_id= #{srcOrderId} , </if>
+                        <if test='skuNo!=null and !"".equals(skuNo)' >sku_no= #{skuNo} , </if>
+                        <if test='itemName!=null and !"".equals(itemName)' >item_name= #{itemName} , </if>
+                        <if test='normName!=null and !"".equals(normName)' >norm_name= #{normName} , </if>
+                        <if test='payTime!=null' > pay_time= #{payTime} , </if>
+                        <if test='wmsdelivertime!=null' > wmsDeliverTime= #{wmsdelivertime} , </if>
+                        <if test='qty!=null' > qty= #{qty} , </if>
+                        <if test='settlementPrice!=null' > settlement_price= #{settlementPrice} , </if>
+                        <if test='taxRate!=null' > tax_rate= #{taxRate} , </if>
+                        <if test='settlementTotalPrice!=null' > settlement_total_price= #{settlementTotalPrice} , </if>
+                        <if test='settlementTaxPrice!=null' > settlement_tax_price= #{settlementTaxPrice} , </if>
+                        <if test='businessData!=null' > business_data= #{businessData} , </if>
+                        <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} , </if>
+                        <if test='isUsed!=null and !"".equals(isUsed)' >is_used= #{isUsed} , </if>
+                        <if test='createTime!=null' > create_time= #{createTime} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='oldId!=null' > old_id= #{oldId} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='reason!=null and !"".equals(reason)' >reason= #{reason} , </if>
+                        <if test='billOutinCode!=null and !"".equals(billOutinCode)' >bill_outin_code= #{billOutinCode} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_yunji_delivery_detail  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_yunji_delivery_detail where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            settle_id,
+            order_id,
+            src_order_id,
+            sku_no,
+            item_name,
+            norm_name,
+            pay_time,
+            wmsDeliverTime,
+            qty,
+            settlement_price,
+            tax_rate,
+            settlement_total_price,
+            settlement_tax_price,
+            business_data,
+            user_code,
+            is_used,
+            create_time,
+            merchant_id,
+            merchant_name,
+            old_id,
+            create_date,
+            modify_date,
+            reason,
+            bill_outin_code
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='settleId!=null and !"".equals(settleId)' >settle_id= #{settleId} and </if>
+                            <if test='orderId!=null and !"".equals(orderId)' >order_id= #{orderId} and </if>
+                            <if test='srcOrderId!=null and !"".equals(srcOrderId)' >src_order_id= #{srcOrderId} and </if>
+                            <if test='skuNo!=null and !"".equals(skuNo)' >sku_no= #{skuNo} and </if>
+                            <if test='itemName!=null and !"".equals(itemName)' >item_name= #{itemName} and </if>
+                            <if test='normName!=null and !"".equals(normName)' >norm_name= #{normName} and </if>
+                            <if test='payTime!=null' > pay_time= #{payTime} and </if>
+                            <if test='wmsdelivertime!=null' > wmsDeliverTime= #{wmsdelivertime} and </if>
+                            <if test='qty!=null' > qty= #{qty} and </if>
+                            <if test='settlementPrice!=null' > settlement_price= #{settlementPrice} and </if>
+                            <if test='taxRate!=null' > tax_rate= #{taxRate} and </if>
+                            <if test='settlementTotalPrice!=null' > settlement_total_price= #{settlementTotalPrice} and </if>
+                            <if test='settlementTaxPrice!=null' > settlement_tax_price= #{settlementTaxPrice} and </if>
+                            <if test='businessData!=null' > business_data= #{businessData} and </if>
+                            <if test='userCode!=null and !"".equals(userCode)' >user_code= #{userCode} and </if>
+                            <if test='isUsed!=null and !"".equals(isUsed)' >is_used= #{isUsed} and </if>
+                            <if test='createTime!=null' > create_time= #{createTime} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='oldId!=null' > old_id= #{oldId} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='reason!=null and !"".equals(reason)' >reason= #{reason} and </if>
+                            <if test='billOutinCode!=null and !"".equals(billOutinCode)' >bill_outin_code= #{billOutinCode} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id="getYjVeriDetail" parameterType="map" resultType="map">
+            SELECT
+                settle_id,
+                sku_no,
+                merchant_id,
+                merchant_name,
+                SUM(IFNULL(qty, 0)) as qty
+            FROM
+                t_yunji_delivery_detail
+            WHERE
+                (
+                    is_verify = '0'
+                    OR is_verify IS NULL
+                ) 
+                <if test='settleId!=null and !"".equals(settleId)' > and  settle_id= #{settleId} </if>
+                <if test='skuNo!=null and !"".equals(skuNo)' > and sku_no= #{skuNo} </if>
+                <if test='merchantId!=null' > and merchant_id= #{merchantId} </if>
+                GROUP BY 
+                    settle_id,
+	                sku_no,
+	                merchant_id,
+	                merchant_name
+                
+        </select>
+        
+        <update id="changeVeriStatus" parameterType="map" keyProperty="id" useGeneratedKeys="true">
+            update t_yunji_delivery_detail set is_verify = '1' where 
+            	settle_id= #{settleId} and sku_no= #{skuNo} and merchant_id= #{merchantId} 
+        </update>
+        
+        <select id="getDeliveryAccount" parameterType="map" resultType="map">
+            SELECT
+                IFNULL(SUM(IFNULL(qty, 0)),0) as qty
+            FROM
+                t_yunji_delivery_detail
+            <where>
+            	<trim suffixOverrides='and'>
+	                <if test='settleId!=null and !"".equals(settleId)' > settle_id= #{settleId} and </if>
+	                <if test='skuNo!=null and !"".equals(skuNo)' > sku_no= #{skuNo} and </if>
+	                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+	            </trim>
+	        </where>
+                
+        </select>
+
+
+
+</mapper>

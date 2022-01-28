@@ -1,0 +1,722 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.PurchaseFrameContractMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PurchaseFrameContractModelMap" type="PurchaseFrameContractModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="contractNo" column="contract_no" />
+                <result property="contractOldNo" column="contract_old_no" />
+                <result property="lxsdNo" column="lxsd_no" />
+                <result property="contractName" column="contract_name" />
+                <result property="contractVersion" column="contract_version" />
+                <result property="creater" column="creater" />
+                <result property="createrName" column="creater_name" />
+                <result property="applicationDate" column="application_date" />
+                <result property="businessManager" column="business_manager" />
+                <result property="businessManagerName" column="business_manager_name" />
+                <result property="businessDept" column="business_dept" />
+                <result property="businessDeptName" column="business_dept_name" />
+                <result property="contractType" column="contract_type" />
+                <result property="effectiveCode" column="effective_code" />
+                <result property="ourContSignComy" column="our_cont_sign_comy" />
+                <result property="ourContacter" column="our_contacter" />
+                <result property="ourContactTel" column="our_contact_tel" />
+                <result property="counterpartContSignComy" column="counterpart_cont_sign_comy" />
+                <result property="supplierType" column="supplier_type" />
+                <result property="otherSupplier" column="other_supplier" />
+                <result property="counterpartConter" column="counterpart_conter" />
+                <result property="counterpartContTel" column="counterpart_cont_tel" />
+                <result property="counterpartAdd" column="counterpart_add" />
+                <result property="contractStartTime" column="contract_start_time" />
+                <result property="contractEndTime" column="contract_end_time" />
+                <result property="purchaseType" column="purchase_type" />
+                <result property="capitalType" column="capital_type" />
+                <result property="comtyType" column="comty_type" />
+                <result property="otherComty" column="other_comty" />
+                <result property="comtySource" column="comty_source" />
+                <result property="otherComtySource" column="other_comty_source" />
+                <result property="contractState" column="contract_state" />
+                <result property="annualPurPlanAmount" column="annual_pur_plan_amount" />
+                <result property="proAccLimit" column="pro_acc_limit" />
+                <result property="empJudge" column="emp_judge" />
+                <result property="orderNumReq" column="order_num_req" />
+                <result property="orderType" column="order_type" />
+                <result property="saleRange" column="sale_range" />
+                <result property="deliveryType" column="delivery_type" />
+                <result property="otherDelType" column="other_del_type" />
+                <result property="priceReq" column="price_req" />
+                <result property="saleAimReq" column="sale_aim_req" />
+                <result property="otherMonAppoint" column="other_mon_appoint" />
+                <result property="operationNeeds" column="operation_needs" />
+                <result property="storageTranReq" column="storage_tran_req" />
+                <result property="acceptanceReq" column="acceptance_req" />
+                <result property="damagedAppoint" column="damaged_appoint" />
+                <result property="returnGoodsApp" column="return_goods_app" />
+                <result property="argueSolvePlace" column="argue_solve_place" />
+                <result property="endAppoint" column="end_appoint" />
+                <result property="specialAppoint" column="special_appoint" />
+                <result property="settleMent" column="settle_ment" />
+                <result property="settleCury" column="settle_cury" />
+                <result property="otherSettleCury" column="other_settle_cury" />
+                <result property="settleAppoint" column="settle_appoint" />
+                <result property="settleAccPeriod" column="settle_acc_period" />
+                <result property="advanceChargeJudge" column="advance_charge_judge" />
+                <result property="bankAccChaAppoint" column="bank_acc_cha_appoint" />
+                <result property="advanceChargeCury" column="advance_charge_cury" />
+                <result property="otherAdvanceChargeCury" column="other_advance_charge_cury" />
+                <result property="advanceCharge" column="advance_charge" />
+                <result property="counterpartDesc" column="counterpart_desc" />
+                <result property="supProdDesc" column="sup_prod_desc" />
+                <result property="dataId" column="data_id" />
+                <result property="financeManager" column="finance_manager" />
+                <result property="sealOrder" column="seal_order" />
+                <result property="sealType" column="seal_type" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="supplierId" column="supplier_id" />
+                <result property="supplierName" column="supplier_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseFrameContractModelMap' parameterType='PurchaseFrameContractModel'>
+        select <include refid='sql_columns' /> from  t_purchase_frame_contract  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseFrameContractModelMap' parameterType='PurchaseFrameContractModel'>
+        select <include refid='sql_columns' /> from  t_purchase_frame_contract  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseFrameContractModelMap' parameterType='PurchaseFrameContractModel' >
+        select <include refid='sql_columns' /> from  t_purchase_frame_contract  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PurchaseFrameContractModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO  t_purchase_frame_contract
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                        <if test='contractOldNo!=null and !"".equals(contractOldNo)' > contract_old_no , </if>
+                        <if test='lxsdNo!=null and !"".equals(lxsdNo)' > lxsd_no , </if>
+                        <if test='contractName!=null and !"".equals(contractName)' > contract_name , </if>
+                        <if test='contractVersion!=null and !"".equals(contractVersion)' > contract_version , </if>
+                        <if test='creater!=null and !"".equals(creater)' > creater , </if>
+                        <if test='createrName!=null and !"".equals(createrName)' > creater_name , </if>
+                        <if test='applicationDate!=null and !"".equals(applicationDate)' >application_date , </if>
+                        <if test='businessManager!=null and !"".equals(businessManager)' > business_manager , </if>
+                        <if test='businessManagerName!=null and !"".equals(businessManagerName)' > business_manager_name , </if>
+                        <if test='businessDept!=null and !"".equals(businessDept)' > business_dept , </if>
+                        <if test='businessDeptName!=null and !"".equals(businessDeptName)' > business_dept_name , </if>
+                        <if test='contractType!=null and !"".equals(contractType)' > contract_type , </if>
+                        <if test='effectiveCode!=null and !"".equals(effectiveCode)' > effective_code , </if>
+                        <if test='ourContSignComy!=null and !"".equals(ourContSignComy)' > our_cont_sign_comy , </if>
+                        <if test='ourContacter!=null and !"".equals(ourContacter)' > our_contacter , </if>
+                        <if test='ourContactTel!=null and !"".equals(ourContactTel)' > our_contact_tel , </if>
+                        <if test='counterpartContSignComy!=null and !"".equals(counterpartContSignComy)' > counterpart_cont_sign_comy , </if>
+                        <if test='supplierType!=null and !"".equals(supplierType)' > supplier_type , </if>
+                        <if test='otherSupplier!=null and !"".equals(otherSupplier)' > other_supplier , </if>
+                        <if test='counterpartConter!=null and !"".equals(counterpartConter)' > counterpart_conter , </if>
+                        <if test='counterpartContTel!=null and !"".equals(counterpartContTel)' > counterpart_cont_tel , </if>
+                        <if test='counterpartAdd!=null and !"".equals(counterpartAdd)' > counterpart_add , </if>
+                        <if test='contractStartTime!=null and !"".equals(contractStartTime)' >contract_start_time , </if>
+                        <if test='contractEndTime!=null and !"".equals(contractEndTime)' >contract_end_time , </if>
+                        <if test='purchaseType!=null and !"".equals(purchaseType)' > purchase_type , </if>
+                        <if test='capitalType!=null and !"".equals(capitalType)' > capital_type , </if>
+                        <if test='comtyType!=null and !"".equals(comtyType)' > comty_type , </if>
+                        <if test='otherComty!=null and !"".equals(otherComty)' > other_comty , </if>
+                        <if test='comtySource!=null and !"".equals(comtySource)' > comty_source , </if>
+                        <if test='otherComtySource!=null and !"".equals(otherComtySource)' > other_comty_source , </if>
+                        <if test='contractState!=null and !"".equals(contractState)' > contract_state , </if>
+                        <if test='annualPurPlanAmount!=null and !"".equals(annualPurPlanAmount)' > annual_pur_plan_amount , </if>
+                        <if test='proAccLimit!=null and !"".equals(proAccLimit)' > pro_acc_limit , </if>
+                        <if test='empJudge!=null and !"".equals(empJudge)' > emp_judge , </if>
+                        <if test='orderNumReq!=null and !"".equals(orderNumReq)' > order_num_req , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                        <if test='saleRange!=null and !"".equals(saleRange)' > sale_range , </if>
+                        <if test='deliveryType!=null and !"".equals(deliveryType)' > delivery_type , </if>
+                        <if test='otherDelType!=null and !"".equals(otherDelType)' > other_del_type , </if>
+                        <if test='priceReq!=null and !"".equals(priceReq)' > price_req , </if>
+                        <if test='saleAimReq!=null and !"".equals(saleAimReq)' > sale_aim_req , </if>
+                        <if test='otherMonAppoint!=null and !"".equals(otherMonAppoint)' > other_mon_appoint , </if>
+                        <if test='operationNeeds!=null and !"".equals(operationNeeds)' > operation_needs , </if>
+                        <if test='storageTranReq!=null and !"".equals(storageTranReq)' > storage_tran_req , </if>
+                        <if test='acceptanceReq!=null and !"".equals(acceptanceReq)' > acceptance_req , </if>
+                        <if test='damagedAppoint!=null and !"".equals(damagedAppoint)' > damaged_appoint , </if>
+                        <if test='returnGoodsApp!=null and !"".equals(returnGoodsApp)' > return_goods_app , </if>
+                        <if test='argueSolvePlace!=null and !"".equals(argueSolvePlace)' > argue_solve_place , </if>
+                        <if test='endAppoint!=null and !"".equals(endAppoint)' > end_appoint , </if>
+                        <if test='specialAppoint!=null and !"".equals(specialAppoint)' > special_appoint , </if>
+                        <if test='settleMent!=null and !"".equals(settleMent)' > settle_ment , </if>
+                        <if test='settleCury!=null and !"".equals(settleCury)' > settle_cury , </if>
+                        <if test='otherSettleCury!=null and !"".equals(otherSettleCury)' > other_settle_cury , </if>
+                        <if test='settleAppoint!=null and !"".equals(settleAppoint)' > settle_appoint , </if>
+                        <if test='settleAccPeriod!=null and !"".equals(settleAccPeriod)' > settle_acc_period , </if>
+                        <if test='advanceChargeJudge!=null and !"".equals(advanceChargeJudge)' > advance_charge_judge , </if>
+                        <if test='bankAccChaAppoint!=null and !"".equals(bankAccChaAppoint)' > bank_acc_cha_appoint , </if>
+                        <if test='advanceChargeCury!=null and !"".equals(advanceChargeCury)' > advance_charge_cury , </if>
+                        <if test='otherAdvanceChargeCury!=null and !"".equals(otherAdvanceChargeCury)' > other_advance_charge_cury , </if>
+                        <if test='advanceCharge!=null and !"".equals(advanceCharge)' > advance_charge , </if>
+                        <if test='counterpartDesc!=null and !"".equals(counterpartDesc)' > counterpart_desc , </if>
+                        <if test='supProdDesc!=null and !"".equals(supProdDesc)' > sup_prod_desc , </if>
+                        <if test='dataId!=null and !"".equals(dataId)' > data_id , </if>
+                        <if test='financeManager!=null and !"".equals(financeManager)' > finance_manager , </if>
+                        <if test='sealOrder!=null and !"".equals(sealOrder)' > seal_order , </if>
+                        <if test='sealType!=null and !"".equals(sealType)' > seal_type , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='supplierId!=null' >supplier_id  , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                        <if test='contractOldNo!=null and !"".equals(contractOldNo)' > #{contractOldNo} , </if>
+                        <if test='lxsdNo!=null and !"".equals(lxsdNo)' > #{lxsdNo} , </if>
+                        <if test='contractName!=null and !"".equals(contractName)' > #{contractName} , </if>
+                        <if test='contractVersion!=null and !"".equals(contractVersion)' > #{contractVersion} , </if>
+                        <if test='creater!=null and !"".equals(creater)' > #{creater} , </if>
+                        <if test='createrName!=null and !"".equals(createrName)' > #{createrName} , </if>
+                        <if test='applicationDate!=null' > #{applicationDate} , </if>
+                        <if test='businessManager!=null and !"".equals(businessManager)' > #{businessManager} , </if>
+                        <if test='businessManagerName!=null and !"".equals(businessManagerName)' > #{businessManagerName} , </if>
+                        <if test='businessDept!=null and !"".equals(businessDept)' > #{businessDept} , </if>
+                        <if test='businessDeptName!=null and !"".equals(businessDeptName)' > #{businessDeptName} , </if>
+                        <if test='contractType!=null and !"".equals(contractType)' > #{contractType} , </if>
+                        <if test='effectiveCode!=null and !"".equals(effectiveCode)' > #{effectiveCode} , </if>
+                        <if test='ourContSignComy!=null and !"".equals(ourContSignComy)' > #{ourContSignComy} , </if>
+                        <if test='ourContacter!=null and !"".equals(ourContacter)' > #{ourContacter} , </if>
+                        <if test='ourContactTel!=null and !"".equals(ourContactTel)' > #{ourContactTel} , </if>
+                        <if test='counterpartContSignComy!=null and !"".equals(counterpartContSignComy)' > #{counterpartContSignComy} , </if>
+                        <if test='supplierType!=null and !"".equals(supplierType)' > #{supplierType} , </if>
+                        <if test='otherSupplier!=null and !"".equals(otherSupplier)' > #{otherSupplier} , </if>
+                        <if test='counterpartConter!=null and !"".equals(counterpartConter)' > #{counterpartConter} , </if>
+                        <if test='counterpartContTel!=null and !"".equals(counterpartContTel)' > #{counterpartContTel} , </if>
+                        <if test='counterpartAdd!=null and !"".equals(counterpartAdd)' > #{counterpartAdd} , </if>
+                        <if test='contractStartTime!=null and !"".equals(contractStartTime)' > #{contractStartTime} , </if>
+                        <if test='contractEndTime!=null and !"".equals(contractEndTime)' > #{contractEndTime} , </if>
+                        <if test='purchaseType!=null and !"".equals(purchaseType)' > #{purchaseType} , </if>
+                        <if test='capitalType!=null and !"".equals(capitalType)' > #{capitalType} , </if>
+                        <if test='comtyType!=null and !"".equals(comtyType)' > #{comtyType} , </if>
+                        <if test='otherComty!=null and !"".equals(otherComty)' > #{otherComty} , </if>
+                        <if test='comtySource!=null and !"".equals(comtySource)' > #{comtySource} , </if>
+                        <if test='otherComtySource!=null and !"".equals(otherComtySource)' > #{otherComtySource} , </if>
+                        <if test='contractState!=null and !"".equals(contractState)' > #{contractState} , </if>
+                        <if test='annualPurPlanAmount!=null and !"".equals(annualPurPlanAmount)' > #{annualPurPlanAmount} , </if>
+                        <if test='proAccLimit!=null and !"".equals(proAccLimit)' > #{proAccLimit} , </if>
+                        <if test='empJudge!=null and !"".equals(empJudge)' > #{empJudge} , </if>
+                        <if test='orderNumReq!=null and !"".equals(orderNumReq)' > #{orderNumReq} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                        <if test='saleRange!=null and !"".equals(saleRange)' > #{saleRange} , </if>
+                        <if test='deliveryType!=null and !"".equals(deliveryType)' > #{deliveryType} , </if>
+                        <if test='otherDelType!=null and !"".equals(otherDelType)' > #{otherDelType} , </if>
+                        <if test='priceReq!=null and !"".equals(priceReq)' > #{priceReq} , </if>
+                        <if test='saleAimReq!=null and !"".equals(saleAimReq)' > #{saleAimReq} , </if>
+                        <if test='otherMonAppoint!=null and !"".equals(otherMonAppoint)' > #{otherMonAppoint} , </if>
+                        <if test='operationNeeds!=null and !"".equals(operationNeeds)' > #{operationNeeds} , </if>
+                        <if test='storageTranReq!=null and !"".equals(storageTranReq)' > #{storageTranReq} , </if>
+                        <if test='acceptanceReq!=null and !"".equals(acceptanceReq)' > #{acceptanceReq} , </if>
+                        <if test='damagedAppoint!=null and !"".equals(damagedAppoint)' > #{damagedAppoint} , </if>
+                        <if test='returnGoodsApp!=null and !"".equals(returnGoodsApp)' > #{returnGoodsApp} , </if>
+                        <if test='argueSolvePlace!=null and !"".equals(argueSolvePlace)' > #{argueSolvePlace} , </if>
+                        <if test='endAppoint!=null and !"".equals(endAppoint)' > #{endAppoint} , </if>
+                        <if test='specialAppoint!=null and !"".equals(specialAppoint)' > #{specialAppoint} , </if>
+                        <if test='settleMent!=null and !"".equals(settleMent)' > #{settleMent} , </if>
+                        <if test='settleCury!=null and !"".equals(settleCury)' > #{settleCury} , </if>
+                        <if test='otherSettleCury!=null and !"".equals(otherSettleCury)' > #{otherSettleCury} , </if>
+                        <if test='settleAppoint!=null and !"".equals(settleAppoint)' > #{settleAppoint} , </if>
+                        <if test='settleAccPeriod!=null and !"".equals(settleAccPeriod)' > #{settleAccPeriod} , </if>
+                        <if test='advanceChargeJudge!=null and !"".equals(advanceChargeJudge)' > #{advanceChargeJudge} , </if>
+                        <if test='bankAccChaAppoint!=null and !"".equals(bankAccChaAppoint)' > #{bankAccChaAppoint} , </if>
+                        <if test='advanceChargeCury!=null and !"".equals(advanceChargeCury)' > #{advanceChargeCury} , </if>
+                        <if test='otherAdvanceChargeCury!=null and !"".equals(otherAdvanceChargeCury)' > #{otherAdvanceChargeCury} , </if>
+                        <if test='advanceCharge!=null and !"".equals(advanceCharge)' > #{advanceCharge} , </if>
+                        <if test='counterpartDesc!=null and !"".equals(counterpartDesc)' > #{counterpartDesc} , </if>
+                        <if test='supProdDesc!=null and !"".equals(supProdDesc)' > #{supProdDesc} , </if>
+                        <if test='dataId!=null and !"".equals(dataId)' > #{dataId} , </if>
+                        <if test='financeManager!=null and !"".equals(financeManager)' > #{financeManager} , </if>
+                        <if test='sealOrder!=null and !"".equals(sealOrder)' > #{sealOrder} , </if>
+                        <if test='sealType!=null and !"".equals(sealType)' > #{sealType} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='supplierId!=null' > #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PurchaseFrameContractModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE   t_purchase_frame_contract SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name= #{merchantName} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                        <if test='contractOldNo!=null and !"".equals(contractOldNo)' >contract_old_no= #{contractOldNo} , </if>
+                        <if test='lxsdNo!=null and !"".equals(lxsdNo)' >lxsd_no= #{lxsdNo} , </if>
+                        <if test='contractName!=null and !"".equals(contractName)' >contract_name= #{contractName} , </if>
+                        <if test='contractVersion!=null and !"".equals(contractVersion)' >contract_version= #{contractVersion} , </if>
+                        <if test='creater!=null and !"".equals(creater)' >creater= #{creater} , </if>
+                        <if test='createrName!=null and !"".equals(createrName)' >creater_name= #{createrName} , </if>
+                        <if test='applicationDate!=null and !"".equals(applicationDate)' > application_date= #{applicationDate} , </if>
+                        <if test='businessManager!=null and !"".equals(businessManager)' >business_manager= #{businessManager} , </if>
+                        <if test='businessManagerName!=null and !"".equals(businessManagerName)' >business_manager_name= #{businessManagerName} , </if>
+                        <if test='businessDept!=null and !"".equals(businessDept)' >business_dept= #{businessDept} , </if>
+                        <if test='businessDeptName!=null and !"".equals(businessDeptName)' >business_dept_name= #{businessDeptName} , </if>
+                        <if test='contractType!=null and !"".equals(contractType)' >contract_type= #{contractType} , </if>
+                        <if test='effectiveCode!=null and !"".equals(effectiveCode)' >effective_code= #{effectiveCode} , </if>
+                        <if test='ourContSignComy!=null and !"".equals(ourContSignComy)' >our_cont_sign_comy= #{ourContSignComy} , </if>
+                        <if test='ourContacter!=null and !"".equals(ourContacter)' >our_contacter= #{ourContacter} , </if>
+                        <if test='ourContactTel!=null and !"".equals(ourContactTel)' >our_contact_tel= #{ourContactTel} , </if>
+                        <if test='counterpartContSignComy!=null and !"".equals(counterpartContSignComy)' >counterpart_cont_sign_comy= #{counterpartContSignComy} , </if>
+                        <if test='supplierType!=null and !"".equals(supplierType)' >supplier_type= #{supplierType} , </if>
+                        <if test='otherSupplier!=null and !"".equals(otherSupplier)' >other_supplier= #{otherSupplier} , </if>
+                        <if test='counterpartConter!=null and !"".equals(counterpartConter)' >counterpart_conter= #{counterpartConter} , </if>
+                        <if test='counterpartContTel!=null and !"".equals(counterpartContTel)' >counterpart_cont_tel= #{counterpartContTel} , </if>
+                        <if test='counterpartAdd!=null and !"".equals(counterpartAdd)' >counterpart_add= #{counterpartAdd} , </if>
+                        <if test='contractStartTime!=null and !"".equals(contractStartTime)' > contract_start_time= #{contractStartTime} , </if>
+                        <if test='contractEndTime!=null and !"".equals(contractEndTime)' > contract_end_time= #{contractEndTime} , </if>
+                        <if test='purchaseType!=null and !"".equals(purchaseType)' >purchase_type= #{purchaseType} , </if>
+                        <if test='capitalType!=null and !"".equals(capitalType)' >capital_type= #{capitalType} , </if>
+                        <if test='comtyType!=null and !"".equals(comtyType)' >comty_type= #{comtyType} , </if>
+                        <if test='otherComty!=null and !"".equals(otherComty)' >other_comty= #{otherComty} , </if>
+                        <if test='comtySource!=null and !"".equals(comtySource)' >comty_source= #{comtySource} , </if>
+                        <if test='otherComtySource!=null and !"".equals(otherComtySource)' >other_comty_source= #{otherComtySource} , </if>
+                        <if test='contractState!=null and !"".equals(contractState)' >contract_state= #{contractState} , </if>
+                        <if test='annualPurPlanAmount!=null and !"".equals(annualPurPlanAmount)' >annual_pur_plan_amount= #{annualPurPlanAmount} , </if>
+                        <if test='proAccLimit!=null and !"".equals(proAccLimit)' >pro_acc_limit= #{proAccLimit} , </if>
+                        <if test='empJudge!=null and !"".equals(empJudge)' >emp_judge= #{empJudge} , </if>
+                        <if test='orderNumReq!=null and !"".equals(orderNumReq)' >order_num_req= #{orderNumReq} , </if>
+                        <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                        <if test='saleRange!=null and !"".equals(saleRange)' >sale_range= #{saleRange} , </if>
+                        <if test='deliveryType!=null and !"".equals(deliveryType)' >delivery_type= #{deliveryType} , </if>
+                        <if test='otherDelType!=null and !"".equals(otherDelType)' >other_del_type= #{otherDelType} , </if>
+                        <if test='priceReq!=null and !"".equals(priceReq)' >price_req= #{priceReq} , </if>
+                        <if test='saleAimReq!=null and !"".equals(saleAimReq)' >sale_aim_req= #{saleAimReq} , </if>
+                        <if test='otherMonAppoint!=null and !"".equals(otherMonAppoint)' >other_mon_appoint= #{otherMonAppoint} , </if>
+                        <if test='operationNeeds!=null and !"".equals(operationNeeds)' >operation_needs= #{operationNeeds} , </if>
+                        <if test='storageTranReq!=null and !"".equals(storageTranReq)' >storage_tran_req= #{storageTranReq} , </if>
+                        <if test='acceptanceReq!=null and !"".equals(acceptanceReq)' >acceptance_req= #{acceptanceReq} , </if>
+                        <if test='damagedAppoint!=null and !"".equals(damagedAppoint)' >damaged_appoint= #{damagedAppoint} , </if>
+                        <if test='returnGoodsApp!=null and !"".equals(returnGoodsApp)' >return_goods_app= #{returnGoodsApp} , </if>
+                        <if test='argueSolvePlace!=null and !"".equals(argueSolvePlace)' >argue_solve_place= #{argueSolvePlace} , </if>
+                        <if test='endAppoint!=null and !"".equals(endAppoint)' >end_appoint= #{endAppoint} , </if>
+                        <if test='specialAppoint!=null and !"".equals(specialAppoint)' >special_appoint= #{specialAppoint} , </if>
+                        <if test='settleMent!=null and !"".equals(settleMent)' >settle_ment= #{settleMent} , </if>
+                        <if test='settleCury!=null and !"".equals(settleCury)' >settle_cury= #{settleCury} , </if>
+                        <if test='otherSettleCury!=null and !"".equals(otherSettleCury)' >other_settle_cury= #{otherSettleCury} , </if>
+                        <if test='settleAppoint!=null and !"".equals(settleAppoint)' >settle_appoint= #{settleAppoint} , </if>
+                        <if test='settleAccPeriod!=null and !"".equals(settleAccPeriod)' >settle_acc_period= #{settleAccPeriod} , </if>
+                        <if test='advanceChargeJudge!=null and !"".equals(advanceChargeJudge)' >advance_charge_judge= #{advanceChargeJudge} , </if>
+                        <if test='bankAccChaAppoint!=null and !"".equals(bankAccChaAppoint)' >bank_acc_cha_appoint= #{bankAccChaAppoint} , </if>
+                        <if test='advanceChargeCury!=null and !"".equals(advanceChargeCury)' >advance_charge_cury= #{advanceChargeCury} , </if>
+                        <if test='otherAdvanceChargeCury!=null and !"".equals(otherAdvanceChargeCury)' >other_advance_charge_cury= #{otherAdvanceChargeCury} , </if>
+                        <if test='advanceCharge!=null and !"".equals(advanceCharge)' >advance_charge= #{advanceCharge} , </if>
+                        <if test='counterpartDesc!=null and !"".equals(counterpartDesc)' >counterpart_desc= #{counterpartDesc} , </if>
+                        <if test='supProdDesc!=null and !"".equals(supProdDesc)' >sup_prod_desc= #{supProdDesc} , </if>
+                        <if test='dataId!=null and !"".equals(dataId)' >data_id= #{dataId} , </if>
+                        <if test='financeManager!=null and !"".equals(financeManager)' >finance_manager= #{financeManager} , </if>
+                        <if test='sealOrder!=null and !"".equals(sealOrder)' >seal_order= #{sealOrder} , </if>
+                        <if test='sealType!=null and !"".equals(sealType)' >seal_type= #{sealType} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='supplierId!=null' > supplier_id= #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from  t_purchase_frame_contract  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from  t_purchase_frame_contract where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            contract_no,
+            contract_old_no,
+            lxsd_no,
+            contract_name,
+            contract_version,
+            creater,
+            creater_name,
+            application_date,
+            business_manager,
+            business_manager_name,
+            business_dept,
+            business_dept_name,
+            contract_type,
+            effective_code,
+            our_cont_sign_comy,
+            our_contacter,
+            our_contact_tel,
+            counterpart_cont_sign_comy,
+            supplier_type,
+            other_supplier,
+            counterpart_conter,
+            counterpart_cont_tel,
+            counterpart_add,
+            contract_start_time,
+            contract_end_time,
+            purchase_type,
+            capital_type,
+            comty_type,
+            other_comty,
+            comty_source,
+            other_comty_source,
+            contract_state,
+            annual_pur_plan_amount,
+            pro_acc_limit,
+            emp_judge,
+            order_num_req,
+            order_type,
+            sale_range,
+            delivery_type,
+            other_del_type,
+            price_req,
+            sale_aim_req,
+            other_mon_appoint,
+            operation_needs,
+            storage_tran_req,
+            acceptance_req,
+            damaged_appoint,
+            return_goods_app,
+            argue_solve_place,
+            end_appoint,
+            special_appoint,
+            settle_ment,
+            settle_cury,
+            other_settle_cury,
+            settle_appoint,
+            settle_acc_period,
+            advance_charge_judge,
+            bank_acc_cha_appoint,
+            advance_charge_cury,
+            other_advance_charge_cury,
+            advance_charge,
+            counterpart_desc,
+            sup_prod_desc,
+            data_id,
+            finance_manager,
+            seal_order,
+            seal_type,
+            create_date,
+            modify_date,
+            supplier_id,
+            supplier_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name= #{merchantName} and </if>
+                            <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                            <if test='contractOldNo!=null and !"".equals(contractOldNo)' >contract_old_no= #{contractOldNo} and </if>
+                            <if test='lxsdNo!=null and !"".equals(lxsdNo)' >lxsd_no= #{lxsdNo} and </if>
+                            <if test='contractName!=null and !"".equals(contractName)' >contract_name= #{contractName} and </if>
+                            <if test='contractVersion!=null and !"".equals(contractVersion)' >contract_version= #{contractVersion} and </if>
+                            <if test='creater!=null and !"".equals(creater)' >creater= #{creater} and </if>
+                            <if test='createrName!=null and !"".equals(createrName)' >creater_name= #{createrName} and </if>
+                            <if test='applicationDate!=null and !"".equals(applicationDate)' > application_date= #{applicationDate} and </if>
+                            <if test='businessManager!=null and !"".equals(businessManager)' >business_manager= #{businessManager} and </if>
+                            <if test='businessManagerName!=null and !"".equals(businessManagerName)' >business_manager_name= #{businessManagerName} and </if>
+                            <if test='businessDept!=null and !"".equals(businessDept)' >business_dept= #{businessDept} and </if>
+                            <if test='businessDeptName!=null and !"".equals(businessDeptName)' >business_dept_name= #{businessDeptName} and </if>
+                            <if test='contractType!=null and !"".equals(contractType)' >contract_type= #{contractType} and </if>
+                            <if test='effectiveCode!=null and !"".equals(effectiveCode)' >effective_code= #{effectiveCode} and </if>
+                            <if test='ourContSignComy!=null and !"".equals(ourContSignComy)' >our_cont_sign_comy= #{ourContSignComy} and </if>
+                            <if test='ourContacter!=null and !"".equals(ourContacter)' >our_contacter= #{ourContacter} and </if>
+                            <if test='ourContactTel!=null and !"".equals(ourContactTel)' >our_contact_tel= #{ourContactTel} and </if>
+                            <if test='counterpartContSignComy!=null and !"".equals(counterpartContSignComy)' >counterpart_cont_sign_comy= #{counterpartContSignComy} and </if>
+                            <if test='supplierType!=null and !"".equals(supplierType)' >supplier_type= #{supplierType} and </if>
+                            <if test='otherSupplier!=null and !"".equals(otherSupplier)' >other_supplier= #{otherSupplier} and </if>
+                            <if test='counterpartConter!=null and !"".equals(counterpartConter)' >counterpart_conter= #{counterpartConter} and </if>
+                            <if test='counterpartContTel!=null and !"".equals(counterpartContTel)' >counterpart_cont_tel= #{counterpartContTel} and </if>
+                            <if test='counterpartAdd!=null and !"".equals(counterpartAdd)' >counterpart_add= #{counterpartAdd} and </if>
+                            <if test='contractStartTime!=null and !"".equals(contractStartTime)' > contract_start_time= #{contractStartTime} and </if>
+                            <if test='contractEndTime!=null and !"".equals(contractEndTime)' > contract_end_time= #{contractEndTime} and </if>
+                            <if test='purchaseType!=null and !"".equals(purchaseType)' >purchase_type= #{purchaseType} and </if>
+                            <if test='capitalType!=null and !"".equals(capitalType)' >capital_type= #{capitalType} and </if>
+                            <if test='comtyType!=null and !"".equals(comtyType)' >comty_type= #{comtyType} and </if>
+                            <if test='otherComty!=null and !"".equals(otherComty)' >other_comty= #{otherComty} and </if>
+                            <if test='comtySource!=null and !"".equals(comtySource)' >comty_source= #{comtySource} and </if>
+                            <if test='otherComtySource!=null and !"".equals(otherComtySource)' >other_comty_source= #{otherComtySource} and </if>
+                            <if test='contractState!=null and !"".equals(contractState)' >contract_state= #{contractState} and </if>
+                            <if test='annualPurPlanAmount!=null and !"".equals(annualPurPlanAmount)' >annual_pur_plan_amount= #{annualPurPlanAmount} and </if>
+                            <if test='proAccLimit!=null and !"".equals(proAccLimit)' >pro_acc_limit= #{proAccLimit} and </if>
+                            <if test='empJudge!=null and !"".equals(empJudge)' >emp_judge= #{empJudge} and </if>
+                            <if test='orderNumReq!=null and !"".equals(orderNumReq)' >order_num_req= #{orderNumReq} and </if>
+                            <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                            <if test='saleRange!=null and !"".equals(saleRange)' >sale_range= #{saleRange} and </if>
+                            <if test='deliveryType!=null and !"".equals(deliveryType)' >delivery_type= #{deliveryType} and </if>
+                            <if test='otherDelType!=null and !"".equals(otherDelType)' >other_del_type= #{otherDelType} and </if>
+                            <if test='priceReq!=null and !"".equals(priceReq)' >price_req= #{priceReq} and </if>
+                            <if test='saleAimReq!=null and !"".equals(saleAimReq)' >sale_aim_req= #{saleAimReq} and </if>
+                            <if test='otherMonAppoint!=null and !"".equals(otherMonAppoint)' >other_mon_appoint= #{otherMonAppoint} and </if>
+                            <if test='operationNeeds!=null and !"".equals(operationNeeds)' >operation_needs= #{operationNeeds} and </if>
+                            <if test='storageTranReq!=null and !"".equals(storageTranReq)' >storage_tran_req= #{storageTranReq} and </if>
+                            <if test='acceptanceReq!=null and !"".equals(acceptanceReq)' >acceptance_req= #{acceptanceReq} and </if>
+                            <if test='damagedAppoint!=null and !"".equals(damagedAppoint)' >damaged_appoint= #{damagedAppoint} and </if>
+                            <if test='returnGoodsApp!=null and !"".equals(returnGoodsApp)' >return_goods_app= #{returnGoodsApp} and </if>
+                            <if test='argueSolvePlace!=null and !"".equals(argueSolvePlace)' >argue_solve_place= #{argueSolvePlace} and </if>
+                            <if test='endAppoint!=null and !"".equals(endAppoint)' >end_appoint= #{endAppoint} and </if>
+                            <if test='specialAppoint!=null and !"".equals(specialAppoint)' >special_appoint= #{specialAppoint} and </if>
+                            <if test='settleMent!=null and !"".equals(settleMent)' >settle_ment= #{settleMent} and </if>
+                            <if test='settleCury!=null and !"".equals(settleCury)' >settle_cury= #{settleCury} and </if>
+                            <if test='otherSettleCury!=null and !"".equals(otherSettleCury)' >other_settle_cury= #{otherSettleCury} and </if>
+                            <if test='settleAppoint!=null and !"".equals(settleAppoint)' >settle_appoint= #{settleAppoint} and </if>
+                            <if test='settleAccPeriod!=null and !"".equals(settleAccPeriod)' >settle_acc_period= #{settleAccPeriod} and </if>
+                            <if test='advanceChargeJudge!=null and !"".equals(advanceChargeJudge)' >advance_charge_judge= #{advanceChargeJudge} and </if>
+                            <if test='bankAccChaAppoint!=null and !"".equals(bankAccChaAppoint)' >bank_acc_cha_appoint= #{bankAccChaAppoint} and </if>
+                            <if test='advanceChargeCury!=null and !"".equals(advanceChargeCury)' >advance_charge_cury= #{advanceChargeCury} and </if>
+                            <if test='otherAdvanceChargeCury!=null and !"".equals(otherAdvanceChargeCury)' >other_advance_charge_cury= #{otherAdvanceChargeCury} and </if>
+                            <if test='advanceCharge!=null and !"".equals(advanceCharge)' >advance_charge= #{advanceCharge} and </if>
+                            <if test='counterpartDesc!=null and !"".equals(counterpartDesc)' >counterpart_desc= #{counterpartDesc} and </if>
+                            <if test='supProdDesc!=null and !"".equals(supProdDesc)' >sup_prod_desc= #{supProdDesc} and </if>
+                            <if test='dataId!=null and !"".equals(dataId)' >data_id= #{dataId} and </if>
+                            <if test='financeManager!=null and !"".equals(financeManager)' >finance_manager= #{financeManager} and </if>
+                            <if test='sealOrder!=null and !"".equals(sealOrder)' >seal_order= #{sealOrder} and </if>
+                            <if test='sealType!=null and !"".equals(sealType)' >seal_type= #{sealType} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+    <!--自定义SQL-->
+    <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_purchase_frame_contract
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            id,
+            merchant_id,
+            merchant_name,
+            contract_no,
+            contract_old_no,
+            lxsd_no,
+            contract_name,
+            contract_version,
+            creater,
+            creater_name,
+            application_date,
+            business_manager,
+            business_manager_name,
+            business_dept,
+            business_dept_name,
+            contract_type,
+            effective_code,
+            our_cont_sign_comy,
+            our_contacter,
+            our_contact_tel,
+            counterpart_cont_sign_comy,
+            supplier_id,
+            supplier_name,
+            supplier_type,
+            other_supplier,
+            counterpart_conter,
+            counterpart_cont_tel,
+            counterpart_add,
+            contract_start_time,
+            contract_end_time,
+            purchase_type,
+            capital_type,
+            comty_type,
+            other_comty,
+            comty_source,
+            other_comty_source,
+            contract_state,
+            annual_pur_plan_amount,
+            pro_acc_limit,
+            emp_judge,
+            order_num_req,
+            order_type,
+            sale_range,
+            delivery_type,
+            other_del_type,
+            price_req,
+            sale_aim_req,
+            other_mon_appoint,
+            operation_needs,
+            storage_tran_req,
+            acceptance_req,
+            damaged_appoint,
+            return_goods_app,
+            argue_solve_place,
+            end_appoint,
+            special_appoint,
+            settle_ment,
+            settle_cury,
+            other_settle_cury,
+            settle_appoint,
+            settle_acc_period,
+            advance_charge_judge,
+            bank_acc_cha_appoint,
+            advance_charge_cury,
+            other_advance_charge_cury,
+            advance_charge,
+            counterpart_desc,
+            sup_prod_desc,
+            data_id,
+            finance_manager,
+            seal_order,
+            seal_type
+        </trim>
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                #{item.id} ,
+                #{item.merchantId} ,
+                #{item.merchantName} ,
+                #{item.contractNo} ,
+                #{item.contractOldNo} ,
+                #{item.lxsdNo} ,
+                #{item.contractName} ,
+                #{item.contractVersion} ,
+                #{item.creater} ,
+                #{item.createrName} ,
+                #{item.applicationDate} ,
+                #{item.businessManager} ,
+                #{item.businessManagerName} ,
+                #{item.businessDept} ,
+                #{item.businessDeptName} ,
+                #{item.contractType} ,
+                #{item.effectiveCode},
+                #{item.ourContSignComy},
+                #{item.ourContacter},
+                #{item.ourContactTel},
+                #{item.counterpartContSignComy},
+                #{item.supplierId},
+                #{item.supplierName},
+                #{item.supplierType},
+                #{item.otherSupplier},
+                #{item.counterpartConter},
+                #{item.counterpartContTel},
+                #{item.counterpartAdd},
+                #{item.contractStartTime},
+                #{item.contractEndTime},
+                #{item.purchaseType},
+                #{item.capitalType},
+                #{item.comtyType},
+                #{item.otherComty},
+                #{item.comtySource},
+                #{item.otherComtySource},
+                #{item.contractState},
+                #{item.annualPurPlanAmount},
+                #{item.proAccLimit},
+                #{item.empJudge},
+                #{item.orderNumReq},
+                #{item.orderType},
+                #{item.saleRange},
+                #{item.deliveryType},
+                #{item.otherDelType},
+                #{item.priceReq},
+                #{item.saleAimReq},
+                #{item.otherMonAppoint},
+                #{item.operationNeeds},
+                #{item.storageTranReq},
+                #{item.acceptanceReq},
+                #{item.damagedAppoint},
+                #{item.returnGoodsApp},
+                #{item.argueSolvePlace},
+                #{item.endAppoint},
+                #{item.specialAppoint},
+                #{item.settleMent},
+                #{item.settleCury},
+                #{item.otherSettleCury},
+                #{item.settleAppoint},
+                #{item.settleAccPeriod},
+                #{item.advanceChargeJudge},
+                #{item.bankAccChaAppoint},
+                #{item.advanceChargeCury},
+                #{item.otherAdvanceChargeCury},
+                #{item.advanceCharge},
+                #{item.counterpartDesc},
+                #{item.supProdDesc},
+                #{item.dataId},
+                #{item.financeManager},
+                #{item.sealOrder},
+                #{item.sealType}
+            </trim>
+        </foreach>
+    </insert>
+
+	<!-- 获取采购合同下拉框-->
+    <select id="listFrameContracSelect" resultType='PurchaseFrameContractDTO' parameterType='PurchaseFrameContractDTO' >
+        select <include refid='sql_columns' /> from  t_purchase_frame_contract  
+        <where>
+            <trim suffixOverrides='and'>
+                merchant_id= #{merchantId}
+                <if test='contractNo!=null and !"".equals(contractNo)' >and contract_no= #{contractNo}  </if>
+               <if test='supplierId!=null' > and supplier_id= #{supplierId}  </if>
+            </trim>
+        </where>
+    </select>
+    
+    <select id='listDTOByPage' resultType='PurchaseFrameContractDTO' parameterType='PurchaseFrameContractDTO'>
+        select
+        <include refid='sql_columns' />
+        from t_purchase_frame_contract
+        <include refid='sql_where' />
+    </select>
+
+    <select id='getDetail' resultType='PurchaseFrameContractDTO' parameterType='PurchaseFrameContractDTO'>
+        select
+        <include refid='sql_columns' />
+        from t_purchase_frame_contract
+        <include refid='sql_where' />
+    </select>
+
+    <select id='countByDTO' resultType='int' parameterType='PurchaseFrameContractDTO'>
+        select count(1)
+        from t_purchase_frame_contract
+        <include refid='sql_where' />
+    </select>
+
+    <select id='listForExport' resultType='PurchaseFrameContractDTO' parameterType='PurchaseFrameContractDTO'>
+        select
+        <include refid='sql_columns' />
+        from t_purchase_frame_contract
+        <include refid='sql_where' />
+        order by contract_no desc
+        limit ${begin},${pageSize}
+    </select>
+
+<!--    获取最新的一条-->
+    <select id='getLatestDTO' resultType='PurchaseFrameContractDTO' parameterType="PurchaseFrameContractDTO">
+        select
+        <include refid='sql_columns' />
+        from t_purchase_frame_contract
+        <include refid='sql_where' />
+        order by create_date desc
+        limit 1
+    </select>
+
+</mapper>

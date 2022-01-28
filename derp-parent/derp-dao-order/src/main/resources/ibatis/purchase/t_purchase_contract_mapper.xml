@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.PurchaseContractMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PurchaseContractModelMap" type="PurchaseContractModel" >
+                <result property="id" column="id" />
+                <result property="orderId" column="order_id" />
+                <result property="purchaseContractNo" column="purchase_contract_no" />
+                <result property="purchaseOrderNo" column="purchase_order_no" />
+                <result property="buyerEnName" column="buyer_en_name" />
+                <result property="buyerCnName" column="buyer_cn_name" />
+                <result property="sellerEnName" column="seller_en_name" />
+                <result property="sellerCnName" column="seller_cn_name" />
+                <result property="meansOfTransportation" column="means_of_transportation" />
+                <result property="loadingCnPort" column="loading_cn_port" />
+                <result property="loadingEnPort" column="loading_en_port" />
+                <result property="destinationdCn" column="destinationd_cn" />
+                <result property="destinationdEn" column="destinationd_en" />
+                <result property="deliveryAddressEn" column="delivery_address_en" />
+                <result property="deliveryAddress" column="delivery_address" />
+                <result property="pickingUpAddressEn" column="picking_up_address_en" />
+                <result property="pickingUpAddress" column="picking_up_address" />
+                <result property="deliveryDate" column="delivery_date" />
+                <result property="paymentMethod" column="payment_method" />
+                <result property="paymentMethodText" column="payment_method_text" />
+                <result property="paymentMethodTextEn" column="payment_method_text_en" />
+                <result property="specialAgreementEn" column="special_agreement_en" />
+                <result property="specialAgreement" column="special_agreement" />
+                <result property="accountNo" column="account_no" />
+                <result property="currency" column="currency" />
+                <result property="beneficiaryName" column="beneficiary_name" />
+                <result property="beneficiaryBankName" column="beneficiary_bank_name" />
+                <result property="bankAddress" column="bank_address" />
+                <result property="swiftCode" column="swift_code" />
+                <result property="buyerAuthorizedSignatureEn" column="buyer_authorized_signature_en" />
+                <result property="buyerAuthorizedSignature" column="buyer_authorized_signature" />
+                <result property="sellerAuthorizedSignatureEn" column="seller_authorized_signature_en" />
+                <result property="sellerAuthorizedSignature" column="seller_authorized_signature" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseContractModelMap' parameterType='PurchaseContractModel'>
+        select <include refid='sql_columns' /> from t_purchase_contract  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseContractModelMap' parameterType='PurchaseContractModel'>
+        select <include refid='sql_columns' /> from t_purchase_contract  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseContractModelMap' parameterType='PurchaseContractModel' >
+        select <include refid='sql_columns' /> from t_purchase_contract  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PurchaseContractModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_purchase_contract
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='purchaseContractNo!=null and !"".equals(purchaseContractNo)' > purchase_contract_no , </if>
+                        <if test='purchaseOrderNo!=null and !"".equals(purchaseOrderNo)' > purchase_order_no , </if>
+                        <if test='buyerEnName!=null and !"".equals(buyerEnName)' > buyer_en_name , </if>
+                        <if test='buyerCnName!=null and !"".equals(buyerCnName)' > buyer_cn_name , </if>
+                        <if test='sellerEnName!=null and !"".equals(sellerEnName)' > seller_en_name , </if>
+                        <if test='sellerCnName!=null and !"".equals(sellerCnName)' > seller_cn_name , </if>
+                        <if test='meansOfTransportation!=null and !"".equals(meansOfTransportation)' > means_of_transportation , </if>
+                        <if test='loadingCnPort!=null and !"".equals(loadingCnPort)' > loading_cn_port , </if>
+                        <if test='loadingEnPort!=null and !"".equals(loadingEnPort)' > loading_en_port , </if>
+                        <if test='destinationdCn!=null and !"".equals(destinationdCn)' > destinationd_cn , </if>
+                        <if test='destinationdEn!=null and !"".equals(destinationdEn)' > destinationd_en , </if>
+                        <if test='deliveryAddressEn!=null and !"".equals(deliveryAddressEn)' > delivery_address_en , </if>
+                        <if test='deliveryAddress!=null and !"".equals(deliveryAddress)' > delivery_address , </if>
+                        <if test='pickingUpAddressEn!=null and !"".equals(pickingUpAddressEn)' > picking_up_address_en , </if>
+                        <if test='pickingUpAddress!=null and !"".equals(pickingUpAddress)' > picking_up_address , </if>
+                        <if test='deliveryDate!=null' >delivery_date , </if>
+                        <if test='paymentMethod!=null and !"".equals(paymentMethod)' > payment_method , </if>
+                        <if test='paymentMethodText!=null and !"".equals(paymentMethodText)' > payment_method_text , </if>
+                        <if test='paymentMethodTextEn!=null and !"".equals(paymentMethodTextEn)' > payment_method_text_en , </if>
+                        <if test='specialAgreementEn!=null and !"".equals(specialAgreementEn)' > special_agreement_en , </if>
+                        <if test='specialAgreement!=null and !"".equals(specialAgreement)' > special_agreement , </if>
+                        <if test='accountNo!=null and !"".equals(accountNo)' > account_no , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > beneficiary_name , </if>
+                        <if test='beneficiaryBankName!=null and !"".equals(beneficiaryBankName)' > beneficiary_bank_name , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' > bank_address , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' > swift_code , </if>
+                        <if test='buyerAuthorizedSignatureEn!=null and !"".equals(buyerAuthorizedSignatureEn)' > buyer_authorized_signature_en , </if>
+                        <if test='buyerAuthorizedSignature!=null and !"".equals(buyerAuthorizedSignature)' > buyer_authorized_signature , </if>
+                        <if test='sellerAuthorizedSignatureEn!=null and !"".equals(sellerAuthorizedSignatureEn)' > seller_authorized_signature_en , </if>
+                        <if test='sellerAuthorizedSignature!=null and !"".equals(sellerAuthorizedSignature)' > seller_authorized_signature , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='purchaseContractNo!=null and !"".equals(purchaseContractNo)' > #{purchaseContractNo} , </if>
+                        <if test='purchaseOrderNo!=null and !"".equals(purchaseOrderNo)' > #{purchaseOrderNo} , </if>
+                        <if test='buyerEnName!=null and !"".equals(buyerEnName)' > #{buyerEnName} , </if>
+                        <if test='buyerCnName!=null and !"".equals(buyerCnName)' > #{buyerCnName} , </if>
+                        <if test='sellerEnName!=null and !"".equals(sellerEnName)' > #{sellerEnName} , </if>
+                        <if test='sellerCnName!=null and !"".equals(sellerCnName)' > #{sellerCnName} , </if>
+                        <if test='meansOfTransportation!=null and !"".equals(meansOfTransportation)' > #{meansOfTransportation} , </if>
+                        <if test='loadingCnPort!=null and !"".equals(loadingCnPort)' > #{loadingCnPort} , </if>
+                        <if test='loadingEnPort!=null and !"".equals(loadingEnPort)' > #{loadingEnPort} , </if>
+                        <if test='destinationdCn!=null and !"".equals(destinationdCn)' > #{destinationdCn} , </if>
+                        <if test='destinationdEn!=null and !"".equals(destinationdEn)' > #{destinationdEn} , </if>
+                        <if test='deliveryAddressEn!=null and !"".equals(deliveryAddressEn)' > #{deliveryAddressEn} , </if>
+                        <if test='deliveryAddress!=null and !"".equals(deliveryAddress)' > #{deliveryAddress} , </if>
+                        <if test='pickingUpAddressEn!=null and !"".equals(pickingUpAddressEn)' > #{pickingUpAddressEn} , </if>
+                        <if test='pickingUpAddress!=null and !"".equals(pickingUpAddress)' > #{pickingUpAddress} , </if>
+                        <if test='deliveryDate!=null' > #{deliveryDate} , </if>
+                        <if test='paymentMethod!=null and !"".equals(paymentMethod)' > #{paymentMethod} , </if>
+                        <if test='paymentMethodText!=null and !"".equals(paymentMethodText)' > #{paymentMethodText} , </if>
+                        <if test='paymentMethodTextEn!=null and !"".equals(paymentMethodTextEn)' > #{paymentMethodTextEn} , </if>
+                        <if test='specialAgreementEn!=null and !"".equals(specialAgreementEn)' > #{specialAgreementEn} , </if>
+                        <if test='specialAgreement!=null and !"".equals(specialAgreement)' > #{specialAgreement} , </if>
+                        <if test='accountNo!=null and !"".equals(accountNo)' > #{accountNo} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' > #{beneficiaryName} , </if>
+                        <if test='beneficiaryBankName!=null and !"".equals(beneficiaryBankName)' > #{beneficiaryBankName} , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' > #{bankAddress} , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' > #{swiftCode} , </if>
+                        <if test='buyerAuthorizedSignatureEn!=null and !"".equals(buyerAuthorizedSignatureEn)' > #{buyerAuthorizedSignatureEn} , </if>
+                        <if test='buyerAuthorizedSignature!=null and !"".equals(buyerAuthorizedSignature)' > #{buyerAuthorizedSignature} , </if>
+                        <if test='sellerAuthorizedSignatureEn!=null and !"".equals(sellerAuthorizedSignatureEn)' > #{sellerAuthorizedSignatureEn} , </if>
+                        <if test='sellerAuthorizedSignature!=null and !"".equals(sellerAuthorizedSignature)' > #{sellerAuthorizedSignature} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PurchaseContractModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_purchase_contract SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='purchaseContractNo!=null and !"".equals(purchaseContractNo)' >purchase_contract_no= #{purchaseContractNo} , </if>
+                        <if test='purchaseOrderNo!=null and !"".equals(purchaseOrderNo)' >purchase_order_no= #{purchaseOrderNo} , </if>
+                        <if test='buyerEnName!=null and !"".equals(buyerEnName)' >buyer_en_name= #{buyerEnName} , </if>
+                        <if test='buyerCnName!=null and !"".equals(buyerCnName)' >buyer_cn_name= #{buyerCnName} , </if>
+                        <if test='sellerEnName!=null and !"".equals(sellerEnName)' >seller_en_name= #{sellerEnName} , </if>
+                        <if test='sellerCnName!=null and !"".equals(sellerCnName)' >seller_cn_name= #{sellerCnName} , </if>
+                        <if test='meansOfTransportation!=null and !"".equals(meansOfTransportation)' >means_of_transportation= #{meansOfTransportation} , </if>
+                        <if test='loadingCnPort!=null and !"".equals(loadingCnPort)' >loading_cn_port= #{loadingCnPort} , </if>
+                        <if test='loadingEnPort!=null and !"".equals(loadingEnPort)' >loading_en_port= #{loadingEnPort} , </if>
+                        <if test='destinationdCn!=null and !"".equals(destinationdCn)' >destinationd_cn= #{destinationdCn} , </if>
+                        <if test='destinationdEn!=null and !"".equals(destinationdEn)' >destinationd_en= #{destinationdEn} , </if>
+                        <if test='deliveryAddressEn!=null and !"".equals(deliveryAddressEn)' >delivery_address_en= #{deliveryAddressEn} , </if>
+                        <if test='deliveryAddress!=null and !"".equals(deliveryAddress)' >delivery_address= #{deliveryAddress} , </if>
+                        <if test='pickingUpAddressEn!=null and !"".equals(pickingUpAddressEn)' >picking_up_address_en= #{pickingUpAddressEn} , </if>
+                        <if test='pickingUpAddress!=null and !"".equals(pickingUpAddress)' >picking_up_address= #{pickingUpAddress} , </if>
+                        <if test='deliveryDate!=null' > delivery_date= #{deliveryDate} , </if>
+                        <if test='paymentMethod!=null and !"".equals(paymentMethod)' >payment_method= #{paymentMethod} , </if>
+                        <if test='paymentMethodText!=null and !"".equals(paymentMethodText)' >payment_method_text= #{paymentMethodText} , </if>
+                        <if test='paymentMethodTextEn!=null and !"".equals(paymentMethodTextEn)' >payment_method_text_en= #{paymentMethodTextEn} , </if>
+                        <if test='specialAgreementEn!=null and !"".equals(specialAgreementEn)' >special_agreement_en= #{specialAgreementEn} , </if>
+                        <if test='specialAgreement!=null and !"".equals(specialAgreement)' >special_agreement= #{specialAgreement} , </if>
+                        <if test='accountNo!=null and !"".equals(accountNo)' >account_no= #{accountNo} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} , </if>
+                        <if test='beneficiaryBankName!=null and !"".equals(beneficiaryBankName)' >beneficiary_bank_name= #{beneficiaryBankName} , </if>
+                        <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} , </if>
+                        <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} , </if>
+                        <if test='buyerAuthorizedSignatureEn!=null and !"".equals(buyerAuthorizedSignatureEn)' >buyer_authorized_signature_en= #{buyerAuthorizedSignatureEn} , </if>
+                        <if test='buyerAuthorizedSignature!=null and !"".equals(buyerAuthorizedSignature)' >buyer_authorized_signature= #{buyerAuthorizedSignature} , </if>
+                        <if test='sellerAuthorizedSignatureEn!=null and !"".equals(sellerAuthorizedSignatureEn)' >seller_authorized_signature_en= #{sellerAuthorizedSignatureEn} , </if>
+                        <if test='sellerAuthorizedSignature!=null and !"".equals(sellerAuthorizedSignature)' >seller_authorized_signature= #{sellerAuthorizedSignature} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_contract  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_purchase_contract where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            order_id,
+            purchase_contract_no,
+            purchase_order_no,
+            buyer_en_name,
+            buyer_cn_name,
+            seller_en_name,
+            seller_cn_name,
+            means_of_transportation,
+            loading_cn_port,
+            loading_en_port,
+            destinationd_cn,
+            destinationd_en,
+            delivery_address_en,
+            delivery_address,
+            picking_up_address_en,
+            picking_up_address,
+            delivery_date,
+            payment_method,
+            payment_method_text,
+            payment_method_text_en,
+            special_agreement_en,
+            special_agreement,
+            account_no,
+            currency,
+            beneficiary_name,
+            beneficiary_bank_name,
+            bank_address,
+            swift_code,
+            buyer_authorized_signature_en,
+            buyer_authorized_signature,
+            seller_authorized_signature_en,
+            seller_authorized_signature,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='purchaseContractNo!=null and !"".equals(purchaseContractNo)' >purchase_contract_no= #{purchaseContractNo} and </if>
+                            <if test='purchaseOrderNo!=null and !"".equals(purchaseOrderNo)' >purchase_order_no= #{purchaseOrderNo} and </if>
+                            <if test='buyerEnName!=null and !"".equals(buyerEnName)' >buyer_en_name= #{buyerEnName} and </if>
+                            <if test='buyerCnName!=null and !"".equals(buyerCnName)' >buyer_cn_name= #{buyerCnName} and </if>
+                            <if test='sellerEnName!=null and !"".equals(sellerEnName)' >seller_en_name= #{sellerEnName} and </if>
+                            <if test='sellerCnName!=null and !"".equals(sellerCnName)' >seller_cn_name= #{sellerCnName} and </if>
+                            <if test='meansOfTransportation!=null and !"".equals(meansOfTransportation)' >means_of_transportation= #{meansOfTransportation} and </if>
+                            <if test='loadingCnPort!=null and !"".equals(loadingCnPort)' >loading_cn_port= #{loadingCnPort} and </if>
+                            <if test='loadingEnPort!=null and !"".equals(loadingEnPort)' >loading_en_port= #{loadingEnPort} and </if>
+                            <if test='destinationdCn!=null and !"".equals(destinationdCn)' >destinationd_cn= #{destinationdCn} and </if>
+                            <if test='destinationdEn!=null and !"".equals(destinationdEn)' >destinationd_en= #{destinationdEn} and </if>
+                            <if test='deliveryAddressEn!=null and !"".equals(deliveryAddressEn)' >delivery_address_en= #{deliveryAddressEn} and </if>
+                            <if test='deliveryAddress!=null and !"".equals(deliveryAddress)' >delivery_address= #{deliveryAddress} and </if>
+                            <if test='pickingUpAddressEn!=null and !"".equals(pickingUpAddressEn)' >picking_up_address_en= #{pickingUpAddressEn} and </if>
+                            <if test='pickingUpAddress!=null and !"".equals(pickingUpAddress)' >picking_up_address= #{pickingUpAddress} and </if>
+                            <if test='deliveryDate!=null' > delivery_date= #{deliveryDate} and </if>
+                            <if test='paymentMethod!=null and !"".equals(paymentMethod)' >payment_method= #{paymentMethod} and </if>
+                            <if test='paymentMethodText!=null and !"".equals(paymentMethodText)' >payment_method_text= #{paymentMethodText} and </if>
+                            <if test='paymentMethodTextEn!=null and !"".equals(paymentMethodTextEn)' >payment_method_text_en= #{paymentMethodTextEn} and </if>
+                            <if test='specialAgreementEn!=null and !"".equals(specialAgreementEn)' >special_agreement_en= #{specialAgreementEn} and </if>
+                            <if test='specialAgreement!=null and !"".equals(specialAgreement)' >special_agreement= #{specialAgreement} and </if>
+                            <if test='accountNo!=null and !"".equals(accountNo)' >account_no= #{accountNo} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='beneficiaryName!=null and !"".equals(beneficiaryName)' >beneficiary_name= #{beneficiaryName} and </if>
+                            <if test='beneficiaryBankName!=null and !"".equals(beneficiaryBankName)' >beneficiary_bank_name= #{beneficiaryBankName} and </if>
+                            <if test='bankAddress!=null and !"".equals(bankAddress)' >bank_address= #{bankAddress} and </if>
+                            <if test='swiftCode!=null and !"".equals(swiftCode)' >swift_code= #{swiftCode} and </if>
+                            <if test='buyerAuthorizedSignatureEn!=null and !"".equals(buyerAuthorizedSignatureEn)' >buyer_authorized_signature_en= #{buyerAuthorizedSignatureEn} and </if>
+                            <if test='buyerAuthorizedSignature!=null and !"".equals(buyerAuthorizedSignature)' >buyer_authorized_signature= #{buyerAuthorizedSignature} and </if>
+                            <if test='sellerAuthorizedSignatureEn!=null and !"".equals(sellerAuthorizedSignatureEn)' >seller_authorized_signature_en= #{sellerAuthorizedSignatureEn} and </if>
+                            <if test='sellerAuthorizedSignature!=null and !"".equals(sellerAuthorizedSignature)' >seller_authorized_signature= #{sellerAuthorizedSignature} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

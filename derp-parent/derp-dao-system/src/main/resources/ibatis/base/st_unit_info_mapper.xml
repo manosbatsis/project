@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.base.UnitInfoMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="UnitInfoModelMap" type="UnitInfoModel" >
+                <result property="name" column="name" />
+                <result property="creater" column="creater" />
+                <result property="code" column="code" />
+                <result property="id" column="id" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='UnitInfoModelMap' parameterType='UnitInfoModel'>
+        select <include refid='sql_columns' /> from st_unit_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='UnitInfoModelMap' parameterType='UnitInfoModel'>
+        select <include refid='sql_columns' /> from st_unit_info  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='UnitInfoModelMap' parameterType='UnitInfoModel' >
+        select <include refid='sql_columns' /> from st_unit_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='UnitInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_unit_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='name!=null and !"".equals(name)' > name , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='id!=null' > id , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='UnitInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_unit_info SET
+        <trim  suffixOverrides=",">
+                <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_unit_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_unit_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        name,
+        creater,
+        code,
+        id,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!--自定义SQL-->
+    <sql id='sql_like_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='name!=null and !"".equals(name)' >name like CONCAT('%',#{name},'%') and </if>
+                <if test='code!=null and !"".equals(code)' >code like CONCAT('%',#{code},'%') and </if>
+            </trim>
+        </where>
+    </sql>
+    <!-- 下拉列表关系映射 -->
+    <resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+                <result property="value" column="id" />
+                <result property="label" column="name" />
+    </resultMap>
+    
+    <!-- 查询下拉列表 -->
+    <select id='getSelectBean' resultMap='SelectBeans'>
+        select id,name from st_unit_info
+    </select>
+
+    <select id="listByLike" resultMap='UnitInfoModelMap' parameterType='UnitInfoModel'>
+        select <include refid='sql_columns' /> from st_unit_info  <include refid='sql_like_where' />
+    </select>
+
+</mapper>
+

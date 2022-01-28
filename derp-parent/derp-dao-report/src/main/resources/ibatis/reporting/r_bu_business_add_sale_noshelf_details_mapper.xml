@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuBusinessAddSaleNoshelfDetailsMapper'>
+
+        <!-- 关系映射 -->
+    <resultMap id="BuBusinessAddSaleNoshelfDetailsModelMap" type="BuBusinessAddSaleNoshelfDetailsModel" >
+            <result property="id" column="id" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="depotId" column="depot_id" />
+            <result property="depotName" column="depot_name" />
+            <result property="customerName" column="customer_name" />
+            <result property="customerId" column="customer_id" />
+            <result property="orderId" column="order_id" />
+            <result property="buId" column="bu_id" />
+            <result property="buName" column="bu_name" />
+            <result property="orderCode" column="order_code" />
+            <result property="poNo" column="po_no" />
+            <result property="orderType" column="order_type" />
+            <result property="outOrderCode" column="out_order_code" />
+            <result property="outOrderId" column="out_order_id" />
+            <result property="deliverDate" column="deliver_date" />
+            <result property="goodsId" column="goods_id" />
+            <result property="goodsNo" column="goods_no" />
+            <result property="goodsName" column="goods_name" />
+            <result property="barcode" column="barcode" />
+            <result property="commbarcode" column="commbarcode" />
+            <result property="tallyingUnit" column="tallying_unit" />
+            <result property="num" column="num" />
+            <result property="month" column="month" />
+            <result property="createDate" column="create_date" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="superiorParentBrand" column="superior_parent_brand" />
+            <result property="orderOwnMonth" column="order_own_month" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuBusinessAddSaleNoshelfDetailsModelMap' parameterType='BuBusinessAddSaleNoshelfDetailsModel'>
+        select <include refid='sql_columns' /> from r_bu_business_add_sale_noshelf_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuBusinessAddSaleNoshelfDetailsModelMap' parameterType='BuBusinessAddSaleNoshelfDetailsModel'>
+        select <include refid='sql_columns' /> from r_bu_business_add_sale_noshelf_details  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuBusinessAddSaleNoshelfDetailsModelMap' parameterType='BuBusinessAddSaleNoshelfDetailsModel' >
+        select <include refid='sql_columns' /> from r_bu_business_add_sale_noshelf_details  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuBusinessAddSaleNoshelfDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_business_add_sale_noshelf_details
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='id!=null' >id  , </if>
+                <if test='merchantId!=null' >merchant_id  , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='depotId!=null' >depot_id  , </if>
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                <if test='customerId!=null' >customer_id  , </if>
+                <if test='orderId!=null' >order_id  , </if>
+                <if test='buId!=null' >bu_id  , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                <if test='orderType!=null and !"".equals(orderType)' > order_type , </if>
+                <if test='outOrderCode!=null and !"".equals(outOrderCode)' > out_order_code , </if>
+                <if test='outOrderId!=null' >out_order_id  , </if>
+                <if test='deliverDate!=null' >deliver_date  , </if>
+                <if test='goodsId!=null' >goods_id  , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='num!=null' >num  , </if>
+                <if test='month!=null and !"".equals(month)' > month , </if>
+                <if test='createDate!=null' >create_date  , </if>
+                <if test='modifyDate!=null' >modify_date  , </if>
+                <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                <if test='orderOwnMonth!=null and !"".equals(orderOwnMonth)' > order_own_month , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                 <if test='id!=null' > #{id} , </if>
+                 <if test='merchantId!=null' > #{merchantId} , </if>
+                 <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                 <if test='depotId!=null' > #{depotId} , </if>
+                 <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                 <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                 <if test='customerId!=null' > #{customerId} , </if>
+                 <if test='orderId!=null' > #{orderId} , </if>
+                 <if test='buId!=null' > #{buId} , </if>
+                 <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                 <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                 <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                 <if test='orderType!=null and !"".equals(orderType)' > #{orderType} , </if>
+                 <if test='outOrderCode!=null and !"".equals(outOrderCode)' > #{outOrderCode} , </if>
+                 <if test='outOrderId!=null' > #{outOrderId} , </if>
+                 <if test='deliverDate!=null' > #{deliverDate} , </if>
+                 <if test='goodsId!=null' > #{goodsId} , </if>
+                 <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                 <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                 <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                 <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                 <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                 <if test='num!=null' > #{num} , </if>
+                 <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                 <if test='createDate!=null' > #{createDate} , </if>
+                 <if test='modifyDate!=null' > #{modifyDate} , </if>
+                 <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                 <if test='orderOwnMonth!=null and !"".equals(orderOwnMonth)' > #{orderOwnMonth} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuBusinessAddSaleNoshelfDetailsModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_business_add_sale_noshelf_details SET
+            <trim  suffixOverrides=",">
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                <if test='orderId!=null' > order_id= #{orderId} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} , </if>
+                <if test='outOrderCode!=null and !"".equals(outOrderCode)' >out_order_code= #{outOrderCode} , </if>
+                <if test='outOrderId!=null' > out_order_id= #{outOrderId} , </if>
+                <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                <if test='num!=null' > num= #{num} , </if>
+                <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                <if test='orderOwnMonth!=null and !"".equals(orderOwnMonth)' >order_own_month= #{orderOwnMonth} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_business_add_sale_noshelf_details  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from r_bu_business_add_sale_noshelf_details where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+        #{id}
+        </foreach>
+    </delete>
+
+
+     <!-- 表字段 -->
+     <sql id='sql_columns'>
+         id,
+         merchant_id,
+         merchant_name,
+         depot_id,
+         depot_name,
+         customer_name,
+         customer_id,
+         order_id,
+         bu_id,
+         bu_name,
+         order_code,
+         po_no,
+         order_type,
+         out_order_code,
+         out_order_id,
+         deliver_date,
+         goods_id,
+         goods_no,
+         goods_name,
+         barcode,
+         commbarcode,
+         tallying_unit,
+         num,
+         month,
+         create_date,
+         modify_date,
+         superior_parent_brand,
+         order_own_month
+     </sql>
+
+     <!-- 查询条件 -->
+     <sql id='sql_where'>
+         <where>
+             <trim suffixOverrides='and'>
+                  <if test='id!=null' > id= #{id} and </if>
+                  <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                  <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                  <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                  <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                  <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                  <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                  <if test='orderId!=null' > order_id= #{orderId} and </if>
+                  <if test='buId!=null' > bu_id= #{buId} and </if>
+                  <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                  <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                  <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                  <if test='orderType!=null and !"".equals(orderType)' >order_type= #{orderType} and </if>
+                  <if test='outOrderCode!=null and !"".equals(outOrderCode)' >out_order_code= #{outOrderCode} and </if>
+                  <if test='outOrderId!=null' > out_order_id= #{outOrderId} and </if>
+                  <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                  <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                  <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                  <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                  <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                  <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                  <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                  <if test='num!=null' > num= #{num} and </if>
+                  <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                  <if test='createDate!=null' > create_date= #{createDate} and </if>
+                  <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                  <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                  <if test='orderOwnMonth!=null and !"".equals(orderOwnMonth)' >order_own_month= #{orderOwnMonth} and </if>
+             </trim>
+         </where>
+     </sql>
+
+<!--自定义SQL-->
+
+	<!--清除商家 仓库 月份 删除 (事业部业务经销存)累计销售在途明细表 -->
+	<delete id='delBuBusinessAddSaleNoshelfDetails' parameterType='map'>
+		delete from r_bu_business_add_sale_noshelf_details
+		where merchant_id=#{merchantId} and depot_id=#{depotId} and bu_id= #{buId} and month=#{month} 
+	</delete>
+
+
+	<!-- (业务经销存)累计销售在途明细表 导出  -->
+   <select id='listBuAddSaleNoshelfDetailsMap' resultType='map' parameterType='map'>
+        SELECT 
+       		t.customer_name,
+        	t.bu_name,
+			t.barcode,t.goods_no,t.goods_name,
+			CASE t.order_type
+			WHEN '1' THEN '代销'
+			WHEN '2' THEN '购销'
+			WHEN '3' THEN '购销整批结算'
+			WHEN '4' THEN '购销实销实结'
+			ELSE ''
+			END AS order_type,
+			t.order_code,t.out_order_code,t.depot_name,t.po_no,t.`order_own_month`,
+			DATE_FORMAT(t.deliver_date,'%Y-%m-%d %H:%i:%s') as deliver_date,
+			t.num,
+			CASE t.tallying_unit
+			WHEN '0' THEN '托盘'
+			WHEN '1' THEN '箱'
+			WHEN '2' THEN '件'
+			ELSE ''
+			END as tallying_unit,
+			t.commbarcode,
+			t2.superior_parent_brand as superior_parent_brand 
+			from r_bu_business_add_sale_noshelf_details t
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			WHERE t.merchant_id=#{merchantId}			 
+			AND t.`month`=#{ownMonth}
+			<if test='depotListIds!=null and depotListIds.size()>0' > 
+				AND t.depot_id in 
+				<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+					#{depotId}			
+				</foreach> 			    			 
+		 	</if>
+		 	<if test='buId!=null' > and t.bu_id= #{buId} </if>
+            <if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>
+                
+            </if>		 	
+			ORDER BY t.depot_id,t.order_code,t.goods_id,t.tallying_unit
+      
+    </select>
+	<!--   销售未确认 -->
+       <select id='listBuSaleNoshelfDetailsMap' resultType='map' parameterType='map'>
+        SELECT 
+        t.customer_name,
+        t.bu_name,
+			t.barcode,t.goods_no,t.goods_name,
+			CASE t.order_type
+			WHEN '1' THEN '代销'
+			WHEN '2' THEN '购销'
+			WHEN '3' THEN '购销整批结算'
+			WHEN '4' THEN '购销实销实结'
+			ELSE ''
+			END AS order_type,
+			t.order_code,t.out_order_code,t.depot_name,t.po_no,t.`order_own_month`,
+			DATE_FORMAT(t.deliver_date,'%Y-%m-%d %H:%i:%s') as deliver_date,
+			num,
+			CASE t.tallying_unit
+			WHEN '0' THEN '托盘'
+			WHEN '1' THEN '箱'
+			WHEN '2' THEN '件'
+			ELSE ''
+			END as tallying_unit,
+			t.commbarcode,t2.superior_parent_brand as superior_parent_brand
+			from r_bu_business_add_sale_noshelf_details t
+		    LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			WHERE t.merchant_id=#{merchantId}			 
+			AND t.`month`=#{ownMonth}
+			AND DATE_FORMAT(t.deliver_date, '%Y-%m')=#{ownMonth}
+			<if test='depotListIds!=null and depotListIds.size()>0' > 
+				AND t.depot_id in 
+				<foreach collection='depotListIds' item='depotId' separator=',' open='(' close=')'>
+					#{depotId}			
+				</foreach> 			    			 
+		 	</if>
+		 	<if test='buId!=null' > and t.bu_id= #{buId} </if>
+            <if test='buList!=null and !"".equals(buList)' >and t.bu_id in
+                <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                    #{buId}
+                </foreach>
+                
+            </if>		 	
+			ORDER BY t.depot_id,t.order_code,t.goods_id,t.tallying_unit
+      
+    </select>
+
+</mapper>

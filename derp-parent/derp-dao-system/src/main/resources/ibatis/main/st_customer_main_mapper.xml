@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.CustomerMainMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CustomerMainModelMap" type="CustomerMainModel" >
+                <result property="id" column="id" />
+                <result property="ccode" column="ccode" />
+                <result property="cname" column="cname" />
+                <result property="ccodetypes" column="ccodeTypes" />
+                <result property="cshortname" column="cShortname" />
+                <result property="ccodegrade" column="ccodeGrade" />
+                <result property="cnameen" column="cnameEn" />
+                <result property="cshortnameen" column="cShortnameEn" />
+                <result property="registeredaddr" column="registeredAddr" />
+                <result property="ccodethk" column="ccodeThk" />
+                <result property="cmprop" column="cmprop" />
+                <result property="businessscope" column="businessScope" />
+                <result property="citycode" column="citycode" />
+                <result property="addr" column="addr" />
+                <result property="addren" column="addrEn" />
+                <result property="busilicenseno" column="busiLicenseNo" />
+                <result property="otelno" column="oTelNo" />
+                <result property="linkman" column="linkman" />
+                <result property="linktel" column="linkTel" />
+                <result property="depositbank" column="depositBank" />
+                <result property="cnyaccount" column="cnyAccount" />
+                <result property="usdaccount" column="usdAccount" />
+                <result property="lgrepresentative" column="lgRepresentative" />
+                <result property="lgrncode" column="lgrNcode" />
+                <result property="lgrid" column="lgrId" />
+                <result property="lgrtel" column="lgrTel" />
+                <result property="fax" column="fax" />
+                <result property="email" column="email" />
+                <result property="remark" column="remark" />
+                <result property="isSupplier" column="is_supplier" />
+                <result property="isCustomer" column="is_customer" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="idType" column="id_type" />
+                <result property="mainStatus" column="main_status" />
+                <result property="registeredDate" column="registered_date" />
+                <result property="mainSource" column="main_source" />
+                <result property="tenantCode" column="tenant_code" />
+                <result property="mainType" column="main_type" />
+                <result property="version" column="version" />
+        </resultMap>
+        
+        <resultMap id="CustomerMainDTOMap" type="CustomerMainDTO" >
+                <result property="id" column="id" />
+                <result property="ccode" column="ccode" />
+                <result property="cname" column="cname" />
+                <result property="ccodetypes" column="ccodeTypes" />
+                <result property="cshortname" column="cShortname" />
+                <result property="ccodegrade" column="ccodeGrade" />
+                <result property="cnameen" column="cnameEn" />
+                <result property="cshortnameen" column="cShortnameEn" />
+                <result property="registeredaddr" column="registeredAddr" />
+                <result property="ccodethk" column="ccodeThk" />
+                <result property="cmprop" column="cmprop" />
+                <result property="businessscope" column="businessScope" />
+                <result property="citycode" column="citycode" />
+                <result property="addr" column="addr" />
+                <result property="addren" column="addrEn" />
+                <result property="busilicenseno" column="busiLicenseNo" />
+                <result property="otelno" column="oTelNo" />
+                <result property="linkman" column="linkman" />
+                <result property="linktel" column="linkTel" />
+                <result property="depositbank" column="depositBank" />
+                <result property="cnyaccount" column="cnyAccount" />
+                <result property="usdaccount" column="usdAccount" />
+                <result property="lgrepresentative" column="lgRepresentative" />
+                <result property="lgrncode" column="lgrNcode" />
+                <result property="lgrid" column="lgrId" />
+                <result property="lgrtel" column="lgrTel" />
+                <result property="fax" column="fax" />
+                <result property="email" column="email" />
+                <result property="remark" column="remark" />
+                <result property="isSupplier" column="is_supplier" />
+                <result property="isCustomer" column="is_customer" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomerMainModelMap' parameterType='CustomerMainModel'>
+        select <include refid='sql_columns' /> from st_customer_main  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomerMainModelMap' parameterType='CustomerMainModel'>
+        select <include refid='sql_columns' /> from st_customer_main  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomerMainModelMap' parameterType='CustomerMainModel' >
+        select <include refid='sql_columns' /> from st_customer_main  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='CustomerMainModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_customer_main
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='ccode!=null and !"".equals(ccode)' > ccode , </if>
+                        <if test='cname!=null and !"".equals(cname)' > cname , </if>
+                        <if test='ccodetypes!=null and !"".equals(ccodetypes)' > ccodeTypes , </if>
+                        <if test='cshortname!=null and !"".equals(cshortname)' > cShortname , </if>
+                        <if test='ccodegrade!=null and !"".equals(ccodegrade)' > ccodeGrade , </if>
+                        <if test='cnameen!=null and !"".equals(cnameen)' > cnameEn , </if>
+                        <if test='cshortnameen!=null and !"".equals(cshortnameen)' > cShortnameEn , </if>
+                        <if test='registeredaddr!=null and !"".equals(registeredaddr)' > registeredAddr , </if>
+                        <if test='ccodethk!=null and !"".equals(ccodethk)' > ccodeThk , </if>
+                        <if test='cmprop!=null and !"".equals(cmprop)' > cmprop , </if>
+                        <if test='businessscope!=null and !"".equals(businessscope)' > businessScope , </if>
+                        <if test='citycode!=null and !"".equals(citycode)' > citycode , </if>
+                        <if test='addr!=null and !"".equals(addr)' > addr , </if>
+                        <if test='addren!=null and !"".equals(addren)' > addrEn , </if>
+                        <if test='busilicenseno!=null and !"".equals(busilicenseno)' > busiLicenseNo , </if>
+                        <if test='otelno!=null and !"".equals(otelno)' > oTelNo , </if>
+                        <if test='linkman!=null and !"".equals(linkman)' > linkman , </if>
+                        <if test='linktel!=null and !"".equals(linktel)' > linkTel , </if>
+                        <if test='depositbank!=null and !"".equals(depositbank)' > depositBank , </if>
+                        <if test='cnyaccount!=null and !"".equals(cnyaccount)' > cnyAccount , </if>
+                        <if test='usdaccount!=null and !"".equals(usdaccount)' > usdAccount , </if>
+                        <if test='lgrepresentative!=null and !"".equals(lgrepresentative)' > lgRepresentative , </if>
+                        <if test='lgrncode!=null and !"".equals(lgrncode)' > lgrNcode , </if>
+                        <if test='lgrid!=null and !"".equals(lgrid)' > lgrId , </if>
+                        <if test='lgrtel!=null and !"".equals(lgrtel)' > lgrTel , </if>
+                        <if test='fax!=null and !"".equals(fax)' > fax , </if>
+                        <if test='email!=null and !"".equals(email)' > email , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='isSupplier!=null and !"".equals(isSupplier)' > is_supplier , </if>
+                        <if test='isCustomer!=null and !"".equals(isCustomer)' > is_customer , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='idType!=null and !"".equals(idType)' > id_type , </if>
+                        <if test='mainStatus!=null and !"".equals(mainStatus)' > main_status , </if>
+                        <if test='registeredDate!=null' >registered_date , </if>
+                        <if test='mainSource!=null and !"".equals(mainSource)' > main_source , </if>
+                        <if test='tenantCode!=null and !"".equals(tenantCode)' > tenant_code , </if>
+                        <if test='mainType!=null and !"".equals(mainType)' > main_type , </if>
+                        <if test='version!=null and !"".equals(version)' > version , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='ccode!=null and !"".equals(ccode)' > #{ccode} , </if>
+                        <if test='cname!=null and !"".equals(cname)' > #{cname} , </if>
+                        <if test='ccodetypes!=null and !"".equals(ccodetypes)' > #{ccodetypes} , </if>
+                        <if test='cshortname!=null and !"".equals(cshortname)' > #{cshortname} , </if>
+                        <if test='ccodegrade!=null and !"".equals(ccodegrade)' > #{ccodegrade} , </if>
+                        <if test='cnameen!=null and !"".equals(cnameen)' > #{cnameen} , </if>
+                        <if test='cshortnameen!=null and !"".equals(cshortnameen)' > #{cshortnameen} , </if>
+                        <if test='registeredaddr!=null and !"".equals(registeredaddr)' > #{registeredaddr} , </if>
+                        <if test='ccodethk!=null and !"".equals(ccodethk)' > #{ccodethk} , </if>
+                        <if test='cmprop!=null and !"".equals(cmprop)' > #{cmprop} , </if>
+                        <if test='businessscope!=null and !"".equals(businessscope)' > #{businessscope} , </if>
+                        <if test='citycode!=null and !"".equals(citycode)' > #{citycode} , </if>
+                        <if test='addr!=null and !"".equals(addr)' > #{addr} , </if>
+                        <if test='addren!=null and !"".equals(addren)' > #{addren} , </if>
+                        <if test='busilicenseno!=null and !"".equals(busilicenseno)' > #{busilicenseno} , </if>
+                        <if test='otelno!=null and !"".equals(otelno)' > #{otelno} , </if>
+                        <if test='linkman!=null and !"".equals(linkman)' > #{linkman} , </if>
+                        <if test='linktel!=null and !"".equals(linktel)' > #{linktel} , </if>
+                        <if test='depositbank!=null and !"".equals(depositbank)' > #{depositbank} , </if>
+                        <if test='cnyaccount!=null and !"".equals(cnyaccount)' > #{cnyaccount} , </if>
+                        <if test='usdaccount!=null and !"".equals(usdaccount)' > #{usdaccount} , </if>
+                        <if test='lgrepresentative!=null and !"".equals(lgrepresentative)' > #{lgrepresentative} , </if>
+                        <if test='lgrncode!=null and !"".equals(lgrncode)' > #{lgrncode} , </if>
+                        <if test='lgrid!=null and !"".equals(lgrid)' > #{lgrid} , </if>
+                        <if test='lgrtel!=null and !"".equals(lgrtel)' > #{lgrtel} , </if>
+                        <if test='fax!=null and !"".equals(fax)' > #{fax} , </if>
+                        <if test='email!=null and !"".equals(email)' > #{email} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='isSupplier!=null and !"".equals(isSupplier)' > #{isSupplier} , </if>
+                        <if test='isCustomer!=null and !"".equals(isCustomer)' > #{isCustomer} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='idType!=null and !"".equals(idType)' > #{idType} , </if>
+                        <if test='mainStatus!=null and !"".equals(mainStatus)' > #{mainStatus} , </if>
+                        <if test='registeredDate!=null' > #{registeredDate} , </if>
+                        <if test='mainSource!=null and !"".equals(mainSource)' > #{mainSource} , </if>
+                        <if test='tenantCode!=null and !"".equals(tenantCode)' > #{tenantCode} , </if>
+                        <if test='mainType!=null and !"".equals(mainType)' > #{mainType} , </if>
+                        <if test='version!=null and !"".equals(version)' > #{version} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CustomerMainModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_customer_main SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='ccode!=null and !"".equals(ccode)' >ccode= #{ccode} , </if>
+                        <if test='cname!=null and !"".equals(cname)' >cname= #{cname} , </if>
+                        <if test='ccodetypes!=null and !"".equals(ccodetypes)' >ccodeTypes= #{ccodetypes} , </if>
+                        <if test='cshortname!=null and !"".equals(cshortname)' >cShortname= #{cshortname} , </if>
+                        <if test='ccodegrade!=null and !"".equals(ccodegrade)' >ccodeGrade= #{ccodegrade} , </if>
+                        <if test='cnameen!=null and !"".equals(cnameen)' >cnameEn= #{cnameen} , </if>
+                        <if test='cshortnameen!=null and !"".equals(cshortnameen)' >cShortnameEn= #{cshortnameen} , </if>
+                        <if test='registeredaddr!=null and !"".equals(registeredaddr)' >registeredAddr= #{registeredaddr} , </if>
+                        <if test='ccodethk!=null and !"".equals(ccodethk)' >ccodeThk= #{ccodethk} , </if>
+                        <if test='cmprop!=null and !"".equals(cmprop)' >cmprop= #{cmprop} , </if>
+                        <if test='businessscope!=null and !"".equals(businessscope)' >businessScope= #{businessscope} , </if>
+                        <if test='citycode!=null and !"".equals(citycode)' >citycode= #{citycode} , </if>
+                        <if test='addr!=null and !"".equals(addr)' >addr= #{addr} , </if>
+                        <if test='addren!=null and !"".equals(addren)' >addrEn= #{addren} , </if>
+                        <if test='busilicenseno!=null and !"".equals(busilicenseno)' >busiLicenseNo= #{busilicenseno} , </if>
+                        <if test='otelno!=null and !"".equals(otelno)' >oTelNo= #{otelno} , </if>
+                        <if test='linkman!=null and !"".equals(linkman)' >linkman= #{linkman} , </if>
+                        <if test='linktel!=null and !"".equals(linktel)' >linkTel= #{linktel} , </if>
+                        <if test='depositbank!=null and !"".equals(depositbank)' >depositBank= #{depositbank} , </if>
+                        <if test='cnyaccount!=null and !"".equals(cnyaccount)' >cnyAccount= #{cnyaccount} , </if>
+                        <if test='usdaccount!=null and !"".equals(usdaccount)' >usdAccount= #{usdaccount} , </if>
+                        <if test='lgrepresentative!=null and !"".equals(lgrepresentative)' >lgRepresentative= #{lgrepresentative} , </if>
+                        <if test='lgrncode!=null and !"".equals(lgrncode)' >lgrNcode= #{lgrncode} , </if>
+                        <if test='lgrid!=null and !"".equals(lgrid)' >lgrId= #{lgrid} , </if>
+                        <if test='lgrtel!=null and !"".equals(lgrtel)' >lgrTel= #{lgrtel} , </if>
+                        <if test='fax!=null and !"".equals(fax)' >fax= #{fax} , </if>
+                        <if test='email!=null and !"".equals(email)' >email= #{email} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='isSupplier!=null and !"".equals(isSupplier)' >is_supplier= #{isSupplier} , </if>
+                        <if test='isCustomer!=null and !"".equals(isCustomer)' >is_customer= #{isCustomer} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='idType!=null and !"".equals(idType)' >id_type= #{idType} , </if>
+                        <if test='mainStatus!=null and !"".equals(mainStatus)' >main_status= #{mainStatus} , </if>
+                        <if test='registeredDate!=null' > registered_date= #{registeredDate} , </if>
+                        <if test='mainSource!=null and !"".equals(mainSource)' >main_source= #{mainSource} , </if>
+                        <if test='tenantCode!=null and !"".equals(tenantCode)' >tenant_code= #{tenantCode} , </if>
+                        <if test='mainType!=null and !"".equals(mainType)' >main_type= #{mainType} , </if>
+                        <if test='version!=null and !"".equals(version)' >version= #{version} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_customer_main  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_customer_main where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            ccode,
+            cname,
+            ccodeTypes,
+            cShortname,
+            ccodeGrade,
+            cnameEn,
+            cShortnameEn,
+            registeredAddr,
+            ccodeThk,
+            cmprop,
+            businessScope,
+            citycode,
+            addr,
+            addrEn,
+            busiLicenseNo,
+            oTelNo,
+            linkman,
+            linkTel,
+            depositBank,
+            cnyAccount,
+            usdAccount,
+            lgRepresentative,
+            lgrNcode,
+            lgrId,
+            lgrTel,
+            fax,
+            email,
+            remark,
+            is_supplier,
+            is_customer,
+            create_date,
+            modify_date,
+            id_type,
+            main_status,
+            registered_date,
+            main_source,
+            tenant_code,
+            main_type,
+            version
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='ccode!=null and !"".equals(ccode)' >ccode= #{ccode} and </if>
+                            <if test='cname!=null and !"".equals(cname)' >cname= #{cname} and </if>
+                            <if test='ccodetypes!=null and !"".equals(ccodetypes)' >ccodeTypes= #{ccodetypes} and </if>
+                            <if test='cshortname!=null and !"".equals(cshortname)' >cShortname= #{cshortname} and </if>
+                            <if test='ccodegrade!=null and !"".equals(ccodegrade)' >ccodeGrade= #{ccodegrade} and </if>
+                            <if test='cnameen!=null and !"".equals(cnameen)' >cnameEn= #{cnameen} and </if>
+                            <if test='cshortnameen!=null and !"".equals(cshortnameen)' >cShortnameEn= #{cshortnameen} and </if>
+                            <if test='registeredaddr!=null and !"".equals(registeredaddr)' >registeredAddr= #{registeredaddr} and </if>
+                            <if test='ccodethk!=null and !"".equals(ccodethk)' >ccodeThk= #{ccodethk} and </if>
+                            <if test='cmprop!=null and !"".equals(cmprop)' >cmprop= #{cmprop} and </if>
+                            <if test='businessscope!=null and !"".equals(businessscope)' >businessScope= #{businessscope} and </if>
+                            <if test='citycode!=null and !"".equals(citycode)' >citycode= #{citycode} and </if>
+                            <if test='addr!=null and !"".equals(addr)' >addr= #{addr} and </if>
+                            <if test='addren!=null and !"".equals(addren)' >addrEn= #{addren} and </if>
+                            <if test='busilicenseno!=null and !"".equals(busilicenseno)' >busiLicenseNo= #{busilicenseno} and </if>
+                            <if test='otelno!=null and !"".equals(otelno)' >oTelNo= #{otelno} and </if>
+                            <if test='linkman!=null and !"".equals(linkman)' >linkman= #{linkman} and </if>
+                            <if test='linktel!=null and !"".equals(linktel)' >linkTel= #{linktel} and </if>
+                            <if test='depositbank!=null and !"".equals(depositbank)' >depositBank= #{depositbank} and </if>
+                            <if test='cnyaccount!=null and !"".equals(cnyaccount)' >cnyAccount= #{cnyaccount} and </if>
+                            <if test='usdaccount!=null and !"".equals(usdaccount)' >usdAccount= #{usdaccount} and </if>
+                            <if test='lgrepresentative!=null and !"".equals(lgrepresentative)' >lgRepresentative= #{lgrepresentative} and </if>
+                            <if test='lgrncode!=null and !"".equals(lgrncode)' >lgrNcode= #{lgrncode} and </if>
+                            <if test='lgrid!=null and !"".equals(lgrid)' >lgrId= #{lgrid} and </if>
+                            <if test='lgrtel!=null and !"".equals(lgrtel)' >lgrTel= #{lgrtel} and </if>
+                            <if test='fax!=null and !"".equals(fax)' >fax= #{fax} and </if>
+                            <if test='email!=null and !"".equals(email)' >email= #{email} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='isSupplier!=null and !"".equals(isSupplier)' >is_supplier= #{isSupplier} and </if>
+                            <if test='isCustomer!=null and !"".equals(isCustomer)' >is_customer= #{isCustomer} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='idType!=null and !"".equals(idType)' >id_type= #{idType} and </if>
+                            <if test='mainStatus!=null and !"".equals(mainStatus)' >main_status= #{mainStatus} and </if>
+                            <if test='registeredDate!=null' > registered_date= #{registeredDate} and </if>
+                            <if test='mainSource!=null and !"".equals(mainSource)' >main_source= #{mainSource} and </if>
+                            <if test='tenantCode!=null and !"".equals(tenantCode)' >tenant_code= #{tenantCode} and </if>
+                            <if test='mainType!=null and !"".equals(mainType)' >main_type= #{mainType} and </if>
+                            <if test='version!=null and !"".equals(version)' >version= #{version} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+		<select id='getListByPage' resultMap='CustomerMainDTOMap' parameterType='CustomerMainDTO'>
+	        select <include refid='sql_columns' /> from st_customer_main  
+			<where>
+                <trim suffixOverrides='and'>
+                   <if test='id!=null' > id= #{id} and </if>
+                   <if test='ccode!=null and !"".equals(ccode)' >ccode= #{ccode} and </if>
+                   <if test='cname!=null and !"".equals(cname)' >cname like CONCAT('%', #{cname}, '%') and </if>
+                   <if test='ccodetypes!=null and !"".equals(ccodetypes)' >ccodeTypes= #{ccodetypes} and </if>
+                   <if test='cshortname!=null and !"".equals(cshortname)' >cShortname= #{cshortname} and </if>
+                   <if test='ccodegrade!=null and !"".equals(ccodegrade)' >ccodeGrade= #{ccodegrade} and </if>
+                   <if test='cnameen!=null and !"".equals(cnameen)' >cnameEn= #{cnameen} and </if>
+                   <if test='cshortnameen!=null and !"".equals(cshortnameen)' >cShortnameEn= #{cshortnameen} and </if>
+                   <if test='registeredaddr!=null and !"".equals(registeredaddr)' >registeredAddr= #{registeredaddr} and </if>
+                   <if test='ccodethk!=null and !"".equals(ccodethk)' >ccodeThk= #{ccodethk} and </if>
+                   <if test='cmprop!=null and !"".equals(cmprop)' >cmprop= #{cmprop} and </if>
+                   <if test='businessscope!=null and !"".equals(businessscope)' >businessScope= #{businessscope} and </if>
+                   <if test='citycode!=null and !"".equals(citycode)' >citycode= #{citycode} and </if>
+                   <if test='addr!=null and !"".equals(addr)' >addr= #{addr} and </if>
+                   <if test='addren!=null and !"".equals(addren)' >addrEn= #{addren} and </if>
+                   <if test='busilicenseno!=null and !"".equals(busilicenseno)' >busiLicenseNo= #{busilicenseno} and </if>
+                   <if test='otelno!=null and !"".equals(otelno)' >oTelNo= #{otelno} and </if>
+                   <if test='linkman!=null and !"".equals(linkman)' >linkman= #{linkman} and </if>
+                   <if test='linktel!=null and !"".equals(linktel)' >linkTel= #{linktel} and </if>
+                   <if test='depositbank!=null and !"".equals(depositbank)' >depositBank= #{depositbank} and </if>
+                   <if test='cnyaccount!=null and !"".equals(cnyaccount)' >cnyAccount= #{cnyaccount} and </if>
+                   <if test='usdaccount!=null and !"".equals(usdaccount)' >usdAccount= #{usdaccount} and </if>
+                   <if test='lgrepresentative!=null and !"".equals(lgrepresentative)' >lgRepresentative= #{lgrepresentative} and </if>
+                   <if test='lgrncode!=null and !"".equals(lgrncode)' >lgrNcode= #{lgrncode} and </if>
+                   <if test='lgrid!=null and !"".equals(lgrid)' >lgrId= #{lgrid} and </if>
+                   <if test='lgrtel!=null and !"".equals(lgrtel)' >lgrTel= #{lgrtel} and </if>
+                   <if test='fax!=null and !"".equals(fax)' >fax= #{fax} and </if>
+                   <if test='email!=null and !"".equals(email)' >email= #{email} and </if>
+                   <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                   <if test='isSupplier!=null and !"".equals(isSupplier)' >is_supplier= #{isSupplier} and </if>
+                   <if test='isCustomer!=null and !"".equals(isCustomer)' >is_customer= #{isCustomer} and </if>
+                   <if test='createDate!=null' > create_date= #{createDate} and </if>
+                   <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                   <if test='mainStatus!=null and !"".equals(mainStatus)' >main_status= #{mainStatus} and </if>
+                </trim>
+            </where>
+	        order by id desc
+	    </select>
+	    
+	    <select id='searchDTOById' resultMap='CustomerMainDTOMap' parameterType='java.lang.Long' >
+	        select <include refid='sql_columns' /> from st_customer_main  where id = #{id}
+	    </select>
+
+
+</mapper>

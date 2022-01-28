@@ -1,0 +1,51 @@
+server:
+  port: 8000
+ 
+spring:
+  application:
+    name: derp-gateway
+  profiles:
+    include:
+    - apollo #子配置文件名必须为application-xxx.yml
+    - rocketmq #mq
+    - mongo #mongodb
+    - externalapi #外部接口配置文件 
+    - eurekaclient #eureka客户端配置文件 
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations: #允许跨域
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          #是否与服务发现组件结合，通过serviceId转发到具体的实例。默认为false,设为true开始根据serviceId创建路由功能
+          enabled: true
+          #是将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了）
+          lower-case-service-id: true
+      routes:
+      - id: derp-api #api跨境宝目录
+        uri: lb://derp-api
+        predicates:
+        - Path=/api/**
+        filters:
+          - name: SignKJB
+      - id: derp-api2 #api无需验签目录
+        uri: lb://derp-api
+        predicates: #多个路劲用逗号隔开 /shopTrade/**,/goods/**,/cost/**
+        - Path=/derpapi/**
+      - id: derp-api3 #api奇门目录
+        uri: lb://derp-api
+        predicates:
+        - Path=/qimen/**
+        filters:
+          - name: SignQimen
+      - id: derp-report-api #报表api
+        uri: lb://derp-report-api
+        predicates:
+        - Path=/report/api*
+        filters:
+          - name: SignDerp
+        

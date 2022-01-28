@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.InventoryLocationMappingMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="InventoryLocationMappingModelMap" type="InventoryLocationMappingModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="originalGoodsId" column="original_goods_id" />
+                <result property="originalGoodsNo" column="original_goods_no" />
+                <result property="type" column="type" />
+                <result property="creator" column="creator" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifyName" column="modify_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="isorRappoint" column="isor_rappoint" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='InventoryLocationMappingModelMap' parameterType='InventoryLocationMappingModel'>
+        select <include refid='sql_columns' /> from st_inventory_location_mapping  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='InventoryLocationMappingModelMap' parameterType='InventoryLocationMappingModel'>
+        select <include refid='sql_columns' /> from st_inventory_location_mapping  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='InventoryLocationMappingModelMap' parameterType='InventoryLocationMappingModel' >
+        select <include refid='sql_columns' /> from st_inventory_location_mapping  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='InventoryLocationMappingModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_inventory_location_mapping
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='originalGoodsId!=null' >original_goods_id , </if>
+                        <if test='originalGoodsNo!=null and !"".equals(originalGoodsNo)' > original_goods_no , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='creator!=null' >creator , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' > modify_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='isorRappoint!=null and !"".equals(isorRappoint)' > isor_rappoint , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='originalGoodsId!=null' > #{originalGoodsId} , </if>
+                        <if test='originalGoodsNo!=null and !"".equals(originalGoodsNo)' > #{originalGoodsNo} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='creator!=null' > #{creator} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' > #{modifyName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='isorRappoint!=null and !"".equals(isorRappoint)' > #{isorRappoint} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='InventoryLocationMappingModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_inventory_location_mapping SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='originalGoodsId!=null' > original_goods_id= #{originalGoodsId} , </if>
+                        <if test='originalGoodsNo!=null and !"".equals(originalGoodsNo)' >original_goods_no= #{originalGoodsNo} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='creator!=null' > creator= #{creator} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifyName!=null and !"".equals(modifyName)' >modify_name= #{modifyName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='isorRappoint!=null and !"".equals(isorRappoint)' >isor_rappoint= #{isorRappoint} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_inventory_location_mapping  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_inventory_location_mapping where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            goods_id,
+            goods_no,
+            goods_name,
+            original_goods_id,
+            original_goods_no,
+            type,
+            creator,
+            create_name,
+            create_date,
+            modifier,
+            modify_name,
+            modify_date,
+            isor_rappoint
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='originalGoodsId!=null' > original_goods_id= #{originalGoodsId} and </if>
+                            <if test='originalGoodsNo!=null and !"".equals(originalGoodsNo)' >original_goods_no= #{originalGoodsNo} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='creator!=null' > creator= #{creator} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifyName!=null and !"".equals(modifyName)' >modify_name= #{modifyName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='isorRappoint!=null and !"".equals(isorRappoint)' >isor_rappoint= #{isorRappoint} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 查询所有信息 分页 -->
+	    <select id='getListByPage' resultType='InventoryLocationMappingDTO' parameterType='InventoryLocationMappingDTO'>
+	        select <include refid='sql_columns' /> from st_inventory_location_mapping  <include refid='sql_where' />
+	        order by create_date desc 
+	    </select>
+
+		<!-- 查询所有信息 -->
+	    <select id="listDTO" resultType='InventoryLocationMappingDTO' parameterType='InventoryLocationMappingDTO'>
+	        select <include refid='sql_columns' /> from st_inventory_location_mapping  
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='originalGoodsNo!=null and !"".equals(originalGoodsNo)' >original_goods_no= #{originalGoodsNo} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='creator!=null' > creator= #{creator} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifyName!=null and !"".equals(modifyName)' >modify_name= #{modifyName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='ids!=null and !"".equals(ids)' >
+                            	id in
+								<foreach collection="ids.split(',')" item="id" separator="," open="(" close=")">
+									#{id}
+								</foreach>
+								and 
+							</if>
+                </trim>
+            </where>
+            order by create_date desc 
+	    </select>
+
+</mapper>

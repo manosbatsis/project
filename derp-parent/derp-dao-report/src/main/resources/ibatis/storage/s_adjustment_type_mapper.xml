@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.storage.AdjustmentTypeMapper'>
+
+            <!-- 关系映射 -->
+    <resultMap id="AdjustmentTypeModelMap" type="AdjustmentTypeModel" >
+            <result property="depotName" column="depot_name" />
+            <result property="code" column="code" />
+            <result property="adjustmentRemark" column="adjustment_remark" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="depotId" column="depot_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="sourceCode" column="source_code" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="adjustmentTypeName" column="adjustment_type_name" />
+            <result property="codeTime" column="code_time" />
+            <result property="model" column="model" />
+            <result property="id" column="id" />
+            <result property="adjustmentTime" column="adjustment_time" />
+            <result property="pushTime" column="push_time" />
+            <result property="status" column="status" />
+            <result property="createDate" column="create_date" />
+            <result property="confirmUserId" column="confirm_user_id" />
+            <result property="confirmUsername" column="confirm_username" />
+            <result property="confirmTime" column="confirm_time" />
+            <result property="source" column="source" />
+            <result property="createUserId" column="create_user_id" />
+            <result property="createUsername" column="create_username" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AdjustmentTypeModelMap' parameterType='AdjustmentTypeModel'>
+        select <include refid='sql_columns' /> from s_adjustment_type  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AdjustmentTypeModelMap' parameterType='AdjustmentTypeModel'>
+        select <include refid='sql_columns' /> from s_adjustment_type  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AdjustmentTypeModelMap' parameterType='AdjustmentTypeModel' >
+        select <include refid='sql_columns' /> from s_adjustment_type  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='AdjustmentTypeModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO s_adjustment_type
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='adjustmentRemark!=null and !"".equals(adjustmentRemark)' > adjustment_remark , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='depotId!=null' > depot_id , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='sourceCode!=null and !"".equals(sourceCode)' > source_code , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='adjustmentTypeName!=null and !"".equals(adjustmentTypeName)' > adjustment_type_name , </if>
+                <if test='codeTime!=null' > code_time , </if>
+                <if test='model!=null and !"".equals(model)' > model , </if>
+                <if test='id!=null' > id , </if>
+                <if test='adjustmentTime!=null' > adjustment_time , </if>
+                <if test='pushTime!=null' > push_time , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='confirmUserId!=null' >confirm_user_id , </if>
+                <if test='confirmUsername!=null and !"".equals(confirmUsername)' > confirm_username , </if>
+                <if test='confirmTime!=null' >confirm_time , </if>
+                <if test='source!=null and !"".equals(source)' > source , </if>
+                <if test='createUserId!=null' >create_user_id , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > create_username , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='adjustmentRemark!=null and !"".equals(adjustmentRemark)' > #{adjustmentRemark} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='depotId!=null' > #{depotId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='sourceCode!=null and !"".equals(sourceCode)' > #{sourceCode} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='adjustmentTypeName!=null and !"".equals(adjustmentTypeName)' > #{adjustmentTypeName} , </if>
+                <if test='codeTime!=null' > #{codeTime} , </if>
+                <if test='model!=null and !"".equals(model)' > #{model} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='adjustmentTime!=null' > #{adjustmentTime} , </if>
+                <if test='pushTime!=null' > #{pushTime} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='confirmUserId!=null' > #{confirmUserId} , </if>
+                <if test='confirmUsername!=null and !"".equals(confirmUsername)' > #{confirmUsername} , </if>
+                <if test='confirmTime!=null' > #{confirmTime} , </if>
+                <if test='source!=null and !"".equals(source)' > #{source} , </if>
+                <if test='createUserId!=null' > #{createUserId} , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' > #{createUsername} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='AdjustmentTypeModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  s_adjustment_type SET
+        <trim  suffixOverrides=",">
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='adjustmentRemark!=null and !"".equals(adjustmentRemark)' >adjustment_remark= #{adjustmentRemark} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='sourceCode!=null and !"".equals(sourceCode)' >source_code= #{sourceCode} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='adjustmentTypeName!=null and !"".equals(adjustmentTypeName)' >adjustment_type_name= #{adjustmentTypeName} , </if>
+                <if test='codeTime!=null' > code_time= #{codeTime} , </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='adjustmentTime!=null' > adjustment_time= #{adjustmentTime} , </if>
+                <if test='pushTime!=null' > push_time= #{pushTime} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='confirmUserId!=null' > confirm_user_id= #{confirmUserId} , </if>
+                <if test='confirmUsername!=null and !"".equals(confirmUsername)' >confirm_username= #{confirmUsername} , </if>
+                <if test='confirmTime!=null' > confirm_time= #{confirmTime} , </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} , </if>
+                <if test='createUserId!=null' > create_user_id= #{createUserId} , </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from s_adjustment_type  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from s_adjustment_type where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        depot_name,
+        code,
+        adjustment_remark,
+        modify_date,
+        depot_id,
+        merchant_name,
+        source_code,
+        merchant_id,
+        adjustment_type_name,
+        code_time,
+        model,
+        id,
+        adjustment_time,
+        push_time,
+        status,
+        create_date,
+        confirm_user_id,
+        confirm_username,
+        confirm_time,
+        source,
+        create_user_id,
+        create_username
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='adjustmentRemark!=null and !"".equals(adjustmentRemark)' >adjustment_remark= #{adjustmentRemark} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='sourceCode!=null and !"".equals(sourceCode)' >source_code= #{sourceCode} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='adjustmentTypeName!=null and !"".equals(adjustmentTypeName)' >adjustment_type_name= #{adjustmentTypeName} and </if>
+                <if test='codeTime!=null' > code_time= #{codeTime} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='adjustmentTime!=null' > adjustment_time= #{adjustmentTime} and </if>
+                <if test='pushTime!=null' > push_time= #{pushTime} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='confirmUserId!=null' > confirm_user_id= #{confirmUserId} and </if>
+                <if test='confirmUsername!=null and !"".equals(confirmUsername)' >confirm_username= #{confirmUsername} and </if>
+                <if test='confirmTime!=null' > confirm_time= #{confirmTime} and </if>
+                <if test='source!=null and !"".equals(source)' >source= #{source} and </if>
+                <if test='createUserId!=null' > create_user_id= #{createUserId} and </if>
+                <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+
+	<!-- 对外api分页查询的数据 -->
+	 <select id='getListPage' resultType="map" >
+      SELECT  
+        distinct t1.id,
+        t1.`code`,
+        t1.adjustment_remark,
+        t1.modify_date,        
+        t1.merchant_name,
+        t1.source_code,
+        t1.merchant_id,
+        t1.adjustment_type_name,
+        t1.code_time,
+        t1.model,        
+        t1.adjustment_time,
+        t1.push_time,
+        t1.`status`,
+		t2.type as depot_type,
+		t2.`code` as depot_code,
+		t2.depot_code as depot_code1,
+		t2.`name` as depot_name,
+		t2.id as depot_id
+	from s_adjustment_type t1
+	LEFT JOIN s_adjustment_type_item t3 ON t3.t_adjustment_type_id=t1.id
+	LEFT JOIN st_depot_info t2 ON t1.depot_id=t2.id
+	
+	WHERE  t1.merchant_id= #{merchantId} 
+	AND t1.model=#{type}
+	AND (t1.status='019' or t1.status='006')
+	and t3.bu_id in (
+			SELECT id from st_business_unit WHERE `code` IN (	
+				'E071100',
+				'I020300',
+				'I020200'
+				)
+		)	
+	AND (t1.create_date &gt;= #{startTime} OR t1.modify_date &gt;= #{startTime})
+	AND  (t1.create_date &lt;= #{endTime} OR t1.modify_date &lt;= #{endTime})
+	    <if test='"1".equals(type)' >and t3.new_good_type is not null</if>
+        <if test='"2".equals(type)' > </if>
+        <if test='"3".equals(type)' > </if>
+        <if test='"4".equals(type)' >and t3.type='1'</if>
+    limit #{startIndex},#{pageSize}
+
+    </select>   
+    <!-- 查询总数 -->
+    <select id='getListCount' resultType="java.lang.Integer" >
+    	SELECT count(DISTINCT t1.id)
+    	from s_adjustment_type t1
+    	LEFT JOIN s_adjustment_type_item t3 ON t3.t_adjustment_type_id=t1.id
+		LEFT JOIN st_depot_info t2 ON t1.depot_id=t2.id
+	WHERE  t1.merchant_id= #{merchantId} 
+	AND t1.model=#{type}
+	AND (t1.status='019' or t1.status='006')
+	and t3.bu_id in (
+			SELECT id from st_business_unit WHERE `code` IN (	
+				'E071100',
+				'I020300',
+				'I020200'
+				)
+		)	
+ 	AND (t1.create_date &gt;= #{startTime} OR t1.modify_date &gt;= #{startTime})
+	AND  (t1.create_date &lt;= #{endTime} OR t1.modify_date &lt;= #{endTime})
+		<if test='"1".equals(type)' >and t3.new_good_type is not null</if>
+        <if test='"2".equals(type)' > </if>
+        <if test='"3".equals(type)' > </if>
+        <if test='"4".equals(type)' >and t3.type='1'</if>
+    </select>
+	<!-- 根据创建修改时间查询出库单 -->
+	<select id='getOutDepotOrderByTime' resultType='map' parameterType='map'>
+	    select t.id,t.code,t.source_code,date_format(t.push_time,'%Y-%m-%d %H:%i:%S') as push_time,t.status,
+			   m.topideal_code,d.type,d.code AS dcode,d.id as depot_id,d.depot_code,d.name
+		from s_adjustment_type t
+		left join s_adjustment_type_item i on t.id=i.t_adjustment_type_id
+		left join st_merchant_info m ON t.merchant_id=m.id
+		left join st_depot_info d ON t.depot_id=d.id
+		where t.merchant_id=#{merchantId} and t.model=#{model} and t.status in('019','006')
+				and i.bu_id in (
+						SELECT id from st_business_unit WHERE `code` IN (	
+						'E071100',
+						'I020300',
+						'I020200'
+						)
+					)
+			  and (t.create_date&gt;=#{startTime} OR t.modify_date&gt;=#{startTime} OR i.create_date&gt;=#{startTime} OR i.modify_date&gt;=#{startTime})
+			  and (t.create_date&lt;=#{endTime} OR t.modify_date&lt;=#{endTime} OR i.create_date&lt;=#{endTime} OR i.modify_date&lt;=#{endTime}) 
+		group by t.id,t.code,t.source_code,t.push_time,t.status,
+			  m.topideal_code,d.type,d.code,d.id,d.depot_code,d.name
+	    order by t.id
+		limit #{startIndex},#{pageSize}
+	</select>
+	<!-- 根据创建修改时间查询出库单统计数量 -->
+	<select id='getOutDepotOrderByTimeCount' resultType='java.lang.Integer' parameterType='map'>
+		select count(*) total_count from (
+			select t.id,t.code,t.source_code,date_format(t.push_time,'%Y-%m-%d %H:%i:%S') as push_time,t.status,
+				   m.topideal_code,d.type,d.code AS dcode,d.depot_code,d.name
+			from s_adjustment_type t
+			left join s_adjustment_type_item i on t.id=i.t_adjustment_type_id
+			left join st_merchant_info m ON t.merchant_id=m.id
+			left join st_depot_info d ON t.depot_id=d.id
+			where t.merchant_id=#{merchantId} and t.model=#{model} and t.status in('019','006')
+				and i.bu_id in (
+						SELECT id from st_business_unit WHERE `code` IN (	
+						'E071100',
+						'I020300',
+						'I020200'
+						)
+					)
+				  and (t.create_date&gt;=#{startTime} OR t.modify_date&gt;=#{startTime} OR i.create_date&gt;=#{startTime} OR i.modify_date&gt;=#{startTime})
+				  and (t.create_date&lt;=#{endTime} OR t.modify_date&lt;=#{endTime} OR i.create_date&lt;=#{endTime} OR i.modify_date&lt;=#{endTime}) 
+			group by t.id,t.code,t.source_code,t.push_time,t.status,
+				  m.topideal_code,d.type,d.code,d.depot_code,d.name
+		) c   
+	</select>
+    <!-- 按 出库单查询出库商品-效期变更、货号变更-->
+    <select id='getOutDepotItemByCodes' resultType='map' parameterType="java.util.List">
+        select t.code,i.old_goods_no,m.name as old_goods_name,i.tallying_unit,
+		       b.name AS brank_name,m.commbarcode,SUM(i.adjust_total) AS total_num
+		from s_adjustment_type_item i
+		left join s_adjustment_type t ON t.id=i.t_adjustment_type_id
+		left join st_merchandise_info m ON i.old_goods_no=m.goods_no and t.merchant_id=m.merchant_id and m.status='1'
+		left join st_brand b ON m.brand_id=b.id
+		where t.code in
+           <foreach collection='list' item='code' separator=',' open='(' close=')'>
+            #{code}
+           </foreach>
+		group by t.code,i.old_goods_no,m.name,i.tallying_unit,
+		       b.name,m.commbarcode
+    </select>
+    <!-- 查询出库单批次数据-货号变更、效期变更-->
+    <select id='getItemBatchByCode' resultType='map' parameterType='map'>
+        select i.old_batch_no,i.is_damage,DATE_FORMAT(i.old_production_date,'%Y-%m-%d') AS old_production_date, 
+			   DATE_FORMAT(i.old_overdue_date,'%Y-%m-%d') AS old_overdue_date,t.push_time,SUM(i.adjust_total) AS adjust_total 
+		from s_adjustment_type t,s_adjustment_type_item i 
+		where t.id=i.t_adjustment_type_id AND t.code=#{code} AND i.old_goods_no=#{goodsNo}
+		<if test='unit==null or "".equals(unit)'> and (i.tallying_unit is null or i.tallying_unit='')</if>
+	    <if test='unit!=null and !"".equals(unit)'> and i.tallying_unit=#{unit}</if>
+		group by i.old_batch_no,i.is_damage,i.old_production_date,i.old_overdue_date,t.push_time 
+    </select>
+    
+    <!-- 按 出库单查询出库商品-好坏品互转出、大货理货出-->
+    <select id='getOutDepotItemByCodes14' resultType='map' parameterType="java.util.List">
+        select t.code,i.goods_no,i.goods_name,i.tallying_unit,
+		       b.name AS brank_name,m.commbarcode,SUM(i.adjust_total) AS total_num
+		from s_adjustment_type_item i
+		left join s_adjustment_type t ON t.id=i.t_adjustment_type_id
+		left join st_merchandise_info m ON i.goods_id=m.id
+		left join st_brand b ON m.brand_id=b.id
+		where i.type='0' 
+		      AND t.code in
+           <foreach collection='list' item='code' separator=',' open='(' close=')'>
+            #{code}
+           </foreach>
+		group by t.code,i.goods_no,i.goods_name,i.tallying_unit,
+		       b.name,m.commbarcode
+    </select>
+    <!-- 查询出库单批次数据-好坏品互转出、大货理货出-->
+    <select id='getItemBatchByCode14' resultType='map' parameterType='map'>
+        select i.old_batch_no,i.is_damage,DATE_FORMAT(i.production_date,'%Y-%m-%d') AS production_date, 
+			   DATE_FORMAT(i.overdue_date,'%Y-%m-%d') AS overdue_date,t.push_time,SUM(i.adjust_total) AS adjust_total 
+		from s_adjustment_type t,s_adjustment_type_item i 
+		where t.id=i.t_adjustment_type_id AND i.type='0' AND t.code=#{code} AND i.goods_no=#{goodsNo}
+		<if test='unit==null or "".equals(unit)'> and (i.tallying_unit is null or i.tallying_unit='')</if>
+	    <if test='unit!=null and !"".equals(unit)'> and i.tallying_unit=#{unit}</if>
+		group by i.old_batch_no,i.is_damage,i.production_date,i.overdue_date,t.push_time
+    </select>
+
+</mapper>

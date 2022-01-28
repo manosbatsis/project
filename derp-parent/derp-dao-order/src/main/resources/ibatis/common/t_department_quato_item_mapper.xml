@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.DepartmentQuatoItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="DepartmentQuatoItemModelMap" type="DepartmentQuatoItemModel" >
+                <result property="id" column="id" />
+                <result property="departmentQuatoId" column="department_quato_id" />
+                <result property="superiorParentBrandId" column="superior_parent_brand_id" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="currency" column="currency" />
+                <result property="quato" column="quato" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='DepartmentQuatoItemModelMap' parameterType='DepartmentQuatoItemModel'>
+        select <include refid='sql_columns' /> from t_department_quato_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='DepartmentQuatoItemModelMap' parameterType='DepartmentQuatoItemModel'>
+        select <include refid='sql_columns' /> from t_department_quato_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='DepartmentQuatoItemModelMap' parameterType='DepartmentQuatoItemModel' >
+        select <include refid='sql_columns' /> from t_department_quato_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='DepartmentQuatoItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_department_quato_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='departmentQuatoId!=null' >department_quato_id , </if>
+                        <if test='superiorParentBrandId!=null' >superior_parent_brand_id , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='quato!=null' >quato , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='departmentQuatoId!=null' > #{departmentQuatoId} , </if>
+                        <if test='superiorParentBrandId!=null' > #{superiorParentBrandId} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='quato!=null' > #{quato} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='DepartmentQuatoItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_department_quato_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='departmentQuatoId!=null' > department_quato_id= #{departmentQuatoId} , </if>
+                        <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='quato!=null' > quato= #{quato} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_department_quato_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_department_quato_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            department_quato_id,
+            superior_parent_brand_id,
+            superior_parent_brand,
+            currency,
+            quato,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='departmentQuatoId!=null' > department_quato_id= #{departmentQuatoId} and </if>
+                            <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='quato!=null' > quato= #{quato} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

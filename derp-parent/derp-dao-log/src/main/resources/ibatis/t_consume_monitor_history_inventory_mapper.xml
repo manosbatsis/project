@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.ConsumeMonitorHistoryInventoryMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ConsumeMonitorHistoryInventoryModelMap" type="ConsumeMonitorHistoryInventoryModel" >
+                <result property="id" column="id" />
+                <result property="point" column="point" />
+                <result property="keyword" column="keyword" />
+                <result property="model" column="model" />
+                <result property="modelCode" column="model_code" />
+                <result property="consumeDate" column="consume_date" />
+                <result property="status" column="status" />
+                <result property="createTime" column="create_time" />
+                <result property="closeTime" column="close_time" />
+                <result property="logId" column="log_id" />
+                <result property="type" column="type" />
+                <result property="errorType" column="error_type" />
+                <result property="differenceTime" column="difference_time" />
+                <result property="expMsg" column="exp_msg" />
+                <result property="isResend" column="is_resend" />
+                <result property="resendDate" column="resend_date" />
+                <result property="merchantName" column="merchant_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ConsumeMonitorHistoryInventoryModelMap' parameterType='ConsumeMonitorHistoryInventoryModel'>
+        select <include refid='sql_columns' /> from t_consume_monitor_history_inventory  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ConsumeMonitorHistoryInventoryModelMap' parameterType='ConsumeMonitorHistoryInventoryModel'>
+        select <include refid='sql_columns' /> from t_consume_monitor_history_inventory  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ConsumeMonitorHistoryInventoryModelMap' parameterType='ConsumeMonitorHistoryInventoryModel' >
+        select <include refid='sql_columns' /> from t_consume_monitor_history_inventory  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ConsumeMonitorHistoryInventoryModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_consume_monitor_history_inventory
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='point!=null and !"".equals(point)' > point , </if>
+                        <if test='keyword!=null and !"".equals(keyword)' > keyword , </if>
+                        <if test='model!=null and !"".equals(model)' > model , </if>
+                        <if test='modelCode!=null and !"".equals(modelCode)' > model_code , </if>
+                        <if test='consumeDate!=null' >consume_date , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createTime!=null' >create_time , </if>
+                        <if test='closeTime!=null' >close_time , </if>
+                        <if test='logId!=null and !"".equals(logId)' > log_id , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='errorType!=null and !"".equals(errorType)' > error_type , </if>
+                        <if test='differenceTime!=null' >difference_time , </if>
+                        <if test='expMsg!=null and !"".equals(expMsg)' > exp_msg , </if>
+                        <if test='isResend!=null and !"".equals(isResend)' > is_resend , </if>
+                        <if test='resendDate!=null' >resend_date , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='point!=null and !"".equals(point)' > #{point} , </if>
+                        <if test='keyword!=null and !"".equals(keyword)' > #{keyword} , </if>
+                        <if test='model!=null and !"".equals(model)' > #{model} , </if>
+                        <if test='modelCode!=null and !"".equals(modelCode)' > #{modelCode} , </if>
+                        <if test='consumeDate!=null' > #{consumeDate} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createTime!=null' > #{createTime} , </if>
+                        <if test='closeTime!=null' > #{closeTime} , </if>
+                        <if test='logId!=null and !"".equals(logId)' > #{logId} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='errorType!=null and !"".equals(errorType)' > #{errorType} , </if>
+                        <if test='differenceTime!=null' > #{differenceTime} , </if>
+                        <if test='expMsg!=null and !"".equals(expMsg)' > #{expMsg} , </if>
+                        <if test='isResend!=null and !"".equals(isResend)' > #{isResend} , </if>
+                        <if test='resendDate!=null' > #{resendDate} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ConsumeMonitorHistoryInventoryModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_consume_monitor_history_inventory SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='point!=null and !"".equals(point)' >point= #{point} , </if>
+                        <if test='keyword!=null and !"".equals(keyword)' >keyword= #{keyword} , </if>
+                        <if test='model!=null and !"".equals(model)' >model= #{model} , </if>
+                        <if test='modelCode!=null and !"".equals(modelCode)' >model_code= #{modelCode} , </if>
+                        <if test='consumeDate!=null' > consume_date= #{consumeDate} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createTime!=null' > create_time= #{createTime} , </if>
+                        <if test='closeTime!=null' > close_time= #{closeTime} , </if>
+                        <if test='logId!=null and !"".equals(logId)' >log_id= #{logId} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='errorType!=null and !"".equals(errorType)' >error_type= #{errorType} , </if>
+                        <if test='differenceTime!=null' > difference_time= #{differenceTime} , </if>
+                        <if test='expMsg!=null and !"".equals(expMsg)' >exp_msg= #{expMsg} , </if>
+                        <if test='isResend!=null and !"".equals(isResend)' >is_resend= #{isResend} , </if>
+                        <if test='resendDate!=null' > resend_date= #{resendDate} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_consume_monitor_history_inventory  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_consume_monitor_history_inventory where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            point,
+            keyword,
+            model,
+            model_code,
+            consume_date,
+            status,
+            create_time,
+            close_time,
+            log_id,
+            type,
+            error_type,
+            difference_time,
+            exp_msg,
+            is_resend,
+            resend_date,
+            merchant_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='point!=null and !"".equals(point)' >point= #{point} and </if>
+                            <if test='keyword!=null and !"".equals(keyword)' >keyword= #{keyword} and </if>
+                            <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                            <if test='modelCode!=null and !"".equals(modelCode)' >model_code= #{modelCode} and </if>
+                            <if test='consumeDate!=null' > consume_date= #{consumeDate} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='createTime!=null' > create_time= #{createTime} and </if>
+                            <if test='closeTime!=null' > close_time= #{closeTime} and </if>
+                            <if test='logId!=null and !"".equals(logId)' >log_id= #{logId} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='errorType!=null and !"".equals(errorType)' >error_type= #{errorType} and </if>
+                            <if test='differenceTime!=null' > difference_time= #{differenceTime} and </if>
+                            <if test='expMsg!=null and !"".equals(expMsg)' >exp_msg= #{expMsg} and </if>
+                            <if test='isResend!=null and !"".equals(isResend)' >is_resend= #{isResend} and </if>
+                            <if test='resendDate!=null' > resend_date= #{resendDate} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+	<!-- 根据月份，获取之前的id -->
+    <delete id='delByCreateTime' parameterType='String'>
+         delete from t_consume_monitor_history_inventory  
+         where create_time &lt; #{createTime}
+    </delete>
+   <!-- 整合web -->
+   <!-- 关系映射 -->
+    <resultMap id="ConsumeMonitorMqModelMap" type="ConsumeMonitorMqModel" >
+                <result property="consumeDate" column="consume_date" />
+                <result property="type" column="type" />
+                <result property="expMsg" column="exp_msg" />
+                <result property="point" column="point" />
+                <result property="differenceTime" column="difference_time" />
+                <result property="createTime" column="create_time" />
+                <result property="modelCode" column="model_code" />
+                <result property="closeTime" column="close_time" />
+                <result property="model" column="model" />
+                <result property="logId" column="log_id" />
+                <result property="id" column="id" />
+                <result property="keyword" column="keyword" />
+                <result property="status" column="status" />
+    </resultMap>
+	 <select id='getListByPage' resultType='ConsumeMonitorMqDTO' parameterType='ConsumeMonitorMqDTO'>
+        select <include refid='sql_columns' /> from t_consume_monitor_history_inventory  
+        <where>
+            <trim suffixOverrides='and'>
+            	<if test='errorType!=null and !"".equals(errorType)' >error_type= #{errorType} and </if>
+                <if test='modelCode!=null and !"".equals(modelCode)' >model_code= #{modelCode} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='consumeStartDate!=null and !"".equals(consumeStartDate)' >
+                    consume_date &gt;= #{consumeStartDate} and 
+                </if>
+                <if test='consumeEndDate!=null and !"".equals(consumeEndDate)' >
+                    consume_date &lt; #{consumeEndDate} and 
+                </if>
+                <if test='createStartDate!=null and !"".equals(createStartDate)' >
+                    create_time &gt;= #{createStartDate} and 
+                </if>
+                <if test='createEndDate!=null and !"".equals(createEndDate)' >
+                    create_time &lt; #{createEndDate} and 
+                </if>
+                <if test='point!=null and !"".equals(point)' >point= #{point} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='difference!=null and "1".equals(difference)' >
+                	difference_time &lt; 0.5 and 
+                </if>
+                <if test='difference!=null and "2".equals(difference)' >
+                	difference_time &gt;= 0.5 and
+                	difference_time &lt; 1 and 
+                </if>
+                <if test='difference!=null and "3".equals(difference)' >
+                difference_time &gt; 1 and
+            </if>
+                <if test='keyword!=null and !"".equals(keyword)' >
+                	 keyword in  
+                 <foreach collection='keyword.split(",")' item='item' separator=',' open='(' close=')'>
+		            #{item}
+		        </foreach>
+		        	and 
+                 </if>
+                <if test='merchantName!=null and !"".equals(merchantName)'>merchant_name &gt;= #{merchantName} and </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+    
+    <!-- 获取查询数量 -->
+    <select id='getCount' resultType="java.lang.Long" parameterType='ConsumeMonitorMqModel'>
+        select count(*) from t_consume_monitor_history_inventory  
+        <where>
+            <trim suffixOverrides='and'>
+            	<if test='errorType!=null and !"".equals(errorType)' >error_type= #{errorType} and </if>
+                <if test='modelCode!=null and !"".equals(modelCode)' >model_code= #{modelCode} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='consumeStartDate!=null and !"".equals(consumeStartDate)' >
+                    consume_date &gt;= #{consumeStartDate} and 
+                </if>
+                <if test='consumeEndDate!=null and !"".equals(consumeEndDate)' >
+                    consume_date &lt; #{consumeEndDate} and 
+                </if>
+                <if test='createStartDate!=null and !"".equals(createStartDate)' >
+                    create_time &gt;= #{createStartDate} and 
+                </if>
+                <if test='createEndDate!=null and !"".equals(createEndDate)' >
+                    create_time &lt; #{createEndDate} and 
+                </if>
+                <if test='point!=null and !"".equals(point)' >point= #{point} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='difference!=null and "1".equals(difference)' >
+                	difference_time &lt; 0.5 and 
+                </if>
+                <if test='difference!=null and "2".equals(difference)' >
+                	difference_time &gt;= 0.5 and
+                	difference_time &lt; 1 and 
+                </if>
+                <if test='difference!=null and "3".equals(difference)' >
+                	difference_time &gt; 1 and
+                </if>
+                <if test='keyword!=null and !"".equals(keyword)' >
+                	 keyword in  
+                 <foreach collection='keyword.split(",")' item='item' separator=',' open='(' close=')'>
+		            #{item}
+		        </foreach>
+		        	and 
+                 </if>
+            </trim>
+        </where>
+    </select>
+    
+    <!-- 查询导出的集合 -->
+    <select id='getExportList' resultType='ConsumeMonitorMqDTO' parameterType='ConsumeMonitorMqDTO'>
+        select <include refid='sql_columns' /> from t_consume_monitor_history_inventory  
+        <where>
+            <trim suffixOverrides='and'>
+            	<if test='errorType!=null and !"".equals(errorType)' >error_type= #{errorType} and </if>
+                <if test='modelCode!=null and !"".equals(modelCode)' >model_code= #{modelCode} and </if>
+                <if test='model!=null and !"".equals(model)' >model= #{model} and </if>
+                <if test='consumeStartDate!=null and !"".equals(consumeStartDate)' >
+                    consume_date &gt;= #{consumeStartDate} and 
+                </if>
+                <if test='consumeEndDate!=null and !"".equals(consumeEndDate)' >
+                    consume_date &lt; #{consumeEndDate} and 
+                </if>
+                <if test='createStartDate!=null and !"".equals(createStartDate)' >
+                    create_time &gt;= #{createStartDate} and 
+                </if>
+                <if test='createEndDate!=null and !"".equals(createEndDate)' >
+                    create_time &lt; #{createEndDate} and 
+                </if>
+                <if test='point!=null and !"".equals(point)' >point= #{point} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='difference!=null and "1".equals(difference)' >
+                	difference_time &lt; 0.5 and 
+                </if>
+                <if test='difference!=null and "2".equals(difference)' >
+                	difference_time &gt;= 0.5 and
+                	difference_time &lt; 1 and 
+                </if>
+                <if test='difference!=null and "3".equals(difference)' >
+                	difference_time &gt; 1 and
+                </if>
+                <if test='keyword!=null and !"".equals(keyword)' >
+                	 keyword in  
+                 <foreach collection='keyword.split(",")' item='item' separator=',' open='(' close=')'>
+		            #{item}
+		        </foreach>
+		        	and 
+                 </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+
+
+
+</mapper>

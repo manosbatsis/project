@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.CustomsFileDepotRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="CustomsFileDepotRelModelMap" type="CustomsFileDepotRelModel" >
+                <result property="id" column="id" />
+                <result property="customsFileConfigId" column="customs_file_config_id" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="depotCode" column="depot_code" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="customsId" column="customs_id" />
+                <result property="customsCode" column="customs_code" />
+                <result property="platformCustomsName" column="platform_customs_name" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomsFileDepotRelModelMap' parameterType='CustomsFileDepotRelModel'>
+        select <include refid='sql_columns' /> from t_customs_file_depot_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomsFileDepotRelModelMap' parameterType='CustomsFileDepotRelModel'>
+        select <include refid='sql_columns' /> from t_customs_file_depot_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomsFileDepotRelModelMap' parameterType='CustomsFileDepotRelModel' >
+        select <include refid='sql_columns' /> from t_customs_file_depot_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='CustomsFileDepotRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_customs_file_depot_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='customsFileConfigId!=null' >customs_file_config_id , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' > depot_code , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='customsId!=null' >customs_id , </if>
+                        <if test='customsCode!=null and !"".equals(customsCode)' > customs_code , </if>
+                        <if test='platformCustomsName!=null and !"".equals(platformCustomsName)' > platform_customs_name , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='customsFileConfigId!=null' > #{customsFileConfigId} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' > #{depotCode} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='customsId!=null' > #{customsId} , </if>
+                        <if test='customsCode!=null and !"".equals(customsCode)' > #{customsCode} , </if>
+                        <if test='platformCustomsName!=null and !"".equals(platformCustomsName)' > #{platformCustomsName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='CustomsFileDepotRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_customs_file_depot_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='customsFileConfigId!=null' > customs_file_config_id= #{customsFileConfigId} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='customsId!=null' > customs_id= #{customsId} , </if>
+                        <if test='customsCode!=null and !"".equals(customsCode)' >customs_code= #{customsCode} , </if>
+                        <if test='platformCustomsName!=null and !"".equals(platformCustomsName)' >platform_customs_name= #{platformCustomsName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_customs_file_depot_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_customs_file_depot_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            customs_file_config_id,
+            depot_id,
+            depot_name,
+            depot_code,
+            create_date,
+            modify_date,
+            customs_id,
+            customs_code,
+            platform_customs_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='customsFileConfigId!=null' > customs_file_config_id= #{customsFileConfigId} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='customsId!=null' > customs_id= #{customsId} and </if>
+                            <if test='customsCode!=null and !"".equals(customsCode)' >customs_code= #{customsCode} and </if>
+                            <if test='platformCustomsName!=null and !"".equals(platformCustomsName)' >platform_customs_name= #{platformCustomsName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        
+        <!--根据条件删除-->
+		<delete id='delByModel' parameterType='CustomsFileDepotRelModel'>
+            delete from t_customs_file_depot_rel <include refid='sql_where' />
+        </delete>
+		<!-- 根据条件查询所有信息 -->
+	    <select id="listDTO" resultType='CustomsFileDepotRelDTO' parameterType='CustomsFileDepotRelDTO'>
+	        select customs_file_config_id,depot_id, depot_code,depot_name,GROUP_CONCAT(customs_id) platformCustomsIds from t_customs_file_depot_rel 
+	        <where>
+                <trim suffixOverrides='and'>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='customsFileConfigId!=null' > customs_file_config_id= #{customsFileConfigId} and </if>
+                    <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                    <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                    <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                    <if test='customsId!=null' > customs_id= #{customsId} and </if>
+                    <if test='customsCode!=null and !"".equals(customsCode)' >customs_code= #{customsCode} and </if>
+                    <if test='platformCustomsName!=null and !"".equals(platformCustomsName)' >platform_customs_name= #{platformCustomsName} and </if>
+                </trim>
+            </where>
+	        group by depot_id;
+	    </select>
+</mapper>

@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.SdSaleTypeMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SdSaleTypeModelMap" type="SdSaleTypeModel" >
+                <result property="id" column="id" />
+                <result property="sdType" column="sd_type" />
+                <result property="sdTypeName" column="sd_type_name" />
+                <result property="projectId" column="project_id" />
+                <result property="projectName" column="project_name" />
+                <result property="paymentSubjectId" column="payment_subject_id" />
+                <result property="paymentSubjectName" column="payment_subject_name" />
+                <result property="status" column="status" />
+                <result property="creator" column="creator" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifiyName" column="modifiy_name" />
+                <result property="type" column="type" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SdSaleTypeModelMap' parameterType='SdSaleTypeModel'>
+        select <include refid='sql_columns' /> from t_sd_sale_type  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SdSaleTypeModelMap' parameterType='SdSaleTypeModel'>
+        select <include refid='sql_columns' /> from t_sd_sale_type  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SdSaleTypeModelMap' parameterType='SdSaleTypeModel' >
+        select <include refid='sql_columns' /> from t_sd_sale_type  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SdSaleTypeModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sd_sale_type
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='sdType!=null and !"".equals(sdType)' > sd_type , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > sd_type_name , </if>
+                        <if test='projectId!=null' >project_id , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > project_name , </if>
+                        <if test='paymentSubjectId!=null' >payment_subject_id , </if>
+                        <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' > payment_subject_name , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='creator!=null' >creator , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifiyName!=null and !"".equals(modifiyName)' > modifiy_name , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='type!=null  and !"".equals(type)' >type , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='sdType!=null and !"".equals(sdType)' > #{sdType} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' > #{sdTypeName} , </if>
+                        <if test='projectId!=null' > #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > #{projectName} , </if>
+                        <if test='paymentSubjectId!=null' > #{paymentSubjectId} , </if>
+                        <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' > #{paymentSubjectName} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='creator!=null' > #{creator} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifiyName!=null and !"".equals(modifiyName)' > #{modifiyName} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='type!=null  and !"".equals(type)' > #{type} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SdSaleTypeModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sd_sale_type SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='sdType!=null and !"".equals(sdType)' >sd_type= #{sdType} , </if>
+                        <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} , </if>
+                        <if test='projectId!=null' > project_id= #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} , </if>
+                        <if test='paymentSubjectId!=null' > payment_subject_id= #{paymentSubjectId} , </if>
+                        <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' >payment_subject_name= #{paymentSubjectName} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='creator!=null' > creator= #{creator} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifiyName!=null and !"".equals(modifiyName)' >modifiy_name= #{modifiyName} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='type!=null  and !"".equals(type)' > type=#{type} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sd_sale_type  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sd_sale_type where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            sd_type,
+            sd_type_name,
+            project_id,
+            project_name,
+            payment_subject_id,
+            payment_subject_name,
+            status,
+            creator,
+            create_name,
+            create_date,
+            modifier,
+            modifiy_name,
+            modify_date,
+            type
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='sdType!=null and !"".equals(sdType)' >sd_type= #{sdType} and </if>
+                            <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} and </if>
+                            <if test='projectId!=null' > project_id= #{projectId} and </if>
+                            <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                            <if test='paymentSubjectId!=null' > payment_subject_id= #{paymentSubjectId} and </if>
+                            <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' >payment_subject_name= #{paymentSubjectName} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='creator!=null' > creator= #{creator} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifiyName!=null and !"".equals(modifiyName)' >modifiy_name= #{modifiyName} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='type!=null  and !"".equals(type)' > type=#{type} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+	<!-- 查询所有信息 分页 -->
+    <select id='listDTOByPage' resultType='SdSaleTypeDTO' parameterType='SdSaleTypeDTO'>
+        select <include refid='sql_columns' /> from t_sd_sale_type  <include refid='sql_where' /> order by create_date desc
+    </select>
+
+    <select id='listDTO' resultType='SdSaleTypeDTO' parameterType='SdSaleTypeDTO'>
+        select <include refid='sql_columns' /> from t_sd_sale_type
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='sdType!=null and !"".equals(sdType)' >sd_type= #{sdType} and </if>
+                <if test='sdTypeName!=null and !"".equals(sdTypeName)' >sd_type_name= #{sdTypeName} and </if>
+                <if test='projectId!=null' > project_id= #{projectId} and </if>
+                <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                <if test='paymentSubjectId!=null' > payment_subject_id= #{paymentSubjectId} and </if>
+                <if test='paymentSubjectName!=null and !"".equals(paymentSubjectName)' >payment_subject_name= #{paymentSubjectName} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='creator!=null' > creator= #{creator} and </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='modifiyName!=null and !"".equals(modifiyName)' >modifiy_name= #{modifiyName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='type!=null  and !"".equals(type)' > type=#{type} and </if>
+                <if test='unNeedIds!=null  and unNeedIds.size()>0' >
+                    id not in
+                    <foreach collection='unNeedIds' item='unNeedId' separator=',' open='(' close=')'>
+                        #{unNeedId}
+                    </foreach>
+                    and
+                 </if>
+            </trim>
+        </where>
+        order by create_date desc
+    </select>
+</mapper>

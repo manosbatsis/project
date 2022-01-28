@@ -1,0 +1,388 @@
+body ul {
+    list-style: none;
+    margin: 0;
+}
+.htmleaf-container{
+	font-family: Source Han Sans CN;
+}
+.htmleaf-container p {
+    margin: 0;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none !important;
+}
+
+.htmleaf-container {
+    padding: 50px 0px 0 10px;
+    background: #F3F6FA;
+}
+
+.container-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contain-left {
+    width: 70%;
+    margin-right: 12px;
+}
+
+.store {
+    width: 36%;
+}
+
+.order,
+.todo,
+.store,
+.container-bottom {
+    background: #FFFFFF;
+}
+
+.order,
+.todo,
+.store,
+.container-bottom {
+    border-left: 6px solid #72E8E1;
+    margin-bottom: 20px;
+}
+
+.todo {
+    border-left: 6px solid #DAA3FF;
+    height: 267px;
+}
+
+.store {
+    border-left: 6px solid #DCA9FE;
+}
+
+.container-bottom {
+    border-left: 6px solid #76B1FE;
+}
+
+
+.order-head,
+.todo-head,
+.store-head,
+.brand-head {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    font-size: 14px;
+    padding-left: 12px;
+    border-bottom: 2px solid #F3F6FA;
+}
+.order-tab-box span{
+	display: inline-block;
+	cursor: pointer;
+	transition: all linear 0.3s;
+}
+.order-tab{
+	font-size: 16px;
+	font-weight: bold;
+}
+.order-detail-box{
+	display: none;
+	height: 200px;
+	width: 100%;
+}
+.order-detail-show{
+	display:block;
+}
+ul.store-list{
+	padding: 10px 30px;
+	display:flex;
+	justify-content: space-around;
+}
+ul.store-list li{
+    list-style: none;
+    display: inline-block;
+}
+ul.store-list li.active{
+	color: blue;
+}
+ul.store-list li.store-title{
+	cursor: pointer;
+}
+ul.store-list li a{
+	list-style: none;
+	text-decoration: none;
+	/* pointer-events: none; */
+}
+
+.stock-echart-l,.stcok-echart-box{
+	height: 190px;
+	float: left;
+}
+.stock-echart-l{
+	width: 25%;
+}
+.stcok-echart-box{
+	position:relative;
+	width: 75%;
+}
+.stock-echart-r{
+	height: 130px;
+	width: 100%;
+}
+.prev,.next{
+	position: absolute;
+	z-index: 99;
+	bottom:10%;
+}
+.prev{
+	left:3%;
+}
+.next{
+	right:3%;
+}
+/* 璁㈠崟璇︽儏 */
+.order-detail {
+    display: flex;
+    justify-content: space-around;
+    padding: 38px 0;
+}
+
+.order-detail .radius {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    border-radius: 50%;
+    margin-right: 12px;
+    color: #000;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.order-content {
+    width: 220px;
+    height: 110px;
+    border-radius: 9px;
+    padding: 18px 0 24px 18px;
+    color: #FFFFFF;
+    position: relative;
+    background: linear-gradient(left, #46E0D6, #109AD1);
+    background: -webkit-linear-gradient(left, #46E0D6, #109AD1);
+}
+
+.order-content:hover {
+    color: #FFFFFF;
+    transition: 0.6s;
+}
+
+.order-buy:hover {
+    box-shadow: 0 0 2px 2px #27B7D3;
+}
+
+.order-sale:hover {
+    box-shadow: 0 0 2px 2px #F5937A;
+}
+
+.order-adjust:hover {
+    box-shadow: 0 0 2px 2px #D265C6;
+}
+
+.order-sale {
+    background: linear-gradient(left, #F8CF8B, #F35969);
+    background: -webkit-linear-gradient(left, #F8CF8B, #F35969);
+}
+
+.order-adjust {
+    background: linear-gradient(left, #9270FF, #FD5D9F);
+    background: -webkit-linear-gradient(left, #9270FF, #FD5D9F);
+}
+
+.order-content span:nth-child(2) {
+    /*font-size: 18px;*/
+}
+
+.order-title {
+    margin-bottom: 13px;
+    display: block;
+    color: #fff;
+}
+
+.order-title i {
+    /*background-image: url("/resources/assets/images/main/cart.png");*/
+}
+
+.order-num {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    font-size: 48px;
+    font-weight: bold;
+    margin-right: 12px;
+    transform: translateY(-50%);
+    opacity: 0.2;
+}
+
+.tab-head ul {
+    display: flex;
+}
+
+.tab-head p {
+    width: 200px;
+}
+
+.tab-head ul li {
+    padding: 0 24px;
+    font-size: 14px;
+    line-height: 46px;
+    color:#7E8B96;
+}
+.tab-head ul li:hover{
+	cursor: pointer;
+}
+ul li.order-active,
+ul li.brand-active,
+ul li.depot-active {
+    background-color: #F2F3F9;
+    border-top: 4px solid #3488CA;
+    margin-top: -4px;
+    height: 50px;
+    color: #3488CA;
+}
+
+.todo-list span,
+.brand-list span,
+.depot-list span {
+    font-size: 14px;
+    color: #7E8B96;
+    font-family: Source Han Sans CN;
+}
+
+.tab-head ul li .tip {
+    color: red;
+}
+
+.todo-content {
+    padding-left: 12px;
+}
+
+.todo-content  tbody{
+	height: 176px;
+	display:block;
+	overflow-y: auto;
+}
+.todo-content tr {
+    display:flex;
+    width:100%;
+    height: 44px;
+    line-height: 44px;
+}
+.todo-content th,
+.todo-content td {
+    flex: 1;
+    font-weight: normal;
+    font-size: 14px;
+    color: #757B80;
+    white-space: nowrap;
+    padding: 0 2px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+}
+.todo-content::-webkit-scrollbar { width: 0 !important }
+
+.todo-content tbody tr:hover{
+	background: #F5F6FF;
+}
+.todo-content th {
+    color: #B9C0C7;
+}
+
+.order-head,
+.store-head {
+    justify-content: space-between;
+}
+
+.store-detail {
+    margin-right: 20px;
+    width: 54px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    background: rgba(52, 136, 202, 1);
+    border-radius: 5px;
+    color: #FFFFFF !important;
+    text-align: center;
+}
+
+.store-detail span {
+    display: inline-block;
+    width: 54px;
+    height: 24px;
+}
+
+.store-option {
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.store-option span {
+    margin: 0;
+    color: #999999;
+    margin-right: 22px;
+}
+
+.store-option .options {
+    width: 245px;
+    height: 35px;
+    margin: 0;
+    color: #7C8B92;
+}
+
+/* 鏃堕棿閫夋嫨鍣� */
+#datetimepicker {
+    margin: 0 18px 0 auto;
+    /* 	height:46px;
+      line-height:46px; */
+    display: flex;
+    align-items: center;
+}
+#datetimepicker .date{
+	position: relative;
+}
+#datetimepicker .span2 {
+    width: 210px;
+    height: 32px;
+    vertical-align: middle;
+    background: #FFFFFF;
+}
+#datetimepicker .span2:hover{
+	cursor:pointer;
+}
+#datetimepicker span {
+    font-size: 12px;
+    color: #313A46;
+    vertical-align: middle;
+    display: inline-block;
+}
+#datetimepicker .add-on{
+	position: absolute;
+	right: 6px;
+	top: 6px;
+}
+
+#datetimepicker i {
+    margin-top: -1px;
+}
+
+#datetimepicker .add-on {
+    padding: 0;
+    z-index: 66;
+}
+
+/* 鍝佺墝鏁版嵁 */
+.brand-detail {
+    display: flex;
+    justify-content: flex-start;
+}

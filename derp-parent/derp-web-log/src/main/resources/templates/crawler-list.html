@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Start content -->
+<style>
+    .item-webkit-box{
+        display: -webkit-box !important;
+        flex-flow: nowrap !important;
+    }
+    .item-webkit-box .form-control{
+        width:160px !important;
+        margin-left: 5px !important;
+    }
+</style>
+<div class="content">
+    <div class="container-fluid mt80">
+
+        <div class="row">
+            <!--  title   start  -->
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <div class="col-12 row">
+                        <div>
+                            <ol class="breadcrumb">
+                                <li><i class="block"></i> 当前位置：</li>
+                                <li class="breadcrumb-item"><a href="#">MQ日志管理</a></li>
+                                <li class="breadcrumb-item active"><a href="#">爬虫日志</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--  title   end  -->
+                    <!--  过滤条件查询  start  -->
+                    <!--  ================================过滤条件 start  ===============================================   -->
+                    <style>.input_msg{color: #495057;}</style>
+                    <form id="form1" >
+                        <div class="form-inline form-group">
+                            <div class="item-webkit-box form-group col-3">
+                                 <label for="" class="form_title">平台类型 :</label>
+                                 <select class="form-control" name="platformType" id="platformType">
+                                    	<option value="">全部</option>
+                                    	<option value="1">云集</option>
+                                    	<option value="2">唯品</option>
+                                    </select>
+                            </div>
+                            <div class="item-webkit-box form-group col-3 ">
+                                 <label for="" class="form_title">出库单号 :</label>
+                                 <input class="form-control" type="text" name="saleOutDepotCode" id="saleOutDepotCode" >
+                            </div>
+                            <div class="item-webkit-box form-group col-3">
+                                <label for="" class="form_title">状态：</label>
+                                <select  class="form-control" name="status" id="status">
+                            	</select>
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                <div class="form_btn">
+                                    <button type="button" class="btn btn-info" onclick='$mytable.fn.reload();' >查询</button>
+                                	<button type="reset" class="btn btn-light waves-effect waves-light">重置</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-inline form-group">
+                            <div class="form-group col-3 item-webkit-box ">
+                                  <label for="" class="form_title">账单号 :</label>
+                                  <input class="form-control" type="text" name="billCode" id="billCode" >
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                   <label for="" class="form_title">商品货号 :</label>
+                                   <input class="form-control" type="text" name="goodsNo" id="goodsNo" >
+                            </div>  
+                            <div class="form-group col-3 item-webkit-box">   
+                                   <label for="" class="form_title">失败原因 :</label>
+                                   <input class="form-control" type="text" name="errorMsg" id="errorMsg" >
+                            </div>
+                        </div>
+                        <div class="form-inline form-group">
+                            <div class="form-group col-3 item-webkit-box">
+                                  <label for="" class="form_title">仓库 :</label>
+                                  <select class="form-control" name="depotId" id="depotId">
+                                        <option value="">全部</option>
+                                    	<option value="10">卓志黄埔保税仓</option>
+                                    	<option value="11">综合1仓</option>
+                                    	<option value="12">香港仓</option>
+                                    	<option value="13">菜鸟二期天运2仓</option>
+                                    	<option value="14">菜鸟一期金外滩</option>
+                                    	<option value="15">菜鸟三期保畅仓</option>
+                                    	<option value="16">云集代销仓</option>
+                                    	<option value="18">唯品宁波代销仓</option>
+                                    	<option value="21">唯品天津代销仓</option>
+                                    	<option value="28">小红书澳洲仓</option>
+                                    	<option value="19">唯品郑州代销仓</option>
+                                    	<option value="20">唯品重庆代销仓</option>
+                                    	<option value="29">唯品华南仓</option>
+                                    	<option value="33">小红书宁波代销仓</option>
+                                    	<option value="32">小红书深圳代销仓</option>
+                                    	<option value="31">悉尼在途仓</option>
+                                    	<option value="30">墨尔本在途仓</option>
+                                    	<option value="17">唯品自营南沙代销仓</option>
+                                    	<option value="34">京东南沙仓</option>
+                                    	<option value="35">唯品香港代销仓</option>
+                                    </select>
+                            </div>
+                            <div class="form-group col-3 item-webkit-box">
+                                   <label for="" class="form_title">商家 :</label>
+                                   <select class="form-control" name="merchantId" id="merchantId">
+                                    </select>
+                            </div>  
+                            <div class="form-group col-3 item-webkit-box">   
+                                   <label for="" class="form_title">创建时间 :</label>
+                                   <input type="text" class="form-control date-input" name="createDateStr" id="createDateStr">
+                            </div>
+                        </div>
+                        <div class="form-inline form-group">
+                            <div class="form-group col-3 item-webkit-box">
+	                            <label for="" class="form_title">po号 :</label>
+	                            <input class="form-control" type="text" name="poNo" id="poNo" >
+                            </div>
+                        </div>
+                    </form>
+                    <!--  ================================过滤条件  end===============================================   -->
+                    <!-- 过滤条件查询  end  -->
+                     <div class="btn_group col-12">
+                        	<!--<button type="button" class="btn btn-info" onclick="saveSaleOutDepot();">批量出库</button>-->
+							<button type="button" class="btn btn-info" onclick="exportLogs();">导出</button>
+                    </div>
+                    <!--  ================================表格 ===============================================   -->
+                        <table id="datatable-buttons" class="nowrap table table-striped" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                            	<th>
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" name="keeperUserGroup-checkable" class="group-checkable" />
+                                        <span></span>
+                                    </label>
+                                </th>
+                                <th>平台类型</th>
+                                <th>商家</th>
+                                <th>账单号</th>
+                                <th>出库单号</th>
+                                <th>po号</th>
+                                <th>出库仓库</th>
+                                <th>商品货号</th>
+                                <th>商品名称</th>
+                                <th>出库状态</th>
+                                <th>数量</th>
+                                <th>失败原因</th>
+                                <th>创建时间</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBody">
+                            </tbody>
+                        </table>
+                    <!--  ================================表格  end ===============================================   -->
+                </div>
+            </div>
+            <!--======================Modal框===========================  -->
+        </div>
+        <!-- End row -->
+        <!-- end row -->
+    </div> <!-- container -->
+</div> <!-- content -->
+
+<!--======================Modal框===========================  -->
+<div th:include="modals/001"></div>
+<div th:include="common/common"></div>
+<style>
+    .fail{background: #f00;color: #fff;padding: 4px 6px;border-radius: 3px;}
+    .success{background: #6ea9f3;color: #fff;padding: 4px 6px;border-radius: 3px;}
+</style>
+<script type="text/javascript">
+$module.constant.getConstantListByNameURL.call($('select[name="status"]')[0],"log_statusList",null);
+$module.constant.getConstantListByNameURL.call($('select[name="merchantId"]')[0],"log_crawlerMerchantList",null);
+    $(document).ready(function() {
+    	var listURL = $module.fn.getModuleUrl(moduleCode,"/crawlerlog/list.asyn");
+        //初始化
+        $mytable.fn.init();
+        //配置表格参数
+        $mytable.params={
+        	url:listURL+'&r='+Math.random(),
+            columns:[
+				{ //复选框单元格
+				    className: "td-checkbox",
+				    orderable: false,
+				    width: "30px",
+				    data: null,
+				    render: function (data, type, row, meta) {
+				        return '<input type="checkbox" class="iCheck"><input type="hidden" name="crawlerBillId" value="'+row.crawlerBillId+'">';
+				    }
+				},
+                {data:'platformType'},{data:'merchantName'},{data:'billCode'},{data:'saleOutDepotCode'},{data:'poNo'},{data:'depotName'},{data:'goodsNo'},{data:'goodsName'},{data:'status'},{data:'num'},{data:'errorMsg'},{data:'createDate'}
+                
+            ],
+            formid:'#form1'
+        }
+        //每一行都进行 回调
+        $mytable.rewriter.fnRowCallback=function(nRow, aData, iDisplayIndex){
+            //创建时间
+            if (aData.createDate!= null) {
+                var date = new Date(aData.createDate);
+                $('td:eq(12)', nRow).html(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+            }
+            //平台类型
+            if (aData.platformType!= null && aData.platformType =='1') {
+                $('td:eq(1)', nRow).html("云集");
+            }else if (aData.platformType!= null && aData.platformType =='2') {
+                $('td:eq(1)', nRow).html("唯品");
+            }
+            //异常提示
+            if(aData.errorMsg!=null&&aData.errorMsg!=""&&aData.errorMsg!=undefined) {
+            	if(aData.errorMsg.length>10){
+            		$('td:eq(11)', nRow).html("<span title='" + aData.errorMsg + "'>" + aData.errorMsg.substring(0, 10) + "...</span>");
+            	}else{
+            		$('td:eq(11)', nRow).html("<span title='" + aData.errorMsg + "'>" + aData.errorMsg + "</span>");
+            	}
+            }
+            //状态
+            if(aData.status==0){
+                $('td:eq(9)', nRow).html('<span class="fail">失败</span>');
+            }else if(aData.status==1){
+                $('td:eq(9)', nRow).html('<span class="success">成功</span>');
+            }else if (aData.status ==3){
+                $('td:eq(9)', nRow).html('<span class="success">重推成功</span>');
+            }else if (aData.status==2){
+                $('td:eq(9)', nRow).html('<span class="closed">已关闭</span>');
+            }
+        };
+        //生成列表信息s
+        $('#datatable-buttons').mydatatables();
+        //时间插件
+        $('.date-input').mydate();
+        //时间初始化
+        $('[type="reset"]').click();
+
+      	//全选
+	    $("input[name='keeperUserGroup-checkable']").on("change", function(){
+	        if($(this).is(':checked')){
+	            $(":checkbox", '#datatable-buttons').prop("checked",$(this).prop("checked"));
+	        }else{
+	            $(":checkbox", '#datatable-buttons').prop("checked",false);
+	        }
+	    })
+        
+    } );
+
+    /**
+     * 全选
+     */
+    $('#datatable-buttons').on("change", ":checkbox", function() {
+        // 列表复选框
+        if ($(this).is("[name='keeperUserGroup-checkable']")) {
+            // 全选
+            $(":checkbox", '#datatable-buttons').prop("checked",$(this).prop("checked"));
+            if($(this).is(':checked')){
+                $('#datatable-buttons tbody tr').addClass('success');
+            }else{
+                $('#datatable-buttons tbody tr').removeClass('success');
+            }
+        }else{
+            // 一般复选
+            var checkbox = $("tbody :checkbox", '#datatable-buttons');
+            $(":checkbox[name='cb-check-all']", '#datatable-buttons').prop('checked', checkbox.length == checkbox.filter(':checked').length);
+            $(this).parents('tr').toggleClass('success');
+        }
+    });
+    
+    // 点击展开功能
+    $(".unfold").click(function () {
+        $(".form_con").toggleClass('hauto');
+        if($(this).text() == '展开功能'){
+            $(this).text('收起功能');
+        }else{
+            $(this).text('展开功能');
+        }
+    })
+    
+    //批量出库
+    function saveSaleOutDepot(){
+    	var idArr=new Array();
+        var nTrs = $mytable.tableObj.fnGetNodes();//fnGetNodes获取表格所有行，nTrs[i]表示第i行tr
+        for(var i = 0; i < nTrs.length; i++){
+            if($(nTrs[i]).find("input[type=checkbox]").prop('checked')){
+                var row = $mytable.tableObj.fnGetData(nTrs[i]);
+                idArr.push(row.crawlerBillId);
+            }
+        }
+        var ids = idArr.join(",");
+        if(ids==null||ids==''||ids==undefined){
+            $custom.alert.warningText("至少选择一条记录！");
+            return ;
+        }
+        $custom.alert.warning("确定确认选中对象？",function(){
+        	var url = $module.fn.getModuleUrl(moduleCode,"/crawlerlog/sendMQ.asyn");
+            $custom.request.ajax(url+'?r='+Math.random(),{"ids":ids},function(data){
+                if(data.state==200){
+                    $custom.alert.success("批量出库成功");
+                    //删除成功，重新加载页面
+                    $mytable.fn.reload();
+                }else{
+                    $custom.alert.error("批量出库失败");
+                }
+            });
+        });
+    }
+  	//导出
+    function exportLogs(){
+    	//根据筛选条件导出
+    	var jsonData=null;
+    	var jsonArray=$("#form1").serializeArray();
+        $.each(jsonArray, function(i, field){
+            if(field.value!=null&&field.value!=''&&field.value!=undefined){
+                jsonData=$json.setJson(jsonData,field.name,field.value);
+            }
+        });
+        var form = JSON.parse(jsonData);
+        var url = $module.fn.getModuleUrl(moduleCode,"/crawlerlog/count.asyn");
+    	$custom.request.ajax(url+'?r='+Math.random(),form,function(data){
+    		var msg = "";
+    		if(data.data > 65535){
+    			msg = "导出数量有"+data.data+"条，每个页签最大支持65535条，导出结果将分页签显示，是否确认导出？";
+    		}else{
+    			msg = "导出数量有"+data.data+"条，是否确认导出？";
+    		}
+    		$custom.alert.warning(msg,function(){
+    			var url1 = $module.fn.getModuleUrl(moduleCode,"/crawlerlog/exportLogs.asyn");
+    		    var url2=url1+"&count="+data.data;
+    		    var i =0;
+            	if(!!form){
+           		    for(var key in form){
+           		    	url2 +="&"+key+"="+form[key];
+           		    	i++;
+           		    }
+            	}
+            	window.open(url2); 
+    		});
+    	});
+    	
+    }
+</script>

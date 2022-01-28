@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.automatic.MonthlyAccountAutomaticVerificationMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="MonthlyAccountAutomaticVerificationModelMap" type="MonthlyAccountAutomaticVerificationModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="month" column="month" />
+                <result property="status" column="status" />
+                <result property="barcode" column="barcode" />
+                <result property="goodsName" column="goods_name" />
+                <result property="monthlyAccountSurplusNum" column="monthly_account_surplus_num" />
+                <result property="monthlyAccountNormalNum" column="monthly_account_normal_num" />
+                <result property="monthlyAccountWornNum" column="monthly_account_worn_num" />
+                <result property="buInventorySurplusNum" column="bu_inventory_surplus_num" />
+                <result property="buInventoryNormalNum" column="bu_inventory_normal_num" />
+                <result property="buInventoryWornNum" column="bu_inventory_worn_num" />
+                <result property="buInventorySummaryEndNum" column="bu_inventory_summary_end_num" />
+                <result property="buInventorySummaryNormalNum" column="bu_inventory_summary_normal_num" />
+                <result property="buInventorySummaryWornNum" column="bu_inventory_summary_worn_num" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="inventoryRealTimeQty" column="inventory_real_time_qty" />
+                <result property="inventoryRealTimeNormalQty" column="inventory_real_time_normal_qty" />
+                <result property="inventoryRealTimeWornQty" column="inventory_real_time_worn_qty" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MonthlyAccountAutomaticVerificationModelMap' parameterType='MonthlyAccountAutomaticVerificationModel'>
+        select <include refid='sql_columns' /> from r_monthly_account_automatic_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MonthlyAccountAutomaticVerificationModelMap' parameterType='MonthlyAccountAutomaticVerificationModel'>
+        select <include refid='sql_columns' /> from r_monthly_account_automatic_verification  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MonthlyAccountAutomaticVerificationModelMap' parameterType='MonthlyAccountAutomaticVerificationModel' >
+        select <include refid='sql_columns' /> from r_monthly_account_automatic_verification  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='MonthlyAccountAutomaticVerificationModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_monthly_account_automatic_verification
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='monthlyAccountSurplusNum!=null' >monthly_account_surplus_num , </if>
+                        <if test='monthlyAccountNormalNum!=null' >monthly_account_normal_num , </if>
+                        <if test='monthlyAccountWornNum!=null' >monthly_account_worn_num , </if>
+                        <if test='buInventorySurplusNum!=null' >bu_inventory_surplus_num , </if>
+                        <if test='buInventoryNormalNum!=null' >bu_inventory_normal_num , </if>
+                        <if test='buInventoryWornNum!=null' >bu_inventory_worn_num , </if>
+                        <if test='buInventorySummaryEndNum!=null' >bu_inventory_summary_end_num , </if>
+                        <if test='buInventorySummaryNormalNum!=null' >bu_inventory_summary_normal_num , </if>
+                        <if test='buInventorySummaryWornNum!=null' >bu_inventory_summary_worn_num , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='inventoryRealTimeQty!=null' >inventory_real_time_qty , </if>
+                        <if test='inventoryRealTimeNormalQty!=null' >inventory_real_time_normal_qty , </if>
+                        <if test='inventoryRealTimeWornQty!=null' >inventory_real_time_worn_qty , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='monthlyAccountSurplusNum!=null' > #{monthlyAccountSurplusNum} , </if>
+                        <if test='monthlyAccountNormalNum!=null' > #{monthlyAccountNormalNum} , </if>
+                        <if test='monthlyAccountWornNum!=null' > #{monthlyAccountWornNum} , </if>
+                        <if test='buInventorySurplusNum!=null' > #{buInventorySurplusNum} , </if>
+                        <if test='buInventoryNormalNum!=null' > #{buInventoryNormalNum} , </if>
+                        <if test='buInventoryWornNum!=null' > #{buInventoryWornNum} , </if>
+                        <if test='buInventorySummaryEndNum!=null' > #{buInventorySummaryEndNum} , </if>
+                        <if test='buInventorySummaryNormalNum!=null' > #{buInventorySummaryNormalNum} , </if>
+                        <if test='buInventorySummaryWornNum!=null' > #{buInventorySummaryWornNum} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='inventoryRealTimeQty!=null' > #{inventoryRealTimeQty} , </if>
+                        <if test='inventoryRealTimeNormalQty!=null' > #{inventoryRealTimeNormalQty} , </if>
+                        <if test='inventoryRealTimeWornQty!=null' > #{inventoryRealTimeWornQty} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MonthlyAccountAutomaticVerificationModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_monthly_account_automatic_verification SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='monthlyAccountSurplusNum!=null' > monthly_account_surplus_num= #{monthlyAccountSurplusNum} , </if>
+                        <if test='monthlyAccountNormalNum!=null' > monthly_account_normal_num= #{monthlyAccountNormalNum} , </if>
+                        <if test='monthlyAccountWornNum!=null' > monthly_account_worn_num= #{monthlyAccountWornNum} , </if>
+                        <if test='buInventorySurplusNum!=null' > bu_inventory_surplus_num= #{buInventorySurplusNum} , </if>
+                        <if test='buInventoryNormalNum!=null' > bu_inventory_normal_num= #{buInventoryNormalNum} , </if>
+                        <if test='buInventoryWornNum!=null' > bu_inventory_worn_num= #{buInventoryWornNum} , </if>
+                        <if test='buInventorySummaryEndNum!=null' > bu_inventory_summary_end_num= #{buInventorySummaryEndNum} , </if>
+                        <if test='buInventorySummaryNormalNum!=null' > bu_inventory_summary_normal_num= #{buInventorySummaryNormalNum} , </if>
+                        <if test='buInventorySummaryWornNum!=null' > bu_inventory_summary_worn_num= #{buInventorySummaryWornNum} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='inventoryRealTimeQty!=null' > inventory_real_time_qty= #{inventoryRealTimeQty} , </if>
+                        <if test='inventoryRealTimeNormalQty!=null' > inventory_real_time_normal_qty= #{inventoryRealTimeNormalQty} , </if>
+                        <if test='inventoryRealTimeWornQty!=null' > inventory_real_time_worn_qty= #{inventoryRealTimeWornQty} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_monthly_account_automatic_verification  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_monthly_account_automatic_verification where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            month,
+            status,
+            barcode,
+            goods_name,
+            monthly_account_surplus_num,
+            monthly_account_normal_num,
+            monthly_account_worn_num,
+            bu_inventory_surplus_num,
+            bu_inventory_normal_num,
+            bu_inventory_worn_num,
+            bu_inventory_summary_end_num,
+            bu_inventory_summary_normal_num,
+            bu_inventory_summary_worn_num,
+            create_date,
+            modify_date,
+            inventory_real_time_qty,
+            inventory_real_time_normal_qty,
+            inventory_real_time_worn_qty
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='monthlyAccountSurplusNum!=null' > monthly_account_surplus_num= #{monthlyAccountSurplusNum} and </if>
+                            <if test='monthlyAccountNormalNum!=null' > monthly_account_normal_num= #{monthlyAccountNormalNum} and </if>
+                            <if test='monthlyAccountWornNum!=null' > monthly_account_worn_num= #{monthlyAccountWornNum} and </if>
+                            <if test='buInventorySurplusNum!=null' > bu_inventory_surplus_num= #{buInventorySurplusNum} and </if>
+                            <if test='buInventoryNormalNum!=null' > bu_inventory_normal_num= #{buInventoryNormalNum} and </if>
+                            <if test='buInventoryWornNum!=null' > bu_inventory_worn_num= #{buInventoryWornNum} and </if>
+                            <if test='buInventorySummaryEndNum!=null' > bu_inventory_summary_end_num= #{buInventorySummaryEndNum} and </if>
+                            <if test='buInventorySummaryNormalNum!=null' > bu_inventory_summary_normal_num= #{buInventorySummaryNormalNum} and </if>
+                            <if test='buInventorySummaryWornNum!=null' > bu_inventory_summary_worn_num= #{buInventorySummaryWornNum} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='inventoryRealTimeQty!=null' > inventory_real_time_qty= #{inventoryRealTimeQty} and </if>
+                            <if test='inventoryRealTimeNormalQty!=null' > inventory_real_time_normal_qty= #{inventoryRealTimeNormalQty} and </if>
+                            <if test='inventoryRealTimeWornQty!=null' > inventory_real_time_worn_qty= #{inventoryRealTimeWornQty} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+		<!-- 删除数据 -->
+	    <delete id='deleteByMap' parameterType='map'>
+	        delete from r_monthly_account_automatic_verification  where 
+	        	merchant_id = #{merchantId} and month = #{month}
+	        	<if test='depotId!=null' > and depot_id= #{depotId} </if>
+	    </delete>
+
+		<!-- 查询所有信息 分页 -->
+	    <select id='getListByPage' resultType='MonthlyAccountAutomaticVerificationDTO' parameterType='MonthlyAccountAutomaticVerificationDTO'>
+	        SELECT merchant_id,
+	            depot_id,
+	            depot_name,
+	            month,
+	            status,
+	            monthly_account_surplus_num,
+	            monthly_account_normal_num,
+	            monthly_account_worn_num,
+	            bu_inventory_surplus_num,
+	            bu_inventory_normal_num,
+	            bu_inventory_worn_num,
+	            bu_inventory_summary_end_num,
+	            bu_inventory_summary_normal_num,
+	            bu_inventory_summary_worn_num,
+	            inventory_real_time_qty,
+	            inventory_real_time_normal_qty,
+	            inventory_real_time_worn_qty,
+	            create_date
+	             from (
+	        SELECT
+				merchant_id,
+				depot_id,
+				depot_name,
+				`month`,
+				MIN(`status`) as status,
+				SUM(
+					IFNULL(
+						monthly_account_surplus_num,
+						0
+					)
+				) AS monthly_account_surplus_num,
+				SUM(
+					IFNULL(
+						monthly_account_normal_num,
+						0
+					)
+				) AS monthly_account_normal_num,
+				SUM(
+					IFNULL(monthly_account_worn_num, 0)
+				) AS monthly_account_worn_num,
+				SUM(
+					IFNULL(bu_inventory_surplus_num, 0)
+				) AS bu_inventory_surplus_num,
+				SUM(
+					IFNULL(bu_inventory_normal_num, 0)
+				) AS bu_inventory_normal_num,
+				SUM(
+					IFNULL(bu_inventory_worn_num, 0)
+				) AS bu_inventory_worn_num,
+				SUM(
+					IFNULL(
+						bu_inventory_summary_end_num,
+						0
+					)
+				) AS bu_inventory_summary_end_num,
+				SUM(
+					IFNULL(
+						bu_inventory_summary_normal_num,
+						0
+					)
+				) AS bu_inventory_summary_normal_num,
+				SUM(
+					IFNULL(
+						bu_inventory_summary_worn_num,
+						0
+					)
+				) AS bu_inventory_summary_worn_num,
+				SUM(
+					IFNULL(
+						inventory_real_time_qty,
+						0
+					)
+				) AS inventory_real_time_qty,
+				SUM(
+					IFNULL(
+						inventory_real_time_normal_qty,
+						0
+					)
+				) AS inventory_real_time_normal_qty,
+				SUM(
+					IFNULL(
+						inventory_real_time_worn_qty,
+						0
+					)
+				) AS inventory_real_time_worn_qty,
+				MAX(create_date) AS create_date
+			FROM
+				r_monthly_account_automatic_verification
+			GROUP BY
+				merchant_id,
+				depot_id,
+				depot_name,
+				`month`
+				) t
+			<where>
+                <trim suffixOverrides='and'>
+                      <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+                      <if test='depotId!=null' > t.depot_id= #{depotId} and </if>
+                      <if test='month!=null and !"".equals(month)' >t.month= #{month} and </if>
+                      <if test='status!=null and !"".equals(status)' >t.status= #{status} and </if>
+                </trim>
+            </where>
+	    </select>
+	    
+	    <select id='countList' resultType='java.lang.Integer' parameterType='MonthlyAccountAutomaticVerificationDTO'>
+	        SELECT COUNT(*) FROM (
+	        SELECT
+				merchant_id,
+				depot_id,
+				depot_name,
+				`month`,
+				MIN(`status`) as status
+			FROM
+				r_monthly_account_automatic_verification
+			GROUP BY
+				merchant_id,
+				depot_id,
+				depot_name,
+				`month`
+				) t
+				<where>
+	                <trim suffixOverrides='and'>
+	                      <if test='merchantId!=null' > t.merchant_id= #{merchantId} and </if>
+	                      <if test='depotId!=null' > t.depot_id= #{depotId} and </if>
+	                      <if test='month!=null and !"".equals(month)' >t.month= #{month} and </if>
+	                      <if test='status!=null and !"".equals(status)' >t.status= #{status} and </if>
+	                </trim>
+	            </where>
+	    </select>
+	    
+	    <update id='modifyNullValue' parameterType='MonthlyAccountAutomaticVerificationModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_monthly_account_automatic_verification SET
+            <trim  suffixOverrides=",">
+                         monthly_account_surplus_num= null , 
+                        monthly_account_normal_num= null , 
+                         monthly_account_worn_num= null , 
+                        bu_inventory_surplus_num= null ,
+                         bu_inventory_normal_num= null , 
+                        bu_inventory_worn_num= null , 
+                         bu_inventory_summary_end_num= null , 
+                         bu_inventory_summary_normal_num= null , 
+                       bu_inventory_summary_worn_num= null , 
+                       inventory_real_time_qty = null,
+                       inventory_real_time_normal_qty = null ,
+                       inventory_real_time_worn_qty = null ,
+            </trim>
+            <include refid='sql_where' />
+        </update>
+
+</mapper>

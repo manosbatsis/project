@@ -1,0 +1,328 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.PlatformStatementOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PlatformStatementOrderModelMap" type="PlatformStatementOrderModel" >
+                <result property="id" column="id" />
+                <result property="billCode" column="bill_code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="customerType" column="customer_type" />
+                <result property="currency" column="currency" />
+                <result property="month" column="month" />
+                <result property="billAmount" column="bill_amount" />
+                <result property="invoiceId" column="invoice_id" />
+                <result property="invoiceNo" column="invoice_no" />
+                <result property="invoiceDrawer" column="invoice_drawer" />
+                <result property="invoiceDrawerId" column="invoice_drawer_id" />
+                <result property="invoiceDate" column="invoice_date" />
+                <result property="isInvoice" column="is_invoice" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="billDate" column="bill_date" />
+                <result property="isCreateReceive" column="is_create_receive" />
+                <result property="receiveCode" column="receive_code" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="shopCode" column="shop_code" />
+                <result property="shopName" column="shop_name" />
+                <result property="type" column="type" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PlatformStatementOrderModelMap' parameterType='PlatformStatementOrderModel'>
+        select <include refid='sql_columns' /> from t_platform_statement_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PlatformStatementOrderModelMap' parameterType='PlatformStatementOrderModel'>
+        select <include refid='sql_columns' /> from t_platform_statement_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PlatformStatementOrderModelMap' parameterType='PlatformStatementOrderModel' >
+        select <include refid='sql_columns' /> from t_platform_statement_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PlatformStatementOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_platform_statement_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' > bill_code , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='customerType!=null and !"".equals(customerType)' > customer_type , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='billAmount!=null' >bill_amount , </if>
+                        <if test='invoiceId!=null' >invoice_id , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > invoice_no , </if>
+                        <if test='invoiceDrawer!=null and !"".equals(invoiceDrawer)' > invoice_drawer , </if>
+                        <if test='invoiceDrawerId!=null' >invoice_drawer_id , </if>
+                        <if test='invoiceDate!=null' >invoice_date , </if>
+                        <if test='isInvoice!=null and !"".equals(isInvoice)' > is_invoice , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='billDate!=null' >bill_date , </if>
+                        <if test='isCreateReceive!=null and !"".equals(isCreateReceive)' > is_create_receive , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > receive_code , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>                      
+                        <if test='shopCode!=null and !"".equals(shopCode)' > shop_code , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > shop_name , </if>       
+                        <if test='type!=null and !"".equals(type)' > type , </if>                   
+                        
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' > #{billCode} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='customerType!=null and !"".equals(customerType)' > #{customerType} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='billAmount!=null' > #{billAmount} , </if>
+                        <if test='invoiceId!=null' > #{invoiceId} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > #{invoiceNo} , </if>
+                        <if test='invoiceDrawer!=null and !"".equals(invoiceDrawer)' > #{invoiceDrawer} , </if>
+                        <if test='invoiceDrawerId!=null' > #{invoiceDrawerId} , </if>
+                        <if test='invoiceDate!=null' > #{invoiceDate} , </if>
+                        <if test='isInvoice!=null and !"".equals(isInvoice)' > #{isInvoice} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='billDate!=null' >#{billDate} , </if>
+                        <if test='isCreateReceive!=null and !"".equals(isCreateReceive)' > #{isCreateReceive} ,  </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > #{receiveCode} ,  </if>
+                        <if test='buId!=null' >#{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>                      
+                        <if test='shopCode!=null and !"".equals(shopCode)' > #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' > #{shopName} , </if>   
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if> 
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PlatformStatementOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_platform_statement_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='customerType!=null and !"".equals(customerType)' >customer_type= #{customerType} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='billAmount!=null' > bill_amount= #{billAmount} , </if>
+                        <if test='invoiceId!=null' > invoice_id= #{invoiceId} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} , </if>
+                        <if test='invoiceDrawer!=null and !"".equals(invoiceDrawer)' >invoice_drawer= #{invoiceDrawer} , </if>
+                        <if test='invoiceDrawerId!=null' > invoice_drawer_id= #{invoiceDrawerId} , </if>
+                        <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} , </if>
+                        <if test='isInvoice!=null and !"".equals(isInvoice)' >is_invoice= #{isInvoice} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='billDate!=null' >bill_date= #{billDate}, </if>
+                        <if test='isCreateReceive!=null and !"".equals(isCreateReceive)' > is_create_receive= #{isCreateReceive}, </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > receive_code= #{receiveCode}, </if>
+                        <if test='buId!=null' >bu_id=#{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>                      
+                        <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} , </if>
+                        <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} , </if>   
+                        <if test='type!=null and !"".equals(type)' > type= #{type} , </if> 
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_platform_statement_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_platform_statement_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bill_code,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            customer_type,
+            currency,
+            month,
+            bill_amount,
+            invoice_id,
+            invoice_no,
+            invoice_drawer,
+            invoice_drawer_id,
+            invoice_date,
+            is_invoice,
+            create_date,
+            modify_date,
+            bill_date,
+            is_create_receive,
+            receive_code,
+            bu_id,
+            bu_name,
+            shop_code,
+            shop_name,
+            type
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='billCode!=null and !"".equals(billCode)' >bill_code= #{billCode} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='customerType!=null and !"".equals(customerType)' >customer_type= #{customerType} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='billAmount!=null' > bill_amount= #{billAmount} and </if>
+                            <if test='invoiceId!=null' > invoice_id= #{invoiceId} and </if>
+                            <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                            <if test='invoiceDrawer!=null and !"".equals(invoiceDrawer)' >invoice_drawer= #{invoiceDrawer} and </if>
+                            <if test='invoiceDrawerId!=null' > invoice_drawer_id= #{invoiceDrawerId} and </if>
+                            <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} and </if>
+                            <if test='isInvoice!=null and !"".equals(isInvoice)' >is_invoice= #{isInvoice} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='billDate!=null' >bill_date= #{illDate} and </if>
+                            <if test='isCreateReceive!=null and !"".equals(isCreateReceive)' > is_create_receive= #{isCreateReceive} and </if>
+                            <if test='receiveCode!=null and !"".equals(receiveCode)' > receive_code= #{receiveCode} and </if>
+                            <if test='buId!=null' >bu_id=#{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>                      
+                            <if test='shopCode!=null and !"".equals(shopCode)' >shop_code= #{shopCode} and </if>
+                            <if test='shopName!=null and !"".equals(shopName)' >shop_name= #{shopName} and </if>  
+                            <if test='type!=null and !"".equals(type)' > type= #{type} and </if> 
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 查询所有信息 分页 -->
+	    <select id='getListByPage' resultType='PlatformStatementOrderDTO' parameterType='PlatformStatementOrderDTO'>
+	        select <include refid='sql_columns' /> from t_platform_statement_order  <include refid='sql_where' />
+	        order by month desc, id desc
+	    </select>
+
+		<!-- 条件查询 -->
+	    <select id='getDTO' resultType='PlatformStatementOrderDTO' parameterType='PlatformStatementOrderDTO' >
+	        select <include refid='sql_columns' /> from t_platform_statement_order  <include refid='sql_where' />
+	    </select>
+	    
+	    <select id='getExportOrders' resultType='PlatformStatementOrderExportDTO' parameterType='PlatformStatementOrderExportDTO'>
+	        SELECT
+				t1.bill_code,
+				t1.`month`,
+				t1.customer_name,
+				t1.currency,
+				t2.po_no,
+				t2.type ,
+				t2.barcode,
+				t2.goods_name,
+				t2.settlement_num,
+				t2.settlement_amount,
+				t2.settlement_amount_rmb,
+				t2.settlement_config_name,
+				t2.rate
+			FROM
+				t_platform_statement_order t1
+				LEFT JOIN t_platform_statement_item t2 ON t1.id = t2.platform_statement_order_id
+			<where>
+                <trim suffixOverrides='and'>
+                       <if test='ids!=null and !"".equals(ids)' >
+		            		t1.id in
+		            		
+		            		<foreach collection='ids.split(",")' item='id' separator=',' open='(' close=')'>
+					            #{id}
+					        </foreach>
+		            		 
+		            		and 
+		            	</if>
+                       <if test='billCode!=null and !"".equals(billCode)' >t1.bill_code= #{billCode} and </if>
+                       <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                       <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>
+                       <if test='customerType!=null and !"".equals(customerType)' >t1.customer_type= #{customerType} and </if>
+                       <if test='month!=null and !"".equals(month)' >t1.month= #{month} and </if>
+                       <if test='isInvoice!=null and !"".equals(isInvoice)' >t1.is_invoice= #{isInvoice} and </if>
+                       <if test='receiveCode!=null and !"".equals(receiveCode)' >t1.receive_code= #{receiveCode} and </if>
+                </trim>
+            </where>
+            order by t2.id
+            limit ${begin},${pageSize}
+	    </select>
+
+        <select id="listByIds" resultType="PlatformStatementOrderDTO" >
+            select <include refid='sql_columns' /> from t_platform_statement_order
+            where id IN
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </select>
+
+        <update id="batchUpdate" >
+            update t_platform_statement_order set
+            receive_code= #{billCode} ,
+            is_create_receive= #{isCreateReceive}
+            where id in
+            <foreach collection='ids' item='id' separator=',' open='(' close=')'>
+                #{id}
+            </foreach>
+        </update>
+
+        <select id="countExportNum" resultType="java.lang.Integer" parameterType='PlatformStatementOrderDTO'>
+            SELECT
+              count(t2.id)
+            FROM
+            t_platform_statement_order t1
+            LEFT JOIN t_platform_statement_item t2 ON t1.id = t2.platform_statement_order_id
+            <where>
+                <trim suffixOverrides='and'>
+                    <if test='ids!=null and !"".equals(ids)' >
+                        t1.id in
+
+                        <foreach collection='ids.split(",")' item='id' separator=',' open='(' close=')'>
+                            #{id}
+                        </foreach>
+
+                        and
+                    </if>
+                    <if test='billCode!=null and !"".equals(billCode)' >t1.bill_code= #{billCode} and </if>
+                    <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                    <if test='customerId!=null' > t1.customer_id= #{customerId} and </if>
+                    <if test='customerType!=null and !"".equals(customerType)' >t1.customer_type= #{customerType} and </if>
+                    <if test='month!=null and !"".equals(month)' >t1.month= #{month} and </if>
+                    <if test='isInvoice!=null and !"".equals(isInvoice)' >t1.is_invoice= #{isInvoice} and </if>
+                    <if test='receiveCode!=null and !"".equals(receiveCode)' >t1.receive_code= #{receiveCode} and </if>
+                </trim>
+            </where>
+        </select>
+</mapper>

@@ -1,0 +1,45 @@
+#业务MQ
+derprocketmq: 
+    namesrvaddr: ${rocketmq.namesrvaddr}
+    producergroup: ${rocketmq.producergroup}
+    order:     #业务子模块MQ
+         consumergroup: ${rocketmq.order.consumergroup}
+         topics: ${rocketmq.order.topics}
+    inventory: #库存子模块MQ
+         consumergroup: ${rocketmq.inventory.consumergroup}
+         topics: ${rocketmq.inventory.topics}
+    storage:   #仓储子模块MQ
+         consumergroup: ${rocketmq.storage.consumergroup}
+         topics: ${rocketmq.storage.topics}  
+    pushapi:   #推送外部API MQ
+         consumergroup: ${rocketmq.pushapi.consumergroup}
+         topics: ${rocketmq.pushapi.topics}
+    report:    #报表模块MQ
+         consumergroup: ${rocketmq.report.consumergroup}
+         topics: ${rocketmq.report.topics}
+    erp:    #主服务MQ
+      consumergroup: ${rocketmq.erp.consumergroup}
+      topics: ${rocketmq.erp.topics}
+
+#日志MQ
+derplogrocketmq: 
+    namesrvaddr: ${logrocketmq.namesrvaddr}
+    producergroup: ${logrocketmq.producergroup}
+    apilog:    #api日志
+          consumergroup: ${logrocketmq.apilog.consumergroup}
+          topics: ${logrocketmq.apilog.topics}
+    orderlog:  #业务日志
+          consumergroup: ${logrocketmq.orderlog.consumergroup}   
+          topics: ${logrocketmq.orderlog.topics}  
+    inventory: #库存日志
+          consumergroup: ${logrocketmq.inventory.consumergroup}
+          topics: ${logrocketmq.inventory.topics}
+    derplog:   #其他日志   
+          consumergroup: ${logrocketmq.derplog.consumergroup}
+          topics: ${logrocketmq.derplog.topics}
+    autolog: #智能运维   
+          consumergroup: ${logrocketmq.autolog.consumergroup}
+          topics: ${logrocketmq.autolog.topics}
+
+
+

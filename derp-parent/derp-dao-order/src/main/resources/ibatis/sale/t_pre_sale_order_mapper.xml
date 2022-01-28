@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.PreSaleOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PreSaleOrderModelMap" type="PreSaleOrderModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="state" column="state" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="businessModel" column="business_model" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="poNo" column="po_no" />
+                <result property="currency" column="currency" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="remark" column="remark" />
+                <result property="auditor" column="auditor" />
+                <result property="auditName" column="audit_name" />
+                <result property="auditDate" column="audit_date" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierUsername" column="modifier_username" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PreSaleOrderModelMap' parameterType='PreSaleOrderModel'>
+        select <include refid='sql_columns' /> from t_pre_sale_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PreSaleOrderModelMap' parameterType='PreSaleOrderModel'>
+        select <include refid='sql_columns' /> from t_pre_sale_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PreSaleOrderModelMap' parameterType='PreSaleOrderModel' >
+        select <include refid='sql_columns' /> from t_pre_sale_order  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PreSaleOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_pre_sale_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='state!=null and !"".equals(state)' > state , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' > business_model , </if>
+                        <if test='outDepotId!=null' >out_depot_id , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='auditor!=null' >auditor , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > audit_name , </if>
+                        <if test='auditDate!=null' >audit_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' > modifier_username , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='state!=null and !"".equals(state)' > #{state} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' > #{businessModel} , </if>
+                        <if test='outDepotId!=null' > #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='auditor!=null' > #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' > #{auditName} , </if>
+                        <if test='auditDate!=null' > #{auditDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' > #{modifierUsername} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PreSaleOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_pre_sale_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='state!=null and !"".equals(state)' >state= #{state} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} , </if>
+                        <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='auditor!=null' > auditor= #{auditor} , </if>
+                        <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} , </if>
+                        <if test='auditDate!=null' > audit_date= #{auditDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_pre_sale_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_pre_sale_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            state,
+            merchant_id,
+            merchant_name,
+            customer_id,
+            customer_name,
+            business_model,
+            out_depot_id,
+            out_depot_name,
+            bu_id,
+            bu_name,
+            po_no,
+            currency,
+            tallying_unit,
+            remark,
+            auditor,
+            audit_name,
+            audit_date,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_username,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} and </if>
+                            <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                            <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='auditor!=null' > auditor= #{auditor} and </if>
+                            <if test='auditName!=null and !"".equals(auditName)' >audit_name= #{auditName} and </if>
+                            <if test='auditDate!=null' > audit_date= #{auditDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <!-- 查询条件 -->
+    <sql id='sql_where_page'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='state!=null and !"".equals(state)' >state= #{state} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                <if test='createDateStartDate!=null and !"".equals(createDateStartDate)' >
+                    date_format(create_date,'%Y-%m-%d %H:%i:%S') &gt;= #{createDateStartDate} and
+                </if>
+                <if test='createDateEndDate!=null and !"".equals(createDateEndDate)' >
+                    date_format(create_date,'%Y-%m-%d %H:%i:%S') &lt;= #{createDateEndDate} and
+                </if>
+                <if test='buList!=null and !"".equals(buList)' > bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='ids!=null and !"".equals(ids)' >id in
+                    <foreach collection="ids.split(',')"  item='id' separator=',' open='(' close=')'>
+                        #{id}
+                    </foreach>
+                    and
+                </if>
+                state != "006"
+            </trim>
+        </where>
+    </sql>
+
+    <resultMap id="PreSaleOrderDTOMap" type="PreSaleOrderDTO" >
+        <result property="id" column="id" />
+        <result property="code" column="code" />
+        <result property="state" column="state" />
+        <result property="customerName" column="customer_name" />
+        <result property="outDepotName" column="out_depot_name" />
+        <result property="buName" column="bu_name" />
+        <result property="poNo" column="po_no" />
+        <result property="createName" column="create_name" />
+        <result property="createDate" column="create_date" />
+        <result property="totalNum" column="num" />
+        <result property="totalAmount" column="amount" />
+    </resultMap>
+
+    <sql id='sql_where_page1'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' > p.merchant_id= #{merchantId} and </if>
+                <if test='code!=null and !"".equals(code)' >p.code= #{code} and </if>
+                <if test='customerId!=null' > p.customer_id= #{customerId} and </if>
+                <if test='state!=null and !"".equals(state)' >p.state= #{state} and </if>
+                <if test='buId!=null' > p.bu_id= #{buId} and </if>
+                <if test='outDepotId!=null' > p.out_depot_id= #{outDepotId} and </if>
+                <if test='createDateStartDate!=null and !"".equals(createDateStartDate)' >
+                    date_format(p.create_date,'%Y-%m-%d %H:%i:%S') &gt;= #{createDateStartDate} and
+                </if>
+                <if test='createDateEndDate!=null and !"".equals(createDateEndDate)' >
+                    date_format(p.create_date,'%Y-%m-%d %H:%i:%S') &lt;= #{createDateEndDate} and
+                </if>
+                <if test='poNo!=null and !"".equals(poNo)' >p.po_no like CONCAT('%',#{poNo},'%')  and </if>
+                <if test='buList!=null and !"".equals(buList)' >p.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='ids!=null and !"".equals(ids)' >p.id in
+                    <foreach collection="ids.split(',')"  item='id' separator=',' open='(' close=')'>
+                        #{id}
+                    </foreach>
+                    and
+                </if>
+                p.state != '006'
+            </trim>
+        </where>
+    </sql>
+    <!-- 查询所有信息 分页 -->
+    <select id='queryDTOListByPage' parameterType='PreSaleOrderDTO' resultMap='PreSaleOrderDTOMap'>
+        select
+            p.id, p.code, p.customer_name,p.bu_name,p.out_depot_name, p.po_no, p.create_date,
+            p.create_name,p.state,SUM(pi.num) num, SUM(pi.amount) amount
+        from t_pre_sale_order p
+        LEFT JOIN t_pre_sale_order_item pi on p.id = pi.order_id
+        <include refid='sql_where_page1' />
+        GROUP BY p.id, p.code, p.customer_name,p.bu_name,p.out_depot_name, p.po_no, p.create_date, p.create_name,p.state
+        order by p.id desc
+    </select>
+
+    <select id="getTotal" parameterType="PreSaleOrderDTO" resultType="java.lang.Integer" >
+        select
+            count(0)
+        from t_pre_sale_order p
+        <include refid='sql_where_page1' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='getPreSaleOrderDTOById' resultType='PreSaleOrderDTO' parameterType='PreSaleOrderModel' >
+        select <include refid='sql_columns' /> from t_pre_sale_order  <include refid='sql_where' />
+    </select>
+    <!-- 查询所有信息 -->
+    <select id='queryDTOList' resultType='PreSaleOrderDTO' parameterType='PreSaleOrderDTO'>
+        select <include refid='sql_columns' /> from t_pre_sale_order p  <include refid='sql_where_page1' /> order by id desc
+    </select>
+    <!-- 逻辑删除 -->
+    <update id='delPreSaleOrder' parameterType='java.util.ArrayList'>
+        UPDATE  t_pre_sale_order SET state = '006' where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </update>
+    <!-- 根据审核时间排序预售单 -->
+    <select id='listPreSaleByAuditDate' resultType='PreSaleOrderDTO' parameterType='java.util.ArrayList'>
+        select <include refid='sql_columns' /> from t_pre_sale_order
+        where `code` in
+        <foreach collection='list' item='code' separator=',' open='(' close=')'>
+            #{code}
+        </foreach>
+        and state != '006'
+        order by audit_date ASC
+    </select>
+</mapper>

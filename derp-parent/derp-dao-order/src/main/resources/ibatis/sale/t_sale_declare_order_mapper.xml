@@ -1,0 +1,684 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleDeclareOrderMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleDeclareOrderModelMap" type="SaleDeclareOrderModel" >
+                <result property="id" column="id" />
+                <result property="code" column="code" />
+                <result property="customerId" column="customer_id" />
+                <result property="customerName" column="customer_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="poNo" column="po_no" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="lbxNo" column="lbx_no" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="paymentTerms" column="payment_terms" />
+                <result property="tradeTerms" column="trade_terms" />
+                <result property="businessModel" column="business_model" />
+                <result property="currency" column="currency" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="loadPort" column="load_port" />
+                <result property="destination" column="destination" />
+                <result property="destinationPort" column="destination_port" />
+                <result property="portDes" column="port_des" />
+                <result property="deliveryAddr" column="delivery_addr" />
+                <result property="imExpPort" column="im_exp_port" />
+                <result property="outCustomsId" column="out_customs_id" />
+                <result property="outCustomsName" column="out_customs_name" />
+                <result property="inCustomsId" column="in_customs_id" />
+                <result property="inCustomsName" column="in_customs_name" />
+                <result property="departurePort" column="departure_port" />
+                <result property="shipDate" column="ship_date" />
+                <result property="remark" column="remark" />
+                <result property="transport" column="transport" />
+                <result property="shipper" column="shipper" />
+                <result property="carrier" column="carrier" />
+                <result property="invoiceNo" column="invoice_no" />
+                <result property="contractNo" column="contract_no" />
+                <result property="ladingBill" column="lading_bill" />
+                <result property="blNo" column="bl_no" />
+                <result property="trainNo" column="train_no" />
+                <result property="torrNum" column="torr_num" />
+                <result property="pack" column="pack" />
+                <result property="boxNum" column="box_num" />
+                <result property="torrPackType" column="torr_pack_type" />
+                <result property="billWeight" column="bill_weight" />
+                <result property="motorcycleType" column="motorcycle_type" />
+                <result property="mark" column="mark" />
+                <result property="teu" column="teu" />
+                <result property="status" column="status" />
+                <result property="apiStatus" column="api_status" />
+                <result property="pushOutDate" column="push_out_date" />
+                <result property="pallteizeDate" column="pallteize_date" />
+                <result property="exportPallteizeDate" column="export_pallteize_date" />
+                <result property="customsSubmitDate" column="customs_submit_date" />
+                <result property="customsConfirmDate" column="customs_confirm_date" />
+                <result property="confirmDeclarationDate" column="confirm_declaration_date" />
+                <result property="logisticsCommissionDate" column="logistics_commission_date" />
+                <result property="deliverDate" column="deliver_date" />
+                <result property="shelfDate" column="shelf_date" />
+                <result property="country" column="country" />
+                <result property="receiverName" column="receiver_name" />
+                <result property="receiverAddress" column="receiver_address" />
+                <result property="mailMode" column="mail_mode" />
+                <result property="saleOrderIds" column="sale_order_ids" />
+                <result property="saleOrderCodes" column="sale_order_codes" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifier" column="modifier" />
+                <result property="modifierUsername" column="modifier_username" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="firstShelfDate" column="first_shelf_date" />
+                <result property="endShelfDate" column="end_shelf_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleDeclareOrderModelMap' parameterType='SaleDeclareOrderModel'>
+        select <include refid='sql_columns' /> from t_sale_declare_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleDeclareOrderModelMap' parameterType='SaleDeclareOrderModel'>
+        select <include refid='sql_columns' /> from t_sale_declare_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleDeclareOrderModelMap' parameterType='SaleDeclareOrderModel' >
+        select <include refid='sql_columns' /> from t_sale_declare_order  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleDeclareOrderModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_declare_order
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='customerId!=null' >customer_id , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='outDepotId!=null' >out_depot_id , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='lbxNo!=null and !"".equals(lbxNo)' > lbx_no , </if>
+                        <if test='inDepotId!=null' >in_depot_id , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > in_depot_name , </if>
+                        <if test='paymentTerms!=null and !"".equals(paymentTerms)' > payment_terms , </if>
+                        <if test='tradeTerms!=null and !"".equals(tradeTerms)' > trade_terms , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' > business_model , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                        <if test='loadPort!=null and !"".equals(loadPort)' > load_port , </if>
+                        <if test='destination!=null and !"".equals(destination)' > destination , </if>
+                        <if test='destinationPort!=null and !"".equals(destinationPort)' > destination_port , </if>
+                        <if test='portDes!=null and !"".equals(portDes)' > port_des , </if>
+                        <if test='deliveryAddr!=null and !"".equals(deliveryAddr)' > delivery_addr , </if>
+                        <if test='imExpPort!=null and !"".equals(imExpPort)' > im_exp_port , </if>
+                        <if test='outCustomsId!=null' >out_customs_id , </if>
+                        <if test='outCustomsName!=null and !"".equals(outCustomsName)' > out_customs_name , </if>
+                        <if test='inCustomsId!=null' >in_customs_id , </if>
+                        <if test='inCustomsName!=null and !"".equals(inCustomsName)' > in_customs_name , </if>
+                        <if test='departurePort!=null and !"".equals(departurePort)' > departure_port , </if>
+                        <if test='shipDate!=null' >ship_date , </if>
+                        <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                        <if test='transport!=null and !"".equals(transport)' > transport , </if>
+                        <if test='shipper!=null and !"".equals(shipper)' > shipper , </if>
+                        <if test='carrier!=null and !"".equals(carrier)' > carrier , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > invoice_no , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                        <if test='ladingBill!=null and !"".equals(ladingBill)' > lading_bill , </if>
+                        <if test='blNo!=null and !"".equals(blNo)' > bl_no , </if>
+                        <if test='trainNo!=null and !"".equals(trainNo)' > train_no , </if>
+                        <if test='torrNum!=null' >torr_num , </if>
+                        <if test='pack!=null and !"".equals(pack)' > pack , </if>
+                        <if test='boxNum!=null' >box_num , </if>
+                        <if test='torrPackType!=null and !"".equals(torrPackType)' > torr_pack_type , </if>
+                        <if test='billWeight!=null' >bill_weight , </if>
+                        <if test='motorcycleType!=null and !"".equals(motorcycleType)' > motorcycle_type , </if>
+                        <if test='mark!=null and !"".equals(mark)' > mark , </if>
+                        <if test='teu!=null and !"".equals(teu)' > teu , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='apiStatus!=null and !"".equals(apiStatus)' > api_status , </if>
+                        <if test='pushOutDate!=null' >push_out_date , </if>
+                        <if test='pallteizeDate!=null' >pallteize_date , </if>
+                        <if test='customsSubmitDate!=null' >customs_submit_date , </if>
+                        <if test='customsConfirmDate!=null' >customs_confirm_date , </if>
+                        <if test='confirmDeclarationDate!=null' >confirm_declaration_date , </if>
+                        <if test='logisticsCommissionDate!=null' >logistics_commission_date , </if>
+                        <if test='deliverDate!=null' >deliver_date , </if>
+                        <if test='shelfDate!=null' >shelf_date , </if>
+                        <if test='country!=null and !"".equals(country)' > country , </if>
+                        <if test='receiverName!=null and !"".equals(receiverName)' > receiver_name , </if>
+                        <if test='receiverAddress!=null and !"".equals(receiverAddress)' > receiver_address , </if>
+                        <if test='mailMode!=null and !"".equals(mailMode)' > mail_mode , </if>
+                        <if test='saleOrderIds!=null and !"".equals(saleOrderIds)' > sale_order_ids , </if>
+                        <if test='saleOrderCodes!=null and !"".equals(saleOrderCodes)' > sale_order_codes , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifier!=null' >modifier , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' > modifier_username , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='firstShelfDate!=null' >first_shelf_date , </if>
+                        <if test='endShelfDate!=null' >end_shelf_date , </if>
+                        <if test='exportPallteizeDate!=null' >export_pallteize_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='customerId!=null' > #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='outDepotId!=null' > #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='lbxNo!=null and !"".equals(lbxNo)' > #{lbxNo} , </if>
+                        <if test='inDepotId!=null' > #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' > #{inDepotName} , </if>
+                        <if test='paymentTerms!=null and !"".equals(paymentTerms)' > #{paymentTerms} , </if>
+                        <if test='tradeTerms!=null and !"".equals(tradeTerms)' > #{tradeTerms} , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' > #{businessModel} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                        <if test='loadPort!=null and !"".equals(loadPort)' > #{loadPort} , </if>
+                        <if test='destination!=null and !"".equals(destination)' > #{destination} , </if>
+                        <if test='destinationPort!=null and !"".equals(destinationPort)' > #{destinationPort} , </if>
+                        <if test='portDes!=null and !"".equals(portDes)' > #{portDes} , </if>
+                        <if test='deliveryAddr!=null and !"".equals(deliveryAddr)' > #{deliveryAddr} , </if>
+                        <if test='imExpPort!=null and !"".equals(imExpPort)' > #{imExpPort} , </if>
+                        <if test='outCustomsId!=null' > #{outCustomsId} , </if>
+                        <if test='outCustomsName!=null and !"".equals(outCustomsName)' > #{outCustomsName} , </if>
+                        <if test='inCustomsId!=null' > #{inCustomsId} , </if>
+                        <if test='inCustomsName!=null and !"".equals(inCustomsName)' > #{inCustomsName} , </if>
+                        <if test='departurePort!=null and !"".equals(departurePort)' > #{departurePort} , </if>
+                        <if test='shipDate!=null' > #{shipDate} , </if>
+                        <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                        <if test='transport!=null and !"".equals(transport)' > #{transport} , </if>
+                        <if test='shipper!=null and !"".equals(shipper)' > #{shipper} , </if>
+                        <if test='carrier!=null and !"".equals(carrier)' > #{carrier} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > #{invoiceNo} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                        <if test='ladingBill!=null and !"".equals(ladingBill)' > #{ladingBill} , </if>
+                        <if test='blNo!=null and !"".equals(blNo)' > #{blNo} , </if>
+                        <if test='trainNo!=null and !"".equals(trainNo)' > #{trainNo} , </if>
+                        <if test='torrNum!=null' > #{torrNum} , </if>
+                        <if test='pack!=null and !"".equals(pack)' > #{pack} , </if>
+                        <if test='boxNum!=null' > #{boxNum} , </if>
+                        <if test='torrPackType!=null and !"".equals(torrPackType)' > #{torrPackType} , </if>
+                        <if test='billWeight!=null' > #{billWeight} , </if>
+                        <if test='motorcycleType!=null and !"".equals(motorcycleType)' > #{motorcycleType} , </if>
+                        <if test='mark!=null and !"".equals(mark)' > #{mark} , </if>
+                        <if test='teu!=null and !"".equals(teu)' > #{teu} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='apiStatus!=null and !"".equals(apiStatus)' > #{apiStatus} , </if>
+                        <if test='pushOutDate!=null' > #{pushOutDate} , </if>
+                        <if test='pallteizeDate!=null' > #{pallteizeDate} , </if>
+                        <if test='customsSubmitDate!=null' > #{customsSubmitDate} , </if>
+                        <if test='customsConfirmDate!=null' > #{customsConfirmDate} , </if>
+                        <if test='confirmDeclarationDate!=null' > #{confirmDeclarationDate} , </if>
+                        <if test='logisticsCommissionDate!=null' > #{logisticsCommissionDate} , </if>
+                        <if test='deliverDate!=null' > #{deliverDate} , </if>
+                        <if test='shelfDate!=null' > #{shelfDate} , </if>
+                        <if test='country!=null and !"".equals(country)' > #{country} , </if>
+                        <if test='receiverName!=null and !"".equals(receiverName)' > #{receiverName} , </if>
+                        <if test='receiverAddress!=null and !"".equals(receiverAddress)' > #{receiverAddress} , </if>
+                        <if test='mailMode!=null and !"".equals(mailMode)' > #{mailMode} , </if>
+                        <if test='saleOrderIds!=null and !"".equals(saleOrderIds)' > #{saleOrderIds} , </if>
+                        <if test='saleOrderCodes!=null and !"".equals(saleOrderCodes)' > #{saleOrderCodes} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' > #{modifierUsername} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='firstShelfDate!=null' > #{firstShelfDate} , </if>
+                        <if test='endShelfDate!=null' > #{endShelfDate} , </if>
+                        <if test='exportPallteizeDate!=null' > #{exportPallteizeDate}, </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleDeclareOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_declare_order SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                        <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                        <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} , </if>
+                        <if test='inDepotId!=null'>in_depot_id= #{inDepotId} , </if>
+                        <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} ,</if>
+                        <if test='paymentTerms!=null and !"".equals(paymentTerms)' >payment_terms= #{paymentTerms} , </if>
+                        <if test='tradeTerms!=null and !"".equals(tradeTerms)' >trade_terms= #{tradeTerms} , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                        <if test='loadPort!=null and !"".equals(loadPort)' >load_port= #{loadPort} , </if>
+                        <if test='destination!=null and !"".equals(destination)' >destination= #{destination} , </if>
+                        <if test='destinationPort!=null and !"".equals(destinationPort)' >destination_port= #{destinationPort} , </if>
+                        <if test='portDes!=null and !"".equals(portDes)' >port_des= #{portDes} , </if>
+                        <if test='deliveryAddr!=null and !"".equals(deliveryAddr)' >delivery_addr= #{deliveryAddr} , </if>
+                        <if test='imExpPort!=null and !"".equals(imExpPort)' >im_exp_port= #{imExpPort} , </if>
+                        <if test='outCustomsId!=null' >out_customs_id= #{outCustomsId} ,</if>
+                        <if test='outCustomsName!=null and !"".equals(outCustomsName)' >out_customs_name= #{outCustomsName}, </if>
+                        <if test='inCustomsId!=null' >in_customs_id= #{inCustomsId} ,</if>
+                        <if test='inCustomsName!=null and !"".equals(inCustomsName)' >in_customs_name= #{inCustomsName} ,</if>
+                        <if test='departurePort!=null and !"".equals(departurePort)' >departure_port= #{departurePort} , </if>
+                        <if test='shipDate!=null' > ship_date= #{shipDate} , </if>
+                        <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                        <if test='transport!=null and !"".equals(transport)' >transport= #{transport} , </if>
+                        <if test='shipper!=null and !"".equals(shipper)' >shipper= #{shipper} , </if>
+                        <if test='carrier!=null and !"".equals(carrier)' >carrier= #{carrier} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} , </if>
+                        <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                        <if test='ladingBill!=null and !"".equals(ladingBill)' >lading_bill= #{ladingBill} , </if>
+                        <if test='blNo!=null and !"".equals(blNo)' >bl_no= #{blNo} , </if>
+                        <if test='trainNo!=null and !"".equals(trainNo)' >train_no= #{trainNo} , </if>
+                        <if test='torrNum!=null' > torr_num= #{torrNum} , </if>
+                        <if test='pack!=null and !"".equals(pack)' >pack= #{pack} , </if>
+                        <if test='boxNum!=null' > box_num= #{boxNum} , </if>
+                        <if test='torrPackType!=null and !"".equals(torrPackType)' >torr_pack_type= #{torrPackType} , </if>
+                        <if test='billWeight!=null' > bill_weight= #{billWeight} , </if>
+                        <if test='motorcycleType!=null and !"".equals(motorcycleType)' >motorcycle_type= #{motorcycleType} , </if>
+                        <if test='mark!=null and !"".equals(mark)' >mark= #{mark} , </if>
+                        <if test='teu!=null and !"".equals(teu)' >teu= #{teu} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='apiStatus!=null and !"".equals(apiStatus)' >api_status= #{apiStatus} , </if>
+                        <if test='pushOutDate!=null' > push_out_date= #{pushOutDate} , </if>
+                        <if test='pallteizeDate!=null' > pallteize_date= #{pallteizeDate} , </if>
+                        <if test='customsSubmitDate!=null' > customs_submit_date= #{customsSubmitDate} , </if>
+                        <if test='customsConfirmDate!=null' > customs_confirm_date= #{customsConfirmDate} , </if>
+                        <if test='confirmDeclarationDate!=null' > confirm_declaration_date= #{confirmDeclarationDate} , </if>
+                        <if test='logisticsCommissionDate!=null' > logistics_commission_date= #{logisticsCommissionDate} , </if>
+                        <if test='deliverDate!=null' > deliver_date= #{deliverDate} , </if>
+                        <if test='shelfDate!=null' > shelf_date= #{shelfDate} , </if>
+                        <if test='country!=null and !"".equals(country)' >country= #{country} , </if>
+                        <if test='receiverName!=null and !"".equals(receiverName)' >receiver_name= #{receiverName} , </if>
+                        <if test='receiverAddress!=null and !"".equals(receiverAddress)' >receiver_address= #{receiverAddress} , </if>
+                        <if test='mailMode!=null' > mail_mode= #{mailMode} ,</if>  
+                        <if test='saleOrderIds!=null and !"".equals(saleOrderIds)' > sale_order_ids= #{saleOrderIds} , </if>
+                        <if test='saleOrderCodes!=null and !"".equals(saleOrderCodes)' >sale_order_codes= #{saleOrderCodes} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} , </if>
+                        <if test='endShelfDate!=null' > end_shelf_date= #{endShelfDate} , </if>
+                        <if test='exportPallteizeDate!=null' > export_pallteize_date=#{exportPallteizeDate}, </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_declare_order  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_declare_order where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            code,
+            customer_id,
+            customer_name,
+            merchant_id,
+            merchant_name,
+            po_no,
+            out_depot_id,
+            out_depot_name,
+            bu_name,
+            bu_id,
+            lbx_no,
+            in_depot_id,
+            in_depot_name,
+            payment_terms,
+            trade_terms,
+            business_model,
+            currency,
+            tallying_unit,
+            load_port,
+            destination,
+            destination_port,
+            port_des,
+            delivery_addr,
+            im_exp_port,
+            out_customs_id,
+            out_customs_name,
+            in_customs_id,
+            in_customs_name,
+            departure_port,
+            ship_date,
+            remark,
+            transport,
+            shipper,
+            carrier,
+            invoice_no,
+            contract_no,
+            lading_bill,
+            bl_no,
+            train_no,
+            torr_num,
+            pack,
+            box_num,
+            torr_pack_type,
+            bill_weight,
+            motorcycle_type,
+            mark,
+            teu,
+            status,
+            api_status,
+            push_out_date,
+            pallteize_date,
+            customs_submit_date,
+            customs_confirm_date,
+            confirm_declaration_date,
+            logistics_commission_date,
+            deliver_date,
+            shelf_date,
+            country,
+            receiver_name,
+            receiver_address,
+            mail_mode,
+            sale_order_ids,
+            sale_order_codes,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_username,
+            modify_date,
+            first_shelf_date,
+            end_shelf_date,
+            export_pallteize_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                            <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                            <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                            <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                            <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                            <if test='paymentTerms!=null and !"".equals(paymentTerms)' >payment_terms= #{paymentTerms} and </if>
+                            <if test='tradeTerms!=null and !"".equals(tradeTerms)' >trade_terms= #{tradeTerms} and </if>
+                            <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                            <if test='loadPort!=null and !"".equals(loadPort)' >load_port= #{loadPort} and </if>
+                            <if test='destination!=null and !"".equals(destination)' >destination= #{destination} and </if>
+                            <if test='destinationPort!=null and !"".equals(destinationPort)' >destination_port= #{destinationPort} and </if>
+                            <if test='portDes!=null and !"".equals(portDes)' >port_des= #{portDes} and </if>
+                            <if test='deliveryAddr!=null and !"".equals(deliveryAddr)' >delivery_addr= #{deliveryAddr} and </if>
+                            <if test='imExpPort!=null and !"".equals(imExpPort)' >im_exp_port= #{imExpPort} and </if>
+                            <if test='outCustomsId!=null' > out_customs_id= #{outCustomsId} and </if>
+                            <if test='outCustomsName!=null and !"".equals(outCustomsName)' >out_customs_name= #{outCustomsName} and </if>
+                            <if test='inCustomsId!=null' > in_customs_id= #{inCustomsId} and </if>
+                            <if test='inCustomsName!=null and !"".equals(inCustomsName)' >in_customs_name= #{inCustomsName} and </if>
+                            <if test='departurePort!=null and !"".equals(departurePort)' >departure_port= #{departurePort} and </if>
+                            <if test='shipDate!=null' > ship_date= #{shipDate} and </if>
+                            <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                            <if test='transport!=null and !"".equals(transport)' >transport= #{transport} and </if>
+                            <if test='shipper!=null and !"".equals(shipper)' >shipper= #{shipper} and </if>
+                            <if test='carrier!=null and !"".equals(carrier)' >carrier= #{carrier} and </if>
+                            <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                            <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                            <if test='ladingBill!=null and !"".equals(ladingBill)' >lading_bill= #{ladingBill} and </if>
+                            <if test='blNo!=null and !"".equals(blNo)' >bl_no= #{blNo} and </if>
+                            <if test='trainNo!=null and !"".equals(trainNo)' >train_no= #{trainNo} and </if>
+                            <if test='torrNum!=null' > torr_num= #{torrNum} and </if>
+                            <if test='pack!=null and !"".equals(pack)' >pack= #{pack} and </if>
+                            <if test='boxNum!=null' > box_num= #{boxNum} and </if>
+                            <if test='torrPackType!=null and !"".equals(torrPackType)' >torr_pack_type= #{torrPackType} and </if>
+                            <if test='billWeight!=null' > bill_weight= #{billWeight} and </if>
+                            <if test='motorcycleType!=null and !"".equals(motorcycleType)' >motorcycle_type= #{motorcycleType} and </if>
+                            <if test='mark!=null and !"".equals(mark)' >mark= #{mark} and </if>
+                            <if test='teu!=null and !"".equals(teu)' >teu= #{teu} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='apiStatus!=null and !"".equals(apiStatus)' >api_status= #{apiStatus} and </if>
+                            <if test='pushOutDate!=null' > push_out_date= #{pushOutDate} and </if>
+                            <if test='pallteizeDate!=null' > pallteize_date= #{pallteizeDate} and </if>
+                            <if test='customsSubmitDate!=null' > customs_submit_date= #{customsSubmitDate} and </if>
+                            <if test='customsConfirmDate!=null' > customs_confirm_date= #{customsConfirmDate} and </if>
+                            <if test='confirmDeclarationDate!=null' > confirm_declaration_date= #{confirmDeclarationDate} and </if>
+                            <if test='logisticsCommissionDate!=null' > logistics_commission_date= #{logisticsCommissionDate} and </if>
+                            <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                            <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+                            <if test='country!=null and !"".equals(country)' >country= #{country} and </if>
+                            <if test='receiverName!=null and !"".equals(receiverName)' >receiver_name= #{receiverName} and </if>
+                            <if test='receiverAddress!=null and !"".equals(receiverAddress)' >receiver_address= #{receiverAddress} and </if>
+                            <if test='mailMode!=null and !"".equals(mailMode)' >mail_mode= #{mailMode} and </if>
+                            <if test='saleOrderIds!=null and !"".equals(saleOrderCodes)' > sale_order_ids= #{saleOrderIds} and </if>
+                            <if test='saleOrderCodes!=null and !"".equals(saleOrderCodes)' >sale_order_codes= #{saleOrderCodes} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} and </if>
+                            <if test='endShelfDate!=null' > end_shelf_date= #{endShelfDate} and </if>
+                            <if test='exportPallteizeDate!=null' > export_pallteize_date=#{exportPallteizeDate} and </if>
+                            status != "006" and 
+                </trim>
+            </where> 
+        </sql>
+
+        <!--自定义SQL-->
+		<sql id='sql_where_page'>
+            <where>
+                <trim suffixOverrides='and'>
+               		  <if test='id!=null' > id= #{id} and </if>                            
+                      <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                      <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                      <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                      <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                      <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                      <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                      <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                      <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                      <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                      <if test='buId!=null' > bu_id= #{buId} and </if>
+                      <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                      <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                      <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                      <if test='paymentTerms!=null and !"".equals(paymentTerms)' >payment_terms= #{paymentTerms} and </if>
+                      <if test='tradeTerms!=null and !"".equals(tradeTerms)' >trade_terms= #{tradeTerms} and </if>
+                      <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} and </if>
+                      <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                      <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                      <if test='loadPort!=null and !"".equals(loadPort)' >load_port= #{loadPort} and </if>
+                      <if test='destination!=null and !"".equals(destination)' >destination= #{destination} and </if>
+                      <if test='destinationPort!=null and !"".equals(destinationPort)' >destination_port= #{destinationPort} and </if>
+                      <if test='portDes!=null and !"".equals(portDes)' >port_des= #{portDes} and </if>
+                      <if test='deliveryAddr!=null and !"".equals(deliveryAddr)' >delivery_addr= #{deliveryAddr} and </if>
+                      <if test='imExpPort!=null and !"".equals(imExpPort)' >im_exp_port= #{imExpPort} and </if>
+                      <if test='outCustomsId!=null' > out_customs_id= #{outCustomsId} and </if>
+                      <if test='outCustomsName!=null and !"".equals(outCustomsName)' >out_customs_name= #{outCustomsName} and </if>
+                      <if test='inCustomsId!=null' > in_customs_id= #{inCustomsId} and </if>
+                      <if test='inCustomsName!=null and !"".equals(inCustomsName)' >in_customs_name= #{inCustomsName} and </if>
+                      <if test='departurePort!=null and !"".equals(departurePort)' >departure_port= #{departurePort} and </if>
+                      <if test='shipDate!=null' > ship_date= #{shipDate} and </if>
+                      <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                      <if test='transport!=null and !"".equals(transport)' >transport= #{transport} and </if>
+                      <if test='shipper!=null and !"".equals(shipper)' >shipper= #{shipper} and </if>
+                      <if test='carrier!=null and !"".equals(carrier)' >carrier= #{carrier} and </if>
+                      <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                      <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                      <if test='ladingBill!=null and !"".equals(ladingBill)' >lading_bill= #{ladingBill} and </if>
+                      <if test='blNo!=null and !"".equals(blNo)' >bl_no= #{blNo} and </if>
+                      <if test='trainNo!=null and !"".equals(trainNo)' >train_no= #{trainNo} and </if>
+                      <if test='torrNum!=null' > torr_num= #{torrNum} and </if>
+                      <if test='pack!=null and !"".equals(pack)' >pack= #{pack} and </if>
+                      <if test='boxNum!=null' > box_num= #{boxNum} and </if>
+                      <if test='torrPackType!=null and !"".equals(torrPackType)' >torr_pack_type= #{torrPackType} and </if>
+                      <if test='billWeight!=null' > bill_weight= #{billWeight} and </if>
+                      <if test='motorcycleType!=null and !"".equals(motorcycleType)' >motorcycle_type= #{motorcycleType} and </if>
+                      <if test='mark!=null and !"".equals(mark)' >mark= #{mark} and </if>
+                      <if test='teu!=null and !"".equals(teu)' >teu= #{teu} and </if>
+                      <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                      <if test='apiStatus!=null and !"".equals(apiStatus)' >api_status= #{apiStatus} and </if>
+                      <if test='pushOutDate!=null' > push_out_date= #{pushOutDate} and </if>
+                      <if test='pallteizeDate!=null' > pallteize_date= #{pallteizeDate} and </if>
+                      <if test='customsSubmitDate!=null' > customs_submit_date= #{customsSubmitDate} and </if>
+                      <if test='customsConfirmDate!=null' > customs_confirm_date= #{customsConfirmDate} and </if>
+                      <if test='confirmDeclarationDate!=null' > confirm_declaration_date= #{confirmDeclarationDate} and </if>
+                      <if test='logisticsCommissionDate!=null' > logistics_commission_date= #{logisticsCommissionDate} and </if>
+                      <if test='deliverDate!=null' > deliver_date= #{deliverDate} and </if>
+                      <if test='shelfDate!=null' > shelf_date= #{shelfDate} and </if>
+ 					  <if test='buList!=null and !"".equals(buList)' >bu_id in
+		                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+		                        #{buId}
+		                    </foreach>
+		                    and
+	                  </if>
+	                   <if test='saleOrderIds!=null and !"".equals(saleOrderIds)' >
+	            		sale_order_ids like CONCAT('%',#{saleOrderIds},'%') and 
+	            	 </if>
+	                  <if test='saleOrderCodes!=null and !"".equals(saleOrderCodes)' >
+	            		sale_order_codes like CONCAT('%',#{saleOrderCodes},'%') and 
+	            	 </if>
+	            	<if test="ids!=null and !''.equals(ids)">
+                        id in
+                        <foreach collection="ids.split(',')" open="(" close=")" separator="," item="id">
+                            #{id}
+                        </foreach>
+                        and
+                    </if>
+                    status != "006" and 
+                </trim>
+            </where>
+        </sql>
+		<!-- 查询所有信息 分页 -->
+	    <select id='listDTOByPage' resultType='SaleDeclareOrderDTO' parameterType='SaleDeclareOrderDTO'>
+	        select <include refid='sql_columns' /> from t_sale_declare_order  <include refid='sql_where_page' /> order by id desc
+	    </select>
+		<select id='listSaleDeclareOrder' resultType='SaleDeclareOrderDTO' parameterType='SaleDeclareOrderDTO'>
+	        select <include refid='sql_columns' /> from t_sale_declare_order  <include refid='sql_where_page' /> order by id desc
+	    </select>
+		<select id='searchDetail' resultType='SaleDeclareOrderDTO' parameterType='SaleDeclareOrderDTO'>
+	        select <include refid='sql_columns' /> from t_sale_declare_order  <include refid='sql_where_page' />
+	    </select>
+	    <select id='getDeclareTypeNum' resultType='map' parameterType='SaleDeclareOrderDTO'>
+	        select status, COUNT(1) as num from t_sale_declare_order <include refid='sql_where_page' /> 
+	        GROUP BY status ORDER BY id desc
+	    </select>
+	    <!-- 修改数据 -->
+        <update id='modifyWithNull' parameterType='SaleDeclareOrderModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_declare_order SET
+            <trim  suffixOverrides=",">
+                        customer_name= #{customerName} ,
+                        po_no= #{poNo} , 
+                        out_depot_id= #{outDepotId} , 
+                        out_depot_name= #{outDepotName} , 
+                        bu_name= #{buName} , 
+                        bu_id= #{buId} , 
+                        lbx_no= #{lbxNo} , 
+                        in_depot_id= #{inDepotId} , 
+                        in_depot_name= #{inDepotName} ,
+                        payment_terms= #{paymentTerms} , 
+                        trade_terms= #{tradeTerms} , 
+                        business_model= #{businessModel} , 
+                        currency= #{currency} , 
+                        tallying_unit= #{tallyingUnit} , 
+                        load_port= #{loadPort} , 
+                        destination= #{destination} , 
+                        destination_port= #{destinationPort} , 
+                        port_des= #{portDes} , 
+                        delivery_addr= #{deliveryAddr} , 
+                        im_exp_port= #{imExpPort} , 
+                        out_customs_id= #{outCustomsId} ,
+                        out_customs_name= #{outCustomsName} ,
+                        in_customs_id= #{inCustomsId} ,
+                        in_customs_name= #{inCustomsName} ,
+                        departure_port= #{departurePort} , 
+                        ship_date= #{shipDate} , 
+                        remark= #{remark} , 
+                        transport= #{transport} , 
+                        shipper= #{shipper} , 
+                        carrier= #{carrier} , 
+                        invoice_no= #{invoiceNo} , 
+                        contract_no= #{contractNo} , 
+                        lading_bill= #{ladingBill} , 
+                        bl_no= #{blNo} , 
+                        train_no= #{trainNo} , 
+                        torr_num= #{torrNum} , 
+                        pack= #{pack} , 
+                        box_num= #{boxNum} , 
+                        torr_pack_type= #{torrPackType} , 
+                        bill_weight= #{billWeight} , 
+                        motorcycle_type= #{motorcycleType} , 
+                        mark= #{mark} , 
+                        teu= #{teu} , 
+                        status= #{status} , 
+                        api_status= #{apiStatus} , 
+                        push_out_date= #{pushOutDate} , 
+                        pallteize_date= #{pallteizeDate} , 
+                        customs_submit_date= #{customsSubmitDate} , 
+                        customs_confirm_date= #{customsConfirmDate} , 
+                        confirm_declaration_date= #{confirmDeclarationDate} , 
+                        logistics_commission_date= #{logisticsCommissionDate} , 
+                        deliver_date= #{deliverDate} , 
+                        shelf_date= #{shelfDate} , 
+                        country= #{country} , 
+                        receiver_name= #{receiverName} , 
+                        receiver_address= #{receiverAddress} , 
+                        mail_mode= #{mailMode} , 
+                        sale_order_ids= #{saleOrderIds} , 
+                        sale_order_codes= #{saleOrderCodes} ,
+                        modifier= #{modifier} , 
+                        modifier_username= #{modifierUsername} , 
+                        modify_date= #{modifyDate} , 
+                        first_shelf_date= #{firstShelfDate} , 
+                        end_shelf_date= #{endShelfDate} , 
+                        export_pallteize_date=#{exportPallteizeDate}, 
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>    
+	    
+</mapper>

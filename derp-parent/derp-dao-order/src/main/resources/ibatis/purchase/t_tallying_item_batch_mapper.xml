@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.TallyingItemBatchMapper'>
+
+<!-- 关系映射 -->
+    <resultMap id="TallyingItemBatchModelMap" type="TallyingItemBatchModel" >
+                <result property="itemId" column="item_id" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="batchNo" column="batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="normalNum" column="normal_num" />
+                <result property="creater" column="creater" />
+                <result property="id" column="id" />
+                <result property="wornNum" column="worn_num" />
+                <result property="expireNum" column="expire_num" />
+                <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TallyingItemBatchModelMap' parameterType='TallyingItemBatchModel'>
+        select <include refid='sql_columns' /> from t_tallying_item_batch  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TallyingItemBatchModelMap' parameterType='TallyingItemBatchModel'>
+        select <include refid='sql_columns' /> from t_tallying_item_batch  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TallyingItemBatchModelMap' parameterType='TallyingItemBatchModel' >
+        select <include refid='sql_columns' /> from t_tallying_item_batch  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TallyingItemBatchModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_tallying_item_batch
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='itemId!=null' > item_id , </if>
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='normalNum!=null' > normal_num , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='id!=null' > id , </if>
+                <if test='wornNum!=null' > worn_num , </if>
+                <if test='expireNum!=null' > expire_num , </if>
+                <if test='createDate!=null' > create_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='itemId!=null' > #{itemId} , </if>
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='normalNum!=null' > #{normalNum} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='wornNum!=null' > #{wornNum} , </if>
+                <if test='expireNum!=null' > #{expireNum} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TallyingItemBatchModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_tallying_item_batch SET
+        <trim  suffixOverrides=",">
+                <if test='itemId!=null' > item_id= #{itemId} , </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='normalNum!=null' > normal_num= #{normalNum} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} , </if>
+                <if test='expireNum!=null' > expire_num= #{expireNum} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_tallying_item_batch  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_tallying_item_batch where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        item_id,
+        overdue_date,
+        batch_no,
+        production_date,
+        goods_id,
+        normal_num,
+        creater,
+        id,
+        worn_num,
+        expire_num,
+        create_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='itemId!=null' > item_id= #{itemId} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='normalNum!=null' > normal_num= #{normalNum} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='wornNum!=null' > worn_num= #{wornNum} and </if>
+                <if test='expireNum!=null' > expire_num= #{expireNum} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!--自定义SQL-->
+    <!-- 关系映射 -->
+    <resultMap id="TallyingItemBatchModelMap2" type="TallyingItemBatchDTO" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="batchNo" column="batch_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="productionDate" column="production_date" />
+                <result property="wornNum" column="worn_num" />
+                <result property="expireNum" column="expire_num" />
+                <result property="normalNum" column="normal_num" />
+                <result property="grossWeight" column="gross_weight" />
+                <result property="netWeight" column="net_weight" />
+                <result property="volume" column="volume" />
+                <result property="length" column="length" />
+                <result property="width" column="width" />
+                <result property="height" column="height" />
+                <result property="tallyingUnit" column="tallying_unit" />
+    </resultMap>
+    
+    <!-- 根据理货单id获取商品信息和批次信息 -->
+	<select id="getGoodsAndBatch" resultMap="TallyingItemBatchModelMap2" parameterType="java.lang.Long">
+			select 
+			    t2.goods_no,t2.goods_name,t1.batch_no,t1.production_date,t1.overdue_date,
+			    t1.worn_num,t1.expire_num,t1.normal_num,t2.gross_weight,t2.net_weight,t2.volume,
+			    t2.length,t2.width,t2.height,t2.tallying_unit
+			from t_tallying_item_batch t1
+			left join t_tallying_order_item t2 on t1.item_id = t2.id
+			left join t_tallying_order t3 on t2.tallying_order_id = t3.id
+		where t3.id = #{id}
+	</select>
+
+
+
+</mapper>

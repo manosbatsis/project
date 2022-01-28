@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.MerchandiseCustomsRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="MerchandiseCustomsRelModelMap" type="MerchandiseCustomsRelModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="customsAreaId" column="customs_area_id" />
+                <result property="customsAreaCode" column="customs_area_code" />
+                <result property="customsAreaName" column="customs_area_name" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MerchandiseCustomsRelModelMap' parameterType='MerchandiseCustomsRelModel'>
+        select <include refid='sql_columns' /> from st_merchandise_customs_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MerchandiseCustomsRelModelMap' parameterType='MerchandiseCustomsRelModel'>
+        select <include refid='sql_columns' /> from st_merchandise_customs_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MerchandiseCustomsRelModelMap' parameterType='MerchandiseCustomsRelModel' >
+        select <include refid='sql_columns' /> from st_merchandise_customs_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='MerchandiseCustomsRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_merchandise_customs_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='customsAreaId!=null' >customs_area_id , </if>
+                        <if test='customsAreaCode!=null and !"".equals(customsAreaCode)' > customs_area_code , </if>
+                        <if test='customsAreaName!=null and !"".equals(customsAreaName)' > customs_area_name , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='customsAreaId!=null' > #{customsAreaId} , </if>
+                        <if test='customsAreaCode!=null and !"".equals(customsAreaCode)' > #{customsAreaCode} , </if>
+                        <if test='customsAreaName!=null and !"".equals(customsAreaName)' > #{customsAreaName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MerchandiseCustomsRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_merchandise_customs_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='customsAreaId!=null' > customs_area_id= #{customsAreaId} , </if>
+                        <if test='customsAreaCode!=null and !"".equals(customsAreaCode)' >customs_area_code= #{customsAreaCode} , </if>
+                        <if test='customsAreaName!=null and !"".equals(customsAreaName)' >customs_area_name= #{customsAreaName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_merchandise_customs_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_merchandise_customs_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            goods_id,
+            goods_no,
+            customs_area_id,
+            customs_area_code,
+            customs_area_name,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='customsAreaId!=null' > customs_area_id= #{customsAreaId} and </if>
+                            <if test='customsAreaCode!=null and !"".equals(customsAreaCode)' >customs_area_code= #{customsAreaCode} and </if>
+                            <if test='customsAreaName!=null and !"".equals(customsAreaName)' >customs_area_name= #{customsAreaName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

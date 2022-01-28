@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.inventory.MonthlyAccountItemMapper'>
+
+   <!-- 关系映射 -->
+        <resultMap id="MonthlyAccountItemModelMap" type="MonthlyAccountItemModel" >
+                <result property="id" column="id" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="batchNo" column="batch_no" />
+                <result property="productionDate" column="production_date" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="availableNum" column="available_num" />
+                <result property="settlementNum" column="settlement_num" />
+                <result property="type" column="type" />
+                <result property="createDate" column="create_date" />
+                <result property="creater" column="creater" />
+                <result property="monthlyAccountId" column="monthly_account_id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="barcode" column="barcode" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="unit" column="unit" />
+                <result property="isExpire" column="is_expire" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="firstShelfDate" column="first_shelf_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MonthlyAccountItemModelMap' parameterType='MonthlyAccountItemModel'>
+        select <include refid='sql_columns' /> from i_monthly_account_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MonthlyAccountItemModelMap' parameterType='MonthlyAccountItemModel'>
+        select <include refid='sql_columns' /> from i_monthly_account_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MonthlyAccountItemModelMap' parameterType='MonthlyAccountItemModel' >
+        select <include refid='sql_columns' /> from i_monthly_account_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='MonthlyAccountItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO i_monthly_account_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                        <if test='productionDate!=null' >production_date , </if>
+                        <if test='overdueDate!=null' >overdue_date , </if>
+                        <if test='surplusNum!=null' >surplus_num , </if>
+                        <if test='availableNum!=null' >available_num , </if>
+                        <if test='settlementNum!=null' >settlement_num , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='creater!=null' >creater , </if>
+                        <if test='monthlyAccountId!=null' >monthly_account_id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                        <if test='isExpire!=null and !"".equals(isExpire)' > is_expire , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='firstShelfDate!=null' >first_shelf_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                        <if test='productionDate!=null' > #{productionDate} , </if>
+                        <if test='overdueDate!=null' > #{overdueDate} , </if>
+                        <if test='surplusNum!=null' > #{surplusNum} , </if>
+                        <if test='availableNum!=null' > #{availableNum} , </if>
+                        <if test='settlementNum!=null' > #{settlementNum} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='monthlyAccountId!=null' > #{monthlyAccountId} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                        <if test='isExpire!=null and !"".equals(isExpire)' > #{isExpire} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='firstShelfDate!=null' > #{firstShelfDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MonthlyAccountItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  i_monthly_account_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                        <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                        <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                        <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                        <if test='availableNum!=null' > available_num= #{availableNum} , </if>
+                        <if test='settlementNum!=null' > settlement_num= #{settlementNum} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='monthlyAccountId!=null' > monthly_account_id= #{monthlyAccountId} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                        <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from i_monthly_account_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from i_monthly_account_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            depot_id,
+            depot_name,
+            goods_id,
+            goods_name,
+            goods_no,
+            batch_no,
+            production_date,
+            overdue_date,
+            surplus_num,
+            available_num,
+            settlement_num,
+            type,
+            create_date,
+            creater,
+            monthly_account_id,
+            merchant_id,
+            goods_code,
+            barcode,
+            modify_date,
+            unit,
+            is_expire,
+            commbarcode,
+            first_shelf_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                            <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                            <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                            <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                            <if test='availableNum!=null' > available_num= #{availableNum} and </if>
+                            <if test='settlementNum!=null' > settlement_num= #{settlementNum} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='monthlyAccountId!=null' > monthly_account_id= #{monthlyAccountId} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                            <if test='isExpire!=null and !"".equals(isExpire)' >is_expire= #{isExpire} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='firstShelfDate!=null' > first_shelf_date= #{firstShelfDate} and </if>
+                </trim>
+            </where>
+        </sql>
+<!--自定义SQL-->
+	<!-- 删除数据 -->
+    <delete id='delItemByMonthlyAccountId' parameterType='java.lang.Long'>
+        delete from i_monthly_account_item  where monthly_account_id=#{monthlyAccountId}
+    </delete>
+    
+    <select id="getInventoryFallingPriceReserves" parameterType="map" resultType="map">
+    	SELECT
+			t1.merchant_id,
+            max(t2.merchant_name) as merchant_name,
+            t1.depot_id,
+            t1.depot_name,
+            t1.goods_id,
+            t1.goods_no,
+            t1.goods_name,
+            t1.batch_no,
+            t1.type AS stock_type,
+            t1.unit,
+            t1.production_date,
+            t1.overdue_date,
+            t1.first_shelf_date,
+			SUM(
+			IFNULL( t1.surplus_num, 0 )) AS qty,
+			SUM(0) AS real_frozen_stock_num,
+            SUM(0) AS lock_stock_num,
+            SUM(0) AS real_stock_num,
+			TIMESTAMPDIFF( DAY, t1.production_date, t1.overdue_date ) AS total_days,
+			TIMESTAMPDIFF( DAY, #{reportDate}, t1.overdue_date ) AS surplus_days
+		FROM
+			i_monthly_account_item t1
+    	    left join
+            i_monthly_account t2
+    	ON t1.monthly_account_id = t2.id
+		WHERE
+            t1.merchant_id = #{merchantId}
+			AND t1.depot_id = #{depotId}
+			AND t2.settlement_month = #{reportMonth}
+		GROUP BY
+            t1.merchant_id,
+            t1.depot_id,
+            t1.depot_name,
+            t1.goods_id,
+            t1.goods_no,
+            t1.goods_name,
+            t1.batch_no,
+            t1.type,
+            t1.unit,
+            t1.production_date,
+            t1.overdue_date,
+            t1.first_shelf_date
+    </select>
+
+</mapper>

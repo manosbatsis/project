@@ -1,0 +1,1591 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.BuFinanceInventorySummaryMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="BuFinanceInventorySummaryModelMap" type="BuFinanceInventorySummaryModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="depotId" column="depot_id" />
+                <result property="depotName" column="depot_name" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="buCode" column="bu_code" />
+                <result property="month" column="month" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="typeId" column="type_id" />
+                <result property="typeName" column="type_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="initNum" column="init_num" />
+                <result property="initAmount" column="init_amount" />
+                <result property="price" column="price" />
+                <result property="purchaseNotshelfNum" column="purchase_notshelf_num" />
+                <result property="purchaseNotshelfAmount" column="purchase_notshelf_amount" />
+                <result property="warehouseNum" column="warehouse_num" />
+                <result property="warehouseAmount" column="warehouse_amount" />
+                <result property="saleShelfNum" column="sale_shelf_num" />
+                <result property="saleShelfAmount" column="sale_shelf_amount" />
+                <result property="saleNoshelfNum" column="sale_noshelf_num" />
+                <result property="saleNoshelfAmount" column="sale_noshelf_amount" />
+                <result property="inDamagedNum" column="in_damaged_num" />
+                <result property="inDamagedAmount" column="in_damaged_amount" />
+                <result property="outDamagedNum" column="out_damaged_num" />
+                <result property="outDamagedAmount" column="out_damaged_amount" />
+                <result property="profitNum" column="profit_num" />
+                <result property="profitAmount" column="profit_amount" />
+                <result property="endNum" column="end_num" />
+                <result property="endAmount" column="end_amount" />
+                <result property="tzPrice" column="tz_price" />
+                <result property="currency" column="currency" />
+                <result property="tzEndAmount" column="tz_end_amount" />
+                <result property="differenceAmount" column="difference_amount" />
+                <result property="closeDate" column="close_date" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="purchaseEndNum" column="purchase_end_num" />
+                <result property="purchaseEndAmount" column="purchase_end_amount" />
+                <result property="saleEndNum" column="sale_end_num" />
+                <result property="saleEndAmount" column="sale_end_amount" />
+                <result property="destroyNum" column="destroy_num" />
+                <result property="destroyAmount" column="destroy_amount" />
+                <result property="lossOverflowNum" column="loss_overflow_num" />
+                <result property="lossOverflowAmount" column="loss_overflow_amount" />
+                <result property="addPurchaseNotshelfNum" column="add_purchase_notshelf_num" />
+                <result property="addPurchaseNotshelfAmount" column="add_purchase_notshelf_amount" />
+                <result property="addSaleNoshelfNum" column="add_sale_noshelf_num" />
+                <result property="addSaleNoshelfAmount" column="add_sale_noshelf_amount" />
+                <result property="lossNum" column="loss_num" />
+                <result property="lossAmount" column="loss_amount" />
+                <result property="groupCommbarcode" column="group_commbarcode" />
+                <result property="decreasePurchaseNotshelfNum" column="decrease_purchase_notshelf_num" />
+                <result property="decreasePurchaseNotshelfAmount" column="decrease_purchase_notshelf_amount" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="addTransferNoshelfNum" column="add_transfer_noshelf_num" />
+                <result property="addTransferNoshelfAmount" column="add_transfer_noshelf_amount" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="moveInNum" column="move_in_num" />
+                <result property="moveOutNum" column="move_out_num" />
+                <result property="moveNum" column="move_num" />
+                <result property="accountPrice" column="account_price" />
+                <result property="status" column="status" />
+                <result property="superiorParentBrand" column="superior_parent_brand" />
+                <result property="sdInitAmount" column="sd_init_amount" />
+                <result property="sdPrice" column="sd_price" />
+                <result property="sdWarehouseAmount" column="sd_warehouse_amount" />
+                <result property="sdTzPrice" column="sd_tz_price" />
+                <result property="sdSaleEndAmount" column="sd_sale_end_amount" />
+                <result property="sdLossOverflowAmount" column="sd_loss_overflow_amount" />
+                <result property="sdEndAmount" column="sd_end_amount" />
+                <result property="sdAddPurchaseNotshelfAmount" column="sd_add_purchase_notshelf_amount" />
+                <result property="sdInterestInitAmount" column="sd_interest_init_amount" />
+	            <result property="sdInterestPrice" column="sd_interest_price" />
+	            <result property="sdInterestPurchaseEndAmount" column="sd_interest_purchase_end_amount" />
+	            <result property="sdInterestTzPrice" column="sd_interest_tz_price" />
+	            <result property="sdInterestSaleEndAmount" column="sd_interest_sale_end_amount" />
+	            <result property="sdInterestLossOverflowAmount" column="sd_interest_loss_overflow_amount" />
+	            <result property="sdInterestEndAmount" column="sd_interest_end_amount" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='BuFinanceInventorySummaryModelMap' parameterType='BuFinanceInventorySummaryModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_inventory_summary  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='BuFinanceInventorySummaryModelMap' parameterType='BuFinanceInventorySummaryModel'>
+        select <include refid='sql_columns' /> from r_bu_finance_inventory_summary  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='BuFinanceInventorySummaryModelMap' parameterType='BuFinanceInventorySummaryModel' >
+        select <include refid='sql_columns' /> from r_bu_finance_inventory_summary  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='BuFinanceInventorySummaryModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_bu_finance_inventory_summary
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > depot_name , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='buCode!=null and !"".equals(buCode)' > bu_code , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='typeId!=null' >type_id , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' > type_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='initNum!=null' >init_num , </if>
+                        <if test='initAmount!=null' >init_amount , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='purchaseNotshelfNum!=null' >purchase_notshelf_num , </if>
+                        <if test='purchaseNotshelfAmount!=null' >purchase_notshelf_amount , </if>
+                        <if test='warehouseNum!=null' >warehouse_num , </if>
+                        <if test='warehouseAmount!=null' >warehouse_amount , </if>
+                        <if test='saleShelfNum!=null' >sale_shelf_num , </if>
+                        <if test='saleShelfAmount!=null' >sale_shelf_amount , </if>
+                        <if test='saleNoshelfNum!=null' >sale_noshelf_num , </if>
+                        <if test='saleNoshelfAmount!=null' >sale_noshelf_amount , </if>
+                        <if test='inDamagedNum!=null' >in_damaged_num , </if>
+                        <if test='inDamagedAmount!=null' >in_damaged_amount , </if>
+                        <if test='outDamagedNum!=null' >out_damaged_num , </if>
+                        <if test='outDamagedAmount!=null' >out_damaged_amount , </if>
+                        <if test='profitNum!=null' >profit_num , </if>
+                        <if test='profitAmount!=null' >profit_amount , </if>
+                        <if test='endNum!=null' >end_num , </if>
+                        <if test='endAmount!=null' >end_amount , </if>
+                        <if test='tzPrice!=null' >tz_price , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='tzEndAmount!=null' >tz_end_amount , </if>
+                        <if test='differenceAmount!=null' >difference_amount , </if>
+                        <if test='closeDate!=null' >close_date , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='purchaseEndNum!=null' >purchase_end_num , </if>
+                        <if test='purchaseEndAmount!=null' >purchase_end_amount , </if>
+                        <if test='saleEndNum!=null' >sale_end_num , </if>
+                        <if test='saleEndAmount!=null' >sale_end_amount , </if>
+                        <if test='destroyNum!=null' >destroy_num , </if>
+                        <if test='destroyAmount!=null' >destroy_amount , </if>
+                        <if test='lossOverflowNum!=null' >loss_overflow_num , </if>
+                        <if test='lossOverflowAmount!=null' >loss_overflow_amount , </if>
+                        <if test='addPurchaseNotshelfNum!=null' >add_purchase_notshelf_num , </if>
+                        <if test='addPurchaseNotshelfAmount!=null' >add_purchase_notshelf_amount , </if>
+                        <if test='addSaleNoshelfNum!=null' >add_sale_noshelf_num , </if>
+                        <if test='addSaleNoshelfAmount!=null' >add_sale_noshelf_amount , </if>
+                        <if test='lossNum!=null' >loss_num , </if>
+                        <if test='lossAmount!=null' >loss_amount , </if>
+                        <if test='groupCommbarcode!=null and !"".equals(groupCommbarcode)' > group_commbarcode , </if>
+                        <if test='decreasePurchaseNotshelfNum!=null' >decrease_purchase_notshelf_num , </if>
+                        <if test='decreasePurchaseNotshelfAmount!=null' >decrease_purchase_notshelf_amount , </if>
+                        <if test='surplusNum!=null' >surplus_num , </if>
+                        <if test='addTransferNoshelfNum!=null' >add_transfer_noshelf_num , </if>
+                        <if test='addTransferNoshelfAmount!=null' >add_transfer_noshelf_amount , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='moveInNum!=null' >move_in_num , </if>
+                        <if test='moveOutNum!=null' >move_out_num , </if>
+                        <if test='moveNum!=null' >move_num , </if>
+                        <if test='accountPrice!=null and !"".equals(accountPrice)' > account_price , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > superior_parent_brand , </if>
+                        <if test='sdInitAmount!=null' >sd_init_amount , </if>
+                        <if test='sdPrice!=null' >sd_price , </if>
+                        <if test='sdWarehouseAmount!=null' >sd_warehouse_amount , </if>
+                        <if test='sdTzPrice!=null' >sd_tz_price , </if>
+                        <if test='sdSaleEndAmount!=null' >sd_sale_end_amount , </if>
+                        <if test='sdLossOverflowAmount!=null' >sd_loss_overflow_amount , </if>
+                        <if test='sdEndAmount!=null' >sd_end_amount , </if>
+                        <if test='sdAddPurchaseNotshelfAmount!=null' >sd_add_purchase_notshelf_amount , </if>
+                        <if test='sdInterestInitAmount!=null' >sd_interest_init_amount  , </if>
+                        <if test='sdInterestPrice!=null' >sd_interest_price  , </if>
+                        <if test='sdInterestPurchaseEndAmount!=null' >sd_interest_purchase_end_amount  , </if>
+                        <if test='sdInterestTzPrice!=null' >sd_interest_tz_price  , </if>
+                        <if test='sdInterestSaleEndAmount!=null' >sd_interest_sale_end_amount  , </if>
+                        <if test='sdInterestLossOverflowAmount!=null' >sd_interest_loss_overflow_amount  , </if>
+                        <if test='sdInterestEndAmount!=null' >sd_interest_end_amount  , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' > #{depotName} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='buCode!=null and !"".equals(buCode)' > #{buCode} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='typeId!=null' > #{typeId} , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' > #{typeName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='initNum!=null' > #{initNum} , </if>
+                        <if test='initAmount!=null' > #{initAmount} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='purchaseNotshelfNum!=null' > #{purchaseNotshelfNum} , </if>
+                        <if test='purchaseNotshelfAmount!=null' > #{purchaseNotshelfAmount} , </if>
+                        <if test='warehouseNum!=null' > #{warehouseNum} , </if>
+                        <if test='warehouseAmount!=null' > #{warehouseAmount} , </if>
+                        <if test='saleShelfNum!=null' > #{saleShelfNum} , </if>
+                        <if test='saleShelfAmount!=null' > #{saleShelfAmount} , </if>
+                        <if test='saleNoshelfNum!=null' > #{saleNoshelfNum} , </if>
+                        <if test='saleNoshelfAmount!=null' > #{saleNoshelfAmount} , </if>
+                        <if test='inDamagedNum!=null' > #{inDamagedNum} , </if>
+                        <if test='inDamagedAmount!=null' > #{inDamagedAmount} , </if>
+                        <if test='outDamagedNum!=null' > #{outDamagedNum} , </if>
+                        <if test='outDamagedAmount!=null' > #{outDamagedAmount} , </if>
+                        <if test='profitNum!=null' > #{profitNum} , </if>
+                        <if test='profitAmount!=null' > #{profitAmount} , </if>
+                        <if test='endNum!=null' > #{endNum} , </if>
+                        <if test='endAmount!=null' > #{endAmount} , </if>
+                        <if test='tzPrice!=null' > #{tzPrice} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='tzEndAmount!=null' > #{tzEndAmount} , </if>
+                        <if test='differenceAmount!=null' > #{differenceAmount} , </if>
+                        <if test='closeDate!=null' > #{closeDate} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='purchaseEndNum!=null' > #{purchaseEndNum} , </if>
+                        <if test='purchaseEndAmount!=null' > #{purchaseEndAmount} , </if>
+                        <if test='saleEndNum!=null' > #{saleEndNum} , </if>
+                        <if test='saleEndAmount!=null' > #{saleEndAmount} , </if>
+                        <if test='destroyNum!=null' > #{destroyNum} , </if>
+                        <if test='destroyAmount!=null' > #{destroyAmount} , </if>
+                        <if test='lossOverflowNum!=null' > #{lossOverflowNum} , </if>
+                        <if test='lossOverflowAmount!=null' > #{lossOverflowAmount} , </if>
+                        <if test='addPurchaseNotshelfNum!=null' > #{addPurchaseNotshelfNum} , </if>
+                        <if test='addPurchaseNotshelfAmount!=null' > #{addPurchaseNotshelfAmount} , </if>
+                        <if test='addSaleNoshelfNum!=null' > #{addSaleNoshelfNum} , </if>
+                        <if test='addSaleNoshelfAmount!=null' > #{addSaleNoshelfAmount} , </if>
+                        <if test='lossNum!=null' > #{lossNum} , </if>
+                        <if test='lossAmount!=null' > #{lossAmount} , </if>
+                        <if test='groupCommbarcode!=null and !"".equals(groupCommbarcode)' > #{groupCommbarcode} , </if>
+                        <if test='decreasePurchaseNotshelfNum!=null' > #{decreasePurchaseNotshelfNum} , </if>
+                        <if test='decreasePurchaseNotshelfAmount!=null' > #{decreasePurchaseNotshelfAmount} , </if>
+                        <if test='surplusNum!=null' > #{surplusNum} , </if>
+                        <if test='addTransferNoshelfNum!=null' > #{addTransferNoshelfNum} , </if>
+                        <if test='addTransferNoshelfAmount!=null' > #{addTransferNoshelfAmount} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='moveInNum!=null' > #{moveInNum} , </if>
+                        <if test='moveOutNum!=null' > #{moveOutNum} , </if>
+                        <if test='moveNum!=null' > #{moveNum} , </if>
+                        <if test='accountPrice!=null and !"".equals(accountPrice)' > #{accountPrice} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' > #{superiorParentBrand} , </if>        
+                        <if test='sdInitAmount!=null' > #{sdInitAmount} , </if>
+                        <if test='sdPrice!=null' > #{sdPrice} , </if>
+                        <if test='sdWarehouseAmount!=null' > #{sdWarehouseAmount} , </if>
+                        <if test='sdTzPrice!=null' > #{sdTzPrice} , </if>
+                        <if test='sdSaleEndAmount!=null' > #{sdSaleEndAmount} , </if>
+                        <if test='sdLossOverflowAmount!=null' > #{sdLossOverflowAmount} , </if>
+                        <if test='sdEndAmount!=null' > #{sdEndAmount} , </if>
+                        <if test='sdAddPurchaseNotshelfAmount!=null' > #{sdAddPurchaseNotshelfAmount} , </if>
+                        <if test='sdInterestInitAmount!=null' > #{sdInterestInitAmount} , </if>
+                        <if test='sdInterestPrice!=null' > #{sdInterestPrice} , </if>
+                        <if test='sdInterestPurchaseEndAmount!=null' > #{sdInterestPurchaseEndAmount} , </if>
+                        <if test='sdInterestTzPrice!=null' > #{sdInterestTzPrice} , </if>
+                        <if test='sdInterestSaleEndAmount!=null' > #{sdInterestSaleEndAmount} , </if>
+                        <if test='sdInterestLossOverflowAmount!=null' > #{sdInterestLossOverflowAmount} , </if>
+                        <if test='sdInterestEndAmount!=null' > #{sdInterestEndAmount} , </if>                    
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='BuFinanceInventorySummaryModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_bu_finance_inventory_summary SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='buCode!=null and !"".equals(buCode)' >bu_code= #{buCode} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='typeId!=null' > type_id= #{typeId} , </if>
+                        <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='initNum!=null' > init_num= #{initNum} , </if>
+                        <if test='initAmount!=null' > init_amount= #{initAmount} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='purchaseNotshelfNum!=null' > purchase_notshelf_num= #{purchaseNotshelfNum} , </if>
+                        <if test='purchaseNotshelfAmount!=null' > purchase_notshelf_amount= #{purchaseNotshelfAmount} , </if>
+                        <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} , </if>
+                        <if test='warehouseAmount!=null' > warehouse_amount= #{warehouseAmount} , </if>
+                        <if test='saleShelfNum!=null' > sale_shelf_num= #{saleShelfNum} , </if>
+                        <if test='saleShelfAmount!=null' > sale_shelf_amount= #{saleShelfAmount} , </if>
+                        <if test='saleNoshelfNum!=null' > sale_noshelf_num= #{saleNoshelfNum} , </if>
+                        <if test='saleNoshelfAmount!=null' > sale_noshelf_amount= #{saleNoshelfAmount} , </if>
+                        <if test='inDamagedNum!=null' > in_damaged_num= #{inDamagedNum} , </if>
+                        <if test='inDamagedAmount!=null' > in_damaged_amount= #{inDamagedAmount} , </if>
+                        <if test='outDamagedNum!=null' > out_damaged_num= #{outDamagedNum} , </if>
+                        <if test='outDamagedAmount!=null' > out_damaged_amount= #{outDamagedAmount} , </if>
+                        <if test='profitNum!=null' > profit_num= #{profitNum} , </if>
+                        <if test='profitAmount!=null' > profit_amount= #{profitAmount} , </if>
+                        <if test='endNum!=null' > end_num= #{endNum} , </if>
+                        <if test='endAmount!=null' > end_amount= #{endAmount} , </if>
+                        <if test='tzPrice!=null' > tz_price= #{tzPrice} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='tzEndAmount!=null' > tz_end_amount= #{tzEndAmount} , </if>
+                        <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} , </if>
+                        <if test='closeDate!=null' > close_date= #{closeDate} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='purchaseEndNum!=null' > purchase_end_num= #{purchaseEndNum} , </if>
+                        <if test='purchaseEndAmount!=null' > purchase_end_amount= #{purchaseEndAmount} , </if>
+                        <if test='saleEndNum!=null' > sale_end_num= #{saleEndNum} , </if>
+                        <if test='saleEndAmount!=null' > sale_end_amount= #{saleEndAmount} , </if>
+                        <if test='destroyNum!=null' > destroy_num= #{destroyNum} , </if>
+                        <if test='destroyAmount!=null' > destroy_amount= #{destroyAmount} , </if>
+                        <if test='lossOverflowNum!=null' > loss_overflow_num= #{lossOverflowNum} , </if>
+                        <if test='lossOverflowAmount!=null' > loss_overflow_amount= #{lossOverflowAmount} , </if>
+                        <if test='addPurchaseNotshelfNum!=null' > add_purchase_notshelf_num= #{addPurchaseNotshelfNum} , </if>
+                        <if test='addPurchaseNotshelfAmount!=null' > add_purchase_notshelf_amount= #{addPurchaseNotshelfAmount} , </if>
+                        <if test='addSaleNoshelfNum!=null' > add_sale_noshelf_num= #{addSaleNoshelfNum} , </if>
+                        <if test='addSaleNoshelfAmount!=null' > add_sale_noshelf_amount= #{addSaleNoshelfAmount} , </if>
+                        <if test='lossNum!=null' > loss_num= #{lossNum} , </if>
+                        <if test='lossAmount!=null' > loss_amount= #{lossAmount} , </if>
+                        <if test='groupCommbarcode!=null and !"".equals(groupCommbarcode)' >group_commbarcode= #{groupCommbarcode} , </if>
+                        <if test='decreasePurchaseNotshelfNum!=null' > decrease_purchase_notshelf_num= #{decreasePurchaseNotshelfNum} , </if>
+                        <if test='decreasePurchaseNotshelfAmount!=null' > decrease_purchase_notshelf_amount= #{decreasePurchaseNotshelfAmount} , </if>
+                        <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                        <if test='addTransferNoshelfNum!=null' > add_transfer_noshelf_num= #{addTransferNoshelfNum} , </if>
+                        <if test='addTransferNoshelfAmount!=null' > add_transfer_noshelf_amount= #{addTransferNoshelfAmount} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='moveInNum!=null' > move_in_num= #{moveInNum} , </if>
+                        <if test='moveOutNum!=null' > move_out_num= #{moveOutNum} , </if>
+                        <if test='moveNum!=null' > move_num= #{moveNum} , </if>
+                        <if test='accountPrice!=null and !"".equals(accountPrice)' >account_price= #{accountPrice} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} , </if>
+                        <if test='sdInitAmount!=null' > sd_init_amount= #{sdInitAmount} , </if>
+                        <if test='sdPrice!=null' > sd_price= #{sdPrice} , </if>
+                        <if test='sdWarehouseAmount!=null' > sd_warehouse_amount= #{sdWarehouseAmount} , </if>
+                        <if test='sdTzPrice!=null' > sd_tz_price= #{sdTzPrice} , </if>
+                        <if test='sdSaleEndAmount!=null' > sd_sale_end_amount= #{sdSaleEndAmount} , </if>
+                        <if test='sdLossOverflowAmount!=null' > sd_loss_overflow_amount= #{sdLossOverflowAmount} , </if>
+                        <if test='sdEndAmount!=null' > sd_end_amount= #{sdEndAmount} , </if>
+                        <if test='sdAddPurchaseNotshelfAmount!=null' > sd_add_purchase_notshelf_amount= #{sdAddPurchaseNotshelfAmount} , </if>
+                        <if test='sdInterestInitAmount!=null' > sd_interest_init_amount= #{sdInterestInitAmount} , </if>
+                        <if test='sdInterestPrice!=null' > sd_interest_price= #{sdInterestPrice} , </if>
+                        <if test='sdInterestPurchaseEndAmount!=null' > sd_interest_purchase_end_amount= #{sdInterestPurchaseEndAmount} , </if>
+                        <if test='sdInterestTzPrice!=null' > sd_interest_tz_price= #{sdInterestTzPrice} , </if>
+                        <if test='sdInterestSaleEndAmount!=null' > sd_interest_sale_end_amount= #{sdInterestSaleEndAmount} , </if>
+                        <if test='sdInterestLossOverflowAmount!=null' > sd_interest_loss_overflow_amount= #{sdInterestLossOverflowAmount} , </if>
+                        <if test='sdInterestEndAmount!=null' > sd_interest_end_amount= #{sdInterestEndAmount} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_bu_finance_inventory_summary  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_bu_finance_inventory_summary where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            depot_id,
+            depot_name,
+            bu_id,
+            bu_name,
+            bu_code,
+            month,
+            brand_id,
+            brand_name,
+            type_id,
+            type_name,
+            goods_id,
+            goods_no,
+            goods_name,
+            barcode,
+            init_num,
+            init_amount,
+            price,
+            purchase_notshelf_num,
+            purchase_notshelf_amount,
+            warehouse_num,
+            warehouse_amount,
+            sale_shelf_num,
+            sale_shelf_amount,
+            sale_noshelf_num,
+            sale_noshelf_amount,
+            in_damaged_num,
+            in_damaged_amount,
+            out_damaged_num,
+            out_damaged_amount,
+            profit_num,
+            profit_amount,
+            end_num,
+            end_amount,
+            tz_price,
+            currency,
+            tz_end_amount,
+            difference_amount,
+            close_date,
+            commbarcode,
+            purchase_end_num,
+            purchase_end_amount,
+            sale_end_num,
+            sale_end_amount,
+            destroy_num,
+            destroy_amount,
+            loss_overflow_num,
+            loss_overflow_amount,
+            add_purchase_notshelf_num,
+            add_purchase_notshelf_amount,
+            add_sale_noshelf_num,
+            add_sale_noshelf_amount,
+            loss_num,
+            loss_amount,
+            group_commbarcode,
+            decrease_purchase_notshelf_num,
+            decrease_purchase_notshelf_amount,
+            surplus_num,
+            add_transfer_noshelf_num,
+            add_transfer_noshelf_amount,
+            create_date,
+            modify_date,
+            move_in_num,
+            move_out_num,
+            move_num,
+            account_price,
+            status,
+            superior_parent_brand,
+            sd_init_amount,
+            sd_price,
+            sd_warehouse_amount,
+            sd_tz_price,
+            sd_sale_end_amount,
+            sd_loss_overflow_amount,
+            sd_end_amount,
+            sd_add_purchase_notshelf_amount,
+            sd_interest_init_amount,
+            sd_interest_price,
+            sd_interest_purchase_end_amount,
+            sd_interest_tz_price,
+            sd_interest_sale_end_amount,
+            sd_interest_loss_overflow_amount,
+            sd_interest_end_amount
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='buCode!=null and !"".equals(buCode)' >bu_code= #{buCode} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='typeId!=null' > type_id= #{typeId} and </if>
+                            <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='initNum!=null' > init_num= #{initNum} and </if>
+                            <if test='initAmount!=null' > init_amount= #{initAmount} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='purchaseNotshelfNum!=null' > purchase_notshelf_num= #{purchaseNotshelfNum} and </if>
+                            <if test='purchaseNotshelfAmount!=null' > purchase_notshelf_amount= #{purchaseNotshelfAmount} and </if>
+                            <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} and </if>
+                            <if test='warehouseAmount!=null' > warehouse_amount= #{warehouseAmount} and </if>
+                            <if test='saleShelfNum!=null' > sale_shelf_num= #{saleShelfNum} and </if>
+                            <if test='saleShelfAmount!=null' > sale_shelf_amount= #{saleShelfAmount} and </if>
+                            <if test='saleNoshelfNum!=null' > sale_noshelf_num= #{saleNoshelfNum} and </if>
+                            <if test='saleNoshelfAmount!=null' > sale_noshelf_amount= #{saleNoshelfAmount} and </if>
+                            <if test='inDamagedNum!=null' > in_damaged_num= #{inDamagedNum} and </if>
+                            <if test='inDamagedAmount!=null' > in_damaged_amount= #{inDamagedAmount} and </if>
+                            <if test='outDamagedNum!=null' > out_damaged_num= #{outDamagedNum} and </if>
+                            <if test='outDamagedAmount!=null' > out_damaged_amount= #{outDamagedAmount} and </if>
+                            <if test='profitNum!=null' > profit_num= #{profitNum} and </if>
+                            <if test='profitAmount!=null' > profit_amount= #{profitAmount} and </if>
+                            <if test='endNum!=null' > end_num= #{endNum} and </if>
+                            <if test='endAmount!=null' > end_amount= #{endAmount} and </if>
+                            <if test='tzPrice!=null' > tz_price= #{tzPrice} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='tzEndAmount!=null' > tz_end_amount= #{tzEndAmount} and </if>
+                            <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} and </if>
+                            <if test='closeDate!=null' > close_date= #{closeDate} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='purchaseEndNum!=null' > purchase_end_num= #{purchaseEndNum} and </if>
+                            <if test='purchaseEndAmount!=null' > purchase_end_amount= #{purchaseEndAmount} and </if>
+                            <if test='saleEndNum!=null' > sale_end_num= #{saleEndNum} and </if>
+                            <if test='saleEndAmount!=null' > sale_end_amount= #{saleEndAmount} and </if>
+                            <if test='destroyNum!=null' > destroy_num= #{destroyNum} and </if>
+                            <if test='destroyAmount!=null' > destroy_amount= #{destroyAmount} and </if>
+                            <if test='lossOverflowNum!=null' > loss_overflow_num= #{lossOverflowNum} and </if>
+                            <if test='lossOverflowAmount!=null' > loss_overflow_amount= #{lossOverflowAmount} and </if>
+                            <if test='addPurchaseNotshelfNum!=null' > add_purchase_notshelf_num= #{addPurchaseNotshelfNum} and </if>
+                            <if test='addPurchaseNotshelfAmount!=null' > add_purchase_notshelf_amount= #{addPurchaseNotshelfAmount} and </if>
+                            <if test='addSaleNoshelfNum!=null' > add_sale_noshelf_num= #{addSaleNoshelfNum} and </if>
+                            <if test='addSaleNoshelfAmount!=null' > add_sale_noshelf_amount= #{addSaleNoshelfAmount} and </if>
+                            <if test='lossNum!=null' > loss_num= #{lossNum} and </if>
+                            <if test='lossAmount!=null' > loss_amount= #{lossAmount} and </if>
+                            <if test='groupCommbarcode!=null and !"".equals(groupCommbarcode)' >group_commbarcode= #{groupCommbarcode} and </if>
+                            <if test='decreasePurchaseNotshelfNum!=null' > decrease_purchase_notshelf_num= #{decreasePurchaseNotshelfNum} and </if>
+                            <if test='decreasePurchaseNotshelfAmount!=null' > decrease_purchase_notshelf_amount= #{decreasePurchaseNotshelfAmount} and </if>
+                            <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                            <if test='addTransferNoshelfNum!=null' > add_transfer_noshelf_num= #{addTransferNoshelfNum} and </if>
+                            <if test='addTransferNoshelfAmount!=null' > add_transfer_noshelf_amount= #{addTransferNoshelfAmount} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='moveInNum!=null' > move_in_num= #{moveInNum} and </if>
+                            <if test='moveOutNum!=null' > move_out_num= #{moveOutNum} and </if>
+                            <if test='moveNum!=null' > move_num= #{moveNum} and </if>
+                            <if test='accountPrice!=null and !"".equals(accountPrice)' >account_price= #{accountPrice} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='superiorParentBrand!=null and !"".equals(superiorParentBrand)' >superior_parent_brand= #{superiorParentBrand} and </if>
+                            <if test='sdInitAmount!=null' > sd_init_amount= #{sdInitAmount} and </if>
+                            <if test='sdPrice!=null' > sd_price= #{sdPrice} and </if>
+                            <if test='sdWarehouseAmount!=null' > sd_warehouse_amount= #{sdWarehouseAmount} and </if>
+                            <if test='sdTzPrice!=null' > sd_tz_price= #{sdTzPrice} and </if>
+                            <if test='sdSaleEndAmount!=null' > sd_sale_end_amount= #{sdSaleEndAmount} and </if>
+                            <if test='sdLossOverflowAmount!=null' > sd_loss_overflow_amount= #{sdLossOverflowAmount} and </if>
+                            <if test='sdEndAmount!=null' > sd_end_amount= #{sdEndAmount} and </if>
+                            <if test='sdAddPurchaseNotshelfAmount!=null' > sd_add_purchase_notshelf_amount= #{sdAddPurchaseNotshelfAmount} and </if>
+                            <if test='sdInterestInitAmount!=null' > sd_interest_init_amount= #{sdInterestInitAmount} and </if>
+                            <if test='sdInterestPrice!=null' > sd_interest_price= #{sdInterestPrice} and </if>
+                            <if test='sdInterestPurchaseEndAmount!=null' > sd_interest_purchase_end_amount= #{sdInterestPurchaseEndAmount} and </if>
+                            <if test='sdInterestTzPrice!=null' > sd_interest_tz_price= #{sdInterestTzPrice} and </if>
+                            <if test='sdInterestSaleEndAmount!=null' > sd_interest_sale_end_amount= #{sdInterestSaleEndAmount} and </if>
+                            <if test='sdInterestLossOverflowAmount!=null' > sd_interest_loss_overflow_amount= #{sdInterestLossOverflowAmount} and </if>
+                            <if test='sdInterestEndAmount!=null' > sd_interest_end_amount= #{sdInterestEndAmount} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+   
+       <!--清空商家商家、仓库、本月的报表数据 -->
+		<delete id='delBuDepotMonthReport' parameterType='map'>
+			delete from r_bu_finance_inventory_summary
+			where merchant_id=#{merchantId}  and month=#{month} and bu_id= #{buId} 
+		</delete>
+		
+	    <!-- 取事业部商家、仓库、上月份货号的期末结存数量、调整标准成本单价、调整期末结存金额 -->
+	    <select id='getBuGoodsNoSummary' resultType='map' parameterType='map' >
+	        select end_num,tz_price,tz_end_amount,currency from r_bu_finance_inventory_summary 
+			where merchant_id=#{merchantId} 			      
+			      <if test='depotId!=null' >and depot_id=#{depotId} </if>
+			      and bu_id= #{buId}
+			      and month=#{month}
+			      and goods_no=#{goodsNo}
+			 order by tz_price desc limit 1;
+	    </select>
+
+    <select id='getListByPage' resultMap='BuFinanceInventorySummaryModelMap' parameterType='BuFinanceInventorySummaryModel'>
+		select f2.*,t2.`name` as brand_name
+			from
+			(
+			select 
+				goods_no,
+				bu_id,
+				MAX(type_name) AS type_name,
+				MAX(goods_name) AS goods_name,
+				MAX(barcode) AS barcode,
+				MAX(price) AS price,
+				MAX(tz_price) AS tz_price,
+				MAX(commbarcode) AS commbarcode,
+				MAX(bu_name) AS bu_name,
+				SUM(init_num) AS init_num,
+				SUM(init_amount) AS init_amount,
+				SUM(purchase_notshelf_num) AS purchase_notshelf_num,
+				SUM(purchase_notshelf_amount) AS purchase_notshelf_amount,
+				SUM(warehouse_num) AS warehouse_num,
+				SUM(warehouse_amount) AS warehouse_amount,
+				SUM(sale_shelf_num) AS sale_shelf_num,
+				SUM(sale_shelf_amount) AS sale_shelf_amount,
+				SUM(sale_noshelf_num) AS sale_noshelf_num,
+				SUM(sale_noshelf_amount) AS sale_noshelf_amount,
+				SUM(in_damaged_num) AS in_damaged_num,
+				SUM(in_damaged_amount) AS in_damaged_amount,
+				SUM(out_damaged_num) AS out_damaged_num,
+				SUM(out_damaged_amount) AS out_damaged_amount,
+				SUM(profit_num) AS profit_num,
+				SUM(profit_amount) AS profit_amount,
+				SUM(end_num) AS end_num,
+				SUM(end_amount) AS end_amount,
+				SUM(tz_end_amount) AS tz_end_amount,
+				SUM(difference_amount) AS difference_amount,
+				MAX(create_date) AS create_date,
+				SUM(purchase_end_num) AS purchase_end_num,
+				SUM(purchase_end_amount) AS purchase_end_amount,
+				SUM(sale_end_num) AS sale_end_num,
+				SUM(sale_end_amount) AS sale_end_amount,
+				SUM(destroy_num) AS destroy_num,
+				SUM(destroy_amount) AS destroy_amount,
+				SUM(loss_overflow_num) AS loss_overflow_num,
+				SUM(loss_overflow_amount) AS loss_overflow_amount,
+				SUM(add_purchase_notshelf_num) AS add_purchase_notshelf_num,
+				SUM(add_purchase_notshelf_amount) AS add_purchase_notshelf_amount,
+				SUM(add_sale_noshelf_num) AS add_sale_noshelf_num,
+				SUM(add_sale_noshelf_amount) AS add_sale_noshelf_amount,
+				SUM(loss_num) AS loss_num,
+				SUM(loss_amount) AS loss_amount,
+				SUM(add_transfer_noshelf_num) as add_transfer_noshelf_num,
+				SUM(add_transfer_noshelf_amount) as add_transfer_noshelf_amount,
+				SUM(move_in_num) as move_in_num,
+				SUM(move_out_num) as move_out_num,
+				SUM(move_num) as move_num,
+				SUM(decrease_purchase_notshelf_num) as decrease_purchase_notshelf_num
+			from r_bu_finance_inventory_summary 
+			where merchant_id=#{merchantId} AND `month`=#{month} 
+			<if test='depotId!=null' > and depot_id= #{depotId} </if>
+			<if test='barcode!=null and !"".equals(barcode)' > and barcode= #{barcode} </if>
+			<if test='typeId!=null' > and type_id= #{typeId} </if>
+			<if test='buId!=null' >and bu_id= #{buId}  </if>
+		    <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                   <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                       #{buId}
+                   </foreach>
+            </if>
+			<if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+			   and brand_id in 
+				   <foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+			        #{brandId}
+			        </foreach> 
+		    </if>  
+			group by bu_id,goods_no
+		) f2 
+   		LEFT JOIN st_commbarcode t1 ON t1.commbarcode=f2.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+		order by t2.`name`,f2.type_name,f2.goods_no,f2.barcode
+    </select>
+    
+    
+        <!-- 导出 -->
+    <select id='getBuListForMap' resultType="map" parameterType='map'>
+		select f2.*,
+			t2.superior_parent_brand as superior_parent_brand,
+			t2.`name` as brand_name
+		
+		from (
+			select goods_no AS goods_no,
+				bu_id,
+				MAX(type_name)as type_name,
+				MAX(goods_name)as goods_name,
+				MAX(barcode)as barcode,
+				MAX(commbarcode)as commbarcode,
+				MAX(tz_price)as tz_price,
+				MAX(bu_name)as bu_name,
+				MAX(price)as price,
+				CONVERT(SUM(init_num),SIGNED) AS init_num,
+				SUM(init_amount) AS init_amount,
+				CONVERT(SUM(purchase_notshelf_num),SIGNED) AS purchase_notshelf_num,
+				SUM(purchase_notshelf_amount) AS purchase_notshelf_amount,
+				CONVERT(SUM(warehouse_num),SIGNED) AS warehouse_num,
+				SUM(warehouse_amount) AS warehouse_amount,
+				CONVERT(SUM(sale_shelf_num),SIGNED) AS sale_shelf_num,
+				SUM(sale_shelf_amount) AS sale_shelf_amount,
+				CONVERT(SUM(sale_noshelf_num),SIGNED) AS sale_noshelf_num,
+				SUM(sale_noshelf_amount) AS sale_noshelf_amount,
+				CONVERT(SUM(in_damaged_num),SIGNED) AS in_damaged_num,
+				SUM(in_damaged_amount) AS in_damaged_amount,
+				CONVERT(SUM(out_damaged_num),SIGNED) AS out_damaged_num,
+				SUM(out_damaged_amount) AS out_damaged_amount,
+				CONVERT(SUM(profit_num),SIGNED) AS profit_num,
+				SUM(profit_amount) AS profit_amount,
+				CONVERT(SUM(end_num),SIGNED) AS end_num,
+				SUM(end_amount) AS end_amount,
+				SUM(tz_end_amount) AS tz_end_amount,
+				SUM(difference_amount) AS difference_amount,
+				MAX(create_date) AS create_date,
+				CONVERT(SUM(purchase_end_num),SIGNED) AS purchase_end_num,
+				SUM(purchase_end_amount) AS purchase_end_amount,
+				CONVERT(SUM(sale_end_num),SIGNED) AS sale_end_num,
+				SUM(sale_end_amount) AS sale_end_amount,
+				CONVERT(SUM(destroy_num),SIGNED) AS destroy_num,
+				SUM(destroy_amount) AS destroy_amount,
+				CONVERT(SUM(loss_overflow_num),SIGNED) AS loss_overflow_num,
+				SUM(loss_overflow_amount) AS loss_overflow_amount,
+				CONVERT(SUM(add_purchase_notshelf_num),SIGNED) AS add_purchase_notshelf_num,
+				SUM(add_purchase_notshelf_amount) AS add_purchase_notshelf_amount,
+				CONVERT(SUM(add_sale_noshelf_num),SIGNED) AS add_sale_noshelf_num,
+				SUM(add_sale_noshelf_amount) AS add_sale_noshelf_amount,
+				CONVERT(SUM(loss_num),SIGNED) AS loss_num,
+				SUM(loss_amount) AS loss_amount,
+				SUM(decrease_purchase_notshelf_num) AS decrease_purchase_notshelf_num,
+				SUM(decrease_purchase_notshelf_amount) AS decrease_purchase_notshelf_amount,
+				SUM(add_transfer_noshelf_num) as add_transfer_noshelf_num,
+				SUM(add_transfer_noshelf_amount) as add_transfer_noshelf_amount,
+				SUM(move_in_num) as move_in_num,
+				SUM(move_out_num) as move_out_num,
+				SUM(move_num) as move_num,
+				MAX(sd_price) as sd_price,
+				MAX(sd_tz_price) as sd_tz_price,
+				SUM(sd_init_amount) as sd_init_amount,
+				SUM(sd_warehouse_amount) as sd_warehouse_amount,
+				SUM(sd_sale_end_amount) as sd_sale_end_amount,
+				SUM(sd_loss_overflow_amount) as sd_loss_overflow_amount,
+				SUM(sd_end_amount) as sd_end_amount,
+				SUM(sd_add_purchase_notshelf_amount) as sd_add_purchase_notshelf_amount								
+			from r_bu_finance_inventory_summary 
+			where merchant_id=#{merchantId} AND `month`=#{month} 
+			<if test='buId!=null' > and bu_id= #{buId}  </if>
+			<if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+            </if>
+			group by bu_id,goods_no
+		) f2 
+		LEFT JOIN st_commbarcode t1 ON t1.commbarcode=f2.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+		order by t2.name,f2.type_name,f2.goods_no,f2.barcode
+    </select>
+
+   <!--  根据组码分组查询财务经销存总表  事业部财务进销存标准条码汇总 (财务经销存和sd经销存和sd利息经销存导出公用)-->
+    <select id='getBuListForGroupCommbarcodeMap' resultType="map" parameterType='map'>				
+		select 
+		t.* ,t2.`name` as brand_name,t2.superior_parent_brand as superior_parent_brand			
+			 from (
+			select group_commbarcode AS group_commbarcode,
+				bu_id as bu_id,
+				MAX(type_name)as type_name,
+				MAX(goods_name)as goods_name,
+				MAX(tz_price)as tz_price,
+				MAX(bu_name)as bu_name,
+				MAX(commbarcode) as commbarcode ,
+				MAX(price)as price,
+				CONVERT(SUM(init_num),SIGNED) AS init_num,
+				if(CONVERT(SUM(init_num),SIGNED)=0,0,SUM(init_amount))AS init_amount,
+				CONVERT(SUM(purchase_notshelf_num),SIGNED) AS purchase_notshelf_num,
+				SUM(purchase_notshelf_amount) AS purchase_notshelf_amount,
+				CONVERT(SUM(warehouse_num),SIGNED) AS warehouse_num,
+				SUM(warehouse_amount) AS warehouse_amount,
+				CONVERT(SUM(sale_shelf_num),SIGNED) AS sale_shelf_num,
+				SUM(sale_shelf_amount) AS sale_shelf_amount,
+				CONVERT(SUM(sale_noshelf_num),SIGNED) AS sale_noshelf_num,
+				SUM(sale_noshelf_amount) AS sale_noshelf_amount,
+				CONVERT(SUM(in_damaged_num),SIGNED) AS in_damaged_num,
+				SUM(in_damaged_amount) AS in_damaged_amount,
+				CONVERT(SUM(out_damaged_num),SIGNED) AS out_damaged_num,
+				SUM(out_damaged_amount) AS out_damaged_amount,
+				CONVERT(SUM(profit_num),SIGNED) AS profit_num,
+				SUM(profit_amount) AS profit_amount,
+				CONVERT(SUM(end_num),SIGNED) AS end_num,
+				SUM(end_amount) AS end_amount,
+				SUM(tz_end_amount) AS tz_end_amount,
+				SUM(difference_amount) AS difference_amount,
+				MAX(create_date) AS create_date,
+				CONVERT(SUM(purchase_end_num),SIGNED) AS purchase_end_num,
+				SUM(purchase_end_amount) AS purchase_end_amount,
+				CONVERT(SUM(sale_end_num),SIGNED) AS sale_end_num,
+				SUM(sale_end_amount) AS sale_end_amount,
+				CONVERT(SUM(destroy_num),SIGNED) AS destroy_num,
+				SUM(destroy_amount) AS destroy_amount,
+				CONVERT(SUM(loss_overflow_num),SIGNED) AS loss_overflow_num,
+				SUM(loss_overflow_amount) AS loss_overflow_amount,
+				CONVERT(SUM(add_purchase_notshelf_num),SIGNED) AS add_purchase_notshelf_num,
+				SUM(add_purchase_notshelf_amount) AS add_purchase_notshelf_amount,
+				CONVERT(SUM(add_sale_noshelf_num),SIGNED) AS add_sale_noshelf_num,
+				SUM(add_sale_noshelf_amount) AS add_sale_noshelf_amount,
+				CONVERT(SUM(loss_num),SIGNED) AS loss_num,
+				SUM(loss_amount) AS loss_amount,
+				SUM(decrease_purchase_notshelf_num) AS decrease_purchase_notshelf_num,
+				SUM(decrease_purchase_notshelf_amount) AS decrease_purchase_notshelf_amount,
+				SUM(add_transfer_noshelf_num) as add_transfer_noshelf_num,
+				SUM(add_transfer_noshelf_amount) as add_transfer_noshelf_amount,
+				SUM(move_in_num) as move_in_num,
+				SUM(move_out_num) as move_out_num,
+				SUM(move_num) as move_num,
+				MAX(sd_price) as sd_price,
+				MAX(sd_tz_price) as sd_tz_price,
+				SUM(sd_init_amount) as sd_init_amount,
+				SUM(sd_warehouse_amount) as sd_warehouse_amount,
+				SUM(sd_sale_end_amount) as sd_sale_end_amount,
+				SUM(sd_loss_overflow_amount) as sd_loss_overflow_amount,
+				SUM(sd_end_amount) as sd_end_amount,
+				SUM(sd_add_purchase_notshelf_amount) as sd_add_purchase_notshelf_amount,
+				
+				SUM(sd_interest_init_amount) as sd_interest_init_amount,
+				MAX(sd_interest_price) as sd_interest_price,
+				SUM(sd_interest_purchase_end_amount) as sd_interest_purchase_end_amount,
+				MAX(sd_interest_tz_price) as sd_interest_tz_price,
+				SUM(sd_interest_sale_end_amount) as sd_interest_sale_end_amount,
+				SUM(sd_interest_loss_overflow_amount) as sd_interest_loss_overflow_amount,
+				SUM(sd_interest_end_amount) as sd_interest_end_amount
+				
+			from r_bu_finance_inventory_summary 
+			where  merchant_id=#{merchantId} AND `month`=#{month} 
+			<if test='buId!=null' > and bu_id= #{buId}  </if>
+			<if test='buList!=null and !"".equals(buList)' >and bu_id in
+	           <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+	                        #{buId}
+	           </foreach>         
+           </if>
+			group by bu_id,group_commbarcode
+		) t
+		LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+		LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+		order by brand_name,t.type_name,t.group_commbarcode
+    </select>
+
+
+    <!-- 导出-查询本期所有仓库 -->
+    <select id='getBuDepotListForMap' resultType="map" parameterType='map'>
+	    select depot_id,depot_name,bu_id,bu_name FROM r_bu_finance_inventory_summary 
+		where merchant_id=#{merchantId} AND `month`=#{month} 	
+		<if test='buId!=null' > and bu_id= #{buId}  </if>	
+		<if test='buList!=null and !"".equals(buList)' >and bu_id in
+           <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+           </foreach>         
+        </if>
+		GROUP BY depot_id,depot_name,bu_id,bu_name
+		order by depot_id,bu_id 
+
+    </select>
+    <!-- 导出-查询本期所有仓库 -->
+    <select id='getBuDepotEndNumForMap' resultType="map" parameterType='map'>
+	    select CONCAT(depot_id,'_',bu_id,'_',goods_no) AS depot_id_bu_id_goods_no,SUM(surplus_num) as surplus_num 
+	    FROM r_bu_finance_inventory_summary 
+		where merchant_id=#{merchantId} AND `month`=#{month} 	
+		<if test='buId!=null' > and bu_id= #{buId}  </if>	
+		<if test='buList!=null and !"".equals(buList)' >and bu_id in
+           <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+           </foreach>         
+        </if>
+		GROUP BY depot_id,bu_id,goods_no
+		order by depot_id,bu_id 
+
+    </select>
+     <!-- 导出-查询本期仓库期末结存数量，按仓库、货号分组统计 -->
+    <select id='getBuDepotEndNumForMapA' resultType="map" parameterType='map'>
+		select CONCAT(depot_id,'_',bu_id,'_',group_commbarcode) AS depot_id_bu_id_group_commbarcode,SUM(surplus_num) AS surplus_num 
+	    from r_bu_finance_inventory_summary
+		where merchant_id=#{merchantId} AND `month`=#{month}
+		<if test='buId!=null' > and bu_id= #{buId}  </if>
+		<if test='buList!=null and !"".equals(buList)' >and bu_id in
+           <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+           </foreach>         
+        </if>
+		group by depot_id,bu_id,group_commbarcode
+		
+    </select>
+
+    <select id="listCommbarcodeMonth" resultType="map" parameterType="map" >
+        SELECT merchant_id, depot_id, bu_id, commbarcode,
+            SUM(end_num) end_num , SUM(add_purchase_notshelf_num) add_purchase_notshelf_num ,
+            SUM(add_sale_noshelf_num) add_sale_noshelf_num , SUM(add_transfer_noshelf_num) add_transfer_noshelf_num
+        from r_bu_finance_inventory_summary
+        where merchant_id = #{merchantId}
+        and month = #{month}
+        <if test='buId!=null' > and bu_id= #{buId} </if>
+        GROUP BY merchant_id, depot_id, bu_id, commbarcode
+    </select>
+    <!-- 关账分页 -->
+   <select id='getListDescByPage' resultType='BuFinanceInventorySummaryDTO' parameterType='BuFinanceInventorySummaryDTO'>
+		SELECT * FROM (
+			SELECT merchant_id, 
+			bu_id,
+			MAX(merchant_name) as merchant_name ,
+			Max(bu_name) as bu_name, 
+		    `month`, `status`, close_date
+			FROM r_bu_finance_inventory_summary <include refid='sql_where' /> 
+			<if test='buList!=null and !"".equals(buList)' > and bu_id in
+               <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                                #{buId}
+               </foreach>             
+            </if>
+			
+			GROUP BY merchant_id,bu_id, `month`, `status`, close_date 
+		) AS t ORDER BY t.`month` DESC 
+	</select>
+
+
+	<!-- 修改数据 -->
+    <update id='updateClose' parameterType='BuFinanceInventorySummaryModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  r_bu_finance_inventory_summary SET
+        <trim  suffixOverrides=",">
+                    <if test='id!=null' > id= #{id} , </if>
+                    <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                    <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                    <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                    <if test='depotName!=null and !"".equals(depotName)' >depot_name= #{depotName} , </if>
+                    <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                    <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                    <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                    <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                    <if test='typeId!=null' > type_id= #{typeId} , </if>
+                    <if test='typeName!=null and !"".equals(typeName)' >type_name= #{typeName} , </if>
+                    <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                    <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                    <if test='initNum!=null' > init_num= #{initNum} , </if>
+                    <if test='initAmount!=null' > init_amount= #{initAmount} , </if>
+                    <if test='price!=null' > price= #{price} , </if>
+                    <if test='purchaseNotshelfNum!=null' > purchase_notshelf_num= #{purchaseNotshelfNum} , </if>
+                    <if test='purchaseNotshelfAmount!=null' > purchase_notshelf_amount= #{purchaseNotshelfAmount} , </if>
+                    <if test='warehouseNum!=null' > warehouse_num= #{warehouseNum} , </if>
+                    <if test='warehouseAmount!=null' > warehouse_amount= #{warehouseAmount} , </if>
+                    <if test='saleShelfNum!=null' > sale_shelf_num= #{saleShelfNum} , </if>
+                    <if test='saleShelfAmount!=null' > sale_shelf_amount= #{saleShelfAmount} , </if>
+                    <if test='inDamagedNum!=null' > in_damaged_num= #{inDamagedNum} , </if>
+                    <if test='inDamagedAmount!=null' > in_damaged_amount= #{inDamagedAmount} , </if>
+                    <if test='outDamagedNum!=null' > out_damaged_num= #{outDamagedNum} , </if>
+                    <if test='outDamagedAmount!=null' > out_damaged_amount= #{outDamagedAmount} , </if>
+                    <if test='profitNum!=null' > profit_num= #{profitNum} , </if>
+                    <if test='profitAmount!=null' > profit_amount= #{profitAmount} , </if>
+                    <if test='endNum!=null' > end_num= #{endNum} , </if>
+                    <if test='endAmount!=null' > end_amount= #{endAmount} , </if>
+                    <if test='tzPrice!=null' > tz_price= #{tzPrice} , </if>
+                    <if test='tzEndAmount!=null' > tz_end_amount= #{tzEndAmount} , </if>
+                    <if test='differenceAmount!=null' > difference_amount= #{differenceAmount} , </if>
+                    <if test='createDate!=null' > create_date= #{createDate} , </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                    <if test='saleNoshelfNum!=null' > sale_noshelf_num= #{saleNoshelfNum} , </if>
+                    <if test='saleNoshelfAmount!=null' > sale_noshelf_amount= #{saleNoshelfAmount} , </if>
+                    <if test='closeDate!=null' >close_date = #{closeDate} , </if>
+                    <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+        </trim>
+        <where>
+            month= #{month} and merchant_id= #{merchantId}  and bu_id=#{buId}
+        </where>
+    </update>
+    
+    
+    <!-- 修改为未关账 -->
+    <update id='updateNotClose' parameterType='BuFinanceInventorySummaryModel' keyProperty="id" useGeneratedKeys="true">
+        UPDATE  r_bu_finance_inventory_summary SET close_date =null,status= #{status}        
+           where month= #{month} and merchant_id= #{merchantId}  and bu_id=#{buId}        
+    </update>
+    
+    <!-- 累计汇总列表 分页-->
+    <select id='getListAdd' resultType='BuFinanceInventorySummaryDTO' parameterType='BuFinanceInventorySummaryDTO'>
+			SELECT t.*,
+			t2.`name` as brand_name,t2.superior_parent_brand as superior_parent_brand
+					
+			FROM (
+					SELECT 
+					CONCAT(#{monthStart},'~',#{monthEnd}) as `month`,
+					merchant_id,bu_id,group_commbarcode,
+					MAX(merchant_name) as merchant_name ,
+					MAX(bu_name) as bu_name,
+					MAX(commbarcode) as commbarcode ,
+					MAX(type_name) as type_name,
+					MAX(goods_name) as goods_name,
+					SUM(warehouse_num) as warehouse_num,
+					SUM(in_damaged_num) as in_damaged_num,
+					SUM(move_in_num) as move_in_num,
+					SUM(purchase_end_num) as purchase_end_num,
+					SUM(purchase_end_amount) as purchase_end_amount,
+					SUM(sale_shelf_num) as sale_shelf_num,
+					SUM(out_damaged_num) as out_damaged_num,
+					SUM(move_out_num) as move_out_num,
+					SUM(sale_end_num) as sale_end_num,
+					SUM(sale_end_amount) as sale_end_amount,
+					SUM(destroy_num) as destroy_num,
+					SUM(profit_num) as profit_num,
+					SUM(loss_num) as loss_num,
+					SUM(loss_overflow_num) as loss_overflow_num,
+					SUM(loss_overflow_amount) as loss_overflow_amount					
+					FROM r_bu_finance_inventory_summary 
+					<include refid='sql_where_list_add' />
+					GROUP BY merchant_id, bu_id,group_commbarcode			
+					) t 
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			ORDER BY brand_name,t.type_name,t.`group_commbarcode` DESC 
+			LIMIT #{begin},#{pageSize}
+
+
+	</select>
+
+   	<!-- 获取最大创建时间-->
+    <select id='getMaxCreatDate' resultType='BuFinanceInventorySummaryDTO' parameterType='BuFinanceInventorySummaryDTO'>
+				SELECT  MAX(create_date)as create_date				
+				FROM r_bu_finance_inventory_summary 
+				<include refid='sql_where_list_add' />
+	</select>
+
+	
+	<sql id='sql_where_list_add'>
+			where merchant_id= #{merchantId} 
+				  and month &gt;= #{monthStart} 
+				  and month &lt;=#{monthEnd}	
+				  <if test='buId!=null' >and bu_id= #{buId}  </if>
+				  <if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>                    
+               	  </if>
+                  <if test='typeId!=null' >and type_id= #{typeId}  </if>
+                  <if test='goodsName!=null and !"".equals(goodsName)' >and goods_name= #{goodsName}  </if>
+				  <if test='groupCommbarcode!=null and !"".equals(groupCommbarcode)' >and group_commbarcode= #{groupCommbarcode}  </if>						  								
+                  <if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+					   and brand_id in 
+						   <foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+					        #{brandId}
+					        </foreach> 
+				  </if>            
+    </sql>
+	
+    <!--累计汇总 分页数据总量-->
+    <select id='getListAddCount' resultType='Integer' parameterType='BuFinanceInventorySummaryDTO'>
+			SELECT 
+				count(*)
+				FROM (
+					SELECT 
+					CONCAT(#{monthStart},'~',#{monthEnd}) as `month`,
+					merchant_id,bu_id,group_commbarcode,
+					MAX(merchant_name) as merchant_name ,
+					MAX(bu_name) as bu_name,
+					MAX(commbarcode) as commbarcode ,
+					MAX(type_name) as type_name,
+					MAX(goods_name) as goods_name,
+					MAX(create_date) as create_date ,
+					SUM(warehouse_num) as warehouse_num,
+					SUM(in_damaged_num) as in_damaged_num,
+					SUM(move_in_num) as move_in_num,
+					SUM(purchase_end_num) as purchase_end_num,
+					SUM(purchase_end_amount) as purchase_end_amount,
+					SUM(sale_shelf_num) as sale_shelf_num,
+					SUM(out_damaged_num) as out_damaged_num,
+					SUM(move_out_num) as move_out_num,
+					SUM(sale_end_num) as sale_end_num,
+					SUM(sale_end_amount) as sale_end_amount,
+					SUM(destroy_num) as destroy_num,
+					SUM(profit_num) as profit_num,
+					SUM(loss_num) as loss_num,
+					SUM(loss_overflow_num) as loss_overflow_num,
+					SUM(loss_overflow_amount) as loss_overflow_amount					
+					FROM r_bu_finance_inventory_summary 
+					where merchant_id= #{merchantId} 
+						  and month &gt;= #{monthStart} 
+						  and month &lt;=#{monthEnd}	
+					<if test='buId!=null' >and bu_id= #{buId}  </if>
+					<if test='buList!=null and !"".equals(buList)' >and bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>                   
+                	</if>
+                    <if test='typeId!=null' >and type_id= #{typeId}  </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' >and goods_name= #{goodsName}  </if>
+					<if test='groupCommbarcode!=null and !"".equals(groupCommbarcode)' >and group_commbarcode= #{groupCommbarcode}  </if>						  								
+                    <if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+					   and brand_id in 
+						   <foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+					        #{brandId}
+					        </foreach> 
+				    </if> 
+					GROUP BY merchant_id, bu_id,group_commbarcode			
+					) t 
+
+
+
+	</select>
+    
+    
+    <!-- 累计汇总导出 -->
+    <select id='getListAddExport' resultType='BuFinanceInventorySummaryDTO' parameterType='BuFinanceInventorySummaryDTO'>
+			SELECT t.* ,
+				t2.`name` as brand_name,t2.superior_parent_brand as superior_parent_brand				
+			FROM (
+					SELECT 
+					#{monthStart} as month_start,
+					#{monthEnd} as month_end,
+					CONCAT(#{monthStart},'~',#{monthEnd}) as `month`,
+					merchant_id,bu_id,group_commbarcode,
+					MAX(merchant_name) as merchant_name ,
+					MAX(commbarcode) as commbarcode ,
+					MAX(bu_name) as bu_name,
+					MAX(type_name) as type_name,
+					MAX(goods_name) as goods_name,
+					MAX(create_date) as create_date ,
+					SUM(warehouse_num) as warehouse_num,
+					SUM(in_damaged_num) as in_damaged_num,
+					SUM(move_in_num) as move_in_num,
+					SUM(purchase_end_num) as purchase_end_num,
+					SUM(purchase_end_amount) as purchase_end_amount,
+					SUM(sale_shelf_num) as sale_shelf_num,
+					SUM(out_damaged_num) as out_damaged_num,
+					SUM(move_out_num) as move_out_num,
+					SUM(sale_end_num) as sale_end_num,
+					SUM(sale_end_amount) as sale_end_amount,
+					SUM(destroy_num) as destroy_num,
+					SUM(profit_num) as profit_num,
+					SUM(loss_num) as loss_num,
+					SUM(loss_overflow_num) as loss_overflow_num,
+					SUM(loss_overflow_amount) as loss_overflow_amount					
+					FROM r_bu_finance_inventory_summary 
+					where merchant_id= #{merchantId} 
+						  and month &gt;= #{monthStart} 
+						  and month &lt;=#{monthEnd}	
+					<if test='buId!=null' >and bu_id= #{buId}  </if>					
+	                <if test='buList!=null and !"".equals(buList)' >and bu_id in
+	                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+	                        #{buId}
+	                    </foreach>	                    
+	                </if>
+                    <if test='typeId!=null' >and type_id= #{typeId}  </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' >and goods_name= #{goodsName}  </if>
+					<if test='groupCommbarcode!=null and !"".equals(groupCommbarcode)' >and group_commbarcode= #{groupCommbarcode}  </if>						  								
+                    <if test='parentBrandIds!=null and parentBrandIds.size()>0' > 
+					   and brand_id in 
+						   <foreach collection='parentBrandIds' item='brandId' separator=',' open='(' close=')'>
+					        #{brandId}
+					        </foreach> 
+				    </if> 
+					GROUP BY merchant_id, bu_id,group_commbarcode			
+					) t 
+			LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+			LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+			ORDER BY brand_name,t.type_name,t.`group_commbarcode` DESC 
+	</select>    
+    
+    
+    <select id="countBeforeMonthList" resultType="java.lang.Integer" parameterType="map">
+        SELECT
+          COUNT(DISTINCT `month`)
+        from r_bu_finance_inventory_summary
+        where month &lt; #{month}
+          and merchant_id = #{merchantId}
+          and bu_id = #{buId}
+          and `status` = #{status}
+    </select>
+    
+    
+    <select id="countAftrerMonthList" resultType="java.lang.Integer" parameterType="map">
+        SELECT
+          COUNT(DISTINCT `month`)
+        from r_bu_finance_inventory_summary
+        where month &gt; #{month}
+          and merchant_id = #{merchantId}
+          and bu_id = #{buId}
+          and `status` = #{status}
+    </select>
+    
+    
+    
+        <!--查询商家、仓库、月份报表状态 -->
+    <select id='getSummaryStatus' resultType='String' parameterType='map' >
+        select status from r_bu_finance_inventory_summary 
+		where merchant_id=#{merchantId} and month=#{month}  and status= #{status} 
+		<if test='buId!=null' >and bu_id= #{buId}  </if>
+		limit 1;
+    </select>
+    
+    
+     <!-- 获取事业部财务经销存 和商品标准条码 -->
+    <select id="getSummaryList" resultMap='BuFinanceInventorySummaryModelMap' parameterType='BuFinanceInventorySummaryModel'>
+        select         
+		t1.depot_id,t1.bu_id,t1.goods_id,t1.end_num,t1.end_amount,t1.price,t1.currency,t1.tz_price,
+		t1.sd_end_amount,t1.sd_tz_price,
+		t1.sd_interest_tz_price,t1.sd_interest_end_amount,
+		t2.commbarcode      
+        from r_bu_finance_inventory_summary t1
+		LEFT JOIN st_merchandise_info t2 ON t1.goods_id=t2.id
+		where t1.merchant_id=#{merchantId} and t1.month=#{month} and t1.bu_id= #{buId}                  
+         
+    </select>
+    
+    <!-- 美赞FG负库存金额导出 -->
+    <select id='getFgInventByGroupCommbar' resultType="map" parameterType='map'>	
+      SELECT t.* ,t2.superior_parent_brand as superior_parent_brand,
+			t2.`name` as brand_name 
+			from (			
+				select 
+				group_commbarcode,
+				MAX(commbarcode) as commbarcode ,
+				MAX(bu_name) as bu_name ,
+				bu_id,
+				MAX(superior_parent_brand) as superior_parent_brand,
+				MAX(brand_name) as brand_name,
+				MAX(type_name) as type_name,
+				MAX(goods_name) as goods_name,
+				MAX(tz_price) as end_price,
+				MAX(goods_id) as goods_id,
+				SUM(end_num) as end_num	
+				from r_bu_finance_inventory_summary 
+				where  merchant_id=#{merchantId} AND `month`=#{month} AND superior_parent_brand='美赞臣'
+					<if test='buId!=null' > and bu_id= #{buId}  </if>
+				    <if test='buList!=null and !"".equals(buList)' >and bu_id in
+					 <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+					       #{buId}
+					 </foreach>                   
+				    </if> 
+				group by bu_id,group_commbarcode
+				HAVING end_num &lt;0
+		) t
+	  LEFT JOIN st_commbarcode t1 ON t1.commbarcode=t.commbarcode
+	  LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+    </select>
+    
+	<!-- 统计汇总事业部财务经销存总表 -->
+	<select id='getMaxCloseAccountMerchantBu' resultType="map" parameterType='map'>				
+		SELECT  merchant_id,bu_id,
+		MAX(`month`)as `month`,
+		MAX(bu_name)as bu_name,
+		MAX(merchant_name) as merchant_name 
+		from r_bu_finance_inventory_summary  
+		where `status`='030'
+		GROUP BY merchant_id,bu_id
+		ORDER BY merchant_id,bu_id,`month`		
+    </select>
+    <!-- 查询年度采购结算金额 、年度结算金额(销售洞察)-->
+    <select id="getAmountYear" resultType="map">
+        select
+        MONTH(CONCAT(a.`month`,'-01')) as month,
+        SUM(a.purchaseEndAmount * IFNULL(b.avg_rate,1))as purchaseEndAmount,
+        SUM(a.endAmount * IFNULL(b.avg_rate,1))as endAmount
+        from
+        (SELECT
+        `month` ,
+        currency,
+        sum(purchase_end_amount) as purchaseEndAmount,
+        sum(end_amount) as endAmount
+        FROM r_bu_finance_inventory_summary fis
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=fis.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > fis.bu_id= #{dto.buId} and </if>
+                <if test='dto.buList!=null' > fis.bu_id in
+                    <foreach collection="dto.buList" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandIds !=null and !"".equals(brandIds)' >
+                    <choose>
+                        <when test='isParentBrand == "1" ' >
+                            t2.id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach> and
+                        </when>
+                        <otherwise>
+                            t2.superior_parent_brand_id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach> and
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test='dto.month !=null and !"".equals(dto.month)'>  YEAR(CONCAT(fis.`month`,'-01')) = #{dto.month} and </if>
+                t2.superior_parent_brand_id is not null and t2.superior_parent_brand is not null and t2.superior_parent_brand_id !=0
+            </trim>
+        </where>
+        GROUP BY fis.`month`,currency
+        )a
+        left join (select a.orig_currency_code,avg_rate,DATE_FORMAT(a.effective_date,'%Y-%m') effective_date from st_exchange_rate a right join (
+        SELECT
+        orig_currency_code,
+        MAX( effective_date ) AS effectiveDate
+        FROM
+        st_exchange_rate
+        WHERE
+        tgt_currency_code = 'CNY' and DATE_FORMAT( effective_date, '%Y' ) = #{dto.month}
+        GROUP BY
+        DATE_FORMAT( effective_date, '%Y-%m' ),
+        orig_currency_code ) b on b.orig_currency_code=a.orig_currency_code and a.effective_date=b.effectiveDate and a.tgt_currency_code='CNY') b
+        on a.currency = b.orig_currency_code and  b.effective_date = a.`month` GROUP BY a.`month`
+    </select>
+    <!-- 查询年度品牌采购结算金额(销售洞察)-->
+    <select id="getBrandPurchaseAmountYear" resultType="map" >
+        SELECT
+        a.brandId,
+        a.brandName,
+        SUM(a.purchaseEndAmount * IFNULL( b.avg_rate, 1 )) AS purchaseEndAmount
+        FROM
+        (
+        SELECT
+        fis.currency as currency,
+        fis.`month` as month,
+        <choose>
+            <when test='isParentBrand != null and !"".equals(isParentBrand) and isParentBrand == "1"' >
+                t2.id as brandId,
+                t2.name as brandName,
+            </when>
+            <otherwise>
+                t2.superior_parent_brand_id as brandId,
+                t2.superior_parent_brand as brandName,
+            </otherwise>
+        </choose>
+        sum(purchase_end_amount) as purchaseEndAmount
+        FROM r_bu_finance_inventory_summary fis
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=fis.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > fis.bu_id= #{dto.buId} and </if>
+                <if test='dto.buList!=null' > fis.bu_id in
+                    <foreach collection="dto.buList" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='dto.month !=null and !"".equals(dto.month)'>  YEAR(CONCAT(fis.`month`,'-01')) = #{dto.month} and </if>
+                <if test='brandIds !=null and !"".equals(brandIds)' >
+                    <choose>
+                        <when test='isParentBrand == "1" ' >
+                            t2.id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </when>
+                        <otherwise>
+                            t2.superior_parent_brand_id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </otherwise>
+                    </choose>
+                </if>
+                <choose>
+                    <when test ='isParentBrand == "1" '>
+                        t2.id is not null
+                    </when>
+                    <otherwise>
+                       t2.superior_parent_brand_id is not null and t2.superior_parent_brand is not null and t2.superior_parent_brand_id !=0
+                    </otherwise>
+                </choose>
+            </trim>
+        </where>
+        <choose>
+            <when test ='isParentBrand == "1" '>
+                GROUP BY t2.id, currency ,fis.`month`
+            </when>
+            <otherwise>
+                GROUP BY t2.superior_parent_brand_id, currency ,fis.`month`
+            </otherwise>
+        </choose>
+        ) a
+        LEFT JOIN (SELECT
+        DATE_FORMAT( t1.effective_date, '%Y-%m' ) as month,
+        t1.orig_currency_code,
+        MAX(t1.effective_date) as effective_date,
+        (SELECT avg_rate FROM st_exchange_rate where  tgt_currency_code = 'CNY' and  effective_date=MAX(t1.effective_date) and orig_currency_code= t1.orig_currency_code) as avg_rate
+        FROM
+        st_exchange_rate t1
+        WHERE
+        t1.tgt_currency_code = 'CNY' and DATE_FORMAT( effective_date, '%Y' ) = #{dto.month}
+        GROUP BY t1.orig_currency_code, DATE_FORMAT( t1.effective_date, '%Y-%m' )) b ON a.currency = b.orig_currency_code
+        AND b.month = a.`month` GROUP BY a.brandId ORDER BY purchaseEndAmount DESC
+    </select>
+    <!-- 查询年度进销存品牌信息-->
+    <select id="getBrandList" resultType="map" >
+        SELECT
+        <choose>
+            <when test='isParentBrand != null and !"".equals(isParentBrand) and isParentBrand == "1"' >
+                t2.id as brandId,
+                t2.name as brandName
+            </when>
+            <otherwise>
+                t2.superior_parent_brand_id as brandId,
+                t2.superior_parent_brand as brandName
+            </otherwise>
+        </choose>
+        FROM r_bu_finance_inventory_summary fis
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=fis.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > fis.bu_id= #{dto.buId} and </if>
+                <if test='dto.buList!=null' > fis.bu_id in
+                    <foreach collection="dto.buList" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='dto.month !=null and !"".equals(dto.month)'>  YEAR(CONCAT(fis.`month`,'-01')) = #{dto.month} and </if>
+
+                <choose>
+                    <when test ='isParentBrand == "1" '>
+                        t2.id is not null and t2.name is not null
+                    </when>
+                    <otherwise>
+                        t2.superior_parent_brand_id is not null and t2.superior_parent_brand is not null and t2.superior_parent_brand_id !=0
+                    </otherwise>
+                </choose>
+            </trim>
+        </where>
+        <choose>
+            <when test ='isParentBrand == "1" '>
+                GROUP BY t2.id
+            </when>
+            <otherwise>
+                GROUP BY t2.superior_parent_brand_id
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- 年度进销存导出(销售洞察)-->
+    <select id="getYearFinanceInventoryAnalysisExportList" resultType="BuFinanceInventorySummaryDTO" parameterType='BuFinanceInventorySummaryDTO'>
+        SELECT
+            t.bu_id,
+            t.bu_name,
+            t.`month`,
+            t.commbarcode,
+            t.brand_id,
+            t.brand_name,
+            t.superior_parent_brand,
+            sum(t.sale_end_amount) as sale_end_amount,
+            sum(t.purchase_end_amount) AS purchase_end_amount,
+            sum(t.end_amount)  AS end_amount
+        from(
+            SELECT
+            a.bu_id,
+            a.bu_name,
+            a.`month`,
+            a.commbarcode,
+            a.brand_id,
+            a.brand_name,
+            a.superior_parent_brand,
+            0 as sale_end_amount,
+            sum(a.purchase_end_amount * IFNULL( b.avg_rate, 1))  as purchase_end_amount,
+            sum(a.end_amount * IFNULL( b.avg_rate, 1)) as end_amount
+        FROM
+        (SELECT
+            fis.bu_id,
+            fis.bu_name,
+            fis.`month`,
+            fis.commbarcode,
+            t2.id as brand_id,
+            t2.`name` as brand_name,
+            t2.superior_parent_brand,
+            currency,
+            sum(fis.purchase_end_amount) as purchase_end_amount,
+            sum(fis.end_amount) as end_amount
+        FROM r_bu_finance_inventory_summary fis
+        LEFT JOIN st_commbarcode t1 ON t1.commbarcode=fis.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id=t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > fis.bu_id= #{dto.buId} and </if>
+                <if test='dto.buList!=null' > fis.bu_id in
+                    <foreach collection="dto.buList" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandIds !=null and !"".equals(brandIds)' >
+                    <choose>
+                        <when test='isParentBrand == "1" ' >
+                            t2.id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </when>
+                        <otherwise>
+                            t2.superior_parent_brand_id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test='dto.month !=null and !"".equals(dto.month)'> YEAR(CONCAT(fis.`month`,'-01')) = #{dto.month} and </if>
+                t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0
+            </trim>
+        </where>
+        group by  fis.bu_id,fis.month,t2.id,currency ) a
+        LEFT JOIN (SELECT
+        DATE_FORMAT( t1.effective_date, '%Y-%m' ) as month,
+        t1.orig_currency_code,
+        MAX(t1.effective_date) as effective_date,
+        (SELECT avg_rate FROM st_exchange_rate where  tgt_currency_code = 'CNY' and  effective_date=MAX(t1.effective_date) and orig_currency_code= t1.orig_currency_code) as avg_rate
+        FROM
+        st_exchange_rate t1
+        WHERE
+        t1.tgt_currency_code = 'CNY' and DATE_FORMAT( effective_date, '%Y' ) = #{dto.month}
+        GROUP BY t1.orig_currency_code, DATE_FORMAT( t1.effective_date, '%Y-%m' )) b ON a.currency = b.orig_currency_code
+        AND b.month = a.`month` group by  a.bu_id,a.month,a.brand_id
+
+        UNION
+
+        SELECT
+        sd.bu_id,
+        sd.bu_name,
+        sd.`month`,
+        sd.commbarcode,
+        t2.id,
+        t2.`name`,
+        t2.superior_parent_brand,
+        sum(cny_amount) as sale_end_amount,
+        0 AS purchase_end_amount,
+        0 AS end_amount
+        FROM
+        r_sale_data sd
+        LEFT JOIN st_commbarcode t1 ON sd.commbarcode = t1.commbarcode
+        LEFT JOIN st_brand_parent t2 ON t1.comm_brand_parent_id = t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='dto.buId!=null' > sd.bu_id= #{dto.buId} and </if>
+                <if test='dto.buList!=null' > sd.bu_id in
+                    <foreach collection="dto.buList" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandIds !=null and !"".equals(brandIds)' >
+                    <choose>
+                        <when test='isParentBrand == "1" ' >
+                            t2.id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </when>
+                        <otherwise>
+                            t2.superior_parent_brand_id in
+                            <foreach collection="brandIds" item="brandId" separator="," open="(" close=")">
+                                #{brandId}
+                            </foreach>
+                            and
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test='dto.month !=null and !"".equals(dto.month)'> YEAR(CONCAT(sd.`month`,'-01')) = #{dto.month} and </if>
+                t2.superior_parent_brand_id is not null and t2.superior_parent_brand_id !=0
+            </trim>
+            AND inner_merchant_type = 0
+            </where>
+            GROUP BY sd.bu_id, t2.id, sd.MONTH
+        )t group by t.brand_id,t.`month`,t.bu_id
+    </select>
+
+    <!-- 取商家、仓库、事业部、上月货号的期末结存数量、调整标准成本单价、调整期末结存金额 -->
+    <select id='getGoodsNoSummary' resultType='map' parameterType='map' >
+        select end_num,tz_price,tz_end_amount,currency from r_bu_finance_inventory_summary
+        where merchant_id=#{merchantId}
+        and depot_id=#{depotId}
+        and bu_id=#{buId}
+        and month=#{month}
+        and goods_no=#{goodsNo}
+        order by tz_price desc limit 1;
+    </select>
+
+</mapper>

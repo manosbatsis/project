@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.TransferOutDepotMapper'>
+
+ <!-- 关系映射 -->
+    <resultMap id="TransferOutDepotModelMap" type="TransferOutDepotModel" >
+                <result property="outExternalCode" column="out_external_code" />
+                <result property="code" column="code" />
+                <result property="lbxNo" column="lbx_no" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="contractNo" column="contract_no" />
+                <result property="outDepotId" column="out_depot_id" />
+                <result property="returnStatus" column="return_status" />
+                <result property="inCustomerId" column="in_customer_id" />
+                <result property="transferOrderId" column="transfer_order_id" />
+                <result property="transferDate" column="transfer_date" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="inDepotName" column="in_depot_name" />
+                <result property="outDepotName" column="out_depot_name" />
+                <result property="transferOrderCode" column="transfer_order_code" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="inDepotId" column="in_depot_id" />
+                <result property="creater" column="creater" />
+                <result property="createName" column="create_name" />
+                <result property="inCustomerName" column="in_customer_name" />
+                <result property="wayBillNo" column="way_bill_no" />
+                <result property="id" column="id" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="dataSource" column="data_source" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TransferOutDepotModelMap' parameterType='TransferOutDepotModel'>
+        select <include refid='sql_columns' /> from t_transfer_out_depot  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TransferOutDepotModelMap' parameterType='TransferOutDepotModel'>
+        select <include refid='sql_columns' /> from t_transfer_out_depot  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TransferOutDepotModelMap' parameterType='TransferOutDepotModel' >
+        select <include refid='sql_columns' /> from t_transfer_out_depot  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TransferOutDepotModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_transfer_out_depot
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' > out_external_code , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' > lbx_no , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                <if test='outDepotId!=null' > out_depot_id , </if>
+                <if test='returnStatus!=null and !"".equals(returnStatus)' > return_status , </if>
+                <if test='inCustomerId!=null' > in_customer_id , </if>
+                <if test='transferOrderId!=null' > transfer_order_id , </if>
+                <if test='transferDate!=null' > transfer_date , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' > in_depot_name , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' > out_depot_name , </if>
+                <if test='transferOrderCode!=null and !"".equals(transferOrderCode)' > transfer_order_code , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='inDepotId!=null' > in_depot_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' > in_customer_name , </if>
+                <if test='wayBillNo!=null and !"".equals(wayBillNo)' > way_bill_no , </if>
+                <if test='id!=null' > id , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' > data_source , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' > #{outExternalCode} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' > #{lbxNo} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                <if test='outDepotId!=null' > #{outDepotId} , </if>
+                <if test='returnStatus!=null and !"".equals(returnStatus)' > #{returnStatus} , </if>
+                <if test='inCustomerId!=null' > #{inCustomerId} , </if>
+                <if test='transferOrderId!=null' > #{transferOrderId} , </if>
+                <if test='transferDate!=null' > #{transferDate} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' > #{inDepotName} , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' > #{outDepotName} , </if>
+                <if test='transferOrderCode!=null and !"".equals(transferOrderCode)' > #{transferOrderCode} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='inDepotId!=null' > #{inDepotId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' > #{inCustomerName} , </if>
+                <if test='wayBillNo!=null and !"".equals(wayBillNo)' > #{wayBillNo} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' > #{dataSource} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TransferOutDepotModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_transfer_out_depot SET
+        <trim  suffixOverrides=",">
+                <if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} , </if>
+                <if test='returnStatus!=null and !"".equals(returnStatus)' >return_status= #{returnStatus} , </if>
+                <if test='inCustomerId!=null' > in_customer_id= #{inCustomerId} , </if>
+                <if test='transferOrderId!=null' > transfer_order_id= #{transferOrderId} , </if>
+                <if test='transferDate!=null' > transfer_date= #{transferDate} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} , </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} , </if>
+                <if test='transferOrderCode!=null and !"".equals(transferOrderCode)' >transfer_order_code= #{transferOrderCode} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' >in_customer_name= #{inCustomerName} , </if>
+                <if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' >data_source= #{dataSource} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_transfer_out_depot  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_transfer_out_depot where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        out_external_code,
+        code,
+        lbx_no,
+        modify_date,
+        contract_no,
+        out_depot_id,
+        return_status,
+        in_customer_id,
+        transfer_order_id,
+        transfer_date,
+        merchant_name,
+        in_depot_name,
+        out_depot_name,
+        transfer_order_code,
+        merchant_id,
+        in_depot_id,
+        creater,
+        create_name,
+        in_customer_name,
+        way_bill_no,
+        id,
+        status,
+        create_date,
+        bu_name,
+        bu_id,
+        data_source
+    </sql>
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+             <if test='outExternalCode!=null and !"".equals(outExternalCode)' >out_external_code= #{outExternalCode} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='lbxNo!=null and !"".equals(lbxNo)' >lbx_no= #{lbxNo} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='outDepotId!=null' > out_depot_id= #{outDepotId} and </if>
+                <if test='returnStatus!=null and !"".equals(returnStatus)' >return_status= #{returnStatus} and </if>
+                <if test='inCustomerId!=null' > in_customer_id= #{inCustomerId} and </if>
+                <if test='transferOrderId!=null' > transfer_order_id= #{transferOrderId} and </if>
+                   <if test='transferStartDate!=null and !"".equals(transferStartDate)' >
+                    transfer_date &gt;= #{transferStartDate} and 
+                </if>
+                <if test='transferEndDate!=null and !"".equals(transferEndDate)' >
+                    transfer_date &lt; #{transferEndDate} and 
+                </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='inDepotName!=null and !"".equals(inDepotName)' >in_depot_name= #{inDepotName} and </if>
+                <if test='outDepotName!=null and !"".equals(outDepotName)' >out_depot_name= #{outDepotName} and </if>
+                <if test='transferOrderCode!=null and !"".equals(transferOrderCode)' >transfer_order_code= #{transferOrderCode} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='inDepotId!=null' > in_depot_id= #{inDepotId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                <if test='inCustomerName!=null and !"".equals(inCustomerName)' >in_customer_name= #{inCustomerName} and </if>
+                <if test='wayBillNo!=null and !"".equals(wayBillNo)' >way_bill_no= #{wayBillNo} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name=#{buName} and  </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='dataSource!=null and !"".equals(dataSource)' > data_source=#{dataSource} and  </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+    <!-- 根据创建修改时间查询-->
+    <select id='getOutDepotOrderByTime' resultType='map' parameterType='map'>
+        select t.id,t.code,t.transfer_order_code,date_format(t.transfer_date,'%Y-%m-%d %H:%i:%S') as transfer_date,t.contract_no,'' as in_customer_name,t.status,
+		       m.topideal_code,d.type,d.code AS dcode,d.id as out_depot_id,d.depot_code,d.name,'' AS merchant_code
+		from t_transfer_out_depot t
+		left join t_transfer_out_depot_item i ON t.id=i.transfer_depot_id 
+		left join st_merchant_info m ON t.merchant_id=m.id
+		LEFT JOIN st_merchant_info m2 ON t.in_customer_id=m2.id
+		left join st_depot_info d ON t.out_depot_id=d.id
+		where t.merchant_id=#{merchantId} and t.status IN('016','006')
+			 and t.bu_id in (
+						SELECT id from st_business_unit WHERE `code` IN (	
+						'E071100',
+						'I020300',
+						'I020200'
+						)
+					)
+					and
+					(
+					 ( t.create_date &gt;= #{startTime} and t.create_date &lt;= #{endTime} ) 
+					 or 
+					 ( t.modify_date &gt;= #{startTime}  and t.modify_date &lt;= #{endTime} )
+					) 
+	    
+	    group by t.id,t.code,t.transfer_order_code,t.out_depot_id,t.transfer_date,t.contract_no ,t.in_customer_name,t.status,
+				 m.topideal_code,d.type,d.code,d.id,d.depot_code,d.name,m2.code
+		order by t.id
+	    limit #{startIndex},#{pageSize}
+    </select>
+     <!-- 根据创建修改时间查询统计数量-->
+    <select id='getOutDepotOrderByTimeCount' resultType='java.lang.Integer' parameterType='map'>
+        select count(*) as total_count from (
+	        select t.id,t.code,t.transfer_order_code,date_format(t.transfer_date,'%Y-%m-%d %H:%i:%S') as transfer_date,t.contract_no ,t.in_customer_name,t.status,
+			       m.topideal_code,d.type,d.code AS dcode,d.depot_code,d.name,m2.code AS merchant_code
+			from t_transfer_out_depot t
+			left join t_transfer_out_depot_item i ON t.id=i.transfer_depot_id 
+			left join st_merchant_info m ON t.merchant_id=m.id
+			LEFT JOIN st_merchant_info m2 ON t.in_customer_id=m2.id
+			left join st_depot_info d ON t.out_depot_id=d.id
+			where t.merchant_id=#{merchantId} and t.status IN('016','006')
+				and t.bu_id in (
+						SELECT id from st_business_unit WHERE `code` IN (	
+						'E071100',
+						'I020300',
+						'I020200'
+						)
+					)
+					
+					and
+					(
+					 ( t.create_date &gt;= #{startTime} and t.create_date &lt;= #{endTime} ) 
+					 or 
+					 ( t.modify_date &gt;= #{startTime}  and t.modify_date &lt;= #{endTime} )
+					) 
+		    group by t.id,t.code,t.transfer_order_code,t.transfer_date,t.contract_no,t.in_customer_name,t.status,
+					 m.topideal_code,d.type,d.code,d.depot_code,d.name,m2.code
+	    ) c
+    </select>
+    <!-- 按 出库单查询出库商品-->
+    <select id='getOutDepotItemByCodes' resultType='map' parameterType="java.util.List">
+        select t.code,i.out_goods_no,i.out_goods_name,i.tallying_unit,
+		       b.name AS brank_name,m.commbarcode,todi.price,todi.remark,sum(i.transfer_num) as total_num
+		from t_transfer_out_depot_item i
+		left join t_transfer_out_depot t on i.transfer_depot_id=t.id 
+		left join st_merchandise_info m ON i.out_goods_id=m.id
+		left join st_brand b ON m.brand_id=b.id
+		left join t_transfer_order tod ON t.transfer_order_id=tod.id
+		left join t_transfer_order_item todi ON tod.id=todi.transfer_order_id and i.out_goods_id=todi.out_goods_id
+		where  t.code in
+           <foreach collection='list' item='code' separator=',' open='(' close=')'>
+            #{code}
+           </foreach>
+		group by `code`,out_goods_no,out_goods_name,tallying_unit,
+		         brank_name,commbarcode,price,remark
+    </select>
+     <!-- 查询出库单批次数据-->
+    <select id='getItemBatchByCode' resultType='map' parameterType='map'>
+       select i.transfer_batch_no,date_format(i.production_date,'%Y-%m-%d') as production_date,
+       		  date_format(i.overdue_date,'%Y-%m-%d') as overdue_date,sum(i.transfer_num) transfer_num
+	   from t_transfer_out_depot t,t_transfer_out_depot_item i
+	   where t.id=i.transfer_depot_id and t.code=#{code} and i.out_goods_no=#{goodsNo}
+	    <if test='unit==null or "".equals(unit)'> and (i.tallying_unit is null or i.tallying_unit='')</if>
+	    <if test='unit!=null and !"".equals(unit)'> and i.tallying_unit=#{unit}</if>
+	   group by i.transfer_batch_no,i.production_date,i.overdue_date
+    </select>
+</mapper>

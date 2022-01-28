@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.PlatformCostConfigItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="PlatformCostConfigItemModelMap" type="PlatformCostConfigItemModel" >
+            <result property="id" column="id" />
+            <result property="platformConfigId" column="platform_config_id" />
+            <result property="platformSettlementId" column="platform_settlement_id" />
+            <result property="platformSettlementName" column="platform_settlement_name" />
+            <result property="settlementConfigName" column="settlement_config_name" />
+            <result property="ratio" column="ratio" />
+            <result property="creater" column="creater" />
+            <result property="createName" column="create_name" />
+            <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PlatformCostConfigItemModelMap' parameterType='PlatformCostConfigItemModel'>
+        select <include refid='sql_columns' /> from t_platform_cost_config_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PlatformCostConfigItemModelMap' parameterType='PlatformCostConfigItemModel'>
+        select <include refid='sql_columns' /> from t_platform_cost_config_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PlatformCostConfigItemModelMap' parameterType='PlatformCostConfigItemModel' >
+        select <include refid='sql_columns' /> from t_platform_cost_config_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PlatformCostConfigItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_platform_cost_config_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='platformConfigId!=null' >platform_config_id  , </if>
+                        <if test='platformSettlementId!=null' >platform_settlement_id  , </if>
+                        <if test='platformSettlementName!=null and !"".equals(platformSettlementName)' > platform_settlement_name , </if>
+                        <if test='ratio!=null' >ratio  , </if>
+                        <if test='creater!=null' >creater  , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='settlementConfigName!=null' >settlement_config_name  , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='platformConfigId!=null' > #{platformConfigId} , </if>
+                        <if test='platformSettlementId!=null' > #{platformSettlementId} , </if>
+                        <if test='platformSettlementName!=null and !"".equals(platformSettlementName)' > #{platformSettlementName} , </if>
+                        <if test='ratio!=null' > #{ratio} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='settlementConfigName!=null' > #{settlementConfigName} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PlatformCostConfigItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_platform_cost_config_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='platformConfigId!=null' > platform_config_id= #{platformConfigId} , </if>
+                        <if test='platformSettlementId!=null' > platform_settlement_id= #{platformSettlementId} , </if>
+                        <if test='platformSettlementName!=null and !"".equals(platformSettlementName)' >platform_settlement_name= #{platformSettlementName} , </if>
+                        <if test='ratio!=null' > ratio= #{ratio} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='settlementConfigName!=null' > settlement_config_name= #{settlementConfigName} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_platform_cost_config_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_platform_cost_config_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            platform_config_id,
+            platform_settlement_id,
+            platform_settlement_name,
+            ratio,
+            creater,
+            create_name,
+            create_date,
+            settlement_config_name
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='platformConfigId!=null' > platform_config_id= #{platformConfigId} and </if>
+                            <if test='platformSettlementId!=null' > platform_settlement_id= #{platformSettlementId} and </if>
+                            <if test='platformSettlementName!=null and !"".equals(platformSettlementName)' >platform_settlement_name= #{platformSettlementName} and </if>
+                            <if test='ratio!=null' > ratio= #{ratio} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='settlementConfigName!=null' > settlement_config_name= #{settlementConfigName} and </if>
+                </trim>
+            </where>
+        </sql>
+
+<!--自定义SQL-->
+    <select id="getConfigById" resultType="PlatformCostConfigItemDTO">
+        select <include refid='sql_columns' /> from t_platform_cost_config_item where platform_config_id= #{platformConfigId}
+    </select>
+
+
+
+</mapper>

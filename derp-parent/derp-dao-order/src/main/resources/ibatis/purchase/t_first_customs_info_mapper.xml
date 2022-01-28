@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.FirstCustomsInfoMapper'>
+
+          <!-- 关系映射 -->
+    <resultMap id="FirstCustomsInfoModelMap" type="FirstCustomsInfoModel" >
+                <result property="country" column="country" />
+                <result property="shipper" column="shipper" />
+                <result property="code" column="code" />
+                <result property="signingAddr" column="signing_addr" />
+                <result property="contractNo" column="contract_no" />
+                <result property="signingDate" column="signing_date" />
+                <result property="modifier" column="modifier" />
+                <result property="portLoading" column="port_loading" />
+                <result property="addresseeAddr" column="addressee_addr" />
+                <result property="secondPartyAddr" column="second_party_addr" />
+                <result property="eAddresseeAddr" column="e_addressee_addr" />
+                <result property="declareOrderId" column="declare_order_id" />
+                <result property="firstPartyAddr" column="first_party_addr" />
+                <result property="firstParty" column="first_party" />
+                <result property="payment" column="payment" />
+                <result property="id" column="id" />
+                <result property="payRules" column="pay_rules" />
+                <result property="invoiceNo" column="invoice_no" />
+                <result property="createDate" column="create_date" />
+                <result property="portDest" column="port_dest" />
+                <result property="eAddressee" column="e_addressee" />
+                <result property="secondParty" column="second_party" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="requirement" column="requirement" />
+                <result property="shipDate" column="ship_date" />
+                <result property="invoiceDate" column="invoice_date" />
+                <result property="pack" column="pack" />
+                <result property="addressee" column="addressee" />
+                <result property="creater" column="creater" />
+                <result property="countryOrigin" column="country_origin" />
+                <result property="mark" column="mark" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='FirstCustomsInfoModelMap' parameterType='FirstCustomsInfoModel'>
+        select <include refid='sql_columns' /> from t_first_customs_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='FirstCustomsInfoModelMap' parameterType='FirstCustomsInfoModel'>
+        select <include refid='sql_columns' /> from t_first_customs_info  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='FirstCustomsInfoModelMap' parameterType='FirstCustomsInfoModel' >
+        select <include refid='sql_columns' /> from t_first_customs_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='FirstCustomsInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_first_customs_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='country!=null and !"".equals(country)' > country , </if>
+                <if test='shipper!=null and !"".equals(shipper)' > shipper , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='signingAddr!=null and !"".equals(signingAddr)' > signing_addr , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                <if test='signingDate!=null' > signing_date , </if>
+                <if test='modifier!=null' > modifier , </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' > port_loading , </if>
+                <if test='addresseeAddr!=null and !"".equals(addresseeAddr)' > addressee_addr , </if>
+                <if test='secondPartyAddr!=null and !"".equals(secondPartyAddr)' > second_party_addr , </if>
+                <if test='eAddresseeAddr!=null and !"".equals(eAddresseeAddr)' > e_addressee_addr , </if>
+                <if test='declareOrderId!=null' > declare_order_id , </if>
+                <if test='firstPartyAddr!=null and !"".equals(firstPartyAddr)' > first_party_addr , </if>
+                <if test='firstParty!=null and !"".equals(firstParty)' > first_party , </if>
+                <if test='payment!=null and !"".equals(payment)' > payment , </if>
+                <if test='id!=null' > id , </if>
+                <if test='payRules!=null and !"".equals(payRules)' > pay_rules , </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' > invoice_no , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='portDest!=null and !"".equals(portDest)' > port_dest , </if>
+                <if test='eAddressee!=null and !"".equals(eAddressee)' > e_addressee , </if>
+                <if test='secondParty!=null and !"".equals(secondParty)' > second_party , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='requirement!=null and !"".equals(requirement)' > requirement , </if>
+                <if test='shipDate!=null' > ship_date , </if>
+                <if test='invoiceDate!=null' > invoice_date , </if>
+                <if test='pack!=null and !"".equals(pack)' > pack , </if>
+                <if test='addressee!=null and !"".equals(addressee)' > addressee , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='countryOrigin!=null and !"".equals(countryOrigin)' > country_origin , </if>
+                <if test='mark!=null and !"".equals(mark)' > mark , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='country!=null and !"".equals(country)' > #{country} , </if>
+                <if test='shipper!=null and !"".equals(shipper)' > #{shipper} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='signingAddr!=null and !"".equals(signingAddr)' > #{signingAddr} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                <if test='signingDate!=null' > #{signingDate} , </if>
+                <if test='modifier!=null' > #{modifier} , </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' > #{portLoading} , </if>
+                <if test='addresseeAddr!=null and !"".equals(addresseeAddr)' > #{addresseeAddr} , </if>
+                <if test='secondPartyAddr!=null and !"".equals(secondPartyAddr)' > #{secondPartyAddr} , </if>
+                <if test='eAddresseeAddr!=null and !"".equals(eAddresseeAddr)' > #{eAddresseeAddr} , </if>
+                <if test='declareOrderId!=null' > #{declareOrderId} , </if>
+                <if test='firstPartyAddr!=null and !"".equals(firstPartyAddr)' > #{firstPartyAddr} , </if>
+                <if test='firstParty!=null and !"".equals(firstParty)' > #{firstParty} , </if>
+                <if test='payment!=null and !"".equals(payment)' > #{payment} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='payRules!=null and !"".equals(payRules)' > #{payRules} , </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' > #{invoiceNo} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='portDest!=null and !"".equals(portDest)' > #{portDest} , </if>
+                <if test='eAddressee!=null and !"".equals(eAddressee)' > #{eAddressee} , </if>
+                <if test='secondParty!=null and !"".equals(secondParty)' > #{secondParty} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='requirement!=null and !"".equals(requirement)' > #{requirement} , </if>
+                <if test='shipDate!=null' > #{shipDate} , </if>
+                <if test='invoiceDate!=null' > #{invoiceDate} , </if>
+                <if test='pack!=null and !"".equals(pack)' > #{pack} , </if>
+                <if test='addressee!=null and !"".equals(addressee)' > #{addressee} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='countryOrigin!=null and !"".equals(countryOrigin)' > #{countryOrigin} , </if>
+                <if test='mark!=null and !"".equals(mark)' > #{mark} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='FirstCustomsInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_first_customs_info SET
+        <trim  suffixOverrides=",">
+                <if test='country!=null and !"".equals(country)' >country= #{country} , </if>
+                <if test='shipper!=null and !"".equals(shipper)' >shipper= #{shipper} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='signingAddr!=null and !"".equals(signingAddr)' >signing_addr= #{signingAddr} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                <if test='signingDate!=null' > signing_date= #{signingDate} , </if>
+                <if test='modifier!=null' > modifier= #{modifier} , </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' >port_loading= #{portLoading} , </if>
+                <if test='addresseeAddr!=null and !"".equals(addresseeAddr)' >addressee_addr= #{addresseeAddr} , </if>
+                <if test='secondPartyAddr!=null and !"".equals(secondPartyAddr)' >second_party_addr= #{secondPartyAddr} , </if>
+                <if test='eAddresseeAddr!=null and !"".equals(eAddresseeAddr)' >e_addressee_addr= #{eAddresseeAddr} , </if>
+                <if test='declareOrderId!=null' > declare_order_id= #{declareOrderId} , </if>
+                <if test='firstPartyAddr!=null and !"".equals(firstPartyAddr)' >first_party_addr= #{firstPartyAddr} , </if>
+                <if test='firstParty!=null and !"".equals(firstParty)' >first_party= #{firstParty} , </if>
+                <if test='payment!=null and !"".equals(payment)' >payment= #{payment} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='payRules!=null and !"".equals(payRules)' >pay_rules= #{payRules} , </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='portDest!=null and !"".equals(portDest)' >port_dest= #{portDest} , </if>
+                <if test='eAddressee!=null and !"".equals(eAddressee)' >e_addressee= #{eAddressee} , </if>
+                <if test='secondParty!=null and !"".equals(secondParty)' >second_party= #{secondParty} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='requirement!=null and !"".equals(requirement)' >requirement= #{requirement} , </if>
+                <if test='shipDate!=null' > ship_date= #{shipDate} , </if>
+                <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} , </if>
+                <if test='pack!=null and !"".equals(pack)' >pack= #{pack} , </if>
+                <if test='addressee!=null and !"".equals(addressee)' >addressee= #{addressee} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='countryOrigin!=null and !"".equals(countryOrigin)' >country_origin= #{countryOrigin} , </if>
+                <if test='mark!=null and !"".equals(mark)' >mark= #{mark} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_first_customs_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_first_customs_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        country,
+        shipper,
+        code,
+        signing_addr,
+        contract_no,
+        signing_date,
+        modifier,
+        port_loading,
+        addressee_addr,
+        second_party_addr,
+        e_addressee_addr,
+        declare_order_id,
+        first_party_addr,
+        first_party,
+        payment,
+        id,
+        pay_rules,
+        invoice_no,
+        create_date,
+        port_dest,
+        e_addressee,
+        second_party,
+        modify_date,
+        requirement,
+        ship_date,
+        invoice_date,
+        pack,
+        addressee,
+        creater,
+        country_origin,
+        mark
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='country!=null and !"".equals(country)' >country= #{country} and </if>
+                <if test='shipper!=null and !"".equals(shipper)' >shipper= #{shipper} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='signingAddr!=null and !"".equals(signingAddr)' >signing_addr= #{signingAddr} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='signingDate!=null' > signing_date= #{signingDate} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='portLoading!=null and !"".equals(portLoading)' >port_loading= #{portLoading} and </if>
+                <if test='addresseeAddr!=null and !"".equals(addresseeAddr)' >addressee_addr= #{addresseeAddr} and </if>
+                <if test='secondPartyAddr!=null and !"".equals(secondPartyAddr)' >second_party_addr= #{secondPartyAddr} and </if>
+                <if test='eAddresseeAddr!=null and !"".equals(eAddresseeAddr)' >e_addressee_addr= #{eAddresseeAddr} and </if>
+                <if test='declareOrderId!=null' > declare_order_id= #{declareOrderId} and </if>
+                <if test='firstPartyAddr!=null and !"".equals(firstPartyAddr)' >first_party_addr= #{firstPartyAddr} and </if>
+                <if test='firstParty!=null and !"".equals(firstParty)' >first_party= #{firstParty} and </if>
+                <if test='payment!=null and !"".equals(payment)' >payment= #{payment} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='payRules!=null and !"".equals(payRules)' >pay_rules= #{payRules} and </if>
+                <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='portDest!=null and !"".equals(portDest)' >port_dest= #{portDest} and </if>
+                <if test='eAddressee!=null and !"".equals(eAddressee)' >e_addressee= #{eAddressee} and </if>
+                <if test='secondParty!=null and !"".equals(secondParty)' >second_party= #{secondParty} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='requirement!=null and !"".equals(requirement)' >requirement= #{requirement} and </if>
+                <if test='shipDate!=null' > ship_date= #{shipDate} and </if>
+                <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} and </if>
+                <if test='pack!=null and !"".equals(pack)' >pack= #{pack} and </if>
+                <if test='addressee!=null and !"".equals(addressee)' >addressee= #{addressee} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='countryOrigin!=null and !"".equals(countryOrigin)' >country_origin= #{countryOrigin} and </if>
+                <if test='mark!=null and !"".equals(mark)' >mark= #{mark} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+
+
+
+</mapper>

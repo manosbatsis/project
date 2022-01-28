@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.ReceiveInvoicenoMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="ReceiveInvoicenoModelMap" type="ReceiveInvoicenoModel" >
+                <result property="id" column="id" />
+                <result property="invoiceNoPrefix" column="invoice_no_prefix" />
+                <result property="value" column="value" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='ReceiveInvoicenoModelMap' parameterType='ReceiveInvoicenoModel'>
+        select <include refid='sql_columns' /> from t_receive_invoiceno  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='ReceiveInvoicenoModelMap' parameterType='ReceiveInvoicenoModel'>
+        select <include refid='sql_columns' /> from t_receive_invoiceno  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='ReceiveInvoicenoModelMap' parameterType='ReceiveInvoicenoModel' >
+        select <include refid='sql_columns' /> from t_receive_invoiceno  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='ReceiveInvoicenoModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_receive_invoiceno
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='invoiceNoPrefix!=null and !"".equals(invoiceNoPrefix)' > invoice_no_prefix , </if>
+                        <if test='value!=null' >value , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='invoiceNoPrefix!=null and !"".equals(invoiceNoPrefix)' > #{invoiceNoPrefix} , </if>
+                        <if test='value!=null' > #{value} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='ReceiveInvoicenoModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_receive_invoiceno SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='invoiceNoPrefix!=null and !"".equals(invoiceNoPrefix)' >invoice_no_prefix= #{invoiceNoPrefix} , </if>
+                        <if test='value!=null' > value= #{value} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_receive_invoiceno  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_receive_invoiceno where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            invoice_no_prefix,
+            value,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='invoiceNoPrefix!=null and !"".equals(invoiceNoPrefix)' >invoice_no_prefix= #{invoiceNoPrefix} and </if>
+                            <if test='value!=null' > value= #{value} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <select id="getMaxValue" parameterType="java.lang.String" resultType="java.lang.Long" >
+            select max(value) from t_receive_invoiceno
+            where invoice_no_prefix= #{invoiceNoPrefix}
+        </select>
+
+
+
+</mapper>

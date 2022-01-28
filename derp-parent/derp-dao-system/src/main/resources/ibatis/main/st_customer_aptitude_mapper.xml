@@ -1,0 +1,316 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.CustomerAptitudeMapper'>
+
+     <!-- 关系映射 -->
+    <resultMap id="CustomerAptitudeModelMap" type="CustomerAptitudeModel" >
+                <result property="supplyRecord" column="supply_record" />
+                <result property="keepModifierName" column="keep_modifier_name" />
+                <result property="brandAuthorization" column="brand_authorization" />
+                <result property="modifier" column="modifier" />
+                <result property="legalModifierName" column="legal_modifier_name" />
+                <result property="chartModifier" column="chart_modifier" />
+                <result property="orgModifier" column="org_modifier" />
+                <result property="registModifier" column="regist_modifier" />
+                <result property="legalModifier" column="legal_modifier" />
+                <result property="bankModifier" column="bank_modifier" />
+                <result property="bankModifierName" column="bank_modifier_name" />
+                <result property="chartModifyDate" column="chart_modify_date" />
+                <result property="bankModifyDate" column="bank_modify_date" />
+                <result property="charteredNo" column="chartered_no" />
+                <result property="customerId" column="customer_id" />
+                <result property="keepRecord" column="keep_record" />
+                <result property="proofModifyDate" column="proof_modify_date" />
+                <result property="id" column="id" />
+                <result property="legalCardNo" column="legal_card_no" />
+                <result property="brandModifier" column="brand_modifier" />
+                <result property="orgModifyDate" column="org_modify_date" />
+                <result property="bankFlow" column="bank_flow" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="orgModifierName" column="org_modifier_name" />
+                <result property="proofModifier" column="proof_modifier" />
+                <result property="supplyModifyDate" column="supply_modify_date" />
+                <result property="keepModifyDate" column="keep_modify_date" />
+                <result property="proofInfo" column="proof_info" />
+                <result property="proofModifierName" column="proof_modifier_name" />
+                <result property="supplyModifier" column="supply_modifier" />
+                <result property="supplyModifierName" column="supply_modifier_name" />
+                <result property="registModifyDate" column="regist_modify_date" />
+                <result property="keepModifier" column="keep_modifier" />
+                <result property="legalModifyDate" column="legal_modify_date" />
+                <result property="organizationCode" column="organization_code" />
+                <result property="registrationNo" column="registration_no" />
+                <result property="brandModifierName" column="brand_modifier_name" />
+                <result property="registModifierName" column="regist_modifier_name" />
+                <result property="chartModifierName" column="chart_modifier_name" />
+                <result property="brandModifyDate" column="brand_modify_date" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='CustomerAptitudeModelMap' parameterType='CustomerAptitudeModel'>
+        select <include refid='sql_columns' /> from st_customer_aptitude  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='CustomerAptitudeModelMap' parameterType='CustomerAptitudeModel'>
+        select <include refid='sql_columns' /> from st_customer_aptitude  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='CustomerAptitudeModelMap' parameterType='CustomerAptitudeModel' >
+        select <include refid='sql_columns' /> from st_customer_aptitude  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='CustomerAptitudeModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_customer_aptitude
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='supplyRecord!=null and !"".equals(supplyRecord)' > supply_record , </if>
+                <if test='keepModifierName!=null and !"".equals(keepModifierName)' > keep_modifier_name , </if>
+                <if test='brandAuthorization!=null and !"".equals(brandAuthorization)' > brand_authorization , </if>
+                <if test='modifier!=null' > modifier , </if>
+                <if test='legalModifierName!=null and !"".equals(legalModifierName)' > legal_modifier_name , </if>
+                <if test='chartModifier!=null' > chart_modifier , </if>
+                <if test='orgModifier!=null' > org_modifier , </if>
+                <if test='registModifier!=null' > regist_modifier , </if>
+                <if test='legalModifier!=null' > legal_modifier , </if>
+                <if test='bankModifier!=null' > bank_modifier , </if>
+                <if test='bankModifierName!=null and !"".equals(bankModifierName)' > bank_modifier_name , </if>
+                <if test='chartModifyDate!=null' > chart_modify_date , </if>
+                <if test='bankModifyDate!=null' > bank_modify_date , </if>
+                <if test='charteredNo!=null and !"".equals(charteredNo)' > chartered_no , </if>
+                <if test='customerId!=null' > customer_id , </if>
+                <if test='keepRecord!=null and !"".equals(keepRecord)' > keep_record , </if>
+                <if test='proofModifyDate!=null' > proof_modify_date , </if>
+                <if test='id!=null' > id , </if>
+                <if test='legalCardNo!=null and !"".equals(legalCardNo)' > legal_card_no , </if>
+                <if test='brandModifier!=null' > brand_modifier , </if>
+                <if test='orgModifyDate!=null' > org_modify_date , </if>
+                <if test='bankFlow!=null and !"".equals(bankFlow)' > bank_flow , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='orgModifierName!=null and !"".equals(orgModifierName)' > org_modifier_name , </if>
+                <if test='proofModifier!=null' > proof_modifier , </if>
+                <if test='supplyModifyDate!=null' > supply_modify_date , </if>
+                <if test='keepModifyDate!=null' > keep_modify_date , </if>
+                <if test='proofInfo!=null and !"".equals(proofInfo)' > proof_info , </if>
+                <if test='proofModifierName!=null and !"".equals(proofModifierName)' > proof_modifier_name , </if>
+                <if test='supplyModifier!=null' > supply_modifier , </if>
+                <if test='supplyModifierName!=null and !"".equals(supplyModifierName)' > supply_modifier_name , </if>
+                <if test='registModifyDate!=null' > regist_modify_date , </if>
+                <if test='keepModifier!=null' > keep_modifier , </if>
+                <if test='legalModifyDate!=null' > legal_modify_date , </if>
+                <if test='organizationCode!=null and !"".equals(organizationCode)' > organization_code , </if>
+                <if test='registrationNo!=null and !"".equals(registrationNo)' > registration_no , </if>
+                <if test='brandModifierName!=null and !"".equals(brandModifierName)' > brand_modifier_name , </if>
+                <if test='registModifierName!=null and !"".equals(registModifierName)' > regist_modifier_name , </if>
+                <if test='chartModifierName!=null and !"".equals(chartModifierName)' > chart_modifier_name , </if>
+                <if test='brandModifyDate!=null' > brand_modify_date , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='supplyRecord!=null and !"".equals(supplyRecord)' > #{supplyRecord} , </if>
+                <if test='keepModifierName!=null and !"".equals(keepModifierName)' > #{keepModifierName} , </if>
+                <if test='brandAuthorization!=null and !"".equals(brandAuthorization)' > #{brandAuthorization} , </if>
+                <if test='modifier!=null' > #{modifier} , </if>
+                <if test='legalModifierName!=null and !"".equals(legalModifierName)' > #{legalModifierName} , </if>
+                <if test='chartModifier!=null' > #{chartModifier} , </if>
+                <if test='orgModifier!=null' > #{orgModifier} , </if>
+                <if test='registModifier!=null' > #{registModifier} , </if>
+                <if test='legalModifier!=null' > #{legalModifier} , </if>
+                <if test='bankModifier!=null' > #{bankModifier} , </if>
+                <if test='bankModifierName!=null and !"".equals(bankModifierName)' > #{bankModifierName} , </if>
+                <if test='chartModifyDate!=null' > #{chartModifyDate} , </if>
+                <if test='bankModifyDate!=null' > #{bankModifyDate} , </if>
+                <if test='charteredNo!=null and !"".equals(charteredNo)' > #{charteredNo} , </if>
+                <if test='customerId!=null' > #{customerId} , </if>
+                <if test='keepRecord!=null and !"".equals(keepRecord)' > #{keepRecord} , </if>
+                <if test='proofModifyDate!=null' > #{proofModifyDate} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='legalCardNo!=null and !"".equals(legalCardNo)' > #{legalCardNo} , </if>
+                <if test='brandModifier!=null' > #{brandModifier} , </if>
+                <if test='orgModifyDate!=null' > #{orgModifyDate} , </if>
+                <if test='bankFlow!=null and !"".equals(bankFlow)' > #{bankFlow} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='orgModifierName!=null and !"".equals(orgModifierName)' > #{orgModifierName} , </if>
+                <if test='proofModifier!=null' > #{proofModifier} , </if>
+                <if test='supplyModifyDate!=null' > #{supplyModifyDate} , </if>
+                <if test='keepModifyDate!=null' > #{keepModifyDate} , </if>
+                <if test='proofInfo!=null and !"".equals(proofInfo)' > #{proofInfo} , </if>
+                <if test='proofModifierName!=null and !"".equals(proofModifierName)' > #{proofModifierName} , </if>
+                <if test='supplyModifier!=null' > #{supplyModifier} , </if>
+                <if test='supplyModifierName!=null and !"".equals(supplyModifierName)' > #{supplyModifierName} , </if>
+                <if test='registModifyDate!=null' > #{registModifyDate} , </if>
+                <if test='keepModifier!=null' > #{keepModifier} , </if>
+                <if test='legalModifyDate!=null' > #{legalModifyDate} , </if>
+                <if test='organizationCode!=null and !"".equals(organizationCode)' > #{organizationCode} , </if>
+                <if test='registrationNo!=null and !"".equals(registrationNo)' > #{registrationNo} , </if>
+                <if test='brandModifierName!=null and !"".equals(brandModifierName)' > #{brandModifierName} , </if>
+                <if test='registModifierName!=null and !"".equals(registModifierName)' > #{registModifierName} , </if>
+                <if test='chartModifierName!=null and !"".equals(chartModifierName)' > #{chartModifierName} , </if>
+                <if test='brandModifyDate!=null' > #{brandModifyDate} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='CustomerAptitudeModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_customer_aptitude SET
+        <trim  suffixOverrides=",">
+                <if test='supplyRecord!=null and !"".equals(supplyRecord)' >supply_record= #{supplyRecord} , </if>
+                <if test='keepModifierName!=null and !"".equals(keepModifierName)' >keep_modifier_name= #{keepModifierName} , </if>
+                <if test='brandAuthorization!=null and !"".equals(brandAuthorization)' >brand_authorization= #{brandAuthorization} , </if>
+                <if test='modifier!=null' > modifier= #{modifier} , </if>
+                <if test='legalModifierName!=null and !"".equals(legalModifierName)' >legal_modifier_name= #{legalModifierName} , </if>
+                <if test='chartModifier!=null' > chart_modifier= #{chartModifier} , </if>
+                <if test='orgModifier!=null' > org_modifier= #{orgModifier} , </if>
+                <if test='registModifier!=null' > regist_modifier= #{registModifier} , </if>
+                <if test='legalModifier!=null' > legal_modifier= #{legalModifier} , </if>
+                <if test='bankModifier!=null' > bank_modifier= #{bankModifier} , </if>
+                <if test='bankModifierName!=null and !"".equals(bankModifierName)' >bank_modifier_name= #{bankModifierName} , </if>
+                <if test='chartModifyDate!=null' > chart_modify_date= #{chartModifyDate} , </if>
+                <if test='bankModifyDate!=null' > bank_modify_date= #{bankModifyDate} , </if>
+                <if test='charteredNo!=null and !"".equals(charteredNo)' >chartered_no= #{charteredNo} , </if>
+                <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                <if test='keepRecord!=null and !"".equals(keepRecord)' >keep_record= #{keepRecord} , </if>
+                <if test='proofModifyDate!=null' > proof_modify_date= #{proofModifyDate} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='legalCardNo!=null and !"".equals(legalCardNo)' >legal_card_no= #{legalCardNo} , </if>
+                <if test='brandModifier!=null' > brand_modifier= #{brandModifier} , </if>
+                <if test='orgModifyDate!=null' > org_modify_date= #{orgModifyDate} , </if>
+                <if test='bankFlow!=null and !"".equals(bankFlow)' >bank_flow= #{bankFlow} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='orgModifierName!=null and !"".equals(orgModifierName)' >org_modifier_name= #{orgModifierName} , </if>
+                <if test='proofModifier!=null' > proof_modifier= #{proofModifier} , </if>
+                <if test='supplyModifyDate!=null' > supply_modify_date= #{supplyModifyDate} , </if>
+                <if test='keepModifyDate!=null' > keep_modify_date= #{keepModifyDate} , </if>
+                <if test='proofInfo!=null and !"".equals(proofInfo)' >proof_info= #{proofInfo} , </if>
+                <if test='proofModifierName!=null and !"".equals(proofModifierName)' >proof_modifier_name= #{proofModifierName} , </if>
+                <if test='supplyModifier!=null' > supply_modifier= #{supplyModifier} , </if>
+                <if test='supplyModifierName!=null and !"".equals(supplyModifierName)' >supply_modifier_name= #{supplyModifierName} , </if>
+                <if test='registModifyDate!=null' > regist_modify_date= #{registModifyDate} , </if>
+                <if test='keepModifier!=null' > keep_modifier= #{keepModifier} , </if>
+                <if test='legalModifyDate!=null' > legal_modify_date= #{legalModifyDate} , </if>
+                <if test='organizationCode!=null and !"".equals(organizationCode)' >organization_code= #{organizationCode} , </if>
+                <if test='registrationNo!=null and !"".equals(registrationNo)' >registration_no= #{registrationNo} , </if>
+                <if test='brandModifierName!=null and !"".equals(brandModifierName)' >brand_modifier_name= #{brandModifierName} , </if>
+                <if test='registModifierName!=null and !"".equals(registModifierName)' >regist_modifier_name= #{registModifierName} , </if>
+                <if test='chartModifierName!=null and !"".equals(chartModifierName)' >chart_modifier_name= #{chartModifierName} , </if>
+                <if test='brandModifyDate!=null' > brand_modify_date= #{brandModifyDate} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_customer_aptitude  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_customer_aptitude where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        supply_record,
+        keep_modifier_name,
+        brand_authorization,
+        modifier,
+        legal_modifier_name,
+        chart_modifier,
+        org_modifier,
+        regist_modifier,
+        legal_modifier,
+        bank_modifier,
+        bank_modifier_name,
+        chart_modify_date,
+        bank_modify_date,
+        chartered_no,
+        customer_id,
+        keep_record,
+        proof_modify_date,
+        id,
+        legal_card_no,
+        brand_modifier,
+        org_modify_date,
+        bank_flow,
+        modify_date,
+        org_modifier_name,
+        proof_modifier,
+        supply_modify_date,
+        keep_modify_date,
+        proof_info,
+        proof_modifier_name,
+        supply_modifier,
+        supply_modifier_name,
+        regist_modify_date,
+        keep_modifier,
+        legal_modify_date,
+        organization_code,
+        registration_no,
+        brand_modifier_name,
+        regist_modifier_name,
+        chart_modifier_name,
+        brand_modify_date
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='supplyRecord!=null and !"".equals(supplyRecord)' >supply_record= #{supplyRecord} and </if>
+                <if test='keepModifierName!=null and !"".equals(keepModifierName)' >keep_modifier_name= #{keepModifierName} and </if>
+                <if test='brandAuthorization!=null and !"".equals(brandAuthorization)' >brand_authorization= #{brandAuthorization} and </if>
+                <if test='modifier!=null' > modifier= #{modifier} and </if>
+                <if test='legalModifierName!=null and !"".equals(legalModifierName)' >legal_modifier_name= #{legalModifierName} and </if>
+                <if test='chartModifier!=null' > chart_modifier= #{chartModifier} and </if>
+                <if test='orgModifier!=null' > org_modifier= #{orgModifier} and </if>
+                <if test='registModifier!=null' > regist_modifier= #{registModifier} and </if>
+                <if test='legalModifier!=null' > legal_modifier= #{legalModifier} and </if>
+                <if test='bankModifier!=null' > bank_modifier= #{bankModifier} and </if>
+                <if test='bankModifierName!=null and !"".equals(bankModifierName)' >bank_modifier_name= #{bankModifierName} and </if>
+                <if test='chartModifyDate!=null' > chart_modify_date= #{chartModifyDate} and </if>
+                <if test='bankModifyDate!=null' > bank_modify_date= #{bankModifyDate} and </if>
+                <if test='charteredNo!=null and !"".equals(charteredNo)' >chartered_no= #{charteredNo} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='keepRecord!=null and !"".equals(keepRecord)' >keep_record= #{keepRecord} and </if>
+                <if test='proofModifyDate!=null' > proof_modify_date= #{proofModifyDate} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='legalCardNo!=null and !"".equals(legalCardNo)' >legal_card_no= #{legalCardNo} and </if>
+                <if test='brandModifier!=null' > brand_modifier= #{brandModifier} and </if>
+                <if test='orgModifyDate!=null' > org_modify_date= #{orgModifyDate} and </if>
+                <if test='bankFlow!=null and !"".equals(bankFlow)' >bank_flow= #{bankFlow} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='orgModifierName!=null and !"".equals(orgModifierName)' >org_modifier_name= #{orgModifierName} and </if>
+                <if test='proofModifier!=null' > proof_modifier= #{proofModifier} and </if>
+                <if test='supplyModifyDate!=null' > supply_modify_date= #{supplyModifyDate} and </if>
+                <if test='keepModifyDate!=null' > keep_modify_date= #{keepModifyDate} and </if>
+                <if test='proofInfo!=null and !"".equals(proofInfo)' >proof_info= #{proofInfo} and </if>
+                <if test='proofModifierName!=null and !"".equals(proofModifierName)' >proof_modifier_name= #{proofModifierName} and </if>
+                <if test='supplyModifier!=null' > supply_modifier= #{supplyModifier} and </if>
+                <if test='supplyModifierName!=null and !"".equals(supplyModifierName)' >supply_modifier_name= #{supplyModifierName} and </if>
+                <if test='registModifyDate!=null' > regist_modify_date= #{registModifyDate} and </if>
+                <if test='keepModifier!=null' > keep_modifier= #{keepModifier} and </if>
+                <if test='legalModifyDate!=null' > legal_modify_date= #{legalModifyDate} and </if>
+                <if test='organizationCode!=null and !"".equals(organizationCode)' >organization_code= #{organizationCode} and </if>
+                <if test='registrationNo!=null and !"".equals(registrationNo)' >registration_no= #{registrationNo} and </if>
+                <if test='brandModifierName!=null and !"".equals(brandModifierName)' >brand_modifier_name= #{brandModifierName} and </if>
+                <if test='registModifierName!=null and !"".equals(registModifierName)' >regist_modifier_name= #{registModifierName} and </if>
+                <if test='chartModifierName!=null and !"".equals(chartModifierName)' >chart_modifier_name= #{chartModifierName} and </if>
+                <if test='brandModifyDate!=null' > brand_modify_date= #{brandModifyDate} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+
+
+
+</mapper>

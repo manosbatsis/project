@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleReturnDeclareOrderItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleReturnDeclareOrderItemModelMap" type="SaleReturnDeclareOrderItemModel" >
+                <result property="id" column="id" />
+                <result property="returnDeclareOrderId" column="return_declare_order_id" />
+                <result property="saleReturnOrderId" column="sale_return_order_id" />
+                <result property="saleReturnOrderCode" column="sale_return_order_code" />
+                <result property="poNo" column="po_no" />
+                <result property="inGoodsId" column="in_goods_id" />
+                <result property="inGoodsCode" column="in_goods_code" />
+                <result property="inGoodsName" column="in_goods_name" />
+                <result property="inGoodsNo" column="in_goods_no" />
+                <result property="inBarcode" column="in_barcode" />
+                <result property="outGoodsId" column="out_goods_id" />
+                <result property="outGoodsCode" column="out_goods_code" />
+                <result property="outGoodsName" column="out_goods_name" />
+                <result property="outGoodsNo" column="out_goods_no" />
+                <result property="outBarcode" column="out_barcode" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="num" column="num" />
+                <result property="price" column="price" />
+                <result property="amount" column="amount" />
+                <result property="taxPrice" column="tax_price" />
+                <result property="taxAmount" column="tax_amount" />
+                <result property="tax" column="tax" />
+                <result property="taxRate" column="tax_rate" />
+                <result property="brandName" column="brand_name" />
+                <result property="grossWeight" column="gross_weight" />
+                <result property="netWeight" column="net_weight" />
+                <result property="grossWeightSum" column="gross_weight_sum" />
+                <result property="netWeightSum" column="net_weight_sum" />
+                <result property="boxNo" column="box_no" />
+                <result property="batchNo" column="batch_no" />
+                <result property="seq" column="seq" />
+                <result property="createDate" column="create_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleReturnDeclareOrderItemModelMap' parameterType='SaleReturnDeclareOrderItemModel'>
+        select <include refid='sql_columns' /> from t_sale_return_declare_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleReturnDeclareOrderItemModelMap' parameterType='SaleReturnDeclareOrderItemModel'>
+        select <include refid='sql_columns' /> from t_sale_return_declare_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleReturnDeclareOrderItemModelMap' parameterType='SaleReturnDeclareOrderItemModel' >
+        select <include refid='sql_columns' /> from t_sale_return_declare_order_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleReturnDeclareOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_sale_return_declare_order_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='returnDeclareOrderId!=null' >return_declare_order_id , </if>
+                        <if test='saleReturnOrderId!=null' >sale_return_order_id , </if>
+                        <if test='saleReturnOrderCode!=null and !"".equals(saleReturnOrderCode)' > sale_return_order_code , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='inGoodsId!=null' >in_goods_id , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > in_goods_code , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' > in_goods_name , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > in_goods_no , </if>
+                        <if test='inBarcode!=null and !"".equals(inBarcode)' > in_barcode , </if>
+                        <if test='outGoodsId!=null' >out_goods_id , </if>
+                        <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' > out_goods_code , </if>
+                        <if test='outGoodsName!=null and !"".equals(outGoodsName)' > out_goods_name , </if>
+                        <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' > out_goods_no , </if>
+                        <if test='outBarcode!=null and !"".equals(outBarcode)' > out_barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='price!=null' >price , </if>
+                        <if test='amount!=null' >amount , </if>
+                        <if test='taxPrice!=null' >tax_price , </if>
+                        <if test='taxAmount!=null' >tax_amount , </if>
+                        <if test='tax!=null' >tax , </if>
+                        <if test='taxRate!=null' >tax_rate , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='grossWeight!=null' >gross_weight , </if>
+                        <if test='netWeight!=null' >net_weight , </if>
+                        <if test='grossWeightSum!=null' >gross_weight_sum , </if>
+                        <if test='netWeightSum!=null' >net_weight_sum , </if>
+                        <if test='boxNo!=null and !"".equals(boxNo)' > box_no , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                        <if test='seq!=null' >seq , </if>
+                        <if test='createDate!=null' >create_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='returnDeclareOrderId!=null' > #{returnDeclareOrderId} , </if>
+                        <if test='saleReturnOrderId!=null' > #{saleReturnOrderId} , </if>
+                        <if test='saleReturnOrderCode!=null and !"".equals(saleReturnOrderCode)' > #{saleReturnOrderCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='inGoodsId!=null' > #{inGoodsId} , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > #{inGoodsCode} , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' > #{inGoodsName} , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > #{inGoodsNo} , </if>
+                        <if test='inBarcode!=null and !"".equals(inBarcode)' > #{inBarcode} , </if>
+                        <if test='outGoodsId!=null' > #{outGoodsId} , </if>
+                        <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' > #{outGoodsCode} , </if>
+                        <if test='outGoodsName!=null and !"".equals(outGoodsName)' > #{outGoodsName} , </if>
+                        <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' > #{outGoodsNo} , </if>
+                        <if test='outBarcode!=null and !"".equals(outBarcode)' > #{outBarcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='price!=null' > #{price} , </if>
+                        <if test='amount!=null' > #{amount} , </if>
+                        <if test='taxPrice!=null' > #{taxPrice} , </if>
+                        <if test='taxAmount!=null' > #{taxAmount} , </if>
+                        <if test='tax!=null' > #{tax} , </if>
+                        <if test='taxRate!=null' > #{taxRate} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='grossWeight!=null' > #{grossWeight} , </if>
+                        <if test='netWeight!=null' > #{netWeight} , </if>
+                        <if test='grossWeightSum!=null' > #{grossWeightSum} , </if>
+                        <if test='netWeightSum!=null' > #{netWeightSum} , </if>
+                        <if test='boxNo!=null and !"".equals(boxNo)' > #{boxNo} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                        <if test='seq!=null' > #{seq} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleReturnDeclareOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_sale_return_declare_order_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='returnDeclareOrderId!=null' > return_declare_order_id= #{returnDeclareOrderId} , </if>
+                        <if test='saleReturnOrderId!=null' > sale_return_order_id= #{saleReturnOrderId} , </if>
+                        <if test='saleReturnOrderCode!=null and !"".equals(saleReturnOrderCode)' >sale_return_order_code= #{saleReturnOrderCode} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} , </if>
+                        <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} , </if>
+                        <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} , </if>
+                        <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} , </if>
+                        <if test='inBarcode!=null and !"".equals(inBarcode)' >in_barcode= #{inBarcode} , </if>
+                        <if test='outGoodsId!=null' > out_goods_id= #{outGoodsId} , </if>
+                        <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' >out_goods_code= #{outGoodsCode} , </if>
+                        <if test='outGoodsName!=null and !"".equals(outGoodsName)' >out_goods_name= #{outGoodsName} , </if>
+                        <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >out_goods_no= #{outGoodsNo} , </if>
+                        <if test='outBarcode!=null and !"".equals(outBarcode)' >out_barcode= #{outBarcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='price!=null' > price= #{price} , </if>
+                        <if test='amount!=null' > amount= #{amount} , </if>
+                        <if test='taxPrice!=null' > tax_price= #{taxPrice} , </if>
+                        <if test='taxAmount!=null' > tax_amount= #{taxAmount} , </if>
+                        <if test='tax!=null' > tax= #{tax} , </if>
+                        <if test='taxRate!=null' > tax_rate= #{taxRate} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='grossWeight!=null' > gross_weight= #{grossWeight} , </if>
+                        <if test='netWeight!=null' > net_weight= #{netWeight} , </if>
+                        <if test='grossWeightSum!=null' > gross_weight_sum= #{grossWeightSum} , </if>
+                        <if test='netWeightSum!=null' > net_weight_sum= #{netWeightSum} , </if>
+                        <if test='boxNo!=null and !"".equals(boxNo)' >box_no= #{boxNo} , </if>
+                        <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                        <if test='seq!=null' > seq= #{seq} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_return_declare_order_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_sale_return_declare_order_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            return_declare_order_id,
+            sale_return_order_id,
+            sale_return_order_code,
+            po_no,
+            in_goods_id,
+            in_goods_code,
+            in_goods_name,
+            in_goods_no,
+            in_barcode,
+            out_goods_id,
+            out_goods_code,
+            out_goods_name,
+            out_goods_no,
+            out_barcode,
+            commbarcode,
+            num,
+            price,
+            amount,
+            tax_price,
+            tax_amount,
+            tax,
+            tax_rate,
+            brand_name,
+            gross_weight,
+            net_weight,
+            gross_weight_sum,
+            net_weight_sum,
+            box_no,
+            batch_no,
+            seq,
+            create_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='returnDeclareOrderId!=null' > return_declare_order_id= #{returnDeclareOrderId} and </if>
+                            <if test='saleReturnOrderId!=null' > sale_return_order_id= #{saleReturnOrderId} and </if>
+                            <if test='saleReturnOrderCode!=null and !"".equals(saleReturnOrderCode)' >sale_return_order_code= #{saleReturnOrderCode} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} and </if>
+                            <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} and </if>
+                            <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} and </if>
+                            <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} and </if>
+                            <if test='inBarcode!=null and !"".equals(inBarcode)' >in_barcode= #{inBarcode} and </if>
+                            <if test='outGoodsId!=null' > out_goods_id= #{outGoodsId} and </if>
+                            <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' >out_goods_code= #{outGoodsCode} and </if>
+                            <if test='outGoodsName!=null and !"".equals(outGoodsName)' >out_goods_name= #{outGoodsName} and </if>
+                            <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >out_goods_no= #{outGoodsNo} and </if>
+                            <if test='outBarcode!=null and !"".equals(outBarcode)' >out_barcode= #{outBarcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='price!=null' > price= #{price} and </if>
+                            <if test='amount!=null' > amount= #{amount} and </if>
+                            <if test='taxPrice!=null' > tax_price= #{taxPrice} and </if>
+                            <if test='taxAmount!=null' > tax_amount= #{taxAmount} and </if>
+                            <if test='tax!=null' > tax= #{tax} and </if>
+                            <if test='taxRate!=null' > tax_rate= #{taxRate} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='grossWeight!=null' > gross_weight= #{grossWeight} and </if>
+                            <if test='netWeight!=null' > net_weight= #{netWeight} and </if>
+                            <if test='grossWeightSum!=null' > gross_weight_sum= #{grossWeightSum} and </if>
+                            <if test='netWeightSum!=null' > net_weight_sum= #{netWeightSum} and </if>
+                            <if test='boxNo!=null and !"".equals(boxNo)' >box_no= #{boxNo} and </if>
+                            <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                            <if test='seq!=null' > seq= #{seq} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+
+
+
+
+</mapper>

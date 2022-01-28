@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.YunjiDailySalesReportMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="YunjiDailySalesReportModelMap" type="YunjiDailySalesReportModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="brandId" column="brand_id" />
+                <result property="brandName" column="brand_name" />
+                <result property="productTypeName0" column="product_type_name0" />
+                <result property="productTypeId0" column="product_type_id0" />
+                <result property="productTypeName" column="product_type_name" />
+                <result property="productTypeId" column="product_type_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="barcode" column="barcode" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="daySaleNum" column="day_sale_num" />
+                <result property="monthSaleNum" column="month_sale_num" />
+                <result property="yearSaleNum" column="year_sale_num" />
+                <result property="dayInventoryNum" column="day_inventory_num" />
+                <result property="dayReturnBinNum" column="day_return_bin_num" />
+                <result property="snapshotDate" column="snapshot_date" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='YunjiDailySalesReportModelMap' parameterType='YunjiDailySalesReportModel'>
+        select <include refid='sql_columns' /> from r_yunji_daily_sales_report  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='YunjiDailySalesReportModelMap' parameterType='YunjiDailySalesReportModel'>
+        select <include refid='sql_columns' /> from r_yunji_daily_sales_report  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='YunjiDailySalesReportModelMap' parameterType='YunjiDailySalesReportModel' >
+        select <include refid='sql_columns' /> from r_yunji_daily_sales_report  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='YunjiDailySalesReportModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_yunji_daily_sales_report
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='brandId!=null' >brand_id , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                        <if test='productTypeName0!=null and !"".equals(productTypeName0)' > product_type_name0 , </if>
+                        <if test='productTypeId0!=null' >product_type_id0 , </if>
+                        <if test='productTypeName!=null and !"".equals(productTypeName)' > product_type_name , </if>
+                        <if test='productTypeId!=null' >product_type_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                        <if test='daySaleNum!=null' >day_sale_num , </if>
+                        <if test='monthSaleNum!=null' >month_sale_num , </if>
+                        <if test='yearSaleNum!=null' >year_sale_num , </if>
+                        <if test='dayInventoryNum!=null' >day_inventory_num , </if>
+                        <if test='dayReturnBinNum!=null' >day_return_bin_num , </if>
+                        <if test='snapshotDate!=null' >snapshot_date , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='brandId!=null' > #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                        <if test='productTypeName0!=null and !"".equals(productTypeName0)' > #{productTypeName0} , </if>
+                        <if test='productTypeId0!=null' > #{productTypeId0} , </if>
+                        <if test='productTypeName!=null and !"".equals(productTypeName)' > #{productTypeName} , </if>
+                        <if test='productTypeId!=null' > #{productTypeId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' > #{commbarcode} , </if>
+                        <if test='daySaleNum!=null' > #{daySaleNum} , </if>
+                        <if test='monthSaleNum!=null' > #{monthSaleNum} , </if>
+                        <if test='yearSaleNum!=null' > #{yearSaleNum} , </if>
+                        <if test='dayInventoryNum!=null' > #{dayInventoryNum} , </if>
+                        <if test='dayReturnBinNum!=null' > #{dayReturnBinNum} , </if>
+                        <if test='snapshotDate!=null' > #{snapshotDate} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='YunjiDailySalesReportModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_yunji_daily_sales_report SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='brandId!=null' > brand_id= #{brandId} , </if>
+                        <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                        <if test='productTypeName0!=null and !"".equals(productTypeName0)' >product_type_name0= #{productTypeName0} , </if>
+                        <if test='productTypeId0!=null' > product_type_id0= #{productTypeId0} , </if>
+                        <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} , </if>
+                        <if test='productTypeId!=null' > product_type_id= #{productTypeId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                        <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} , </if>
+                        <if test='daySaleNum!=null' > day_sale_num= #{daySaleNum} , </if>
+                        <if test='monthSaleNum!=null' > month_sale_num= #{monthSaleNum} , </if>
+                        <if test='yearSaleNum!=null' > year_sale_num= #{yearSaleNum} , </if>
+                        <if test='dayInventoryNum!=null' > day_inventory_num= #{dayInventoryNum} , </if>
+                        <if test='dayReturnBinNum!=null' > day_return_bin_num= #{dayReturnBinNum} , </if>
+                        <if test='snapshotDate!=null' > snapshot_date= #{snapshotDate} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_yunji_daily_sales_report  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_yunji_daily_sales_report where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            merchant_name,
+            brand_id,
+            brand_name,
+            product_type_name0,
+            product_type_id0,
+            product_type_name,
+            product_type_id,
+            goods_name,
+            goods_id,
+            goods_no,
+            barcode,
+            commbarcode,
+            day_sale_num,
+            month_sale_num,
+            year_sale_num,
+            day_inventory_num,
+            day_return_bin_num,
+            snapshot_date,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                            <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                            <if test='productTypeName0!=null and !"".equals(productTypeName0)' >product_type_name0= #{productTypeName0} and </if>
+                            <if test='productTypeId0!=null' > product_type_id0= #{productTypeId0} and </if>
+                            <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} and </if>
+                            <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                            <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                            <if test='daySaleNum!=null' > day_sale_num= #{daySaleNum} and </if>
+                            <if test='monthSaleNum!=null' > month_sale_num= #{monthSaleNum} and </if>
+                            <if test='yearSaleNum!=null' > year_sale_num= #{yearSaleNum} and </if>
+                            <if test='dayInventoryNum!=null' > day_inventory_num= #{dayInventoryNum} and </if>
+                            <if test='dayReturnBinNum!=null' > day_return_bin_num= #{dayReturnBinNum} and </if>
+                            <if test='snapshotDate!=null' > snapshot_date= #{snapshotDate} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+	<delete id='deleteYunjiDailySalesReport' parameterType='YunjiDailySalesReportModel'>
+        delete from r_yunji_daily_sales_report  
+        where merchant_id= #{merchantId} 
+        and DATE_FORMAT(snapshot_date,'%Y-%m-%d')=DATE_FORMAT(#{snapshotDate},'%Y-%m-%d')
+    </delete>
+
+
+    <!-- 查询所有信息 分页 -->
+    <select id='getListPage' resultMap='YunjiDailySalesReportModelMap' parameterType='YunjiDailySalesReportModel'>
+        select 
+        	merchant_id,goods_no,goods_name,barcode,brand_name,product_type_name,snapshot_date,
+			SUM(day_sale_num) as day_sale_num,
+			SUM(month_sale_num) as month_sale_num,
+			SUM(year_sale_num) as year_sale_num,
+			SUM(day_inventory_num) as day_inventory_num,
+			SUM(day_return_bin_num) as day_return_bin_num			        	
+        from r_yunji_daily_sales_report 
+           <where>
+                <trim suffixOverrides='and'>                          
+                  <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                     <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                     <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                     <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} and </if>
+                     <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+                     <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                     <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                     <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                     <if test='snapshotDate!=null' >  DATE_FORMAT(snapshot_date,'%Y-%m-%d')=DATE_FORMAT(#{snapshotDate},'%Y-%m-%d') and </if>
+                </trim>
+            </where>
+        GROUP BY merchant_id,goods_no,goods_name,barcode,brand_name,product_type_name,snapshot_date
+        ORDER BY snapshot_date DESC
+        LIMIT #{begin}, #{pageSize}
+        
+    </select>
+    
+    <!-- 云集采销日报导出 -->
+    <select id="listDailySalesReportExport" resultMap='YunjiDailySalesReportModelMap' parameterType='YunjiDailySalesReportModel'>
+		  select 
+		  		merchant_id,goods_no,goods_name,barcode,brand_name,product_type_name,snapshot_date,
+				SUM(day_sale_num) as day_sale_num,
+				SUM(month_sale_num) as month_sale_num,
+				SUM(year_sale_num) as year_sale_num,
+				SUM(day_inventory_num) as day_inventory_num,
+				SUM(day_return_bin_num) as day_return_bin_num		
+		   from r_yunji_daily_sales_report 
+           <where>
+                <trim suffixOverrides='and'>                          
+                  <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                     <if test='brandId!=null' > brand_id= #{brandId} and </if>
+                     <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                     <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} and </if>
+                     <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+                     <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                     <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                     <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                     <if test='snapshotDate!=null' >  DATE_FORMAT(snapshot_date,'%Y-%m-%d')=DATE_FORMAT(#{snapshotDate},'%Y-%m-%d') and </if>
+                </trim>
+            </where>
+            GROUP BY merchant_id,goods_no,goods_name,barcode,brand_name,product_type_name,snapshot_date
+            ORDER BY snapshot_date DESC
+	</select>
+	
+	<!-- 查询导出采销日报的数量 -->
+	<select id="getDailySalesReportCount"  resultType="java.lang.Integer" parameterType='YunjiDailySalesReportModel'>
+        SELECT count(1) FROM (
+	        SELECT count(1) FROM
+	        r_yunji_daily_sales_report
+	        <where>
+	             <trim suffixOverrides='and'>                          
+	               <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+	                  <if test='brandId!=null' > brand_id= #{brandId} and </if>
+	                  <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+	                  <if test='productTypeName!=null and !"".equals(productTypeName)' >product_type_name= #{productTypeName} and </if>
+	                  <if test='productTypeId!=null' > product_type_id= #{productTypeId} and </if>
+	                  <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+	                  <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+	                  <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+	                  <if test='snapshotDate!=null' >  DATE_FORMAT(snapshot_date,'%Y-%m-%d')=DATE_FORMAT(#{snapshotDate},'%Y-%m-%d') and </if>
+	             </trim>
+	         </where>
+	        GROUP BY merchant_id,goods_no,goods_name,barcode,brand_name,product_type_name,snapshot_date
+            ORDER BY snapshot_date DESC
+         )t 
+    </select>
+
+</mapper>

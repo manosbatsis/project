@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.PaymentCostItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PaymentCostItemModelMap" type="PaymentCostItemModel" >
+                <result property="id" column="id" />
+                <result property="paymentId" column="payment_id" />
+                <result property="type" column="type" />
+                <result property="projectId" column="project_id" />
+                <result property="projectName" column="project_name" />
+                <result property="poNo" column="po_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="superiorParentBrandName" column="superior_parent_brand_name" />
+                <result property="superiorParentBrandId" column="superior_parent_brand_id" />
+                <result property="superiorParentBrandCode" column="superior_parent_brand_code" />
+                <result property="num" column="num" />
+                <result property="costAmount" column="cost_amount" />
+                <result property="tax" column="tax" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PaymentCostItemModelMap' parameterType='PaymentCostItemModel'>
+        select <include refid='sql_columns' /> from t_payment_cost_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PaymentCostItemModelMap' parameterType='PaymentCostItemModel'>
+        select <include refid='sql_columns' /> from t_payment_cost_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PaymentCostItemModelMap' parameterType='PaymentCostItemModel' >
+        select <include refid='sql_columns' /> from t_payment_cost_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PaymentCostItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_payment_cost_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='paymentId!=null' >payment_id , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='projectId!=null' >project_id , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > project_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                        <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' > superior_parent_brand_name , </if>
+                        <if test='superiorParentBrandId!=null' >superior_parent_brand_id , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' > superior_parent_brand_code , </if>
+                        <if test='num!=null' >num , </if>
+                        <if test='costAmount!=null' >cost_amount , </if>
+                        <if test='tax!=null' >tax , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='paymentId!=null' > #{paymentId} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='projectId!=null' > #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' > #{projectName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                        <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' > #{superiorParentBrandName} , </if>
+                        <if test='superiorParentBrandId!=null' > #{superiorParentBrandId} , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' > #{superiorParentBrandCode} , </if>
+                        <if test='num!=null' > #{num} , </if>
+                        <if test='costAmount!=null' > #{costAmount} , </if>
+                        <if test='tax!=null' > #{tax} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PaymentCostItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_payment_cost_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='paymentId!=null' > payment_id= #{paymentId} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='projectId!=null' > project_id= #{projectId} , </if>
+                        <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                        <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                        <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' >superior_parent_brand_name= #{superiorParentBrandName} , </if>
+                        <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} , </if>
+                        <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' >superior_parent_brand_code= #{superiorParentBrandCode} , </if>
+                        <if test='num!=null' > num= #{num} , </if>
+                        <if test='costAmount!=null' > cost_amount= #{costAmount} , </if>
+                        <if test='tax!=null' > tax= #{tax} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_payment_cost_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_payment_cost_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            payment_id,
+            type,
+            project_id,
+            project_name,
+            po_no,
+            goods_id,
+            goods_name,
+            goods_no,
+            superior_parent_brand_name,
+            superior_parent_brand_id,
+            superior_parent_brand_code,
+            num,
+            cost_amount,
+            tax,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='paymentId!=null' > payment_id= #{paymentId} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='projectId!=null' > project_id= #{projectId} and </if>
+                            <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                            <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                            <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' >superior_parent_brand_name= #{superiorParentBrandName} and </if>
+                            <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} and </if>
+                            <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' >superior_parent_brand_code= #{superiorParentBrandCode} and </if>
+                            <if test='num!=null' > num= #{num} and </if>
+                            <if test='costAmount!=null' > cost_amount= #{costAmount} and </if>
+                            <if test='tax!=null' > tax= #{tax} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <sql id='sql_dto_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <choose>
+                <when test='paymentIds!=null and !"".equals(paymentIds)'>
+                    payment_id in
+                    <foreach collection="paymentIds.split(',')" open="(" close=")" separator="," item="id">
+                        #{id}
+                    </foreach>
+                </when>
+                <otherwise>
+                    <if test='id!=null' > id= #{id} and </if>
+                    <if test='paymentId!=null' > payment_id= #{paymentId} and </if>
+                    <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                    <if test='projectId!=null' > project_id= #{projectId} and </if>
+                    <if test='projectName!=null and !"".equals(projectName)' >project_name= #{projectName} and </if>
+                    <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                    <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                    <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                    <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                    <if test='superiorParentBrandName!=null and !"".equals(superiorParentBrandName)' >superior_parent_brand_name= #{superiorParentBrandName} and </if>
+                    <if test='superiorParentBrandId!=null' > superior_parent_brand_id= #{superiorParentBrandId} and </if>
+                    <if test='superiorParentBrandCode!=null and !"".equals(superiorParentBrandCode)' >superior_parent_brand_code= #{superiorParentBrandCode} and </if>
+                    <if test='num!=null' > num= #{num} and </if>
+                    <if test='costAmount!=null' > cost_amount= #{costAmount} and </if>
+                    <if test='tax!=null' > tax= #{tax} and </if>
+                    <if test='createDate!=null' > create_date= #{createDate} and </if>
+                    <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </otherwise>
+                </choose>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 以“事业部+母品牌”取系统已创建的应付账单（账单状态仅取待付款、部分付款），应付帐单的创建日期需大于对应额度记录配置中的“期初开始日期 -->
+        <select id="getProjectWarnList" resultType="map" parameterType="map">
+        
+        
+        						SELECT tt.code,tt.po_no,
+									MAX(tt.currency)as currency,
+									MAX(tt.merchant_id)as merchant_id,
+									MAX(tt.merchant_name) as merchant_name,
+									MAX(tt.create_date) as create_date,
+									MAX(tt.supplier_id)as supplier_id,
+									MAX(tt.supplier_name)as supplier_name,
+									MAX(tt.`bill_status`) as bill_status,
+									SUM(tt.cost_amount)as cost_amount
+ 								from  (
+									(SELECT 
+									t1.`code` as `code`,t2.po_no,
+									MAX(t1.currency)as currency,
+									MAX(t1.merchant_id)as merchant_id,
+									MAX(t1.merchant_name) as merchant_name,
+									MAX(t1.create_date) as create_date,
+									MAX(t1.supplier_id)as supplier_id,
+									MAX(t1.supplier_name)as supplier_name,
+									MAX(t1.`bill_status`) as bill_status,
+									t2.type,IF(t2.type=0,-IFNULL(t2.cost_amount,0),IFNULL(t2.cost_amount,0)) as cost_amount 
+									from  t_payment_bill t1
+									LEFT JOIN t_payment_cost_item t2 ON t1.id=t2.payment_id
+								where    t1.bu_id = #{buId}
+							 <if test='"1".equals(billStatusType)'>AND t1. bill_status in ('03','07') </if>
+							 <if test='"2".equals(billStatusType)'>AND t1. bill_status in ('04') </if>							
+							AND t1.supplier_id NOT IN
+       						 <foreach collection="customerIdList" item="supplierId" open="(" close=")" separator=",">
+           					 		#{ supplierId}
+       						 </foreach>
+       						   AND t2.superior_parent_brand_id = #{parentBrandId}
+        					 <if test='effectiveDate!=null' > AND t1.create_date &gt;= #{effectiveDate} </if>
+
+									GROUP BY t1.`code`,t2.type,t2.po_no
+									)
+							)tt GROUP BY tt.code,tt.po_no
+
+    	</select>
+
+    <select id="countByDTO"  resultType='int' parameterType='PaymentCostItemDTO'>
+        select count(1) from t_payment_cost_item  <include refid='sql_dto_where' />
+    </select>
+
+    <select id="listForExport"  resultType='PaymentCostItemDTO' parameterType='PaymentCostItemDTO'>
+        select <include refid='sql_columns' /> from t_payment_cost_item  <include refid='sql_dto_where' />
+        order by payment_id desc, id desc
+    </select>
+</mapper>

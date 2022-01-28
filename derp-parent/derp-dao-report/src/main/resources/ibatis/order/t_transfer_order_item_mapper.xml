@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.TransferOrderItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="TransferOrderItemModelMap" type="TransferOrderItemModel" >
+                <result property="bargainno" column="bargainno" />
+                <result property="remark" column="remark" />
+                <result property="inGoodsId" column="in_goods_id" />
+                <result property="outGoodsId" column="out_goods_id" />
+                <result property="price" column="price" />
+                <result property="inGoodsCode" column="in_goods_code" />
+                <result property="transferNum" column="transfer_num" />
+                <result property="id" column="id" />
+                <result property="createDate" column="create_date" />
+                <result property="brandName" column="brand_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="outGoodsCode" column="out_goods_code" />
+                <result property="inUnit" column="in_unit" />
+                <result property="transferOrderId" column="transfer_order_id" />
+                <result property="contNo" column="cont_no" />
+                <result property="outBarcode" column="out_barcode" />
+                <result property="inGoodsNo" column="in_goods_no" />
+                <result property="outGoodsName" column="out_goods_name" />
+                <result property="grossWeight" column="gross_weight" />
+                <result property="netWeight" column="net_weight" />
+                <result property="inBarcode" column="in_barcode" />
+                <result property="inGoodsName" column="in_goods_name" />
+                <result property="inTransferNum" column="in_transfer_num" />
+                <result property="outUnit" column="out_unit" />
+                <result property="creater" column="creater" />
+                <result property="outGoodsNo" column="out_goods_no" />
+                <result property="inCommbarcode" column="in_commbarcode" />
+                <result property="outCommbarcode" column="out_commbarcode" />
+                <result property="grossWeightSum" column="gross_weight_sum" />
+                <result property="netWeightSum" column="net_weight_sum" />
+                <result property="seq" column="seq" />
+                <result property="boxNum" column="box_num" />
+                <result property="torrNo" column="torr_no" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TransferOrderItemModelMap' parameterType='TransferOrderItemModel'>
+        select <include refid='sql_columns' /> from t_transfer_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TransferOrderItemModelMap' parameterType='TransferOrderItemModel'>
+        select <include refid='sql_columns' /> from t_transfer_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TransferOrderItemModelMap' parameterType='TransferOrderItemModel' >
+        select <include refid='sql_columns' /> from t_transfer_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TransferOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_transfer_order_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='bargainno!=null and !"".equals(bargainno)' > bargainno , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='inGoodsId!=null' > in_goods_id , </if>
+                <if test='outGoodsId!=null' > out_goods_id , </if>
+                <if test='price!=null' > price , </if>
+                <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > in_goods_code , </if>
+                <if test='transferNum!=null' > transfer_num , </if>
+                <if test='id!=null' > id , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' > out_goods_code , </if>
+                <if test='inUnit!=null and !"".equals(inUnit)' > in_unit , </if>
+                <if test='transferOrderId!=null' > transfer_order_id , </if>
+                <if test='contNo!=null and !"".equals(contNo)' > cont_no , </if>
+                <if test='outBarcode!=null and !"".equals(outBarcode)' > out_barcode , </if>
+                <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > in_goods_no , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' > out_goods_name , </if>
+                <if test='grossWeight!=null' > gross_weight , </if>
+                <if test='netWeight!=null' > net_weight , </if>
+                <if test='inBarcode!=null and !"".equals(inBarcode)' > in_barcode , </if>
+                <if test='inGoodsName!=null and !"".equals(inGoodsName)' > in_goods_name , </if>
+                <if test='inTransferNum!=null' > in_transfer_num , </if>
+                <if test='outUnit!=null and !"".equals(outUnit)' > out_unit , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' > out_goods_no , </if>
+                <if test='inCommbarcode!=null and !"".equals(inCommbarcode)' > in_commbarcode , </if>
+                <if test='outCommbarcode!=null and !"".equals(outCommbarcode)' > out_commbarcode , </if>
+                <if test='grossWeightSum!=null' > gross_weight_sum , </if>
+                <if test='netWeightSum!=null' > net_weight_sum , </if>
+                <if test='seq!=null' >seq , </if>
+                <if test='boxNum!=null' >box_num , </if>
+                <if test='torrNo!=null and !"".equals(torrNo)' > torr_no , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='bargainno!=null and !"".equals(bargainno)' > #{bargainno} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='inGoodsId!=null' > #{inGoodsId} , </if>
+                <if test='outGoodsId!=null' > #{outGoodsId} , </if>
+                <if test='price!=null' > #{price} , </if>
+                <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' > #{inGoodsCode} , </if>
+                <if test='transferNum!=null' > #{transferNum} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' > #{outGoodsCode} , </if>
+                <if test='inUnit!=null and !"".equals(inUnit)' > #{inUnit} , </if>
+                <if test='transferOrderId!=null' > #{transferOrderId} , </if>
+                <if test='contNo!=null and !"".equals(contNo)' > #{contNo} , </if>
+                <if test='outBarcode!=null and !"".equals(outBarcode)' > #{outBarcode} , </if>
+                <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' > #{inGoodsNo} , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' > #{outGoodsName} , </if>
+                <if test='grossWeight!=null' > #{grossWeight} , </if>
+                <if test='netWeight!=null' > #{netWeight} , </if>
+                <if test='inBarcode!=null and !"".equals(inBarcode)' > #{inBarcode} , </if>
+                <if test='inGoodsName!=null and !"".equals(inGoodsName)' > #{inGoodsName} , </if>
+                <if test='inTransferNum!=null' > #{inTransferNum} , </if>
+                <if test='outUnit!=null and !"".equals(outUnit)' > #{outUnit} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' > #{outGoodsNo} , </if>
+                <if test='inCommbarcode!=null and !"".equals(inCommbarcode)' > #{inCommbarcode} , </if>
+                <if test='outCommbarcode!=null and !"".equals(outCommbarcode)' > #{outCommbarcode} , </if>
+                <if test='grossWeightSum!=null' > #{grossWeightSum} , </if>
+                <if test='netWeightSum!=null' > #{netWeightSum} , </if>
+                <if test='seq!=null' > #{seq} , </if>
+                <if test='boxNum!=null' > #{boxNum} , </if>
+                <if test='torrNo!=null and !"".equals(torrNo)' > #{torrNo} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TransferOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_transfer_order_item SET
+        <trim  suffixOverrides=",">
+                <if test='bargainno!=null and !"".equals(bargainno)' >bargainno= #{bargainno} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} , </if>
+                <if test='outGoodsId!=null' > out_goods_id= #{outGoodsId} , </if>
+                <if test='price!=null' > price= #{price} , </if>
+                <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} , </if>
+                <if test='transferNum!=null' > transfer_num= #{transferNum} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' >out_goods_code= #{outGoodsCode} , </if>
+                <if test='inUnit!=null and !"".equals(inUnit)' >in_unit= #{inUnit} , </if>
+                <if test='transferOrderId!=null' > transfer_order_id= #{transferOrderId} , </if>
+                <if test='contNo!=null and !"".equals(contNo)' >cont_no= #{contNo} , </if>
+                <if test='outBarcode!=null and !"".equals(outBarcode)' >out_barcode= #{outBarcode} , </if>
+                <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} , </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' >out_goods_name= #{outGoodsName} , </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} , </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} , </if>
+                <if test='inBarcode!=null and !"".equals(inBarcode)' >in_barcode= #{inBarcode} , </if>
+                <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} , </if>
+                <if test='inTransferNum!=null' > in_transfer_num= #{inTransferNum} , </if>
+                <if test='outUnit!=null and !"".equals(outUnit)' >out_unit= #{outUnit} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >out_goods_no= #{outGoodsNo} , </if>
+                <if test='inCommbarcode!=null and !"".equals(inCommbarcode)' >in_commbarcode= #{inCommbarcode} , </if>
+                <if test='outCommbarcode!=null and !"".equals(outCommbarcode)' >out_commbarcode= #{outCommbarcode} , </if>
+                <if test='grossWeightSum!=null' > gross_weight_sum= #{grossWeightSum} , </if>
+                <if test='netWeightSum!=null' > net_weight_sum= #{netWeightSum} , </if>
+                <if test='seq!=null' > seq= #{seq} , </if>
+                <if test='boxNum!=null' > box_num= #{boxNum} , </if>
+                <if test='torrNo!=null and !"".equals(torrNo)' >torr_no= #{torrNo} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_transfer_order_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_transfer_order_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        bargainno,
+        remark,
+        in_goods_id,
+        out_goods_id,
+        price,
+        in_goods_code,
+        transfer_num,
+        id,
+        create_date,
+        brand_name,
+        modify_date,
+        out_goods_code,
+        in_unit,
+        transfer_order_id,
+        cont_no,
+        out_barcode,
+        in_goods_no,
+        out_goods_name,
+        gross_weight,
+        net_weight,
+        in_barcode,
+        in_goods_name,
+        in_transfer_num,
+        out_unit,
+        creater,
+        out_goods_no,
+        in_commbarcode,
+        out_commbarcode,
+        gross_weight_sum,
+        net_weight_sum,
+        seq,
+        box_num,
+        torr_no
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='bargainno!=null and !"".equals(bargainno)' >bargainno= #{bargainno} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='inGoodsId!=null' > in_goods_id= #{inGoodsId} and </if>
+                <if test='outGoodsId!=null' > out_goods_id= #{outGoodsId} and </if>
+                <if test='price!=null' > price= #{price} and </if>
+                <if test='inGoodsCode!=null and !"".equals(inGoodsCode)' >in_goods_code= #{inGoodsCode} and </if>
+                <if test='transferNum!=null' > transfer_num= #{transferNum} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='outGoodsCode!=null and !"".equals(outGoodsCode)' >out_goods_code= #{outGoodsCode} and </if>
+                <if test='inUnit!=null and !"".equals(inUnit)' >in_unit= #{inUnit} and </if>
+                <if test='transferOrderId!=null' > transfer_order_id= #{transferOrderId} and </if>
+                <if test='contNo!=null and !"".equals(contNo)' >cont_no= #{contNo} and </if>
+                <if test='outBarcode!=null and !"".equals(outBarcode)' >out_barcode= #{outBarcode} and </if>
+                <if test='inGoodsNo!=null and !"".equals(inGoodsNo)' >in_goods_no= #{inGoodsNo} and </if>
+                <if test='outGoodsName!=null and !"".equals(outGoodsName)' >out_goods_name= #{outGoodsName} and </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} and </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} and </if>
+                <if test='inBarcode!=null and !"".equals(inBarcode)' >in_barcode= #{inBarcode} and </if>
+                <if test='inGoodsName!=null and !"".equals(inGoodsName)' >in_goods_name= #{inGoodsName} and </if>
+                <if test='inTransferNum!=null' > in_transfer_num= #{inTransferNum} and </if>
+                <if test='outUnit!=null and !"".equals(outUnit)' >out_unit= #{outUnit} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='outGoodsNo!=null and !"".equals(outGoodsNo)' >out_goods_no= #{outGoodsNo} and </if>
+                <if test='inCommbarcode!=null and !"".equals(inCommbarcode)' >in_commbarcode= #{inCommbarcode} and </if>
+                <if test='outCommbarcode!=null and !"".equals(outCommbarcode)' >out_commbarcode= #{outCommbarcode} and </if>
+                <if test='grossWeightSum!=null' > gross_weight_sum= #{grossWeightSum} and </if>
+                <if test='netWeightSum!=null' > net_weight_sum= #{netWeightSum} and </if>
+                <if test='seq!=null' > seq= #{seq} and </if>
+                <if test='boxNum!=null' > box_num= #{boxNum} and </if>
+                <if test='torrNo!=null and !"".equals(torrNo)' >torr_no= #{torrNo} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+
+
+
+</mapper>

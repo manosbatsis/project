@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.common.LogisticsAttorneyMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="LogisticsAttorneyModelMap" type="LogisticsAttorneyModel" >
+                <result property="id" column="id" />
+                <result property="type" column="type" />
+                <result property="orderId" column="order_id" />
+                <result property="shipperTempId" column="shipper_temp_id" />
+                <result property="shipperTempName" column="shipper_temp_name" />
+                <result property="shipperText" column="shipper_text" />
+                <result property="consigneeTempId" column="consignee_temp_id" />
+                <result property="consigneeTempName" column="consignee_temp_name" />
+                <result property="consigneeText" column="consignee_text" />
+                <result property="notifierTempId" column="notifier_temp_id" />
+                <result property="notifierTempName" column="notifier_temp_name" />
+                <result property="notifierText" column="notifier_text" />
+                <result property="dockingTempId" column="docking_temp_id" />
+                <result property="dockingTempName" column="docking_temp_name" />
+                <result property="dockingText" column="docking_text" />
+                <result property="carrierInformationTempId" column="carrier_information_temp_id" />
+                <result property="carrierInformationTempName" column="carrier_information_temp_name" />
+                <result property="carrierInformationText" column="carrier_information_text" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='LogisticsAttorneyModelMap' parameterType='LogisticsAttorneyModel'>
+        select <include refid='sql_columns' /> from t_logistics_attorney  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='LogisticsAttorneyModelMap' parameterType='LogisticsAttorneyModel'>
+        select <include refid='sql_columns' /> from t_logistics_attorney  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='LogisticsAttorneyModelMap' parameterType='LogisticsAttorneyModel' >
+        select <include refid='sql_columns' /> from t_logistics_attorney  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='LogisticsAttorneyModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_logistics_attorney
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='orderId!=null' >order_id , </if>
+                        <if test='shipperTempId!=null' >shipper_temp_id , </if>
+                        <if test='shipperTempName!=null and !"".equals(shipperTempName)' > shipper_temp_name , </if>
+                        <if test='shipperText!=null and !"".equals(shipperText)' > shipper_text , </if>
+                        <if test='consigneeTempId!=null' >consignee_temp_id , </if>
+                        <if test='consigneeTempName!=null and !"".equals(consigneeTempName)' > consignee_temp_name , </if>
+                        <if test='consigneeText!=null and !"".equals(consigneeText)' > consignee_text , </if>
+                        <if test='notifierTempId!=null' >notifier_temp_id , </if>
+                        <if test='notifierTempName!=null and !"".equals(notifierTempName)' > notifier_temp_name , </if>
+                        <if test='notifierText!=null and !"".equals(notifierText)' > notifier_text , </if>
+                        <if test='dockingTempId!=null' >docking_temp_id , </if>
+                        <if test='dockingTempName!=null and !"".equals(dockingTempName)' > docking_temp_name , </if>
+                        <if test='dockingText!=null and !"".equals(dockingText)' > docking_text , </if>
+                        <if test='carrierInformationTempId!=null' >carrier_information_temp_id , </if>
+                        <if test='carrierInformationTempName!=null and !"".equals(carrierInformationTempName)' > carrier_information_temp_name , </if>
+                        <if test='carrierInformationText!=null and !"".equals(carrierInformationText)' > carrier_information_text , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='orderId!=null' > #{orderId} , </if>
+                        <if test='shipperTempId!=null' > #{shipperTempId} , </if>
+                        <if test='shipperTempName!=null and !"".equals(shipperTempName)' > #{shipperTempName} , </if>
+                        <if test='shipperText!=null and !"".equals(shipperText)' > #{shipperText} , </if>
+                        <if test='consigneeTempId!=null' > #{consigneeTempId} , </if>
+                        <if test='consigneeTempName!=null and !"".equals(consigneeTempName)' > #{consigneeTempName} , </if>
+                        <if test='consigneeText!=null and !"".equals(consigneeText)' > #{consigneeText} , </if>
+                        <if test='notifierTempId!=null' > #{notifierTempId} , </if>
+                        <if test='notifierTempName!=null and !"".equals(notifierTempName)' > #{notifierTempName} , </if>
+                        <if test='notifierText!=null and !"".equals(notifierText)' > #{notifierText} , </if>
+                        <if test='dockingTempId!=null' > #{dockingTempId} , </if>
+                        <if test='dockingTempName!=null and !"".equals(dockingTempName)' > #{dockingTempName} , </if>
+                        <if test='dockingText!=null and !"".equals(dockingText)' > #{dockingText} , </if>
+                        <if test='carrierInformationTempId!=null' > #{carrierInformationTempId} , </if>
+                        <if test='carrierInformationTempName!=null and !"".equals(carrierInformationTempName)' > #{carrierInformationTempName} , </if>
+                        <if test='carrierInformationText!=null and !"".equals(carrierInformationText)' > #{carrierInformationText} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='LogisticsAttorneyModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_logistics_attorney SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='orderId!=null' > order_id= #{orderId} , </if>
+                        <if test='shipperTempId!=null' > shipper_temp_id= #{shipperTempId} , </if>
+                        <if test='shipperTempName!=null and !"".equals(shipperTempName)' >shipper_temp_name= #{shipperTempName} , </if>
+                        <if test='shipperText!=null and !"".equals(shipperText)' >shipper_text= #{shipperText} , </if>
+                        <if test='consigneeTempId!=null' > consignee_temp_id= #{consigneeTempId} , </if>
+                        <if test='consigneeTempName!=null and !"".equals(consigneeTempName)' >consignee_temp_name= #{consigneeTempName} , </if>
+                        <if test='consigneeText!=null and !"".equals(consigneeText)' >consignee_text= #{consigneeText} , </if>
+                        <if test='notifierTempId!=null' > notifier_temp_id= #{notifierTempId} , </if>
+                        <if test='notifierTempName!=null and !"".equals(notifierTempName)' >notifier_temp_name= #{notifierTempName} , </if>
+                        <if test='notifierText!=null and !"".equals(notifierText)' >notifier_text= #{notifierText} , </if>
+                        <if test='dockingTempId!=null' > docking_temp_id= #{dockingTempId} , </if>
+                        <if test='dockingTempName!=null and !"".equals(dockingTempName)' >docking_temp_name= #{dockingTempName} , </if>
+                        <if test='dockingText!=null and !"".equals(dockingText)' >docking_text= #{dockingText} , </if>
+                        <if test='carrierInformationTempId!=null' > carrier_information_temp_id= #{carrierInformationTempId} , </if>
+                        <if test='carrierInformationTempName!=null and !"".equals(carrierInformationTempName)' >carrier_information_temp_name= #{carrierInformationTempName} , </if>
+                        <if test='carrierInformationText!=null and !"".equals(carrierInformationText)' >carrier_information_text= #{carrierInformationText} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_logistics_attorney  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_logistics_attorney where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            type,
+            order_id,
+            shipper_temp_id,
+            shipper_temp_name,
+            shipper_text,
+            consignee_temp_id,
+            consignee_temp_name,
+            consignee_text,
+            notifier_temp_id,
+            notifier_temp_name,
+            notifier_text,
+            docking_temp_id,
+            docking_temp_name,
+            docking_text,
+            carrier_information_temp_id,
+            carrier_information_temp_name,
+            carrier_information_text,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='orderId!=null' > order_id= #{orderId} and </if>
+                            <if test='shipperTempId!=null' > shipper_temp_id= #{shipperTempId} and </if>
+                            <if test='shipperTempName!=null and !"".equals(shipperTempName)' >shipper_temp_name= #{shipperTempName} and </if>
+                            <if test='shipperText!=null and !"".equals(shipperText)' >shipper_text= #{shipperText} and </if>
+                            <if test='consigneeTempId!=null' > consignee_temp_id= #{consigneeTempId} and </if>
+                            <if test='consigneeTempName!=null and !"".equals(consigneeTempName)' >consignee_temp_name= #{consigneeTempName} and </if>
+                            <if test='consigneeText!=null and !"".equals(consigneeText)' >consignee_text= #{consigneeText} and </if>
+                            <if test='notifierTempId!=null' > notifier_temp_id= #{notifierTempId} and </if>
+                            <if test='notifierTempName!=null and !"".equals(notifierTempName)' >notifier_temp_name= #{notifierTempName} and </if>
+                            <if test='notifierText!=null and !"".equals(notifierText)' >notifier_text= #{notifierText} and </if>
+                            <if test='dockingTempId!=null' > docking_temp_id= #{dockingTempId} and </if>
+                            <if test='dockingTempName!=null and !"".equals(dockingTempName)' >docking_temp_name= #{dockingTempName} and </if>
+                            <if test='dockingText!=null and !"".equals(dockingText)' >docking_text= #{dockingText} and </if>
+                            <if test='carrierInformationTempId!=null' > carrier_information_temp_id= #{carrierInformationTempId} and </if>
+                            <if test='carrierInformationTempName!=null and !"".equals(carrierInformationTempName)' >carrier_information_temp_name= #{carrierInformationTempName} and </if>
+                            <if test='carrierInformationText!=null and !"".equals(carrierInformationText)' >carrier_information_text= #{carrierInformationText} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 修改数据 -->
+        <update id='modifyWithNull' parameterType='LogisticsAttorneyModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_logistics_attorney SET
+            <trim  suffixOverrides=",">
+                  type= #{type} ,
+                  <if test='orderId!=null' > order_id= #{orderId} ,</if>
+                  shipper_temp_id= #{shipperTempId} ,
+                  shipper_temp_name= #{shipperTempName} ,
+                  shipper_text= #{shipperText} ,
+                  consignee_temp_id= #{consigneeTempId} ,
+                  consignee_temp_name= #{consigneeTempName} ,
+                  consignee_text= #{consigneeText} ,
+                  notifier_temp_id= #{notifierTempId} ,
+                  notifier_temp_name= #{notifierTempName} ,
+                  notifier_text= #{notifierText} ,
+                  docking_temp_id= #{dockingTempId} ,
+                  docking_temp_name= #{dockingTempName} ,
+                  docking_text= #{dockingText} ,
+                  carrier_information_temp_id= #{carrierInformationTempId} ,
+                  carrier_information_temp_name= #{carrierInformationTempName} ,
+                  carrier_information_text= #{carrierInformationText} ,
+                  <if test='createDate!=null' > create_date= #{createDate},  </if>
+                  <if test='modifyDate!=null' > modify_date= #{modifyDate},  </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+
+
+</mapper>

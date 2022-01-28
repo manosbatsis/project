@@ -1,0 +1,638 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.order.PurchaseOrderItemMapper'>
+
+	 <!-- 关系映射 -->
+    <resultMap id="PurchaseOrderItemModelMap" type="PurchaseOrderItemModel" >
+                <result property="grossWeightSum" column="gross_weight_sum" />
+                <result property="contractNo" column="contract_no" />
+                <result property="goodsId" column="goods_id" />
+                <result property="netWeightSum" column="net_weight_sum" />
+                <result property="num" column="num" />
+                <result property="factoryNo" column="factory_no" />
+                <result property="remark" column="remark" />
+                <result property="price" column="price" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="createDate" column="create_date" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="amount" column="amount" />
+                <result property="batchNo" column="batch_no" />
+                <result property="brandName" column="brand_name" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="constituentRatio" column="constituent_ratio" />
+                <result property="purchaseUnit" column="purchase_unit" />
+                <result property="unit" column="unit" />
+                <result property="grossWeight" column="gross_weight" />
+                <result property="netWeight" column="net_weight" />
+                <result property="boxNo" column="box_no" />
+                <result property="purchaseOrderId" column="purchase_order_id" />
+                <result property="creater" column="creater" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="createName" column="create_name" />
+                <result property="tgtPrice" column="tgt_price" />
+                <result property="tgtAmount" column="tgt_amount" />
+                <result property="invoiceAmount" column="invoice_amount" />
+				<result property="taxPrice" column="tax_price" />
+				<result property="taxAmount" column="tax_amount" />
+				<result property="tax" column="tax" />
+				<result property="taxRate" column="tax_rate" />
+				<result property="effectiveInterval" column="effective_interval" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseOrderItemModelMap' parameterType='PurchaseOrderItemModel'>
+        select <include refid='sql_columns' /> from t_purchase_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseOrderItemModelMap' parameterType='PurchaseOrderItemModel'>
+        select <include refid='sql_columns' /> from t_purchase_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseOrderItemModelMap' parameterType='PurchaseOrderItemModel' >
+        select <include refid='sql_columns' /> from t_purchase_order_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='PurchaseOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_purchase_order_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='grossWeightSum!=null' > gross_weight_sum , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > contract_no , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='netWeightSum!=null' > net_weight_sum , </if>
+                <if test='num!=null' > num , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' > factory_no , </if>
+                <if test='remark!=null and !"".equals(remark)' > remark , </if>
+                <if test='price!=null' > price , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='amount!=null' > amount , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > brand_name , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='constituentRatio!=null and !"".equals(constituentRatio)' > constituent_ratio , </if>
+                <if test='purchaseUnit!=null and !"".equals(purchaseUnit)' > purchase_unit , </if>
+                <if test='unit!=null and !"".equals(unit)' > unit , </if>
+                <if test='grossWeight!=null' > gross_weight , </if>
+                <if test='netWeight!=null' > net_weight , </if>
+                <if test='boxNo!=null and !"".equals(boxNo)' > box_no , </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                <if test='tgtPrice!=null' > tgt_price , </if>
+                <if test='tgtAmount!=null' > tgt_amount , </if>
+                <if test='invoiceAmount!=null' > invoice_amount , </if>
+				<if test='taxPrice!=null' >tax_price , </if>
+				<if test='taxAmount!=null' >tax_amount , </if>
+				<if test='tax!=null' >tax , </if>
+				<if test='taxRate!=null' >tax_rate , </if>
+			    <if test='effectiveInterval!=null and !"".equals(effectiveInterval)' > effective_interval , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='grossWeightSum!=null' > #{grossWeightSum} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' > #{contractNo} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='netWeightSum!=null' > #{netWeightSum} , </if>
+                <if test='num!=null' > #{num} , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' > #{factoryNo} , </if>
+                <if test='remark!=null and !"".equals(remark)' > #{remark} , </if>
+                <if test='price!=null' > #{price} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='amount!=null' > #{amount} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > #{batchNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' > #{brandName} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='constituentRatio!=null and !"".equals(constituentRatio)' > #{constituentRatio} , </if>
+                <if test='purchaseUnit!=null and !"".equals(purchaseUnit)' > #{purchaseUnit} , </if>
+                <if test='unit!=null and !"".equals(unit)' > #{unit} , </if>
+                <if test='grossWeight!=null' > #{grossWeight} , </if>
+                <if test='netWeight!=null' > #{netWeight} , </if>
+                <if test='boxNo!=null and !"".equals(boxNo)' > #{boxNo} , </if>
+                <if test='purchaseOrderId!=null' > #{purchaseOrderId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                <if test='tgtPrice!=null' > #{tgtPrice} , </if>
+                <if test='tgtAmount!=null' > #{tgtAmount} , </if>
+                <if test='invoiceAmount!=null' > #{invoiceAmount}, </if>
+				<if test='taxPrice!=null' > #{taxPrice} , </if>
+				<if test='taxAmount!=null' > #{taxAmount} , </if>
+				<if test='tax!=null' > #{tax} , </if>
+				<if test='taxRate!=null' > #{taxRate} , </if>
+			    <if test='effectiveInterval!=null and !"".equals(effectiveInterval)' > #{effective_interval} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='PurchaseOrderItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_purchase_order_item SET
+        <trim  suffixOverrides=",">
+                <if test='grossWeightSum!=null' > gross_weight_sum= #{grossWeightSum} , </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='netWeightSum!=null' > net_weight_sum= #{netWeightSum} , </if>
+                <if test='num!=null' > num= #{num} , </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} , </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} , </if>
+                <if test='price!=null' > price= #{price} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='amount!=null' > amount= #{amount} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} , </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='constituentRatio!=null and !"".equals(constituentRatio)' >constituent_ratio= #{constituentRatio} , </if>
+                <if test='purchaseUnit!=null and !"".equals(purchaseUnit)' >purchase_unit= #{purchaseUnit} , </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} , </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} , </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} , </if>
+                <if test='boxNo!=null and !"".equals(boxNo)' >box_no= #{boxNo} , </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                <if test='tgtPrice!=null' > tgt_price= #{tgtPrice} , </if>
+                <if test='tgtAmount!=null' > tgt_amount= #{tgtAmount} , </if>
+                <if test='invoiceAmount!=null' > invoice_amount=#{invoiceAmount}, </if>
+                <if test='taxPrice!=null' > tax_price= #{taxPrice} , </if>
+				<if test='taxAmount!=null' > tax_amount= #{taxAmount} , </if>
+				<if test='tax!=null' > tax= #{tax} , </if>
+				<if test='taxRate!=null' > tax_rate= #{taxRate} , </if>
+			    <if test='effectiveInterval!=null and !"".equals(effectiveInterval)' >effective_interval= #{effectiveInterval} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_order_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_purchase_order_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        gross_weight_sum,
+        contract_no,
+        goods_id,
+        net_weight_sum,
+        num,
+        factory_no,
+        remark,
+        price,
+        id,
+        goods_name,
+        barcode,
+        create_date,
+        goods_no,
+        amount,
+        batch_no,
+        brand_name,
+        modify_date,
+        constituent_ratio,
+        purchase_unit,
+        unit,
+        gross_weight,
+        net_weight,
+        box_no,
+        purchase_order_id,
+        creater,
+        goods_code,
+        create_name,
+        tgt_price,
+        tgt_amount,
+        invoice_amount,
+	 	tax_price,
+		tax_amount,
+		tax,
+		tax_rate,
+		effective_interval
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='grossWeightSum!=null' > gross_weight_sum= #{grossWeightSum} and </if>
+                <if test='contractNo!=null and !"".equals(contractNo)' >contract_no= #{contractNo} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='netWeightSum!=null' > net_weight_sum= #{netWeightSum} and </if>
+                <if test='num!=null' > num= #{num} and </if>
+                <if test='factoryNo!=null and !"".equals(factoryNo)' >factory_no= #{factoryNo} and </if>
+                <if test='remark!=null and !"".equals(remark)' >remark= #{remark} and </if>
+                <if test='price!=null' > price= #{price} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='amount!=null' > amount= #{amount} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='brandName!=null and !"".equals(brandName)' >brand_name= #{brandName} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='constituentRatio!=null and !"".equals(constituentRatio)' >constituent_ratio= #{constituentRatio} and </if>
+                <if test='purchaseUnit!=null and !"".equals(purchaseUnit)' >purchase_unit= #{purchaseUnit} and </if>
+                <if test='unit!=null and !"".equals(unit)' >unit= #{unit} and </if>
+                <if test='grossWeight!=null' > gross_weight= #{grossWeight} and </if>
+                <if test='netWeight!=null' > net_weight= #{netWeight} and </if>
+                <if test='boxNo!=null and !"".equals(boxNo)' >box_no= #{boxNo} and </if>
+                <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                <if test='tgtPrice!=null' > tgt_price= #{tgtPrice} and </if>
+                <if test='tgtAmount!=null' > tgt_amount= #{tgtAmount} and </if>
+                <if test='invoiceAmount!=null' > invoice_amount=#{invoiceAmount} and  </if>
+               <if test='taxPrice!=null' > tax_price= #{taxPrice} and </if>
+				<if test='taxAmount!=null' > tax_amount= #{taxAmount} and </if>
+				<if test='tax!=null' > tax= #{tax} and </if>
+				<if test='taxRate!=null' > tax_rate= #{taxRate} and </if>
+				<if test='effectiveInterval!=null and !"".equals(effectiveInterval)' >effective_interval= #{effectiveInterval} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL -->
+	<!-- 关系映射 -->
+    <resultMap id="PurchaseOrderItemModelMap3" type="PurchaseOrderItemModel" >
+                <result property="orderCode" column="order_code" />
+                <result property="goodsNo" column="goods_no" />
+                <result property="num" column="num" />
+                <result property="price" column="price" />
+    </resultMap>
+
+
+
+	<resultMap id="PurchaseOrderItemModelMap2" type="PurchaseOrderItemModel">
+		<result property="goodsNo" column="goods_no" />
+		<result property="amount" column="amount" />
+		<result property="yeMarkupRatio" column="ye_markup_ratio" />
+	</resultMap>
+
+
+
+		<!--新版-事业部业务- 商家、仓库、条码本月采购未上架明细 -->
+	<select id='getBuMonthPurchaseNotshelfInfo' resultType="map" parameterType="map">
+		SELECT p.*,IF(p.num-IFNULL(w.num,0)&lt;0,0,p.num-IFNULL(w.num,0)) AS notshelf_num
+		FROM (
+			SELECT t2.id,t2.code,t2.merchant_id,t2.merchant_name,t2.depot_id,t2.depot_name,t2.po_no,t2.tallying_unit,t2.end_date,t2.attribution_date,
+			       t2.status,t2.draw_invoice_date,t2.create_date, t2.stock_location_type_id,t2.stock_location_type_name,
+			       t1.goods_id,t1.goods_name,t1.barcode,t1.num,t3.commbarcode,t1.id as purchase_item_id
+			FROM t_purchase_order_item t1
+			left join t_purchase_order t2 on t1.purchase_order_id = t2.id
+			LEFT JOIN st_merchandise_info t3 ON t3.id=t1.goods_id
+			where t2.merchant_id =#{merchantId}
+			      and t2.bu_id =#{buId}
+			      and t2.status in('003','007','005')
+			      and t2.attribution_date &gt;='2021-01-01 00:00:00'
+			      and date_format(t2.attribution_date, '%Y-%m') &lt;=#{month}
+			      and (t2.end_date is null or date_format(t2.end_date, '%Y-%m')&gt;#{month})
+			      AND (t2.write_off_date is null or DATE_FORMAT(t2.write_off_date, '%Y-%m') &gt;#{month})
+		) p
+		left join(
+		SELECT t1.purchase_item_id,
+					t2.purchase_order_id,
+					SUM(IFNULL(t3.worn_num,0))as worn_num,
+					SUM(IFNULL(t3.expire_num,0))as expire_num,
+					SUM(IFNULL(t3.normal_num,0)) as normal_num,
+					SUM(IFNULL(t3.worn_num,0))+SUM(IFNULL(t3.expire_num,0))+SUM(IFNULL(t3.normal_num,0)) as num,
+					t4.tallying_unit
+					from t_purchase_warehouse_item t1
+					LEFT JOIN t_purchase_order_item t2 ON t1.purchase_item_id=t2.id
+					 LEFT JOIN t_purchase_order p ON t2.purchase_order_id=p.id
+					LEFT JOIN t_purchase_warehouse_batch t3 ON t1.id=t3.item_id
+					LEFT JOIN  t_purchase_warehouse  t4 ON t4.id=t1.warehouse_id
+					where  t4.merchant_id =#{merchantId}
+					and t4.bu_id =#{buId}
+					and t4.state ='012'
+					and t1.purchase_item_id is not null
+					and t2.id is not null
+					and DATE_FORMAT(t4.inbound_date, '%Y-%m') &lt;=#{month}
+					GROUP BY t1.purchase_item_id,t2.purchase_order_id,t4.tallying_unit
+		) w on p.id = w.purchase_order_id AND w.purchase_item_id = p.purchase_item_id
+			        and (
+			            p.tallying_unit=w.tallying_unit OR((p.tallying_unit='02' or p.tallying_unit='' or p.tallying_unit is null) AND (w.tallying_unit='02' or w.tallying_unit='' or w.tallying_unit IS NULL))
+			        )
+
+
+	</select>
+
+
+
+
+	<!--新业务报表-查询本期来货短缺 汇总-->
+	<select id="getBuLackNumSum" resultType='map' parameterType='map'>
+	     select p.goods_id,p.tallying_unit,SUM(IF(p.num-IFNULL(w.num,0)&lt;0,0,p.num-IFNULL(w.num,0))) AS num ,p.purchase_item_id
+  		 from (
+			      select t2.id,t1.goods_id,t2.tallying_unit,SUM(t1.num) AS num ,t1.id as purchase_item_id
+			      from t_purchase_order_item t1
+			      left join t_purchase_order t2 ON t1.purchase_order_id = t2.id
+			      where t2.merchant_id =#{merchantId}
+			            and t2.bu_id =#{buId}
+			            and DATE_FORMAT(t2.end_date, '%Y-%m')=#{month}
+			            and t2.status IN('007','005')
+			            AND (t2.write_off_date is null or DATE_FORMAT(t2.write_off_date, '%Y-%m') &gt;#{month})
+			     group by t2.id,t1.goods_id,tallying_unit,t1.id
+			) p
+			left join(
+			SELECT t1.purchase_item_id,
+					t2.purchase_order_id,
+					SUM(IFNULL(t3.worn_num,0))as worn_num,
+					SUM(IFNULL(t3.expire_num,0))as expire_num,
+					SUM(IFNULL(t3.normal_num,0)) as normal_num,
+					SUM(IFNULL(t3.worn_num,0))+SUM(IFNULL(t3.expire_num,0))+SUM(IFNULL(t3.normal_num,0)) as num,
+					t4.tallying_unit
+					from t_purchase_warehouse_item t1
+					LEFT JOIN t_purchase_order_item t2 ON t1.purchase_item_id=t2.id
+					LEFT JOIN t_purchase_order p ON t2.purchase_order_id=p.id
+					LEFT JOIN t_purchase_warehouse_batch t3 ON t1.id=t3.item_id
+					LEFT JOIN  t_purchase_warehouse  t4 ON t4.id=t1.warehouse_id
+					where  t4.merchant_id =#{merchantId}
+					and t4.bu_id =#{buId}
+					and t4.state ='012'
+					and t1.purchase_item_id is not null
+					and DATE_FORMAT(t4.inbound_date, '%Y-%m') &lt;=#{month}
+					AND (p.write_off_date is null or DATE_FORMAT(p.write_off_date, '%Y-%m')&gt;#{month})
+					GROUP BY t1.purchase_item_id,t2.purchase_order_id,t4.tallying_unit
+
+			) w on p.id = w.purchase_order_id AND w.purchase_item_id = p.purchase_item_id
+			        and (
+			            p.tallying_unit=w.tallying_unit OR((p.tallying_unit='02' or p.tallying_unit='' or p.tallying_unit is null) AND (w.tallying_unit='02' or w.tallying_unit='' or w.tallying_unit IS NULL))
+			        )
+			where 1=1
+			group by p.goods_id,p.tallying_unit,p.purchase_item_id
+			HAVING num >0
+	</select>
+
+
+
+
+			<!--事业部业务报表-查询本期来货残次 -->
+	<select id="getBuMonthInBadNum" resultType='map' parameterType='map'>
+			SELECT tt.tallying_unit,SUM(tt.num) AS num from (
+				SELECT t1.tallying_unit as tallying_unit,SUM(t3.worn_num) as num
+				from t_purchase_warehouse t1
+				LEFT JOIN t_purchase_warehouse_item t2 ON t1.id=t2.warehouse_id
+				LEFT JOIN t_purchase_warehouse_batch t3 ON t3.item_id=t2.id
+				where t1.merchant_id=#{merchantId}
+				and t1.depot_id=#{depotId}
+				and t1.bu_id=#{buId}
+				and DATE_FORMAT(t1.inbound_date, '%Y-%m') = #{month}
+				and t2.barcode=#{barcode}
+				and t1.state='012'
+				and (t1.business_model !='3' or t1.business_model is null)
+				GROUP BY t1.tallying_unit
+				union all
+				SELECT t2.tallying_unit as tallying_unit ,SUM(worn_num) as num  from t_transfer_in_depot t1
+				LEFT JOIN t_transfer_in_depot_item t2 ON t1.id=t2.transfer_depot_id
+				WHERE
+				t1.merchant_id=#{merchantId}
+				and in_depot_id=#{depotId}
+				and t1.bu_id=#{buId}
+				and DATE_FORMAT(t1.transfer_date, '%Y-%m') = #{month}
+				and t2.barcode=#{barcode}
+				and t1.`status`='012'
+				GROUP BY t2.tallying_unit
+				 union all
+				SELECT t3.tallying_unit as tallying_unit ,SUM(worn_num) as num from t_sale_return_idepot t1
+				LEFT JOIN t_sale_return_idepot_item t2 on t1.id=t2.sreturn_idepot_id
+				LEFT JOIN t_sale_return_order t3 ON t3.id=t1.order_id
+				WHERE
+				t1.merchant_id=#{merchantId}
+				and t1.in_depot_id=#{depotId}
+				and t1.bu_id=#{buId}
+				and DATE_FORMAT(t1.return_in_date, '%Y-%m') = #{month}
+				and t1.`status`='012'
+				and t2.barcode=#{barcode}
+				GROUP BY t3.tallying_unit
+				 union all
+				SELECT t3.tallying_unit as tallying_unit,SUM(t2.damaged_num) as num  from t_sale_shelf_idepot t1
+				LEFT JOIN t_sale_shelf_idepot_item t2 ON t1.id=t2.sshelf_idepot_id
+				LEFT JOIN t_sale_order t3 ON t3.id=t1.sale_order_id
+				where
+				t1.merchant_id=#{merchantId}
+				and t1.in_depot_id=#{depotId}
+				and t1.bu_id=#{buId}
+				and DATE_FORMAT(t1.shelf_date, '%Y-%m') = #{month}
+				and t1.`state`='012'
+				and t2.barcode=#{barcode}
+				GROUP BY t3.tallying_unit
+
+			)tt
+			group by tt.tallying_unit
+
+	</select>
+
+
+	<!--事业部业务报表-来货残次：取本月采购入库中残次品 -->
+	<select id="getBuPurchaseInBad" resultType='map' parameterType='map'>
+		SELECT t1.id as in_order_id,t1.`code` as in_order_code,t1.inbound_date as deliver_date,t1.tallying_unit,
+				t3.worn_num as num,t3.goods_id
+				from t_purchase_warehouse t1
+				LEFT JOIN t_purchase_warehouse_item t2 ON t1.id=t2.warehouse_id
+				LEFT JOIN t_purchase_warehouse_batch t3 ON t3.item_id=t2.id
+				where t1.merchant_id=#{merchantId}
+				and t1.depot_id=#{depotId}
+				and t1.bu_id=#{buId}
+				and DATE_FORMAT(t1.inbound_date, '%Y-%m') = #{month}
+				and t1.state='012'
+				and (t1.business_model !='3' or t1.business_model is null)
+				and t3.worn_num>0
+	</select>
+
+	<!--事业部业务报表-事业部来货残次：调拨入库单中坏品 -->
+	<select id="getBuTransferInBad" resultType='map' parameterType='map'>
+		SELECT t1.id as in_order_id, t1.`code` as in_order_code,t1.transfer_order_id as order_id,
+		 t1.transfer_order_code as order_code,t1.transfer_date as deliver_date,
+		 t2.tallying_unit,t2.worn_num as num,t2.in_goods_id as goods_id
+				from t_transfer_in_depot t1
+				LEFT JOIN t_transfer_in_depot_item t2 ON t1.id=t2.transfer_depot_id
+				WHERE
+				t1.merchant_id=#{merchantId}
+				and in_depot_id=#{depotId}
+				and t1.bu_id=#{buId}
+				and DATE_FORMAT(t1.transfer_date, '%Y-%m') = #{month}
+				and t1.`status`='012'
+				and t2.worn_num>0
+	</select>
+
+	<!--事业部业务报表-事业部来货残次：退货入库单中坏品 -->
+	<select id="getBuSaleReturnInBad" resultType='map' parameterType='map'>
+		SELECT t1.id as in_order_id, t1.`code` as in_order_code,t1.order_id,t1.order_code,t1.return_in_date as deliver_date,
+			t2.worn_num as num,t2.in_goods_id as goods_id,
+			t3.tallying_unit
+		from t_sale_return_idepot t1
+				LEFT JOIN t_sale_return_idepot_item t2 on t1.id=t2.sreturn_idepot_id
+				LEFT JOIN t_sale_return_order t3 ON t3.id=t1.order_id
+				WHERE
+				t1.merchant_id=#{merchantId}
+				and t1.in_depot_id=#{depotId}
+				and t1.bu_id=#{buId}
+				and DATE_FORMAT(t1.return_in_date, '%Y-%m') = #{month}
+				and t1.`status`='012'
+				and t2.worn_num>0
+	</select>
+
+
+
+	<!--事业部业务报表-事业部来货残次：上架入库单中坏品 -->
+	<select id="getBuSaleShelfInBad" resultType='map' parameterType='map'>
+		SELECT t1.id as in_order_id, t1.`code` as in_order_code,t1.sale_order_id as order_id,
+				t1.sale_order_code  as order_code,t1.shelf_date as deliver_date,
+				t2.in_goods_id as goods_id ,t2.damaged_num as num,
+				t3.tallying_unit
+		 from t_sale_shelf_idepot t1
+				LEFT JOIN t_sale_shelf_idepot_item t2 ON t1.id=t2.sshelf_idepot_id
+				LEFT JOIN t_sale_order t3 ON t3.id=t1.sale_order_id
+				where
+				t1.merchant_id=#{merchantId}
+				and t1.in_depot_id=#{depotId}
+				and t1.bu_id=#{buId}
+				and DATE_FORMAT(t1.shelf_date, '%Y-%m') = #{month}
+				and t1.`state`='012'
+				and t2.damaged_num>0
+	</select>
+
+
+
+
+		<!-- (事业部财务经销存)获取采购残损明细表 来货短缺数据 -->
+	<select id="getBuFinancePurchaseDamagedLackList" resultType='map' parameterType='map'>
+	     select p.id,p.`code`,p.purchase_item_id,p.tallying_unit,SUM(IF(p.num-IFNULL(w.num,0)&lt;0,0,p.num-IFNULL(w.num,0))) AS num
+  		 from (
+  		 		 select t2.id,t2.`code`,t2.tallying_unit,SUM(t1.num) AS num ,t1.id as purchase_item_id
+			      from t_purchase_order_item t1
+			      left join t_purchase_order t2 ON t1.purchase_order_id = t2.id
+			      where t2.merchant_id =#{merchantId}
+			            and t2.bu_id =#{buId}
+			            and DATE_FORMAT(t2.end_date, '%Y-%m')=#{month}
+			            and t2.status IN('007','005')
+			            AND (t2.write_off_date is null or DATE_FORMAT(t2.write_off_date, '%Y-%m') &gt;#{month})
+			      group by t2.id,t2.code,t2.tallying_unit,t1.id
+			) p
+			left join(
+					SELECT t1.purchase_item_id,
+					t2.purchase_order_id,
+					SUM(IFNULL(t3.worn_num,0))as worn_num,
+					SUM(IFNULL(t3.expire_num,0))as expire_num,
+					SUM(IFNULL(t3.normal_num,0)) as normal_num,
+					SUM(IFNULL(t3.worn_num,0))+SUM(IFNULL(t3.expire_num,0))+SUM(IFNULL(t3.normal_num,0)) as num,
+					t4.tallying_unit
+					from t_purchase_warehouse_item t1
+					LEFT JOIN t_purchase_order_item t2 ON t1.purchase_item_id=t2.id
+					LEFT JOIN t_purchase_order p ON t2.purchase_order_id=p.id
+					LEFT JOIN t_purchase_warehouse_batch t3 ON t1.id=t3.item_id
+					LEFT JOIN  t_purchase_warehouse  t4 ON t4.id=t1.warehouse_id
+					where  t4.merchant_id =#{merchantId}
+					and t4.bu_id =#{buId}
+					and t4.state ='012'
+					and t1.purchase_item_id is not null
+					and DATE_FORMAT(t4.inbound_date, '%Y-%m')&lt;= #{month}
+					AND (p.write_off_date is null or DATE_FORMAT(p.write_off_date, '%Y-%m')&gt;#{month})
+					GROUP BY t1.purchase_item_id,t2.purchase_order_id,t4.tallying_unit
+			) w on p.id = w.purchase_order_id AND w.purchase_item_id = p.purchase_item_id
+			        and (
+			            p.tallying_unit=w.tallying_unit OR((p.tallying_unit='02' or p.tallying_unit='' or p.tallying_unit is null) AND (w.tallying_unit='02' or w.tallying_unit='' or w.tallying_unit IS NULL))
+			        )
+			where 1=1
+			group by p.id,p.purchase_item_id,p.tallying_unit
+			HAVING num >0
+	</select>
+
+
+			<!--  获取(事业部财务经销存)累计采购在途明细表加权 -->
+	<select id="getBuFinanceAddPurchaseNotshelfDetailsWeighte" resultType='map' parameterType='map'>
+			select p.purchase_item_id,p.id,p.code,p.currency,p.goods_id,p.price,p.effective_interval,p.tallying_unit,SUM(IF(p.num-IFNULL(w.num,0)&lt;0,0,p.num-IFNULL(w.num,0))) AS num,
+			(SELECT GROUP_CONCAT(`code` SEPARATOR ',')  from t_purchase_warehouse where state !='006' and id IN ( SELECT  warehouse_id from  t_warehouse_order_rel  where purchase_order_id =p.id ) ) as warehouseCodes,
+			(SELECT GROUP_CONCAT(`id` SEPARATOR ',')  from t_purchase_warehouse where state !='006' and id IN ( SELECT  warehouse_id from  t_warehouse_order_rel  where purchase_order_id =p.id ) ) as warehouseIds
+			from (
+			      select t2.id,t2.depot_id,t2.code,t2.currency,t2.tallying_unit,t1.goods_id,t1.price,t1.effective_interval,t1.id as purchase_item_id,SUM(t1.num) AS num
+			      from t_purchase_order_item t1
+			      left join t_purchase_order t2 ON t1.purchase_order_id = t2.id
+			     where t2.merchant_id =#{merchantId}
+			      		and t2.bu_id =#{buId}
+						and t2.bu_id is not null
+				        and t2.status IN('003','007','005')
+				        and DATE_FORMAT(t2.cargo_cutting_date, '%Y-%m') &lt;=#{month}
+				        and (t2.end_date IS NULL or DATE_FORMAT(t2.end_date, '%Y-%m')&gt;#{month})
+				        AND (t2.write_off_date is null or DATE_FORMAT(t2.write_off_date, '%Y-%m') &gt;#{month})
+				group by t2.id,t2.code,t2.currency,t2.tallying_unit,t1.goods_id,t1.price,t1.effective_interval,t1.id
+			) p
+			left join(
+					select t2.purchase_order_id,t1.purchase_item_id,t4.tallying_unit,
+					SUM(IFNULL(t3.worn_num,0))+SUM(IFNULL(t3.expire_num,0))+SUM(IFNULL(t3.normal_num,0)) as num
+					from t_purchase_warehouse_item t1
+					LEFT JOIN t_purchase_order_item t2 ON t1.purchase_item_id=t2.id
+					LEFT JOIN t_purchase_order p ON t2.purchase_order_id=p.id
+					LEFT JOIN t_purchase_warehouse_batch t3 ON t1.id=t3.item_id
+					LEFT JOIN  t_purchase_warehouse  t4 ON t4.id=t1.warehouse_id
+					where  t4.merchant_id =#{merchantId}
+					and t4.bu_id =#{buId}
+					and t4.state ='012'
+					and t1.purchase_item_id is not null
+					and DATE_FORMAT(t4.inbound_date, '%Y-%m') &lt;=#{month}
+					and t2.id is not null
+					AND (p.write_off_date is null or DATE_FORMAT(p.write_off_date, '%Y-%m') &gt;#{month})
+					GROUP BY t2.purchase_order_id,t1.purchase_item_id,t4.tallying_unit
+			) w on p.id = w.purchase_order_id AND w.purchase_item_id = p.purchase_item_id
+			        and (
+			            p.tallying_unit=w.tallying_unit OR((p.tallying_unit='02' or p.tallying_unit='' or p.tallying_unit is null) AND (w.tallying_unit='02' or w.tallying_unit='' or w.tallying_unit IS NULL))
+			        )
+			where 1=1
+			group by p.id,p.code,p.currency,p.goods_id,p.price,p.effective_interval,p.tallying_unit
+			HAVING num>0
+
+	</select>
+
+
+
+	<select id="getInWarehouserItem" resultMap='PurchaseOrderItemModelMap' parameterType="map">
+		SELECT <include refid='sql_columns' /> from
+			t_purchase_order_item
+		where purchase_order_id in
+		<foreach collection='ids' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+        and
+        goods_id in
+        <foreach collection='goodsId' item='goodsId' separator=',' open='(' close=')'>
+            #{goodsId}
+        </foreach>
+	</select>
+	<!-- 查询所有信息 -->
+	<select id="listOrderByEffective" resultMap='PurchaseOrderItemModelMap' parameterType='PurchaseOrderItemModel'>
+		select <include refid='sql_columns' /> from t_purchase_order_item  <include refid='sql_where' />
+		order by (case
+					when effective_interval='8' then 0
+					when effective_interval='7' then -1
+					when effective_interval='' or effective_interval is null then -2
+					else CAST(effective_interval AS SIGNED)
+					end) desc
+	</select>
+</mapper>

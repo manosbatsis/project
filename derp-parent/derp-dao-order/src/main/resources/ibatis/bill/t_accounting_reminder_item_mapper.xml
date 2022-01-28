@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.AccountingReminderItemMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="AccountingReminderItemModelMap" type="AccountingReminderItemModel" >
+                <result property="id" column="id" />
+                <result property="configId" column="config_id" />
+                <result property="node" column="node" />
+                <result property="nodeEffective" column="node_effective" />
+                <result property="benchmarkUnit" column="benchmark_unit" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AccountingReminderItemModelMap' parameterType='AccountingReminderItemModel'>
+        select <include refid='sql_columns' /> from t_accounting_reminder_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AccountingReminderItemModelMap' parameterType='AccountingReminderItemModel'>
+        select <include refid='sql_columns' /> from t_accounting_reminder_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AccountingReminderItemModelMap' parameterType='AccountingReminderItemModel' >
+        select <include refid='sql_columns' /> from t_accounting_reminder_item  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='AccountingReminderItemModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_accounting_reminder_item
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='configId!=null' >config_id , </if>
+                        <if test='node!=null and !"".equals(node)' > node , </if>
+                        <if test='nodeEffective!=null' >node_effective , </if>
+                        <if test='benchmarkUnit!=null and !"".equals(benchmarkUnit)' > benchmark_unit , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='configId!=null' > #{configId} , </if>
+                        <if test='node!=null and !"".equals(node)' > #{node} , </if>
+                        <if test='nodeEffective!=null' > #{nodeEffective} , </if>
+                        <if test='benchmarkUnit!=null and !"".equals(benchmarkUnit)' > #{benchmarkUnit} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='AccountingReminderItemModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_accounting_reminder_item SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='configId!=null' > config_id= #{configId} , </if>
+                        <if test='node!=null and !"".equals(node)' >node= #{node} , </if>
+                        <if test='nodeEffective!=null' > node_effective= #{nodeEffective} , </if>
+                        <if test='benchmarkUnit!=null and !"".equals(benchmarkUnit)' >benchmark_unit= #{benchmarkUnit} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_accounting_reminder_item  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_accounting_reminder_item where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            config_id,
+            node,
+            node_effective,
+            benchmark_unit,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='configId!=null' > config_id= #{configId} and </if>
+                            <if test='node!=null and !"".equals(node)' >node= #{node} and </if>
+                            <if test='nodeEffective!=null' > node_effective= #{nodeEffective} and </if>
+                            <if test='benchmarkUnit!=null and !"".equals(benchmarkUnit)' >benchmark_unit= #{benchmarkUnit} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <select id="getByBuIdCustomerId" resultType="java.lang.Integer">
+        select IFNULL(sum(node_effective),0) as nodeEffective  from t_accounting_reminder_config t1
+        left join t_accounting_reminder_item t2
+        on t1.id=t2.config_id
+        where t1.bu_id=#{buId} and t1.customer_id=#{customerId}
+        and t1.merchant_id=#{merchantId}
+        group by  t1.customer_id,t1.bu_id,t1.merchant_id
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.MerchandiseContrastMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="MerchandiseContrastModelMap" type="MerchandiseContrastModel" >
+                <result property="id" column="id" />
+                <result property="platformName" column="platform_name" />
+                <result property="platformUsername" column="platform_username" />
+                <result property="crawlerGoodsNo" column="crawler_goods_no" />
+                <result property="crawlerGoodsName" column="crawler_goods_name" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="status" column="status" />
+                <result property="createDate" column="create_date" />
+                <result property="createUsername" column="create_username" />
+                <result property="updateUsername" column="update_username" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="type" column="type" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MerchandiseContrastModelMap' parameterType='MerchandiseContrastModel'>
+        select <include refid='sql_columns' /> from t_merchandise_contrast  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MerchandiseContrastModelMap' parameterType='MerchandiseContrastModel'>
+        select <include refid='sql_columns' /> from t_merchandise_contrast  <include refid='sql_where' /> order by id desc
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MerchandiseContrastModelMap' parameterType='MerchandiseContrastModel' >
+        select <include refid='sql_columns' /> from t_merchandise_contrast  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+        <insert id='insert' parameterType='MerchandiseContrastModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_merchandise_contrast
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' > platform_name , </if>
+                        <if test='platformUsername!=null and !"".equals(platformUsername)' > platform_username , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > crawler_goods_no , </if>
+                        <if test='crawlerGoodsName!=null and !"".equals(crawlerGoodsName)' > crawler_goods_name , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='status!=null and !"".equals(status)' > status , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='createUsername!=null and !"".equals(createUsername)' > create_username , </if>
+                        <if test='updateUsername!=null and !"".equals(updateUsername)' > update_username , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' > #{platformName} , </if>
+                        <if test='platformUsername!=null and !"".equals(platformUsername)' > #{platformUsername} , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' > #{crawlerGoodsNo} , </if>
+                        <if test='crawlerGoodsName!=null and !"".equals(crawlerGoodsName)' > #{crawlerGoodsName} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='createUsername!=null and !"".equals(createUsername)' > #{createUsername} , </if>
+                        <if test='updateUsername!=null and !"".equals(updateUsername)' > #{updateUsername} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MerchandiseContrastModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_merchandise_contrast SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='platformName!=null and !"".equals(platformName)' >platform_name= #{platformName} , </if>
+                        <if test='platformUsername!=null and !"".equals(platformUsername)' >platform_username= #{platformUsername} , </if>
+                        <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >crawler_goods_no= #{crawlerGoodsNo} , </if>
+                        <if test='crawlerGoodsName!=null and !"".equals(crawlerGoodsName)' >crawler_goods_name= #{crawlerGoodsName} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} , </if>
+                        <if test='updateUsername!=null and !"".equals(updateUsername)' >update_username= #{updateUsername} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_merchandise_contrast  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_merchandise_contrast where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+            id,
+            platform_name,
+            platform_username,
+            crawler_goods_no,
+            crawler_goods_name,
+            merchant_id,
+            merchant_name,
+            status,
+            create_date,
+            create_username,
+            update_username,
+            modify_date,
+            bu_id,
+            bu_name,
+            type
+        </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='platformName!=null and !"".equals(platformName)' >platform_name= #{platformName} and </if>
+                            <if test='platformUsername!=null and !"".equals(platformUsername)' >platform_username= #{platformUsername} and </if>
+                            <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >crawler_goods_no= #{crawlerGoodsNo} and </if>
+                            <if test='crawlerGoodsName!=null and !"".equals(crawlerGoodsName)' >crawler_goods_name= #{crawlerGoodsName} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='createUsername!=null and !"".equals(createUsername)' >create_username= #{createUsername} and </if>
+                            <if test='updateUsername!=null and !"".equals(updateUsername)' >update_username= #{updateUsername} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                </trim>
+            </where>
+        </sql>
+
+<!--自定义SQL-->
+
+    <!-- 查询所有信息 分页 -->
+    <select id='searchDTOByPage' resultType='MerchandiseContrastDTO' parameterType='MerchandiseContrastDTO'>
+        select t1.* from t_merchandise_contrast t1
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > t1.id= #{id} and </if>
+                <if test='platformName!=null and !"".equals(platformName)' >t1.platform_name= #{platformName} and </if>
+                <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >t1.crawler_goods_no= #{crawlerGoodsNo} and </if>
+                <if test='crawlerGoodsName!=null and !"".equals(crawlerGoodsName)' >t1.crawler_goods_name= #{crawlerGoodsName} and </if>
+                <if test='merchantId!=null' > t1.merchant_id= #{merchantId} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >t1.merchant_name= #{merchantName} and </if>
+                <if test='status!=null and !"".equals(status)' >t1.status= #{status} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >
+                    t1.id in(select contrast_id from t_merchandise_contrast_item where goods_no=#{goodsNo}) and
+                </if>
+            </trim>
+        </where>
+        order by t1.id desc
+    </select>
+    
+    <!-- 条件查询 -->
+    <select id='getDTODetails' resultType='MerchandiseContrastDTO' parameterType='MerchandiseContrastDTO'>
+        select <include refid='sql_columns' /> from t_merchandise_contrast  <include refid='sql_where' />
+    </select>
+
+    <select id="isExistModel" parameterType="MerchandiseContrastModel" resultType="MerchandiseContrastModel" >
+        select <include refid='sql_columns' /> from t_merchandise_contrast
+        WHERE  crawler_goods_no= #{crawlerGoodsNo}
+               and type = #{type}
+               and merchant_id = #{merchantId}
+        <if test='id!=null' > and id != #{id}  </if>
+    </select>
+
+    <select id="listForExport" parameterType="MerchandiseContrastModel" resultType="map" >
+        select
+            t1.id,
+            t1.platform_name,
+            t1.platform_username,
+            t1.crawler_goods_no,
+            t1.crawler_goods_name,
+            t1.merchant_id,
+            t1.merchant_name,
+            t1.status,
+            t1.create_date,
+            t1.create_username,
+            t1.update_username,
+            t1.modify_date,
+            t1.bu_id,
+            t1.bu_name,
+            t1.type,
+            t2.goods_no,
+            t2.goods_name,
+            t2.num,
+            t2.price
+        from t_merchandise_contrast t1
+        left join t_merchandise_contrast_item t2 on t1.id = t2.contrast_id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='crawlerGoodsNo!=null and !"".equals(crawlerGoodsNo)' >t1.crawler_goods_no= #{crawlerGoodsNo} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >t1.merchant_id = #{merchantId} and </if>
+                <if test='crawlerGoodsName!=null and !"".equals(crawlerGoodsName)' >t1.crawler_goods_name= #{crawlerGoodsName} and </if>
+                <if test='platformName!=null and !"".equals(platformName)' >t1.platform_name like '%${platformName}%' and </if>
+                <if test='status!=null and !"".equals(status)' >t1.status= #{status} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t2.goods_no= #{goodsNo} and </if>
+                <if test='ids!=null and !"".equals(ids)' >t1.id in
+                    <foreach collection="ids.split(',')" item='id' separator=',' open='(' close=')'>
+                        #{id}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+
+    <!--查询sku对应的经销货号-->
+    <select id="listContrastAndItem" parameterType="com.topideal.entity.vo.sale.MerchandiseContrastModel" resultType="com.topideal.entity.dto.sale.MerchandiseContrastDTO" >
+        SELECT c.merchant_id,c.merchant_name,c.crawler_goods_no,c.crawler_goods_name,c.bu_id,c.bu_name,
+              i.goods_id,i.goods_no,i.goods_name,i.num,i.price
+        FROM  t_merchandise_contrast_item i
+        left join t_merchandise_contrast c on i.contrast_id=c.id
+        where c.merchant_id=#{merchantId}
+              and c.status=#{status}
+              and c.crawler_goods_no=#{crawlerGoodsNo}
+              and c.type=#{type}
+        order by i.id desc
+    </select>
+    
+    <select id="getUnMaintainSku" parameterType="map" resultType="MerchandiseContrastModel">
+    	SELECT
+			t2.crawler_goods_no 
+		FROM
+			<if test='type!=null and "1".equals(type)' >
+				( SELECT DISTINCT sku_no as crawler_goods_no FROM t_yunji_delivery_detail WHERE settle_id in
+					<foreach collection="settleIds" item="settleId" open="(" close=")" separator=",">
+						#{settleId}
+					</foreach>
+				 ) t2 
+				 LEFT JOIN
+				 t_merchandise_contrast t1
+				ON t1.crawler_goods_no = t2.crawler_goods_no 
+			</if>
+			<if test='type!=null and "2".equals(type)' >
+				( SELECT DISTINCT goods_no as crawler_goods_no  FROM t_crawler_bill WHERE bill_code in
+					<foreach collection="billCodes" item="billCode" open="(" close=")" separator=",">
+						#{billCode}
+					</foreach>
+				 ) t2 
+				 LEFT JOIN
+				 t_merchandise_contrast t1
+				ON t1.crawler_goods_no = t2.crawler_goods_no 
+			</if>
+		WHERE
+			t1.id IS NULL
+    </select>
+</mapper>

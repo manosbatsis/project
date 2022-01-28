@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.sale.SaleAnalysisMapper'>
+
+     <!-- 关系映射 -->
+    <resultMap id="SaleAnalysisModelMap" type="SaleAnalysisModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="saleOutDepotId" column="sale_out_depot_id" />
+                <result property="surplus" column="surplus" />
+                <result property="orderId" column="order_id" />
+                <result property="endDate" column="end_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="saleType" column="sale_type" />
+                <result property="saleOutDepotCode" column="sale_out_depot_code" />
+                <result property="saleNum" column="sale_num" />
+                <result property="isEnd" column="is_end" />
+                <result property="customerName" column="customer_name" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="outDepotNum" column="out_depot_num" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="customerId" column="customer_id" />
+                <result property="creater" column="creater" />
+                <result property="orderCode" column="order_code" />
+                <result property="id" column="id" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <result property="goodsName" column="goods_name" />
+                <result property="createDate" column="create_date" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="saleItemId" column="sale_item_id" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleAnalysisModelMap' parameterType='SaleAnalysisModel'>
+        select <include refid='sql_columns' /> from t_sale_analysis  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleAnalysisModelMap' parameterType='SaleAnalysisModel'>
+        select <include refid='sql_columns' /> from t_sale_analysis  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleAnalysisModelMap' parameterType='SaleAnalysisModel' >
+        select <include refid='sql_columns' /> from t_sale_analysis  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='SaleAnalysisModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO t_sale_analysis
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='saleOutDepotId!=null' > sale_out_depot_id , </if>
+                <if test='surplus!=null' > surplus , </if>
+                <if test='orderId!=null' > order_id , </if>
+                <if test='endDate!=null' > end_date , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='saleType!=null and !"".equals(saleType)' > sale_type , </if>
+                <if test='saleOutDepotCode!=null and !"".equals(saleOutDepotCode)' > sale_out_depot_code , </if>
+                <if test='saleNum!=null' > sale_num , </if>
+                <if test='isEnd!=null and !"".equals(isEnd)' > is_end , </if>
+                <if test='customerName!=null and !"".equals(customerName)' > customer_name , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                <if test='outDepotNum!=null' > out_depot_num , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='customerId!=null' > customer_id , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' > order_code , </if>
+                <if test='id!=null' > id , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='saleItemId!=null' >sale_item_id , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='saleOutDepotId!=null' > #{saleOutDepotId} , </if>
+                <if test='surplus!=null' > #{surplus} , </if>
+                <if test='orderId!=null' > #{orderId} , </if>
+                <if test='endDate!=null' > #{endDate} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='saleType!=null and !"".equals(saleType)' > #{saleType} , </if>
+                <if test='saleOutDepotCode!=null and !"".equals(saleOutDepotCode)' > #{saleOutDepotCode} , </if>
+                <if test='saleNum!=null' > #{saleNum} , </if>
+                <if test='isEnd!=null and !"".equals(isEnd)' > #{isEnd} , </if>
+                <if test='customerName!=null and !"".equals(customerName)' > #{customerName} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                <if test='outDepotNum!=null' > #{outDepotNum} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='customerId!=null' > #{customerId} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' > #{orderCode} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='saleItemId!=null' > #{saleItemId} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='SaleAnalysisModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  t_sale_analysis SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} , </if>
+                <if test='surplus!=null' > surplus= #{surplus} , </if>
+                <if test='orderId!=null' > order_id= #{orderId} , </if>
+                <if test='endDate!=null' > end_date= #{endDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} , </if>
+                <if test='saleOutDepotCode!=null and !"".equals(saleOutDepotCode)' >sale_out_depot_code= #{saleOutDepotCode} , </if>
+                <if test='saleNum!=null' > sale_num= #{saleNum} , </if>
+                <if test='isEnd!=null and !"".equals(isEnd)' >is_end= #{isEnd} , </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} , </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                <if test='outDepotNum!=null' > out_depot_num= #{outDepotNum} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='customerId!=null' > customer_id= #{customerId} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='saleItemId!=null' > sale_item_id= #{saleItemId} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_sale_analysis  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from t_sale_analysis where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        sale_out_depot_id,
+        surplus,
+        order_id,
+        end_date,
+        goods_id,
+        sale_type,
+        sale_out_depot_code,
+        sale_num,
+        is_end,
+        customer_name,
+        merchant_name,
+        out_depot_num,
+        merchant_id,
+        customer_id,
+        creater,
+        order_code,
+        id,
+        tallying_unit,
+        goods_name,
+        create_date,
+        bu_name,
+        bu_id,
+        sale_item_id
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='saleOutDepotId!=null' > sale_out_depot_id= #{saleOutDepotId} and </if>
+                <if test='surplus!=null' > surplus= #{surplus} and </if>
+                <if test='orderId!=null' > order_id= #{orderId} and </if>
+                <if test='endDate!=null' > end_date= #{endDate} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='saleType!=null and !"".equals(saleType)' >sale_type= #{saleType} and </if>
+                <if test='saleOutDepotCode!=null and !"".equals(saleOutDepotCode)' >sale_out_depot_code= #{saleOutDepotCode} and </if>
+                <if test='saleNum!=null' > sale_num= #{saleNum} and </if>
+                <if test='isEnd!=null and !"".equals(isEnd)' >is_end= #{isEnd} and </if>
+                <if test='customerName!=null and !"".equals(customerName)' >customer_name= #{customerName} and </if>
+                <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                <if test='outDepotNum!=null' > out_depot_num= #{outDepotNum} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='customerId!=null' > customer_id= #{customerId} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >order_code= #{orderCode} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name=#{buName} and  </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='saleItemId!=null' > sale_item_id= #{saleItemId} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+    <!-- 关系映射 -->
+    <resultMap id="SaleAnalysisModelMap2" type="SaleAnalysisDTO" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="saleOutDepotId" column="sale_out_depot_id" />
+                <result property="surplus" column="surplus" />
+                <result property="orderId" column="order_id" />
+                <result property="endDate" column="end_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="saleOutDepotCode" column="sale_out_depot_code" />
+                <result property="saleNum" column="sale_num" />
+                <result property="isEnd" column="is_end" />
+                <result property="customerName" column="customer_name" />
+                <result property="merchantName" column="merchant_name" />
+                <result property="outDepotNum" column="out_depot_num" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="customerId" column="customer_id" />
+                <result property="creater" column="creater" />
+                <result property="orderCode" column="order_code" />
+                <result property="id" column="id" />
+                <result property="goodsName" column="goods_name" />
+                <result property="createDate" column="create_date" />
+                <result property="tallyingUnit" column="tallying_unit" />
+                <!-- 拓展字段 -->
+                <result property="saleType" column="sale_type" />
+    </resultMap>
+    
+<!-- 查询条件 -->
+ 	<!-- 查询所有信息 分页 -->
+    <select id='queryDTOListByPage' resultMap='SaleAnalysisModelMap2' parameterType='SaleAnalysisDTO'>
+       SELECT
+			t1.*, t2.sale_type
+		FROM
+			t_sale_analysis t1
+		LEFT JOIN t_sale_out_depot t2 ON t1.sale_out_depot_id = t2.id
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='endDate!=null' > t1.end_date between #{endDate} and adddate(date(#{endDate}),1) and </if>
+                <if test='saleOutDepotCode!=null and !"".equals(saleOutDepotCode)' >t1.sale_out_depot_code= #{saleOutDepotCode} and </if>
+                <if test='saleOutDepotId!=null and !"".equals(saleOutDepotId)' >t1.sale_out_depot_id= #{saleOutDepotId} and </if>
+                <if test='isEnd!=null and !"".equals(isEnd)' >t1.is_end= #{isEnd} and </if>
+                <if test='saleType!=null and !"".equals(saleType)' >t1.sale_type= #{saleType} and </if>
+                <if test='orderCode!=null and !"".equals(orderCode)' >t1.order_code= #{orderCode} and </if>
+                <if test='merchantId!=null' >t1.merchant_id= #{merchantId} and </if>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >t1.goods_no= #{goodsNo} and </if>
+                <if test='buId!=null' > t1.bu_id= #{buId} and </if>
+                <if test='buList!=null and !"".equals(buList)' >t1.bu_id in
+                    <foreach collection='buList' item='buId' separator=',' open='(' close=')'>
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+
+</mapper>

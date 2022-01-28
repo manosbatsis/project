@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.reporting.SaleAmountTargetMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="SaleAmountTargetModelMap" type="SaleAmountTargetModel" >
+                <result property="id" column="id" />
+                <result property="buId" column="bu_id" />
+                <result property="buName" column="bu_name" />
+                <result property="month" column="month" />
+                <result property="currency" column="currency" />
+                <result property="departmentId" column="department_id" />
+                <result property="departmentName" column="department_name" />
+                <result property="parentBrandId" column="parent_brand_id" />
+                <result property="parentBrandName" column="parent_brand_name" />
+                <result property="totalPlanAmount" column="total_plan_amount" />
+                <result property="creatorId" column="creator_id" />
+                <result property="creator" column="creator" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='SaleAmountTargetModelMap' parameterType='SaleAmountTargetModel'>
+        select <include refid='sql_columns' /> from r_sale_amount_target  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='SaleAmountTargetModelMap' parameterType='SaleAmountTargetModel'>
+        select <include refid='sql_columns' /> from r_sale_amount_target  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='SaleAmountTargetModelMap' parameterType='SaleAmountTargetModel' >
+        select <include refid='sql_columns' /> from r_sale_amount_target  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='SaleAmountTargetModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO r_sale_amount_target
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='month!=null and !"".equals(month)' > month , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='departmentId!=null' >department_id , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' >department_name , </if>
+                        <if test='parentBrandId!=null' >parent_brand_id , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' >parent_brand_name , </if>
+                        <if test='totalPlanAmount!=null' >total_plan_amount , </if>
+                        <if test='creatorId!=null' >creator_id , </if>
+                        <if test='creator!=null and !"".equals(creator)' > creator , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='month!=null and !"".equals(month)' > #{month} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='departmentId!=null' > #{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > #{departmentName} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > #{parentBrandName} , </if>
+                        <if test='totalPlanAmount!=null' > #{totalPlanAmount} , </if>
+                        <if test='creatorId!=null' > #{creatorId} , </if>
+                        <if test='creator!=null and !"".equals(creator)' > #{creator} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='SaleAmountTargetModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  r_sale_amount_target SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='month!=null and !"".equals(month)' >month= #{month} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='departmentId!=null' > department_id=#{departmentId} , </if>
+                        <if test='departmentName!=null and !"".equals(departmentName)' > department_name=#{departmentName} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id=#{parentBrandId} , </if>
+                        <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name=#{parentBrandName} , </if>
+                        <if test='totalPlanAmount!=null' > total_plan_amount=#{totalPlanAmount} , </if>
+                        <if test='creatorId!=null' > creator_id= #{creatorId} , </if>
+                        <if test='creator!=null and !"".equals(creator)' >creator= #{creator} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from r_sale_amount_target  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from r_sale_amount_target where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            bu_id,
+            bu_name,
+            month,
+            currency,
+            creator_id,
+            creator,
+            create_date,
+            modify_date,
+            department_id,
+            department_name,
+            parent_brand_id,
+            parent_brand_name,
+            total_plan_amount
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                            <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                            <if test='creatorId!=null' > creator_id= #{creatorId} and </if>
+                            <if test='creator!=null and !"".equals(creator)' >creator= #{creator} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='departmentId!=null' > department_id=#{departmentId} and </if>
+                            <if test='departmentName!=null and !"".equals(departmentName)' > department_name=#{departmentName} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id=#{parentBrandId} and </if>
+                            <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name=#{parentBrandName} and </if>
+                            <if test='totalPlanAmount!=null' > total_plan_amount=#{totalPlanAmount} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+    <!-- 查询条件 -->
+    <sql id='sql_where_page'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                <if test='month!=null and !"".equals(month)' >month= #{month} and </if>
+                <if test='currency!=null and !"".equals(currency)' >currency= #{currency} and </if>
+                <if test='creatorId!=null' > creator_id= #{creatorId} and </if>
+                <if test='creator!=null and !"".equals(creator)' >creator= #{creator} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='departmentId!=null' > department_id=#{departmentId} and </if>
+                <if test='departmentName!=null and !"".equals(departmentName)' > department_name=#{departmentName} and </if>
+                <if test='parentBrandId!=null' > parent_brand_id=#{parentBrandId} and </if>
+                <if test='parentBrandName!=null and !"".equals(parentBrandName)' > parent_brand_name=#{parentBrandName} and </if>
+                <if test='totalPlanAmount!=null' > total_plan_amount=#{totalPlanAmount} and </if>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='ids!=null and !"".equals(ids)' > id in
+                    <foreach collection="ids.split(',')" item="id" separator="," open="(" close=")">
+                        #{id}
+                    </foreach>
+                    and
+                </if>
+                <if test='departmentIds!=null and !"".equals(departmentIds)' > department_id in
+                    <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")">
+                        #{departmentId}
+                    </foreach>
+                    and
+                </if>
+                <if test='brandSuperiorIds!=null and !"".equals(brandSuperiorIds)' > parent_brand_id in
+                    <foreach collection="brandSuperiorIds" item="parentBrandId" separator="," open="(" close=")">
+                        #{parentBrandId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <!--销售额列表信息-->
+    <select id='getAmountListByPage' resultType='SaleAmountTargetDTO' parameterType='SaleAmountTargetDTO' >
+        SELECT <include refid='sql_columns' /> from r_sale_amount_target  <include refid='sql_where_page' /> order by id desc
+    </select>
+    <!--获取销售额列表数-->
+    <select id="getOrderCount" resultType="java.lang.Integer">
+        select count(*) as num from r_sale_amount_target <include refid='sql_where_page' />
+    </select>
+    <!--销售额列表信息-->
+    <select id="getList" resultType='SaleAmountTargetDTO' parameterType='SaleAmountTargetDTO'>
+        SELECT <include refid='sql_columns' />  FROM `r_sale_amount_target` <include refid='sql_where_page' /> order by id desc
+    </select>
+    <!-- 根据月份事业部获取月度目标和年度目标-->
+    <select id="getTargetExportList" resultType='map' parameterType='map'>
+        SELECT
+       		department_id as departmentId,
+	        department_name as departmentName,
+	        bu_id as buId,
+        	bu_name as  buName,
+	        parent_brand_id as parentBrandId,
+        	parent_brand_name as parentBrandName,
+	        sum(case when `month`=#{month} then total_plan_amount * IFNULL(rate.avg_rate,1) else 0 end) monthTargetAmount,
+            sum(case when YEAR(CONCAT(`month`,'-01'))=YEAR(CONCAT(#{month},'-01')) then total_plan_amount*IFNULL(rate.avg_rate,1) else 0 end) yearTargetAmount
+        FROM r_sale_amount_target t
+        LEFT JOIN (SELECT orig_currency_code,MAX(effective_date) as effectiveDate,avg_rate from st_exchange_rate where tgt_currency_code='HKD'
+        GROUP BY MONTH(effective_date),orig_currency_code) rate ON t.currency=rate.orig_currency_code and MONTH(rate.effectiveDate)=MONTH(CONCAT(t.`month`,'-01'))
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>               
+            </trim>
+        </where>
+        GROUP BY bu_id,department_id,parent_brand_id
+    </select>
+    <!-- 获取月度目标和年度销售额目标-->
+    <select id="getMonthAndYearTargetAmount" parameterType='map' resultType="map">
+        SELECT
+        parent_brand_id as parentBrandId,
+        parent_brand_name as parentBrandName,
+        sum(case when `month`=#{month} then total_plan_amount*IFNULL(rate.avg_rate,1) else 0 end) as monthTargetAmount,
+        sum(case when YEAR(CONCAT(`month`,'-01'))=YEAR(CONCAT(#{month},'-01')) then total_plan_amount*IFNULL(rate.avg_rate,1) else 0 end) as yearTargetAmount
+        FROM `r_sale_amount_target` t
+        LEFT JOIN (SELECT orig_currency_code,MAX(effective_date) as effectiveDate,avg_rate from st_exchange_rate where tgt_currency_code='HKD'
+        GROUP BY MONTH(effective_date),orig_currency_code) rate ON t.currency=rate.orig_currency_code and MONTH(rate.effectiveDate)=MONTH(CONCAT(t.`month`,'-01'))
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='buIds!=null' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>                
+            </trim>
+        </where>
+        GROUP BY parent_brand_id
+    </select>
+
+    <!-- 获取部门销售达成统计数据(目标) 经营报表-->
+    <select id="getDepartmentSalesTargetStatistic" parameterType='map' resultType="ManageDepartmentSaleAchieveDTO">
+        SELECT
+        <if test='groupByDepartmentFlag'> IFNULL(department_id, -1) as departmentId,department_name as departmentName,</if>
+        <if test='groupByParentBrandFlag'> parent_brand_name as parentBrandName,parent_brand_id as parentBrandId,</if>
+        <if test='month !=null and !"".equals(month)'>
+            #{month} as month,
+            sum(case when `month`=#{month} then IFNULL(total_plan_amount,0)*IFNULL(rate.avg_rate,1) else 0 end) as monthTargetAmount,
+            sum(case when YEAR(CONCAT(`month`,'-01'))=YEAR(CONCAT(#{month},'-01')) then IFNULL(total_plan_amount,0)*IFNULL(rate.avg_rate,1) else 0 end) as yearTargetAmount
+        </if>
+        <if test='year !=null and !"".equals(year)'>
+            month,
+            sum(IFNULL(total_plan_amount,0)*IFNULL(rate.avg_rate,1)) as monthTargetAmount,
+            sum(case when YEAR(CONCAT(`month`,'-01'))=#{year} then IFNULL(total_plan_amount,0)*IFNULL(rate.avg_rate,1) else 0 end) as yearTargetAmount
+        </if>
+        FROM `r_sale_amount_target` t
+        LEFT JOIN (SELECT orig_currency_code,MAX(effective_date) as effectiveDate,avg_rate from st_exchange_rate where tgt_currency_code='HKD'
+        GROUP BY MONTH(effective_date),orig_currency_code) rate ON t.currency=rate.orig_currency_code and MONTH(rate.effectiveDate)=MONTH(CONCAT(t.`month`,'-01'))
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='departmentIds!=null and departmentIds.size() > 0' > department_id in
+                    <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")">
+                        #{departmentId}
+                    </foreach>
+                    and
+                </if>
+                <if test='buIds != null and buIds.size() > 0' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+                <if test='parentBrandIds !=null and parentBrandIds.size() > 0'> parent_brand_id in
+                    <foreach collection="parentBrandIds" item="brandId" separator="," open="(" close=")">
+                        #{brandId}
+                    </foreach>
+                    and
+                </if>
+                <if test='month !=null and !"".equals(month)'> YEAR(CONCAT(`month`,'-01'))=YEAR(CONCAT(#{month},'-01')) and </if>
+                <if test='year !=null and !"".equals(year)'> YEAR(CONCAT(`month`,'-01'))=#{year} and </if>
+            </trim>
+        </where>
+        GROUP BY 1
+        <if test='groupByDepartmentFlag'>,department_id</if>
+        <if test='groupByParentBrandFlag'> ,parent_brand_id</if>
+        <if test='groupByMonthFlag'>,month</if>
+    </select>
+</mapper>

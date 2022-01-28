@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.storage.AdjustmentTypeItemMapper'>
+
+        <!-- 关系映射 -->
+    <resultMap id="AdjustmentTypeItemModelMap" type="AdjustmentTypeItemModel" >
+            <result property="goodsNo" column="goods_no" />
+            <result property="overdueDate" column="overdue_date" />
+            <result property="isDamage" column="is_damage" />
+            <result property="oldGoodType" column="old_good_type" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="goodsId" column="goods_id" />
+            <result property="oldOverdueDate" column="old_overdue_date" />
+            <result property="oldBatchNo" column="old_batch_no" />
+            <result property="oldGoodsNo" column="old_goods_no" />
+            <result property="type" column="type" />
+            <result property="oldProductionDate" column="old_production_date" />
+            <result property="productionDate" column="production_date" />
+            <result property="createDate" column="create_date" />
+            <result property="id" column="id" />
+            <result property="goodsCode" column="goods_code" />
+            <result property="oldBarcode" column="old_barcode" />
+            <result property="tAdjustmentTypeId" column="t_adjustment_type_id" />
+            <result property="tallyingUnit" column="tallying_unit" />
+            <result property="goodsName" column="goods_name" />
+            <result property="barcode" column="barcode" />
+            <result property="newGoodType" column="new_good_type" />
+            <result property="adjustTotal" column="adjust_total" />
+            <result property="buName" column="bu_name" />
+            <result property="buId" column="bu_id" />
+            <result property="stockLocationTypeId" column="stock_location_type_id" />
+            <result property="stockLocationTypeName" column="stock_location_type_name" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='AdjustmentTypeItemModelMap' parameterType='AdjustmentTypeItemModel'>
+        select <include refid='sql_columns' /> from s_adjustment_type_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='AdjustmentTypeItemModelMap' parameterType='AdjustmentTypeItemModel'>
+        select <include refid='sql_columns' /> from s_adjustment_type_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='AdjustmentTypeItemModelMap' parameterType='AdjustmentTypeItemModel' >
+        select <include refid='sql_columns' /> from s_adjustment_type_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='AdjustmentTypeItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO s_adjustment_type_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='isDamage!=null and !"".equals(isDamage)' > is_damage , </if>
+                <if test='oldGoodType!=null and !"".equals(oldGoodType)' > old_good_type , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='oldOverdueDate!=null' > old_overdue_date , </if>
+                <if test='oldBatchNo!=null and !"".equals(oldBatchNo)' > old_batch_no , </if>
+                <if test='oldGoodsNo!=null and !"".equals(oldGoodsNo)' > old_goods_no , </if>
+                <if test='type!=null and !"".equals(type)' > type , </if>
+                <if test='oldProductionDate!=null' > old_production_date , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                <if test='oldBarcode!=null and !"".equals(oldBarcode)' > old_barcode , </if>
+                <if test='tAdjustmentTypeId!=null' > t_adjustment_type_id , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > tallying_unit , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='newGoodType!=null and !"".equals(newGoodType)' > new_good_type , </if>
+                <if test='adjustTotal!=null' > adjust_total , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > #{goodsNo} , </if>
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='isDamage!=null and !"".equals(isDamage)' > #{isDamage} , </if>
+                <if test='oldGoodType!=null and !"".equals(oldGoodType)' > #{oldGoodType} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='oldOverdueDate!=null' > #{oldOverdueDate} , </if>
+                <if test='oldBatchNo!=null and !"".equals(oldBatchNo)' > #{oldBatchNo} , </if>
+                <if test='oldGoodsNo!=null and !"".equals(oldGoodsNo)' > #{oldGoodsNo} , </if>
+                <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                <if test='oldProductionDate!=null' > #{oldProductionDate} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > #{goodsCode} , </if>
+                <if test='oldBarcode!=null and !"".equals(oldBarcode)' > #{oldBarcode} , </if>
+                <if test='tAdjustmentTypeId!=null' > #{tAdjustmentTypeId} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' > #{tallyingUnit} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > #{barcode} , </if>
+                <if test='newGoodType!=null and !"".equals(newGoodType)' > #{newGoodType} , </if>
+                <if test='adjustTotal!=null' > #{adjustTotal} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='AdjustmentTypeItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  s_adjustment_type_item SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} , </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='isDamage!=null and !"".equals(isDamage)' >is_damage= #{isDamage} , </if>
+                <if test='oldGoodType!=null and !"".equals(oldGoodType)' >old_good_type= #{oldGoodType} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='oldOverdueDate!=null' > old_overdue_date= #{oldOverdueDate} , </if>
+                <if test='oldBatchNo!=null and !"".equals(oldBatchNo)' >old_batch_no= #{oldBatchNo} , </if>
+                <if test='oldGoodsNo!=null and !"".equals(oldGoodsNo)' >old_goods_no= #{oldGoodsNo} , </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                <if test='oldProductionDate!=null' > old_production_date= #{oldProductionDate} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} , </if>
+                <if test='oldBarcode!=null and !"".equals(oldBarcode)' >old_barcode= #{oldBarcode} , </if>
+                <if test='tAdjustmentTypeId!=null' > t_adjustment_type_id= #{tAdjustmentTypeId} , </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} , </if>
+                <if test='newGoodType!=null and !"".equals(newGoodType)' >new_good_type= #{newGoodType} , </if>
+                <if test='adjustTotal!=null' > adjust_total= #{adjustTotal} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name= #{stockLocationTypeName} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from s_adjustment_type_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from s_adjustment_type_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        overdue_date,
+        is_damage,
+        old_good_type,
+        modify_date,
+        goods_id,
+        old_overdue_date,
+        old_batch_no,
+        old_goods_no,
+        type,
+        old_production_date,
+        production_date,
+        create_date,
+        id,
+        goods_code,
+        old_barcode,
+        t_adjustment_type_id,
+        tallying_unit,
+        goods_name,
+        barcode,
+        new_good_type,
+        adjust_total,
+        bu_name,
+        bu_id,
+        stock_location_type_id,
+        stock_location_type_name
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='isDamage!=null and !"".equals(isDamage)' >is_damage= #{isDamage} and </if>
+                <if test='oldGoodType!=null and !"".equals(oldGoodType)' >old_good_type= #{oldGoodType} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='oldOverdueDate!=null' > old_overdue_date= #{oldOverdueDate} and </if>
+                <if test='oldBatchNo!=null and !"".equals(oldBatchNo)' >old_batch_no= #{oldBatchNo} and </if>
+                <if test='oldGoodsNo!=null and !"".equals(oldGoodsNo)' >old_goods_no= #{oldGoodsNo} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='oldProductionDate!=null' > old_production_date= #{oldProductionDate} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                <if test='oldBarcode!=null and !"".equals(oldBarcode)' >old_barcode= #{oldBarcode} and </if>
+                <if test='tAdjustmentTypeId!=null' > t_adjustment_type_id= #{tAdjustmentTypeId} and </if>
+                <if test='tallyingUnit!=null and !"".equals(tallyingUnit)' >tallying_unit= #{tallyingUnit} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='newGoodType!=null and !"".equals(newGoodType)' >new_good_type= #{newGoodType} and </if>
+                <if test='adjustTotal!=null' > adjust_total= #{adjustTotal} and </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name=#{buName} and  </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name= #{stockLocationTypeName} and </if>
+            </trim>
+        </where>
+    </sql>
+
+<!--自定义SQL-->
+
+<!-- 对外api批量获取商品 -->
+	 <select id='getList' resultType="map">
+	SELECT
+		t1.goods_no,
+        t1.overdue_date,
+        t1.is_damage,
+        t1.old_good_type,
+        t1.modify_date,
+        t1.goods_id,
+        t1.old_overdue_date,
+        t1.old_batch_no,
+        t1.old_goods_no,
+        t1.type,
+        t1.old_production_date,
+        t1.production_date,
+        t1.create_date,
+        t1.id,
+        t1.goods_code,
+        t1.old_barcode,
+        t1.t_adjustment_type_id,
+        t1.tallying_unit,
+        t1.goods_name,
+        t1.barcode,
+        t1.new_good_type,
+        t1.adjust_total,
+		t2.push_time,
+		t4.commbarcode,
+		t6.`name` as brand_name
+		from s_adjustment_type_item t1
+		LEFT JOIN t_adjustment_type t2 ON t1.t_adjustment_type_id=t2.id
+		LEFT JOIN st_merchandise_info t4 ON t1.goods_id=t4.id
+		LEFT JOIN st_brand t6 ON t6.id=t4.brand_id
+		where   t1.t_adjustment_type_id in
+		<foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+        <!-- 1.好坏品互转 2.货号变更 3效期调整,4大货理货 -->
+        <if test='"1".equals(type)' >and t1.new_good_type is not null</if>
+        <if test='"2".equals(type)' > </if>
+        <if test='"3".equals(type)' > </if>
+        <if test='"4".equals(type)' >and t1.type='1'</if>
+	</select>
+
+
+</mapper>

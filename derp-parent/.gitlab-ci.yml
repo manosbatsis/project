@@ -1,0 +1,12 @@
+image: idp-registry.etopideal.com/library/yunxicibase-setting:0.3.0
+
+stages:
+  - mvn-package
+
+#maven打包
+maven-build:
+  stage: mvn-package
+  script:
+    - echo "----------maven打包---------"
+    - mvn clean install
+

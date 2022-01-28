@@ -1,0 +1,307 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.bill.TobTempVerifyRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="TobTempVerifyRelModelMap" type="TobTempVerifyRelModel" >
+                <result property="id" column="id" />
+                <result property="tobItemId" column="tob_item_id" />
+                <result property="tobId" column="tob_id" />
+                <result property="receiveItemId" column="receive_item_id" />
+                <result property="receiveId" column="receive_id" />
+                <result property="goodsId" column="goods_id" />
+                <result property="parentBrandId" column="parent_brand_id" />
+                <result property="projectId" column="project_id" />
+                <result property="receiveCode" column="receive_code" />
+                <result property="verifiyAmount" column="verifiy_amount" />
+                <result property="type" column="type" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="creditDate" column="credit_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TobTempVerifyRelModelMap' parameterType='TobTempVerifyRelModel'>
+        select <include refid='sql_columns' /> from t_tob_temp_verify_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TobTempVerifyRelModelMap' parameterType='TobTempVerifyRelModel'>
+        select <include refid='sql_columns' /> from t_tob_temp_verify_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TobTempVerifyRelModelMap' parameterType='TobTempVerifyRelModel' >
+        select <include refid='sql_columns' /> from t_tob_temp_verify_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='TobTempVerifyRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_tob_temp_verify_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='tobItemId!=null' >tob_item_id , </if>
+                        <if test='tobId!=null' >tob_id , </if>
+                        <if test='receiveItemId!=null' >receive_item_id , </if>
+                        <if test='receiveId!=null' >receive_id , </if>
+                        <if test='goodsId!=null' >goods_id , </if>
+                        <if test='parentBrandId!=null' >parent_brand_id , </if>
+                        <if test='projectId!=null' >project_id , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > receive_code , </if>
+                        <if test='verifiyAmount!=null' >verifiy_amount , </if>
+                        <if test='type!=null and !"".equals(type)' > type , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+                        <if test='creditDate!=null' >credit_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='tobItemId!=null' > #{tobItemId} , </if>
+                        <if test='tobId!=null' > #{tobId} , </if>
+                        <if test='receiveItemId!=null' > #{receiveItemId} , </if>
+                        <if test='receiveId!=null' > #{receiveId} , </if>
+                        <if test='goodsId!=null' > #{goodsId} , </if>
+                        <if test='parentBrandId!=null' > #{parentBrandId} , </if>
+                        <if test='projectId!=null' > #{projectId} , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' > #{receiveCode} , </if>
+                        <if test='verifiyAmount!=null' > #{verifiyAmount} , </if>
+                        <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+                        <if test='creditDate!=null' > #{creditDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='TobTempVerifyRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_tob_temp_verify_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='tobItemId!=null' > tob_item_id= #{tobItemId} , </if>
+                        <if test='tobId!=null' > tob_id= #{tobId} , </if>
+                        <if test='receiveItemId!=null' > receive_item_id= #{receiveItemId} , </if>
+                        <if test='receiveId!=null' > receive_id= #{receiveId} , </if>
+                        <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                        <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} , </if>
+                        <if test='projectId!=null' > project_id= #{projectId} , </if>
+                        <if test='receiveCode!=null and !"".equals(receiveCode)' >receive_code= #{receiveCode} , </if>
+                        <if test='verifiyAmount!=null' > verifiy_amount= #{verifiyAmount} , </if>
+                        <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                        <if test='creditDate!=null' > credit_date= #{creditDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_tob_temp_verify_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_tob_temp_verify_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            tob_item_id,
+            tob_id,
+            receive_item_id,
+            receive_id,
+            goods_id,
+            parent_brand_id,
+            project_id,
+            receive_code,
+            verifiy_amount,
+            type,
+            create_date,
+            modify_date,
+            credit_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='tobItemId!=null' > tob_item_id= #{tobItemId} and </if>
+                            <if test='tobId!=null' > tob_id= #{tobId} and </if>
+                            <if test='receiveItemId!=null' > receive_item_id= #{receiveItemId} and </if>
+                            <if test='receiveId!=null' > receive_id= #{receiveId} and </if>
+                            <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                            <if test='parentBrandId!=null' > parent_brand_id= #{parentBrandId} and </if>
+                            <if test='projectId!=null' > project_id= #{projectId} and </if>
+                            <if test='receiveCode!=null and !"".equals(receiveCode)' >receive_code= #{receiveCode} and </if>
+                            <if test='verifiyAmount!=null' > verifiy_amount= #{verifiyAmount} and </if>
+                            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='creditDate!=null' > credit_date= #{creditDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+        <insert id='batchSave' parameterType='java.util.List' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_tob_temp_verify_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                tob_item_id,
+                receive_item_id,
+                tob_id,
+                receive_id,
+                goods_id,
+                parent_brand_id,
+                project_id,
+                receive_code,
+                verifiy_amount,
+                type,
+                credit_date
+            </trim>
+            VALUES
+            <foreach collection="list" item="item" separator=",">
+                <trim prefix="(" suffix=")" suffixOverrides="," >
+                    #{item.tobItemId} ,
+                    #{item.receiveItemId} ,
+                    #{item.tobId} ,
+                    #{item.receiveId} ,
+                    #{item.goodsId} ,
+                    #{item.parentBrandId} ,
+                    #{item.projectId} ,
+                    #{item.receiveCode} ,
+                    #{item.verifiyAmount} ,
+                    #{item.type} ,
+                    #{item.creditDate}
+                </trim>
+            </foreach>
+        </insert>
+
+        <delete id="batchDelByReceiveId" parameterType="java.lang.Long" >
+            delete from t_tob_temp_verify_rel where receive_id = #{receiveBillId}
+        </delete>
+    
+        <select id="getRelReceiveBill" parameterType="list" resultType="map" >
+            select
+                tob_id tobId, GROUP_CONCAT( DISTINCT receive_id) receiveIds,
+                SUM(IF(type = '0', verifiy_amount, 0)) as receiveAmount,
+                SUM(IF(type = '1', verifiy_amount, 0)) as rebateAmount
+            from t_tob_temp_verify_rel
+            where tob_id in
+            <foreach collection='tobIds' item='tobId' separator=',' open='(' close=')'>
+                #{tobId}
+            </foreach>
+            GROUP BY tob_id
+        </select>
+
+        <select id="getRelReceiveItemBill" resultType="map" >
+            select
+            tob_item_id tobItemId, GROUP_CONCAT( DISTINCT receive_code) receiveCodes,
+            SUM(verifiy_amount) as verifyAmount
+            from t_tob_temp_verify_rel
+            where type = #{type}
+            and tob_item_id in
+            <foreach collection='tobItemIds' item='tobItemId' separator=',' open='(' close=')'>
+                #{tobItemId}
+            </foreach>
+            GROUP BY tob_item_id
+        </select>
+
+        <select id="getByTobItemAmount" parameterType="map" resultType="map">
+            SELECT
+            ROUND(t6.shelf_amount-t1.thirty_amount,2) as thirtyAmount,
+            ROUND(t8.shelf_amount-t2.sixty_amount,2) as sixtyAmount,
+            ROUND(t9.shelf_amount-t3.ninety_amount,2) as ninetyAmount,
+            ROUND(t10.shelf_amount-t4.onetwenty_amount,2) as onetwentyAmount,
+            ROUND(t11.shelf_amount-t5.twenty_above_amount,2) as twentyAboveAmount,
+            ROUND(t12.shelf_amount-t7.day_amount,2) as dayAmount
+            FROM
+            (
+            SELECT IFNULL(sum(verifiy_amount),0)thirty_amount  FROM t_tob_temp_verify_rel
+            WHERE tob_id IN (
+            SELECT id FROM t_tob_temporary_receive_bill WHERE datediff(now(),shelf_date) <![CDATA[<=]]> 30 AND STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            )and type='0') t1,
+            (
+            SELECT IFNULL(sum(verifiy_amount),0) sixty_amount  FROM t_tob_temp_verify_rel
+            WHERE tob_id IN (
+            SELECT id FROM t_tob_temporary_receive_bill
+            WHERE datediff(now(),shelf_date)> 30  AND datediff(now(),shelf_date) <![CDATA[<=]]> 60 AND STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            )and type='0') t2,
+            (
+            SELECT IFNULL(sum(verifiy_amount),0) ninety_amount  FROM t_tob_temp_verify_rel
+            WHERE tob_id IN
+            (SELECT id FROM t_tob_temporary_receive_bill WHERE datediff(now(),shelf_date)> 60 AND datediff(now(),shelf_date) <![CDATA[<=]]> 90 AND STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            )and type='0') t3,
+            (
+            SELECT IFNULL(sum(verifiy_amount),0) onetwenty_amount  FROM t_tob_temp_verify_rel
+            WHERE tob_id IN
+            (SELECT id FROM t_tob_temporary_receive_bill WHERE datediff(now(),shelf_date)> 90 AND datediff(now(),shelf_date) <![CDATA[<=]]> 120 AND STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            )and type='0') t4,
+            (
+            SELECT IFNULL(sum(verifiy_amount),0) twenty_above_amount  FROM t_tob_temp_verify_rel
+            WHERE tob_id IN
+            (SELECT id FROM t_tob_temporary_receive_bill WHERE datediff(now(),shelf_date)> 120 AND STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency})
+            and type='0') t5,
+            (
+            SELECT IFNULL(sum(verifiy_amount),0) day_amount  FROM t_tob_temp_verify_rel
+            WHERE tob_id IN
+            (SELECT id FROM t_tob_temporary_receive_bill WHERE TO_DAYS(NOW()) - TO_DAYS( shelf_date )<![CDATA[<=]]> #{day} AND STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency})
+            and type='0') t7,
+             (
+            SELECT IFNULL(sum(shelf_amount),0) shelf_amount  FROM t_tob_temporary_receive_bill WHERE  STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            and  datediff(now(),shelf_date) <![CDATA[<=]]> 30
+            ) t6,
+             (
+            SELECT IFNULL(sum(shelf_amount),0) shelf_amount  FROM t_tob_temporary_receive_bill WHERE  STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            and  datediff(now(),shelf_date)> 30  AND datediff(now(),shelf_date) <![CDATA[<=]]> 60
+            ) t8,
+             (
+            SELECT IFNULL(sum(shelf_amount),0) shelf_amount  FROM t_tob_temporary_receive_bill WHERE  STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            and  datediff(now(),shelf_date)> 60 AND datediff(now(),shelf_date) <![CDATA[<=]]> 90
+            ) t9,  (
+            SELECT IFNULL(sum(shelf_amount),0) shelf_amount  FROM t_tob_temporary_receive_bill WHERE  STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            and   datediff(now(),shelf_date)> 90 AND datediff(now(),shelf_date) <![CDATA[<=]]> 120
+            ) t10,
+             (
+            SELECT IFNULL(sum(shelf_amount),0) shelf_amount  FROM t_tob_temporary_receive_bill WHERE  STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            and   datediff(now(),shelf_date)> 120
+            ) t11,
+            (
+            SELECT IFNULL(sum(shelf_amount),0) shelf_amount  FROM t_tob_temporary_receive_bill WHERE  STATUS != '5'
+            and merchant_id=#{merchantId} and customer_id=#{customerId} and bu_id=#{buId}  and currency=#{currency}
+            and   datediff(now(),shelf_date)  <![CDATA[<=]]> #{day}
+            ) t12
+        </select>
+
+        <select id="getRelBeforeMonth" resultMap="TobTempVerifyRelModelMap" >
+            select <include refid='sql_columns' /> from t_tob_temp_verify_rel
+            where type= #{type}
+            and DATE_FORMAT(credit_date, '%Y-%m') &lt;= #{month}
+            and tob_item_id in
+            <foreach collection='tobItemIds' item='tobItemId' separator=',' open='(' close=')'>
+                #{tobItemId}
+            </foreach>
+
+        </select>
+
+</mapper>

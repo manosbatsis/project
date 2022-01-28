@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.TakesStockResultItemMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="TakesStockResultItemModelMap" type="TakesStockResultItemModel" >
+                <result property="goodsNo" column="goods_no" />
+                <result property="overdueDate" column="overdue_date" />
+                <result property="batchNo" column="batch_no" />
+                <result property="isDamage" column="is_damage" />
+                <result property="tallyUnit" column="tally_unit" />
+                <result property="differencesNum" column="differences_num" />
+                <result property="modifyDate" column="modify_date" />
+                <result property="goodsId" column="goods_id" />
+                <result property="surplusNum" column="surplus_num" />
+                <result property="type" column="type" />
+                <result property="realQty" column="real_qty" />
+                <result property="productionDate" column="production_date" />
+                <result property="deficientNum" column="deficient_num" />
+                <result property="reasonDes" column="reason_des" />
+                <result property="id" column="id" />
+                <result property="goodsCode" column="goods_code" />
+                <result property="systemNum" column="system_num" />
+                <result property="reasonCode" column="reason_code" />
+                <result property="goodsName" column="goods_name" />
+                <result property="barcode" column="barcode" />
+                <result property="takesStockResultId" column="takes_stock_result_id" />
+                <result property="adjustTotal" column="adjust_total" />
+                <result property="createDate" column="create_date" />
+                <result property="commbarcode" column="commbarcode" />
+                <result property="settlementPrice" column="settlement_price" />
+                <result property="buName" column="bu_name" />
+                <result property="buId" column="bu_id" />
+                <result property="stockLocationTypeId" column="stock_location_type_id" />
+                <result property="stockLocationTypeName" column="stock_location_type_name" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='TakesStockResultItemModelMap' parameterType='TakesStockResultItemModel'>
+        select <include refid='sql_columns' /> from s_takes_stock_result_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='TakesStockResultItemModelMap' parameterType='TakesStockResultItemModel'>
+        select <include refid='sql_columns' /> from s_takes_stock_result_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='TakesStockResultItemModelMap' parameterType='TakesStockResultItemModel' >
+        select <include refid='sql_columns' /> from s_takes_stock_result_item  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='TakesStockResultItemModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO s_takes_stock_result_item
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > goods_no , </if>
+                <if test='overdueDate!=null' > overdue_date , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > batch_no , </if>
+                <if test='isDamage!=null and !"".equals(isDamage)' > is_damage , </if>
+                <if test='tallyUnit!=null and !"".equals(tallyUnit)' > tally_unit , </if>
+                <if test='differencesNum!=null' > differences_num , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='goodsId!=null' > goods_id , </if>
+                <if test='surplusNum!=null' > surplus_num , </if>
+                <if test='type!=null and !"".equals(type)' > type , </if>
+                <if test='realQty!=null' > real_qty , </if>
+                <if test='productionDate!=null' > production_date , </if>
+                <if test='deficientNum!=null' > deficient_num , </if>
+                <if test='reasonDes!=null and !"".equals(reasonDes)' > reason_des , </if>
+                <if test='id!=null' > id , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > goods_code , </if>
+                <if test='systemNum!=null' > system_num , </if>
+                <if test='reasonCode!=null and !"".equals(reasonCode)' > reason_code , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > goods_name , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > barcode , </if>
+                <if test='takesStockResultId!=null' > takes_stock_result_id , </if>
+                <if test='adjustTotal!=null' > adjust_total , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > commbarcode , </if>
+                <if test='settlementPrice!=null' > settlement_price , </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                <if test='buId!=null' >bu_id , </if>
+                <if test='stockLocationTypeId!=null' >stock_location_type_id , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' >stock_location_type_name , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='goodsNo!=null and !"".equals(goodsNo)' > TRIM(#{goodsNo}) , </if>
+                <if test='overdueDate!=null' > #{overdueDate} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' > TRIM(#{batchNo}) , </if>
+                <if test='isDamage!=null and !"".equals(isDamage)' > TRIM(#{isDamage}) , </if>
+                <if test='tallyUnit!=null and !"".equals(tallyUnit)' > TRIM(#{tallyUnit}) , </if>
+                <if test='differencesNum!=null' > #{differencesNum} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='goodsId!=null' > #{goodsId} , </if>
+                <if test='surplusNum!=null' > #{surplusNum} , </if>
+                <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                <if test='realQty!=null' > #{realQty} , </if>
+                <if test='productionDate!=null' > #{productionDate} , </if>
+                <if test='deficientNum!=null' > #{deficientNum} , </if>
+                <if test='reasonDes!=null and !"".equals(reasonDes)' > TRIM(#{reasonDes}) , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' > TRIM(#{goodsCode}) , </if>
+                <if test='systemNum!=null' > #{systemNum} , </if>
+                <if test='reasonCode!=null and !"".equals(reasonCode)' > TRIM(#{reasonCode}) , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' > TRIM(#{goodsName}) , </if>
+                <if test='barcode!=null and !"".equals(barcode)' > TRIM(#{barcode}) , </if>
+                <if test='takesStockResultId!=null' > #{takesStockResultId} , </if>
+                <if test='adjustTotal!=null' > #{adjustTotal} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' > TRIM(#{commbarcode}) , </if>
+                <if test='settlementPrice!=null' > #{settlementPrice} , </if>
+                <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                <if test='buId!=null' > #{buId} , </if>
+                <if test='stockLocationTypeId!=null' > #{stockLocationTypeId} , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > #{stockLocationTypeName} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='TakesStockResultItemModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  s_takes_stock_result_item SET
+        <trim  suffixOverrides=",">
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= TRIM(#{goodsNo}) , </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} , </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= TRIM(#{batchNo}) , </if>
+                <if test='isDamage!=null and !"".equals(isDamage)' >is_damage= TRIM(#{isDamage}) , </if>
+                <if test='tallyUnit!=null and !"".equals(tallyUnit)' >tally_unit= TRIM(#{tallyUnit}) , </if>
+                <if test='differencesNum!=null' > differences_num= #{differencesNum} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} , </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} , </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                <if test='realQty!=null' > real_qty= #{realQty} , </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} , </if>
+                <if test='deficientNum!=null' > deficient_num= #{deficientNum} , </if>
+                <if test='reasonDes!=null and !"".equals(reasonDes)' >reason_des= TRIM(#{reasonDes}) , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= TRIM(#{goodsCode}) , </if>
+                <if test='systemNum!=null' > system_num= #{systemNum} , </if>
+                <if test='reasonCode!=null and !"".equals(reasonCode)' >reason_code= TRIM(#{reasonCode}) , </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= TRIM(#{goodsName}) , </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= TRIM(#{barcode}) , </if>
+                <if test='takesStockResultId!=null' > takes_stock_result_id= #{takesStockResultId} , </if>
+                <if test='adjustTotal!=null' > adjust_total= #{adjustTotal} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= TRIM(#{commbarcode}) , </if>
+                <if test='settlementPrice!=null' > settlement_price= #{settlementPrice} , </if>
+                <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                <if test='buId!=null' > bu_id= #{buId} , </if>
+                <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} , </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name= #{stockLocationTypeName} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from s_takes_stock_result_item  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from s_takes_stock_result_item where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        goods_no,
+        overdue_date,
+        batch_no,
+        is_damage,
+        tally_unit,
+        differences_num,
+        modify_date,
+        goods_id,
+        surplus_num,
+        type,
+        real_qty,
+        production_date,
+        deficient_num,
+        reason_des,
+        id,
+        goods_code,
+        system_num,
+        reason_code,
+        goods_name,
+        barcode,
+        takes_stock_result_id,
+        adjust_total,
+        create_date,
+        commbarcode,
+        settlement_price,
+        bu_name,
+        bu_id,
+        stock_location_type_id,
+        stock_location_type_name
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='goodsNo!=null and !"".equals(goodsNo)' >goods_no= #{goodsNo} and </if>
+                <if test='overdueDate!=null' > overdue_date= #{overdueDate} and </if>
+                <if test='batchNo!=null and !"".equals(batchNo)' >batch_no= #{batchNo} and </if>
+                <if test='isDamage!=null and !"".equals(isDamage)' >is_damage= #{isDamage} and </if>
+                <if test='tallyUnit!=null and !"".equals(tallyUnit)' >tally_unit= #{tallyUnit} and </if>
+                <if test='differencesNum!=null' > differences_num= #{differencesNum} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='goodsId!=null' > goods_id= #{goodsId} and </if>
+                <if test='surplusNum!=null' > surplus_num= #{surplusNum} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='realQty!=null' > real_qty= #{realQty} and </if>
+                <if test='productionDate!=null' > production_date= #{productionDate} and </if>
+                <if test='deficientNum!=null' > deficient_num= #{deficientNum} and </if>
+                <if test='reasonDes!=null and !"".equals(reasonDes)' >reason_des= #{reasonDes} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='goodsCode!=null and !"".equals(goodsCode)' >goods_code= #{goodsCode} and </if>
+                <if test='systemNum!=null' > system_num= #{systemNum} and </if>
+                <if test='reasonCode!=null and !"".equals(reasonCode)' >reason_code= #{reasonCode} and </if>
+                <if test='goodsName!=null and !"".equals(goodsName)' >goods_name= #{goodsName} and </if>
+                <if test='barcode!=null and !"".equals(barcode)' >barcode= #{barcode} and </if>
+                <if test='takesStockResultId!=null' > takes_stock_result_id= #{takesStockResultId} and </if>
+                <if test='adjustTotal!=null' > adjust_total= #{adjustTotal} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='commbarcode!=null and !"".equals(commbarcode)' >commbarcode= #{commbarcode} and </if>
+                <if test='settlementPrice!=null' > settlement_price= #{settlementPrice} and </if>
+                <if test='buName!=null and !"".equals(buName)' > bu_name=#{buName} and  </if>
+                <if test='buId!=null' > bu_id= #{buId} and </if>
+                <if test='stockLocationTypeId!=null' > stock_location_type_id= #{stockLocationTypeId} and </if>
+                <if test='stockLocationTypeName!=null and !"".equals(stockLocationTypeName)' > stock_location_type_name= #{stockLocationTypeName} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+	<!-- 检查商品是否使用 -->
+    <select id='checkGoodsIsUse' resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select 
+        	count(*)
+        from s_takes_stock_result_item
+        where goods_id = #{id}
+    </select>
+
+    <select id="listDto" resultType="TakesStockResultItemDTO" parameterType="TakesStockResultItemDTO" >
+        select <include refid='sql_columns' /> from s_takes_stock_result_item  <include refid='sql_where' />
+    </select>
+    <select id="countNoExistBu" parameterType="java.lang.Long" resultType="java.lang.Long" >
+        select count(0)
+        from s_takes_stock_result_item
+        where takes_stock_result_id = #{id}
+        and bu_id is null
+    </select>
+</mapper>

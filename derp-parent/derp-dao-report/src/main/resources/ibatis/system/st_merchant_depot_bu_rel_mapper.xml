@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.system.MerchantDepotBuRelMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="MerchantDepotBuRelModelMap" type="MerchantDepotBuRelModel" >
+                <result property="id" column="id" />
+                <result property="merchantId" column="merchant_id" />
+                <result property="buId" column="bu_id" />
+                <result property="depotId" column="depot_id" />
+                <result property="createDate" column="create_date" />
+                <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='MerchantDepotBuRelModelMap' parameterType='MerchantDepotBuRelModel'>
+        select <include refid='sql_columns' /> from st_merchant_depot_bu_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='MerchantDepotBuRelModelMap' parameterType='MerchantDepotBuRelModel'>
+        select <include refid='sql_columns' /> from st_merchant_depot_bu_rel  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='MerchantDepotBuRelModelMap' parameterType='MerchantDepotBuRelModel' >
+        select <include refid='sql_columns' /> from st_merchant_depot_bu_rel  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='MerchantDepotBuRelModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO st_merchant_depot_bu_rel
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id , </if>
+                        <if test='merchantId!=null' >merchant_id , </if>
+                        <if test='buId!=null' >bu_id , </if>
+                        <if test='depotId!=null' >depot_id , </if>
+                        <if test='createDate!=null' >create_date , </if>
+                        <if test='modifyDate!=null' >modify_date , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='depotId!=null' > #{depotId} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='MerchantDepotBuRelModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  st_merchant_depot_bu_rel SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='depotId!=null' > depot_id= #{depotId} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_merchant_depot_bu_rel  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from st_merchant_depot_bu_rel where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+            id,
+            merchant_id,
+            bu_id,
+            depot_id,
+            create_date,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<!-- 根据实例删除数据 -->
+	    <delete id='deleteByMap' parameterType='map'>
+	        delete from st_merchant_depot_bu_rel  
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='depotId!=null' > depot_id= #{depotId} and </if>
+                </trim>
+            </where>
+	    </delete>
+
+		<!-- 获取事业部商家仓库中间表 -->
+		<select id='getBuMerchAndDepotBuMap' resultType='map' parameterType='map' >
+			SELECT merchant_id,depot_id,bu_id from st_merchant_depot_bu_rel
+			WHERE merchant_id=#{merchantId} and depot_id=#{depotId}
+			 <if test='buId!=null' > and bu_id= #{buId}  </if>
+			GROUP BY merchant_id,depot_id,bu_id
+		</select>
+
+    <!-- 获取事业部商家仓库中间表 -->
+    <select id='getListByMap' resultType='map' parameterType='map' >
+        SELECT merchant_id,depot_id,bu_id from st_merchant_depot_bu_rel
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='merchantId!=null' >merchant_id=#{merchantId} and </if>
+                <if test='merchantIds != null and merchantIds.size() > 0' > merchant_id in
+                    <foreach collection="merchantIds" item="merchantId" separator="," open="(" close=")">
+                        #{merchantId}
+                    </foreach>
+                    and
+                </if>
+                <if test='depotId!=null' >   and depot_id=#{depotId} and </if>
+                <if test='buId!=null' >  bu_id= #{buId}  and </if>
+                <if test='buIds != null and buIds.size() > 0' > bu_id in
+                    <foreach collection="buIds" item="buId" separator="," open="(" close=")">
+                        #{buId}
+                    </foreach>
+                    and
+                </if>
+            </trim>
+        </where>
+        GROUP BY merchant_id,depot_id,bu_id
+    </select>
+    <!-- 查询商家仓库、事业部统计存货跌价为是公司事业部状态为启用的仓库、事业部数据 -->
+    <select id='getDepotAndBuList' resultType='map' parameterType='map' >
+        select distinct dm.merchant_id,dm.depot_id,mb.bu_id
+        from st_depot_merchant_rel dm,st_merchant_bu_rel mb,st_merchant_depot_bu_rel mdb
+        where dm.merchant_id=mb.merchant_id and mb.merchant_id=mdb.merchant_id
+            and dm.is_invertory_falling_price='1'
+            and mb.`status`='1'
+            and dm.merchant_id=#{merchantId}
+        <if test='depotIds!=null and !"".equals(depotIds)' > and dm.depot_id in
+            <foreach collection='depotIds.split(",")' item='depotId' separator=',' open='(' close=')'>
+                #{depotId}
+            </foreach>
+        </if>
+        <if test='buIds!=null and !"".equals(buIds)' >  and mb.bu_id in
+            <foreach collection='buIds.split(",")' item='buId' separator=',' open='(' close=')'>
+                #{buId}
+            </foreach>
+        </if>
+        order by dm.merchant_id,dm.depot_id,mb.bu_id
+    </select>
+</mapper>

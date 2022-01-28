@@ -1,0 +1,408 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.main.DepotInfoMapper'>
+
+    <!-- 关系映射 -->
+    <resultMap id="DepotInfoModelMap" type="DepotInfoModel" >
+            <result property="country" column="country" />
+            <result property="code" column="code" />
+            <result property="address" column="address" />
+            <result property="modifyDate" column="modify_date" />
+            <result property="batchValidation" column="batch_validation" />
+            <result property="inspectNo" column="inspect_no" />
+            <result property="isMerchant" column="is_merchant" />
+            <result property="type" column="type" />
+            <result property="customsNo" column="customs_no" />
+            <result property="depotType" column="depot_type" />
+            <result property="adminName" column="admin_name" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="isTopBooks" column="is_top_books" />
+            <result property="name" column="name" />
+            <result property="creater" column="creater" />
+            <result property="depotCode" column="depot_code" />
+            <result property="tel" column="tel" />
+            <result property="id" column="id" />
+            <result property="createDate" column="create_date" />
+            <result property="status" column="status" />
+            <result property="warehouseId" column="warehouse_id" />
+            <result property="ISVDepotType" column="ISV_depot_type" />
+            <result property="isValetManage" column="is_valet_manage" />
+    </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='DepotInfoModelMap' parameterType='DepotInfoModel'>
+        select <include refid='sql_columns' /> from st_depot_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='DepotInfoModelMap' parameterType='DepotInfoModel'>
+        select <include refid='sql_columns' /> from st_depot_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='DepotInfoModelMap' parameterType='DepotInfoModel' >
+        select <include refid='sql_columns' /> from st_depot_info  <include refid='sql_where' />
+    </select>
+
+    <!-- 新增数据 -->
+    <insert id='insert' parameterType='DepotInfoModel' keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO st_depot_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='country!=null and !"".equals(country)' > country , </if>
+                <if test='code!=null and !"".equals(code)' > code , </if>
+                <if test='address!=null and !"".equals(address)' > address , </if>
+                <if test='modifyDate!=null' > modify_date , </if>
+                <if test='batchValidation!=null and !"".equals(batchValidation)' > batch_validation , </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' > inspect_no , </if>
+                <if test='isMerchant!=null and !"".equals(isMerchant)' > is_merchant , </if>
+                <if test='type!=null and !"".equals(type)' > type , </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' > customs_no , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > depot_type , </if>
+                <if test='adminName!=null and !"".equals(adminName)' > admin_name , </if>
+                <if test='merchantId!=null' > merchant_id , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > is_top_books , </if>
+                <if test='name!=null and !"".equals(name)' > name , </if>
+                <if test='creater!=null' > creater , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' > depot_code , </if>
+                <if test='tel!=null and !"".equals(tel)' > tel , </if>
+                <if test='id!=null' > id , </if>
+                <if test='createDate!=null' > create_date , </if>
+                <if test='status!=null and !"".equals(status)' > status , </if>
+                <if test='warehouseId!=null' > warehouse_id , </if>
+                <if test='ISVDepotType!=null and !"".equals(ISVDepotType)' > ISV_depot_type , </if>
+                <if test='isValetManage!=null and !"".equals(isValetManage)' > is_valet_manage , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test='country!=null and !"".equals(country)' > #{country} , </if>
+                <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                <if test='address!=null and !"".equals(address)' > #{address} , </if>
+                <if test='modifyDate!=null' > #{modifyDate} , </if>
+                <if test='batchValidation!=null and !"".equals(batchValidation)' > #{batchValidation} , </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' > #{inspectNo} , </if>
+                <if test='isMerchant!=null and !"".equals(isMerchant)' > #{isMerchant} , </if>
+                <if test='type!=null and !"".equals(type)' > #{type} , </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' > #{customsNo} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' > #{depotType} , </if>
+                <if test='adminName!=null and !"".equals(adminName)' > #{adminName} , </if>
+                <if test='merchantId!=null' > #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' > #{isTopBooks} , </if>
+                <if test='name!=null and !"".equals(name)' > #{name} , </if>
+                <if test='creater!=null' > #{creater} , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' > #{depotCode} , </if>
+                <if test='tel!=null and !"".equals(tel)' > #{tel} , </if>
+                <if test='id!=null' > #{id} , </if>
+                <if test='createDate!=null' > #{createDate} , </if>
+                <if test='status!=null and !"".equals(status)' > #{status} , </if>
+                <if test='warehouseId!=null' > #{warehouseId} , </if>
+                <if test='ISVDepotType!=null and !"".equals(ISVDepotType)' > #{ISVDepotType} , </if>
+                <if test='isValetManage!=null and !"".equals(isValetManage)' > #{isValetManage} , </if>
+        </trim>
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id='update' parameterType='DepotInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_depot_info SET
+        <trim  suffixOverrides=",">
+                <if test='country!=null and !"".equals(country)' >country= #{country} , </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                <if test='address!=null and !"".equals(address)' >address= #{address} , </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+                <if test='batchValidation!=null and !"".equals(batchValidation)' >batch_validation= #{batchValidation} , </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} , </if>
+                <if test='isMerchant!=null and !"".equals(isMerchant)' >is_merchant= #{isMerchant} , </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} , </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} , </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} , </if>
+                <if test='adminName!=null and !"".equals(adminName)' >admin_name= #{adminName} , </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} , </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} , </if>
+                <if test='creater!=null' > creater= #{creater} , </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} , </if>
+                <if test='tel!=null and !"".equals(tel)' >tel= #{tel} , </if>
+                <if test='id!=null' > id= #{id} , </if>
+                <if test='createDate!=null' > create_date= #{createDate} , </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} , </if>
+                <if test='warehouseId!=null' > warehouse_id= #{warehouseId} , </if>
+                <if test='ISVDepotType!=null and !"".equals(ISVDepotType)' >ISV_depot_type= #{ISVDepotType} , </if>
+                <if test='isValetManage!=null and !"".equals(isValetManage)' >is_valet_manage= #{isValetManage} , </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from st_depot_info  where id=#{id}
+    </delete>
+
+    <!-- 批量删除数据 -->
+    <delete id='batchDel' parameterType='java.util.ArrayList'>
+        delete from st_depot_info where id in
+        <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 表字段 -->
+    <sql id='sql_columns'>
+        country,
+        code,
+        address,
+        modify_date,
+        batch_validation,
+        inspect_no,
+        is_merchant,
+        type,
+        customs_no,
+        depot_type,
+        admin_name,
+        merchant_id,
+        is_top_books,
+        name,
+        creater,
+        depot_code,
+        tel,
+        id,
+        create_date,
+        status,
+        warehouse_id,
+        ISV_depot_type,
+        is_valet_manage
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id='sql_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='country!=null and !"".equals(country)' >country= #{country} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='address!=null and !"".equals(address)' >address= #{address} and </if>
+                <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                <if test='batchValidation!=null and !"".equals(batchValidation)' >batch_validation= #{batchValidation} and </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} and </if>
+                <if test='isMerchant!=null and !"".equals(isMerchant)' >is_merchant= #{isMerchant} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='adminName!=null and !"".equals(adminName)' >admin_name= #{adminName} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+                <if test='tel!=null and !"".equals(tel)' >tel= #{tel} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='status!=null and !"".equals(status)' >status= #{status} and </if>
+                <if test='warehouseId!=null' > warehouse_id= #{warehouseId} and </if>
+                <if test='ISVDepotType!=null and !"".equals(ISVDepotType)' >ISV_depot_type= #{ISVDepotType} and </if>
+                <if test='isValetManage!=null and !"".equals(isValetManage)' >is_valet_manage= #{isValetManage} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!--自定义SQL-->
+    <sql id='sql_like_where'>
+        <where>
+            <trim suffixOverrides='and'>
+                <if test='code!=null and !"".equals(code)' >code like CONCAT('%',#{code},'%') and </if>
+                <if test='depotCode!=null and !"".equals(depotCode)' >depot_code like CONCAT('%',#{depotCode},'%') and </if>
+                <if test='name!=null and !"".equals(name)' >name like CONCAT('%',#{name},'%') and </if>
+                <if test='status!=null and !"".equals(status)' >#{status} and </if>
+            </trim>
+        </where>
+    </sql>
+
+	<!-- 关系映射 -->
+	<resultMap id="MerchantInfoModelMap" type="MerchantInfoModel" >
+                <result property="name" column="name" />
+                <result property="id" column="id" />
+                <result property="isProxy" column="is_proxy" />
+    </resultMap>
+
+	<!-- 查询代理商家下拉列表 -->
+    <select id='getSelectPoxy' resultMap='MerchantInfoModelMap' parameterType="MerchantInfoModel">
+        select id,name from st_merchant_info where is_proxy = '1'
+    </select>
+
+	<!-- 下拉列表关系映射 -->
+	<resultMap id="SelectBeans" type="com.topideal.common.system.bean.SelectBean" >
+        <result property="value" column="id" />
+        <result property="label" column="name" />
+    </resultMap>
+
+	<!-- 查询商品下拉列表 -->
+    <select id='getSelectBean' resultMap='SelectBeans' >
+        select
+        	t2.id,t2.name
+        from st_depot_merchant_rel t1
+        left join st_depot_info t2 on t2.id = t1.depot_id
+        <where>
+	        <trim suffixOverrides='and'>
+	            t2.status='1' AND
+	            <if test='merchantId!=null and !"".equals(merchantId)' >t1.merchant_id= #{merchantId} and </if>
+	            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+	            <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} and </if>
+	            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+	            <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} and </if>
+	            <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+	            <if test='adminName!=null and !"".equals(adminName)' >admin_name= #{adminName} and </if>
+	            <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+	            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+	        </trim>
+        </where>
+    </select>
+    <!-- 查询商品下拉列表 -->
+    <select id='getSelectBeanForAdmin' resultMap='SelectBeans' >
+        select
+        	id,name
+        from st_depot_info
+        <where>
+	        <trim suffixOverrides='and'>
+	            status='1' AND
+	            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+	            <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} and </if>
+	            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+	            <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} and </if>
+	            <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+	            <if test='adminName!=null and !"".equals(adminName)' >admin_name= #{adminName} and </if>
+	            <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+	            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+	        </trim>
+        </where>
+    </select>
+    <!-- 查询商品下拉列表 -->
+    <select id='getSelectBeanByArea' resultMap='SelectBeans' >
+        select
+        	t2.id,t2.name
+        from st_depot_merchant_rel t1
+        left join st_depot_info t2 on t2.id = t1.depot_id
+        <where>
+	        <trim suffixOverrides='and'>
+	            t2.status='1' AND
+	            <if test='merchantId!=null and !"".equals(merchantId)' >t1.merchant_id= #{merchantId} and </if>
+	            <if test='isSameArea!=null and "1".equals(isSameArea)' >t2.customs_no = #{customsNo} and </if>
+	            <if test='isSameArea!=null and "0".equals(isSameArea)' >(t2.customs_no != #{customsNo} or t2.customs_no is null) and </if>
+	        </trim>
+        </where>
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='getListByPage' resultType='DepotInfoDTO' parameterType='DepotInfoDTO'>
+        select
+        	<include refid='sql_columns' />
+        from st_depot_info
+        <where>
+            <trim suffixOverrides='and'>
+            	status != '006' and
+                <if test='country!=null and !"".equals(country)' >country= #{country} and </if>
+                <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                <if test='address!=null' > address= #{address} and </if>
+                <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} and </if>
+                <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+                <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} and </if>
+                <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+                <if test='adminName!=null and !"".equals(adminName)' >admin_name= #{adminName} and </if>
+                <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+                <if test='name!=null and !"".equals(name)' >name like '%${name}%' and </if>
+                <if test='creater!=null' > creater= #{creater} and </if>
+                <if test='tel!=null and !"".equals(tel)' >tel= #{tel} and </if>
+                <if test='id!=null' > id= #{id} and </if>
+                <if test='createDate!=null' > create_date= #{createDate} and </if>
+                <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+            </trim>
+        </where>
+        order by id desc
+    </select>
+
+	<!-- 根据页面传入商家id获取此商家下仓库的下拉框 -->
+    <select id='getSelectBeanByMerchantRel' parameterType="DepotMerchantRelDTO" resultMap='SelectBeans' >
+        select
+        	t2.id,t2.name
+        from st_depot_merchant_rel t1
+        left join st_depot_info t2 on t2.id = t1.depot_id
+        where t1.merchant_id= #{merchantId} AND t2.status='1'
+       	<if test='isInOutInstruction!=null and !"".equals(isInOutInstruction)' > AND t1.is_in_out_instruction = #{isInOutInstruction}  </if>
+        <if test='isInvertoryFallingPrice!=null and !"".equals(isInvertoryFallingPrice)' > AND t1.is_invertory_falling_price = #{isInvertoryFallingPrice} </if>
+        <if test='productRestriction!=null and !"".equals(productRestriction)' > AND t1.product_restriction = #{productRestriction}</if>
+        <if test='isInDependOut!=null and !"".equals(isInDependOut)' > AND t1.is_in_depend_out = #{isInDependOut} </if>
+        <if test='isOutDependIn!=null and !"".equals(isOutDependIn)' > AND t1.is_out_depend_in = #{isOutDependIn} </if>
+        <if test='isValetManage!=null and !"".equals(isValetManage)' > AND t2.is_valet_manage = #{isValetManage} </if>        
+        <if test='isTopBooks!=null and !"".equals(isTopBooks)' > AND t2.is_top_books = #{isTopBooks} </if>
+        <if test='type!=null and !"".equals(type)' > AND t2.type in
+	        <foreach collection='type.split(",")' item='item' separator=',' open='(' close=')'>
+	            #{item}
+	        </foreach>
+        </if>
+    </select>
+
+    <select id='searchDTOById' resultType='DepotInfoDTO' parameterType='java.lang.Long' >
+        select <include refid='sql_columns' /> from st_depot_info  where id = #{id}
+    </select>
+	<!-- 查询仓库下拉列表 -->
+    <select id='getSelectBeanByDTO' resultType='DepotInfoDTO'>
+        select
+        	t2.*
+        from st_depot_merchant_rel t1
+        left join st_depot_info t2 on t2.id = t1.depot_id
+        <where>
+	        <trim suffixOverrides='and'>
+	            t2.status='1' AND
+	            <if test='merchantId!=null and !"".equals(merchantId)' >t1.merchant_id= #{merchantId} and </if>
+	            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+	            <if test='depotCode!=null and !"".equals(depotCode)' >depot_code= #{depotCode} and </if>
+	            <if test='inspectNo!=null and !"".equals(inspectNo)' >inspect_no= #{inspectNo} and </if>
+	            <if test='type!=null and !"".equals(type)' >type= #{type} and </if>
+	            <if test='customsNo!=null and !"".equals(customsNo)' >customs_no= #{customsNo} and </if>
+	            <if test='depotType!=null and !"".equals(depotType)' >depot_type= #{depotType} and </if>
+	            <if test='adminName!=null and !"".equals(adminName)' >admin_name= #{adminName} and </if>
+	            <if test='isTopBooks!=null and !"".equals(isTopBooks)' >is_top_books= #{isTopBooks} and </if>
+	            <if test='name!=null and !"".equals(name)' >name= #{name} and </if>
+	        </trim>
+        </where>
+    </select>
+
+    <select id='getSelectBeanByMerchantBuRel' parameterType="DepotMerchantRelDTO" resultMap='SelectBeans' >
+        select
+            t2.id,t2.name
+        from st_merchant_depot_bu_rel t1
+        left join st_depot_info t2 on t2.id = t1.depot_id
+        where t1.merchant_id= #{merchantId} and t1.bu_id = #{buId} AND t2.status='1'
+        <if test='isValetManage!=null and !"".equals(isValetManage)' > AND t2.is_valet_manage = #{isValetManage} </if>
+        <if test='isTopBooks!=null and !"".equals(isTopBooks)' > AND t2.is_top_books = #{isTopBooks} </if>
+        <if test='type!=null and !"".equals(type)' > AND t2.type in
+            <foreach collection='type.split(",")' item='item' separator=',' open='(' close=')'>
+                #{item}
+            </foreach>
+        </if>
+    </select>
+    
+        <!-- 修改为空的数据 -->
+    <update id='updateNULL' parameterType='DepotInfoModel' keyProperty="id" useGeneratedKeys="true">
+    UPDATE  st_depot_info SET
+        <trim  suffixOverrides=",">
+       			 modify_date=now(),
+                country= #{country} ,
+                address= #{address} ,
+                inspect_no= #{inspectNo} ,
+                customs_no= #{customsNo} ,
+                admin_name= #{adminName} ,
+                tel= #{tel} ,
+                merchant_id=#{merchantId} ,              
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <select id="listByLike" resultMap='DepotInfoModelMap' parameterType='DepotInfoModel'>
+        select <include refid='sql_columns' /> from st_depot_info
+        <include refid='sql_like_where' />
+    </select>
+    
+</mapper>

@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.topideal.mapper.purchase.PurchaseInvoiceMapper'>
+
+        <!-- 关系映射 -->
+        <resultMap id="PurchaseInvoiceModelMap" type="PurchaseInvoiceModel" >
+            <result property="id" column="id" />
+            <result property="code" column="code" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="merchantName" column="merchant_name" />
+            <result property="purchaseOrderId" column="purchase_order_id" />
+            <result property="purchaseOrderCode" column="purchase_order_code" />
+            <result property="currency" column="currency" />
+            <result property="businessModel" column="business_model" />
+            <result property="buId" column="bu_id" />
+            <result property="buName" column="bu_name" />
+            <result property="supplierId" column="supplier_id" />
+            <result property="supplierName" column="supplier_name" />
+            <result property="poNo" column="po_no" />
+            <result property="paymentDate" column="payment_date" />
+            <result property="invoiceDate" column="invoice_date" />
+            <result property="invoiceNo" column="invoice_no" />
+            <result property="drawInvoiceDate" column="draw_invoice_date" />
+            <result property="payName" column="pay_name" />
+            <result property="creater" column="creater" />
+            <result property="createName" column="create_name" />
+            <result property="createDate" column="create_date" />
+            <result property="modifier" column="modifier" />
+            <result property="modifierUsername" column="modifier_username" />
+            <result property="modifyDate" column="modify_date" />
+        </resultMap>
+
+    <!-- 查询所有信息 -->
+    <select id="list" resultMap='PurchaseInvoiceModelMap' parameterType='PurchaseInvoiceModel'>
+        select <include refid='sql_columns' /> from t_purchase_invoice  <include refid='sql_where' />
+    </select>
+
+    <!-- 查询所有信息 分页 -->
+    <select id='listByPage' resultMap='PurchaseInvoiceModelMap' parameterType='PurchaseInvoiceModel'>
+        select <include refid='sql_columns' /> from t_purchase_invoice  <include refid='sql_where' />
+    </select>
+
+    <!-- 条件查询 -->
+    <select id='get' resultMap='PurchaseInvoiceModelMap' parameterType='PurchaseInvoiceModel' >
+        select <include refid='sql_columns' /> from t_purchase_invoice  <include refid='sql_where' />
+    </select>
+
+        <!-- 新增数据 -->
+        <insert id='insert' parameterType='PurchaseInvoiceModel' keyProperty="id" useGeneratedKeys="true">
+            INSERT INTO t_purchase_invoice
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' >id  , </if>
+                        <if test='code!=null and !"".equals(code)' > code , </if>
+                        <if test='merchantId!=null' >merchant_id  , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > merchant_name , </if>
+                        <if test='purchaseOrderId!=null' >purchase_order_id  , </if>
+                        <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' > purchase_order_code , </if>
+                        <if test='currency!=null and !"".equals(currency)' > currency , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' > business_model , </if>
+                        <if test='buId!=null' >bu_id  , </if>
+                        <if test='buName!=null and !"".equals(buName)' > bu_name , </if>
+                        <if test='supplierId!=null' >supplier_id  , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > supplier_name , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > po_no , </if>
+                        <if test='paymentDate!=null' >payment_date  , </if>
+                        <if test='invoiceDate!=null' >invoice_date  , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > invoice_no , </if>
+                        <if test='drawInvoiceDate!=null' >draw_invoice_date  , </if>
+                        <if test='payName!=null and !"".equals(payName)' > pay_name , </if>
+                        <if test='creater!=null' >creater  , </if>
+                        <if test='createName!=null and !"".equals(createName)' > create_name , </if>
+                        <if test='createDate!=null' >create_date  , </if>
+                        <if test='modifier!=null' >modifier  , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' > modifier_username , </if>
+                        <if test='modifyDate!=null' >modify_date  , </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                        <if test='id!=null' > #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' > #{code} , </if>
+                        <if test='merchantId!=null' > #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' > #{merchantName} , </if>
+                        <if test='purchaseOrderId!=null' > #{purchaseOrderId} , </if>
+                        <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' > #{purchaseOrderCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' > #{currency} , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' > #{businessModel} , </if>
+                        <if test='buId!=null' > #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' > #{buName} , </if>
+                        <if test='supplierId!=null' > #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' > #{supplierName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' > #{poNo} , </if>
+                        <if test='paymentDate!=null' > #{paymentDate} , </if>
+                        <if test='invoiceDate!=null' > #{invoiceDate} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' > #{invoiceNo} , </if>
+                        <if test='drawInvoiceDate!=null' > #{drawInvoiceDate} , </if>
+                        <if test='payName!=null and !"".equals(payName)' > #{payName} , </if>
+                        <if test='creater!=null' > #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' > #{createName} , </if>
+                        <if test='createDate!=null' > #{createDate} , </if>
+                        <if test='modifier!=null' > #{modifier} , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' > #{modifierUsername} , </if>
+                        <if test='modifyDate!=null' > #{modifyDate} , </if>
+            </trim>
+        </insert>
+
+        <!-- 修改数据 -->
+        <update id='update' parameterType='PurchaseInvoiceModel' keyProperty="id" useGeneratedKeys="true">
+            UPDATE  t_purchase_invoice SET
+            <trim  suffixOverrides=",">
+                        <if test='id!=null' > id= #{id} , </if>
+                        <if test='code!=null and !"".equals(code)' >code= #{code} , </if>
+                        <if test='merchantId!=null' > merchant_id= #{merchantId} , </if>
+                        <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} , </if>
+                        <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} , </if>
+                        <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' >purchase_order_code= #{purchaseOrderCode} , </if>
+                        <if test='currency!=null and !"".equals(currency)' >currency= #{currency} , </if>
+                        <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} , </if>
+                        <if test='buId!=null' > bu_id= #{buId} , </if>
+                        <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} , </if>
+                        <if test='supplierId!=null' > supplier_id= #{supplierId} , </if>
+                        <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} , </if>
+                        <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} , </if>
+                        <if test='paymentDate!=null' > payment_date= #{paymentDate} , </if>
+                        <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} , </if>
+                        <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} , </if>
+                        <if test='drawInvoiceDate!=null' > draw_invoice_date= #{drawInvoiceDate} , </if>
+                        <if test='payName!=null and !"".equals(payName)' >pay_name= #{payName} , </if>
+                        <if test='creater!=null' > creater= #{creater} , </if>
+                        <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} , </if>
+                        <if test='createDate!=null' > create_date= #{createDate} , </if>
+                        <if test='modifier!=null' > modifier= #{modifier} , </if>
+                        <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} , </if>
+                        <if test='modifyDate!=null' > modify_date= #{modifyDate} , </if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+
+    <!-- 删除数据 -->
+    <delete id='del' parameterType='java.lang.Long'>
+        delete from t_purchase_invoice  where id=#{id}
+    </delete>
+
+        <!-- 批量删除数据 -->
+        <delete id='batchDel' parameterType='java.util.ArrayList'>
+            delete from t_purchase_invoice where id in
+            <foreach collection='list' item='id' separator=',' open='(' close=')'>
+            #{id}
+            </foreach>
+        </delete>
+
+        <!-- 表字段 -->
+        <sql id='sql_columns'>
+             id,
+            code,
+            merchant_id,
+            merchant_name,
+            purchase_order_id,
+            purchase_order_code,
+            currency,
+            business_model,
+            bu_id,
+            bu_name,
+            supplier_id,
+            supplier_name,
+            po_no,
+            payment_date,
+            invoice_date,
+            invoice_no,
+            draw_invoice_date,
+            pay_name,
+            creater,
+            create_name,
+            create_date,
+            modifier,
+            modifier_username,
+            modify_date
+        </sql>
+
+        <!-- 查询条件 -->
+        <sql id='sql_where'>
+            <where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} and </if>
+                            <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' >purchase_order_code= #{purchaseOrderCode} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='paymentDate!=null' > payment_date= #{paymentDate} and </if>
+                            <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} and </if>
+                            <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                            <if test='drawInvoiceDate!=null' > draw_invoice_date= #{drawInvoiceDate} and </if>
+                            <if test='payName!=null and !"".equals(payName)' >pay_name= #{payName} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='currency!=null and !"".equals(currency)' > currency= #{currency} and </if>
+                            <if test='businessModel!=null and !"".equals(businessModel)' >business_model= #{businessModel} and </if>
+                </trim>
+            </where>
+        </sql>
+
+        <!--自定义SQL-->
+		<select id='getListByPage' resultType='PurchaseInvoiceDTO' parameterType='PurchaseInvoiceDTO'>
+	        select <include refid='sql_columns' /> from t_purchase_invoice  
+			<where>
+                <trim suffixOverrides='and'>
+                            <if test='id!=null' > id= #{id} and </if>
+                            <if test='code!=null and !"".equals(code)' >code= #{code} and </if>
+                            <if test='merchantId!=null' > merchant_id= #{merchantId} and </if>
+                            <if test='merchantName!=null and !"".equals(merchantName)' >merchant_name= #{merchantName} and </if>
+                            <if test='purchaseOrderId!=null' > purchase_order_id= #{purchaseOrderId} and </if>
+                            <if test='purchaseOrderCode!=null and !"".equals(purchaseOrderCode)' >purchase_order_code= #{purchaseOrderCode} and </if>
+                            <if test='buId!=null' > bu_id= #{buId} and </if>
+                            <if test='buName!=null and !"".equals(buName)' >bu_name= #{buName} and </if>
+                            <if test='supplierId!=null' > supplier_id= #{supplierId} and </if>
+                            <if test='supplierName!=null and !"".equals(supplierName)' >supplier_name= #{supplierName} and </if>
+                            <if test='poNo!=null and !"".equals(poNo)' >po_no= #{poNo} and </if>
+                            <if test='paymentDate!=null' > payment_date= #{paymentDate} and </if>
+                            <if test='invoiceDate!=null' > invoice_date= #{invoiceDate} and </if>
+                            <if test='invoiceNo!=null and !"".equals(invoiceNo)' >invoice_no= #{invoiceNo} and </if>
+                            <if test='drawInvoiceDate!=null' > draw_invoice_date= #{drawInvoiceDate} and </if>
+                            <if test='payName!=null and !"".equals(payName)' >pay_name= #{payName} and </if>
+                            <if test='creater!=null' > creater= #{creater} and </if>
+                            <if test='createName!=null and !"".equals(createName)' >create_name= #{createName} and </if>
+                            <if test='createDate!=null' > create_date= #{createDate} and </if>
+                            <if test='modifier!=null' > modifier= #{modifier} and </if>
+                            <if test='modifierUsername!=null and !"".equals(modifierUsername)' >modifier_username= #{modifierUsername} and </if>
+                            <if test='modifyDate!=null' > modify_date= #{modifyDate} and </if>
+                            <if test='currency!=null and !"".equals(currency)' > currency= #{currency} and </if>
+                            <if test='buIds!=null' >bu_id in
+			            		<foreach collection="buIds" item="buId" separator="," open="(" close=")">
+			            			#{buId}
+			            		</foreach>
+			            		and 
+			            	</if>
+                </trim>
+            </where>
+            order by id desc
+	    </select>
+
+    <select id="getPurchaseInvoiceByPayDate" resultMap='PurchaseInvoiceModelMap'>
+        select <include refid='sql_columns' /> from t_purchase_invoice
+         where purchase_order_id  not in (select r.purchase_id from t_payment_bill b right join t_payment_purchase_rel r  on r.payment_id=b.id where b.bill_status!='006' group by r.purchase_id)
+         and (DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[ <= ]]> date(payment_date) and date_add(CURDATE(), INTERVAL 7 DAY) <![CDATA[ >= ]]> date(payment_date));
+    </select>
+
+    <select id="getInvoiceByIds" resultMap="PurchaseInvoiceModelMap" >
+        select <include refid='sql_columns' /> from t_purchase_invoice
+        where
+        <if test='ids!=null' >
+             id in
+            <foreach collection="ids" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+
+</mapper>
