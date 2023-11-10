@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.5",
-    "axios": "^0.24.0",
+    "axios": "^1.6.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.10.7",
     "decimal.js": "^10.3.1",
